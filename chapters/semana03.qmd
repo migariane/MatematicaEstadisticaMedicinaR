@@ -1,0 +1,878 @@
+# Semana 3 — Fundamentos de la Teoría de la Probabilidad {#sec-semana03}
+
+## Introducción
+
+La probabilidad es el fundamento del razonamiento estadístico. Esta semana cubriremos los conceptos básicos de la teoría de la probabilidad: experimentos aleatorios, espacios muestrales, eventos, y las herramientas matemáticas para cuantificar la incertidumbre. Aprenderemos los axiomas de Kolmogorov, el Teorema de Bayes, y cómo actualizar nuestras creencias con nueva información.
+
+---
+
+## Experimentos Aleatorios y Eventos {#sec-semana03-s1}
+
+### Experimento Aleatorio
+
+::: {.callout-note}
+## Definición: Experimento Aleatorio
+
+Un **experimento aleatorio** es un proceso que:
+
+- Puede repetirse bajo condiciones idénticas
+- Tiene al menos dos resultados posibles diferentes
+- Se realiza de una manera claramente especificada
+- Tiene un resultado que no puede predecirse con certeza antes de realizarse
+
+El **espacio muestral** $\Omega$ (o $S$) es el conjunto de todos los resultados posibles del experimento.
+
+Un **evento** $A$ es un subconjunto del espacio muestral. Decimos que un evento "ocurre" si el resultado del experimento es un elemento de $A$.
+:::
+
+::: {.callout-tip}
+## Ejemplo 3.1: Aleatorización en Ensayo Clínico
+
+**Experimento:** Aleatorización de un paciente a un grupo de tratamiento ($T$) o control ($C$) mediante el lanzamiento de una moneda.
+
+**Espacio muestral:**
+$$\Omega = \{T, C\}$$
+
+**Eventos posibles:**
+- Evento $A$: "el paciente es asignado al grupo de tratamiento" → $A = \{T\}$
+- Evento $B$: "el paciente es asignado al grupo control" → $B = \{C\}$
+:::
+
+### Evento Elemental y Partición
+
+::: {.callout-note}
+## Definición: Evento Elemental
+
+Un **evento elemental** es un evento que contiene exactamente un resultado del experimento. Por ejemplo, $\{2\}$ es un evento elemental en el experimento de lanzar un dado.
+:::
+
+::: {.callout-note}
+## Definición: Partición Completa
+
+Los eventos $A_1, A_2, \ldots, A_n$ forman una **partición completa** del espacio muestral $\Omega$ si:
+
+1. $A_i \cap A_j = \emptyset$ para todo $i \neq j$ (son mutuamente disjuntos)
+2. $A_1 \cup A_2 \cup \ldots \cup A_n = \Omega$ (cubren todo el espacio)
+3. $\mathbb{P}(A_i) > 0$ para cada $i$ (cada uno tiene probabilidad positiva)
+:::
+
+---
+
+## Álgebra de Conjuntos {#sec-semana03-s2}
+
+Los eventos se pueden combinar usando operaciones de conjuntos. A continuación presentamos las operaciones fundamentales:
+
+::: {.callout-note}
+## Operaciones Básicas de Conjuntos
+
+**Conjunto vacío:** $\emptyset$ es el conjunto sin elementos. En términos de eventos, $A = \emptyset$ significa que el evento es imposible.
+
+**Subconjunto:** $A \subseteq B$ significa que cada elemento de $A$ está también en $B$. En términos de eventos: "si $A$ ocurre, entonces $B$ ocurre".
+
+**Intersección:** $A \cap B$ es el conjunto de elementos que están en ambos $A$ y $B$. En términos de eventos: "tanto $A$ como $B$ ocurren".
+
+**Unión:** $A \cup B$ es el conjunto de elementos que están en $A$ o en $B$ (o en ambos). En términos de eventos: "al menos uno de $A$ o $B$ ocurre".
+
+**Complemento:** $\overline{A}$ (o $A^c$) es el conjunto de elementos en $\Omega$ que no están en $A$. En términos de eventos: "$A$ no ocurre".
+
+**Diferencia:** $A - B$ (o $A - B$) es el conjunto de elementos en $A$ pero no en $B$. En términos de eventos: "$A$ ocurre pero $B$ no ocurre".
+:::
+
+### Relaciones y Operaciones de Eventos
+
+La siguiente tabla resume las correspondencias entre descripciones de eventos y notación de conjuntos:
+
+| Descripción | Notación | Significado |
+|---|---|---|
+| $A$ ocurre con certeza | $A = \Omega$ | evento seguro |
+| $A$ es imposible | $A = \emptyset$ | evento imposible |
+| Si $A$ ocurre, entonces $B$ ocurre | $A \subseteq B$ | $A$ es subconjunto de $B$ |
+| $A$ y $B$ nunca ocurren juntos | $A \cap B = \emptyset$ | eventos disjuntos |
+| $A$ y $B$ son complementarios | $B = \overline{A}$ | $B$ ocurre si y solo si $A$ no ocurre |
+| Al menos uno de los $A_i$ ocurre | $A = \bigcup_{i} A_i$ | unión de eventos |
+| Todos los $A_i$ ocurren | $A = \bigcap_{i} A_i$ | intersección de eventos |
+
+### Diagramas de Venn
+
+Los diagramas de Venn proporcionan representaciones visuales de operaciones entre conjuntos. A continuación se muestran las operaciones fundamentales:
+
+```{=html}
+<div style="text-align: center; margin: 20px 0;">
+<figure>
+<svg width="600" height="320" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fila 1 -->
+  <!-- Subset -->
+  <g transform="translate(0,0)">
+    <ellipse cx="80" cy="75" rx="50" ry="50" fill="none" stroke="blue" stroke-width="2"/>
+    <ellipse cx="80" cy="75" rx="25" ry="30" fill="lightblue" stroke="blue" stroke-width="2"/>
+    <text x="75" y="80" font-size="14">A</text>
+    <text x="110" y="50" font-size="14">B</text>
+    <text x="80" y="145" font-size="12" text-anchor="middle">A ⊆ B (Subconjunto)</text>
+  </g>
+
+  <!-- Union -->
+  <g transform="translate(200,0)">
+    <ellipse cx="60" cy="75" rx="45" ry="45" fill="lightblue" fill-opacity="0.6" stroke="blue" stroke-width="2"/>
+    <ellipse cx="100" cy="75" rx="45" ry="45" fill="lightblue" fill-opacity="0.6" stroke="blue" stroke-width="2"/>
+    <text x="40" y="75" font-size="14">A</text>
+    <text x="120" y="75" font-size="14">B</text>
+    <text x="80" y="145" font-size="12" text-anchor="middle">A ∪ B (Unión)</text>
+  </g>
+
+  <!-- Intersection -->
+  <g transform="translate(400,0)">
+    <ellipse cx="60" cy="75" rx="45" ry="45" fill="none" stroke="blue" stroke-width="2"/>
+    <ellipse cx="100" cy="75" rx="45" ry="45" fill="none" stroke="blue" stroke-width="2"/>
+    <clipPath id="inter">
+      <ellipse cx="60" cy="75" rx="45" ry="45" />
+    </clipPath>
+    <ellipse cx="100" cy="75" rx="45" ry="45" fill="lightblue" clip-path="url(#inter)" />
+    <text x="40" y="75" font-size="14">A</text>
+    <text x="120" y="75" font-size="14">B</text>
+    <text x="80" y="145" font-size="12" text-anchor="middle">A ∩ B (Intersección)</text>
+  </g>
+
+  <!-- Fila 2 -->
+  <!-- Complement -->
+  <g transform="translate(0,160)">
+    <rect x="20" y="25" width="120" height="100" fill="lightblue" fill-opacity="0.4" stroke="blue" stroke-width="2"/>
+    <ellipse cx="80" cy="75" rx="35" ry="35" fill="white" stroke="blue" stroke-width="2"/>
+    <text x="75" y="80" font-size="14">A</text>
+    <text x="125" y="45" font-size="14">Ā</text>
+    <text x="80" y="145" font-size="12" text-anchor="middle">Ā (Complemento)</text>
+  </g>
+
+  <!-- Disjoint -->
+  <g transform="translate(200,160)">
+    <ellipse cx="50" cy="75" rx="35" ry="35" fill="lightblue" stroke="blue" stroke-width="2"/>
+    <ellipse cx="110" cy="75" rx="35" ry="35" fill="#e8f0f8" stroke="#0052a3" stroke-width="2"/>
+    <text x="45" y="80" font-size="14">A</text>
+    <text x="105" y="80" font-size="14">B</text>
+    <text x="80" y="145" font-size="12" text-anchor="middle">A ∩ B = ∅ (Disjuntos)</text>
+  </g>
+
+  <!-- Difference -->
+  <g transform="translate(400,160)">
+    <ellipse cx="100" cy="75" rx="45" ry="45" fill="none" stroke="blue" stroke-width="2"/>
+    <clipPath id="diff">
+      <rect x="0" y="0" width="160" height="150" />
+    </clipPath>
+    <mask id="mask1">
+      <rect x="0" y="0" width="160" height="150" fill="white" />
+      <ellipse cx="100" cy="75" rx="45" ry="45" fill="black" />
+    </mask>
+    <ellipse cx="60" cy="75" rx="45" ry="45" fill="lightblue" mask="url(#mask1)" stroke="blue" stroke-width="2" />
+    <text x="40" y="75" font-size="14">A</text>
+    <text x="120" y="75" font-size="14">B</text>
+    <text x="80" y="145" font-size="12" text-anchor="middle">A \ B (Diferencia)</text>
+  </g>
+</svg>
+</figure>
+</div>
+```
+
+### Leyes de De Morgan
+
+Las Leyes de De Morgan son reglas fundamentales que relacionan la unión, la intersección y el complemento de conjuntos. Son extremadamente útiles para simplificar expresiones probabilísticas complejas.
+
+::: {.callout-important}
+## Leyes de De Morgan
+
+Para cualquier par de eventos $A$ y $B$:
+
+1.  **Complemento de la unión:** El complemento de la unión de dos conjuntos es la intersección de sus complementos.
+    $$\overline{A \cup B} = \overline{A} \cap \overline{B}$$
+    *Significado:* "Ni A ni B ocurren" es lo mismo que "A no ocurre Y B no ocurre".
+
+2.  **Complemento de la intersección:** El complemento de la intersección de dos conjuntos es la unión de sus complementos.
+    $$\overline{A \cap B} = \overline{A} \cup \overline{B}$$
+    *Significado:* "No ocurre que ambos A y B ocurran" es lo mismo que "A no ocurre O B no ocurre".
+:::
+
+::: {.callout-tip}
+## Ejemplo 3.2: Visualización de De Morgan
+
+Representación de $\overline{A \cup B} = \overline{A} \cap \overline{B}$:
+
+```{=html}
+<div style="text-align: center; margin: 20px 0;">
+<svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect x="50" y="20" width="300" height="150" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+  <rect x="50" y="20" width="300" height="150" fill="#e8f0f8" fill-opacity="0.5"/>
+  <ellipse cx="170" cy="95" rx="60" ry="60" fill="white" stroke="blue" stroke-width="2"/>
+  <ellipse cx="230" cy="95" rx="60" ry="60" fill="white" stroke="blue" stroke-width="2"/>
+  <text x="140" y="95" font-size="16">A</text>
+  <text x="250" y="95" font-size="16">B</text>
+  <text x="60" y="40" font-size="14" font-weight="bold">Ω (Espacio Muestral)</text>
+  <text x="200" y="190" font-size="14" text-anchor="middle">Zona azul clara: (A ∪ B)ᶜ = Ā ∩ B̄</text>
+</svg>
+</div>
+```
+:::
+
+::: {.callout-tip}
+## Ejemplo 3.3: Aplicación Práctica con 3 Conjuntos
+
+En estudios epidemiológicos es común analizar la comorbilidad de tres condiciones (A, B, C). Un diagrama de Venn de 3 conjuntos permite visualizar todas las posibles intersecciones:
+
+```{=html}
+<div style="text-align: center; margin: 20px 0;">
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Conjuntos -->
+  <circle cx="110" cy="110" r="80" fill="rgba(0, 48, 135, 0.1)" stroke="#003087" stroke-width="2" />
+  <circle cx="190" cy="110" r="80" fill="rgba(0, 82, 163, 0.1)" stroke="#0052a3" stroke-width="2" />
+  <circle cx="150" cy="190" r="80" fill="rgba(77, 148, 255, 0.1)" stroke="#4d94ff" stroke-width="2" />
+  
+  <!-- Etiquetas -->
+  <text x="60" y="80" font-size="16" fill="#003087" font-weight="bold">A</text>
+  <text x="230" y="80" font-size="16" fill="#0052a3" font-weight="bold">B</text>
+  <text x="145" y="260" font-size="16" fill="#4d94ff" font-weight="bold">C</text>
+  
+  <!-- Intersección triple -->
+  <text x="150" y="145" font-size="10" text-anchor="middle" font-weight="bold">A∩B∩C</text>
+</svg>
+</div>
+```
+
+**Problema:** En una muestra de 100 pacientes:
+- 40 tienen Hipertensión (A)
+- 30 tienen Diabetes (B)
+- 20 tienen Obesidad (C)
+- 10 tienen A y B
+- 8 tienen A y C
+- 5 tienen B y C
+- 3 tienen las tres condiciones
+
+¿Cuántos pacientes tienen **al menos una** condición?
+Usando el principio de Inclusión-Exclusión:
+$|A \cup B \cup C| = 40 + 30 + 20 - (10 + 8 + 5) + 3 = 90 - 23 + 3 = 70 \text{ pacientes}.$
+:::
+
+---
+
+## Definiciones de Probabilidad {#sec-semana03-s3}
+
+Existen varias formas de formalizar el concepto de probabilidad, cada una reflejando una filosofía diferente sobre cómo interpretamos la "probabilidad".
+
+### Probabilidad Clásica (Laplace)
+
+::: {.callout-note}
+## Definición: Probabilidad Clásica de Laplace
+
+La probabilidad clásica se define como:
+
+$$\mathbb{P}(A) = \frac{\text{Número de resultados favorables a } A}{\text{Número total de resultados posibles}} = \frac{|A|}{|\Omega|}$$
+
+**Supuestos:**
+- Hay al menos dos resultados elementales posibles
+- Exactamente uno de los resultados posibles ocurre en cada experimento
+- El número de resultados elementales es finito
+- Cada resultado elemental ocurre con la misma probabilidad (equiprobabilidad)
+:::
+
+::: {.callout-tip}
+## Ejemplo 3.4: Moneda justa en Aleatorización
+
+**Experimento:** Lanzar una moneda para decidir el grupo de tratamiento de un paciente.
+
+**Evento $A$:** "el paciente es asignado al grupo de tratamiento ($T$)"
+
+**Resultados favorables a $A$:** $\{T\}$ → 1 resultado
+
+**Resultados totales:** $\{T, C\}$ → 2 resultados
+
+$$\mathbb{P}(A) = \frac{1}{2} = 0.5$$
+:::
+
+### Probabilidad Frecuentista (von Mises)
+
+::: {.callout-note}
+## Definición: Probabilidad Frecuentista
+
+Sea $n$ el número de repeticiones de un experimento y $f_n(A)$ el número de veces que ocurre el evento $A$. La **frecuencia relativa** es:
+
+$$\text{Frecuencia relativa} = \frac{f_n(A)}{n}$$
+
+La **probabilidad frecuentista** de $A$ se define como el límite de la frecuencia relativa cuando $n \to \infty$:
+
+$$\mathbb{P}(A) = \lim_{n \to \infty} \frac{f_n(A)}{n}$$
+
+Esta definición requiere:
+- Una secuencia de muestras independientes
+- Bajo condiciones idénticas
+- Repetibles arbitrariamente
+:::
+
+::: {.callout-tip}
+## Ejemplo 3.5: Simulación de aleatorización
+
+Simulamos asignar $n$ pacientes a un grupo de tratamiento:
+
+```{r}
+#| lst-label: lst-semana03-1
+#| lst-cap: "Código R"
+
+set.seed(123)
+
+n <- 10
+asignacion <- rbinom(n, size = 1, prob = 0.5)
+prop_10 <- sum(asignacion) / n
+cat("n =", n, ": proporción asignada a tratamiento =", prop_10, "\n")
+
+n <- 100
+asignacion <- rbinom(n, size = 1, prob = 0.5)
+prop_100 <- sum(asignacion) / n
+cat("n =", n, ": proporción asignada a tratamiento =", prop_100, "\n")
+
+n <- 1000
+asignacion <- rbinom(n, size = 1, prob = 0.5)
+prop_1000 <- sum(asignacion) / n
+cat("n =", n, ": proporción asignada a tratamiento =", prop_1000, "\n")
+```
+
+::: {.callout-note}
+## Interpretación
+La simulación ilustra la **Ley de los Grandes Números**: conforme incrementamos el tamaño muestral de 10 a 1,000 pacientes, la proporción observada de asignados al tratamiento converge hacia la probabilidad teórica de 0.5. Con apenas 10 pacientes observamos fluctuaciones (prop_10 = 0.50), pero con 1,000 pacientes la proporción se estabiliza cercana al valor esperado (prop_1000 ≈ 0.486). Esto demuestra empíricamente por qué los estudios clínicos requieren tamaños muestrales adecuados: garantizan que la frecuencia relativa refleje la probabilidad verdadera subyacente en la aleatorización.
+:::
+
+
+A medida que $n$ aumenta, la proporción de pacientes en el grupo de tratamiento se acerca a 0.5.
+:::
+
+### Probabilidad Axiomática (Kolmogorov)
+
+::: {.callout-note}
+## Definición: Axiomas de Kolmogorov
+
+Una función $\mathbb{P}: \mathcal{F} \to [0,1]$ que asigna un número a cada evento en $\Omega$ es una **medida de probabilidad** si satisface los siguientes axiomas:
+
+**Axioma 1 (No negatividad):**
+$$\mathbb{P}(A) \geq 0 \text{ para todo evento } A$$
+
+**Axioma 2 (Normalización):**
+$$\mathbb{P}(\Omega) = 1$$
+
+**Axioma 3 (Aditividad contable):**
+Si $A_1, A_2, A_3, \ldots$ son eventos mutuamente disjuntos (es decir, $A_i \cap A_j = \emptyset$ para $i \neq j$), entonces:
+
+$$\mathbb{P}\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} \mathbb{P}(A_i)$$
+
+**Componentes de un espacio de probabilidad:**
+1. Un espacio muestral $\Omega$ (el conjunto de todos los resultados posibles)
+2. Una $\sigma$-álgebra $\mathcal{F}$ (una colección de eventos)
+3. Una medida de probabilidad $\mathbb{P}$ (que satisface los axiomas anteriores)
+:::
+
+La definición axiomática de Kolmogorov es la más general y es la base de toda la teoría moderna de la probabilidad.
+
+---
+
+## Propiedades de la Probabilidad {#sec-semana03-s4}
+
+De los axiomas de Kolmogorov se derivan varias propiedades útiles:
+
+::: {.callout-warning}
+## Teorema: Propiedades Fundamentales de la Probabilidad
+
+Sea $A, B, A_1, A_2, \ldots$ eventos en un espacio de probabilidad. Entonces:
+
+**Propiedad 1: Probabilidad del complemento**
+$$\mathbb{P}(\overline{A}) = 1 - \mathbb{P}(A)$$
+
+*Prueba:* Note que $A \cup \overline{A} = \Omega$ y $A \cap \overline{A} = \emptyset$. Por el Axioma 3:
+$$\mathbb{P}(\Omega) = \mathbb{P}(A) + \mathbb{P}(\overline{A}) = 1$$
+
+**Propiedad 2: Probabilidad del conjunto vacío**
+$$\mathbb{P}(\emptyset) = 0$$
+
+*Prueba:* $\emptyset = \overline{\Omega}$, así que $\mathbb{P}(\emptyset) = 1 - \mathbb{P}(\Omega) = 1 - 1 = 0$.
+
+**Propiedad 3: Monotonía**
+Si $A \subseteq B$, entonces $\mathbb{P}(A) \leq \mathbb{P}(B)$
+
+*Prueba:* Si $A \subseteq B$, entonces $B = A \cup (B - A)$ donde $A$ y $B - A$ son disjuntos. Por el Axioma 3:
+$$\mathbb{P}(B) = \mathbb{P}(A) + \mathbb{P}(B - A) \geq \mathbb{P}(A)$$
+
+**Propiedad 4: Acotamiento**
+$$0 \leq \mathbb{P}(A) \leq 1$$
+
+Se sigue de los Axiomas 1 y 2.
+
+**Propiedad 5: Regla de la suma (Inclusión-Exclusión)**
+$$\mathbb{P}(A \cup B) = \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A \cap B)$$
+
+*Prueba:* Observe que $A \cup B = A \cup (B - A)$ donde estos son disjuntos, y $B = (A \cap B) \cup (B - A)$.
+
+**Propiedad 6: Aditividad para eventos disjuntos**
+Si $A \cap B = \emptyset$, entonces:
+$$\mathbb{P}(A \cup B) = \mathbb{P}(A) + \mathbb{P}(B)$$
+:::
+
+::: {.callout-tip}
+## Ejemplo 3.6: Aplicación de propiedades
+
+**Problema:** En una consulta médica, el 30% de los pacientes tienen hipertensión ($H$). Entre los pacientes hipertensos, el 80% también presenta obesidad. ¿Cuál es la probabilidad de que un paciente NO tenga hipertensión?
+
+**Solución:** Sea $H$ = "tener hipertensión". Entonces $\mathbb{P}(H) = 0.30$.
+
+Por la Propiedad 1:
+$$\mathbb{P}(\text{sin hipertensión}) = \mathbb{P}(\overline{H}) = 1 - 0.30 = 0.70$$
+:::
+
+---
+
+## Teorema de la Suma (Inclusión-Exclusión) {#sec-semana03-s5}
+
+::: {.callout-warning}
+## Teorema: Regla de la Suma (Inclusión-Exclusión)
+
+Para dos eventos arbitrarios $A$ y $B$:
+
+$$\mathbb{P}(A \cup B) = \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A \cap B)$$
+
+Para tres eventos $A$, $B$, y $C$:
+
+$$\mathbb{P}(A \cup B \cup C) = \mathbb{P}(A) + \mathbb{P}(B) + \mathbb{P}(C)$$
+$$- \mathbb{P}(A \cap B) - \mathbb{P}(A \cap C) - \mathbb{P}(B \cap C)$$
+$$+ \mathbb{P}(A \cap B \cap C)$$
+:::
+
+::: {.callout-tip}
+## Ejemplo 3.7: Comorbilidad de pacientes
+
+**Problema:** En una muestra de 52 pacientes, ¿cuál es la probabilidad de que un paciente tenga Hipertensión (A) O Diabetes (B)?
+
+**Definición de eventos:**
+- $A$ = "paciente con Hipertensión" → 4 pacientes
+- $B$ = "paciente con Diabetes" → 13 pacientes
+- $A \cap B$ = "paciente con ambas enfermedades" → 1 paciente
+
+**Cálculo de probabilidades individuales:**
+$$\mathbb{P}(A) = \frac{4}{52}, \quad \mathbb{P}(B) = \frac{13}{52}, \quad \mathbb{P}(A \cap B) = \frac{1}{52}$$
+
+**Aplicación del Teorema de la Suma:**
+$$\mathbb{P}(A \cup B) = \frac{4}{52} + \frac{13}{52} - \frac{1}{52} = \frac{16}{52} \approx 0.308$$
+:::
+
+---
+
+## Probabilidad Condicional {#sec-semana03-s6}
+
+La probabilidad condicional permite actualizar nuestras creencias sobre un evento cuando tenemos información adicional.
+
+::: {.callout-note}
+## Definición: Probabilidad Condicional
+
+Dados dos eventos $A$ y $B$ con $\mathbb{P}(B) > 0$, la **probabilidad condicional** de $A$ dado que $B$ ha ocurrido es:
+
+$$\mathbb{P}(A|B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}$$
+
+**Interpretación:** Es la probabilidad de que ocurra $A$ cuando ya sabemos que $B$ ocurrió. Formalmente, es la fracción de casos en que $B$ ocurre que también incluyen la ocurrencia de $A$.
+:::
+
+::: {.callout-tip}
+## Ejemplo 3.8: Probabilidad condicional en aleatorización
+
+**Experimento:** Asignación de dos pacientes consecutivos a grupos de tratamiento.
+
+**Eventos:**
+- $A$ = "el segundo paciente es asignado al grupo de tratamiento ($T_2$)"
+- $B$ = "el primer paciente fue asignado al grupo de tratamiento ($T_1$)"
+
+**Cálculo:**
+Si la asignación es aleatoria e independiente, $\mathbb{P}(T_1) = 0.5$, $\mathbb{P}(T_2) = 0.5$.
+La probabilidad condicional $\mathbb{P}(T_2|T_1) = \mathbb{P}(T_2) = 0.5$ (por independencia).
+:::
+
+### Teorema de la Multiplicación
+
+::: {.callout-warning}
+## Teorema: Regla de la Multiplicación
+
+Para dos eventos $A$ y $B$:
+$$\mathbb{P}(A \cap B) = \mathbb{P}(A) \cdot \mathbb{P}(B|A) = \mathbb{P}(B) \cdot \mathbb{P}(A|B)$$
+
+Para tres eventos $A_1, A_2, A_3$:
+$$\mathbb{P}(A_1 \cap A_2 \cap A_3) = \mathbb{P}(A_1) \cdot \mathbb{P}(A_2|A_1) \cdot \mathbb{P}(A_3|A_1 \cap A_2)$$
+
+Para $n$ eventos:
+$$\mathbb{P}(A_1 \cap \ldots \cap A_n) = \mathbb{P}(A_1) \cdot \mathbb{P}(A_2|A_1) \cdot \mathbb{P}(A_3|A_1 \cap A_2) \cdots \mathbb{P}(A_n|A_1 \cap \ldots \cap A_{n-1})$$
+:::
+
+---
+
+## Independencia de Eventos {#sec-semana03-s7}
+
+::: {.callout-note}
+## Definición: Independencia de Eventos
+
+Dos eventos $A$ y $B$ son **independientes** si la ocurrencia de uno no afecta la probabilidad del otro:
+
+$$\mathbb{P}(A \cap B) = \mathbb{P}(A) \cdot \mathbb{P}(B)$$
+
+Equivalentemente:
+$$\mathbb{P}(A|B) = \mathbb{P}(A) \quad \text{(si } \mathbb{P}(B) > 0\text{)}$$
+$$\mathbb{P}(B|A) = \mathbb{P}(B) \quad \text{(si } \mathbb{P}(A) > 0\text{)}$$
+
+**Nota importante:** Independencia es diferente de "disjuntos" (mutuamente excluyentes). Dos eventos disjuntos tienen $\mathbb{P}(A \cap B) = 0$, lo cual es diferente de independencia.
+:::
+
+::: {.callout-tip}
+## Ejemplo 3.9: Aleatorización independiente
+
+**Experimento:** Asignar dos pacientes consecutivos al grupo de tratamiento ($T$) o control ($C$).
+
+**Eventos:**
+- $A$ = "primer paciente asignado al grupo $T$"
+- $B$ = "segundo paciente asignado al grupo $T$"
+
+**Análisis:**
+$$\mathbb{P}(A) = 0.5, \quad \mathbb{P}(B) = 0.5$$
+$$\mathbb{P}(A \cap B) = 0.25$$
+
+**Verificación de independencia:**
+$$\mathbb{P}(A) \cdot \mathbb{P}(B) = 0.5 \times 0.5 = 0.25 = \mathbb{P}(A \cap B)$$
+
+Por lo tanto, $A$ y $B$ son independientes.
+:::
+
+### Independencia de Múltiples Eventos
+
+::: {.callout-note}
+## Definición: Independencia Mutua
+
+Los eventos $A_1, A_2, \ldots, A_n$ son **mutuamente independientes** si para cualquier subconjunto $\{i_1, i_2, \ldots, i_k\}$ de índices:
+
+$$\mathbb{P}(A_{i_1} \cap A_{i_2} \cap \ldots \cap A_{i_k}) = \mathbb{P}(A_{i_1}) \cdot \mathbb{P}(A_{i_2}) \cdots \mathbb{P}(A_{i_k})$$
+
+Esta condición debe cumplirse para todo subconjunto posible, no solo para pares de eventos.
+:::
+
+---
+
+## Ley de la Probabilidad Total {#sec-semana03-s8}
+
+::: {.callout-warning}
+## Teorema: Ley de la Probabilidad Total
+
+Sea $\{A_1, A_2, \ldots, A_n\}$ una partición completa del espacio muestral $\Omega$. Entonces, para cualquier evento $B$:
+
+$$\mathbb{P}(B) = \sum_{i=1}^{n} \mathbb{P}(B|A_i) \cdot \mathbb{P}(A_i)$$
+
+**Interpretación:** La probabilidad de $B$ se puede calcular como una suma ponderada de las probabilidades condicionales de $B$ bajo cada posibilidad en la partición, ponderadas por las probabilidades de cada parte.
+:::
+
+```{=html}
+<div style="text-align: center; margin: 20px 0;">
+<svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect x="50" y="20" width="300" height="150" fill="#f8f9fa" stroke="#003087" stroke-width="2"/>
+  <line x1="150" y1="20" x2="150" y2="170" stroke="#003087" stroke-width="2"/>
+  <line x1="250" y1="20" x2="250" y2="170" stroke="#003087" stroke-width="2"/>
+  <ellipse cx="200" cy="100" rx="120" ry="50" fill="rgba(77, 148, 255, 0.3)" stroke="#4d94ff" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="100" y="50" font-size="14">A1</text>
+  <text x="200" y="50" font-size="14">A2</text>
+  <text x="300" y="50" font-size="14">A3</text>
+  <text x="200" y="100" font-size="16" font-weight="bold" fill="#003087">B</text>
+  <text x="200" y="190" font-size="14" text-anchor="middle">Visualización: Partición del espacio y evento B</text>
+</svg>
+</div>
+```
+
+::: {.callout-tip}
+## Ejemplo 3.10: Diagnóstico de una enfermedad (Ley de Probabilidad Total)
+
+**Escenario:** Una enfermedad se distribuye en una población según tres grupos de riesgo:
+- Grupo 1 (Bajo riesgo): 60% de la población, tasa de enfermedad = 2%
+- Grupo 2 (Riesgo moderado): 30% de la población, tasa de enfermedad = 10%
+- Grupo 3 (Alto riesgo): 10% de la población, tasa de enfermedad = 25%
+
+**Probabilidades a priori:**
+- $\mathbb{P}(A_1) = 0.60$
+- $\mathbb{P}(A_2) = 0.30$
+- $\mathbb{P}(A_3) = 0.10$
+
+**Probabilidades condicionales de enfermedad ($B$):**
+- $\mathbb{P}(B|A_1) = 0.02$
+- $\mathbb{P}(B|A_2) = 0.10$
+- $\mathbb{P}(B|A_3) = 0.25$
+
+**Aplicación de la Ley de la Probabilidad Total:**
+$$\mathbb{P}(B) = \mathbb{P}(B|A_1) \cdot \mathbb{P}(A_1) + \mathbb{P}(B|A_2) \cdot \mathbb{P}(A_2) + \mathbb{P}(B|A_3) \cdot \mathbb{P}(A_3)$$
+$$= 0.02 \times 0.60 + 0.10 \times 0.30 + 0.25 \times 0.10$$
+$$= 0.012 + 0.03 + 0.025 = 0.067$$
+
+**Interpretación:** La probabilidad global de padecer la enfermedad en esta población es del 6.7%.
+:::
+
+---
+
+## Teorema de Bayes {#sec-semana03-s9}
+
+El Teorema de Bayes es uno de los resultados más importantes de la teoría de la probabilidad y es fundamental en estadística moderna y aprendizaje automático.
+
+```{=html}
+<div style="text-align: center; margin: 20px 0;">
+<svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Prior -->
+  <rect x="50" y="50" width="100" height="100" fill="#e8f0f8" stroke="#003087" stroke-width="2"/>
+  <text x="100" y="100" text-anchor="middle">Prior P(A)</text>
+
+  <!-- Likelihood + Evidence -->
+  <rect x="250" y="50" width="100" height="100" fill="#f8f9fa" stroke="#4d94ff" stroke-width="2"/>
+  <text x="300" y="100" text-anchor="middle">Posterior P(A|B)</text>
+
+  <path d="M 160 100 L 240 100" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" />
+    </marker>
+  </defs>
+  <text x="200" y="90" text-anchor="middle">Evidencia B</text>
+  <text x="200" y="190" font-size="14" text-anchor="middle">Actualización Bayesiana: Prior → Posterior</text>
+</svg>
+</div>
+```
+
+### Forma Simple del Teorema de Bayes
+
+::: {.callout-note}
+## **Teorema: Teorema de Bayes (Forma Simple)**
+
+Para dos eventos $A$ y $B$ con $\mathbb{P}(B) > 0$:
+
+$$\mathbb{P}(A|B) = \frac{\mathbb{P}(B|A) \cdot \mathbb{P}(A)}{\mathbb{P}(B)}$$
+
+**Terminología:**
+- $\mathbb{P}(A|B)$ = probabilidad **a posteriori** (después de observar $B$)  
+- $\mathbb{P}(A)$ = probabilidad **a priori** (antes de observar $B$)  
+- $\mathbb{P}(B|A)$ = **verosimilitud** (probabilidad de la evidencia bajo el supuesto)  
+- $\mathbb{P}(B)$ = probabilidad **marginal** de la evidencia  
+:::
+
+### Forma General con Partición
+
+::: {.callout-note}
+## Teorema: Teorema de Bayes (Forma General)
+
+Sea $\{A_1, A_2, \ldots, A_n\}$ una partición completa del espacio muestral. Para un evento $B$ con $\mathbb{P}(B) > 0$:
+
+$$\mathbb{P}(A_j|B) = \frac{\mathbb{P}(B|A_j) \cdot \mathbb{P}(A_j)}{\sum_{i=1}^{n} \mathbb{P}(B|A_i) \cdot \mathbb{P}(A_i)}$$
+
+para cada $j = 1, 2, \ldots, n$.
+:::
+
+### Ejemplo: Prueba Diagnóstica
+
+::: {.callout-tip}
+## Ejemplo 3.11: Prueba diagnóstica médica
+
+**Escenario:** Un test de diagnóstico para una enfermedad con:
+- Prevalencia de la enfermedad: $\mathbb{P}(E) = 0.05$ (5% de la población)
+- Sensibilidad: $\mathbb{P}(+|E) = 0.95$ (95% de enfermos dan positivo)
+- Especificidad: $\mathbb{P}(-|\overline{E}) = 0.90$ (90% de sanos dan negativo)
+
+**Pregunta:** Si una persona da positivo, ¿cuál es la probabilidad de que realmente este enferma?
+
+**Solución:**
+
+Primero, calculamos $\mathbb{P}(+) = \mathbb{P}(+|E) \cdot \mathbb{P}(E) + \mathbb{P}(+|\overline{E}) \cdot \mathbb{P}(\overline{E})$
+
+donde $\mathbb{P}(+|\overline{E}) = 1 - \mathbb{P}(-|\overline{E}) = 1 - 0.90 = 0.10$
+
+$$\mathbb{P}(+) = 0.95 \times 0.05 + 0.10 \times 0.95 = 0.0475 + 0.095 = 0.1425$$
+
+Ahora aplicamos el Teorema de Bayes:
+
+$$\mathbb{P}(E|+) = \frac{\mathbb{P}(+|E) \cdot \mathbb{P}(E)}{\mathbb{P}(+)} = \frac{0.95 \times 0.05}{0.1425} = \frac{0.0475}{0.1425} \approx 0.333$$
+
+**Interpretación:** Aunque el test tiene 95% de sensibilidad, si una persona da positivo, la probabilidad de que realmente esté enferma es solo de aproximadamente 33%. Esto sucede porque la enfermedad es rara (baja prevalencia) y hay muchos falsos positivos.
+:::
+
+```{r}
+#| lst-label: lst-semana03-2
+#| lst-cap: "Código R"
+
+prev <- 0.05
+sens <- 0.95
+spec <- 0.90
+
+falso_pos_rate <- 1 - spec
+p_positivo <- sens * prev + falso_pos_rate * (1 - prev)
+vpp <- (sens * prev) / p_positivo
+
+cat("Prevalencia:", prev, "\n")
+cat("Sensibilidad:", sens, "\n")
+cat("Especificidad:", spec, "\n")
+cat("P(+):", p_positivo, "\n")
+cat("Valor Predictivo Positivo (VPP):", round(vpp, 3), "\n")
+```
+
+::: {.callout-note}
+## Interpretación
+Este cálculo implementa el **Teorema de Bayes** en contexto diagnóstico: aunque la prueba posee 95% de sensibilidad (detecta enfermedad cuando existe), el Valor Predictivo Positivo (VPP ≈ 0.333) es sustancialmente menor debido a la baja prevalencia (5%). Con una enfermedad rara, la mayoría de resultados positivos son falsos positivos. En la consulta clínica, este resultado orienta decisiones: ante test positivo con baja prevalencia, es prudente confirmar con prueba adicional antes de iniciar tratamiento, ilustrando cómo la probabilidad a priori (prevalencia) moldea la interpretación clínica de la evidencia.
+:::
+
+:::
+
+### Ejemplo: Clasificación de pacientse 
+
+::: {.callout-tip}
+## Ejemplo 3.12: Clasificación de pacientes (Bayes)
+
+**Escenario:** Un médico quiere clasificar a un paciente como de alto riesgo o bajo riesgo de sufrir una patología cardíaca basándose en tres factores de riesgo (ej. hipertensión $W_1$, tabaquismo $W_2$, obesidad $W_3$).
+
+**Información disponible:**
+- $\mathbb{P}(E)$ = probabilidad a priori de tener la patología
+- $\mathbb{P}(W_i|E)$ = probabilidad de que el factor $W_i$ aparezca en pacientes enfermos
+- $\mathbb{P}(W_i|\overline{E})$ = probabilidad de que el factor $W_i$ aparezca en pacientes sanos
+
+**Problema:** Clasificar a un paciente que presenta los factores $W_1, W_2, W_3$.
+
+**Solución usando Bayes:**
+
+Se clasifica como de "Alto Riesgo" si la probabilidad a posteriori es alta:
+$$\frac{\mathbb{P}(E|W_1 \cap W_2 \cap W_3)}{\mathbb{P}(\overline{E}|W_1 \cap W_2 \cap W_3)} > c$$
+
+donde $c$ es un umbral clínico.
+
+Asumiendo independencia condicional de los factores:
+
+$$\frac{\mathbb{P}(E|W_1 \cap W_2 \cap W_3)}{\mathbb{P}(\overline{E}|W_1 \cap W_2 \cap W_3)} \approx \frac{\mathbb{P}(E)}{\mathbb{P}(\overline{E})} \cdot \prod_{i=1}^{3} \frac{\mathbb{P}(W_i|E)}{\mathbb{P}(W_i|\overline{E})}$$
+
+**Aplicación clínica:**
+- Permite integrar múltiples biomarcadores o factores de riesgo de manera eficiente.
+- Proporciona una medida de riesgo individualizada (probabilidad a posteriori).
+- Ayuda en la toma de decisiones clínicas para el cribado o tratamiento preventivo.
+:::
+
+---
+
+## Resumen {#sec-semana03-resumen}
+
+### Conceptos Clave
+
+- **Experimento aleatorio:** Un proceso con resultado incierto pero repetible
+- **Espacio muestral $\Omega$:** El conjunto de todos los resultados posibles
+- **Evento:** Un subconjunto del espacio muestral
+- **Partición:** Una división del espacio muestral en eventos mutuamente disjuntos
+
+### Definiciones de Probabilidad
+
+| Definición | Ventajas | Limitaciones |
+|---|---|---|
+| **Clásica (Laplace)** | Simple, intuitiva | Requiere equiprobabilidad |
+| **Frecuentista (von Mises)** | Empírica, práctica | Requiere infinitas repeticiones |
+| **Axiomática (Kolmogorov)** | General, rigurosa | Abstracta |
+
+### Fórmulas Importantes
+
+**Propiedades básicas:**
+$$\mathbb{P}(\overline{A}) = 1 - \mathbb{P}(A), \quad \mathbb{P}(\emptyset) = 0, \quad \mathbb{P}(\Omega) = 1$$
+
+**Regla de la suma:**
+$$\mathbb{P}(A \cup B) = \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A \cap B)$$
+
+**Probabilidad condicional:**
+$$\mathbb{P}(A|B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}$$
+
+**Regla de la multiplicación:**
+$$\mathbb{P}(A \cap B) = \mathbb{P}(A) \cdot \mathbb{P}(B|A)$$
+
+**Independencia:**
+$$\mathbb{P}(A \cap B) = \mathbb{P}(A) \cdot \mathbb{P}(B) \text{ si y solo si } A \text{ y } B \text{ son independientes}$$
+
+**Ley de la probabilidad total:**
+$$\mathbb{P}(B) = \sum_{i=1}^{n} \mathbb{P}(B|A_i) \cdot \mathbb{P}(A_i)$$
+
+**Teorema de Bayes:**
+$$\mathbb{P}(A|B) = \frac{\mathbb{P}(B|A) \cdot \mathbb{P}(A)}{\mathbb{P}(B)}$$
+
+$$\mathbb{P}(A_j|B) = \frac{\mathbb{P}(B|A_j) \cdot \mathbb{P}(A_j)}{\sum_{i=1}^{n} \mathbb{P}(B|A_i) \cdot \mathbb{P}(A_i)}$$
+
+---
+
+## Ejercicios {#sec-semana03-ejercicios}
+
+**Ejercicio 3.1:** En una clase hay 30 estudiantes de doctorado asistiendo a un seminario de Bioestadística avanzada en Medicina. De ellos, 18 se graduaron en Medicina, 15 tienen un grado en Estadistica y 10 estudiantes estudiaron ambos grados. Si seleccionamos un estudiante al azar:
+
+a) ¿Cuál es la probabilidad de que se graduado en Medicina o estadística?
+b) ¿Cuál es la probabilidad de que haya estudiado solo Medicina?
+c) ¿Cuál es la probabilidad de que no hay estudiado ninguna de las dos?
+
+**Ejercicio 3.2:** Un médico tiene dos opciones terapeúticas de antibióticos de primera línea (A o B) y tres de segunda línea de administración conjunta al tratamiento principal (1, 2, o 3) para el tratamiento de una enfermedad infecciosa y todas las opciones terapeúticas son igualmente eficaces. Si todas las opciones se eligen al azar:
+
+a) ¿Cuál es el espacio muestral?
+b) ¿Cuál es la probabilidad de elegir el antibiotico de primera línea A?
+c) ¿Cuál es la probabilidad de elegir el antibiotico de primera línea B y el de segunda línea 2?
+
+**Ejercicio 3.3:** En un hospital, la probabilidad de que un paciente ingrese por fractura de cadera en un día es 0.1. Si evaluamos tres días independientemente:
+
+a) ¿Cuál es la probabilidad de que no ingrese ningún paciente?
+b) ¿Cuál es la probabilidad de que exactamente ingrese uno?
+
+**Ejercicio 3.4:** Se sabe que:
+- El 60% de los pacientes de una consulta son mujeres
+- El 40% de las mujeres tinen menos de 30 años
+- El 30% de los hombres tienen menos de 30 años
+
+Si seleccionamos un cliente al azar:
+
+a) ¿Cuál es la probabilidad de que un paciente tenga menos de 30 años?
+b) Si un paciente tiene 30 años, ¿cuál es la probabilidad de que sea mujer?
+
+**Ejercicio 3.5:** Un test para detectar una enfermedad rara tiene:
+- 98% de sensibilidad (detecta la enfermedad cuando está presente)
+- 95% de especificidad (identifica correctamente a personas sanas)
+- La enfermedad afecta al 0.5% de la población
+
+a) Si una persona da positivo en el test, ¿cuál es la probabilidad de que realmente esté enferma?
+b) Interprete el resultado. ¿Por qué la probabilidad no es más alta?
+
+**Ejercicio 3.6:** Una empresa privada vende ecografos a tres hospitales en tres ciudades distintas: Madrid (40% de ventas), Barcelona (35%) y Valencia (25%). La probabilidad de cumplir la cuota de ventas es:
+- Madrid: 0.8
+- Barcelona: 0.85
+- Valencia: 0.7
+
+Si se selecciona un mes al azar:
+
+a) ¿Cuál es la probabilidad de que se cumpla la cuota?
+b) Si se cumplió la cuota, ¿cuál es la probabilidad de que haya sido en Barcelona?
+
+## Respuestas a los Ejercicios {#sec-semana03-respuestas}
+
+**Ejercicio 3.1:** Diagramas de Venn  
+- a) P(M ∪ E) = P(M) + P(E) - P(M ∩ E) = (18+15-10)/30 = 23/30 ≈ 0.767  
+- b) P(Solo M) = (18-10)/30 = 8/30 ≈ 0.267  
+- c) P(Ninguna) = 1 - 23/30 = 7/30 ≈ 0.233  
+
+**Ejercicio 3.2:** Espacio Muestral y Probabilidad  
+- a) Ω = {A1, A2, A3, B1, B2, B3}, |Ω| = 6  
+- b) P(A) = 3/6 = 0.5  
+- c) P(B y 2) = 1/6 ≈ 0.167  
+
+**Ejercicio 3.3:** Independencia  
+- a) P(Ningún ingreso) = (0.9)³ = 0.729  
+- b) P(exactamente 1 ingreso) = C(3,1)×(0.1)¹×(0.9)² = 3×0.1×0.81 = 0.243  
+- Nota: Más adelante veremos como caalcular esta probabilidad usando la fórmula de la distribución Binomial (n, p).  
+
+**Ejercicio 3.4:** Probabilidad Total y Teorema de Bayes  
+- a) P(Menos de 30 años) = 0.6×0.4 + 0.4×0.3 = 0.24 + 0.12 = 0.36  
+- b) P(Mujer|Menos de 30 años) = (0.6x0.4)/0.36 = 0.24/0.36 = 2/3 ≈ 0.667  
+
+**Ejercicio 3.5:** Test Diagnóstico (Bayes)  
+- a) P(Enfermedad|Positivo) = (0.98×0.005)/(0.98×0.005 + 0.05×0.995) = 0.0049/(0.0049+0.04975) ≈ 0.090  
+- b) Aunque el test es muy preciso (98% sensibilidad), como la enfermedad es rara (0.5%), la mayoría de positivos son falsos positivos.  
+
+**Ejercicio 3.6:** Probabilidad Total y Bayes (Hospitales)  
+- a) P(Cuota) = 0.4×0.8 + 0.35×0.85 + 0.25×0.7 = 0.32 + 0.2975 + 0.175 = 0.7925  
+- b) P(Barcelona|Cuota) = (0.35×0.85)/0.7925 = 0.2975/0.7925 ≈ 0.375  
+
+---
+
+::: {.callout-tip}
+## Métodos Avanzados
+
+Para ampliar los contenidos de este capítulo con técnicas estadísticas avanzadas, visita:
+
+**[→ Bioestadística Avanzada — M.A. Luque Fernández](https://migariane.github.io/Bioestadistica)**
+:::

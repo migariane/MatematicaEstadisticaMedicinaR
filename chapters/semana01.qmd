@@ -1,0 +1,1103 @@
+# Semana 1 — Análisis Exploratorio de Datos (Parte I) {#sec-semana01}
+
+## Introducción
+
+El análisis exploratorio de datos (AED) es el primer paso en cualquier análisis estadístico. A través de visualizaciones, tablas y estadísticos descriptivos, aprendemos a entender las características principales de un conjunto de datos antes de realizar inferencia estadística más compleja.
+
+
+## Conceptos Fundamentales
+
+### Unidades Estadísticas, Variables y Valores
+
+En estadística trabajamos con conceptos fundamentales que debemos dominar desde el principio.
+
+::: {.callout-note}
+## Definición: Conceptos Fundamentales
+
+- **Unidad estadística** (o individuo): cada elemento sobre el que se realiza la observación. Puede ser una persona, animal, planta, empresa, etc.
+
+- **Variable**: una característica de una unidad estadística que puede variar de una unidad a otra. Se denota con letras mayúsculas ($X$, $Y$, etc.)
+
+- **Valor**: el resultado específico de observar una variable en una unidad estadística. Se denota con letras minúsculas ($x_i$, $y_i$, etc.)
+
+- **Población**: el conjunto completo de todas las unidades estadísticas de interés en un estudio.
+
+- **Muestra**: un subconjunto de la población observado en la práctica. La muestra se utiliza para extraer conclusiones sobre la población.
+:::
+
+::: {.callout-tip}
+## Ejemplo 1.1: Presión Arterial en Pacientes Diabéticos
+
+Supongamos que deseamos estudiar la presión arterial sistólica (PAS) en pacientes diabéticos de Granada.
+
+- **Unidad estadística**: cada paciente diabético individual
+- **Variable**: presión arterial sistólica ($X$)
+- **Valores**: mediciones específicas en mmHg (ej. $x_1 = 125$, $x_2 = 130$, $x_3 = 145$, ...)
+- **Población**: todos los pacientes diabéticos de Granada
+- **Muestra**: los 200 pacientes diabéticos seleccionados para el estudio
+:::
+
+### Observaciones Atípicas (Outliers)
+
+::: {.callout-note}
+## Definición: Outlier
+
+Un **outlier** (observación atípica) es un valor que:
+
+- Parece desviarse marcadamente de los otros miembros de la muestra
+- Aparece o está ausente de forma inesperada
+- Puede reflejar una anomalía en la característica medida o un error en la medición/registro
+
+**Ejemplo**: En el conjunto de presiones arteriales sistólicas $\{125, 128, 130, 131, 198\}$, el valor $198$ podría considerarse un outlier, ya que es sustancialmente mayor que los otros valores.
+:::
+
+---
+
+## Escalas de Medición
+
+El tipo de escala utilizada para medir una variable determina qué técnicas analíticas son apropiadas y qué conclusiones se pueden extraer.
+
+::: {.callout-note}
+## Definición: Escalas de Medición
+
+Las variables se clasifican en cuatro tipos según la escala en que se miden:
+
+1. **Variables nominales (categóricas sin orden)**
+2. **Variables ordinales (categóricas con orden)**
+3. **Variables discretas (numéricas, valores aislados)**
+4. **Variables continuas (numéricas, infinitos valores posibles)**
+:::
+
+### Variables Categóricas
+
+::: {.callout-note}
+## Definición: Variables Categóricas (Nominales)
+
+Una **variable categórica** es aquella que puede tomar uno de un conjunto limitado de valores posibles, asignando cada unidad a una categoría particular basada en una propiedad cualitativa.
+
+**Ejemplos**:
+- Grupo sanguíneo: A, B, AB, O
+- Estado civil: soltero, casado, divorciado, viudo
+- Género: masculino, femenino
+- Región: Andalucía, Cataluña, Madrid, etc.
+
+Los valores de una variable categórica se llaman **niveles**.
+
+Las variables categóricas pueden ser:
+- **Binarias (dicotómicas)**: solo dos niveles (ej. éxito/fracaso, enfermo/sano)
+- **Politómicas**: más de dos niveles (ej. grupo sanguíneo)
+:::
+
+### Variables Ordinales
+
+::: {.callout-note}
+## Definición: Variables Ordinales
+
+Una **variable ordinal** es una variable categórica en la que los niveles tienen un orden natural, pero las diferencias entre ellos no son cuantificables.
+
+Relaciones válidas: "mayor que" y "menor que" (o "mejor que" y "peor que").
+
+**Ejemplos**:
+- Estadio de un tumor: I, II, III, IV
+- Grado de dependencia: leve, moderada, severa, total
+- Escala de dolor: nada, poco, moderado, intenso, insoportable
+:::
+
+### Variables Numéricas
+
+::: {.callout-note}
+## Definición: Variables Discretas
+
+Una **variable discreta** es una variable numérica que solo puede tomar un número finito o contablemente infinito de valores. Cada valor tiene vecinos claramente identificables.
+
+**Ejemplos**:
+- Número de nacimientos en un mes
+- Número de episodios de hipoglucemia
+- Número de dientes extraídos
+- Cantidad de admisiones previas en el hospital
+:::
+
+::: {.callout-note}
+## Definición: Variables Continuas
+
+Una **variable continua** es una variable numérica que puede tomar infinitos valores no contables. Entre dos valores cualesquiera siempre existen otros valores posibles.
+
+**Ejemplos**:
+- Presión arterial sistólica (en mmHg)
+- Peso corporal (en kg)
+- Altura (en cm)
+- Temperatura (en °C)
+
+**En la práctica**: variables con muchas unidades contables (como el recuento de glóbulos rojos o blancos) se tratan como continuas y a veces se llaman "cuasi-continuas".
+:::
+
+---
+
+## Agrupación de Datos en Clases (Binning)
+
+Cuando disponemos de muchas observaciones de una variable continua, frecuentemente es útil agruparlas en intervalos de clase para mejorar la claridad.
+
+::: {.callout-note}
+## Definición: Binning (Agrupación en Clases)
+
+El **binning** es la partición de los valores de una variable continua en varias clases (típicamente intervalos). Esto mejora la claridad cuando se tiene gran cantidad de datos.
+
+Para cada intervalo o clase $j$ definimos:
+
+- **Límite inferior de la clase**: $x_j^l$
+- **Límite superior de la clase**: $x_j^u$
+- **Amplitud de la clase**: $\Delta x_j = x_j^u - x_j^l$
+
+**Propiedades importantes**:
+- Los intervalos son no superpuestos (disjuntos) y adyacentes
+- $x_j^u = x_{j+1}^l$ (el límite superior de una clase es el límite inferior de la siguiente)
+- Convencionalmente: $x_j^l < X \leq x_j^u$ (incluimos el límite superior, excluimos el inferior)
+:::
+
+::: {.callout-tip}
+## Ejemplo 1.2: Niveles de Colesterol Total
+
+En un estudio sobre salud cardiovascular tenemos:
+- **Unidad estadística**: paciente
+- **Variable**: nivel de colesterol total (en mg/dL)
+
+| Intervalo de Colesterol (mg/dL) | Límites | Amplitud |
+|:---|---:|---:|
+| 150 -- 200 (Deseable) | $x_1^l = 150$, $x_1^u = 200$ | $\Delta x_1 = 50$ |
+| 200 -- 240 (Límite alto) | $x_2^l = 200$, $x_2^u = 240$ | $\Delta x_2 = 40$ |
+| 240 -- 300 (Alto) | $x_3^l = 240$, $x_3^u = 300$ | $\Delta x_3 = 60$ |
+
+:::
+
+---
+
+## Tablas de Frecuencias y Distribución Empírica
+
+Una forma eficaz de resumir un conjunto de datos es construir una tabla de frecuencias.
+
+### Frecuencias Absolutas y Relativas
+
+::: {.callout-note}
+## Definición: Frecuencia Absoluta
+
+La **frecuencia absoluta** de un valor $x_j$ es el número de unidades estadísticas con ese valor característico:
+
+$$h(x_j) = h_j$$
+
+**Propiedades**:
+$$0 \leq h(x_j) \leq n, \quad \sum_{j=1}^{k} h(x_j) = n$$
+
+donde $n$ es el número total de observaciones y $k$ es el número de valores distintos.
+:::
+
+::: {.callout-note}
+## Definición: Frecuencia Relativa
+
+La **frecuencia relativa** de un valor $x_j$ es la proporción de unidades estadísticas con ese valor:
+
+$$f(x_j) = \frac{h(x_j)}{n}$$
+
+**Propiedades**:
+$$0 \leq f(x_j) \leq 1, \quad \sum_{j=1}^{k} f(x_j) = 1$$
+
+La frecuencia relativa es útil para comparar distribuciones de diferentes tamaños.
+:::
+
+### Tabla de Frecuencias
+
+::: {.callout-note}
+## Definición: Distribución de Frecuencias Empírica
+
+Una **distribución de frecuencias empírica** es una tabla que lista los valores (o intervalos de valores) de una variable junto con sus frecuencias (absolutas o relativas).
+
+**Estructura de una tabla de frecuencias**:
+
+| Valor ($x_j$) | Frecuencia Absoluta ($h_j$) | Frecuencia Relativa ($f_j$) |
+|:---|---:|---:|
+| $x_1$ | $h_1$ | $f_1$ |
+| $x_2$ | $h_2$ | $f_2$ |
+| ... | ... | ... |
+| $x_k$ | $h_k$ | $f_k$ |
+| **Suma** | **n** | **1** |
+
+:::
+
+### Frecuencias Acumuladas
+
+::: {.callout-note}
+## Definición: Frecuencia Acumulada
+
+La **frecuencia acumulada** es la suma de las frecuencias de todos los valores hasta un punto determinado.
+
+**Frecuencia acumulada absoluta**:
+$$H(x_j) = \sum_{i=1}^{j} h(x_i), \quad j = 1, \ldots, k$$
+
+**Frecuencia acumulada relativa**:
+$$F(x_j) = \frac{H(x_j)}{n} = \sum_{i=1}^{j} f(x_i), \quad j = 1, \ldots, k$$
+
+**Propiedades**:
+- $H(x_1) = h(x_1)$ y $F(x_1) = f(x_1)$
+- $H(x_k) = n$ y $F(x_k) = 1$
+- Las frecuencias acumuladas son secuencias no decrecientes
+:::
+
+::: {.callout-tip}
+## Ejemplo 1.3: Tabla de Frecuencias
+
+Consideremos los datos de 10 pacientes diabéticos. Sus presiones arteriales sistólicas (en mmHg) son:
+120, 125, 118, 130, 122, 128, 115, 135, 124, 129
+
+| PAS (mmHg) | $h_j$ | $f_j$ | $H_j$ | $F_j$ |
+|:---|---:|---:|---:|---:|
+| 115 | 1 | 0.10 | 1 | 0.10 |
+| 118 | 1 | 0.10 | 2 | 0.20 |
+| 120 | 1 | 0.10 | 3 | 0.30 |
+| 122 | 1 | 0.10 | 4 | 0.40 |
+| 124 | 1 | 0.10 | 5 | 0.50 |
+| 125 | 1 | 0.10 | 6 | 0.60 |
+| 128 | 1 | 0.10 | 7 | 0.70 |
+| 129 | 1 | 0.10 | 8 | 0.80 |
+| 130 | 1 | 0.10 | 9 | 0.90 |
+| 135 | 1 | 0.10 | 10 | 1.00 |
+
+Podemos observar que todas las presiones son diferentes en este ejemplo, por lo que cada una aparece una sola vez.
+
+```{r}
+#| lst-label: lst-semana01-1
+#| lst-cap: "Código R para tabla de frecuencias de PAS"
+#| code-summary: "Código R para tabla de frecuencias de PAS"
+
+# Datos de presión arterial sistólica (PAS) en pacientes diabéticos
+pas_diabeticos <- c(120, 125, 118, 130, 122, 128, 115, 135, 124, 129)
+
+# Crear tabla de frecuencias
+tabla_freq <- table(pas_diabeticos)
+freq_rel <- tabla_freq / length(pas_diabeticos)
+freq_acum <- cumsum(tabla_freq)
+freq_acum_rel <- cumsum(freq_rel)
+
+# Crear data frame
+result <- data.frame(
+  PAS = as.numeric(names(tabla_freq)),
+  h = as.numeric(tabla_freq),
+  f = round(freq_rel, 2),
+  H = freq_acum,
+  F = round(freq_acum_rel, 2)
+)
+print(result)
+```
+
+:::
+
+::: {.callout-tip}
+## Ejemplo 1.4: BioestadisticaR2: freq()
+
+La función `freq()` genera automáticamente la tabla de frecuencias con proporciones y acumuladas (documentación completa en @sec-bio-descriptivo):
+
+```{r}
+#| lst-label: lst-semana01-2
+#| lst-cap: "Código R"
+
+library(BioestadisticaR2)
+
+# Tabla de frecuencias de la edad — pacientes diabéticos, UGR
+freq(osteo$edad, grf = FALSE)
+```
+
+
+El 52.1% de los pacientes tiene menos de 28 años. Con `grf = TRUE` (por defecto) también genera el histograma. Con `cuts = 5` agrupa en 5 clases de igual amplitud.
+:::
+
+### Función de Distribución Empírica (ECDF)
+
+::: {.callout-note}
+## Definición: Función de Distribución Empírica (ECDF)
+
+La **Función de Distribución Empírica** (ECDF) asigna a cada valor $x$ la proporción de observaciones en la muestra que son menores o iguales a $x$.
+
+Para datos no agrupados, la ECDF es una **función escalonada** que salta en cada valor observado:
+
+$$F(x) = \begin{cases}
+0 & \text{si } x < x_{(1)} \\
+\frac{i}{n} & \text{si } x_{(i)} \leq x < x_{(i+1)} \\
+1 & \text{si } x \geq x_{(n)}
+\end{cases}$$
+
+donde $x_{(1)} \leq x_{(2)} \leq \cdots \leq x_{(n)}$ son los valores ordenados de la muestra.
+:::
+
+::: {.callout-tip}
+## Ejemplo 1.5: Visualización: ECDF Escalonada (Datos de PAS)
+
+Usando los datos de PAS del Ejemplo 1.3, observamos cómo la función acumula probabilidad en saltos de $1/n$ en cada valor observado:
+
+```{r}
+#| label: fig-semana01-ecdf-step
+#| fig-cap: "ECDF Escalonada para datos de PAS"
+#| echo: false
+
+pas_diabeticos <- c(120, 125, 118, 130, 122, 128, 115, 135, 124, 129)
+plot(ecdf(pas_diabeticos), 
+     main = "ECDF Escalonada: Presión Arterial Sistólica",
+     xlab = "PAS (mmHg)", ylab = "F(x)",
+     col = "darkblue", verticals = TRUE, pch = 16)
+```
+:::
+
+::: {.callout-warning}
+## Propiedad Importante: ECDF
+
+De la ECDF podemos recuperar las frecuencias relativas mediante:
+
+$$f(x_j) = F(x_j) - F(x_{j-1}) \quad \text{para } j = 1, \ldots, k$$
+
+con la convención $F(x_0) = 0$.
+:::
+
+::: {.callout-tip}
+## Ejemplo 1.6: Tiempo de Supervivencia de Pacientes
+
+Se estudió el tiempo de supervivencia (en días) tras el diagnóstico de una patología agresiva en una cohorte de 100 pacientes. Los datos se agrupan en clases:
+
+| Intervalo (días) | $h_j$ | $f_j$ | $H_j$ | $F_j$ |
+|:---|---:|---:|---:|---:|
+| 0 -- 100 | 1 | 0.01 | 1 | 0.01 |
+| 100 -- 500 | 24 | 0.24 | 25 | 0.25 |
+| 500 -- 1000 | 45 | 0.45 | 70 | 0.70 |
+| 1000 -- 4000 | 30 | 0.30 | 100 | 1.00 |
+| **Total** | **100** | **1.00** | | |
+
+### Interpolación Lineal para Datos Agrupados
+
+Para datos agrupados, no conocemos los valores exactos dentro de cada clase. Por ello, aproximamos la ECDF mediante una **interpolación lineal** entre los límites de las clases. Esto genera una línea quebrada llamada **polígono de frecuencias acumuladas** (u ojiva).
+
+La fórmula general de interpolación para un valor $x$ dentro de la clase $j = [x_j^l, x_j^u]$ es:
+
+$$F(x) = F(x_j^l) + \frac{x - x_j^l}{x_j^u - x_j^l} \cdot f(x_j)$$
+
+Donde:
+- $x_j^l$ y $x_j^u$ son los límites inferior y superior de la clase.
+- $F(x_j^l)$ es la frecuencia relativa acumulada hasta la clase anterior.
+- $f(x_j)$ es la frecuencia relativa de la clase actual.
+
+**Nota**: Esta fórmula es la base para estimar **cuantiles** en datos agrupados. Si despejamos $x$ para un valor de $F(x) = p$, obtenemos el valor del cuantil correspondiente.
+
+Aplicando esto a nuestros datos:
+
+$$F(x) = \begin{cases}
+0 & \text{si } x \leq 0 \\
+\frac{x - 0}{100} \cdot 0.01 & \text{si } 0 < x \leq 100 \\
+0.01 + \frac{x - 100}{400} \cdot 0.24 & \text{si } 100 < x \leq 500 \\
+0.25 + \frac{x - 500}{500} \cdot 0.45 & \text{si } 500 < x \leq 1000 \\
+0.70 + \frac{x - 1000}{3000} \cdot 0.30 & \text{si } 1000 < x \leq 4000 \\
+1 & \text{si } x > 4000
+\end{cases}$$
+
+```{r}
+#| label: fig-semana01-ecdf-interp
+#| fig-cap: "Polígono de frecuencias acumuladas (ECDF interpolada)"
+#| echo: false
+
+x <- c(0, 100, 500, 1000, 4000)
+y <- c(0, 0.01, 0.25, 0.70, 1.00)
+
+plot(x, y, type = "b", 
+     main = "ECDF Interpolada: Tiempo de Supervivencia",
+     xlab = "Tiempo (días)", ylab = "F(x)",
+     col = "darkgreen", lwd = 2, pch = 16)
+grid()
+```
+:::
+
+---
+
+## Histogramas y Gráficos de Densidad
+
+Para variables continuas agrupadas en clases, el histograma es la forma estándar de visualización.
+
+### Construcción de Histogramas
+
+::: {.callout-note}
+## Definición: Histograma
+
+Un **histograma** es una representación gráfica de una distribución de frecuencias para datos agrupados. Se construye de la siguiente manera:
+
+- **Eje X**: límites de las clases $x_j^l, x_j^u$
+- **Eje Y**: densidad de frecuencia (frecuencia dividida por la amplitud de la clase)
+
+**Densidad de frecuencia absoluta**:
+$$\hat{h}(x_j) = \frac{h(x_j)}{\Delta x_j} = \frac{h(x_j)}{x_j^u - x_j^l}$$
+
+**Densidad de frecuencia relativa**:
+$$\hat{f}(x_j) = \frac{f(x_j)}{\Delta x_j} = \frac{f(x_j)}{x_j^u - x_j^l}$$
+
+**Propiedad fundamental**: El **área** de cada rectángulo representa la frecuencia (relativa o absoluta), y el área total del histograma es igual a $n$ (si usamos densidades absolutas) o $1$ (si usamos densidades relativas).
+
+$$\sum_{j=1}^{k} \hat{f}(x_j) \cdot \Delta x_j = \sum_{j=1}^{k} f(x_j) = 1$$
+:::
+
+::: {.callout-tip}
+## Ejemplo 1.7: Índice de Masa Corporal (IMC)
+
+Se recopilaron los IMC de 274 pacientes. Los datos se clasifican en intervalos según los criterios de la OMS:
+
+| IMC (kg/m²) | $h_j$ | $f_j$ | $\Delta x_j$ | $\hat{f}(x_j)$ |
+|:---|---:|---:|---:|---:|
+| 0 -- 18.5 (Bajo peso) | 15 | 0.055 | 18.5 | 0.0030 |
+| 18.5 -- 25 (Normal) | 93 | 0.339 | 6.5 | 0.0522 |
+| 25 -- 30 (Sobrepeso) | 92 | 0.336 | 5 | 0.0672 |
+| 30 -- 35 (Obesidad I) | 54 | 0.197 | 5 | 0.0394 |
+| 35 -- 50 (Obesidad II/III) | 20 | 0.073 | 15 | 0.0049 |
+| **Total** | **274** | **1.000** | | |
+
+**Interpretación**: La densidad más alta está en la clase de "Sobrepeso", indicando que ese intervalo tiene la mayor concentración de pacientes en esta muestra.
+
+```{r}
+#| lst-label: lst-semana01-4
+#| lst-cap: "Código R para histograma de IMC"
+#| code-summary: "Código R para histograma de IMC"
+
+# Simular datos de IMC basados en la tabla
+imc <- c(runif(15, 15, 18.5), runif(93, 18.5, 25), runif(92, 25, 30),
+         runif(54, 30, 35), runif(20, 35, 50))
+
+# Crear histograma con densidad
+hist(imc, breaks = c(0, 18.5, 25, 30, 35, 50),
+     freq = FALSE,
+     main = "Histograma: Índice de Masa Corporal (IMC)",
+     xlab = "IMC (kg/m²)",
+     ylab = "Densidad de Frecuencia",
+     col = "lightgreen",
+     border = "darkgreen")
+```
+:::
+:::
+
+### Histograma vs Gráfico de Densidad
+
+::: {.callout-tip}
+## Ejemplo 1.8: Visualización en R
+
+```{r}
+#| lst-label: lst-semana01-5
+#| lst-cap: "Comparación de gráficos"
+#| code-summary: "Comparación de gráficos"
+
+# Simular datos de Presión Arterial Diastólica (en mmHg)
+set.seed(42)
+pad <- rnorm(200, mean = 80, sd = 10)
+
+# Configurar área de trazado para 2 gráficos
+par(mfrow = c(1, 2))
+
+# Histograma
+hist(pad, breaks = 20, freq = FALSE,
+     main = "Histograma de PAD",
+     xlab = "Presión Diastólica (mmHg)",
+     ylab = "Densidad",
+     col = "salmon")
+
+# Gráfico de densidad suavizada
+plot(density(pad),
+     main = "Gráfico de Densidad",
+     xlab = "Presión Diastólica (mmHg)",
+     ylab = "Densidad",
+     lwd = 2, col = "darkred")
+polygon(density(pad), col = rgb(1, 0, 0, 0.3))
+
+# Restaurar configuración
+par(mfrow = c(1, 1))
+```
+:::
+
+---
+
+## Clasificación de Medidas Estadísticas {#sec-semana01-clasificacion}
+
+Para describir una distribución, utilizamos diferentes medidas que resumen la información.
+
+::: {.callout-note}
+## Clasificación: Tendencia Central vs. Posición
+
+- **Medidas de Tendencia Central**: Buscan identificar el "valor representativo" o centro de la distribución.
+  - **Media ($\bar{x}$)**: Promedio aritmético.
+  - **Mediana ($\tilde{x}$)**: Valor central (posición central).
+  - **Moda ($Mo$)**: Valor más frecuente.
+
+- **Medidas de Posición (No central)**: Indican la posición de un valor respecto al conjunto de datos, permitiendo dividir la distribución en partes iguales.
+  - **Cuartiles ($Q_1, Q_2, Q_3$)**: Dividen los datos en 4 partes iguales.
+  - **Percentiles ($P_k$)**: Dividen los datos en 100 partes iguales.
+
+- **Sesgo (Skewness)**: Medida de asimetría.
+  - **Simétrica**: Media $\approx$ Mediana.
+  - **Sesgo Derecha (Positivo)**: Media > Mediana.
+  - **Sesgo Izquierda (Negativo)**: Media < Mediana.
+
+- **Curtosis (Kurtosis)**: Medida del grado de apuntamiento o concentración en las colas.
+:::
+
+
+---
+
+## Medidas de Posición Central
+
+Las medidas de posición central nos indican dónde se concentran los datos. Son fundamentales para resumir la tendencia central de una distribución.
+
+### Media Aritmética
+
+::: {.callout-note}
+## Definición: Media Aritmética
+
+La **media aritmética** de una muestra $x_1, x_2, \ldots, x_n$ es:
+
+$$\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i$$
+
+Representa el "centro de gravedad" de los datos. Es la suma de todos los valores dividida por el número total de observaciones.
+
+Para datos en una distribución de frecuencias:
+
+$$\bar{x} = \frac{1}{n}\sum_{j=1}^{k} x_j h(x_j) = \sum_{j=1}^{k} x_j f(x_j)$$
+
+donde $x_j$ es el valor distintivo y $h(x_j)$ es su frecuencia absoluta.
+:::
+
+::: {.callout-warning}
+## Propiedades Algebraicas de la Media
+
+1. **Propiedad de desviación nula**:
+   $$\sum_{i=1}^{n}(x_i - \bar{x}) = 0$$
+   Las desviaciones positivas y negativas de la media se cancelan.
+
+2. **Propiedad de suma**: Si $z_i = x_i + y_i$, entonces:
+   $$\bar{z} = \bar{x} + \bar{y}$$
+:::
+
+### Media para Datos Agrupados
+
+::: {.callout-note}
+## Definición: Media Aproximada para Datos Binned
+
+Cuando solo disponemos de datos agrupados en clases, aproximamos la media usando la marca de clase:
+
+$$\bar{x} = \frac{1}{n}\sum_{j=1}^{k} x_j \cdot n_j$$
+
+donde $x_j$ es la **marca de clase** (punto medio del intervalo $j$):
+$$x_j = \frac{x_j^l + x_j^u}{2}$$
+
+y $n_j$ es el número de observaciones en la clase $j$.
+
+**Nota**: Esta es una aproximación porque asumimos que todas las observaciones en una clase están concentradas en su punto medio.
+:::
+
+::: {.callout-tip}
+## Ejemplo 1.9: Tiempo de Estancia Hospitalaria
+
+Se estudia el tiempo de estancia (en días) de una muestra de pacientes en una unidad de cuidados intensivos. La distribución es:
+
+| Intervalo (días) | Marca de Clase ($x_j$) | $f(x_j)$ | Contribución |
+|:---|---:|---:|---:|
+| 1 -- 3 | 2 | 0.20 | $2 \times 0.20 = 0.40$ |
+| 3 -- 7 | 5 | 0.45 | $5 \times 0.45 = 2.25$ |
+| 7 -- 14 | 10.5 | 0.25 | $10.5 \times 0.25 = 2.625$ |
+| 14 -- 30 | 22 | 0.08 | $22 \times 0.08 = 1.76$ |
+| 30 -- 60 | 45 | 0.02 | $45 \times 0.02 = 0.90$ |
+
+**Media aproximada**:
+$$\bar{x} = 0.40 + 2.25 + 2.625 + 1.76 + 0.90 = 7.935 \text{ días}$$
+
+```{r}
+#| lst-label: lst-semana01-6
+#| lst-cap: "Cálculo de estancia media en R"
+#| code-summary: "Cálculo de estancia media en R"
+
+# Datos
+marca_clase <- c(2, 5, 10.5, 22, 45)
+frecuencia_rel <- c(0.20, 0.45, 0.25, 0.08, 0.02)
+
+# Media
+media_estancia <- sum(marca_clase * frecuencia_rel)
+print(paste("Media de estancia aproximada:",
+            round(media_estancia, 3), "días"))
+```
+:::
+
+### Moda
+
+::: {.callout-note}
+## Definición: Moda
+
+La **moda** $x_D$ es el valor más frecuente en un conjunto de observaciones:
+
+$$x_D = \{x_j \mid h(x_j) = \max_k h(x_k) \text{ o } f(x_j) = \max_k f(x_k)\}$$
+
+Es útil para variables nominales, ordinales, discretas o clasificadas, pero **no es apropiada para variables continuas**.
+
+Para datos agrupados, hablamos de la **clase modal** (la clase con la frecuencia más alta) y estimamos la moda como la marca de clase.
+:::
+
+::: {.callout-tip}
+## Ejemplo 1.10: Moda en Tiempo de Supervivencia
+
+Usando la tabla de supervivencia del Ejemplo 1.6:
+
+| Intervalo (días) | $h_j$ |
+|:---|---:|
+| 0 -- 100 | 1 |
+| 100 -- 500 | 24 |
+| **500 -- 1000** | **45** (máximo) |
+| 1000 -- 4000 | 30 |
+
+- **Clase modal**: 500 -- 1000 días
+- **Moda estimada**: $x_D = 750$ días (marca de clase)
+:::
+
+### Mediana
+
+::: {.callout-note}
+## Definición: Mediana
+
+La **mediana** $x_{0.5}$ es el valor que divide los datos ordenados en dos partes de igual tamaño: 50% de las observaciones están por debajo y 50% están por encima.
+
+**Para datos no agrupados**:
+- Si $n$ es **impar**:
+  $$x_{0.5} = x_{\left(\frac{n+1}{2}\right)}$$
+
+- Si $n$ es **par**:
+  $$x_{0.5} = \frac{1}{2}\left\{x_{\left(\frac{n}{2}\right)} + x_{\left(\frac{n}{2}+1\right)}\right\}$$
+
+donde $x_{(i)}$ es la $i$-ésima observación cuando los datos están **ordenados de menor a mayor**.
+
+**Ventaja**: La mediana es **robusta** (insensible a outliers), a diferencia de la media.
+:::
+
+::: {.callout-tip}
+## Ejemplo 1.11: Cálculo de Mediana
+
+**Conjunto 1** (n impar): 115, 118, 120, 122, 124, 125, 128, 129, 130, 135
+
+Datos ya ordenados. Con $n = 10$ (par):
+$$x_{0.5} = \frac{1}{2}(x_{(5)} + x_{(6)}) = \frac{1}{2}(124 + 125) = 124.5 \text{ mmHg}$$
+
+```{r}
+#| lst-label: lst-semana01-7
+#| lst-cap: "Cálculo de mediana en R"
+#| code-summary: "Cálculo de mediana en R"
+
+pas <- c(120, 125, 118, 130, 122, 128, 115, 135, 124, 129)
+mediana_pas <- median(pas)
+print(paste("Mediana de PAS:", mediana_pas, "mmHg"))
+```
+:::
+
+### Relación entre Media, Mediana y Moda
+
+La siguiente figura ilustra la posición relativa de la media, mediana y moda según el sesgo de la distribución:
+
+```{r}
+#| label: fig-semana01-skewness
+#| fig-cap: "Relación entre media, mediana y moda según el sesgo"
+#| echo: false
+#| message: false
+#| warning: false
+
+library(ggplot2)
+library(gridExtra)
+
+plot_skew <- function(type = "symmetric") {
+  if (type == "symmetric") {
+    x <- seq(-4, 4, length.out = 1000)
+    y <- dnorm(x)
+    df <- data.frame(x, y)
+    mean_val <- 0
+    median_val <- 0
+    mode_val <- 0
+    title <- "Simétrica"
+  } else if (type == "right") {
+    x_pos <- seq(0, 8, length.out = 1000)
+    y_pos <- dchisq(x_pos, df = 3)
+    df <- data.frame(x = x_pos, y = y_pos)
+    mean_val <- 3
+    median_val <- qchisq(0.5, df = 3)
+    mode_val <- 1
+    title <- "Sesgo Derecha (+)"
+  } else {
+    x_neg <- seq(-8, 0, length.out = 1000)
+    y_neg <- dchisq(-x_neg, df = 3)
+    df <- data.frame(x = x_neg, y = y_neg)
+    mean_val <- -3
+    median_val <- -qchisq(0.5, df = 3)
+    mode_val <- -1
+    title <- "Sesgo Izquierda (-)"
+  }
+  
+  p <- ggplot(df, aes(x, y)) +
+    geom_line(size = 1) +
+    geom_area(fill = "steelblue", alpha = 0.2) +
+    geom_vline(aes(xintercept = mean_val, color = "Media"), linetype = "dashed") +
+    geom_vline(aes(xintercept = median_val, color = "Mediana"), linetype = "dotted") +
+    geom_vline(aes(xintercept = mode_val, color = "Moda"), linetype = "solid") +
+    labs(title = title, x = "", y = "") +
+    scale_color_manual(values = c("Media" = "red", "Mediana" = "blue", "Moda" = "darkgreen")) +
+    theme_minimal() +
+    theme(axis.text = element_blank(), 
+          axis.ticks = element_blank(), 
+          panel.grid = element_blank(),
+          legend.position = "none")
+  
+  if(type == "right") p <- p + theme(legend.position = "right")
+  
+  return(p)
+}
+
+p1 <- plot_skew("left")
+p2 <- plot_skew("symmetric")
+p3 <- plot_skew("right")
+
+grid.arrange(p1, p2, p3, ncol = 3)
+```
+
+## Medidas de Forma: Sesgo y Curtosis
+
+Además de la tendencia central y la dispersión, la **forma** de la distribución es crucial para entender el comportamiento de los datos.
+
+#### Coeficiente de Asimetría (Sesgo)
+
+Mide el grado de simetría de la distribución respecto a su media. El coeficiente de asimetría de Fisher se define como:
+
+$$g_1 = \frac{\frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^3}{s^3}$$
+
+donde $s$ es la desviación típica.
+
+**Interpretación**:
+- **$g_1 = 0$**: La distribución es **simétrica**.
+- **$g_1 > 0$**: **Asimetría positiva** (sesgo a la derecha). La cola derecha es más larga.
+- **$g_1 < 0$**: **Asimetría negativa** (sesgo a la izquierda). La cola izquierda es más larga.
+
+#### Curtosis o Apuntamiento
+
+Mide el grado de concentración de los valores alrededor de la zona central de la distribución y el "peso" de las colas. Se calcula mediante el coeficiente de curtosis de Fisher:
+
+$$g_2 = \frac{\frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^4}{s^4}$$
+
+En muchos paquetes estadísticos (incluido R), se utiliza la **curtosis en exceso** ($g_2 - 3$) para comparar con la distribución normal.
+
+**Interpretación (Curtosis en exceso)**:
+- **$g_2 - 3 = 0$**: **Mesocúrtica**. El apuntamiento es similar al de una distribución normal.
+- **$g_2 - 3 > 0$**: **Leptocúrtica**. La distribución es más apuntada y tiene colas más gruesas ("pesadas") que la normal.
+- **$g_2 - 3 < 0$**: **Platicúrtica**. La distribución es más plana y tiene colas más delgadas que la normal.
+
+### Cálculo con R {#sec-semana01-r-stats}
+
+```{r}
+#| lst-label: lst-semana01-stats
+#| lst-cap: "Cálculo de estadísticos básicos"
+
+library(moments)
+library(dplyr)
+
+# Datos de ejemplo
+datos <- c(120, 125, 118, 130, 122, 128, 115, 135, 124, 129, 150)
+
+# Resumen básico
+resumen <- data.frame(
+  Media = mean(datos),
+  Mediana = median(datos),
+  Sesgo = skewness(datos), # g1
+  Curtosis = kurtosis(datos), # g2 (Pearson, restar 3 para exceso)
+  Curtosis_Exceso = kurtosis(datos) - 3
+)
+print(resumen)
+```
+
+### Cuantiles
+
+::: {.callout-note}
+## Definición: Cuantiles
+
+El **cuantil $x_p$** es el valor que divide los datos ordenados en la proporción $p$ a $(1-p)$, donde $0 \leq p \leq 1$.
+
+- Debajo del cuantil $x_p$ se encuentran aproximadamente $p \times 100\%$ de los datos
+- Arriba del cuantil $x_p$ se encuentran aproximadamente $(1-p) \times 100\%$ de los datos
+
+**Cuantiles especiales**:
+- **Cuartiles**: $p = 0.25, 0.50, 0.75$ (dividen en 4 partes)
+  - $x_{0.25}$ = primer cuartil (Q1)
+  - $x_{0.50}$ = mediana
+  - $x_{0.75}$ = tercer cuartil (Q3)
+
+- **Deciles**: $p = 0.1, 0.2, \ldots, 0.9$ (dividen en 10 partes)
+
+- **Percentiles**: $p = 0.01, 0.02, \ldots, 0.99$ (dividen en 100 partes)
+:::
+
+::: {.callout-tip}
+## Ejemplo 1.12: Cuartiles de Supervivencia
+
+Con los datos de supervivencia de pacientes (Ejemplo 1.6), podemos aproximar los cuartiles usando interpolación en la ECDF:
+
+Para el primer cuartil ($p = 0.25$):
+- $F(x_j^l) = 0.01$ (límite inferior de clase 100--500)
+- $f(x_j) = 0.24$ (frecuencia relativa de clase 100--500)
+- Fórmula: $x_{0.25} = x_j^l + \frac{p - F(x_j^l)}{f(x_j)} \cdot \Delta x_j$
+
+$$x_{0.25} = 100 + \frac{0.25 - 0.01}{0.24} \times 400 = 100 + 400 = 500 \text{ días}$$
+:::
+
+
+```{r}
+#| lst-label: lst-semana01-8
+#| lst-cap: "Cálculo de cuantiles"
+#| code-summary: "Cálculo de cuantiles"
+
+# Generamos los mismos datos que en el Ejemplo 1.4.2
+set.seed(42)
+supervivencia <- c(
+  runif(1, 0, 100),
+  runif(24, 100, 500),
+  runif(45, 500, 1000),
+  runif(25, 1000, 2000),
+  3200, 3500, 3700, 3800, 3950
+)
+
+Q1 <- quantile(supervivencia, probs = 0.25)
+Q2 <- quantile(supervivencia, probs = 0.50)
+Q3 <- quantile(supervivencia, probs = 0.75)
+
+print(paste("Q1 (25%):", round(Q1, 2)))
+print(paste("Q2 (50%, mediana):", round(Q2, 2)))
+print(paste("Q3 (75%):", round(Q3, 2)))
+```
+
+::: {.callout-tip}
+## Visualización: Diagrama de Caja (Boxplot)
+
+El **diagrama de caja** (boxplot) es una herramienta robusta para visualizar la distribución, la mediana, los cuartiles y detectar valores atípicos (outliers) de forma intuitiva.
+
+```{r}
+#| lst-label: lst-semana01-9
+#| lst-cap: "Boxplot mejorado con ggplot2"
+#| code-summary: "Boxplot con ggplot2"
+
+library(ggplot2)
+
+# Crear un data frame con los datos de supervivencia
+df <- data.frame(supervivencia = supervivencia)
+
+# Visualización con ggplot2 y labels para cuartiles
+ggplot(df, aes(y = supervivencia)) +
+  geom_boxplot(fill = "steelblue", alpha = 0.7, 
+               outlier.colour = "red", outlier.shape = 16, outlier.size = 3) +
+  labs(title = "Distribución del Tiempo de Supervivencia",
+       subtitle = "Se observan outliers en la parte superior",
+       y = "Días",
+       x = "") +
+  theme_minimal() +
+  coord_flip() # Para orientación horizontal
+```
+:::
+
+::: {.callout-tip}
+## Lectura del Boxplot
+Un boxplot divide los datos en:  
+- **Caja**: Contiene el 50% central (IQR: de $Q_1$ a $Q_3$).  
+- **Línea central**: Mediana.  
+- **Bigotes**: Extienden hasta 1.5 veces el IQR.  
+- **Puntos (outliers)**: Valores fuera del rango de los bigotes.  
+:::
+
+---
+
+## Comparación de Medidas de Posición
+
+::: {.callout-warning}
+## Robustez de las Medidas de Tendencia Central
+
+La **media** es muy sensible a valores extremos (outliers):
+- Fácil de calcular algebraicamente
+- Propiedad de suma útil para combinación de datos
+- Se ve afectada por datos atípicos
+
+La **mediana** es robusta:
+- Insensible a outliers
+- Más representativa en distribuciones asimétricas
+- Requiere ordenar los datos
+
+La **moda** es útil para datos categóricos pero limitado para continuos.
+
+**Recomendación**: En presencia de outliers, la mediana es preferible a la media como medida de tendencia central.
+:::
+
+---
+
+## Resumen de Conceptos Clave {#sec-semana01-resumen}
+
+### Tabla Resumen: Escalas de Medición y Estadísticos Apropiados
+
+| Tipo de Variable | Ejemplos | Estadísticos Apropiados |
+|:---|:---|:---|
+| **Nominal** | Género, grupo sanguíneo | Moda, frecuencias |
+| **Ordinal** | Satisfacción, grado | Mediana, moda, cuantiles |
+| **Discreta** | Número de eventos | Media, mediana, varianza |
+| **Continua** | Peso, presión arterial | Media, mediana, varianza, cuantiles |
+
+### Tabla Resumen: Fórmulas Importantes
+
+| Estadístico | Datos No Agrupados | Datos Agrupados (Intervalos) |
+|:---|:---|:---|
+| **Media ($\bar{x}$)** | $\frac{1}{n}\sum_{i=1}^{n} x_i$ | $\sum_{j=1}^{k} x_j f_j$ ($x_j$: marca clase) |
+| **Mediana/Cuantil ($x_p$)** | Valor en pos. ordenado | $x_j^l + \frac{p - F(x_j^l)}{f(x_j)} \cdot \Delta x_j$ |
+| **Moda ($Mo$)** | Valor con máx. $h_j$ | Marca de la clase modal |
+| **ECDF ($F(x)$)** | Función escalonada | Interpolación lineal (ojiva) |
+| **Sesgo ($g_1$)** | $\frac{\frac{1}{n} \sum (x_i - \bar{x})^3}{s^3}$ | (Aprox. marcas de clase) |
+| **Curtosis ($g_2$)** | $\frac{\frac{1}{n} \sum (x_i - \bar{x})^4}{s^4}$ | (Aprox. marcas de clase) |
+
+---
+
+## Ejercicios {#sec-semana01-ejercicios}
+::: {.callout-tip}
+### Ejercicio 1.1: Conceptos Fundamentales
+
+Define con tus propias palabras (desde una perspectiva clínica):
+a) La diferencia entre una variable y un valor (ej. Glucemia)
+b) Por qué necesitamos distinguir entre población y muestra en un ensayo clínico
+c) Qué es un outlier y cómo podría afectar a la media de una serie de mediciones de tensión arterial
+:::
+
+::: {.callout-tip}
+### Ejercicio 1.2: Identificación de Escalas
+
+Para cada una de las siguientes variables clínicas, identifica la escala de medición (nominal, ordinal, discreta, continua) y justifica tu respuesta:
+
+a) Número de episodios asmáticos al año
+b) Gravedad de una quemadura (Primer, Segundo, Tercer grado)
+c) Concentración de hemoglobina en sangre (g/dL)
+d) Factor Rh (Positivo, Negativo)
+e) Escala de coma de Glasgow (puntuación de 3 a 15)
+:::
+
+::: {.callout-tip}
+### Ejercicio 1.3: Cálculo de la Media
+
+Se registraron los tiempos de espera (en minutos) en urgencias de 8 pacientes:
+12, 8, 15, 10, 7, 14, 9, 11
+
+a) Calcula la media aritmética
+b) Ordena los datos y encuentra la mediana
+c) ¿Cuál es más representativa en este caso? ¿Por qué?
+
+```{r}
+#| lst-label: lst-semana01-10
+#| lst-cap: "Solución en R"
+#| code-summary: "Solución en R"
+
+tiempos <- c(12, 8, 15, 10, 7, 14, 9, 11)
+media <- mean(tiempos)
+mediana <- median(tiempos)
+cat("Media:", media, "\n")
+cat("Mediana:", mediana, "\n")
+```
+:::
+
+::: {.callout-tip}
+### Ejercicio 1.4: Tabla de Frecuencias
+
+Los siguientes datos representan el número de admisiones hospitalarias previas para 20 pacientes crónicos:
+3, 2, 5, 2, 4, 3, 6, 2, 3, 4, 5, 2, 3, 4, 2, 5, 3, 6, 4, 2
+
+a) Construye una tabla de frecuencias (absoluta, relativa, acumulada)
+b) ¿Cuál es la moda (número más frecuente de admisiones)?
+c) ¿Qué proporción de pacientes tuvieron 3 o menos admisiones?
+:::
+
+::: {.callout-tip}
+### Ejercicio 1.5: Datos Agrupados
+
+Se agrupan los niveles de glucosa en ayunas (mg/dL) de 100 pacientes en riesgo de diabetes:
+
+| Intervalo (mg/dL) | Frecuencia ($h_j$) |
+|:---|---:|
+| 70 -- 90 | 15 |
+| 90 -- 100 | 32 |
+| 100 -- 110 | 35 |
+| 110 -- 126 | 15 |
+| 126 -- 150 | 3 |
+
+a) Calcula la media aproximada de la glucemia
+b) Identifica la clase modal
+c) Estima el percentil 50 (mediana) usando interpolación
+:::
+
+::: {.callout-tip}
+```{r}
+#| lst-label: lst-semana01-11
+#| lst-cap: "Solución en R"
+#| code-summary: "Solución en R"
+
+# Datos
+marca_clase <- c(80, 95, 105, 118, 138)
+frecuencia <- c(15, 32, 35, 15, 3)
+n <- sum(frecuencia)
+
+# Media
+media_aprox <- sum(marca_clase * frecuencia) / n
+print(paste("Media aproximada:", round(media_aprox, 2), "mg/dL"))
+
+# Frecuencia relativa acumulada
+freq_rel <- frecuencia / n
+freq_acum <- cumsum(freq_rel)
+
+# Clase que contiene la mediana (F >= 0.5)
+print(data.frame(Clase = c("70-90", "90-100", "100-110", "110-126", "126-150"),
+                 Frecuencia = frecuencia,
+                 F_acum = freq_acum))
+```
+:::
+
+::: {.callout-tip}
+### Ejercicio 1.6: Interpretación de Histograma
+
+Considera el histograma de IMC del Ejemplo 1.5.1:
+
+a) ¿Qué clase tiene la mayor densidad de pacientes?
+b) ¿Qué porcentaje de pacientes tienen un IMC inferior a 25 (Normal o bajo peso)?
+c) ¿En qué rango se encuentra el 25% de pacientes con menor IMC?
+:::
+
+## Respuestas a los Ejercicios {#sec-semana01-respuestas}
+
+**Ejercicio 1.1: Conceptos**
+a) Variable: Característica (Glucemia). Valor: Resultado medido (105 mg/dL).
+b) Población: Todos los pacientes con la patología. Muestra: Los que participan en el estudio.
+c) Un outlier (ej. una medición de 220/120 por error de manguito) elevaría artificialmente la media, haciendo que la tensión promedio parezca más alta de lo que realmente es.
+
+**Ejercicio 1.2: Escalas**
+a) Discreta (conteo de eventos). b) Ordinal (hay un orden de gravedad). c) Continua (puede tomar cualquier valor decimal). d) Nominal (categorías sin orden). e) Ordinal (puntuación con orden intrínseco).
+
+**Ejercicio 1.3: Tiempos de espera**
+a) Media = 86 / 8 = 10.75 min. b) Ordenados: 7, 8, 9, 10, 11, 12, 14, 15. Mediana = (10+11)/2 = 10.5 min. c) Ambas son similares porque no hay outliers extremos.
+
+**Ejercicio 1.4: Admisiones**
+a) 
+
+| Admisiones | $h_j$ | $f_j$ | $H_j$ | $F_j$ |
+|:---|---:|---:|---:|---:|
+| 2 | 6 | 0.30 | 6 | 0.30 |
+| 3 | 5 | 0.25 | 11 | 0.55 |
+| 4 | 4 | 0.20 | 15 | 0.75 |
+| 5 | 3 | 0.15 | 18 | 0.90 |
+| 6 | 2 | 0.10 | 20 | 1.00 |
+| **Total** | **20** | **1.00** | | |
+
+b) Moda = 2 admisiones ($h_j=6$). c) Proporción = $F_3 = 0.55$ (55%).
+
+**Ejercicio 1.5: Glucemia**
+a) Media ≈ 101.4 mg/dL. b) Clase modal: 100-110 mg/dL. c) P₅₀ ≈ 100 + (0.50 - 0.47)/0.35 * 10 ≈ 100.86 mg/dL.
+
+**Ejercicio 1.6: IMC (Ejemplo 1.5.1)**
+a) Sobrepeso (25-30) con densidad 0.0672. b) $F(25) = 0.055 + 0.339 = 0.394$ (39.4%). c) En el rango de 0 a 25 (específicamente, el P₂₅ está en la clase "Normal").
+
+**Fin de Semana 1**
+
+Para referencias avanzadas sobre análisis exploratorio de datos y estimación robusta, consulta:
+[Robust Estimation of Location](https://rpubs.com/FJRubio/MM)
+

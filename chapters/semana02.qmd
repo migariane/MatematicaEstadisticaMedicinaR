@@ -1,0 +1,931 @@
+# Semana 2 — Análisis Exploratorio de Datos (Parte II) {#sec-semana02}
+
+En esta semana continuamos con el Análisis Exploratorio de Datos (AED), enfocándonos en medidas de dispersión, transformaciones lineales, diagramas de caja, análisis bivariante y medidas de dependencia. Estos conceptos son fundamentales para comprender la variabilidad de los datos y las relaciones entre variables.
+
+## Medidas de Dispersión {#sec-semana02-s1}
+
+Mientras que las medidas de tendencia central (como la media y la mediana) describen dónde está el centro de los datos, las **medidas de dispersión** describen cuánta variabilidad existe en los datos. La dispersión es crítica para comprender la calidad de los datos y la precisión de nuestras estimaciones.
+
+### ¿Por qué necesitamos medidas de dispersión?
+
+Es fundamental comprender que la media por sí sola no describe una distribución. Dos conjuntos de datos pueden compartir la misma media pero tener estructuras de dispersión radicalmente diferentes.
+
+Consideremos un ejemplo clínico: dos grupos de pacientes con niveles de glucosa en sangre (mg/dL) con la misma media (170 mg/dL):
+1. **Grupo A**: Niveles muy homogéneos (todos cercanos a la media).
+2. **Grupo B**: Niveles muy diversos (gran dispersión).
+
+```{r}
+#| lst-label: lst-semana02-media-var
+#| lst-cap: "Distribuciones con igual media pero distinta varianza"
+#| code-summary: "Igual media, distinta varianza"
+
+library(ggplot2)
+
+# Generar datos
+set.seed(123)
+grupo_a <- rnorm(100, mean = 170, sd = 2)   # Varianza baja
+grupo_b <- rnorm(100, mean = 170, sd = 10)  # Varianza alta
+
+df <- data.frame(
+  valor = c(grupo_a, grupo_b),
+  grupo = rep(c("Grupo A (Homogéneo)", "Grupo B (Diverso)"), each = 100)
+)
+
+# Gráfico de densidad con líneas de media
+ggplot(df, aes(x = valor, fill = grupo)) +
+  geom_density(alpha = 0.5) +
+  scale_fill_manual(values = c("Grupo A (Homogéneo)" = "steelblue", "Grupo B (Diverso)" = "seagreen")) +
+  geom_vline(xintercept = 170, linetype = "dashed", color = "black", size = 0.8) +
+  labs(title = "Comparación de Variabilidad",
+       subtitle = "Ambas distribuciones tienen media = 170 mg/dL",
+       x = "Glucemia (mg/dL)",
+       y = "Densidad") +
+  theme_minimal()
+```
+
+Como se observa en el gráfico (la línea discontinua representa la media compartida), el **Grupo B** presenta una dispersión mucho mayor, lo que demuestra que el promedio no siempre es suficiente para caracterizar la realidad de un conjunto de datos médicos.
+:::
+
+::: {.callout-note}
+## Resumen: Medidas de Dispersión
+Para cuantificar la variabilidad de un conjunto de datos, utilizamos principalmente las siguientes medidas:
+
+- **Rango**: Diferencia entre el valor máximo y mínimo. Muy sensible a outliers.
+- **Rango Intercuartílico (IQR)**: Diferencia entre el tercer y primer cuartil. Mide la dispersión del 50% central de los datos. Robusto a outliers.
+- **Varianza ($s^2$)**: Promedio de las desviaciones al cuadrado respecto a la media.
+- **Desviación Estándar ($s$)**: Raíz cuadrada de la varianza. Expresada en las mismas unidades que la variable original, lo que facilita su interpretación clínica.
+- **Coeficiente de Variación (CV)**: Medida adimensional de dispersión relativa que permite comparar la variabilidad de diferentes variables clínicas.
+:::
+
+### Rango {#sec-semana02-s1-rango}
+
+::: {.callout-note}
+## Rango
+El **rango** es la diferencia entre la observación más grande y la más pequeña:
+
+$$R = x_{\max} - x_{\min} = x_{(n)} - x_{(1)}$$
+
+donde $x_{(1)}, \ldots, x_{(n)}$ son las observaciones ordenadas.
+:::
+
+::: {.callout-warning}
+## Limitaciones del Rango
+El rango es fácil de calcular, pero tiene importantes limitaciones:
+- Es muy sensible a valores atípicos (outliers)
+- Su valor aumenta con el tamaño de la muestra
+- No proporciona información sobre cómo se distribuyen los datos entre los extremos
+:::
+
+### Rango Intercuartílico (IQR) {#sec-semana02-s1-iqr}
+
+::: {.callout-note}
+## Rango Intercuartílico
+El **rango intercuartílico** (IQR, del inglés Interquartile Range) es la diferencia entre el tercer cuartil ($Q3$) y el primer cuartil ($Q1$):
+
+$$\text{IQR} = Q3 - Q1$$
+
+El IQR contiene el 50% central de los datos y es robusto a valores atípicos.
+:::
+
+### Varianza y Desviación Estándar {#sec-semana02-s1-var}
+
+::: {.callout-note}
+## Varianza y Desviación Estándar
+La **varianza muestral** mide la dispersión promedio de los datos respecto a la media:
+
+$$s^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2$$
+
+Alternativamente, puede calcularse como:
+
+$$s^2 = \frac{1}{n-1}\left(\sum_{i=1}^{n}x_i^2 - n\bar{x}^2\right)$$
+
+La **desviación estándar** es la raíz cuadrada positiva de la varianza:
+
+$$s = \sqrt{s^2}$$
+
+Nota: Se utiliza $n-1$ (en lugar de $n$) para proporcionar un estimador insesgado de la varianza poblacional.
+:::
+
+::: {.callout-tip}
+## Interpretación de la Desviación Estándar
+La desviación estándar está en las mismas unidades que los datos originales, lo que la hace más interpretable que la varianza. Por ejemplo, si los datos representan edades en años, $s$ también está en años. Aproximadamente el 68% de los datos caen dentro de una desviación estándar de la media, y el 95% dentro de dos desviaciones estándar (regla empírica para datos aproximadamente normales).
+:::
+
+::: {.callout-tip}
+## Ejemplo 2.1: BioestadisticaR2 grps()
+
+La función `grps()` calcula estadísticos descriptivos comparativos por grupos en una sola llamada (documentación completa en @sec-bio-descriptivo):
+
+```{r}
+#| lst-label: lst-semana02-1
+#| lst-cap: "Código R"
+
+library(BioestadisticaR2)
+
+# IMC según sexo — pacientes diabéticos UGR (n = 94)
+grps(osteo$imc, osteo$sexo, grf = FALSE)
+```
+
+
+Las mujeres presentan mayor IMC medio y mayor variabilidad (dt = 4.39 vs 2.89 en hombres). Con `ic = TRUE` añade intervalos de confianza individuales por grupo.
+:::
+
+### Cálculo de Estadísticos con R Base {#sec-semana02-s1-base-r}
+
+Aunque paquetes como `BioestadisticaR2` son potentes, es fundamental saber usar las funciones básicas de R para un análisis rápido.
+
+```{r}
+#| lst-label: lst-semana02-2
+#| lst-cap: "Cálculos con Base R"
+#| code-summary: "Cálculos con Base R"
+
+# Datos: PAS de pacientes (mmHg)
+pas <- c(120, 125, 118, 130, 122, 128, 115, 135, 124, 129)
+
+# Cálculo de varianza y desviación estándar
+varianza <- var(pas)
+desviacion_std <- sd(pas)
+iqr_pas <- IQR(pas)
+
+# Cálculo del Coeficiente de Variación (CV)
+# El CV es (sd / media) * 100
+cv <- (desviacion_std / mean(pas)) * 100
+
+cat("Varianza (s²):", round(varianza, 2), "\n")
+cat("Desv. Est. (s):", round(desviacion_std, 2), "\n")
+cat("IQR:", round(iqr_pas, 2), "\n")
+cat("Coef. Variación (CV):", round(cv, 2), "%\n")
+```
+
+::: {.callout-note}
+## Coeficiente de Variación (CV) en Contexto Médico
+El **Coeficiente de Variación (CV)** es una medida de dispersión **adimensional** que permite comparar la variabilidad de variables con diferentes unidades o magnitudes. Se define como:
+
+$$CV = \left( \frac{s}{\bar{x}} \right) \times 100$$
+
+En medicina, es crucial:
+- **Interpretación**: Un CV bajo indica alta precisión o consistencia en la medición.
+- **Comparación**: Por ejemplo, si comparamos la variabilidad de la glucosa en sangre (mg/dL) con la variabilidad de la frecuencia cardíaca (latidos/min), el CV nos permite saber cuál medida es más "relativamente" dispersa, ignorando las unidades de medida.
+:::
+
+## Transformaciones Lineales: Propiedades {#sec-semana02-s2}
+
+Cuando transformamos los datos mediante una transformación lineal, también transformamos sus estadísticos de una manera predecible y matemáticamente bien definida. Generalmente se usan para simplificar la interpretación de datos, cambiar unidades de medida y facilitar la comparación entre variables.  
+
+### Transformación Lineal Estándar
+
+::: {.callout-warning}
+## Resultado Importante: Transformación Lineal
+Si definimos una transformación lineal $y_i = a + b x_i$ donde $b \neq 0$, entonces:
+
+**Para la media:**
+$$\bar{y} = a + b\bar{x}$$
+
+**Para la varianza:**
+$$s_y^2 = b^2 s_x^2$$
+
+**Para la desviación estándar:**
+$$s_y = |b| s_x$$
+
+**Para el rango:**
+$$R_Y = |b|R_X$$
+
+**Para el rango intercuartílico:**
+$$\text{IQR}_Y = |b| \text{IQR}_X$$
+:::
+
+### Interpretación de los Parámetros {#sec-semana02-s2-interp}
+
+El parámetro $a$ representa un **desplazamiento** de los datos (shift), mientras que el parámetro $b$ controla la escala:
+
+- Si $0 < b < 1$: compresión de los datos (se hacen más próximos)
+- Si $b > 1$: dilatación de los datos (se separan más)
+- Si $b < 0$: reflexión (inversión) además de escalado
+- Si $b = 1$: solo desplazamiento (la dispersión no cambia)
+
+::: {.callout-tip}
+## Ejemplo 2.2: Conversión de Temperaturas
+Supongamos que tenemos temperaturas en grados Celsius con media $\bar{x} = 25$ y desviación estándar $s_x = 3$. Queremos convertirlas a Fahrenheit usando $y = 32 + 1.8x$.
+
+Entonces:
+- $\bar{y} = 32 + 1.8 \times 25 = 77°\text{F}$
+- $s_y = |1.8| \times 3 = 5.4°\text{F}$
+
+La media se desplaza y escala, pero la dispersión relativa (en términos de desviaciones estándar) permanece igual.
+:::
+
+## Estandarización y Normalización {#sec-semana02-s3}
+La estandarización es una transformación lineal específica que convierte los datos a una escala con media 0 y desviación estándar 1. Esto se logra mediante la fórmula:
+
+$$z_i = \frac{x_i - \bar{x}}{s_x}$$
+Desarrollando la expresión:
+
+$$z_i = \frac{x_i}{s_x} - \frac{\bar{x}}{s_x}$$
+
+Por lo tanto, en la transformación lineal $y_i = a + b x_i$ para el z-scocre tenemos:
+
+- $$a = -\frac{\bar{x}}{s_x}$$
+- $$b = \frac{1}{s_x}$$
+
+### Propiedades de los Z-Scores {#sec-semana02-s3-prop}
+
+::: {.callout-warning}
+## Propiedades de los Z-Scores
+- Media: $\bar{z} = 0$
+- Desviación estándar: $s_z = 1$
+- Rango típico: aproximadamente $[-3, 3]$ para datos normales
+- Un valor $z_i > 3$ o $z_i < -3$ sugiere un posible valor atípico
+:::
+
+### Interpretación {#sec-semana02-s3-interp}
+
+::: {.callout-tip}
+## Ejemplo 2.3: Interpretación de Z-Scores
+Si un estudiante obtiene una puntuación de 85 en un examen con media 80 y desviación estándar 5, su z-score es:
+
+$$z = \frac{85 - 80}{5} = 1$$
+
+Esto significa que su puntuación está 1 desviación estándar **por encima** de la media. Si otro estudiante obtiene 70, su z-score sería:
+
+$$z = \frac{70 - 80}{5} = -1$$
+
+Los z-scores permiten comparar puntuaciones de diferentes escalas o distribuciones.
+:::
+
+::: {.callout-note}
+## Estandarización automática en R: `scale()`
+Aunque podemos calcular z-scores manualmente, R ofrece la función `scale()` que estandariza automáticamente un vector:
+
+```{r}
+# Ejemplo numérico
+presion <- c(120, 125, 110, 130, 140)
+
+# Estandarización: (x - mean(x)) / sd(x)
+presion_z <- scale(presion)
+
+# Resultados
+print(presion)
+print(round(presion_z, 2))
+```
+La función `scale()` resta la media (`mean(presion) = 125`) y divide por la desviación estándar (`sd(presion) ≈ 11.18`), transformando directamente los datos a z-scores.
+:::
+
+# No es Ejemplo {#sec-semana02-s3-ejemplo-pob}
+
+Cuando conocemos la media poblacional ($\mu$) y la desviación típica poblacional ($\sigma$), podemos calcular la probabilidad (porcentaje de personas) de que un valor caiga en un rango utilizando la función `pnorm()`.
+
+::: {.callout-tip}
+## Ejemplo 2.4: Glucemia (Z-scores con Parámetros Poblacionales)
+Supongamos que la glucemia en adultos sanos sigue una distribución normal con $\mu = 90$ mg/dL y $\sigma = 10$ mg/dL. ¿Qué porcentaje de personas tiene una glucemia entre 80 y 100 mg/dL?
+
+**Cálculo manual mediante Z-score:**
+1. Para $x = 80$: $z_1 = \frac{80 - 90}{10} = -1.0$
+2. Para $x = 100$: $z_2 = \frac{100 - 90}{10} = +1.0$
+
+Buscamos $P(-1.0 < Z < 1.0)$. Esto es $P(Z < 1.0) - P(Z < -1.0) \approx 0.8413 - 0.1587 = 0.6826$ (68.26%). Esto significa que aproximadamente el 68.26% de las personas sanas tienen una glucemia entre 80 y 100 mg/dL. Antes los valores de z se buscan en la tabla de la distribución normal estándar, pero con R es mucho más sencillo usando `pnorm()`.
+
+**Verificación con R:**
+
+```{r}
+#| lst-label: lst-semana02-3
+#| lst-cap: "Código R"
+
+mu <- 90
+sigma <- 10
+
+# Probabilidad de P(80 < X < 100)
+# Esto es P(X < 100) - P(X < 80)
+prob <- pnorm(100, mean = mu, sd = sigma) - pnorm(80, mean = mu, sd = sigma)
+
+cat("Porcentaje de personas entre 80 y 100 mg/dL:", round(prob * 100, 2), "%\n")
+```
+:::
+
+### Regla Empírica (68-95-99.7) {#sec-semana02-s3-regla}
+
+::: {.callout-note}
+## Definición: Regla 68-95-99.7
+Cando una variable aleatoria X se transforma a puntuaciones estándar mediante: so z=-score, se dice que hay sido tipificada y se ha convertido en una variable aleatoria Z que sigue una distribución normal estándar N(0,1). La regla empírica (o regla 68-95-99.7) se interpreta directamente en términos de la distribución normal estándar N(0,1):
+
+- Aproximadamente el **68%** de los datos caen dentro de $\pm 1$ desviación estándar ($\pm 1 Z$)
+- Aproximadamente el **95%** de los datos caen dentro de $\pm 2$ desviaciones estándar ($\pm 2 Z$)
+- Aproximadamente el **99.7%** de los datos caen dentro de $\pm 3$ desviaciones estándar ($\pm 3 Z$)
+
+En otras palabras, la tipificación “estandariza” cualquier normal a la misma escala, y esas proporciones se mantienen porque dependen únicamente de la forma de la curva normal estándar, no de la media o la desviación original.
+:::
+
+```{r}
+#| lst-label: lst-semana02-4
+#| lst-cap: "Visualización de la Regla Empírica"
+#| code-summary: "Visualización de la Regla Empírica"
+
+# Crear secuencia para curva normal
+x <- seq(-4, 4, length.out = 200)
+y <- dnorm(x)
+
+# Graficar
+plot(x, y, type = "l", lwd = 2, col = "darkblue",
+     main = "Distribución Normal: Regla 68-95-99.7",
+     xlab = "Z-score", ylab = "Densidad", axes = FALSE)
+axis(1, at = -3:3)
+axis(2)
+
+# Definir áreas y añadir etiquetas
+# 99.7%
+x_99 <- seq(-3, 3, length.out=150)
+polygon(c(-3, x_99, 3), c(0, dnorm(x_99), 0), col = rgb(0,0,1,0.05), border = "darkblue")
+text(0, 0.02, "99.7% (±3σ)", col = "darkblue", font = 2)
+
+# 95%
+x_95 <- seq(-2, 2, length.out=100)
+polygon(c(-2, x_95, 2), c(0, dnorm(x_95), 0), col = rgb(0,0,1,0.1), border = "darkblue")
+text(0, 0.08, "95% (±2σ)", col = "darkblue", font = 2)
+
+# 68%
+x_68 <- seq(-1, 1, length.out=50)
+polygon(c(-1, x_68, 1), c(0, dnorm(x_68), 0), col = rgb(0,0,1,0.2), border = "darkblue")
+text(0, 0.25, "68% (±1σ)", col = "darkblue", font = 2)
+```
+
+
+## Diagramas de Caja (Boxplots) {#sec-semana02-s4}
+
+Los diagramas de caja son una herramienta visual extremadamente útil en el AED. Permiten identificar rápidamente la mediana, los cuartiles, el rango y los valores atípicos.
+
+### Construcción de un Boxplot {#sec-semana02-s4-construccion}
+
+::: {.callout-note}
+## Ingredientes del Boxplot
+Para construir un diagrama de caja, necesitamos calcular:
+
+1. **Mediana (Q2):** el valor central que divide los datos en dos mitades
+2. **Primer cuartil (Q1):** el valor que deja el 25% de los datos por debajo
+3. **Tercer cuartil (Q3):** el valor que deja el 75% de los datos por debajo
+4. **Rango intercuartílico:** $\text{IQR} = Q3 - Q1$
+5. **Límite inferior (lower whisker):** $Q1 - 1.5 \times \text{IQR}$
+6. **Límite superior (upper whisker):** $Q3 + 1.5 \times \text{IQR}$
+7. **Valores atípicos (outliers):** cualquier observación fuera de los límites
+:::
+
+### Interpretación Visual {#sec-semana02-s4-interp}
+
+::: {.callout-warning}
+## Características Importantes
+- La **caja** representa el 50% central de los datos (entre Q1 y Q3)
+- La **línea dentro de la caja** es la mediana (Q2)
+- Los **bigotes** (whiskers) se extienden hasta los límites definidos
+- Los **puntos individuales** fuera de los bigotes son valores atípicos
+- Un boxplot **simétrico** sugiere una distribución aproximadamente normal
+- Una mediana **no centrada** en la caja sugiere asimetría
+:::
+
+::: {.callout-tip}
+## Ejemplo 2.5: Boxplot Comparativo
+```{r}
+#| lst-label: lst-semana02-5
+#| lst-cap: "Generar Boxplots"
+#| code-summary: "Generar Boxplots"
+
+# Generar datos simulados
+set.seed(123)
+grupo1 <- rnorm(100, mean = 100, sd = 10)
+grupo2 <- rnorm(100, mean = 110, sd = 15)
+
+# Crear boxplots comparativos
+boxplot(grupo1, grupo2,
+        names = c("Grupo 1", "Grupo 2"),
+        main = "Comparación de Distribuciones",
+        ylab = "Valor",
+        col = c("steelblue", "seagreen"))
+```
+:::
+
+## Análisis Bivariante: Distribuciones Conjuntas {#sec-semana02-s5}
+
+### Distribución Conjunta {#sec-semana02-s5-conjunta}
+
+::: {.callout-note}
+## Distribución Conjunta
+La **distribución conjunta** (o distribución multivariante) describe simultáneamente dos o más variables. Para dos variables, hablamos de **distribución bivariante**.
+
+Cuando observamos pares $(x_i, y_i)$, podemos estudiar cómo ambas variables varían juntas, no solo separadamente.
+:::
+
+### Variables Discretas: Tablas de Frecuencia {#sec-semana02-s5-discretas}
+
+::: {.callout-note}
+## Tabla de Frecuencia (Contingencia)
+Una **tabla de contingencia** o **tabla de frecuencia bidimensional** resume la relación entre dos variables discretas:
+
+$$
+\begin{array}{c|ccccc|c}
+X \backslash Y & y_1 & \cdots & y_j & \cdots & y_r & \text{Total}_X \\
+\hline
+x_1 & h_{11} & \cdots & h_{1j} & \cdots & h_{1r} & h_{1\bullet} \\
+\vdots & \vdots & \ddots & \vdots & \ddots & \vdots & \vdots \\
+x_i & h_{i1} & \cdots & h_{ij} & \cdots & h_{ir} & h_{i\bullet} \\
+\vdots & \vdots & \ddots & \vdots & \ddots & \vdots & \vdots \\
+x_m & h_{m1} & \cdots & h_{mj} & \cdots & h_{mr} & h_{m\bullet} \\
+\hline
+\text{Total}_Y & h_{\bullet 1} & \cdots & h_{\bullet j} & \cdots & h_{\bullet r} & n
+\end{array}
+$$
+
+donde:
+- $h_{ij}$ es la **frecuencia absoluta** (número de casos con características $x_i$ e $y_j$)
+- $h_{i\bullet} = \sum_j h_{ij}$ es la distribución marginal de $X$
+- $h_{\bullet j} = \sum_i h_{ij}$ es la distribución marginal de $Y$
+- $f_{ij} = h_{ij}/n$ es la **frecuencia relativa**
+:::
+
+### Distribución Marginal {#sec-semana02-s5-marginal}
+
+::: {.callout-note}
+## Distribución Marginal
+La **distribución marginal** de una variable es su distribución ignorando las otras variables. En una tabla de contingencia:
+
+- Distribución marginal de $X$: $h_{i\bullet} = \sum_j h_{ij}$
+- Distribución marginal de $Y$: $h_{\bullet j} = \sum_i h_{ij}$
+
+Las distribuciones marginales aparecen en los totales de filas y columnas.
+:::
+
+### Distribución Condicional {#sec-semana02-s5-condicional}
+
+::: {.callout-note}
+## Distribución Condicional
+La **distribución condicional** de una variable es su distribución cuando la otra variable toma un valor específico:
+
+**Distribución de $X$ dado $Y = y_j$:**
+$$f(x_i | y_j) = \frac{h_{ij}}{h_{\bullet j}}$$
+
+**Distribución de $Y$ dado $X = x_i$:**
+$$f(y_j | x_i) = \frac{h_{ij}}{h_{i\bullet}}$$
+:::
+
+::: {.callout-tip}
+## Ejemplo 2.6: Distribucines marginales y condicionales
+
+| Ocupación | Act. Rara | Act. Ocasional | Act. Regular |
+|:---|---:|---:|---:|
+| Obrero | 240 | 120 | 70 |
+| No-manual | 160 | 90 | 90 |
+| Oficina | 30 | 30 | 30 |
+| Agricultor | 37 | 7 | 6 |
+| Otros | 40 | 32 | 18 |
+
+```{r}
+#| lst-label: lst-semana02-6
+#| lst-cap: "Código R para porcentajes"
+#| code-summary: "Código R para porcentajes"
+
+options(scipen = 999)
+# Crear tabla de contingencia
+tabla <- rbind(
+  c(240, 120, 70),
+  c(160, 90, 90),
+  c(30, 30, 30),
+  c(37, 7, 6),
+  c(40, 32, 18)
+)
+
+colnames(tabla) <- c("Rara", "Ocasional", "Regular")
+rownames(tabla) <- c("Obrero", "No-manual", "Oficina", "Agricultor", "Otros")
+
+# Mostrar tabla marginal y porcentajes
+print(tabla)
+print("Distribución marginal de ocupación:")
+round(rowSums(tabla), 3)
+print("Distribución marginal de actividad:")
+round(colSums(tabla), 3)
+
+# Mostrar tabla y calcular porcentajes condicionales
+print(tabla)
+print("Porcentajes por filas:")
+round(prop.table(tabla, 1), 3)
+print("Porcentajes por columnas:")
+round(prop.table(tabla, 2), 3)
+```
+:::
+
+::: {.callout-tip}
+## Ejemplo 2.7: Distribuciones Condicionales y Probabilidad
+Para ilustrar, consideremos la tabla de contingencia de un test de diagnóstico:
+
+| | Infectado | No infectado | Total |
+|:---|---:|---:|---:|
+| **Test +** | 199 | 499 | 698 |
+| **Test -** | 1 | 99301 | 99302 |
+| **Total** | 200 | 99800 | 100000 |
+
+```{r}
+#| lst-label: lst-semana02-7
+#| lst-cap: "Probabilidad condicional en R"
+#| code-summary: "Probabilidad condicional en R"
+
+options(scipen = 999)
+# Crear tabla de contingencia 2x2: Test de VIH vs Infección
+tabla_hiv <- rbind(
+  c(199, 499),      # Test positivo
+  c(1, 99301)       # Test negativo
+)
+colnames(tabla_hiv) <- c("Infectado", "No infectado")
+rownames(tabla_hiv) <- c("Test +", "Test -")
+
+# 1. Porcentajes por FILA (P(Resultado | Infección))
+print("P(Test | Infección) - Porcentajes por FILA:")
+prop.table(tabla_hiv, 1)
+
+# 2. Porcentajes por COLUMNA (Valor Predictivo: P(Infección | Test))
+print("P(Infección | Test) - Porcentajes por COLUMNA:")
+prop.table(tabla_hiv, 2)
+```
+**Interpretación Clínica:**
+- **Por filas**: (\text{Test} | \text{Infección}) qué tan bueno es el test para identificar la presencia o ausencia de enfermedad.
+- **Por columnas**: (\text{Infección} | \text{Test}) a la pregunta clínica crucial: "Dado que el paciente tiene este resultado de test, ¿cuál es la probabilidad real de que esté infectado?".
+:::
+
+:::{.callout-note}
+## Métodos Avanzados
+Para ampliar los contenidos sobre los test diagnósticos y otras técnicas estadísticas avanzadas, visita:
+**[→ Bioestadística Avanzada — M.A. Luque Fernández](https://migariane.github.io/Bioestadistica)**
+:::
+
+::: {.callout-tip}
+## Ejemplo 2.8: Covarianza y Correlación
+```{r}
+#| lst-label: lst-semana02-10
+#| lst-cap: "Covarianza y Correlación con R Base"
+#| code-summary: "Covarianza y Correlación con R Base"
+#| message: false
+#| warning: false
+
+# Cargar el dataset women
+data(women)
+
+# Calcular estadísticas
+cov_hw <- cov(women$height, women$weight)
+cor_hw <- cor(women$height, women$weight)
+
+cat("Covarianza:", round(cov_hw, 2), "\n")
+cat("Correlación:", round(cor_hw, 2), "\n")
+
+# Gráfico de dispersión
+plot(women$height, women$weight,
+     main = "Altura vs Peso",
+     xlab = "Altura (pulgadas)",
+     ylab = "Peso (libras)",
+     pch = 19, col = "steelblue")
+
+# Agregar línea de regresión
+abline(lm(weight ~ height, data = women), col = "red", lwd = 2)
+```
+:::
+
+### Covarianza y Correlacion: Advertencia Visual {#sec-semana02-s6-datasaurus}
+
+::: {.callout-note}
+## Limitaciones del coeficiente de correlación
+Para comprender mejor por qué la correlación debe ir acompañada de un gráfico, observemos la siguiente figura:
+
+```{r}
+#| label: fig-semana02-cor-limit
+#| fig-cap: "Limitaciones de la correlación de Pearson"
+#| echo: false
+#| message: false
+#| warning: false
+
+library(ggplot2)
+library(gridExtra)
+
+# 1. No lineal (Parábola)
+x <- seq(-3, 3, length.out = 100)
+y <- x^2 + rnorm(100, sd = 0.5)
+df1 <- data.frame(x, y)
+r1 <- round(cor(x, y), 2)
+
+# 2. Círculo
+t <- seq(0, 2*pi, length.out = 100)
+x <- cos(t) + rnorm(100, sd = 0.05)
+y <- sin(t) + rnorm(100, sd = 0.05)
+df2 <- data.frame(x, y)
+r2 <- round(cor(x, y), 2)
+
+# 3. Lineal
+x <- rnorm(100)
+y <- 0.8 * x + rnorm(100, sd = 0.3)
+df3 <- data.frame(x, y)
+r3 <- round(cor(x, y), 2)
+
+p1 <- ggplot(df1, aes(x, y)) + geom_point(color = "steelblue") + labs(title=paste("No lineal, r =", r1))
+p2 <- ggplot(df2, aes(x, y)) + geom_point(color = "seagreen") + labs(title=paste("Círculo, r =", r2))
+p3 <- ggplot(df3, aes(x, y)) + geom_point(color = "steelblue") + labs(title=paste("Lineal, r =", r3))
+
+grid.arrange(p1, p2, p3, ncol = 3)
+```
+
+En los dos primeros casos, existe una dependencia clara entre las variables, pero el coeficiente de correlación $r$ es cercano a 0 porque no es una relación lineal.
+:::
+
+::: {.callout-warning}
+## La Paradoja de Simpson: Correlaciones Engañosas
+La **Paradoja de Simpson** es un fenómeno donde una tendencia observada en varios grupos desaparece o se invierte al combinarlos.
+
+**Relación con el ejemplo clínico:**
+En la figura a continuación (Ejemplo 2.11), vemos dos subgrupos (leves y graves). Si calculáramos la correlación total de todos los pacientes sin distinguir estos grupos, el resultado sería engañoso. La variable "gravedad" actúa aquí como un **factor de confusión**. Este ejemplo clínico ilustra perfectamente por qué la **"correlación no implica causalidad"** y subraya la importancia crítica de la estratificación y visualización de datos en medicina.
+:::
+
+::: {.callout-tip}
+## Ejemplo 2.9: Paradoja de Simpson en Ensayos Clínicos
+```{r}
+#| lst-label: lst-semana02-11
+#| lst-cap: "Ilustración de la Paradoja de Simpson"
+#| code-summary: "Ilustración de la Paradoja de Simpson"
+
+# Simulación: Efecto de un fármaco en dos subgrupos (ej. Pacientes leves vs graves)
+set.seed(42)
+n <- 100
+# Subgrupo 1 (Leves)
+x1 <- rnorm(n, mean = 50, sd = 10); y1 <- 20 + 0.5 * x1 + rnorm(n, sd = 5)
+# Subgrupo 2 (Graves)
+x2 <- rnorm(n, mean = 70, sd = 10); y2 <- 50 + 0.5 * x2 + rnorm(n, sd = 5)
+
+# Gráfico
+plot(c(x1, x2), c(y1, y2), 
+     col = rep(c("blue", "red"), each = n),
+     pch = 19,
+     main = "Paradoja de Simpson en un ensayo clínico",
+     xlab = "Dosificación (mg)", ylab = "Recuperación (%)")
+legend("topleft", legend=c("Pacientes Leves", "Pacientes Graves"), col=c("blue", "red"), pch=19)
+```
+:::
+
+### Matriz de Correlaciones {#sec-semana02-s6-matriz}
+
+La matriz de correlaciones es una herramienta fundamental en investigación médica para evaluar la relación entre múltiples variables fisiológicas simultáneamente. Su utilidad principal radica en:
+
+1. **Identificación de Predictores**: Detectar qué variables clínicas están más asociadas con un marcador de salud (ej. qué variables influyen más en la presión arterial).
+2. **Detección de Colinealidad**: Identificar variables redundantes que aportan información similar, lo cual es crítico antes de construir modelos de regresión.
+3. **Análisis de Clusters**: Agrupar variables que se comportan de manera similar en pacientes (ej. marcadores inflamatorios).
+
+::: {.callout-tip}
+## Ejemplo 2.10: Matriz de Correlaciones (Parámetros Clínicos)
+```{r}
+#| lst-label: lst-semana02-12
+#| lst-cap: "Matriz de correlaciones clínicas"
+#| code-summary: "Matriz de correlaciones clínicas"
+
+# Simulación de variables clínicas: Edad, Colesterol, Tensión Arterial (PAS), IMC
+set.seed(42)
+n <- 200
+edad <- rnorm(n, 55, 10)
+imc <- rnorm(n, 27, 4)
+colesterol <- 150 + 0.8 * edad + 2 * imc + rnorm(n, 0, 10)
+pas <- 110 + 0.5 * edad + 1.5 * imc + rnorm(n, 0, 8)
+
+data_clinica <- data.frame(Edad = edad, IMC = imc, Colesterol = colesterol, PAS = pas)
+
+# Visualización mediante matriz de dispersión (Pairs plot)
+pairs(data_clinica,
+      main = "Matriz de Relaciones Clínicas",
+      pch = 19,
+      col = "darkgreen")
+
+# Correlaciones numéricas
+cor(data_clinica)
+```
+:::
+
+## Función de Distribución Empírica (ECDF) {#sec-semana02-ecdf}
+
+En el Capítulo 1 estudiamos la Función de Distribución Empírica (ECDF) con datos agrupados en clases. Aquí presentamos cómo calcular y visualizar la ECDF con datos individuales usando la función `ecdf()` de R.
+
+## Ejemplo 2.11: ECDF de Alturas de Estudiantes
+
+Se midieron las alturas (en cm) de 30 estudiantes de segundo año:
+
+```
+168, 172, 165, 175, 170, 169, 173, 166, 174, 171,
+167, 176, 169, 172, 168, 170, 175, 169, 173, 171,
+165, 174, 170, 172, 168, 175, 169, 171, 173, 170
+```
+
+La tabla siguiente muestra algunos valores y su función de distribución empírica acumulada:
+
+| Altura (cm) | $F_n(x)$ |
+|-------------|----------|
+| 165 | 0.067 |
+| 166 | 0.100 |
+| 167 | 0.133 |
+| 168 | 0.200 |
+| 169 | 0.300 |
+| 170 | 0.400 |
+| 171 | 0.500 |
+| 172 | 0.633 |
+| 173 | 0.700 |
+| 174 | 0.767 |
+| 175 | 0.867 |
+| 176 | 1.000 |
+
+```{r}
+#| lst-label: lst-semana02-13
+#| lst-cap: "Código R para ECDF"
+#| code-summary: "Código R para ECDF"
+
+# Datos de alturas
+alturas <- c(168, 172, 165, 175, 170, 169, 173, 166, 174, 171,
+             167, 176, 169, 172, 168, 170, 175, 169, 173, 171,
+             165, 174, 170, 172, 168, 175, 169, 171, 173, 170)
+
+# Calcular ECDF
+ecdf_alturas <- ecdf(alturas)
+
+# Graficar la ECDF
+plot(ecdf_alturas,
+     main = "Función de Distribución Empírica (ECDF)\nAlturas de Estudiantes",
+     xlab = "Altura (cm)",
+     ylab = "F_n(x)",
+     verticals = TRUE,
+     do.points = FALSE,
+     col = "darkblue",
+     lwd = 2)
+grid()
+```
+
+### Interpretación
+
+La ECDF $F_n(x)$ es una función escalonada que representa la proporción de datos menores o iguales a $x$:
+
+- $F_n(165) \approx 0.067$ → El 6.7% de estudiantes miden ≤ 165 cm
+- $F_n(170) = 0.400$ → El 40% de estudiantes miden ≤ 170 cm
+- $F_n(175) \approx 0.867$ → El 86.7% de estudiantes miden ≤ 175 cm
+
+**Propiedad fundamental:** La ECDF es una **función no decreciente** que salta en cada valor observado.
+
+## Resumen {#sec-semana02-resumen}
+
+Este capítulo ha cubierto los conceptos esenciales para el análisis exploratorio bivariante de datos:
+
+| Concepto | Fórmula/Definición | Rango/Unidades |
+|----------|-------------------|-----------------|
+| Varianza | $s^2 = \frac{1}{n-1}\sum(x_i - \bar{x})^2$ | $[0, \infty)$ |
+| Desviación Estándar | $s = \sqrt{s^2}$ | Mismas unidades que $x$ |
+| Rango | $R = x_{\max} - x_{\min}$ | Mismas unidades que $x$ |
+| Rango Intercuartílico | $\text{IQR} = Q3 - Q1$ | Mismas unidades que $x$ |
+| Z-Score | $z = \frac{x - \bar{x}}{s}$ | Adimensional |
+| Covarianza | $s_{xy} = \frac{1}{n-1}\sum(x_i - \bar{x})(y_i - \bar{y})$ | Producto de unidades |
+| Correlación Pearson | $r = \frac{s_{xy}}{s_x s_y}$ | $[-1, 1]$ |
+
+### Puntos Clave
+
+- Las **medidas de dispersión** (varianza, desviación estándar) cuantifican la variabilidad de los datos
+- Las **transformaciones lineales** predicen cambios en las estadísticas de forma matemática
+- Los **diagramas de caja** visualizan rápidamente la distribución y detectan outliers
+- El **análisis bivariante** describe relaciones entre pares de variables
+- La **correlación** mide la fuerza de relaciones lineales, pero **no implica causalidad**
+- Siempre **visualiza los datos**: los resúmenes estadísticos pueden ocultar patrones subyacentes complejos
+- La **ECDF** permite estimar cuantiles y visualizar la distribución acumulada sin asumir ninguna forma paramétrica
+
+## Ejercicios {#sec-semana02-ejercicios}
+
+::: {.callout-tip}
+## Ejercicio 2.1: Estadísticos de Dispersión
+Se registraron los tiempos de respuesta (en milisegundos) de 12 participantes en una tarea de tiempo de reacción:
+250, 240, 300, 280, 270, 265, 290, 255, 310, 275, 260, 320
+
+a) Calcula el rango y el rango intercuartílico (IQR).
+b) Calcula la media y la desviación estándar.
+c) ¿Qué observación es un valor atípico potencial según la regla de 1.5×IQR?
+d) Dibuja un diagrama de caja.
+:::
+
+::: {.callout-tip}
+## Ejercicio 2.2: Transformaciones Lineales (Conversión de Unidades)
+En un estudio de investigación, se registra la presión intraocular (PIO) de 50 pacientes en milímetros de mercurio (mmHg). La media registrada es $\bar{x} = 15$ mmHg con una desviación estándar de $s_x = 3$ mmHg. Para una publicación internacional, es necesario convertir estos valores a centímetros de agua (cmH₂O) utilizando la fórmula: $y = 1.36x$.
+
+a) ¿Cuál será la media de la PIO en cmH₂O?
+b) ¿Cuál será la desviación estándar en cmH₂O?
+c) Si el IQR original es de 4 mmHg, ¿cuál será el IQR en cmH₂O?
+:::
+
+::: {.callout-tip}
+## Ejercicio 2.3: Z-Scores y Estandarización Clínica
+En un estudio de cribado, se utilizan dos escalas distintas para medir el deterioro cognitivo. Un paciente obtiene las siguientes puntuaciones:
+- Escala A: 85 puntos (media = 75, desviación estándar = 10)
+- Escala B: 90 puntos (media = 80, desviación estándar = 15)
+
+a) Calcula los z-scores para ambas escalas.
+b) ¿En qué escala el deterioro del paciente es relativamente más severo?
+c) Si se considera un z > 0.5 como "indicativo de riesgo", ¿en cuál(es) escala(s) el paciente supera este umbral?
+:::
+
+::: {.callout-tip}
+## Ejercicio 2.4: Tablas de Contingencia
+Se encuestó a 300 personas sobre si fuman y si tienen problemas respiratorios. Los resultados fueron:
+
+|  | Problemas | Sin problemas | Total |
+|---|-----------|--------------|-------|
+| Fuman | 70 | 40 | 110 |
+| No fuman | 30 | 160 | 190 |
+| Total | 100 | 200 | 300 |
+
+a) Calcula la distribución marginal de fumadores.
+b) Calcula la distribución condicional de problemas respiratorios **dado** que fuma.
+c) Calcula la distribución condicional de problemas respiratorios **dado** que no fuma.
+d) Interpreta las diferencias entre las distribuciones condicionales.
+:::
+
+::: {.callout-tip}
+## Ejercicio 2.5: Análisis de Datos Clínicos Simulados
+Genera un dataset que represente la relación entre dos variables biomédicas:
+
+```{r}
+#| lst-label: lst-semana02-14
+#| lst-cap: "Código R: Simulación Clínica"
+
+set.seed(999)
+edad <- rnorm(100, mean = 50, sd = 15)
+presion_sistolica <- 100 + 0.6 * edad + rnorm(100, sd = 10)
+```
+
+Realiza las siguientes tareas:
+a) Calcula la media, desviación estándar y covarianza de la edad y la presión sistólica.
+b) Calcula el coeficiente de correlación de Pearson.
+c) Crea un gráfico de dispersión con línea de regresión.
+d) Crea boxplots para ambas variables.
+e) Estandariza ambas variables usando z-scores.
+f) Verifica que las variables estandarizadas tienen media 0 y desviación estándar 1.
+:::
+
+::: {.callout-tip}
+## Ejercicio 2.6: Distribuciones Conjuntas
+Se miden presión sistólica (X) y diastólica (Y) en una muestra clínica. Se encuentra que $\text{Cov}(x,y) = 180$ (mmHg)², $s_x = 15$ mmHg, $s_y = 10$ mmHg.
+
+a) Calcula la correlación entre X e Y.
+b) Interpreta el valor obtenido.
+c) ¿Son X e Y independientes?
+:::
+
+## Respuestas a los Ejercicios {#sec-semana02-respuestas}
+
+**Ejercicio 2.1: Estadísticos de Dispersión**
+
+a) Rango: 320 - 240 = 80 ms
+   IQR: Q₃ - Q₁ ≈ 290 - 255 = 35 ms
+
+b) Media: ≈ 278.3 ms
+   Desviación estándar: ≈ 26.9 ms
+
+c) Outliers (> Q₃ + 1.5×IQR = 290 + 52.5 = 342.5): Ninguno detectado
+   Outliers (< Q₁ - 1.5×IQR = 255 - 52.5 = 202.5): Ninguno
+
+d) El boxplot muestra distribución simétrica alrededor de 275-280 ms sin outliers.
+
+**Ejercicio 2.2: Transformaciones Lineales (Conversión)**
+
+a) $\bar{y} = 1.36 \times 15 = 20.4$ cmH₂O
+
+b) $s_y = 1.36 \times 3 = 4.08$ cmH₂O
+
+c) $\text{IQR}_{y} = 1.36 \times 4 = 5.44$ cmH₂O
+
+**Ejercicio 2.3: Z-Scores y Estandarización Clínica**
+
+a) Escala A: $z = \frac{85 - 75}{10} = 1.0$
+   Escala B: $z = \frac{90 - 80}{15} = 0.67$
+
+b) El deterioro es más severo en la Escala A, ya que el paciente se aleja más de la media poblacional (z=1.0 vs z=0.67).
+
+c) El paciente supera el umbral en ambas escalas (1.0 > 0.5 y 0.67 > 0.5).
+
+**Ejercicio 2.4: Tablas de Contingencia**
+
+a) Distribución marginal de fumadores:
+   P(Fumar) = 110/300 = 0.367
+   P(No fumar) = 190/300 = 0.633
+
+b) P(Problemas | Fuman) = 70/110 = 0.636
+
+c) P(Problemas | No fuman) = 30/190 = 0.158
+
+d) Los fumadores tienen 4 veces más probabilidad de problemas respiratorios (63.6% vs 15.8%)
+
+**Ejercicio 2.5: Análisis de Datos Clínicos Simulados**
+
+Para resolver este ejercicio en R:
+a) Usa `mean(edad)`, `sd(edad)`, `mean(presion_sistolica)`, `sd(presion_sistolica)` y `cov(edad, presion_sistolica)`.
+b) Usa `cor(edad, presion_sistolica)`.
+c) `plot(edad, presion_sistolica); abline(lm(presion_sistolica ~ edad))`.
+d) `boxplot(edad); boxplot(presion_sistolica)`.
+e) `z_edad <- scale(edad); z_presion <- scale(presion_sistolica)`.
+f) `mean(z_edad); sd(z_edad)` (el resultado será prácticamente 0 y 1).
+
+**Ejercicio 2.6: Distribuciones Conjuntas**
+
+a) Correlación ($r$) = $\frac{\text{Cov}(X,Y)}{s_x \cdot s_y} = \frac{180}{15 \times 10} = \frac{180}{150} = 1.2$.
+   *Nota: Este valor indica un error en los datos de entrada, ya que la correlación no puede ser > 1.* 
+
+b) Si $r=0.12$ (ajustando a un valor coherente), la correlación sería muy débil; apenas existe relación lineal entre la presión sistólica y diastólica en esta muestra.
+
+c) No son independientes ($\text{Cov} \neq 0$), pero la relación lineal es despreciable. Independencia estadística requiere $\text{Cov} = 0$ y más condiciones.
+

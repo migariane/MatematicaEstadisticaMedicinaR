@@ -1,0 +1,258 @@
+/* styles.css — Matemáticas para la Estadística, UGR */
+
+/* Enhanced color scheme with blue tones */
+:root {
+  --ugr-blue-dark: #001d4d;
+  --ugr-blue: #003087;
+  --ugr-blue-medium: #0052a3;
+  --ugr-blue-light: #4d94ff;
+  --ugr-blue-pale: #e8f0f8;
+  --ugr-accent: #0052a3;
+  --ugr-accent-light: #e8f0f8;
+}
+
+/* Portada/Cover styling with blue gradient */
+.quarto-title-block {
+  background: linear-gradient(135deg, var(--ugr-blue-dark) 0%, var(--ugr-blue) 50%, var(--ugr-blue-medium) 100%);
+  color: white;
+  padding: 3rem 2rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  margin-top: -1rem;
+  border-bottom: 4px solid var(--ugr-blue-light);
+}
+
+.quarto-title-block .title {
+  color: white;
+  font-size: 2.8em;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.quarto-title-block .subtitle {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1.3em;
+  margin-top: 1rem;
+}
+
+.quarto-title-block .author {
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 1.5rem;
+}
+
+.quarto-title-block .author-block {
+  margin-bottom: 0.5rem;
+}
+
+.quarto-title-block .date {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95em;
+  margin-top: 1rem;
+}
+
+.quarto-title-block .affiliation {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95em;
+  margin-top: 0.3rem;
+}
+
+/* Chapter and section title styling */
+h1.title {
+  color: white;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+h1 {
+  color: var(--ugr-blue);
+  margin-top: 1.5rem;
+}
+
+h2 {
+  color: var(--ugr-blue);
+  border-left: 4px solid var(--ugr-blue-light);
+  padding-left: 0.5em;
+}
+
+/* Callout block customization with blue theme */
+.callout-note {
+  border-left-color: var(--ugr-blue-medium) !important;
+  border-left-width: 5px !important;
+  background-color: rgba(77, 148, 255, 0.06) !important;
+}
+
+.callout-note .callout-title {
+  color: var(--ugr-blue) !important;
+  font-weight: 600;
+}
+
+.callout-tip {
+  border-left-color: #17a2b8 !important;
+  border-left-width: 5px !important;
+  background-color: rgba(23, 162, 184, 0.06) !important;
+}
+
+.callout-tip .callout-title {
+  color: #0d5d71 !important;
+  font-weight: 600;
+}
+
+.callout-warning {
+  border-left-color: var(--ugr-blue-light) !important;
+  border-left-width: 5px !important;
+  background-color: rgba(77, 148, 255, 0.08) !important;
+}
+
+.callout-warning .callout-title {
+  color: var(--ugr-blue-dark) !important;
+  font-weight: 600;
+}
+
+/* Code chunks with blue accent */
+div.sourceCode {
+  padding: 1rem;
+  background-color: #f8fbff;
+  border: 1px solid rgba(0, 48, 135, 0.15);
+  border-left: 5px solid var(--ugr-blue);
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 1em 0;
+  max-width: 100%;
+}
+
+pre.sourceCode {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  font-size: 0.9em;
+}
+
+code {
+  background-color: var(--ugr-blue-pale);
+  color: #d63384;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+/* Math display */
+mjx-container {
+  overflow-x: auto;
+}
+
+/* Bibliography styling */
+#refs {
+  font-size: 0.95em;
+  line-height: 1.8;
+}
+
+/* Navigation styling */
+.sidebar-menu {
+  border-right: 3px solid var(--ugr-blue-pale);
+}
+
+.sidebar-menu a:hover {
+  color: var(--ugr-blue-medium);
+  font-weight: 500;
+}
+
+/* Top navigation */
+.navbar {
+  background-color: white;
+  border-bottom: 2px solid var(--ugr-blue-light);
+}
+
+.navbar-brand {
+  color: var(--ugr-blue) !important;
+  font-weight: 700;
+}
+
+/* Table styling with blue headers */
+table {
+  border-collapse: collapse;
+  margin: 1em 0;
+  border: 1px solid rgba(0, 52, 135, 0.2);
+}
+
+th {
+  background: linear-gradient(135deg, rgba(0, 52, 135, 0.15) 0%, rgba(77, 148, 255, 0.1) 100%);
+  border-bottom: 2px solid var(--ugr-blue-medium);
+  padding: 0.7em 0.5em;
+  text-align: left;
+  color: var(--ugr-blue-dark);
+  font-weight: 600;
+}
+
+td {
+  padding: 0.6em 0.5em;
+  border-bottom: 1px solid rgba(0, 52, 135, 0.1);
+}
+
+tr:hover td {
+  background-color: rgba(77, 148, 255, 0.03);
+}
+
+/* Improve figure captions */
+figcaption {
+  color: #555;
+  font-size: 0.95em;
+  margin-top: 0.5em;
+  font-style: italic;
+}
+
+/* Links with blue theme */
+a {
+  color: var(--ugr-blue-medium);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--ugr-blue-dark);
+  text-decoration: underline;
+}
+
+/* Specific override for author email/links to be yellow */
+.author a {
+  color: #FFD700 !important;
+}
+
+.author a:hover {
+  color: #FFFACD !important;
+}
+
+/* Highlighted/selected elements */
+::selection {
+  background-color: var(--ugr-blue-light);
+  color: white;
+}
+
+/* Blockquotes with blue accent */
+blockquote {
+  border-left: 4px solid var(--ugr-blue-light);
+  padding-left: 1em;
+  margin-left: 0;
+  color: #555;
+  font-style: italic;
+}
+
+/* Emphasize important content */
+strong {
+  color: var(--ugr-blue-dark);
+  font-weight: 600;
+}
+
+.highlight-yellow {
+  color: #FFD700;
+}
+
+/* Introducción de capítulo — primer párrafo de la primera sección o párrafo inicial */
+section.level1 > p:first-of-type,
+section.level1 > section.level2:first-of-type > p:first-of-type {
+  color: var(--ugr-blue-medium);
+  font-size: 1.08em;
+  font-weight: 500;
+  line-height: 1.6;
+  padding: 0.4em 0;
+}

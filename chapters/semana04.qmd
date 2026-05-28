@@ -1,0 +1,1339 @@
+# Semana 4 — Variables Aleatorias y Distribuciones de Probabilidad {#sec-semana04}
+
+## Introducción
+
+Las variables aleatorias son el concepto fundamental que conecta la teoría de la probabilidad con la estadística práctica. Esta semana exploramos los conceptos de variable aleatoria, sus funciones de distribución, y las distribuciones más importantes que usarás en bioestadística y análisis de datos.
+
+## Variables Aleatorias {#sec-semana04-va}
+
+::: {.callout-note}
+## Definición: Variable Aleatoria
+
+Una **variable aleatoria** $X$ es una función que asigna un número real a cada resultado en el espacio muestral. Formalmente:
+
+$$X: \Omega \to \mathbb{R}, \quad X(\omega) = x$$
+
+donde $\Omega$ es el espacio muestral.
+:::
+
+### Tipos de Variables Aleatorias
+
+**Variable Aleatoria Discreta:** Toma un número finito o infinito numerable de valores.
+
+$$X \in \{x_1, x_2, x_3, \ldots\}$$
+
+**Variable Aleatoria Continua:** Puede tomar cualquier valor en un intervalo o en toda la recta real.
+
+$$X \in [a, b] \text{ o } X \in \mathbb{R}$$
+
+### Función de Probabilidad y Función de Distribución
+
+Para variables **discretas**, la **Función de Masa de Probabilidad (PMF)** es:
+$$P(X = x_i) = f(x_i)$$
+
+con propiedades:
+- $f(x_i) \geq 0$ para todo $i$
+- $\sum_i f(x_i) = 1$
+
+Para variables **continuas**, la **Función de Densidad de Probabilidad (PDF)** es:
+$$f(x) \geq 0 \text{ para todo } x$$
+$$\int_{-\infty}^{+\infty} f(x) \, dx = 1$$
+
+La **Función de Distribución Acumulada (CDF)** es:
+$$F(x) = P(X \leq x)$$
+
+con propiedades:
+- $0 \leq F(x) \leq 1$
+- $F$ es no decreciente
+- $\lim_{x \to -\infty} F(x) = 0$ y $\lim_{x \to +\infty} F(x) = 1$
+
+Para variables continuas:
+$$f(x) = \frac{dF(x)}{dx}$$
+
+## Funciones de Probabilidad en R {#sec-semana04-r-funcs}
+
+R ofrece un conjunto consistente de funciones para trabajar con distribuciones de probabilidad. Para cualquier distribución (`distribucion`), se dispone de cuatro funciones prefijadas:
+
+- **`d` (density / mass):** `ddistribucion(x, ...)` — Calcula la función de densidad (PDF) o masa (PMF).
+- **`p` (probability):** `pdistribucion(q, ...)` — Calcula la CDF: $P(X \le q)$.
+- **`q` (quantile):** `qdistribucion(p, ...)` — Calcula la función cuantil (inversa de CDF).
+- **`r` (random):** `rdistribucion(n, ...)` — Genera números aleatorios.
+
+## Fundamentos de Cálculo de Probabilidades: Discreta vs. Continua {#sec-semana04-fundamentos}
+
+Antes de explorar distribuciones específicas, es vital comprender las diferencias fundamentales en cómo calculamos probabilidades dependiendo de la naturaleza de la variable.
+
+### La Singularidad del Punto en Variables Continuas
+
+En distribuciones continuas (como la Normal), la probabilidad de que una variable tome un valor puntual exacto es siempre cero:
+$$P(X = x) = 0$$
+
+**¿Por qué?**
+Matemáticamente, la probabilidad de un punto se define como el área bajo la curva en un intervalo de ancho cero:
+$$P(X = x) = \int_{x}^{x} f(t) \, dt = 0$$
+
+En estadística práctica, esto significa que solo tiene sentido hablar de probabilidades en **intervalos**: $P(a \le X \le b) = \int_{a}^{b} f(t) \, dt$. Por lo tanto, para una continua, $P(X \le x) = P(X < x)$.
+
+### El Cuidado de las Desigualdades en Variables Discretas
+
+En variables discretas (como la Binomial), $P(X=k) > 0$. Esto implica que debemos ser extremadamente precisos al usar operadores de comparación ($<, \le, >, \ge$), ya que el incluir o excluir un punto cambia el resultado significativamente.
+
+**La Regla de Oro:**
+- $P(X \le k) = P(X < k) + P(X=k)$
+- $P(X > k) = 1 - P(X \le k)$
+- $P(X \ge k) = 1 - P(X \le k-1)$
+
+#### Ejemplo comparativo en R
+
+```{r}
+#| lst-label: lst-semana04-1
+#| lst-cap: "Cálculo comparativo discreto vs continuo"
+#| code-summary: "Cálculo comparativo discreto vs continuo"
+#| results: "markup"
+
+# Discreta: Binomial(n=10, p=0.5)
+# P(X = 5) es distinta de cero
+print(paste("P(X = 5) =", dbinom(5, 10, 0.5)))
+print(paste("P(X <= 5) =", pbinom(5, 10, 0.5)))
+print(paste("P(X < 5) =", pbinom(4, 10, 0.5)))
+
+# Continua: Normal(mu=0, sd=1)
+# P(X = 0) es cero
+print(paste("P(X = 0) =", dnorm(0))) 
+# P(X <= 0) es 0.5
+print(paste("P(X <= 0) =", pnorm(0)))
+# P(X < 0) también es 0.5
+print(paste("P(X < 0) =", pnorm(0)))
+```
+::: {.callout-note}
+## Resumen de operadores
+| Operador | Continuo | Discreto |
+| :--- | :--- | :--- |
+| **$P(X = k)$** | 0 | $f(k)$ |
+| **$P(X \le k)$** | `pdist(k)` | `pdist(k)` |
+| **$P(X < k)$** | `pdist(k)` | `pdist(k-1)` |
+| **$P(X > k)$** | `1 - pdist(k)` | `1 - pdist(k)` |
+| **$P(X \ge k)$** | `1 - pdist(k)` | `1 - pdist(k-1)` |
+:::
+
+## Varianza y Desviación Estándar {#sec-semana04-varianza}
+
+::: {.callout-note}
+## Definición: Varianza
+
+La **varianza** mide la dispersión de una variable aleatoria respecto a su esperanza:
+
+$$\text{Var}(X) = \sigma^2_X = E[(X - E(X))^2]$$
+
+Fórmula computacional equivalente:
+$$\text{Var}(X) = E(X^2) - [E(X)]^2$$
+
+**Caso discreto:**
+$$\text{Var}(X) = \sum_{i=1}^{\infty} [x_i - E(X)]^2 \cdot f(x_i) = \sum_{i=1}^{\infty} x_i^2 \cdot f(x_i) - [E(X)]^2$$
+
+**Caso continuo:**
+$$\text{Var}(X) = \int_{-\infty}^{+\infty} [x - E(X)]^2 \cdot f(x) \, dx = \int_{-\infty}^{+\infty} x^2 \cdot f(x) \, dx - [E(X)]^2$$
+:::
+
+### Desviación Estándar poblacional
+
+La **desviación estándar** es la raíz cuadrada positiva de la varianza:
+$$\sigma_X = \sqrt{\text{Var}(X)}$$
+
+Tiene las mismas unidades que la variable original.
+
+### Propiedades de la Varianza
+
+::: {.callout-warning}
+## Propiedades Importantes
+
+1. **Transformación lineal:** Si $Y = a + bX$:
+   $$\text{Var}(Y) = b^2 \cdot \text{Var}(X)$$
+   (nota: la constante aditiva no afecta la varianza)
+
+2. **Suma de variables independientes:** Si $X$ e $Y$ son independientes:
+   $$\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y)$$
+   $$\text{Var}(X - Y) = \text{Var}(X) + \text{Var}(Y)$$
+:::
+
+## Estandarización (Transformación Z) {#sec-semana04-estandarizacion}
+
+::: {.callout-note}
+## Definición: Transformación Z
+
+La **estandarización** o **normalización** transforma una variable aleatoria para que tenga media 0 y varianza 1:
+
+$$Z = \frac{X - E(X)}{\sqrt{\text{Var}(X)}} = \frac{X - \mu_X}{\sigma_X}$$
+
+Propiedades de $Z$:  
+- $E(Z) = 0$  
+- $\text{Var}(Z) = 1$  
+- $Z$ es adimensional (sin unidades)  
+:::
+
+## Variables Aleatorias Bivariantes {#sec-semana04-bivariante}
+
+### Distribuciones Conjunta, Marginal y Condicional (Caso Discreto)
+
+::: {.callout-note}
+## Distribuciones Discretas Bivariantes
+
+La **función de probabilidad conjunta** es:
+$$P(X = x_i, Y = y_j) = f(x_i, y_j)$$
+
+con propiedades:
+- $f(x_i, y_j) \geq 0$
+- $\sum_i \sum_j f(x_i, y_j) = 1$
+
+Las **distribuciones marginales** se obtienen sumando:
+$$f(x_i) = P(X = x_i) = \sum_j f(x_i, y_j)$$
+$$f(y_j) = P(Y = y_j) = \sum_i f(x_i, y_j)$$
+
+La **distribución condicional** es:
+$$P(X = x_i | Y = y_j) = \frac{f(x_i, y_j)}{f(y_j)}$$
+:::
+
+::: {.callout-warning}
+## Independencia
+
+Dos variables aleatorias $X$ e $Y$ son **independientes** si:
+$$f(x_i, y_j) = f(x_i) \cdot f(y_j) \quad \text{para todo } x_i, y_j$$
+
+**Importante:** La independencia implica que la distribución condicional iguala la marginal:
+$$P(X = x_i | Y = y_j) = P(X = x_i)$$
+:::
+
+### Distribuciones Conjunta, Marginal y Condicional (Caso Continuo)
+
+::: {.callout-note}
+## Distribuciones Continuas Bivariantes
+
+La **función de densidad conjunta** satisface:
+$$f(x, y) \geq 0$$
+$$\int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} f(x, y) \, dx \, dy = 1$$
+
+Las **funciones de densidad marginales** son:
+$$f(x) = \int_{-\infty}^{+\infty} f(x, y) \, dy$$
+$$f(y) = \int_{-\infty}^{+\infty} f(x, y) \, dx$$
+
+La **densidad condicional** es:
+$$f(x | y) = \frac{f(x, y)}{f(y)}$$
+:::
+
+### Covarianza y Correlación
+
+::: {.callout-note}
+## Definición: Covarianza
+
+La **covarianza** mide la variabilidad conjunta de dos variables aleatorias:
+$$\text{Cov}(X, Y) = E[(X - E(X))(Y - E(Y))]$$
+
+Fórmula computacional:
+$$\text{Cov}(X, Y) = E(XY) - E(X) \cdot E(Y)$$
+
+Propiedades:
+- $\text{Cov}(X, X) = \text{Var}(X)$
+- Si $X$ e $Y$ son independientes: $\text{Cov}(X, Y) = 0$
+- **Nota importante:** $\text{Cov}(X, Y) = 0$ NO implica independencia
+:::
+
+::: {.callout-note}
+## Definición: Correlacion
+
+El **coeficiente de correlación** (o coeficiente de correlación de Pearson) en una población es:
+$$\rho(X, Y) = \text{Corr}(X, Y) = \frac{\text{Cov}(X, Y)}{\sigma_X \cdot \sigma_Y}$$
+
+Propiedades:
+- $-1 \leq \rho(X, Y) \leq 1$
+- $\rho = 1$: correlación positiva perfecta
+- $\rho = 0$: no hay correlación lineal
+- $\rho = -1$: correlación negativa perfecta
+:::
+
+## Distribuciones Discretas Importantes {#sec-semana04-discretas}
+
+### Distribución Uniforme Discreta $U(n)$
+
+::: {.callout-note}
+## Definición: Distribución Uniforme Discreta
+
+Una variable aleatoria $X \sim U(n)$ toma $n$ valores con igual probabilidad:
+
+$$P(X = x_i) = \frac{1}{n} \quad \text{para } i = 1, 2, \ldots, n$$
+
+**Parámetros:** $n$ (número de valores posibles)
+
+**Esperanza y Varianza:**
+$$E(X) = \frac{1}{n} \sum_{i=1}^n x_i$$
+$$\text{Var}(X) = \frac{1}{n} \sum_{i=1}^n (x_i - E(X))^2$$
+
+**En R:** No existe función directa; usar `sample()` o implementar manualmente.
+:::
+
+::: {.callout-tip}
+## Ejemplo 4.1: Lanzamiento de dado
+
+Un dado justo tiene $n = 6$ caras:
+$$P(X = k) = \frac{1}{6} \quad \text{para } k = 1, 2, 3, 4, 5, 6$$
+
+$$E(X) = \frac{1}{6}(1 + 2 + 3 + 4 + 5 + 6) = 3.5$$
+$$\text{Var}(X) = \frac{1}{6}\sum_{k=1}^6 (k - 3.5)^2 \approx 2.92$$
+
+```{r}
+#| lst-label: lst-semana04-2
+#| lst-cap: "Código R"
+
+# En R: calcular probabilidades para distribución uniforme discreta
+x <- 1:6
+probs <- rep(1/6, 6);probs
+mean_x <- sum(x * probs);mean_x
+var_x <- sum((x - mean_x)^2 * probs); var_x
+```
+:::
+
+### Distribución de Bernoulli $B(p)$
+
+::: {.callout-note}
+## Definición: Distribución de Bernoulli
+
+Una variable aleatoria $X \sim B(p)$ modela un experimento con dos resultados: éxito ($X = 1$) o fracaso ($X = 0$):
+
+$$P(X = x) = \begin{cases}
+p & \text{si } x = 1 \\
+1 - p & \text{si } x = 0 \\
+0 & \text{en otro caso}
+\end{cases}$$
+
+O compactamente: $P(X = x) = p^x (1-p)^{1-x}$ para $x \in \{0, 1\}$
+
+**Parámetro:** $p \in [0, 1]$ (probabilidad de éxito)
+
+**Esperanza y Varianza:**
+$$E(X) = p$$
+$$\text{Var}(X) = p(1-p)$$
+
+**En R:** `dbinom(x, size=1, prob=p)` o `rbinom(n, size=1, prob=p)`
+:::
+
+### Distribución Binomial $B(n, p)$
+
+::: {.callout-note}
+## Definición: Distribución Binomial
+
+Una variable aleatoria $X \sim B(n, p)$ cuenta el número de éxitos en $n$ ensayos Bernoulli independientes:
+
+$$P(X = k) = \binom{n}{k} p^k (1-p)^{n-k} \quad \text{para } k = 0, 1, \ldots, n$$
+
+donde $\binom{n}{k} = \frac{n!}{k!(n-k)!}$
+
+**Parámetros:** $n$ (número de ensayos), $p$ (probabilidad de éxito)
+
+**Esperanza y Varianza:**
+$$E(X) = n \cdot p$$
+$$\text{Var}(X) = n \cdot p \cdot (1-p)$$
+
+**En R:**
+- `dbinom(k, size=n, prob=p)` — función de probabilidad
+- `pbinom(k, size=n, prob=p)` — función de distribución
+- `rbinom(N, size=n, prob=p)` — generar muestras aleatorias
+:::
+
+::: {.callout-tip}
+## Ejemplo 4.2: Distribución Binomial
+
+Un medicamento cura el 70% de los pacientes. Si se trata a 10 pacientes, ¿cuál es la probabilidad de que exactamente 7 sanen?
+
+$$P(X = 7) = \binom{10}{7} (0.7)^7 (0.3)^3 = 120 \cdot 0.0823 \cdot 0.027 \approx 0.267$$
+
+En R:
+```{r}
+#| lst-label: lst-semana04-3
+#| lst-cap: "Código R"
+
+# Probabilidad de exactamente 7 curaciones
+dbinom(7, size=10, prob=0.7)
+
+# Probabilidad de 7 o menos curaciones
+pbinom(7, size=10, prob=0.7)
+
+# Visualización
+x <- 0:10
+probs <- dbinom(x, size=10, prob=0.7)
+barplot(probs, names.arg=x, main="B(10, 0.7)",
+        xlab="Número de curaciones", ylab="Probabilidad")
+```
+:::
+
+### Distribución de Poisson $\text{Po}(\lambda)$
+
+::: {.callout-note}
+## Definición: Distribución de Poisson
+
+Una variable aleatoria $X \sim \text{Po}(\lambda)$ modela el número de eventos raros que ocurren en un intervalo de tiempo o espacio fijo:
+
+$$P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!} \quad \text{para } k = 0, 1, 2, \ldots$$
+
+**Parámetro:** $\lambda > 0$ (tasa de eventos)
+
+**Esperanza y Varianza:**
+$$E(X) = \lambda$$
+$$\text{Var}(X) = \lambda$$
+
+(Nota: en Poisson, media y varianza son iguales)
+
+**Propiedad Reproductiva:** Si $X \sim \text{Po}(\lambda_1)$ e $Y \sim \text{Po}(\lambda_2)$ son independientes:
+$$X + Y \sim \text{Po}(\lambda_1 + \lambda_2)$$
+
+**En R:**
+- `dpois(k, lambda=λ)` — función de probabilidad
+- `ppois(k, lambda=λ)` — función de distribución
+- `rpois(N, lambda=λ)` — generar muestras aleatorias
+:::
+
+::: {.callout-tip}
+## Ejemplo 4.3: Distribución de Poisson
+
+El número de reacciones adversas en una clínica sigue una distribución Poisson con $\lambda = 3$ por día. ¿Cuál es la probabilidad de que ocurran exactamente 5 reacciones mañana?
+
+$$P(X = 5) = \frac{3^5 e^{-3}}{5!} = \frac{243 \cdot 0.0498}{120} \approx 0.1008$$
+
+En R:
+```{r}
+#| lst-label: lst-semana04-4
+#| lst-cap: "Código R"
+
+# Probabilidad de exactamente 5 eventos
+dpois(5, lambda=3)
+
+# Probabilidad de 5 o menos eventos
+ppois(5, lambda=3)
+
+# Visualización
+x <- 0:10
+probs <- dpois(x, lambda=3)
+barplot(probs, names.arg=x, main="Poisson(3)",
+        xlab="Número de eventos", ylab="Probabilidad")
+```
+:::
+
+## Distribuciones Continuas Importantes {#sec-semana04-continuas}
+
+### Distribución Uniforme Continua $U(a, b)$
+
+::: {.callout-note}
+## Definición: Distribución Uniforme Continua
+
+Una variable aleatoria $X \sim U(a, b)$ tiene densidad constante en el intervalo $[a, b]$:
+
+$$f(x) = \begin{cases}
+\frac{1}{b-a} & \text{si } a \leq x \leq b \\
+0 & \text{en otro caso}
+\end{cases}$$
+
+**Función de Distribución:**
+$$F(x) = \begin{cases}
+0 & \text{si } x < a \\
+\frac{x-a}{b-a} & \text{si } a \leq x \leq b \\
+1 & \text{si } x > b
+\end{cases}$$
+
+**Parámetros:** $a, b$ (límites del intervalo)
+
+**Esperanza y Varianza:**
+$$E(X) = \frac{a+b}{2}$$
+$$\text{Var}(X) = \frac{(b-a)^2}{12}$$
+
+**En R:** `dunif(x, min=a, max=b)`, `punif(x, min=a, max=b)`, `runif(n, min=a, max=b)`
+:::
+
+::: {.callout-tip}
+## Ejemplo: Tiempo de espera
+
+Un paciente debe esperar entre 0 y 30 minutos para ser atendido ($X \sim U(0, 30)$).
+
+$$E(X) = \frac{0+30}{2} = 15 \text{ minutos}$$
+$$\text{Var}(X) = \frac{(30-0)^2}{12} = 75$$
+
+Probabilidad de esperar menos de 10 minutos:
+$$P(X \leq 10) = \frac{10-0}{30-0} = \frac{1}{3} \approx 0.333$$
+
+En R:
+```{r}
+#| lst-label: lst-semana04-5
+#| lst-cap: "Código R"
+
+# Densidad
+curve(dunif(x, min=0, max=30), from=-5, to=35,
+      xlab="Minutos", ylab="Densidad")
+
+# P(X ≤ 10)
+punif(10, min=0, max=30)
+```
+:::
+
+### Distribución Exponencial $\text{Exp}(\lambda)$
+
+::: {.callout-note}
+## Definición: Distribución Exponencial
+
+Una variable aleatoria $X \sim \text{Exp}(\lambda)$ modela el tiempo hasta el siguiente evento en un proceso de Poisson:
+
+$$f(x) = \begin{cases}
+\lambda e^{-\lambda x} & \text{si } x \geq 0 \\
+0 & \text{si } x < 0
+\end{cases}$$
+
+**Función de Distribución:**
+$$F(x) = \begin{cases}
+1 - e^{-\lambda x} & \text{si } x \geq 0 \\
+0 & \text{si } x < 0
+\end{cases}$$
+
+**Parámetro:** $\lambda > 0$ (tasa de evento)
+
+**Esperanza y Varianza:**
+$$E(X) = \frac{1}{\lambda}$$
+$$\text{Var}(X) = \frac{1}{\lambda^2}$$
+
+**Propiedad de Falta de Memoria:** $P(X > s+t | X > s) = P(X > t)$
+
+**En R:** `dexp(x, rate=λ)`, `pexp(x, rate=λ)`, `rexp(n, rate=λ)`
+:::
+
+::: {.callout-tip}
+## Ejemplo: Tiempo de supervivencia
+
+El tiempo de supervivencia de células en cultivo sigue $\text{Exp}(\lambda = 0.1)$ (en horas).
+
+Tiempo medio de supervivencia: $E(X) = 1/0.1 = 10$ horas
+
+Probabilidad de que una célula sobreviva más de 5 horas:
+$$P(X > 5) = e^{-0.1 \cdot 5} = e^{-0.5} \approx 0.606$$
+
+En R:
+```{r}
+#| lst-label: lst-semana04-6
+#| lst-cap: "Código R"
+
+# Densidad
+curve(dexp(x, rate=0.1), from=0, to=40,
+      xlab="Horas", ylab="Densidad")
+
+# P(X > 5)
+1 - pexp(5, rate=0.1)
+# O equivalentemente:
+pexp(5, rate=0.1, lower.tail=FALSE)
+```
+:::
+
+### Distribución Normal $N(\mu, \sigma^2)$
+
+::: {.callout-note}
+## Definición: Distribución Normal
+
+Una variable aleatoria $X \sim N(\mu, \sigma^2)$ tiene la función de densidad:
+
+$$f(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp\left\{-\frac{(x-\mu)^2}{2\sigma^2}\right\} \quad \text{para } -\infty < x < +\infty$$
+
+**Parámetros:** $\mu$ (media), $\sigma^2$ (varianza); $\sigma > 0$
+
+**Propiedades:**
+- Simétrica alrededor de $\mu$
+- Media = Mediana = Moda = $\mu$
+- $E(X) = \mu$
+- $\text{Var}(X) = \sigma^2$
+
+**Función de Distribución:** No tiene forma cerrada; se usa notación $\Phi(z)$ para la CDF estándar.
+
+**En R:** `dnorm(x, mean=μ, sd=σ)`, `pnorm(x, mean=μ, sd=σ)`, `rnorm(n, mean=μ, sd=σ)`
+:::
+
+::: {.callout-warning}
+## Distribución Normal Estándar $N(0, 1)$
+
+La **distribución normal estándar** tiene $\mu = 0$ y $\sigma = 1$:
+
+$$\varphi(z) = \frac{1}{\sqrt{2\pi}} e^{-z^2/2}$$
+
+**Transformación Z (Estandarización):**
+$$Z = \frac{X - \mu}{\sigma}$$
+
+Si $X \sim N(\mu, \sigma^2)$, entonces $Z \sim N(0, 1)$
+
+Esta transformación es fundamental porque:
+- Permite usar tablas únicas de probabilidades
+- Valores de $Z$ son directamente comparables entre variables diferentes
+:::
+
+::: {.callout-tip}
+## Ejemplo: Medidas antropométricas
+
+El peso de adultos sigue $N(\mu = 75, \sigma = 12)$ kg.
+
+¿Cuál es la probabilidad de que una persona pese menos de 90 kg?
+
+$$P(X \leq 90) = P\left(Z \leq \frac{90-75}{12}\right) = P(Z \leq 1.25)$$
+
+En R:
+```{r}
+#| lst-label: lst-semana04-7
+#| lst-cap: "Código R"
+
+# Directamente con parámetros
+pnorm(90, mean=75, sd=12)
+
+# O usando estandarización
+z <- (90 - 75) / 12
+pnorm(z)  # Usa N(0,1) por defecto
+
+# Visualización
+curve(dnorm(x, mean=75, sd=12), from=30, to=120,
+      xlab="Peso (kg)", ylab="Densidad",
+      main="N(75, 12)")
+abline(v=90, col="red", lty=2)
+```
+
+La probabilidad es aproximadamente **0.894** (89.4%).
+:::
+
+::: {.callout-tip}
+## Ejemplo: Interpretación de z-scores
+
+Para pacientes con presión sistólica $N(\mu = 120, \sigma = 15)$ mmHg:
+
+- Paciente A con presión = 120 mmHg: $z = 0$ (media)
+- Paciente B con presión = 135 mmHg: $z = 1$ (1 DE arriba de la media)
+- Paciente C con presión = 105 mmHg: $z = -1$ (1 DE abajo de la media)
+- Paciente D con presión = 150 mmHg: $z = 2$ (2 DE arriba de la media)
+
+Los z-scores permiten comparar directamente aunque las variables originales tengan unidades diferentes.
+:::
+
+### Aproximación Normal a la Binomial y Corrección de Continuidad {#sec-semana04-normal-binom}
+
+Históricamente, cuando el cálculo manual o las tablas estadísticas eran las principales herramientas, la aproximación de distribuciones discretas (como la binomial) mediante distribuciones continuas (como la normal) era una técnica invaluable para estimar probabilidades. Esta aproximación, una aplicación directa del Teorema Central del Límite, permitía simplificar cálculos complejos. Sin embargo, con el advenimiento del software estadístico moderno, que utiliza algoritmos exactos (como la Función Beta Incompleta Regularizada para la binomial) con alta precisión computacional, el uso de estas aproximaciones para el cálculo de probabilidades exactas se ha vuelto menos recomendable. Aunque la aproximación sigue siendo fundamental para la comprensión teórica y para la derivación de métodos como los intervalos de confianza o tests Z para proporciones, para la obtención de valores de probabilidad específicos, se prefiere el cálculo directo para evitar posibles inexactitudes (véase @Saad2020).
+
+La **corrección de continuidad** es un ajuste que mejora la aproximación al compensar el paso de una variable discreta a una continua. Cada barra del histograma binomial en $k$ ocupa el intervalo $[k - 0.5,\, k + 0.5]$.
+
+
+::: {.callout-note}
+## Definición: Aproximación Normal a la Binomial
+
+Si $X \sim B(n, p)$ con $np \geq 5$ y $n(1-p) \geq 5$, entonces:
+
+$$X \overset{\text{aprox.}}{\sim} N\!\left(\mu = np,\; \sigma^2 = np(1-p)\right)$$
+
+La **corrección de continuidad** mejora la aproximación al ajustar $\pm 0.5$ para compensar el paso de una variable discreta a una continua. Cada barra del histograma binomial en $k$ ocupa el intervalo $[k - 0.5,\, k + 0.5]$.
+
+| Probabilidad exacta | Sin corrección | **Con corrección** |
+|---------------------|:-------------:|:------------------:|
+| $P(X \leq k)$ | $\Phi\!\left(\dfrac{k - \mu}{\sigma}\right)$ | $\Phi\!\left(\dfrac{k + 0.5 - \mu}{\sigma}\right)$ |
+| $P(X \geq k)$ | $1 - \Phi\!\left(\dfrac{k - \mu}{\sigma}\right)$ | $1 - \Phi\!\left(\dfrac{k - 0.5 - \mu}{\sigma}\right)$ |
+| $P(X = k)$ | $\approx 0$ | $\Phi\!\left(\dfrac{k + 0.5 - \mu}{\sigma}\right) - \Phi\!\left(\dfrac{k - 0.5 - \mu}{\sigma}\right)$ |
+
+:::
+
+::: {.callout-warning}
+## Condición de Aplicación
+
+La aproximación normal a la binomial es válida cuando:
+$$np \geq 5 \quad \text{y} \quad n(1-p) \geq 5$$
+
+Para $p$ cercano a 0 o 1 con $n$ pequeño, usar la binomial exacta (`pbinom()`).
+:::
+
+::: {.callout-tip}
+## Ejemplo: Aproximación Normal a $B(20, 0.4)$ con Corrección de Continuidad
+
+Un fármaco es efectivo en el 40% de los pacientes. En un ensayo con $n = 20$ pacientes, ¿cuál es la probabilidad de que a lo sumo 10 respondan?
+
+**Parámetros:** $\mu = 20 \times 0.4 = 8$, $\sigma = \sqrt{20 \times 0.4 \times 0.6} \approx 2.19$
+
+|  | Cálculo | Resultado |
+|--|---------|-----------|
+| **Exacto (binomial)** | `pbinom(10, 20, 0.4)` | **0.8724** |
+| Normal sin corrección | $\Phi\!\left(\frac{10 - 8}{2.19}\right) = \Phi(0.913)$ | 0.8186 |
+| **Normal con corrección** | $\Phi\!\left(\frac{10.5 - 8}{2.19}\right) = \Phi(1.142)$ | **0.8729** |
+
+La corrección reduce el error de 5.4 pp a 0.05 pp.
+
+```{r}
+#| lst-label: lst-semana04-8
+#| lst-cap: "Código R"
+
+n <- 20; p <- 0.4
+mu <- n*p; sigma <- sqrt(n*p*(1-p))
+k  <- 10
+
+cat("Exacto:               ", pbinom(k, n, p), "\n")
+cat("Normal sin corrección:", pnorm(k, mu, sigma), "\n")
+cat("Normal con corrección:", pnorm(k + 0.5, mu, sigma), "\n")
+```
+
+
+La figura siguiente muestra las barras de la binomial con la curva normal superpuesta. Las líneas punteadas delimitan la barra $k = 10$ en $[9.5,\, 10.5]$, que es el intervalo integrado con la corrección de continuidad.
+
+```{r}
+#| lst-label: lst-fig-normal-binom
+#| lst-cap: "Código R"
+#| fig-cap: "Aproximación normal a B(20, 0.4). Las barras son probabilidades binomiales exactas; la curva azul es la densidad N(8, 2.19²). La barra naranja (k = 10) y las líneas punteadas ilustran la corrección de continuidad: el área bajo la curva normal en [9.5, 10.5] corresponde a P(X = 10)."
+#| fig-width: 7
+#| fig-height: 4.5
+
+n <- 20; p <- 0.4
+mu <- n * p; sigma <- sqrt(n * p * (1 - p))
+x_vals  <- 0:n
+probs_b <- dbinom(x_vals, n, p)
+
+# Histograma tipo barras binomiales
+bp <- barplot(probs_b,
+              names.arg = x_vals,
+              col    = ifelse(x_vals == 10, "#f39200", "#cce0f5"),
+              border = "white",
+              xlab   = "k (número de respuestas)",
+              ylab   = "Probabilidad / Densidad",
+              main   = expression("Aproximación normal a " * B(20, 0.4)),
+              ylim   = c(0, max(probs_b) * 1.25),
+              space  = 0)
+
+# Curva normal superpuesta (coordenadas del barplot: posición = k + 0.5)
+x_c <- seq(-0.5, n + 0.5, length.out = 400)
+lines(x_c + 0.5, dnorm(x_c, mu, sigma), col = "#003087", lwd = 2.5)
+
+# Límites corrección de continuidad para k = 10
+abline(v = c(10, 11), col = "#f39200", lty = 2, lwd = 1.8)
+
+legend("topright",
+       legend = c(sprintf("B(%d, %.1f)  exacto", n, p),
+                  sprintf("N(%.0f, %.2f²) aprox.", mu, sigma),
+                  "Límites ±0.5  (k = 10)"),
+       fill   = c("#cce0f5", NA, NA),
+       lty    = c(NA, 1, 2),
+       lwd    = c(NA, 2.5, 1.8),
+       col    = c(NA, "#003087", "#f39200"),
+       bty    = "n", cex = 0.85)
+```
+:::
+
+
+## Distribuciones para Muestreo {#sec-semana04-muestreo}
+
+### Distribución Chi-Cuadrado $\chi^2_k$
+
+::: {.callout-note}
+## Definición: Distribución Chi-Cuadrado
+
+Si $Z_1, Z_2, \ldots, Z_k$ son variables normales estándar independientes, entonces:
+
+$$X = Z_1^2 + Z_2^2 + \cdots + Z_k^2 \sim \chi^2_k$$
+
+**Parámetro:** $k$ (grados de libertad)
+
+**Propiedades:**
+- Solo toma valores positivos
+- $E(X) = k$
+- $\text{Var}(X) = 2k$
+- A medida que $k$ aumenta, se aproxima a una distribución normal (TCL)
+
+**En R:** `dchisq(x, df=k)`, `pchisq(x, df=k)`, `rchisq(n, df=k)`
+
+**Usos:** Pruebas de bondad de ajuste, tablas de contingencia, intervalos de confianza para varianza.
+
+La morfologia de la distribucion chi-cuadrado depende del numero de grados de libertad: para $k=1$ es altamente asimetrica, pero a medida que $k$ aumenta se vuelve mas simetrica y se aproxima a una normal.
+
+Vease la figura siguiente que muestra la densidad de $\chi^2_k$ para $k = 1, 3, 5, 10$. Para $k=1$ la distribucion es muy asimetrica, con una cola larga hacia la derecha. Para $k=3$ y $k=5$ la distribucion se vuelve mas simetrica, aunque sigue teniendo una cola hacia la derecha. Para $k=10$ la distribucion ya se aproxima bastante a una normal, aunque sigue siendo ligeramente asimetrica.
+
+```{r}
+#| lst-label: lst-fig-chi-cuadrado
+#| lst-cap: "Código R"
+#| fig-cap: "Densidad de la distribución chi-cuadrado para diferentes grados de libertad. A medida que k aumenta, la distribución se vuelve más simétrica y se aproxima a una normal."
+#| fig-width: 7
+#| fig-height: 4.5
+#| fig-subcap: c("k = 1", "k = 3", "k = 5", "k = 10")
+#| fig-layout: c(2, 2)
+#| fig-show: "hold"
+
+library(ggplot2)
+k_values <- c(1, 3, 5, 10)
+x <- seq(0, 30, length.out = 400)
+# Configuración de paneles
+par(mfrow = c(2, 2),
+    mar = c(4, 4, 2, 1))
+for (k in k_values) {
+  y <- dchisq(x, df = k)
+  plot(
+    x, y,
+    type = "l",
+    lwd = 2,
+    col = "#003087",
+    main = paste("k =", k),
+    xlab = "x",
+    ylab = "Densidad"
+  )
+  polygon(
+    c(x, rev(x)),
+    c(y, rep(0, length(y))),
+    col = adjustcolor("#4F81BD", alpha.f = 0.35),
+    border = NA
+  )
+  lines(x, y, lwd = 2, col = "#003087")
+}
+```
+:::
+
+### Distribución t de Student $t_k$
+
+::: {.callout-note}
+## Definición: Distribución t de Student
+
+Si $Z \sim N(0,1)$ e $Y \sim \chi^2_k$ son independientes, entonces:
+
+$$T = \frac{Z}{\sqrt{Y/k}} \sim t_k$$
+
+**Parámetro:** $k$ (grados de libertad)
+
+**Propiedades:**
+- Simétrica alrededor de 0
+- $E(T) = 0$ (para $k > 1$)
+- $\text{Var}(T) = \frac{k}{k-2}$ (para $k > 2$)
+- Colas más pesadas que la normal
+- Cuando $k \to \infty$, converge a $N(0,1)$
+
+**En R:** `dt(x, df=k)`, `pt(x, df=k)`, `rt(n, df=k)`
+
+**Usos:** Intervalos de confianza para la media (varianza desconocida), pruebas t de Student.
+
+```{r}
+#| lst-label: lst-fig-t-student
+#| lst-cap: "Código R"
+#| fig-cap: "Densidad de la distribución t de Student para diferentes grados de libertad. A medida que k aumenta, la distribución se vuelve más similar a una normal estándar, aunque siempre tiene colas más pesadas."
+#| fig-width: 7
+#| fig-height: 4.5
+#| fig-subcap: ["k = 1", "k = 3", "k = 5", "k = 10"]
+#| fig-layout: [2, 2]
+
+k_values <- c(1, 3, 5, 10)
+x <- seq(-5, 5, length.out = 500)
+
+par(mfrow = c(2, 2))
+
+for (k in k_values) {
+  y <- dt(x, df = k)
+  
+  plot(
+    x, y,
+    type = "l",
+    lwd = 2,
+    col = "steelblue",
+    main = paste("k =", k),
+    xlab = "x",
+    ylab = "Densidad"
+  )
+  
+  curve(
+    dnorm(x),
+    add = TRUE,
+    col = "red",
+    lty = 2,
+    lwd = 2
+  )
+  
+  legend(
+    "topright",
+    legend = c("t de Student", "Normal estándar"),
+    col = c("steelblue", "red"),
+    lty = c(1, 2),
+    bty = "n"
+  )
+}
+```
+
+:::
+
+::: {.callout-tip}
+La distribución t tiene colas más pesadas, reflejando mayor incertidumbre con muestras pequeñas.
+## Comparación: Normal vs t de Student
+
+Para $k = 5$ grados de libertad:
+```{r}
+#| lst-label: lst-semana04-12
+#| lst-cap: "Código R"
+
+# Graficar ambas distribuciones
+curve(dnorm(x, mean=0, sd=1), from=-4, to=4, col="blue", lwd=2,
+      main="N(0,1) vs t con 5 gl", xlab="x", ylab="Densidad")
+curve(dt(x, df=5), from=-4, to=4, col="red", lwd=2, add=TRUE)
+legend("topright", legend=c("N(0,1)", "t(5)"),
+       col=c("blue", "red"), lwd=2)
+```
+:::
+
+### Distribución F de Snedecor $F_{k_1, k_2}$
+
+::: {.callout-note}
+## Definición: Distribución F
+
+Si $Y_1 \sim \chi^2_{k_1}$ e $Y_2 \sim \chi^2_{k_2}$ son independientes, entonces:
+
+$$F = \frac{Y_1/k_1}{Y_2/k_2} \sim F_{k_1, k_2}$$
+
+**Parámetros:** $k_1, k_2$ (grados de libertad del numerador y denominador)
+
+**Propiedades:**
+- Solo toma valores positivos
+- $E(F) = \frac{k_2}{k_2-2}$ (para $k_2 > 2$)
+- Asimétrica hacia la derecha
+
+**En R:** `df(x, df1=k1, df2=k2)`, `pf(x, df1=k1, df2=k2)`, `rf(n, df1=k1, df2=k2)`
+
+**Usos:** Análisis de varianza (ANOVA), pruebas de igualdad de varianzas, análisis de regresión.
+
+```{r}
+#| lst-label: lst-fig-f-distribution
+#| lst-cap: "Código R"
+#| fig-cap: "Densidad de la distribución F de Snedecor para diferentes combinaciones de grados de libertad. La distribución F es asimétrica hacia la derecha y solo toma valores positivos."
+#| fig-width: 7
+#| fig-height: 4.5
+#| fig-subcap: ["d1 = 1, d2 = 1", "d1 = 5, d2 = 2",
+#|              "d1 = 10, d2 = 10", "d1 = 20, d2 = 30"]
+#| fig-layout: [2, 2]
+
+params <- list(
+  c(1, 1),
+  c(5, 2),
+  c(10, 10),
+  c(20, 30)
+)
+
+x <- seq(0.001, 5, length.out = 500)
+
+par(mfrow = c(2, 2))
+
+for (p in params) {
+
+  d1 <- p[1]
+  d2 <- p[2]
+
+  y <- df(x, df1 = d1, df2 = d2)
+
+  plot(
+    x, y,
+    type = "l",
+    lwd = 2,
+    col = "blue",
+    main = paste("d1 =", d1, ", d2 =", d2),
+    xlab = "x",
+    ylab = "Densidad"
+  )
+}
+```
+:::
+
+## Teorema Central del Límite {#sec-semana04-tcl}
+
+::: {.callout-warning}
+## Teorema Central del Límite
+
+**Enunciado:** Si $X_1, X_2, \ldots, X_n$ son variables aleatorias independientes e idénticamente distribuidas (iid) con $E(X_i) = \mu$ y $\text{Var}(X_i) = \sigma^2 < \infty$, entonces:
+
+$$\lim_{n \to \infty} P\left(\frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} \leq z\right) = \Phi(z)$$
+
+donde $\Phi$ es la CDF de la distribución normal estándar.
+
+**Consecuencias prácticas:**
+
+1. La media muestral es aproximadamente normal para $n$ grande:
+$$\bar{X}_n \approx N\left(\mu, \frac{\sigma^2}{n}\right)$$
+
+2. La suma de variables es aproximadamente normal:
+$$S_n = \sum_{i=1}^n X_i \approx N(n\mu, n\sigma^2)$$
+
+3. Vale **sin importar la distribución original** de las $X_i$ (si es discreta, continua, etc.)
+:::
+
+::: {.callout-tip}
+## Ejemplo: Simulación del TCL
+
+Demostración del TCL con datos uniformes:
+
+```{r}
+#| lst-label: lst-semana04-14
+#| lst-cap: "Código R"
+
+set.seed(123)
+
+# Generar medias muestrales a partir de muestras de una U(0,1)
+n_simulaciones <- 10000
+tamano_muestra <- 30
+
+medias <- replicate(n_simulaciones, mean(runif(tamano_muestra, 0, 1)))
+
+# Graficar histograma con curva normal teórica
+hist(medias, breaks=40, probability=TRUE,
+     main="Distribución de medias muestrales (U(0,1), n=30)",
+     xlab="Media muestral", ylab="Densidad")
+
+# Añadir curva normal teórica: N(0.5, 1/(12*30))
+mu_teorica <- 0.5
+sigma_teorica <- sqrt(1/(12*tamano_muestra))
+curve(dnorm(x, mean=mu_teorica, sd=sigma_teorica),
+      add=TRUE, col="red", lwd=2)
+
+legend("topright", legend=c("Simulación", "Normal teórica"),
+       fill=c("gray", "red"))
+```
+
+Aunque los datos originales son uniformes, las medias muestrales siguen una distribución aproximadamente normal.
+:::
+
+
+## Aproximaciones entre distribuciones vistas como aplicaciones del Teorema Central del Límite {#sec-semana04-aprox-tcl}
+
+### Binomial → Normal
+Ya la vimos anteriormente. Sin embargo, ahora la podemos ver como una de las aplicaciones más conocidas del Teorema Central del Límite. Cuando el número de ensayos ($n$) es suficientemente grande, y la probabilidad de éxito ($p$) no es extremadamente cercana a 0 o 1, la forma de la distribución Binomial se asemeja a la de una campana, característica de la distribución Normal.
+
+**Condiciones para la aproximación:**    
+La aproximación es generalmente considerada adecuada si se cumplen las siguientes condiciones:    
+- $np \geq 5$ (o $np \geq 10$ para una mejor aproximación)   
+- $n(1-p) \geq 5$ (o $n(1-p) \geq 10$ para una mejor aproximación)    
+
+Bajo estas condiciones, si $X \sim B(n, p)$, entonces $X$ puede ser aproximada por $Y \sim N(\mu = np, \sigma^2 = np(1-p))$.    
+
+**Visualización:**
+
+Vamos a visualizar cómo la distribución Binomial se aproxima a la Normal a medida que $n$ aumenta. Consideremos una probabilidad de éxito $p=0.5$ (simétrica) y variemos $n$.
+
+```{r}
+#| lst-label: lst-fig-binom-to-normal
+#| lst-cap: "Código R"
+#| fig-cap: "Aproximación de la distribución Binomial a la Normal para diferentes valores de n. A medida que n aumenta, la forma de la binomial (barras) se asemeja más a la curva de densidad Normal (línea roja)."
+#| fig-width: 8
+#| fig-height: 6
+#| layout-ncol: 2
+
+par(mfrow=c(2, 2)) # Organizar 4 gráficos en una cuadrícula de 2x2
+
+p_val <- 0.5 # Probabilidad de éxito
+
+# Caso 1: n pequeña (n=10)
+n1 <- 10
+x1 <- 0:n1
+y1 <- dbinom(x1, size=n1, prob=p_val)
+mu1 <- n1 * p_val
+sigma1 <- sqrt(n1 * p_val * (1 - p_val))
+plot(x1, y1, type="h", lwd=2, col="blue",
+     main=paste0("Binomial (n=", n1, ", p=", p_val, ")"),
+     xlab="Número de Éxitos", ylab="Probabilidad / Densidad")
+curve(dnorm(x, mean=mu1, sd=sigma1), add=TRUE, col="red", lwd=2)
+
+# Caso 2: n mediana (n=30)
+n2 <- 30
+x2 <- 0:n2
+y2 <- dbinom(x2, size=n2, prob=p_val)
+mu2 <- n2 * p_val
+sigma2 <- sqrt(n2 * p_val * (1 - p_val))
+plot(x2, y2, type="h", lwd=2, col="blue",
+     main=paste0("Binomial (n=", n2, ", p=", p_val, ")"),
+     xlab="Número de Éxitos", ylab="Probabilidad / Densidad")
+curve(dnorm(x, mean=mu2, sd=sigma2), add=TRUE, col="red", lwd=2)
+
+# Caso 3: n grande (n=100)
+n3 <- 100
+x3 <- 0:n3
+y3 <- dbinom(x3, size=n3, prob=p_val)
+mu3 <- n3 * p_val
+sigma3 <- sqrt(n3 * p_val * (1 - p_val))
+plot(x3, y3, type="h", lwd=2, col="blue",
+     main=paste0("Binomial (n=", n3, ", p=", p_val, ")"),
+     xlab="Número de Éxitos", ylab="Probabilidad / Densidad")
+curve(dnorm(x, mean=mu3, sd=sigma3), add=TRUE, col="red", lwd=2)
+
+# Caso 4: n muy grande (n=500)
+n4 <- 500
+x4 <- 0:n4
+y4 <- dbinom(x4, size=n4, prob=p_val)
+mu4 <- n4 * p_val
+sigma4 <- sqrt(n4 * p_val * (1 - p_val))
+plot(x4, y4, type="h", lwd=2, col="blue",
+     main=paste0("Binomial (n=", n4, ", p=", p_val, ")"),
+     xlab="Número de Éxitos", ylab="Probabilidad / Densidad")
+curve(dnorm(x, mean=mu4, sd=sigma4), add=TRUE, col="red", lwd=2)
+
+par(mfrow=c(1,1)) # Reset layout
+```
+
+### Poisson → Normal
+Similar a la Binomial, la distribución de Poisson también puede ser aproximada por la distribución Normal cuando su parámetro de tasa ($\lambda$) es suficientemente grande. Esto se debe a que la distribución de Poisson puede verse como el límite de una Binomial cuando $n \to \infty$ y $p \to 0$ tal que $np = \lambda$. Por lo tanto, el Teorema Central del Límite también juega un papel aquí.
+
+**Condiciones para la aproximación:**
+La aproximación es generalmente aceptable si:
+*   $\lambda \geq 10$ (o $\lambda \geq 5$ en algunos contextos, pero $\lambda \geq 10$ es más seguro para una buena aproximación).
+
+Bajo esta condición, si $X \sim \text{Po}(\lambda)$, entonces $X$ puede ser aproximada por $Y \sim N(\mu = \lambda, \sigma^2 = \lambda)$.
+
+**Ejemplo y Visualización:**
+
+Vamos a observar cómo la distribución de Poisson se asemeja a la Normal a medida que $\lambda$ aumenta.
+
+```{r}
+#| lst-label: lst-fig-poisson-to-normal
+#| lst-cap: "Código R"
+#| fig-cap: "Aproximación de la distribución de Poisson a la Normal para diferentes valores de lambda. A medida que lambda aumenta, la forma de la Poisson (barras) se asemeja más a la curva de densidad Normal (línea roja)."
+#| fig-width: 8
+#| fig-height: 6
+#| layout-ncol: 2
+
+par(mfrow=c(2, 2)) # Organizar 4 gráficos en una cuadrícula de 2x2
+
+# Caso 1: lambda pequeña (lambda=1)
+lambda1 <- 1
+x1_poisson <- 0:max(10, round(lambda1 + 3 * sqrt(lambda1)))
+y1_poisson <- dpois(x1_poisson, lambda=lambda1)
+mu1_poisson <- lambda1
+sigma1_poisson <- sqrt(lambda1)
+plot(x1_poisson, y1_poisson, type="h", lwd=2, col="darkgreen",
+     main=paste0("Poisson (lambda=", lambda1, ")"),
+     xlab="Número de Eventos", ylab="Probabilidad / Densidad",
+     ylim=c(0, max(y1_poisson, dnorm(mu1_poisson, mu1_poisson, sigma1_poisson))))
+curve(dnorm(x, mean=mu1_poisson, sd=sigma1_poisson),
+      from=min(x1_poisson), to=max(x1_poisson), add=TRUE, col="red", lwd=2)
+
+
+# Caso 2: lambda mediana (lambda=5)
+lambda2 <- 5
+x2_poisson <- 0:max(15, round(lambda2 + 3 * sqrt(lambda2)))
+y2_poisson <- dpois(x2_poisson, lambda=lambda2)
+mu2_poisson <- lambda2
+sigma2_poisson <- sqrt(lambda2)
+plot(x2_poisson, y2_poisson, type="h", lwd=2, col="darkgreen",
+     main=paste0("Poisson (lambda=", lambda2, ")"),
+     xlab="Número de Eventos", ylab="Probabilidad / Densidad",
+     ylim=c(0, max(y2_poisson, dnorm(mu2_poisson, mu2_poisson, sigma2_poisson))))
+curve(dnorm(x, mean=mu2_poisson, sd=sigma2_poisson),
+      from=min(x2_poisson), to=max(x2_poisson), add=TRUE, col="red", lwd=2)
+
+# Caso 3: lambda grande (lambda=15)
+lambda3 <- 15
+x3_poisson <- 0:max(30, round(lambda3 + 3 * sqrt(lambda3)))
+y3_poisson <- dpois(x3_poisson, lambda=lambda3)
+mu3_poisson <- lambda3
+sigma3_poisson <- sqrt(lambda3)
+plot(x3_poisson, y3_poisson, type="h", lwd=2, col="darkgreen",
+     main=paste0("Poisson (lambda=", lambda3, ")"),
+     xlab="Número de Eventos", ylab="Probabilidad / Densidad",
+     ylim=c(0, max(y3_poisson, dnorm(mu3_poisson, mu3_poisson, sigma3_poisson))))
+curve(dnorm(x, mean=mu3_poisson, sd=sigma3_poisson),
+      from=min(x3_poisson), to=max(x3_poisson), add=TRUE, col="red", lwd=2)
+
+# Caso 4: lambda muy grande (lambda=50)
+lambda4 <- 50
+x4_poisson <- 0:max(70, round(lambda4 + 3 * sqrt(lambda4)))
+y4_poisson <- dpois(x4_poisson, lambda=lambda4)
+mu4_poisson <- lambda4
+sigma4_poisson <- sqrt(lambda4)
+plot(x4_poisson, y4_poisson, type="h", lwd=2, col="darkgreen",
+     main=paste0("Poisson (lambda=", lambda4, ")"),
+     xlab="Número de Eventos", ylab="Probabilidad / Densidad",
+     ylim=c(0, max(y4_poisson, dnorm(mu4_poisson, mu4_poisson, sigma4_poisson))))
+curve(dnorm(x, mean=mu4_poisson, sd=sigma4_poisson),
+      from=min(x4_poisson), to=max(x4_poisson), add=TRUE, col="red", lwd=2)
+
+par(mfrow=c(1,1)) # Reset layout
+```
+
+### Exponencial ↔ Poisson (dualidad tiempo-conteo)
+La relación entre las distribuciones Exponencial y de Poisson es una de las dualidades más fundamentales en la teoría de procesos estocásticos, particularmente en los Procesos de Poisson. Un Proceso de Poisson describe el número de eventos que ocurren en un intervalo de tiempo fijo (con distribución de Poisson), mientras que la distribución Exponencial describe el tiempo entre eventos consecutivos (conocido como "tiempo de inter-llegada") en un proceso de Poisson.  
+
+**Conceptualización de la dualidad:**
+- Si el número de eventos en un intervalo de tiempo $t$ sigue una distribución de Poisson con tasa $\lambda$, es decir, $N(t) \sim \text{Po}(\lambda t)$, entonces:  
+- El tiempo hasta que ocurre el primer evento (o el tiempo entre dos eventos consecutivos) sigue una distribución Exponencial con parámetro de tasa $\lambda$.  
+
+Esta dualidad es crucial para modelar fenómenos como el tiempo de espera hasta el próximo cliente en una cola, el tiempo de vida de componentes electrónicos, o el tiempo entre mutaciones genéticas.  
+
+**Ejemplo y Visualización:**
+
+Vamos a simular eventos de un Proceso de Poisson y luego examinar la distribución de los tiempos entre estos eventos para ver cómo se ajusta a una distribución Exponencial.
+
+```{r}
+#| lst-label: lst-fig-exp-poisson-duality
+#| lst-cap: "Código R"
+#| fig-cap: "Dualidad entre la distribución de Poisson y la Exponencial. La parte superior muestra la simulación de un proceso de Poisson con eventos marcados. La parte inferior es el histograma de los tiempos entre eventos, mostrando un ajuste a la distribución Exponencial."
+#| fig-width: 8
+#| fig-height: 6
+
+set.seed(42) # Para reproducibilidad
+
+lambda_rate <- 2 # Tasa de eventos por unidad de tiempo
+max_time <- 10  # Tiempo total de observación
+
+# Simular un proceso de Poisson: número de eventos en max_time
+num_events_poisson <- rpois(1, lambda = lambda_rate * max_time)
+cat("Número simulado de eventos en", max_time, "unidades de tiempo:", num_events_poisson, "\n")
+
+# Simular los tiempos de inter-llegada (distribución Exponencial)
+inter_arrival_times <- rexp(num_events_poisson + 1, rate = lambda_rate)
+# Asegurarse de que la suma de tiempos no exceda max_time
+arrival_times <- cumsum(inter_arrival_times)
+arrival_times <- arrival_times[arrival_times <= max_time]
+
+# Eliminar el último tiempo si excede el max_time para el histograma
+if (length(arrival_times) > 0 && sum(inter_arrival_times[1:length(arrival_times)]) > max_time) {
+  inter_arrival_times_for_hist <- inter_arrival_times[1:length(arrival_times) - 1]
+} else {
+  inter_arrival_times_for_hist <- inter_arrival_times[1:length(arrival_times)]
+}
+inter_arrival_times_for_hist <- inter_arrival_times_for_hist[inter_arrival_times_for_hist > 0] # Eliminar posibles 0 si no hay eventos
+
+# Preparar el gráfico
+par(mfrow=c(2, 1), mar=c(4, 4, 2, 2) + 0.1)
+
+# Gráfico superior: Proceso de Poisson (eventos en el tiempo)
+plot(arrival_times, rep(1, length(arrival_times)), pch=16, col="darkblue",
+     xlab="Tiempo", ylab="Eventos",
+     main=paste0("Simulación de Proceso de Poisson (lambda=", lambda_rate, ")"),
+     xlim=c(0, max_time), ylim=c(0.5, 1.5), yaxt='n')
+axis(side=2, at=1, labels="Eventos")
+segments(0, 1, max_time, 1, col="gray", lty=2)
+
+# Gráfico inferior: Histograma de tiempos de inter-llegada (Exponencial)
+if (length(inter_arrival_times_for_hist) > 1) {
+  hist(inter_arrival_times_for_hist, breaks=20, probability=TRUE,
+       main=paste0("Histograma de Tiempos de Inter-Llegada (Exponencial, lambda=", lambda_rate, ")"),
+       xlab="Tiempo entre Eventos", ylab="Densidad",
+       col="lightgreen", border="white")
+  curve(dexp(x, rate = lambda_rate), add=TRUE, col="red", lwd=2)
+} else {
+  plot(1, type="n", main="No hay suficientes eventos para histograma de inter-llegada",
+       xlab="", ylab="", xaxt='n', yaxt='n')
+  text(1,1, "Aumenta max_time o lambda_rate para más eventos.")
+}
+
+par(mfrow=c(1,1)) # Reset layout
+```
+
+
+## Tabla de Referencia de Distribuciones {#sec-semana04-tabla}
+
+| Distribución | Parámetros | $E(X)$ | $\text{Var}(X)$ | Función R |
+|---|---|---|---|---|
+| **Discretas** | | | | |
+| Uniforme | $n$ | $\frac{1}{n}\sum x_i$ | $\frac{1}{n}\sum(x_i-\mu)^2$ | `sample()` |
+| Bernoulli | $p$ | $p$ | $p(1-p)$ | `dbinom(,size=1)` |
+| Binomial | $n, p$ | $np$ | $np(1-p)$ | `dbinom()` |
+| Poisson | $\lambda$ | $\lambda$ | $\lambda$ | `dpois()` |
+| | | | | |
+| **Continuas** | | | | |
+| Uniforme | $a, b$ | $\frac{a+b}{2}$ | $\frac{(b-a)^2}{12}$ | `dunif()` |
+| Exponencial | $\lambda$ | $\frac{1}{\lambda}$ | $\frac{1}{\lambda^2}$ | `dexp()` |
+| Normal | $\mu, \sigma$ | $\mu$ | $\sigma^2$ | `dnorm()` |
+| | | | | |
+| **Muestreo** | | | | |
+| Chi-cuadrado | $k$ | $k$ | $2k$ | `dchisq()` |
+| t | $k$ | $0$ | $\frac{k}{k-2}$ | `dt()` |
+| F | $k_1, k_2$ | $\frac{k_2}{k_2-2}$ | — | `df()` |
+
+## Resumen de Conceptos Clave {#sec-semana04-resumen}
+
+::: {.callout-note}
+## Conceptos Fundamentales
+
+1. **Variables Aleatorias:** Funciones que asignan números a resultados de experimentos aleatorios.
+
+2. **Esperanza:** Media ponderada; resume la localización.
+
+3. **Varianza:** Dispersión alrededor de la media; mide variabilidad.
+
+4. **Estandarización:** Transforma variables para comparación directa (z-score).
+
+5. **Distribuciones Discretas:** Binomial (conteos en n ensayos), Poisson (eventos raros).
+
+6. **Distribuciones Continuas:** Normal (datos naturales), Exponencial (tiempos de espera), Uniforme (selección aleatoria).
+
+7. **Distribuciones para Muestreo:** Chi-cuadrado, t, F (inferenciales, no descriptivas).
+
+8. **Teorema Central del Límite:** Las medias muestrales son normales, sin importar la distribución original.
+
+:::
+
+## Ejercicios {#sec-semana04-ejercicios}
+
+### Ejercicio 1: Distribución Binomial
+
+Un ensayo clínico prueba un tratamiento con probabilidad de éxito $p = 0.65$ en 50 pacientes.
+
+a) ¿Cuál es la probabilidad de que exactamente 35 pacientes se curen?
+b) ¿Cuál es la probabilidad de que al menos 40 se curen?
+c) Calcula la esperanza y varianza del número de curaciones.
+
+### Ejercicio 2: Distribución Normal
+
+El colesterol LDL en una población sigue $N(130, 40)$ mg/dL.
+
+a) ¿Qué proporción de personas tienen LDL > 160 mg/dL (riesgo alto)?
+b) ¿Cuál es el percentil 90 del LDL?
+c) Un paciente tiene z-score = 1.5. ¿Cuál es su valor de LDL?
+
+### Ejercicio 3: Distribución de Poisson
+
+El número de infecciones nosocomiales en una clínica sigue una Poisson con $\lambda = 2.5$ por mes.
+
+a) ¿Cuál es la probabilidad de que no haya infecciones en un mes?
+b) ¿Cuál es la probabilidad de que haya más de 5 infecciones?
+c) ¿Cuál es el número esperado de infecciones en 6 meses?
+
+### Ejercicio 4: Teorema Central del Límite
+
+Se muestran 100 recién nacidos de bajo peso al nacer y prematuridad con una altura media 45 cm y una desviación estándar 8 cm.
+
+a) ¿Cuál es la distribución aproximada de la media muestral $\bar{X}$?
+b) ¿Cual es $P(\bar{X} \geq 46)$?
+c) ¿Qué tamaño de muestra se necesita para que el error estándar sea menor de 0.5 cm?
+
+### Ejercicio 5: Transformación Z
+
+Las medidas de glucosa en sangre siguen $N(100, 100)$ mg/dL.
+
+a) Estandariza los valores 90, 100 y 120 mg/dL.
+b) ¿Qué valor original corresponde a z = -1.96?
+c) Interpreta: "un paciente tiene z-score = 2.5".
+
+## Respuestas a los Ejercicios {#sec-semana04-respuestas}
+
+**Ejercicio 1: Distribución Binomial**  
+- a) P(X=35) = C(50,35)(0.65)³⁵(0.35)¹⁵ ≈ 0.0622  
+- b) P(X≥40) = Σ P(X=k) para k=40..50 ≈ 0.0339  
+- c) E[X] = np = 50×0.65 = 32.5; Var[X] = np(1-p) = 50×0.65×0.35 = 11.375  
+
+**Ejercicio 2: Distribución Normal N(130,40)**  
+- a) Z = (160-130)/√40 = 4.74; P(LDL>160) ≈ 0.0001 (muy raro)  
+- b) P₉₀: z=1.28, LDL = 130 + 1.28√40 ≈ 130 + 8.1 = 138.1 mg/dL  
+- c) LDL = 130 + 1.5√40 ≈ 130 + 9.49 = 139.49 mg/dL  
+
+**Ejercicio 3: Distribución Poisson (λ=2.5)**  
+- a) P(X=0) = e^(-2.5) ≈ 0.0821  
+- b) P(X>5) = 1 - P(X≤5) ≈ 0.0420  
+- c) En 6 meses: λ_total = 2.5×6 = 15; E[X] = 15  
+
+**Ejercicio 4: Teorema Central del Límite**  
+- a) $\bar{X} \sim N(45, \sigma_{\bar{X}}^2)$ donde $\sigma_{\bar{X}} = 8/√100 = 0.8$ cm  
+- b) Z = (46-45)/0.8 = 1.25; P(≥46) ≈ 0.1056  
+- c) SE < 0.5 ⟹ 8/√n < 0.5 ⟹ n > 256   
+
+**Ejercicio 5: Estandarización**  
+- a) z(90) = (90-100)/10 = -1; z(100) = 0; z(120) = 2  
+- b) x = 100 + (-1.96)(10) = 80.4 mg/dL  
+- c) El paciente está 2.5 desviaciones estándar por encima de la media (valor muy alto, atípico)  
+
+## Lecturas Complementarias {#sec-semana04-lectura}
+
+- **Forbes et al. (2011):** Distribuciones de probabilidad continuadas y sus propiedades (referencia técnica).
+- **Tablas Normales:** Los z-scores están tabulados en libros de estadística y disponibles en R mediante `qnorm()`.
+- **Relaciones Distribucionales: **Saad, F. A., Freer, C. E., Rinard, M. C., & Mansinghka, V. K. (2020).** Optimal Approximate Sampling from Discrete Probability Distributions. *Proceedings of the ACM on Programming Languages*, 4(POPL), Article 36. [DOI: 10.1145/3371104](https://doi.org/10.1145/3371104). Este trabajo discute la exactitud y los trade-offs entre métodos de muestreo exactos y aproximados para distribuciones discretas, un concepto extensible a la precisión de cálculos de probabilidad.  
+
+::: {.callout-tip}
+## Métodos Avanzados
+
+Para ampliar los contenidos de este capítulo con técnicas estadísticas avanzadas, visita:
+
+**[→ Bioestadística Avanzada — M.A. Luque Fernández](https://migariane.github.io/Bioestadistica)**
+:::

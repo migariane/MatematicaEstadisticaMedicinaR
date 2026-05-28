@@ -1,0 +1,938 @@
+```{r}
+#| label: setup
+#| include: false
+options(digits = 3)
+library(broom)
+options(scipen = 999)
+```
+
+# Semana 11 — Análisis de Datos Categóricos {#sec-semana11}
+
+En estadística médica y epidemiológica, muchas variables de interés son categóricas: enfermedad (sí/no), exposición a un factor de riesgo (presente/ausente), grupo de tratamiento, estadio clínico. Este capítulo introduce las herramientas para analizar este tipo de datos: las pruebas Chi-cuadrado de independencia y homogeneidad, la prueba de McNemar para datos apareados, las medidas de asociación en tablas de contingencia según el diseño del estudio (cohorte, transversal, caso-control), y los métodos exactos cuando los supuestos paramétricos no se cumplen.
+
+---
+
+## Variables Categóricas y Tablas de Contingencia {#sec-semana11-tablas}
+
+Una **tabla de contingencia** es una representación matricial de las frecuencias conjuntas de dos o más variables categóricas. Es la base del análisis de datos categóricos.
+
+### Tabla 2×2: Estructura y Notación Epidemiológica
+
+La tabla 2×2 es el caso más frecuente en epidemiología y ensayos clínicos:
+
+|  | **Resultado: Sí** | **Resultado: No** | **Total** |
+|--|:-----------------:|:-----------------:|:---------:|
+| **Exposición: Sí** | $a$ | $b$ | $a+b$ |
+| **Exposición: No** | $c$ | $d$ | $c+d$ |
+| **Total** | $a+c$ | $b+d$ | $n$ |
+
+Donde:
+- $a$ = expuestos con resultado positivo (casos expuestos)
+- $b$ = expuestos sin resultado
+- $c$ = no expuestos con resultado positivo
+- $d$ = no expuestos sin resultado
+- $n = a + b + c + d$ = total de observaciones
+
+### Tablas r×c Generalizadas
+
+Para $r$ categorías de fila y $c$ categorías de columna, la tabla es de dimensión $r \times c$ con frecuencias observadas $O_{ij}$, marginales de fila $O_{i\cdot} = \sum_j O_{ij}$ y de columna $O_{\cdot j} = \sum_i O_{ij}$.
+
+---
+
+## Prueba χ² de Independencia {#sec-semana11-independencia}
+
+La prueba Chi-cuadrado de independencia contrasta si dos variables categóricas son estadísticamente independientes en la población.
+
+### Hipótesis
+
+$$H_0: \text{las variables son independientes} \quad \Leftrightarrow \quad P(X = i,\, Y = j) = P(X = i)\,P(Y = j)$$
+$$H_1: \text{las variables no son independientes (están asociadas)}$$
+
+### Frecuencias Esperadas Bajo $H_0$
+
+Si $H_0$ es verdadera, las frecuencias esperadas son:
+
+$$E_{ij} = \frac{O_{i\cdot}\, \cdot\, O_{\cdot j}}{n}$$
+
+::: {.callout-warning}
+## Estadístico: Pearson χ²
+
+$$\chi^2 = \sum_{i=1}^r \sum_{j=1}^c \frac{(O_{ij} - E_{ij})^2}{E_{ij}}$$
+
+Bajo $H_0$: $\chi^2 \sim \chi^2_{(r-1)(c-1)}$ (asintóticamente).
+
+Para tabla 2×2: $(r-1)(c-1) = 1$ grado de libertad.
+
+**Condición de validez:** Todas las frecuencias esperadas deben ser $E_{ij} \geq 5$. Si alguna es menor, usar la corrección de Yates o la prueba exacta de Fisher.
+:::
+
+### Cálculo Manual para Tabla 2×2
+
+Para tabla 2×2 con notación $(a, b, c, d)$:
+
+$$\chi^2 = \frac{n(ad - bc)^2}{(a+b)(c+d)(a+c)(b+d)}$$
+
+### Ejemplo Médico: Tabaquismo y Osteoporosis
+
+::: {.callout-tip}
+## Ejemplo: tabla2x2() — datos osteo (Fac. Medicina UGR)
+
+Analizamos la asociación entre tabaquismo (`tabaco`) y osteoporosis de cúbito (`osteo_cue`) en 94 pacientes diabéticos. Documentación completa en @sec-bio-tablas.
+
+```{r}
+#| label: lst-s12-bio01
+#| lst-cap: "BioestadisticaR2 — tabla2x2(): tabaquismo y osteoporosis"
+#| warning: false
+#| message: false
+#| echo: false
+
+library(BioestadisticaR2)
+
+# Frecuencias extraídas de osteo: tabaco vs osteo_cue
+# No fumadores (n=53): 44 sin osteoporosis, 9 con osteoporosis
+# Fumadores (n=41):    26 sin osteoporosis, 15 con osteoporosis
+tabla2x2(o11 = 44, o12 = 9, o21 = 26, o22 = 15,
+         fcat = c("No fumador", "Fumador"),
+         ccat = c("Sin osteoporosis", "Con osteoporosis"),
+         estudio = "CC")
+```
+
+**Comprobación manual de $E_{ij}$:**
+$$E_{11} = \frac{53 \times 70}{94} = 39.47, \quad E_{12} = \frac{53 \times 24}{94} = 13.53$$
+$$E_{21} = \frac{41 \times 70}{94} = 30.53, \quad E_{22} = \frac{41 \times 24}{94} = 10.47$$
+
+Mínima frecuencia esperada: $E_{22} = 10.47 > 5$ ✓ (condición de validez cumplida).
+
+::: {.callout-note}
+## Interpretación
+El estadístico χ² = 4.65 con 1 grado de libertad produce p = 0.031 < 0.05, rechazando la hipótesis nula de independencia. Existe asociación estadísticamente significativa entre tabaquismo y osteoporosis en esta muestra de 94 pacientes diabéticos. Los fumadores presentan una odds ratio de 2.82 (IC 95%: 1.07–7.01), indicando aproximadamente 2.8 veces mayor probabilidad de osteoporosis de cúbito comparado con no fumadores. En el contexto clínico, esta asociación es relevante para estratificar riesgo en pacientes diabéticos, sugiriendo que el cese del tabaquismo podría ser una intervención preventiva importante en esta población de alto riesgo metabólico.
+:::
+:::
+
+---
+
+## Prueba χ² de Homogeneidad {#sec-semana11-homogeneidad}
+
+La prueba de homogeneidad contrasta si la distribución de una variable categórica es **la misma en $k$ poblaciones o grupos** predefinidos. Matemáticamente usa el mismo estadístico $\chi^2$, pero el diseño del estudio es diferente.
+
+### Independencia vs. Homogeneidad
+
+| Aspecto | Independencia | Homogeneidad |
+|---------|--------------|--------------|
+| **Muestreo** | Muestra única | $k$ muestras independientes |
+| **$H_0$** | Independencia entre variables | Igual distribución en $k$ grupos |
+| **Ejemplo** | ¿Tabaquismo y cáncer relacionados? | ¿Mismo % de curación en 3 tratamientos? |
+
+### Procedimiento
+
+Se aplica el mismo estadístico $\chi^2 = \sum \frac{(O_{ij}-E_{ij})^2}{E_{ij}}$ con $(r-1)(c-1)$ grados de libertad.
+
+::: {.callout-tip}
+## Ejemplo: tablarxc() — eficacia de tratamiento en 3 grupos
+
+Ensayo clínico con 3 grupos de tratamiento (Control, Dosis baja, Dosis alta) y resultado binario (Curado/No curado):
+
+```{r}
+#| label: lst-s12-bio02
+#| lst-cap: "BioestadisticaR2 — tablarxc(): homogeneidad entre 3 grupos de tratamiento"
+#| warning: false
+#| message: false
+#| echo: false
+
+library(BioestadisticaR2)
+
+# Construir tabla de datos
+# Control: 20 curados, 30 no curados
+# Dosis baja: 35 curados, 25 no curados
+# Dosis alta: 45 curados, 15 no curados
+m <- data.frame(
+  Curado    = c(20, 35, 45),
+  No_curado = c(30, 25, 15),
+  row.names = c("Control", "Dosis_baja", "Dosis_alta")
+)
+
+tablarxc(frecs = m, fcat = rownames(m), ccat = colnames(m))
+```
+
+::: {.callout-note}
+## Interpretación
+El estadístico χ² = 13.38 con 2 grados de libertad produce p < 0.001, rechazando la hipótesis nula de homogeneidad entre grupos. La distribución de curación no es homogénea entre los 3 grupos de tratamiento (Control: 40%, Dosis baja: 58%, Dosis alta: 75%). Los resultados demuestran que la dosis alta de tratamiento se asocia significativamente con tasas de curación más altas comparado con control y dosis baja. Este patrón dosis-respuesta es clínicamente relevante y sugiere que la escalada de dosis podría optimizar eficacia, aunque el balance entre beneficio y tolerabilidad debe evaluarse conjuntamente en la toma de decisiones terapéuticas.
+:::
+:::
+
+---
+
+## Condiciones de Aplicación y Alternativas {#sec-semana11-condiciones}
+
+### Condición de Frecuencias Esperadas
+
+La regla clásica de Cochran (1954) exige, para que la aproximación $\chi^2 \sim \chi^2_{(r-1)(c-1)}$ sea válida, que **todas** las frecuencias esperadas $E_{ij}$ sean $\geq 5$ en una tabla 2×2 y que, en tablas $r\times c$, al menos el 80% de las $E_{ij}$ sean $\geq 5$ y ninguna $< 1$.
+
+Sin embargo, este umbral único es excesivamente conservador. La escuela granadina de bioestadística (@MartinAndresLuna2004; @MartinAndres1994) ha demostrado, mediante estudios de simulación extensivos, que el valor mínimo de $E_{ij}$ que mantiene un error de tipo I cercano al nominal **depende del tamaño muestral y del diseño del estudio**:
+
+::: {.callout-important}
+## Valores mínimos de $E_{ij}$ recomendados — Tablas 2×2
+
+| Tamaño muestral $n$ | Diseño con un margen fijo (cohortes, caso-control) | Diseño con ambos márgenes libres (transversal, prevalencia) | Prueba recomendada |
+|---|---|---|---|
+| $n \leq 20$ | — | — | **Fisher exacta** (siempre) |
+| $20 < n \leq 40$ | $E_{\min} \geq 5$ | $E_{\min} \geq 5$ | $\chi^2$ con corrección de Yates |
+| $40 < n \leq 100$ | $E_{\min} \geq 3$ | $E_{\min} \geq 4$ | $\chi^2$ de Pearson (sin corrección) |
+| $100 < n \leq 200$ | $E_{\min} \geq 2$ | $E_{\min} \geq 3$ | $\chi^2$ de Pearson |
+| $n > 200$ | $E_{\min} \geq 1$ | $E_{\min} \geq 2$ | $\chi^2$ de Pearson |
+| Ambos márgenes fijos (raro) | — | — | **Fisher exacta** (test condicional óptimo) |
+
+: Umbrales para la validez del $\chi^2$ en tablas 2×2 según diseño y tamaño muestral. Adaptado de @MartinAndresLuna2004 y @MartinAndres1994.
+
+:::
+
+::: {.callout-note}
+## Cuándo el diseño es de "margen fijo" vs. "márgenes libres"
+
+- **Un margen fijo** (lo más habitual en epidemiología): el investigador fija a priori el tamaño de los grupos de comparación.
+  - *Cohortes*: se fija el número de expuestos y no expuestos; se observa la incidencia.
+  - *Caso-control*: se fija el número de casos y controles; se observa la exposición.
+- **Ambos márgenes libres**: el muestreo es transversal/de prevalencia y solo se fija $n$ total; los dos márgenes (exposición y enfermedad) son aleatorios.
+- **Ambos márgenes fijos**: situación poco frecuente en investigación clínica (p.ej., experimento del té de Fisher). Es la única en la que la **prueba exacta de Fisher** es el test condicional óptimo desde un punto de vista frecuentista.
+
+Para tablas $r\times c$ con $r$ o $c > 2$, la regla práctica recomendada por estos autores es: $\geq 80\%$ de las $E_{ij}$ por encima del umbral correspondiente al $n$ total (columna apropiada), y ninguna $E_{ij} < 1$. Para detalles teóricos y simulaciones que sustentan estos umbrales, véase @MartinAndresLuna2004.
+:::
+
+### Corrección de Continuidad de Yates (Tabla 2×2) {#sec-semana11-yates}
+
+El estadístico $\chi^2$ de Pearson es una suma de términos calculados sobre frecuencias enteras que se aproxima por la distribución continua $\chi^2_{(r-1)(c-1)}$. La **corrección de continuidad de Yates** reduce el estadístico para mejorar la aproximación:
+
+::: {.callout-note}
+## Estadístico: $\chi^2$ de Yates (con corrección de continuidad)
+
+Para una tabla 2×2 con frecuencias $a, b, c, d$:
+
+$$\chi^2_{\text{Yates}} = \frac{n\left(|ad - bc| - \dfrac{n}{2}\right)^2}{(a+b)(c+d)(a+c)(b+d)}$$
+
+- Se aplica cuando alguna $E_{ij} \in [5, 10)$
+- Siempre da $\chi^2_{\text{Yates}} \leq \chi^2_{\text{Pearson}}$ → p-valor más conservador
+- En R: `chisq.test(tabla, correct = TRUE)` (opción por defecto para tablas 2×2)
+:::
+
+::: {.callout-tip}
+## Ejemplo: Pearson vs. Yates en tabla con frecuencias moderadas
+
+```{r}
+#| label: lst-s12-r01
+#| lst-cap: "Base R — chisq.test(): corrección de Yates vs. Pearson"
+#| warning: false
+#| message: false
+#| echo: false
+
+# Tabla 2×2 con frecuencias esperadas en el rango 5-10
+m <- matrix(c(7, 3, 4, 11), nrow = 2,
+            dimnames = list(c("Expuesto", "No expuesto"),
+                            c("Caso", "Control")));m
+
+# Sin corrección de continuidad (Pearson puro)
+chisq.test(m, correct = FALSE)
+
+# Con corrección de Yates (por defecto en R para 2×2)
+chisq.test(m, correct = TRUE)
+```
+
+::: {.callout-note}
+## Interpretación
+La prueba de Pearson (sin corrección) rechaza H₀ (χ² = 5, p = 0.03), mientras que la corrección de Yates no rechaza (χ² = 3, p = 0.08). La discordancia ocurre porque las frecuencias esperadas están en el rango [5,10), donde la aproximación normal es moderada. La corrección de Yates reduce el estadístico penalizando por el uso de una distribución continua con datos discretos, produciendo un resultado más conservador. En práctica clínica, con muestras pequeñas donde Eᵢⱼ ∈ [5,10), la versión conservadora (Yates) es preferible para evitar falsos positivos, aunque para grandes muestras ambas convergen.
+:::
+
+:::
+
+La siguiente figura compara las distribuciones empíricas de los estadísticos con y sin corrección frente a la distribución $\chi^2(1)$ teórica, usando simulaciones bajo $H_0$ con $n = 25$:
+
+```{r}
+#| label: lst-s12-fig01
+#| lst-cap: "Base R — Simulación: distribución de χ² con y sin corrección de Yates"
+#| echo: false
+#| fig-cap: "Comparación de la distribución empírica de χ² de Pearson (sin corrección, naranja) y χ² de Yates (con corrección, azul) con la curva χ²(1) teórica (negro), bajo H₀ con n = 25. La corrección de Yates produce una aproximación más conservadora pero mejor calibrada para muestras pequeñas."
+#| fig-width: 7
+#| fig-height: 4.5
+
+set.seed(2024)
+B <- 20000
+n <- 25
+
+sim_chi2 <- replicate(B, {
+  n1 <- round(n / 2); n2 <- n - n1
+  a  <- rbinom(1, n1, 0.5); b <- n1 - a
+  c_ <- rbinom(1, n2, 0.5); d <- n2 - c_
+  tab <- matrix(c(a, c_, b, d), nrow = 2)
+  if (any(rowSums(tab) == 0) || any(colSums(tab) == 0)) return(c(NA, NA))
+  res_pearson <- suppressWarnings(chisq.test(tab, correct = FALSE)$statistic)
+  res_yates   <- suppressWarnings(chisq.test(tab, correct = TRUE)$statistic)
+  c(res_pearson, res_yates)
+})
+
+chi_pearson <- sim_chi2[1, !is.na(sim_chi2[1,])]
+chi_yates   <- sim_chi2[2, !is.na(sim_chi2[2,])]
+x_seq <- seq(0, 12, length.out = 300)
+
+plot(x_seq, dchisq(x_seq, df = 1),
+     type = "l", lwd = 3, col = "black",
+     xlab = expression(chi^2), ylab = "Densidad",
+     main = expression("Corrección de Yates: distribución de " * chi^2 * " bajo " * H[0]),
+     ylim = c(0, 0.7), xlim = c(0, 10))
+lines(density(chi_pearson, from = 0), col = "#f39200", lwd = 2, lty = 1)
+lines(density(chi_yates,   from = 0), col = "#003087", lwd = 2, lty = 2)
+legend("topright",
+       legend = c(expression(chi^2 * "(1) teórica"),
+                  "Pearson (sin corrección)",
+                  "Yates (con corrección)"),
+       col  = c("black", "#f39200", "#003087"),
+       lty  = c(1, 1, 2), lwd = c(3, 2, 2),
+       bty  = "n", cex = 0.9)
+```
+
+### Prueba Exacta de Fisher
+
+Cuando alguna $E_{ij} < 5$, la prueba de Fisher calcula la probabilidad exacta de observar la tabla obtenida (o más extrema) bajo $H_0$, utilizando la distribución hipergeométrica:
+
+$$P = \frac{(a+b)!\,(c+d)!\,(a+c)!\,(b+d)!}{n!\,a!\,b!\,c!\,d!}$$
+
+::: {.callout-tip}
+## Ejemplo: Prueba exacta de Fisher en muestra pequeña
+
+```{r}
+#| label: lst-s12-r02
+#| lst-cap: "Base R — fisher.test(): prueba exacta con frecuencias pequeñas"
+#| warning: false
+#| message: false
+#| echo: false
+
+# Tabla con frecuencias pequeñas (Eij < 5)
+m <- matrix(c(4, 1, 2, 8), nrow = 2,
+                    dimnames = list(c("Expuesto", "No expuesto"),
+                                    c("Caso", "Control")));m
+fisher.test(m)
+```
+
+::: {.callout-note}
+## Interpretación
+Con n = 15 y varias frecuencias esperadas < 5, la aproximación χ² es inapropiada, haciendo que la prueba exacta de Fisher sea el método correcto. Fisher calcula mediante la distribución hipergeométrica la probabilidad exacta de observar la tabla observada (u otra más extrema) bajo H₀ de independencia. El resultado proporciona un p-valor exacto y una odds ratio (OR) con intervalo de confianza exacto, basados en el espacio muestral discreto de tablas 2×2. Este enfoque es especialmente valioso en estudios de casos y controles de pequeño tamaño o cuando la exposición es rara, situaciones comunes en medicina clínica donde los datos categóricos a menudo tienen frecuencias limitadas.
+:::
+
+:::
+
+---
+
+## Prueba de McNemar para Datos Apareados {#sec-semana11-mcnemar}
+
+### ¿Cuándo usar McNemar?
+
+La prueba $\chi^2$ de independencia asume que las observaciones son **independientes**. Sin embargo, en muchos diseños médicos los datos son **apareados**: se mide el mismo paciente en dos condiciones o momentos distintos.
+
+**Situaciones típicas en medicina:**
+
+- **Antes/después**: ¿Mejora la proporción de pacientes con PA controlada tras 6 meses de intervención?
+- **Dos pruebas diagnósticas**: ¿Concuerdan el test rápido de PCR y el cultivo bacteriano aplicados a los mismos pacientes?
+- **Pares emparejados**: ¿Difiere la detección de lesiones en ojo derecho vs. ojo izquierdo del mismo paciente?
+- **Diseños cruzados**: ¿Es diferente la proporción de respuestas con tratamiento A vs. B en el mismo individuo?
+
+En estos diseños, la **unidad de análisis es el par**, no el individuo, y solo los pares **discordantes** aportan información sobre la diferencia.
+
+### Estructura de la Tabla Apareada
+
+La tabla de datos apareados tiene una estructura especial:
+
+|  | **Condición B: Positivo** | **Condición B: Negativo** | **Total** |
+|--|:------------------------:|:------------------------:|:---------:|
+| **Condición A: Positivo** | $a$ (concordantes +/+) | $b$ (discordantes +/−) | $a+b$ |
+| **Condición A: Negativo** | $c$ (discordantes −/+) | $d$ (concordantes −/−) | $c+d$ |
+| **Total** | $a+c$ | $b+d$ | $n$ |
+
+Donde:
+- $a$: pares concordantes positivos (ambos positivos)
+- $d$: pares concordantes negativos (ambos negativos)
+- $b$: discordantes — positivo en A, negativo en B
+- $c$: discordantes — negativo en A, positivo en B
+
+**La hipótesis nula** es que la proporción marginal de positivos es la misma en ambas condiciones, equivalente a:
+
+$$H_0: P(\text{A}^+\text{B}^-) = P(\text{A}^-\text{B}^+) \quad \Longleftrightarrow \quad \pi_b = \pi_c = 0.5$$
+
+### Estadístico de McNemar
+
+::: {.callout-warning}
+## Estadístico: Prueba de McNemar
+
+Solo los pares **discordantes** ($b$ y $c$) aportan información sobre la diferencia entre condiciones.
+
+**Sin corrección de continuidad** (preferida cuando $b + c \geq 25$):
+
+$$\chi^2_{\text{McNemar}} = \frac{(b - c)^2}{b + c} \sim \chi^2_1 \quad \text{bajo } H_0$$
+
+**Con corrección de continuidad de Yates** (recomendada cuando $b + c < 25$):
+
+$$\chi^2_{\text{McNemar,Yates}} = \frac{(|b - c| - 1)^2}{b + c}$$
+
+**Para muestras muy pequeñas** ($b + c < 10$): usar el test binomial exacto sobre los pares discordantes bajo $H_0: p = 0.5$.
+
+**Regla de decisión:** Rechazar $H_0$ si $\chi^2 > \chi^2_{0.05, 1} = 3.84$ (o p-valor < 0.05).
+:::
+
+### Ejemplo: Intervención para el Control de la Hipertensión
+
+::: {.callout-tip}
+## Ejemplo: Estudio antes-después — control de la presión arterial
+
+En una consulta de medicina interna del Hospital Universitario de Granada, 100 pacientes hipertensos participan en un programa de intervención multidisciplinar (dieta, ejercicio y educación sanitaria) durante 6 meses. Se evalúa si el paciente tiene la PA controlada ($<$ 140/90 mmHg) antes y después del programa.
+
+**Tabla de pares apareados:**
+
+|  | **Post: PA Controlada** | **Post: PA No controlada** | **Total** |
+|--|:---:|:---:|:---:|
+| **Pre: PA Controlada** | 42 ($a$) | 8 ($b$) | 50 |
+| **Pre: PA No controlada** | 28 ($c$) | 22 ($d$) | 50 |
+| **Total** | 70 | 30 | 100 |
+
+**Interpretación de la tabla:**
+- 42 pacientes ya tenían la PA controlada y mantuvieron el control tras la intervención
+- 22 pacientes no la controlaron ni antes ni después
+- **$b = 8$**: 8 pacientes que tenían la PA controlada la "perdieron" tras el programa
+- **$c = 28$**: 28 pacientes que no la tenían controlada **la consiguieron** con la intervención
+
+**Pares discordantes:** $b + c = 8 + 28 = 36 \geq 25$ → no es necesaria la corrección de Yates.
+
+**Cálculo manual:**
+$$\chi^2_{\text{McNemar}} = \frac{(b - c)^2}{b + c} = \frac{(8 - 28)^2}{36} = \frac{400}{36} = 11.11$$
+
+Como $11.11 > 3.84$ ($p < 0.001$), rechazamos $H_0$. La intervención mejora significativamente el control de la PA: 28 pacientes mejoraron frente a solo 8 que empeoraron.
+
+**Nota sobre las proporciones marginales:**
+- Antes: 50/100 = 50% con PA controlada
+- Después: 70/100 = 70% con PA controlada
+- Diferencia: +20 puntos porcentuales ($p < 0.001$ por McNemar)
+
+Si se hubiera aplicado incorrectamente un $\chi^2$ de independencia (ignorando el apareamiento), la prueba sería errónea porque las observaciones no son independientes.
+:::
+
+### Implementación: BioestadisticaR2 vs. Base R
+
+::: {.callout-tip}
+## BioestadisticaR2 — testmcnemar(): Datos apareados
+
+Para datos apareados (donde las observaciones son dependientes), utilizamos la función `testmcnemar()` del paquete `BioestadisticaR2`.
+
+```{r}
+#| label: lst-s12-bio03
+#| lst-cap: "BioestadisticaR2: Test de McNemar para datos apareados"
+#| eval: true
+
+library(BioestadisticaR2)
+
+# Tabla 2×2 apareada: testmcnemar()
+testmcnemar(n11 = 42, n12 = 8, n21 = 28, n22 = 22,
+           fcat = c("Pre: Controlada", "Pre: No controlada"),
+           ccat = c("Post: Controlada", "Post: No controlada"))
+```
+:::
+
+La prueba de McNemar se centra exclusivamente en los pares discordantes: aquellos pacientes cuyo estado clínico cambió entre las dos mediciones. En nuestro ejemplo, el resultado de `testmcnemar()` nos ofrece tres claves para la interpretación:
+
+1.  **Identificación de Cambios (Pares Discordantes):**
+    -   **$b = 8$**: Pacientes que estaban controlados "antes" y pasaron a estar "no controlados" "después" (empeoraron).
+    -   **$c = 28$**: Pacientes que no estaban controlados "antes" y lograron el control "después" (mejoraron).
+
+2.  **Lógica Estadística:** La prueba ignora los pares concordantes (los que siempre estuvieron controlados o nunca lo estuvieron) y evalúa si el número de pacientes que mejoró es significativamente diferente del número que empeoró. Bajo la hipótesis nula ($H_0$), esperaríamos que el número de cambios en ambas direcciones fuera igual ($b = c$).
+
+3.  **Conclusión Clínica:** Dado que nuestro p-valor es `< 0.05` y observamos que 28 pacientes mejoraron frente a solo 8 que empeoraron ($c > b$), rechazamos $H_0$. Concluimos que la intervención tiene un efecto beneficioso estadísticamente significativo sobre el control de la presión arterial.
+
+En resumen, la prueba de McNemar nos permite afirmar que el cambio observado en las proporciones marginales de control de PA (del 50% al 70%) no es debido al azar, sino que refleja un impacto real del programa de intervención sobre los pacientes.
+
+## Diseños de Estudio y Medidas de Asociación {#sec-semana11-asociacion}
+
+La elección de la medida de asociación depende del **diseño del estudio**. Todas se calculan a partir de la tabla 2×2 pero tienen interpretaciones distintas.
+
+### Estructura Epidemiológica de la Tabla 2×2
+
+|  | **Enfermedad (D+)** | **Sin enfermedad (D−)** | **Total** |
+|--|:-------------------:|:-----------------------:|:---------:|
+| **Exposición (E+)** | $a$ | $b$ | $n_1 = a+b$ |
+| **Sin exposición (E−)** | $c$ | $d$ | $n_2 = c+d$ |
+| **Total** | $M_1 = a+c$ | $M_0 = b+d$ | $n$ |
+
+Riesgos (proporciones):
+$$p_1 = \frac{a}{a+b} \quad (\text{riesgo en expuestos}), \qquad p_2 = \frac{c}{c+d} \quad (\text{riesgo en no expuestos})$$
+
+### Estudio de Cohortes: Riesgo Relativo (RR)
+
+En un estudio de cohortes, el seguimiento prospectivo permite estimar riesgos directamente.
+
+::: {.callout-note}
+## Definición: Riesgo Relativo (RR)
+
+$$\widehat{RR} = \frac{p_1}{p_2} = \frac{a/(a+b)}{c/(c+d)}$$
+
+**Intervalo de confianza al 95% (método log):**
+$$IC_{95\%}(RR) = \exp\!\left[\ln\widehat{RR} \pm 1.96 \sqrt{\frac{b}{a(a+b)} + \frac{d}{c(c+d)}}\right]$$
+
+**Interpretación:**
+- $RR = 1$: sin asociación (igual riesgo en expuestos y no expuestos)
+- $RR > 1$: factor de riesgo (la exposición aumenta el riesgo)
+- $RR < 1$: factor protector (la exposición disminuye el riesgo)
+:::
+
+::: {.callout-tip}
+## Ejemplo: Cohorte — tabaquismo y cardiopatía isquémica
+
+Seguimiento de 500 fumadores y 500 no fumadores durante 10 años:
+
+| | Cardiopatía | Sin cardiopatía | Total |
+|--|:-----------:|:---------------:|:-----:|
+| Fumadores | 80 | 420 | 500 |
+| No fumadores | 30 | 470 | 500 |
+
+```{r}
+#| label: lst-s12-r04
+#| lst-cap: "Base R — Cálculo manual de RR e IC 95%: tabaquismo y cardiopatía"
+#| warning: false
+#| eval: true
+
+# Cálculo de RR e IC
+a <- 80; b <- 420; c_ <- 30; d <- 470
+p1 <- a / (a + b); p2 <- c_ / (c_ + d)
+RR <- p1 / p2
+se_logRR <- sqrt(b / (a*(a+b)) + d / (c_*(c_+d)))
+IC_RR <- exp(log(RR) + c(-1, 1) * 1.96 * se_logRR)
+cat("p1 (riesgo fumadores)     =", round(p1, 4), "\n")
+cat("p2 (riesgo no fumadores)  =", round(p2, 4), "\n")
+cat("RR =", round(RR, 3), "\n")
+cat("IC 95%: [", round(IC_RR[1], 3), ",", round(IC_RR[2], 3), "]\n")
+```
+
+**Interpretación:** Los fumadores tienen **2.67 veces más riesgo** de cardiopatía isquémica que los no fumadores ($RR = 2.67$; $IC_{95\%}$: 1.79–3.97). El intervalo no contiene el 1, confirmando asociación estadísticamente significativa.
+:::
+
+### Diferencia de Riesgos (RD) y NNT
+
+::: {.callout-note}
+## Definición: Diferencia de Riesgos (RD)
+
+$$\widehat{RD} = p_1 - p_2 = \frac{a}{a+b} - \frac{c}{c+d}$$
+
+**Intervalo de confianza al 95%:**
+$$IC_{95\%}(RD) = \widehat{RD} \pm 1.96\sqrt{\frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}}$$
+
+**Número Necesario a Tratar/Perjudicar (NNT/NNH):**
+$$NNT = \frac{1}{|\widehat{RD}|}$$
+
+El NNT indica cuántas personas hay que tratar (o exponer) para observar un caso adicional de resultado.
+:::
+
+Para el ejemplo anterior: $RD = 0.16 - 0.06 = 0.10$ → $NNH = 1/0.10 = 10$ (por cada 10 fumadores seguidos durante 10 años, 1 caso adicional de cardiopatía).
+
+### Estudio Transversal: Razón de Prevalencias (RP)
+
+En un estudio transversal, las proporciones son **prevalencias** (no riesgos de incidencia). La medida de elección es la **Razón de Prevalencias (RP)**, cuya fórmula es idéntica al RR pero con prevalencias:
+
+$$\widehat{RP} = \frac{\text{prevalencia en expuestos}}{\text{prevalencia en no expuestos}} = \frac{a/(a+b)}{c/(c+d)}$$
+
+El intervalo de confianza se calcula con la misma fórmula que el RR. **Nota importante:** el OR no es una buena aproximación de la RP cuando la prevalencia es > 10%.
+
+### Estudio Caso-Control: Odds Ratio (OR)
+
+En un estudio caso-control el muestreo es por resultado (se seleccionan casos y controles), por lo que **no se pueden estimar riesgos ni RR directamente**. La medida correcta es el **Odds Ratio**.
+
+::: {.callout-note}
+## Definición: Odds Ratio (OR)
+
+$$\widehat{OR} = \frac{a/b}{c/d} = \frac{ad}{bc}$$
+
+**Intervalo de confianza al 95% (método de Woolf/Wald):**
+$$IC_{95\%}(OR) = \exp\!\left[\ln\widehat{OR} \pm 1.96\sqrt{\frac{1}{a} + \frac{1}{b} + \frac{1}{c} + \frac{1}{d}}\right]$$
+
+**Propiedades:**
+- $OR = 1$: sin asociación
+- $OR > 1$: exposición asociada con mayor odds de resultado
+- $OR \approx RR$ cuando la enfermedad es **rara** (prevalencia < 10%)
+- `tabla2x2()` de BioestadisticaR2 calcula OR e IC directamente
+:::
+
+::: {.callout-tip}
+## Ejemplo: Caso-Control — alcohol y cirrosis hepática
+
+```{r}
+#| label: lst-s12-bio04
+#| lst-cap: "BioestadisticaR2 — tabla2x2(): caso-control, OR con IC"
+#| warning: false
+#| message: false
+
+library(BioestadisticaR2)
+
+# 200 casos de cirrosis y 200 controles
+# Consumo excesivo de alcohol: 120 casos, 60 controles
+tabla2x2(o11 = 120, o12 = 80, o21 = 60, o22 = 140,
+         fcat = c("Alcohol excesivo", "Alcohol no excesivo"),
+         ccat = c("Caso (cirrosis)", "Control"),
+         estudio = "CC")
+```
+
+**Interpretación:** $OR = 3.50$ ($IC_{95\%}$: 2.28–5.37). Las personas con consumo excesivo de alcohol tienen **3.5 veces más odds** de cirrosis que las de consumo no excesivo. El resultado es altamente significativo ($p < 0.001$).
+:::
+
+### Resumen de Intervalos de Confianza
+
+| Medida | Fórmula del IC 95% |
+|--------|-------------------|
+| $RR$ | $\exp\!\left[\ln\widehat{RR} \pm 1.96\sqrt{\frac{b}{a(a+b)}+\frac{d}{c(c+d)}}\right]$ |
+| $OR$ | $\exp\!\left[\ln\widehat{OR} \pm 1.96\sqrt{\frac{1}{a}+\frac{1}{b}+\frac{1}{c}+\frac{1}{d}}\right]$ |
+| $RD$ | $\widehat{RD} \pm 1.96\sqrt{\frac{p_1(1-p_1)}{n_1}+\frac{p_2(1-p_2)}{n_2}}$ |
+
+---
+
+## Resumen Comparativo: ¿Qué Medida Usar? {#sec-semana11-resumen-medidas}
+
+| Diseño del estudio | Medida principal | Medida secundaria | Función R |
+|-------------------|-----------------|------------------|-----------|
+| **Cohorte** (prospectivo) | RR (Riesgo Relativo) | RD, NNT | Cálculo manual |
+| **Transversal** (prevalencia) | RP (Razón de Prevalencias) | RD | Cálculo manual |
+| **Caso-Control** (retrospectivo) | OR (Odds Ratio) | — | `tabla2x2()` |
+| **Ensayo clínico (ECA)** | RR, RD, NNT | OR | Cálculo manual |
+| **Apareado / Antes-Después** | McNemar $\chi^2$ | Diferencia de proporciones | `mcnemar.test()`, `tabla2x2(estudio="AP")` |
+
+::: {.callout-warning}
+## Cuándo OR ≈ RR
+
+El OR sobreestima al RR cuando la prevalencia/incidencia del resultado es alta (> 10%). En enfermedades raras, $OR \approx RR$. En estudios caso-control, siempre calcular OR (el RR no es estimable sin incidencia).
+:::
+
+---
+
+## Implementación en R {#sec-semana11-r}
+
+### Normalidad con testnormal() y shapiro.test()
+
+```{r}
+#| label: lst-s12-bio05
+#| lst-cap: "BioestadisticaR2 — testnormal() y Base R — shapiro.test()"
+#| warning: false
+#| message: false
+
+library(BioestadisticaR2)
+
+# Con BioestadisticaR2 (reporte completo con histograma)
+testnormal(osteo$imc)
+
+# Con R base
+shapiro.test(osteo$imc)
+```
+
+### Chi-cuadrado con tabla2x2() y chisq.test()
+
+```{r}
+#| label: lst-s12-r05
+#| lst-cap: "Comparación BioestadisticaR2 vs. Base R — Chi-cuadrado en tabla 2×2"
+#| warning: false
+#| message: false
+
+# Con BioestadisticaR2 (tabla 2x2, Chi-cuadrado + OR + Fisher integrado)
+tabla2x2(o11 = 44, o12 = 9, o21 = 26, o22 = 15,
+         fcat = c("No fumador", "Fumador"),
+         ccat = c("Sin osteoporosis", "Con osteoporosis"))
+
+# Con R base (independiente y Fisher por separado)
+m <- matrix(c(44, 26, 9, 15), nrow = 2,
+            dimnames = list(c("No fumador", "Fumador"),
+                            c("Sin osteoporosis", "Con osteoporosis")))
+cat("\n--- chisq.test() de R base ---\n")
+chisq.test(m)
+cat("\n--- fisher.test() de R base ---\n")
+fisher.test(m)
+```
+
+### McNemar con tabla2x2() y mcnemar.test()
+
+```{r}
+#| label: lst-s12-r06
+#| lst-cap: "Comparación BioestadisticaR2 vs. Base R — Test de McNemar"
+#| eval: true
+#| warning: false
+#| message: false
+
+# Base R: mcnemar.test() — control de PA antes y después del programa
+m_paired <- matrix(c(42, 28, 8, 22), nrow = 2,
+                   dimnames = list(
+                     c("Pre: Controlada", "Pre: No controlada"),
+                     c("Post: Controlada", "Post: No controlada")))
+
+cat("=== mcnemar.test() — Base R ===\n")
+mcnemar.test(m_paired, correct = FALSE)  # Sin corrección (b+c=36 >= 25)
+
+# BioestadisticaR2: tabla2x2(..., estudio = "AP")
+# (ver sección 12.5.5 para la salida completa; requiere BioestadisticaR2)
+# tabla2x2(o11=42, o12=8, o21=28, o22=22,
+#          fcat = c("Pre: Controlada","Pre: No controlada"),
+#          ccat = c("Post: Controlada","Post: No controlada"),
+#          estudio = "AP")
+```
+
+### Tablas r×c con tablarxc()
+
+```{r}
+#| label: lst-s12-bio06
+#| lst-cap: "BioestadisticaR2 — tablarxc(): grupos de edad y tabaquismo"
+#| warning: false
+#| message: false
+
+# Tabla 3x2: tabaco y grupos de edad
+tablarxc(fvar = osteo$grupo_edad, cvar = osteo$tabaco)
+```
+
+### Cálculo Manual de RR, RD y OR
+
+```{r}
+#| label: lst-s12-r07
+#| lst-cap: "Base R — Función completa para RR, OR, RD e IC 95%"
+#| eval: true
+#| warning: false
+
+# Función para RR, RD, OR con IC (diseños no apareados)
+calcular_medidas <- function(a, b, c, d, conf = 0.95) {
+  z  <- qnorm(1 - (1 - conf)/2)
+  n1 <- a + b; n2 <- c + d
+  p1 <- a/n1;  p2 <- c/n2
+
+  RR    <- p1/p2
+  IC_RR <- exp(log(RR) + c(-1,1) * z * sqrt(b/(a*n1) + d/(c*n2)))
+
+  OR    <- (a*d)/(b*c)
+  IC_OR <- exp(log(OR) + c(-1,1) * z * sqrt(1/a + 1/b + 1/c + 1/d))
+
+  RD    <- p1 - p2
+  IC_RD <- RD + c(-1,1) * z * sqrt(p1*(1-p1)/n1 + p2*(1-p2)/n2)
+
+  cat(sprintf("RR  = %.3f  IC%d%%: [%.3f, %.3f]\n",
+              RR, round(conf*100), IC_RR[1], IC_RR[2]))
+  cat(sprintf("OR  = %.3f  IC%d%%: [%.3f, %.3f]\n",
+              OR, round(conf*100), IC_OR[1], IC_OR[2]))
+  cat(sprintf("RD  = %.3f  IC%d%%: [%.3f, %.3f]\n",
+              RD, round(conf*100), IC_RD[1], IC_RD[2]))
+  cat(sprintf("NNT/NNH = %.1f\n", 1/abs(RD)))
+}
+
+# Cohorte: tabaquismo y cardiopatía isquémica
+cat("=== Cohorte: tabaquismo y cardiopatía ===\n")
+calcular_medidas(a=80, b=420, c=30, d=470)
+```
+
+### Ejemplo Integrado con Dataset osteo
+
+::: {.callout-tip}
+## Ejemplo: Análisis completo — datos osteo UGR
+
+El dataset `osteo` contiene datos de 94 pacientes diabéticos atendidos en la Facultad de Medicina de la UGR (Pedro Femia et al.). Realizamos un análisis completo de la asociación entre tabaquismo y osteoporosis.
+
+```{r}
+#| label: lst-s12-bio07
+#| lst-cap: "BioestadisticaR2 — Análisis completo: osteo dataset UGR"
+#| warning: false
+#| message: false
+
+library(BioestadisticaR2)
+
+# 1. Normalidad del IMC
+testnormal(osteo$imc)
+
+# 2. Tabla de contingencia y prueba Chi-cuadrado: tabaquismo × osteoporosis
+tabla2x2(fvar = osteo$tabaco, cvar = osteo$osteo_cue,
+         fcat = c("No fumador", "Fumador"),
+         ccat = c("Sin osteoporosis", "Con osteoporosis"))
+
+# 3. Tabla de 3 grupos: grupo_edad × tabaco
+tablarxc(fvar = osteo$grupo_edad, cvar = osteo$tabaco)
+```
+
+:::
+
+
+## Ajuste por Confusión: El Estimador de Mantel-Haenszel
+
+En estudios epidemiológicos, a menudo observamos una asociación entre una exposición y una enfermedad que parece variar según los niveles de una tercera variable, llamada **variable de confusión** (o *confounder*). Si no controlamos esta variable, podemos llegar a conclusiones erróneas —incluso observar una **Paradoja de Simpson**, donde una asociación aparente en el total desaparece o se invierte al estratificar por la variable de confusión.
+
+### El Estimador de Mantel-Haenszel (MH)
+
+El estimador de Mantel-Haenszel es una técnica clásica para combinar los odds ratios (OR) obtenidos de varios estratos ($k$) de una variable de confusión, proporcionando un OR ajustado global. Se calcula como:
+
+$$OR_{MH} = \frac{\sum_{i=1}^{k} \frac{a_i d_i}{n_i}}{\sum_{i=1}^{k} \frac{b_i c_i}{n_i}}$$
+
+Donde para el estrato $i$:
+- $a_i, b_i, c_i, d_i$: celdas de la tabla 2×2.
+- $n_i$: total de individuos en el estrato.
+
+**Criterio del 10%:**
+Para evaluar si una variable es un confounder clínicamente relevante, comparamos el OR crudo (total) con el OR ajustado (MH). Si la diferencia entre ambos es $\geq 10\%$, se concluye que existe una confusión sustancial, y el OR ajustado por Mantel-Haenszel debe utilizarse como la medida de asociación más precisa.
+
+### Ejemplo Numérico en R: Evaluación de Confounding
+
+Supongamos un estudio sobre el efecto de un nuevo fármaco (Fármaco A) en la recuperación de una enfermedad respiratoria, estratificado por la gravedad del paciente (Leve vs. Grave).
+
+```{r}
+#| label: lst-s12-mh
+#| lst-cap: "Cálculo del OR de Mantel-Haenszel en R"
+#| message: false
+#| warning: false
+
+library(epitools)
+
+# Estrato 1: Leve
+# Fármaco A (expuesto), recuperación (caso)
+a1 <- 40; b1 <- 10; c1 <- 10; d1 <- 40
+table1 <- matrix(c(a1, b1, c1, d1), nrow = 2, byrow = TRUE)
+cat(sprintf("Tabla estrato 1 (Leve):\n")); print(table1)
+or1 <- (a1 * d1) / (b1 * c1)  # OR estrato 
+print(sprintf("OR estrato 1 (Leve) = %.3f", or1))
+
+# Estrato 2: Grave
+a2 <- 10; b2 <- 40; c2 <- 5; d2 <- 45
+table2 <- matrix(c(a2, b2, c2, d2), nrow = 2, byrow = TRUE)
+or2 <- (a2 * d2) / (b2 * c2)  # OR estrato
+cat(sprintf("\nTabla estrato 2 (Grave):\n")); print(table2)
+print(sprintf("OR estrato 2 (Grave) = %.3f", or2))
+      
+# Array de tablas (estratificación)
+tables <- array(c(a1, b1, c1, d1, a2, b2, c2, d2), dim = c(2, 2, 2))
+tables <- aperm(tables, c(2, 1, 3))  # Reordenar dimensiones para epitools
+
+# 1. OR Crudo (sumamos los estratos)
+total_table <- table1 + table2
+or_crudo <- (total_table[1,1] * total_table[2,2]) / (total_table[1,2] * total_table[2,1])
+cat(sprintf("Tabla total:\n")); print(total_table)
+
+# 2. OR Ajustado por Mantel-Haenszel
+mh <- mantelhaen.test(tables, correct = FALSE)
+or_mh <- mh$estimate
+
+cat(sprintf("OR Crudo: %.3f\n", or_crudo))
+cat(sprintf("OR Mantel-Haenszel: %.3f\n", or_mh))
+
+# 3. Aplicación de la regla del 10%
+diff_pct <- abs(or_crudo - or_mh) / or_crudo * 100
+cat(sprintf("Diferencia relativa: %.1f%%\n", diff_pct))
+```
+
+**Interpretación Epidemiológica:**
+En este estudio, el OR crudo (total) es `r round(or_crudo, 2)`, mientras que el OR ajustado (MH) es `r round(or_mh, 2)`. La diferencia relativa es de `r round(diff_pct, 1)`%. Al ser mayor del 10%, existe un efecto de confusión sustancial provocado por la "gravedad". 
+
+La gravedad actúa como un factor de confusión ya que está asociada tanto a la probabilidad de recibir el Fármaco A (sesgo de indicación) como a la probabilidad de recuperación (pronóstico). El OR crudo subestima (o sobreestima) el efecto real al mezclar el impacto del fármaco con la mayor o menor gravedad basal de los pacientes. Al ajustar por MH, eliminamos esta confusión. 
+
+Sin embargo, es crucial notar que existe una **interacción** (modificación del efecto): el fármaco parece ser más eficaz en pacientes leves que en pacientes graves. En presencia de una interacción tan marcada, la mejor recomendación epidemiológica es presentar los **resultados estratificados**, ya que un único OR ajustado (MH) ocultaría esta heterogeneidad clínicamente relevante. 
+
+Por último, para superar las limitaciones de los métodos tradicionales, la generalización de la estandarización mediante la **g-formula** (Robins, 1987) representa hoy en día una alternativa avanzada y robusta para ajustar el efecto del fármaco. Para aquellos interesados en introducirse en la inferencia causal desde una perspectiva tanto histórica como computacional, se recomienda como punto de partida el tutorial *Computational Causal Inference* (Smith & Luque-Fernandez, 2020, publicado en *Statistics in Medicine*), el cual ofrece una excelente guía con ejemplos prácticos implementados en **R, Python y Stata**.
+
+## Ejercicios del tema
+
+**Ejercicio 11.1:** En un estudio sobre el consumo de alcohol y diabetes tipo 2 se obtiene la siguiente tabla 2×2:
+
+| | Diabetes | Sin diabetes | Total |
+|--|:-------:|:------------:|:-----:|
+| Bebedor habitual | 45 | 105 | 150 |
+| No bebedor | 20 | 130 | 150 |
+
+a) Calcule las frecuencias esperadas bajo $H_0$. b) Calcule el estadístico $\chi^2$ manualmente. c) ¿Existe asociación con $\alpha = 0.05$?
+
+**Ejercicio 11.2:** Un ensayo clínico compara tres tratamientos para la hipertensión: A (control), B (dosis baja), C (dosis alta). Los resultados son:
+
+| Tratamiento | Controlada | No controlada |
+|-------------|:----------:|:-------------:|
+| A | 25 | 35 |
+| B | 40 | 20 |
+| C | 45 | 15 |
+
+Usando la prueba $\chi^2$ de homogeneidad con $\alpha = 0.05$, ¿difieren los tratamientos en su eficacia? ($gl = 2$, $\chi^2_{0.05} = 5.99$).
+
+**Ejercicio 11.3:** Una tabla 2×2 tiene celdas $(3, 12, 8, 7)$. a) Compruebe si se cumple la condición de aplicación del $\chi^2$. b) ¿Qué alternativa utilizaría? c) Aplique la alternativa e interprete.
+
+**Ejercicio 11.4 (McNemar):** En un estudio de concordancia diagnóstica, 80 pacientes con sospecha de infección por _Helicobacter pylori_ son evaluados con dos pruebas: test de aliento con urea (TAU) y serología (SERO). Los resultados son:
+
+|  | **SERO: +** | **SERO: −** | **Total** |
+|--|:-----------:|:-----------:|:---------:|
+| **TAU: +** | 38 | 12 | 50 |
+| **TAU: −** | 5 | 25 | 30 |
+| **Total** | 43 | 37 | 80 |
+
+a) ¿Por qué es incorrecto aplicar el test $\chi^2$ de independencia aquí?
+b) Identifique los pares discordantes ($b$ y $c$) e indique cuántos son.
+c) Calcule el estadístico de McNemar (con y sin corrección de Yates).
+d) ¿Difieren significativamente las dos pruebas diagnósticas en su tasa de positividad? ¿Cuál detecta más casos?
+
+**Ejercicio 11.5:** Un estudio de cohortes sigue a 1000 trabajadores expuestos a un contaminante y 1000 no expuestos durante 5 años. Se observan 60 casos de enfermedad pulmonar en expuestos y 20 en no expuestos. a) Calcule el RR e interprete. b) Calcule el IC 95%. c) Calcule el RD y el NNH.
+
+**Ejercicio 11.6:** En un estudio caso-control sobre infarto de miocardio, se estudia la asociación con hipertensión. Se reclutan 200 casos (infartos) y 200 controles. De los casos, 120 son hipertensos; de los controles, 80. a) Construya la tabla 2×2. b) Calcule el OR. c) Calcule el IC 95% del OR. d) ¿Por qué no es adecuado calcular el RR en este diseño?
+
+**Ejercicio 11.7:** En un estudio transversal sobre la prevalencia de diabetes y obesidad en 800 adultos, 200 son obesos (IMC $\geq 30$) y 600 no obesos. Entre los obesos, 60 tienen diabetes; entre los no obesos, 40 tienen diabetes. a) Calcule la RP. b) Calcule el OR. c) ¿Cuál es la medida más apropiada? d) ¿Son similares los resultados? Explique por qué.
+
+---
+
+## Respuestas a los Ejercicios {#sec-semana11-respuestas}
+
+**Ejercicio 11.1:**
+a) $E_{11} = 150 \times 65/300 = 32.5$; $E_{12} = 150 \times 235/300 = 117.5$; $E_{21} = 32.5$; $E_{22} = 117.5$.
+b) $\chi^2 = (45-32.5)^2/32.5 + (105-117.5)^2/117.5 + (20-32.5)^2/32.5 + (130-117.5)^2/117.5 \approx 4.81 + 1.33 + 4.81 + 1.33 = 12.28$.
+c) $\chi^2_{0.05, 1} = 3.84$. Como $12.28 > 3.84$ ($p < 0.001$), rechazamos $H_0$: existe asociación significativa entre consumo de alcohol y diabetes tipo 2.
+
+**Ejercicio 11.2:**
+Frecuencias esperadas: $n = 180$, marginales columna: 110 controladas, 70 no controladas. $E_{A,ctrl} = 60 \times 110/180 = 36.67$; calculando todos: $\chi^2 \approx 15.2 > 5.99$, $gl = 2$, $p < 0.001$. Los tres tratamientos tienen eficacias significativamente diferentes. La dosis alta (75% controlados) es la más eficaz.
+
+**Ejercicio 11.3:**
+a) $E_{11} = 11 \times 11/30 = 4.03 < 5$; condición NO cumplida.
+b) Usar **prueba exacta de Fisher**.
+c) Con $n = 30$ y celdas $(3, 12, 8, 7)$: $OR = 3 \times 7/(12 \times 8) = 0.22$. La prueba exacta de Fisher daría $p \approx 0.07$, no significativo al 5%.
+
+**Ejercicio 11.4 (McNemar):**
+a) Las dos pruebas se aplican al mismo paciente, por lo que las observaciones son dependientes entre sí. El test $\chi^2$ de independencia requiere que todas las observaciones sean independientes; violarlo inflaría artificialmente el tamaño de muestra efectivo.
+b) Pares discordantes: $b = 12$ (TAU+/SERO−) y $c = 5$ (TAU−/SERO+). Total: $b + c = 17$.
+c) Como $b + c = 17 < 25$, se recomienda la corrección de Yates:
+   - Sin corrección: $\chi^2 = (12-5)^2/17 = 49/17 = 2.88$
+   - Con corrección (Yates): $\chi^2 = (|12-5|-1)^2/17 = 36/17 = 2.12$
+d) Sin corrección: $\chi^2 = 2.88$, $p \approx 0.090$. Con corrección de Yates: $\chi^2 = 2.12$, $p \approx 0.145$. Con $\alpha = 0.05$, **no rechazamos** $H_0$ en ningún caso: no hay evidencia suficiente de que las dos pruebas difieran significativamente en su tasa de positividad. No obstante, el TAU detecta más positivos que la serología ($b = 12 > c = 5$), lo que sugiere una tendencia a mayor sensibilidad del TAU, aunque no alcanza significancia estadística con esta muestra.
+
+**Ejercicio 11.5:**
+a) $RR = (60/1000)/(20/1000) = 3.0$. Los expuestos tienen **3 veces más riesgo** de enfermedad pulmonar.
+b) $SE_{\ln RR} = \sqrt{940/(60 \times 1000) + 980/(20 \times 1000)} = \sqrt{0.01567 + 0.049} = 0.256$; $IC_{95\%} = \exp(\ln3 \pm 0.501) = [1.50, 5.99]$.
+c) $RD = 0.060 - 0.020 = 0.040$; $NNH = 1/0.040 = 25$ (por cada 25 trabajadores expuestos durante 5 años, 1 caso adicional de enfermedad pulmonar).
+
+**Ejercicio 11.6:**
+a) Tabla: hipertensos $(120, 80, 200)$; normotensos $(80, 120, 200)$; totales $(200, 200, 400)$.
+b) $OR = (120 \times 120)/(80 \times 80) = 14400/6400 = 2.25$.
+c) $IC_{95\%}: \exp(\ln 2.25 \pm 1.96\sqrt{1/120 + 1/80 + 1/80 + 1/120}) = \exp(0.811 \pm 0.369) = [1.44, 3.51]$.
+d) En un estudio caso-control, el muestreo es por resultado (se seleccionan casos y controles), por lo que los totales de fila son fijados por el investigador y no reflejan la incidencia real → no se puede estimar el riesgo ni el RR directamente.
+
+**Ejercicio 11.7:**
+a) $RP = (60/200)/(40/600) = 0.30/0.067 = 4.50$. Los obesos tienen 4.5 veces la prevalencia de diabetes.
+b) $OR = (60 \times 560)/(140 \times 40) = 33600/5600 = 6.0$.
+c) La medida apropiada en un estudio transversal es la **RP**, no el OR.
+d) Los resultados difieren notablemente ($RP = 4.5$ vs $OR = 6.0$) porque la prevalencia de diabetes no es rara (50% en obesos): el OR sobreestima la RP cuando la prevalencia es alta (> 10%). Usar siempre RP en estudios transversales.
+
+---
+
+## Recomendaciones de Métodos Avanzados {#sec-semana11-avanzados}
+
+::: {.callout-tip}
+Para profundizar en estos temas, se recomienda consultar textos especializados como *Categorical Data Analysis* de Alan Agresti o literatura específica en bioestadística avanzada enfocada en inferencia causal.
+
+Para ampliar los contenidos de este capítulo con técnicas estadísticas avanzadas, visita:
+
+**[→ Bioestadística Avanzada — M.A. Luque Fernández](https://migariane.github.io/Bioestadistica)**
+:::
+
+---
+
+## Lecturas Recomendadas Adicionales {#sec-semana11-resources}
+
+| Tema | Referencia | Relevancia para este capítulo |
+|------|-----------|-------------------------------|
+| Datos categóricos | @Agresti2013 | Tablas de contingencia, χ², modelos log-lineales |
+| Datos apareados | @McNemar1947 | Artículo original de la prueba de McNemar |
+| Tasas y proporciones | @Fleiss2003 | IC exactos, OR, RR y prueba de McNemar |
+| Estadística médica | @Altman1991 | Tablas 2×2 y medidas de asociación |
+| Epidemiología | @Rothman2008 | RR, OR, diseños cohorte/caso-control |
+| Inferencia Causal | @Robins1987 | G-formula para estandarización |
+| Inferencia Causal | @Smith2020 | Tutorial de inferencia causal computacional (R, Python, Stata) |
+| Epidemiología analítica | @Szklo2007 | Medidas de efecto y diseños epidemiológicos |
+| Introducción estadística | @OpenIntro2019 | Inferencia sobre proporciones |
+

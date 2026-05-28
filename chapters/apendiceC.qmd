@@ -1,0 +1,608 @@
+# Apéndice C: Guía de R para Estadística Médica {#sec-apendiceC}
+
+Esta guía cubre los fundamentos de R orientados a la práctica de la bioestadística y la investigación médica: importación de datos clínicos, manejo de variables categóricas (exposición, enfermedad, grupo), descripción de cohortes, contraste de hipótesis y visualización. Complementa al @sec-apendiceB (paquete `BioestadisticaR2`) y al @sec-apendiceA (repaso matemático).
+
+::: {.callout-tip}
+## Cómo usar este apéndice
+El material está organizado como referencia rápida. Cada sección incluye ejemplos ejecutables con datos clínicos simulados y, donde procede, código no ejecutable (`eval: false`) que muestra la sintaxis para tareas habituales en investigación médica (importar SPSS, ajustar modelos de supervivencia, etc.).
+:::
+
+---
+
+## C.1 Conceptos Fundamentales {#sec-apendiceC-fundamentos}
+
+### Asignación, Tipos y Vectores
+
+```{r}
+#| lst-label: lst-apendiceC-1
+#| lst-cap: "Tipos básicos y vectores en R"
+
+# Asignación con <- (recomendado en R)
+edad     <- 45L            # entero
+peso_kg  <- 78.4           # numérico (double)
+sexo     <- "Mujer"        # carácter
+diabetes <- TRUE           # lógico
+
+# Vectores con c()
+edades       <- c(25, 30, 45, 22, 60)
+diagnostico  <- c("HTA", "DM2", "HTA", "Sano", "DM2")
+hospitalizado <- c(FALSE, TRUE, TRUE, FALSE, TRUE)
+
+# Inspeccionar
+class(edades);  length(edades);  range(edades)
+```
+
+### Indexación: posicional y lógica
+
+```{r}
+#| lst-label: lst-apendiceC-2
+#| lst-cap: "Indexación de vectores"
+
+# Posicional
+edades[1]            # primer paciente
+edades[c(1, 3, 5)]   # pacientes 1, 3 y 5
+edades[-1]           # todos menos el primero
+
+# Lógica (filtros clínicos)
+edades[edades >= 45]                # adultos mayores
+diagnostico[hospitalizado]          # diagnósticos de hospitalizados
+edades[diagnostico == "DM2"]        # edad de diabéticos
+```
+
+### Valores Perdidos: `NA`
+
+En estudios clínicos los datos faltantes son la norma, no la excepción. R los representa con `NA`.
+
+```{r}
+#| lst-label: lst-apendiceC-3
+#| lst-cap: "Manejo de valores perdidos"
+
+hba1c <- c(6.2, 7.8, NA, 8.5, 6.9, NA)
+
+mean(hba1c)                # NA: cualquier NA contamina el resultado
+mean(hba1c, na.rm = TRUE)  # 7.35: ignorar NAs
+
+is.na(hba1c)               # vector lógico
+sum(is.na(hba1c))          # 2 valores perdidos
+hba1c[!is.na(hba1c)]       # eliminar NAs
+```
+
+::: {.callout-warning}
+## NA no es 0 ni cadena vacía
+`NA == NA` devuelve `NA`, no `TRUE`. Usa siempre `is.na(x)` para comprobar valores perdidos. En análisis observacional, documenta el patrón de pérdida (¿MCAR, MAR o MNAR?) antes de elegir entre análisis de casos completos, imputación múltiple o ponderación inversa.
+:::
+
+---
+
+## C.2 Estructuras de Datos {#sec-apendiceC-estructuras}
+
+### Data Frames y Tibbles
+
+El **data frame** es la estructura central de R para datos tabulares. Un *tibble* (de `tibble`/`dplyr`) es un data frame con impresión más legible.
+
+```{r}
+#| lst-label: lst-apendiceC-4
+#| lst-cap: "Construcción de un data frame clínico"
+
+pacientes <- data.frame(
+  id        = 1:6,
+  edad      = c(25, 30, 45, 60, 55, 72),
+  sexo      = c("M", "F", "F", "M", "F", "M"),
+  imc       = c(22.5, 28.0, 31.2, 26.5, 33.1, 24.8),
+  hba1c     = c(5.4, 6.2, 7.8, 6.8, 8.5, 5.9),
+  diabetes  = c(0, 0, 1, 1, 1, 0)
+)
+
+str(pacientes)        # estructura y tipos
+head(pacientes, 3)    # primeras 3 filas
+dim(pacientes)        # filas x columnas
+names(pacientes)      # nombres de variables
+```
+
+### Listas
+
+Las listas almacenan objetos heterogéneos (el resultado típico de un test estadístico es una lista):
+
+```{r}
+#| lst-label: lst-apendiceC-5
+#| lst-cap: "Listas: contenedores heterogéneos"
+
+resultado <- list(
+  test       = "t-Student",
+  p_valor    = 0.034,
+  ic95       = c(0.12, 1.85),
+  n_total    = 120
+)
+resultado$p_valor
+resultado[["ic95"]]
+```
+
+---
+
+## C.3 Factores y Variables Categóricas {#sec-apendiceC-factores}
+
+En investigación médica, casi toda variable de exposición o desenlace es **categórica** (caso/control, expuesto/no expuesto, grupo de tratamiento). R las representa con **factores**.
+
+```{r}
+#| lst-label: lst-apendiceC-6
+#| lst-cap: "Factores, niveles y niveles de referencia"
+
+# Convertir a factor
+pacientes$sexo_f <- factor(pacientes$sexo, levels = c("M", "F"),
+                           labels = c("Hombre", "Mujer"))
+pacientes$diabetes_f <- factor(pacientes$diabetes,
+                               levels = c(0, 1),
+                               labels = c("No diabético", "Diabético"))
+
+levels(pacientes$diabetes_f)    # niveles
+table(pacientes$diabetes_f)     # frecuencia
+```
+
+### Recodificación con `cut()` y `dplyr::case_when()`
+
+```{r}
+#| lst-label: lst-apendiceC-7
+#| lst-cap: "Categorizar variables continuas"
+
+library(dplyr)
+
+pacientes <- pacientes %>%
+  mutate(
+    # Grupos de edad clínicos
+    edad_grupo = cut(edad,
+                     breaks = c(0, 40, 65, Inf),
+                     labels = c("<40", "40-64", ">=65"),
+                     right  = FALSE),
+    # Clasificación IMC (OMS)
+    imc_cat = case_when(
+      imc <  18.5             ~ "Bajo peso",
+      imc <  25               ~ "Normopeso",
+      imc <  30               ~ "Sobrepeso",
+      imc >= 30               ~ "Obesidad"
+    ),
+    imc_cat = factor(imc_cat,
+                     levels = c("Bajo peso", "Normopeso",
+                                "Sobrepeso", "Obesidad"))
+  )
+
+table(pacientes$edad_grupo, pacientes$imc_cat)
+```
+
+::: {.callout-important}
+## Nivel de referencia
+En regresión (lineal, logística, Cox), el **nivel de referencia** del factor define la categoría con la que se compara cada coeficiente. Por defecto R toma el primer nivel alfabético. Para forzar uno específico (p. ej. *Normopeso* como referencia):
+
+```{r}
+#| eval: false
+pacientes$imc_cat <- relevel(pacientes$imc_cat, ref = "Normopeso")
+```
+:::
+
+---
+
+## C.4 Importación de Datos Clínicos {#sec-apendiceC-importacion}
+
+En la práctica los datos llegan en CSV, Excel, SPSS o Stata. El paquete `readr` y `haven` cubren todos los formatos habituales en investigación biomédica.
+
+```{r}
+#| lst-label: lst-apendiceC-8
+#| lst-cap: "Importación desde distintos formatos"
+#| eval: false
+
+# CSV (recomendado: readr es más rápido y robusto que read.csv)
+library(readr)
+datos <- read_csv("datos/cohorte.csv")
+
+# Excel (.xlsx)
+library(readxl)
+datos <- read_excel("datos/cohorte.xlsx", sheet = "Visita1")
+
+# SPSS (.sav) -- muy común en investigación clínica
+library(haven)
+datos <- read_sav("datos/cohorte.sav")
+datos <- as_factor(datos)   # convertir variables etiquetadas a factor
+
+# Stata (.dta)
+datos <- read_dta("datos/cohorte.dta")
+
+# Exportar a CSV con codificación correcta (acentos)
+write_csv(datos, "datos/cohorte_limpia.csv")
+```
+
+::: {.callout-tip}
+## Rutas robustas con `here::here()`
+Evita rutas absolutas (`"C:/Users/.../"`). Usa proyectos de RStudio y `here::here("datos", "cohorte.csv")` para que el código funcione en cualquier máquina.
+:::
+
+---
+
+## C.5 Manipulación de Datos con `dplyr` {#sec-apendiceC-dplyr}
+
+Las cinco verbos esenciales de `dplyr` para preparar una cohorte:
+
+| Verbo        | Acción                              |
+|--------------|-------------------------------------|
+| `select()`   | elegir columnas                     |
+| `filter()`   | filtrar filas                       |
+| `mutate()`   | crear/modificar variables           |
+| `summarise()`| resumir (con o sin `group_by()`)    |
+| `arrange()`  | ordenar                             |
+
+```{r}
+#| lst-label: lst-apendiceC-9
+#| lst-cap: "Pipeline típico de preparación de una cohorte"
+
+library(dplyr)
+
+resumen <- pacientes %>%
+  filter(edad >= 40) %>%                                  # adultos
+  mutate(hba1c_alta = if_else(hba1c >= 6.5, 1L, 0L)) %>%  # ≥6.5: DM
+  group_by(sexo_f) %>%
+  summarise(
+    n             = n(),
+    edad_media    = mean(edad, na.rm = TRUE),
+    imc_mediana   = median(imc, na.rm = TRUE),
+    pct_hba1c_alta = mean(hba1c_alta, na.rm = TRUE) * 100,
+    .groups = "drop"
+  )
+resumen
+```
+
+### Uniones (`*_join`) y reestructuración (`pivot_*`)
+
+```{r}
+#| lst-label: lst-apendiceC-10
+#| lst-cap: "Unir tablas y pivotar a formato largo/ancho"
+#| eval: false
+
+library(dplyr); library(tidyr)
+
+# Unir cohorte con tabla de laboratorio por id de paciente
+cohorte_lab <- pacientes %>%
+  left_join(laboratorio, by = "id")
+
+# Pasar de ancho (una columna por visita) a largo (una fila por visita)
+largo <- visitas %>%
+  pivot_longer(cols = starts_with("pas_v"),
+               names_to  = "visita",
+               values_to = "pas_mmHg")
+```
+
+---
+
+## C.6 Estadísticos Descriptivos {#sec-apendiceC-descriptivos}
+
+### Variables Continuas
+
+```{r}
+#| lst-label: lst-apendiceC-11
+#| lst-cap: "Resumen univariante de variables continuas"
+
+summary(pacientes$imc)                                  # min, Q1, med, mean, Q3, max
+c(media = mean(pacientes$imc),
+  de    = sd(pacientes$imc),
+  mediana = median(pacientes$imc),
+  RIC = IQR(pacientes$imc))
+
+# Cuantiles personalizados
+quantile(pacientes$imc, probs = c(0.05, 0.25, 0.5, 0.75, 0.95))
+```
+
+### Variables Categóricas
+
+```{r}
+#| lst-label: lst-apendiceC-12
+#| lst-cap: "Frecuencias absolutas y relativas"
+
+# Frecuencias
+table(pacientes$imc_cat)
+
+# Proporciones
+prop.table(table(pacientes$imc_cat)) * 100
+
+# Tabla de contingencia 2x2
+tabla <- table(diabetes = pacientes$diabetes_f,
+               obesidad = pacientes$imc >= 30)
+tabla
+prop.table(tabla, margin = 1) * 100   # % por fila (riesgo en expuestos)
+```
+
+### Resumen Estratificado
+
+```{r}
+#| lst-label: lst-apendiceC-13
+#| lst-cap: "Descriptivos por grupo (típico de Tabla 1)"
+
+pacientes %>%
+  group_by(diabetes_f) %>%
+  summarise(
+    n          = n(),
+    edad_media = mean(edad),
+    edad_de    = sd(edad),
+    imc_mediana = median(imc),
+    imc_RIC    = IQR(imc),
+    .groups = "drop"
+  )
+```
+
+---
+
+## C.7 Funciones Propias y Control de Flujo {#sec-apendiceC-funciones}
+
+### Definir funciones
+
+```{r}
+#| lst-label: lst-apendiceC-14
+#| lst-cap: "Función propia: cálculo e interpretación clínica"
+
+# Cálculo del IMC con interpretación
+clasificar_imc <- function(peso_kg, altura_m) {
+  imc <- peso_kg / (altura_m^2)
+  categoria <- cut(imc,
+                   breaks = c(0, 18.5, 25, 30, Inf),
+                   labels = c("Bajo peso", "Normopeso",
+                              "Sobrepeso", "Obesidad"),
+                   right = FALSE)
+  data.frame(imc = round(imc, 1), categoria = categoria)
+}
+
+clasificar_imc(peso_kg = c(55, 72, 95),
+               altura_m = c(1.70, 1.75, 1.78))
+```
+
+### Control de flujo: `if`, `for`, `sapply`
+
+```{r}
+#| lst-label: lst-apendiceC-15
+#| lst-cap: "Iteración vectorizada con sapply"
+
+# Vectorizado (preferido en R)
+hba1c_vals <- c(5.6, 6.1, 6.5, 7.2, 8.0)
+
+categoria_dm <- sapply(hba1c_vals, function(x) {
+  if      (x <  5.7) "Normal"
+  else if (x <  6.5) "Prediabetes"
+  else               "Diabetes"
+})
+categoria_dm
+```
+
+::: {.callout-note}
+## Preferir vectorización sobre bucles
+En R, `for` es más lento y verboso que la familia `apply`/`map` y que las funciones vectorizadas. Para un dataset clínico real (miles de filas), usa siempre `dplyr::mutate()` con `case_when()` o `sapply()`/`purrr::map_*()`.
+:::
+
+---
+
+## C.8 Visualización con `ggplot2` {#sec-apendiceC-ggplot}
+
+`ggplot2` es la herramienta estándar para visualización en publicaciones biomédicas.
+
+```{r}
+#| lst-label: lst-apendiceC-16
+#| lst-cap: "Histograma con curva de densidad"
+#| fig-width: 6
+#| fig-height: 4
+
+library(ggplot2)
+
+ggplot(pacientes, aes(x = imc)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 6, fill = "steelblue", color = "white") +
+  geom_density(color = "darkred", linewidth = 1) +
+  labs(x = "IMC (kg/m²)", y = "Densidad",
+       title = "Distribución del IMC") +
+  theme_minimal()
+```
+
+```{r}
+#| lst-label: lst-apendiceC-17
+#| lst-cap: "Boxplot estratificado: HbA1c por estado diabético"
+#| fig-width: 6
+#| fig-height: 4
+
+ggplot(pacientes, aes(x = diabetes_f, y = hba1c, fill = diabetes_f)) +
+  geom_boxplot(alpha = 0.7) +
+  geom_jitter(width = 0.15, size = 2) +
+  labs(x = NULL, y = "HbA1c (%)",
+       title = "HbA1c por estado diabético") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r}
+#| lst-label: lst-apendiceC-18
+#| lst-cap: "Diagrama de dispersión con línea de regresión"
+#| fig-width: 6
+#| fig-height: 4
+
+ggplot(pacientes, aes(x = imc, y = hba1c)) +
+  geom_point(size = 3, color = "steelblue") +
+  geom_smooth(method = "lm", se = TRUE, color = "darkred") +
+  labs(x = "IMC (kg/m²)", y = "HbA1c (%)",
+       title = "Relación IMC-HbA1c") +
+  theme_minimal()
+```
+
+---
+
+## C.9 Tests Estadísticos en R Base {#sec-apendiceC-tests}
+
+Tabla de referencia con los contrastes más usados en investigación médica:
+
+| Pregunta clínica                                     | Función de R                          |
+|------------------------------------------------------|---------------------------------------|
+| ¿Difieren las medias de dos grupos?                  | `t.test()`                            |
+| ¿Difieren las medianas (no normal)?                  | `wilcox.test()`                       |
+| ¿Difieren tres o más medias?                         | `aov()`, `oneway.test()`              |
+| ¿Asociación entre dos variables categóricas?         | `chisq.test()`, `fisher.test()`       |
+| ¿Datos apareados (antes/después)?                    | `mcnemar.test()`, `t.test(paired=T)`  |
+| ¿Es la variable normal?                              | `shapiro.test()`                      |
+| ¿Hay correlación lineal?                             | `cor.test()`                          |
+| Regresión lineal                                     | `lm()`                                |
+| Regresión logística / Poisson                        | `glm(family = binomial / poisson)`    |
+
+```{r}
+#| lst-label: lst-apendiceC-19
+#| lst-cap: "Ejemplos: t-test, chi-cuadrado, regresión lineal"
+
+# 1) Comparar HbA1c entre diabéticos y no diabéticos
+t.test(hba1c ~ diabetes_f, data = pacientes)
+
+# 2) Asociación diabetes ~ obesidad (Fisher por n pequeño)
+fisher.test(table(pacientes$diabetes_f, pacientes$imc >= 30))
+
+# 3) Regresión lineal: HbA1c ~ IMC + edad
+modelo <- lm(hba1c ~ imc + edad, data = pacientes)
+summary(modelo)
+confint(modelo)
+```
+
+```{r}
+#| lst-label: lst-apendiceC-20
+#| lst-cap: "Regresión logística: probabilidad de diabetes"
+
+# Pacientes simulados más amplios para que el modelo sea estimable
+set.seed(123)
+n <- 200
+sim <- data.frame(
+  edad = rnorm(n, 55, 12),
+  imc  = rnorm(n, 28, 5)
+)
+sim$diabetes <- rbinom(n, 1,
+                       plogis(-7 + 0.05*sim$edad + 0.12*sim$imc))
+
+mod_log <- glm(diabetes ~ edad + imc, data = sim, family = binomial)
+# Odds ratios con IC95%
+exp(cbind(OR = coef(mod_log), confint.default(mod_log)))
+```
+
+---
+
+## C.10 Paquetes Esenciales en Bioestadística {#sec-apendiceC-paquetes}
+
+Selección curada de paquetes que el investigador clínico encuentra de forma recurrente. El bloque siguiente es informativo (no ejecutado).
+
+```{r}
+#| lst-label: lst-apendiceC-21
+#| lst-cap: "Paquetes recomendados según tarea"
+#| eval: false
+
+# --- Reportes clínicos y "Tabla 1" ---------------------------------------
+library(gtsummary)   # Tablas publicables a partir de modelos / data frames
+library(tableone)    # Tabla 1 demográfica clásica
+
+tabla1 <- tbl_summary(pacientes,
+                      by = diabetes_f,
+                      missing = "no") %>%
+  add_p() %>% add_overall()
+
+# --- Análisis epidemiológico ---------------------------------------------
+library(epiR)        # Medidas de asociación 2x2 (RR, OR, NNT)
+library(epitools)    # Tablas, cálculo de IC para incidencia / prevalencia
+
+# --- Supervivencia -------------------------------------------------------
+library(survival)
+library(survminer)
+fit_km  <- survfit(Surv(tiempo, evento) ~ grupo, data = cohorte)
+ggsurvplot(fit_km, risk.table = TRUE, pval = TRUE)
+
+fit_cox <- coxph(Surv(tiempo, evento) ~ edad + sexo + tratamiento,
+                 data = cohorte)
+summary(fit_cox)
+
+# --- Inferencia causal / emparejamiento ----------------------------------
+library(MatchIt)     # Propensity score matching
+library(WeightIt)    # Ponderación inversa de probabilidad (IPTW)
+
+# --- Datos perdidos ------------------------------------------------------
+library(mice)        # Imputación múltiple (FCS)
+library(naniar)      # Visualización del patrón de missing
+
+# --- Modelos: limpieza y extracción de resultados ------------------------
+library(broom)       # tidy(), glance(), augment() para modelos
+library(performance) # Diagnósticos de regresión (colinealidad, supuestos)
+
+# --- Meta-análisis -------------------------------------------------------
+library(meta)        # Meta-análisis clásico (efecto fijo / aleatorio)
+library(metafor)     # Meta-análisis y meta-regresión flexibles
+```
+
+::: {.callout-tip}
+## Citar los paquetes que usas
+La revista te pedirá la versión de R y los paquetes. Usa `citation("survival")` y `sessionInfo()` en el cierre del análisis y guarda la salida.
+:::
+
+---
+
+## C.11 Reproducibilidad en Investigación Médica {#sec-apendiceC-reproducibilidad}
+
+Un análisis médico debe poder reproducirse exactamente meses o años después (revisión por pares, auditoría, dudas del comité ético).
+
+```{r}
+#| lst-label: lst-apendiceC-22
+#| lst-cap: "Buenas prácticas de reproducibilidad"
+#| eval: false
+
+# 1) Semilla aleatoria SIEMPRE antes de cualquier simulación o aleatorización
+set.seed(20260101)
+
+# 2) Proyecto de RStudio + rutas relativas con here
+library(here)
+datos <- read_csv(here("datos", "cohorte_v3.csv"))
+
+# 3) Capturar el entorno: versión de R y paquetes
+sessionInfo()
+
+# 4) (Opcional) renv para bloquear versiones de paquetes
+# install.packages("renv"); renv::init(); renv::snapshot()
+
+# 5) Análisis dentro de un documento Quarto/Rmd
+#    -> el código y los resultados viven juntos
+```
+
+::: {.callout-warning}
+## Sin semilla, sin reproducibilidad
+Cualquier procedimiento estocástico (bootstrap, validación cruzada, imputación múltiple, simulación) **debe** ir precedido por `set.seed()`. Sin semilla, dos ejecuciones del mismo script darán p-valores e intervalos distintos — inaceptable en un análisis clínico.
+:::
+
+---
+
+## C.12 Resolución de Problemas Comunes {#sec-apendiceC-troubleshooting}
+
+| Síntoma                                              | Causa habitual                                            | Solución                                                         |
+|------------------------------------------------------|-----------------------------------------------------------|------------------------------------------------------------------|
+| `mean(x)` devuelve `NA`                              | Hay valores perdidos                                      | `mean(x, na.rm = TRUE)`                                          |
+| Coeficiente de un factor no aparece                  | Es el nivel de referencia                                 | `relevel(f, ref = "...")`                                         |
+| El gráfico no se ve en RStudio                       | Ventana cerrada o tamaño nulo                             | `dev.off()` y volver a ejecutar                                  |
+| `cannot find function "..."`                         | Paquete no cargado                                        | `library(paquete)` o `install.packages("paquete")`               |
+| `argument "x" is missing`                            | Olvidaste un argumento                                    | Consulta `?nombre_funcion`                                       |
+| Lectura de CSV con acentos rotos                     | Codificación incorrecta                                   | `read_csv(..., locale = locale(encoding = "Latin1"))`            |
+| `non-numeric argument to binary operator`            | Tipo carácter donde esperabas numérico                    | `as.numeric(x)` (cuidado con factores: `as.numeric(as.character(x))`) |
+| Resultados distintos en cada ejecución               | Falta `set.seed()`                                        | Fijar semilla antes del análisis                                 |
+| `object '...' not found`                             | Nombre mal escrito o variable de otro entorno             | `ls()` para listar objetos, `names(df)` para variables           |
+
+### Comandos de ayuda
+
+```{r}
+#| lst-label: lst-apendiceC-23
+#| lst-cap: "Sistema de ayuda de R"
+#| eval: false
+
+?mean                  # ayuda de una función
+??"survival analysis"  # búsqueda por palabra clave
+help(package = "dplyr")
+vignette("dplyr")      # tutoriales largos del paquete
+example(lm)            # ejemplos ejecutables
+
+# Diagnóstico rápido del entorno
+getwd();  setwd("ruta")
+ls();     rm(list = ls())   # listar / limpiar objetos
+sessionInfo()
+```
+
+---
+
+## Resumen
+
+Esta guía te ha llevado del vector más simple a un flujo completo de análisis clínico en R: importar (C.4), preparar (C.3, C.5), describir (C.6), visualizar (C.8), contrastar (C.9) y dejar todo reproducible (C.11). Para funciones de alto nivel específicas del curso (`freq()`, `icm()`, `tabla2x2()`, etc.) consulta el @sec-apendiceB. Para el repaso matemático subyacente, el @sec-apendiceA.

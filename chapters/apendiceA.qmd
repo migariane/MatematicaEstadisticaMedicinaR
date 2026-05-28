@@ -1,0 +1,297 @@
+# Apéndice A: Repaso Matemático Riguroso {#sec-apendiceA}
+
+Este apéndice proporciona los fundamentos matemáticos necesarios para un análisis riguroso de la probabilidad y la estadística. Este contenido está estructurado como una guía de referencia basada en principios de bioestadística.
+
+## A.1 Funciones y Gráficas {#sec-apendiceA-funciones}
+
+Las funciones mapean elementos de un dominio a un codominio ($f: X \to Y$).
+
+*   **Notación:** $y = f(x)$, donde $x$ es la variable independiente y $y$ es la variable dependiente.
+*   **Dominio:** Conjunto de todos los posibles valores de entrada ($x$).
+*   **Codominio/Rango:** Conjunto de todos los posibles valores de salida ($y$).
+*   **Funciones Inversas:** Si una función $f$ es biyectiva (inyectiva y sobreyectiva), existe una función inversa $f^{-1}$ tal que $f(f^{-1}(x)) = x$ y $f^{-1}(f(x)) = x$.
+*   **Composición:** La composición de funciones $(f \circ g)(x)$ significa aplicar $g$ primero, y luego $f$ al resultado: $(f \circ g)(x) = f(g(x))$.
+
+**Ejemplos de funciones comunes:**
+*   **Lineal:** $f(x) = mx + b$
+*   **Cuadrática:** $f(x) = ax^2 + bx + c$
+*   **Exponencial:** $f(x) = a^x$
+*   **Logarítmica:** $f(x) = \log_b(x)$
+
+**Ejemplo en R: Definición y uso de funciones**
+```{r}
+#| lst-label: lst-apendiceA-1
+#| lst-cap: "Código R"
+
+# Definir una función lineal
+f_lineal <- function(x) {
+  2*x + 3
+}
+f_lineal(5) # Resultado: 13
+
+# Graficar una función
+curve(f_lineal, from = -5, to = 5,
+      main = "Función Lineal f(x) = 2x + 3",
+      xlab = "x", ylab = "f(x)")
+```
+
+## A.2 Exponenciales y Logaritmos {#sec-apendiceA-exp-log}
+
+Fundamentales para modelizar relaciones de crecimiento/decrecimiento y simplificar funciones de verosimilitud en estadística.
+
+*   **Propiedades Exponenciales:**
+    *   $a^x a^y = a^{x+y}$
+    *   $(a^x)^y = a^{xy}$
+    *   $a^0 = 1$
+    *   $a^{-x} = 1/a^x$
+    *   $(ab)^x = a^x b^x$
+    *   En R, `exp(x)` calcula $e^x$.
+
+*   **Propiedades Logarítmicas (base natural $\ln$ o $\log_e$):**
+    *   $\ln(xy) = \ln(x) + \ln(y)$
+    *   $\ln(x/y) = \ln(x) - \ln(y)$
+    *   $\ln(x^k) = k \ln(x)$
+    *   $\ln(1) = 0$
+    *   $\ln(e) = 1$
+    *   $\log_b x = \frac{\ln x}{\ln b}$ (cambio de base)
+    *   La relación inversa: $e^{\ln x} = x$ y $\ln(e^x) = x$.
+    *   En R, `log(x)` calcula $\ln(x)$ por defecto; `log10(x)` para base 10, `log(x, base=b)` para otras bases.
+
+**Ejemplo en R: Cálculos con exponenciales y logaritmos**
+```{r}
+#| lst-label: lst-apendiceA-2
+#| lst-cap: "Código R"
+
+# Cálculos exponenciales
+exp(1)      # e^1
+exp(2)      # e^2
+
+# Cálculos logarítmicos
+log(exp(1)) # ln(e) = 1
+log(100)    # ln(100)
+log(100, base = 10) # log10(100) = 2
+
+# Propiedad: log(x^k) = k * log(x)
+x_val <- 5
+k_val <- 3
+log(x_val^k_val) == k_val * log(x_val)
+```
+
+## A.3 Sumatorias y Productos {#sec-apendiceA-sum-prod}
+
+La notación $\sum$ representa sumas y $\prod$ representa productos. Son esenciales para definir medias, varianzas y funciones de verosimilitud.
+
+*   **Notación de Sumatoria:** $\sum_{i=1}^n x_i = x_1 + x_2 + \cdots + x_n$
+*   **Propiedades de la Suma:**
+    *   Linealidad: $\sum_{i=1}^n (aX_i + bY_i) = a\sum_{i=1}^n X_i + b\sum_{i=1}^n Y_i$
+    *   Suma de una constante: $\sum_{i=1}^n c = nc$
+*   **Sumas dobles:** $\sum_{i=1}^m \sum_{j=1}^n x_{ij}$ para sumar elementos en una tabla o matriz.
+
+*   **Notación de Producto:** $\prod_{i=1}^n x_i = x_1 \cdot x_2 \cdot \ldots \cdot x_n$
+
+**Ejemplo en R: Sumas y Productos**
+```{r}
+#| lst-label: lst-apendiceA-3
+#| lst-cap: "Código R"
+
+# Vector de datos
+datos <- c(2, 4, 6, 8, 10)
+
+# Suma de los datos
+sum(datos)
+
+# Media muestral usando sumatoria
+n_datos <- length(datos)
+media <- sum(datos) / n_datos
+cat("Media muestral:", media, "\n")
+
+# Producto de los datos
+prod(datos)
+
+# Suma doble (ej. suma de una matriz)
+matriz_ej <- matrix(1:4, nrow=2)
+print(matriz_ej)
+sum(matriz_ej) # Suma todos los elementos
+```
+
+## A.4 Teoría de Conjuntos {#sec-apendiceA-conjuntos}
+
+La teoría de conjuntos es el lenguaje fundamental para describir eventos en probabilidad.
+
+*   **Conjunto:** Colección de objetos distintos.
+    *   $A = \{1, 2, 3\}$
+    *   $\Omega$ = Espacio muestral (conjunto de todos los resultados posibles)
+*   **Elemento:** Un objeto dentro de un conjunto.
+    *   $x \in A$ (x es un elemento de A)
+    *   $y \notin A$ (y no es un elemento de A)
+*   **Subconjunto:** $A \subset B$ (todos los elementos de A también están en B).
+*   **Conjunto Vacío:** $\emptyset$ o `{}` (contiene cero elementos).
+*   **Operaciones:**
+    *   **Unión ($\cup$):** $A \cup B = \{x | x \in A \text{ o } x \in B\}$. Elementos en $A$ O $B$ (o ambos).
+    *   **Intersección ($\cap$):** $A \cap B = \{x | x \in A \text{ y } x \in B\}$. Elementos en $A$ Y $B$.
+    *   **Complemento ($A^c$ o $A'$):** Elementos en el espacio muestral $\Omega$ que no están en $A$. Formalmente, $A^c = \{x | x \in \Omega \text{ y } x \notin A\}$.
+    *   **Diferencia ($A \setminus B$):** Elementos en $A$ pero no en $B$. Equivalente a $A \cap B^c$.
+*   **Conjuntos Disjuntos:** $A$ y $B$ son disjuntos si $A \cap B = \emptyset$. No tienen elementos en común.
+*   **Partición:** Una colección de conjuntos $A_1, A_2, \ldots, A_k$ forma una partición de $\Omega$ si son mutuamente disjuntos y su unión es $\Omega$.
+
+**Ejemplo en R: Operaciones con conjuntos (usando vectores lógicos)**
+```{r}
+#| lst-label: lst-apendiceA-4
+#| lst-cap: "Código R"
+
+# Representación de conjuntos como vectores lógicos o numéricos
+universo <- 1:10
+conjuntoA <- c(1, 2, 3, 4, 5)
+conjuntoB <- c(4, 5, 6, 7)
+
+# Unión
+union(conjuntoA, conjuntoB)
+
+# Intersección
+intersect(conjuntoA, conjuntoB)
+
+# Diferencia (elementos en A que no están en B)
+setdiff(conjuntoA, conjuntoB)
+
+# Complemento (respecto a 'universo')
+setdiff(universo, conjuntoA)
+
+# Comprobación de disjunción (no disjuntos en este caso)
+length(intersect(conjuntoA, conjuntoB)) == 0
+```
+
+## A.5 Cálculo: Derivadas e Integrales {#sec-apendiceA-calculo}
+
+Herramientas fundamentales para la optimización (minimización de funciones de pérdida, maximización de verosimilitud) usando derivadas y para el cálculo de probabilidades e inferencia usando integrales.
+
+### A.5.1 Derivadas
+
+Miden la tasa de cambio instantánea de una función. En estadística, se usan para encontrar máximos y mínimos de funciones (como funciones de verosimilitud o de costo).
+
+*   **Notación:** $f'(x)$, $\frac{dy}{dx}$, $\frac{d}{dx}f(x)$.
+*   **Reglas Básicas:**
+    *   Constante: $\frac{d}{dx}c = 0$
+    *   Potencia: $\frac{d}{dx}x^n = nx^{n-1}$
+    *   Suma/Resta: $\frac{d}{dx}(f(x) \pm g(x)) = f'(x) \pm g'(x)$
+    *   Producto: $\frac{d}{dx}(f(x)g(x)) = f'(x)g(x) + f(x)g'(x)$
+    *   Cociente: $\frac{d}{dx}\left(\frac{f(x)}{g(x)}\right) = \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2}$
+    *   Regla de la cadena: $\frac{d}{dx}f(g(x)) = f'(g(x))g'(x)$
+    *   Exponencial: $\frac{d}{dx}e^x = e^x$
+    *   Logaritmo: $\frac{d}{dx}\ln(x) = \frac{1}{x}$
+
+**Ejemplo: Minimización de una función (encontrar el vértice de una parábola)**
+Sea $f(x) = x^2 - 4x + 5$. Para encontrar el mínimo, derivamos e igualamos a cero:
+$f'(x) = 2x - 4$
+$2x - 4 = 0 \implies x = 2$.
+Sustituyendo en $f(x)$: $f(2) = 2^2 - 4(2) + 5 = 4 - 8 + 5 = 1$. El mínimo es en $(2, 1)$.
+
+**Ejemplo en R: Derivación simbólica (para funciones simples)**
+```{r}
+#| lst-label: lst-apendiceA-5
+#| lst-cap: "Código R"
+
+# Definir una expresión simbólica
+expr <- expression(x^2 - 4*x + 5)
+derivada <- D(expr, "x")
+print(derivada)
+
+# Evaluar la derivada en un punto
+eval(derivada, list(x = 2)) # Debería ser 0
+```
+
+### A.5.2 Integrales
+
+Representan el área bajo una curva y se utilizan para calcular probabilidades a partir de funciones de densidad, esperanzas y varianzas.
+
+*   **Integral Indefinida (Antiderivada):** $\int f(x) dx = F(x) + C$, donde $F'(x) = f(x)$.
+*   **Integral Definida:** $\int_a^b f(x) dx = F(b) - F(a)$. Esto calcula el área neta entre $f(x)$ y el eje x desde $a$ hasta $b$.
+*   **Integrales Múltiples:** Para funciones de densidad conjuntas.
+
+**Ejemplo: Cálculo de una probabilidad a partir de una PDF**
+Si $f(x)$ es la PDF, $P(a \le X \le b) = \int_a^b f(x) dx$.
+
+**Ejemplo en R: Integración numérica**
+```{r}
+#| lst-label: lst-apendiceA-6
+#| lst-cap: "Código R"
+
+# Calcular la probabilidad P(-1 <= X <= 1) para una Normal Estándar
+# Usamos la función dnorm (densidad de la normal)
+resultado_integral <- integrate(dnorm, lower = -1, upper = 1)
+print(resultado_integral$value) # Aproximadamente 0.6827 (regla del 68%)
+
+# Para la esperanza de una variable continua con PDF f(x): E(X) = integral(x * f(x) dx)
+# Ejemplo con una función simple x * exp(-x) de 0 a Inf
+f_ejemplo_esperanza <- function(x) { x * dexp(x, rate = 1) } # E(X) para Exp(1) es 1/rate = 1
+esperanza_numerica <- integrate(f_ejemplo_esperanza, lower = 0, upper = Inf)
+print(esperanza_numerica$value) # Debería ser cercano a 1
+```
+
+## A.6 Álgebra Matricial {#sec-apendiceA-matrices}
+
+El álgebra matricial es indispensable en estadística multivariante, regresión lineal (donde los coeficientes se estiman usando inversas matriciales), análisis de componentes principales, y más.
+
+*   **Matriz:** Un arreglo rectangular de números.
+    *   Notación: $\mathbf{A}_{m \times n}$ (m filas, n columnas).
+*   **Vector:** Una matriz con una sola fila (vector fila) o una sola columna (vector columna).
+*   **Tipos de Matrices:**
+    *   **Identidad ($\mathbf{I}$):** Matriz cuadrada con 1s en la diagonal y 0s en el resto. $\mathbf{AI} = \mathbf{IA} = \mathbf{A}$.
+    *   **Transpuesta ($\mathbf{A}^T$):** Se obtienen intercambiando filas por columnas. $(A^T)_{ij} = A_{ji}$.
+    *   **Simétrica:** $\mathbf{A} = \mathbf{A}^T$.
+*   **Operaciones Básicas:**
+    *   **Suma/Resta:** Elemento a elemento (las matrices deben tener las mismas dimensiones).
+    *   **Multiplicación por un escalar:** Multiplicar cada elemento por el escalar.
+    *   **Producto Matricial ($\mathbf{AB}$):** El número de columnas de $\mathbf{A}$ debe ser igual al número de filas de $\mathbf{B}$.
+        *   Si $\mathbf{A}_{m \times p}$ y $\mathbf{B}_{p \times n}$, entonces $(\mathbf{AB})_{m \times n}$.
+        *   $(\mathbf{AB})_{ij} = \sum_{k=1}^p A_{ik}B_{kj}$.
+        *   NO es conmutativo: $\mathbf{AB} \ne \mathbf{BA}$ en general.
+*   **Inversa de una Matriz ($\mathbf{A}^{-1}$):** Para una matriz cuadrada $\mathbf{A}$, si existe $\mathbf{A}^{-1}$, entonces $\mathbf{AA}^{-1} = \mathbf{A}^{-1}\mathbf{A} = \mathbf{I}$. Solo existe si el determinante es distinto de cero.
+*   **Determinante ($\det(\mathbf{A})$ o $|\mathbf{A}|$):** Un escalar asociado a una matriz cuadrada que indica, entre otras cosas, si la matriz es invertible (si $\det(\mathbf{A}) \ne 0$).
+
+**Ejemplo en R: Operaciones con matrices**
+```{r}
+#| lst-label: lst-apendiceA-7
+#| lst-cap: "Código R"
+
+# Definir matrices
+A <- matrix(c(1, 2, 3, 4), nrow=2, byrow=TRUE) # Matriz 2x2
+B <- matrix(c(5, 6, 7, 8), nrow=2, byrow=TRUE) # Matriz 2x2
+C <- matrix(c(1, 0, 0, 1), nrow=2, byrow=TRUE) # Matriz identidad I
+
+print("Matriz A:")
+print(A)
+print("Matriz B:")
+print(B)
+
+# Suma de matrices
+print("A + B:")
+print(A + B)
+
+# Producto matricial
+print("A %*% B:")
+print(A %*% B)
+
+# Transpuesta de A
+print("Transpuesta de A (A^T):")
+print(t(A))
+
+# Inversa de A
+# Solo si la matriz es cuadrada y no singular (determinante != 0)
+print("Inversa de A:")
+print(solve(A))
+
+# Verificar A * A_inv = I
+print("A %*% solve(A):")
+print(A %*% solve(A)) # Debería ser la matriz identidad
+
+# Determinante de A
+print("Determinante de A:")
+print(det(A)) # (1*4 - 2*3) = 4 - 6 = -2
+```
+
+## A.7 Referencias {#sec-apendiceA-referencias}
+
+1.  **Iowa Biostatistics Math Review:** [https://iowabiostat.github.io/math-review/](https://iowabiostat.github.io/math-review/)
+2.  **Casella, G., & Berger, R. L. (2002).** *Statistical Inference*. (Excelente para fundamentos matemáticos de la inferencia estadística).
+3.  **Spivak, M. (2006).** *Calculus*. (Un texto clásico para un tratamiento riguroso del cálculo).
+4.  **Harville, D. A. (1997).** *Matrix Algebra From a Statistician's Perspective*. (Referencia avanzada para álgebra matricial en estadística).

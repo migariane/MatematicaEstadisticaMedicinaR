@@ -1,0 +1,853 @@
+```{r}
+#| label: setup
+#| include: false
+options(digits = 3)
+library(broom)
+```
+
+# Semana 10 — Regresión Lineal Múltiple {#sec-semana10}
+
+En esta semana extendemos la regresión lineal simple a múltiples variables predictoras. En medicina, raramente un único factor explica un desenlace clínico: la presión arterial depende de la edad, el IMC, el sexo y el tabaquismo simultáneamente; la supervivencia oncológica depende del estadio, el tratamiento y la edad al diagnóstico. La regresión lineal múltiple nos permite cuantificar el efecto de cada variable **controlando por las demás**.
+
+## El Modelo de Regresión Lineal Múltiple {#sec-semana10-s1}
+
+La regresión múltiple permite modelar relaciones complejas mediante varias variables predictoras simultáneamente.
+
+::: {.callout-note}
+## Definición: Modelo de Regresión Lineal Múltiple
+
+El modelo de regresión lineal múltiple con $p$ variables predictoras es:
+
+$$Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \cdots + \beta_p X_{pi} + U_i$$
+
+para $i = 1, 2, \ldots, n$ observaciones, donde:
+
+- $Y_i$ es la variable respuesta (dependiente)
+- $X_{ji}$ son las variables predictoras (independientes) para $j = 1, \ldots, p$
+- $\beta_0$ es la ordenada al origen (intercepto)
+- $\beta_j$ es el **coeficiente de regresión parcial** de $X_j$ — representa el cambio esperado en $Y$ ante un aumento unitario de $X_j$, **manteniendo todas las demás variables constantes**
+- $U_i$ es el término de error aleatorio con $E(U_i) = 0$ y $\text{Var}(U_i) = \sigma_U^2$
+:::
+
+**Interpretación de coeficientes parciales:** El coeficiente $\beta_j$ mide el efecto de $X_j$ sobre $Y$ después de **controlar** (ajustar) por todas las otras variables predictoras en el modelo. Esto es fundamental en la investigación médica para separar el efecto de cada factor de riesgo del de los demás.
+
+::: {.callout-tip}
+## Ejemplo: Presión Arterial Sistólica — Extensión del modelo simple
+
+Continuando con el estudio de hipertensión de la semana anterior (120 pacientes adultos), ahora incluimos **dos predictores** para explicar la presión arterial sistólica (PAS):
+
+- $X_1$ = edad (años)
+- $X_2$ = índice de masa corporal — IMC (kg/m²)
+
+El modelo es:
+$$\text{PAS}_i = \beta_0 + \beta_1 \cdot \text{Edad}_i + \beta_2 \cdot \text{IMC}_i + U_i$$
+
+- $\beta_1$ mide el cambio esperado en PAS por cada año adicional de edad, **manteniendo el IMC fijo**
+- $\beta_2$ mide el cambio esperado en PAS por cada kg/m² adicional de IMC, **manteniendo la edad fija**
+
+Interpretación hipotética: si $\hat{\beta}_1 = 0.60$ mmHg/año y $\hat{\beta}_2 = 1.80$ mmHg/(kg/m²), un paciente que envejece 10 años (con mismo IMC) tendrá en promedio 6 mmHg más de PAS; un paciente con 5 kg/m² más de IMC (con misma edad) tendrá en promedio 9 mmHg más de PAS.
+:::
+
+## Formulación Matricial del Modelo {#sec-semana10-s2}
+
+Con múltiples variables predictoras, la notación escalar se vuelve engorrosa. La formulación matricial simplifica significativamente el tratamiento matemático.
+
+::: {.callout-note}
+## Definición: Forma Matricial del Modelo
+
+El modelo puede escribirse compactamente como:
+
+$$\mathbf{Y} = \mathbf{X}\boldsymbol{\beta} + \mathbf{U}$$
+
+donde:
+
+- $\mathbf{Y} = \begin{bmatrix} Y_1 \\ Y_2 \\ \vdots \\ Y_n \end{bmatrix}$ es el vector $n \times 1$ de respuestas (ej. PAS de cada paciente)
+
+- $\boldsymbol{\beta} = \begin{bmatrix} \beta_0 \\ \beta_1 \\ \vdots \\ \beta_p \end{bmatrix}$ es el vector $(p+1) \times 1$ de parámetros
+
+- $\mathbf{X} = \begin{bmatrix} 1 & x_{11} & x_{21} & \cdots & x_{p1} \\ 1 & x_{12} & x_{22} & \cdots & x_{p2} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & x_{1n} & x_{2n} & \cdots & x_{pn} \end{bmatrix}$ es la **matriz de diseño** $n \times (p+1)$
+
+- $\mathbf{U} = \begin{bmatrix} U_1 \\ U_2 \\ \vdots \\ U_n \end{bmatrix}$ es el vector $n \times 1$ de errores
+
+**Nota:** La primera columna de $\mathbf{X}$ contiene unos (para el intercepto).
+:::
+
+**Ejemplo**: Para el modelo PAS ~ Edad + IMC con $n = 120$ pacientes, $\mathbf{X}$ es una matriz $120 \times 3$: columna de unos, columna de edades y columna de IMC de cada paciente.
+
+## Estimación de Parámetros: Mínimos Cuadrados Ordinarios {#sec-semana10-s3}
+
+### Derivación del Estimador OLS
+
+El método de mínimos cuadrados ordinarios (OLS, *Ordinary Least Squares*) minimiza la suma de cuadrados residual:
+
+$$\text{RSS}(\boldsymbol{\beta}) = \sum_{i=1}^n (Y_i - \hat{Y}_i)^2 = (\mathbf{Y} - \mathbf{X}\boldsymbol{\beta})^T(\mathbf{Y} - \mathbf{X}\boldsymbol{\beta}) = \|\mathbf{Y} - \mathbf{X}\boldsymbol{\beta}\|^2$$
+
+Para encontrar el mínimo, tomamos la derivada con respecto a $\boldsymbol{\beta}$ e igualamos a cero:
+
+$$\frac{\partial \text{RSS}}{\partial \boldsymbol{\beta}} = -2\mathbf{X}^T(\mathbf{Y} - \mathbf{X}\boldsymbol{\beta}) = 0$$
+
+::: {.callout-warning}
+## Resultado Importante: Ecuaciones Normales y Estimador OLS
+
+Las **ecuaciones normales** son:
+$$\mathbf{X}^T\mathbf{X}\hat{\boldsymbol{\beta}} = \mathbf{X}^T\mathbf{Y}$$
+
+Si la matriz $\mathbf{X}^T\mathbf{X}$ es invertible (no singular), el **estimador OLS** es:
+
+$$\hat{\boldsymbol{\beta}} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Y}$$
+
+donde $\hat{\boldsymbol{\beta}} = \begin{bmatrix} \hat{\beta}_0 \\ \hat{\beta}_1 \\ \vdots \\ \hat{\beta}_p \end{bmatrix}$
+:::
+
+### Condiciones para Invertibilidad
+
+La matriz $\mathbf{X}^T\mathbf{X}$ es singular (no invertible) si:
+
+- Las variables predictoras son linealmente dependientes (colinealidad exacta)
+- Una variable es combinación lineal exacta de otras
+
+**Ejemplo médico:** Si incluimos tanto el peso (kg) como el IMC (kg/m²) y la altura al cuadrado, hay colinealidad exacta porque IMC = peso/altura². R eliminará automáticamente una de las variables, pero esto debe evitarse en el diseño del estudio.
+
+## Matriz de Varianza-Covarianza de los Coeficientes {#sec-semana10-s4}
+
+::: {.callout-note}
+## Definición: Matriz de Varianza-Covarianza
+
+Bajo los supuestos del modelo de regresión lineal múltiple, la matriz de varianza-covarianza de los coeficientes estimados es:
+
+$$\text{Var}(\hat{\boldsymbol{\beta}}) = \sigma_U^2(\mathbf{X}^T\mathbf{X})^{-1}$$
+
+donde:
+
+- Los elementos diagonales $[\sigma_U^2(\mathbf{X}^T\mathbf{X})^{-1}]_{jj}$ son las varianzas $\text{Var}(\hat{\beta}_j)$
+- Los elementos fuera de la diagonal son covarianzas $\text{Cov}(\hat{\beta}_j, \hat{\beta}_k)$
+- $\sigma_U^2$ es la varianza desconocida del error
+:::
+
+### Estimador Insesgado de $\sigma_U^2$
+
+Como $\sigma_U^2$ es desconocida, la estimamos con:
+
+$$s^2 = \hat{\sigma}_U^2 = \frac{\text{RSS}}{n-p-1} = \frac{\sum_{i=1}^n \hat{u}_i^2}{n-p-1}$$
+
+donde $\hat{u}_i = Y_i - \hat{Y}_i$ son los residuos estimados.
+
+::: {.callout-warning}
+## Resultado Importante
+
+$$s^2 = \frac{\text{RSS}}{n-p-1}$$
+
+es un estimador insesgado de $\sigma_U^2$. Note que dividimos por $n-p-1$ (grados de libertad), no por $n$. En el modelo PAS ~ Edad + IMC + Sexo con $n = 120$ pacientes y $p = 3$ predictores, los grados de libertad son $120 - 3 - 1 = 116$.
+:::
+
+## Variables Indicadoras (Dummy) {#sec-semana10-s5}
+
+Cuando tenemos variables predictoras categóricas (sexo, grupo de tratamiento, estadio tumoral), usamos **variables indicadoras** (0/1) para incorporarlas en el modelo lineal.
+
+::: {.callout-note}
+## Definición: Variables Indicadoras
+
+Una variable indicadora para una categoría es:
+
+$$X_j = \begin{cases} 1 & \text{si la observación pertenece a la categoría } j \\ 0 & \text{en caso contrario} \end{cases}$$
+
+Para una variable categórica con $m$ niveles, utilizamos exactamente $m-1$ variables indicadoras (dejamos una categoría como **referencia** o base).
+:::
+
+::: {.callout-tip}
+## Ejemplo: Peso al Nacer según Edad Gestacional y Sexo
+
+Un neonatólogo estudia la relación entre edad gestacional, sexo y peso al nacer en 189 recién nacidos del Hospital Materno-Infantil de Granada. Define:
+
+- $Y_i$ = peso al nacer (gramos)
+- $X_{1i}$ = edad gestacional (semanas)
+- $X_{2i}$ = variable indicadora: 1 si el bebé es niña, 0 si es niño
+
+El modelo es:
+$$\text{Peso}_i = \beta_0 + \beta_1 \cdot \text{Gestación}_i + \beta_2 \cdot \text{Niña}_i + U_i$$
+
+Estimando el modelo, se obtiene $\hat{\beta}_0 = -1610.28$, $\hat{\beta}_1 = 120.89$, $\hat{\beta}_2 = -163.04$.
+
+**Interpretación:**
+
+- Para niños ($X_2 = 0$): $\widehat{\text{Peso}} = -1610.28 + 120.89 \cdot \text{Gestación}$
+- Para niñas ($X_2 = 1$): $\widehat{\text{Peso}} = -1773.32 + 120.89 \cdot \text{Gestación}$
+
+La diferencia de $-163.04$ gramos entre niñas y niños es el efecto del sexo **controlando por la edad gestacional**. Las niñas pesan en promedio 163 g menos que los niños a igual edad gestacional. Por cada semana adicional de gestación, el peso aumenta en promedio 120.89 g en ambos sexos.
+
+**Predicción**: Un niño de 38 semanas: $\hat{P} = -1610.28 + 120.89 \times 38 = 2983$ g. Una niña de 38 semanas: $\hat{P} = 2983 - 163 = 2820$ g.
+:::
+
+## Bondad de Ajuste: $R^2$ y $R^2$ Ajustado {#sec-semana10-s6}
+
+### Coeficiente de Determinación Múltiple
+
+En regresión múltiple, el coeficiente $R^2$ se define igual que en regresión simple:
+
+$$R^2 = 1 - \frac{\text{RSS}}{\text{SST}} = \frac{\text{ESS}}{\text{SST}}$$
+
+donde:
+
+- $\text{RSS} = \sum_{i=1}^n (Y_i - \hat{Y}_i)^2$ (suma de cuadrados residual)
+- $\text{SST} = \sum_{i=1}^n (Y_i - \bar{Y})^2$ (suma de cuadrados total)
+- $\text{ESS} = \sum_{i=1}^n (\hat{Y}_i - \bar{Y})^2$ (suma de cuadrados explicada)
+
+**Problema clínico:** Si al modelo PAS ~ Edad añadimos variables irrelevantes (número de calzado del paciente), $R^2$ aumentará o se mantendrá, aunque el número de calzado no prediga la PAS. Este problema nos lleva al $R^2$ ajustado.
+
+### $R^2$ Ajustado
+
+::: {.callout-warning}
+## Resultado Importante: $R^2$ Ajustado
+
+El coeficiente de determinación ajustado penaliza por el número de parámetros:
+
+$$R^2_{\text{adj}} = 1 - \frac{\text{RSS}/(n-p-1)}{\text{SST}/(n-1)} = 1 - (1-R^2)\frac{n-1}{n-p-1}$$
+
+Propiedades:
+
+- $R^2_{\text{adj}} \leq R^2$ siempre
+- $R^2_{\text{adj}}$ **puede disminuir** si añadimos una variable que no mejora el modelo
+- Es más útil que $R^2$ para comparar modelos con diferente número de predictores
+
+**Ejemplo médico**: Modelo 1 (PAS ~ Edad): $R^2 = 0.504$, $R^2_{\text{adj}} = 0.499$. Modelo 2 (PAS ~ Edad + IMC): $R^2 = 0.561$, $R^2_{\text{adj}} = 0.553$. El $R^2_{\text{adj}}$ aumenta al añadir el IMC, lo que indica que esta variable aporta información real más allá de la edad.
+:::
+
+## Criterios de Información para Selección de Modelos {#sec-semana10-s7}
+
+Además de $R^2_{\text{adj}}$, existen criterios de información que penalizan la complejidad del modelo:
+
+::: {.callout-warning}
+## Definición: AIC y BIC
+
+**Criterio de Información de Akaike (AIC):**
+$$\text{AIC} = -2 \log L + 2(p+1)$$
+
+**Criterio de Información Bayesiano (BIC):**
+$$\text{BIC} = -2 \log L + (p+1)\log(n)$$
+
+donde $L$ es la función de verosimilitud maximizada y $p+1$ es el número de parámetros (incluyendo $\sigma_U^2$).
+
+Para modelos normales:
+$$\text{AIC} = n \log(\text{RSS}/n) + 2(p+1)$$
+$$\text{BIC} = n \log(\text{RSS}/n) + (p+1)\log(n)$$
+
+**Regla de decisión:** Seleccionar el modelo con **menor** AIC o BIC.
+
+- AIC usa penalización moderada (factor 2): útil en contextos predictivos
+- BIC usa penalización más fuerte (factor $\log n$): favorece modelos más parsimoniosos, preferible en investigación clínica confirmatoria
+
+**Ejemplo**: Para comparar modelos de predicción de HbA1c con distintas combinaciones de variables (IMC, edad, actividad física, tabaquismo), el BIC es más apropiado en un estudio con $n = 200$ porque $\log(200) = 5.30 > 2$, penalizando más fuertemente la complejidad.
+:::
+
+## Pruebas de Hipótesis para Coeficientes Individuales {#sec-semana10-s8}
+
+### Test t para $\beta_j$
+
+::: {.callout-note}
+## Supuestos del Modelo
+
+Para hacer inferencia estadística, asumimos:
+
+- $E(U_i) = 0$
+- $\text{Var}(U_i) = \sigma_U^2$ (homocedasticidad)
+- $\text{Cov}(U_i, U_j) = 0$ para $i \neq j$ (independencia)
+- $U_i \sim N(0, \sigma_U^2)$ (normalidad)
+:::
+
+Bajo estos supuestos, el estimador $\hat{\beta}_j$ sigue una distribución normal:
+
+$$\hat{\beta}_j \sim N(\beta_j, \text{Var}(\hat{\beta}_j))$$
+
+donde $\text{Var}(\hat{\beta}_j) = \sigma_U^2 [(\mathbf{X}^T\mathbf{X})^{-1}]_{jj}$.
+
+El estadístico t para probar $H_0: \beta_j = 0$ es:
+
+::: {.callout-warning}
+## Resultado Importante: Estadístico t
+
+$$t_j = \frac{\hat{\beta}_j}{\hat{\text{SE}}(\hat{\beta}_j)} \sim t_{n-p-1}$$
+
+donde $\hat{\text{SE}}(\hat{\beta}_j) = \sqrt{s^2 [(\mathbf{X}^T\mathbf{X})^{-1}]_{jj}}$ es el error estándar estimado.
+
+**Procedimiento de prueba:**
+
+1. **Hipótesis:** $H_0: \beta_j = 0$ vs. $H_1: \beta_j \neq 0$
+2. **Estadístico:** Calcular $t_j$ como arriba
+3. **Valor p:** $p\text{-valor} = 2 \cdot P(t_{n-p-1} > |t_j|)$
+4. **Decisión:** Rechazar $H_0$ si $|t_j| > t_{1-\alpha/2, n-p-1}$ o si $p\text{-valor} < \alpha$
+
+**Interpretación clínica clave:** Rechazar $H_0: \beta_j = 0$ significa que la variable $X_j$ aporta información significativa sobre $Y$ **después de controlar por todos los demás predictores del modelo**.
+:::
+
+## Prueba F para Comparación de Modelos Anidados {#sec-semana10-s9}
+
+Cuando tenemos dos modelos donde uno está **anidado** dentro del otro (sus variables predictoras son un subconjunto), podemos usar una prueba F para comparar su bondad de ajuste.
+
+::: {.callout-note}
+## Definición: Modelos Anidados
+
+Decimos que el Modelo 1 es anidado en el Modelo 2 si los predictores del Modelo 1 son un subconjunto de los del Modelo 2.
+
+**Ejemplo clínico:**
+- **Modelo 1 (reducido):** $\text{PAS}_i = \beta_0 + \beta_1 \cdot \text{Edad}_i + U_i$
+- **Modelo 2 (completo):** $\text{PAS}_i = \beta_0 + \beta_1 \cdot \text{Edad}_i + \beta_2 \cdot \text{IMC}_i + \beta_3 \cdot \text{Sexo}_i + U_i$
+
+Claramente, $\text{RSS}_2 \leq \text{RSS}_1$ (el modelo más complejo siempre tiene un ajuste al menos tan bueno).
+:::
+
+::: {.callout-warning}
+## Resultado Importante: Prueba F para Modelos Anidados
+
+Para probar:
+$$H_0: \beta_{p_1+1} = \beta_{p_1+2} = \cdots = \beta_{p_2} = 0$$
+$$H_1: \text{Al menos uno de estos coeficientes es diferente de cero}$$
+
+El estadístico F es:
+
+$$F = \frac{(\text{RSS}_1 - \text{RSS}_2)/(p_2 - p_1)}{\text{RSS}_2/(n - p_2 - 1)} \sim F_{p_2-p_1, n-p_2-1}$$
+
+**Regla de decisión:** Rechazar $H_0$ si $F > F_{1-\alpha, p_2-p_1, n-p_2-1}$.
+
+**Caso especial:** Si el Modelo 1 contiene solo el intercepto, esta prueba evalúa si *al menos una* variable predictora es significativa (**prueba F global**).
+:::
+
+## ANOVA como Modelo Lineal {#sec-semana10-s10}
+
+El análisis de varianza (ANOVA) es un caso especial de regresión lineal donde los predictores son variables categóricas (factores).
+
+::: {.callout-tip}
+## Ejemplo: Comparación de Tres Tratamientos Antihipertensivos
+
+En un ensayo clínico aleatorizado (ECA), 90 pacientes hipertensos son asignados aleatoriamente (30 por grupo) a tres tratamientos durante 12 semanas:
+
+- Grupo control: **Placebo**
+- Grupo A: **IECA** (inhibidores de la enzima convertidora de angiotensina, ej. enalapril)
+- Grupo B: **ARA-II** (antagonistas del receptor de angiotensina II, ej. losartán)
+
+La variable respuesta es la **reducción de PAS** (mmHg) al final del ensayo.
+
+Define variables indicadoras:
+- $X_1 = 1$ si se aplica IECA, 0 en caso contrario
+- $X_2 = 1$ si se aplica ARA-II, 0 en caso contrario
+- El placebo es la categoría de referencia (cuando $X_1 = X_2 = 0$)
+
+El modelo es:
+$$Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + U_i$$
+
+donde:
+
+- $\beta_0 = \mu_{\text{placebo}}$ (reducción media en el grupo placebo)
+- $\beta_1 = \mu_{\text{IECA}} - \mu_{\text{placebo}}$ (efecto adicional del IECA sobre el placebo)
+- $\beta_2 = \mu_{\text{ARA-II}} - \mu_{\text{placebo}}$ (efecto adicional del ARA-II sobre el placebo)
+
+Probar $H_0: \mu_{\text{placebo}} = \mu_{\text{IECA}} = \mu_{\text{ARA-II}}$ equivale a probar $H_0: \beta_1 = \beta_2 = 0$, que se realiza con la prueba F para modelos anidados.
+
+Si el modelo ajustado da $\hat{\beta}_0 = 4.2$ mmHg, $\hat{\beta}_1 = 11.8$ mmHg ($p < 0.001$), $\hat{\beta}_2 = 10.3$ mmHg ($p < 0.001$): tanto el IECA como el ARA-II reducen significativamente más la PAS que el placebo. La prueba F global indicaría si existe al menos una diferencia entre los tres grupos.
+:::
+
+## Gráficos de Diagnóstico {#sec-semana10-s11}
+
+Para verificar que los supuestos del modelo se mantienen, usamos gráficos de diagnóstico:
+
+::: {.callout-note}
+## Gráficos de Diagnóstico
+
+1. **Valores ajustados vs. Residuos:** Detecta no-linealidad y varianza no constante
+   - En estudios clínicos: un patrón de embudo puede surgir si la variabilidad de la PAS es mayor en pacientes hipertensos severos
+
+2. **Q-Q Plot de Residuos:** Evalúa normalidad de los errores
+   - Los puntos deben estar cerca de la línea diagonal
+   - Desviaciones en las colas indican distribución no normal (frecuente si hay outliers clínicos)
+
+3. **Escala-Localización:** Detecta heterocedasticidad
+   - La raíz de los residuos estandarizados debe distribuirse uniformemente sobre los valores ajustados
+
+4. **Residuos vs. Orden:** Detecta autocorrelación temporal
+   - Relevante si los pacientes se reclutaron en un período largo (cambios en protocolos, estacionalidad)
+
+5. **Residuos vs. Leverage (Cook's distance):** Identifica observaciones influyentes
+   - Pacientes con valores extremos de predictores (ej. muy anciano y obeso) pueden tener gran leverage
+:::
+
+## Transformaciones para Violaciones de Supuestos {#sec-semana10-s12}
+
+Si los gráficos de diagnóstico revelan problemas, podemos aplicar transformaciones:
+
+::: {.callout-warning}
+## Transformaciones Comunes
+
+- **Log:** $Y' = \log(Y)$ — útil si la varianza aumenta con la media. Frecuente en biomarcadores (PCR, TSH, PSA)
+- **Raíz cuadrada:** $Y' = \sqrt{Y}$ — para datos de conteo o cuando la varianza es proporcional a la media (ej. número de recaídas)
+- **Raíz cúbica:** $Y' = Y^{1/3}$ — alternativa intermedia
+- **Box-Cox:** Encuentra transformación óptima automáticamente
+
+**Después de transformar:** Reajustamos el modelo con la variable transformada y re-verificamos los supuestos. Los coeficientes interpretan en la escala transformada.
+
+En R, la función `boxcox()` del paquete `MASS` realiza búsqueda automática del parámetro de transformación óptimo.
+:::
+
+## Intervalos de Confianza para Coeficientes {#sec-semana10-s13}
+
+::: {.callout-note}
+## Intervalo de Confianza para $\beta_j$
+
+Un intervalo de confianza de nivel $1-\alpha$ para $\beta_j$ es:
+
+$$\left[\hat{\beta}_j - t_{1-\alpha/2, n-p-1} \cdot \hat{\text{SE}}(\hat{\beta}_j), \quad \hat{\beta}_j + t_{1-\alpha/2, n-p-1} \cdot \hat{\text{SE}}(\hat{\beta}_j)\right]$$
+
+donde $\hat{\text{SE}}(\hat{\beta}_j) = \sqrt{s^2 [(\mathbf{X}^T\mathbf{X})^{-1}]_{jj}}$.
+
+**Interpretación clínica**: Si el IC 95% para el coeficiente de IMC en el modelo de PAS es [0.95, 2.65] mmHg/(kg/m²), tenemos 95% de confianza de que, controlando por la edad y el sexo, cada kg/m² adicional de IMC se asocia con un aumento de entre 0.95 y 2.65 mmHg en la PAS media.
+:::
+
+## Intervalos de Confianza y Predicción {#sec-semana10-s14}
+
+### Intervalo de Confianza para $E(Y|\mathbf{x}_0)$
+
+::: {.callout-note}
+## Intervalo de Confianza para la Media Condicional
+
+Para un perfil específico de valores $\mathbf{x}_0 = (1, x_{1,0}, \ldots, x_{p,0})$, el intervalo de confianza para la PAS media esperada en **todos los pacientes** con ese perfil es:
+
+$$\left[\hat{Y}_0 - t_{1-\alpha/2, n-p-1} \cdot \hat{\text{SE}}(\hat{Y}_0), \quad \hat{Y}_0 + t_{1-\alpha/2, n-p-1} \cdot \hat{\text{SE}}(\hat{Y}_0)\right]$$
+
+donde $\hat{\text{SE}}(\hat{Y}_0) = \sqrt{s^2 \cdot \mathbf{x}_0^T(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{x}_0}$
+:::
+
+### Intervalo de Predicción para una Nueva Observación
+
+::: {.callout-note}
+## Intervalo de Predicción
+
+Para predecir la PAS de **un nuevo paciente específico** con perfil $\mathbf{x}_0$, el intervalo de predicción de nivel $1-\alpha$ es más amplio:
+
+$$\left[\hat{Y}_0 - t_{1-\alpha/2, n-p-1} \cdot \hat{\text{SE}}(Y_0 - \hat{Y}_0), \quad \hat{Y}_0 + t_{1-\alpha/2, n-p-1} \cdot \hat{\text{SE}}(Y_0 - \hat{Y}_0)\right]$$
+
+donde $\hat{\text{SE}}(Y_0 - \hat{Y}_0) = \sqrt{s^2 \left(1 + \mathbf{x}_0^T(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{x}_0\right)}$
+
+**Diferencia clínica clave:** El IC para la media dice: "¿Cuál es la PAS media esperada en pacientes de 55 años con IMC = 28?" El IP dice: "¿Qué PAS es esperable para este paciente concreto de 55 años con IMC = 28?" El IP es siempre más amplio porque incluye la variabilidad individual.
+:::
+
+## Multicolinealidad {#sec-semana10-s15}
+
+::: {.callout-warning}
+## Advertencia: Multicolinealidad
+
+**Multicolinealidad** ocurre cuando dos o más variables predictoras están altamente correlacionadas entre sí.
+
+**Ejemplo clínico**: En un modelo de riesgo cardiovascular que incluye simultáneamente el **colesterol LDL**, el **colesterol no-HDL** y el **colesterol total**, estas variables están altamente correlacionadas (el colesterol no-HDL = colesterol total − HDL). Incluir las tres crea multicolinealidad severa.
+
+**Problemas causados:**
+
+- Varianzas muy grandes en los estimadores $\hat{\beta}_j$ (errores estándar grandes)
+- Intervalos de confianza anchos
+- Tests t menos potentes (difícil rechazar $H_0$)
+- Los signos de los coeficientes pueden ser contraintuitivos (ej. el colesterol LDL aparece con signo negativo)
+
+**Detección:**
+
+- Matriz de correlaciones entre predictores — buscar correlaciones altas ($|r| > 0.8$ es preocupante)
+- **Factor de Inflación de Varianza (VIF)**: $\text{VIF}_j = \frac{1}{1-R_j^2}$, donde $R_j^2$ es el $R^2$ de regresionar $X_j$ sobre las otras $X$'s
+  - $\text{VIF}_j > 5$ o 10 sugiere problemas serios
+- Determinante de $\mathbf{X}^T\mathbf{X}$ muy pequeño
+
+**Soluciones:**
+
+- Eliminar una de las variables correlacionadas (ej. usar solo el colesterol LDL)
+- Combinar variables correlacionadas (ej. índice de riesgo compuesto)
+- Métodos de regularización (ridge regression, lasso) — temas avanzados
+:::
+
+## Selección de Variables {#sec-semana10-s16}
+
+Cuando tenemos muchas variables predictoras potenciales, necesitamos seleccionar cuáles incluir en el modelo.
+
+::: {.callout-note}
+## Métodos de Selección de Variables
+
+**1. Eliminación hacia atrás (Backward Elimination):**
+   - Comenzar con todas las variables
+   - En cada paso, eliminar la variable con menor significancia (mayor $p$-valor)
+   - Reajustar el modelo y repetir
+   - Parar cuando todos los coeficientes sean significativos
+
+**2. Selección hacia adelante (Forward Selection):**
+   - Comenzar solo con el intercepto
+   - En cada paso, añadir la variable más correlacionada con el residuo
+   - Parar cuando ninguna variable pueda mejorar significativamente el modelo
+
+**3. Stepwise (Paso a paso):**
+   - Combinación de forward y backward
+   - En cada paso, permite tanto añadir como eliminar variables
+
+**4. Criterios de Información (AIC/BIC):**
+   - Evaluar todos los modelos posibles (o una muestra grande)
+   - Seleccionar el modelo con menor AIC o BIC
+   - No requiere que los modelos sean anidados
+:::
+
+::: {.callout-warning}
+## Advertencia: Búsqueda de Variables y Overfitting
+
+- La búsqueda exhaustiva de variables puede causar **overfitting** (ajuste excesivo a los datos de entrenamiento)
+- En epidemiología clínica: un modelo que selecciona 10 variables de un estudio con 100 pacientes tendrá alta varianza
+- **Mejor práctica:** Definir los predictores a priori según conocimiento clínico; usar AIC/BIC como guía
+- Si es posible, dividir los datos en conjunto de entrenamiento y de validación
+:::
+
+## Ejemplo Completo en R {#sec-semana10-s17}
+
+### Modelo de regresión múltiple: PAS ~ Edad + IMC
+
+```{r}
+#| label: lst-s11-cod01
+#| lst-cap: "Base R — Regresión múltiple PAS ~ Edad + IMC (n = 120 pacientes)"
+#| eval: true
+#| warning: false
+#| message: false
+
+# Datos simulados: PAS ~ Edad + IMC — 120 pacientes adultos
+set.seed(2024)
+n     <- 120
+edad  <- round(runif(n, 25, 80))
+imc   <- round(rnorm(n, 27.2, 4.5), 1)
+sexo  <- factor(sample(c("H", "M"), n, replace = TRUE))
+
+# PAS generada con ambos predictores + error
+pas   <- round(70 + 0.60 * edad + 1.80 * imc + rnorm(n, 0, 9.5), 1)
+
+datos <- data.frame(pas = pas, edad = edad, imc = imc, sexo = sexo)
+
+# Ajustar modelo de regresión múltiple
+modelo_mult <- lm(pas ~ edad + imc, data = datos)
+
+# Tabla de coeficientes con broom
+cat("=== Modelo de Regresión Múltiple ===\n")
+knitr::kable(tidy(modelo_mult), digits = 3, caption = "Coeficientes del modelo")
+
+# Bondad de ajuste
+glance_mult <- glance(modelo_mult)
+cat("\nR² =", round(glance_mult$r.squared, 3),
+    "|  R² ajustado =", round(glance_mult$adj.r.squared, 3),
+    "|  F-estadístico =", round(glance_mult$statistic, 2),
+    "(p < 0.001)\n")
+```
+
+::: callout-tip
+**Interpretación estadística:** El modelo de regresión múltiple reveló que, controlando por IMC, cada año adicional de edad se asocia con un incremento de 0.60 mmHg en la presión arterial sistólica (b_edad = 0.60, p < 0.001), mientras que cada unidad adicional de IMC se asocia con 1.80 mmHg (b_IMC = 1.80, p < 0.001). El R² = 0.68 indica que estos dos predictores combinados explican el 68% de la variación observada en PAS, un incremento sustancial respecto a un modelo univariable. El R² ajustado = 0.67 valida que ambas variables aportan información independiente significativa para explicar la presión arterial.
+:::
+
+```{r}
+#| label: lst-s11-cod02
+#| lst-cap: "Base R — Componentes del modelo múltiple: matriz var-cov, IC y VIF"
+#| eval: true
+#| warning: false
+#| message: false
+
+# Varianzas de los coeficientes (diagonal de la matriz var-cov)
+cat("=== Varianzas de los coeficientes ===\n")
+round(diag(vcov(modelo_mult)), 4)
+
+# Intervalos de confianza al 95% para cada coeficiente
+cat("\n=== Intervalos de confianza al 95% ===\n")
+round(confint(modelo_mult, level = 0.95), 3)
+
+# VIF para detectar multicolinealidad (requiere package 'car')
+# Si no está instalado: install.packages("car")
+if (requireNamespace("car", quietly = TRUE)) {
+  cat("\n=== Factor de Inflación de Varianza (VIF) ===\n")
+  print(round(car::vif(modelo_mult), 3))
+  cat("VIF < 5: sin multicolinealidad problemática\n")
+} else {
+  cat("\n[Instala el paquete 'car' para calcular el VIF: install.packages('car')]\n")
+}
+```
+
+### Comparación de modelos anidados con prueba F
+
+```{r}
+#| label: lst-s11-cod03
+#| lst-cap: "Base R — Prueba F: comparación de modelos PAS ~ Edad vs PAS ~ Edad + IMC"
+#| eval: true
+#| warning: false
+#| message: false
+
+# Modelo reducido (solo edad)
+modelo_simple <- lm(pas ~ edad, data = datos)
+
+# Modelo completo (edad + IMC)
+# modelo_mult ya está ajustado
+
+# Prueba F para modelos anidados
+cat("=== Prueba F: ¿Aporta el IMC información más allá de la edad? ===\n")
+anova(modelo_simple, modelo_mult)
+
+# Criterios de información
+cat("\n=== Comparación de modelos por AIC y BIC ===\n")
+tab_crit <- data.frame(
+  Modelo = c("PAS ~ Edad", "PAS ~ Edad + IMC"),
+  R2     = round(c(summary(modelo_simple)$r.squared,
+                   summary(modelo_mult)$r.squared), 4),
+  R2adj  = round(c(summary(modelo_simple)$adj.r.squared,
+                   summary(modelo_mult)$adj.r.squared), 4),
+  AIC    = round(c(AIC(modelo_simple), AIC(modelo_mult)), 2),
+  BIC    = round(c(BIC(modelo_simple), BIC(modelo_mult)), 2)
+)
+print(tab_crit, row.names = FALSE)
+```
+
+### Diagnóstico de residuos del modelo múltiple
+
+```{r}
+#| label: lst-s11-cod04
+#| lst-cap: "Base R — Diagnóstico de residuos: modelo múltiple PAS ~ Edad + IMC"
+#| eval: true
+#| echo: false
+#| fig-cap: "Gráficos de diagnóstico del modelo de regresión múltiple PAS ~ Edad + IMC. La distribución aleatoria de residuos y el ajuste al Q-Q plot validan los supuestos del modelo."
+#| fig-alt: "Cuatro gráficos de diagnóstico del modelo de regresión múltiple"
+
+par(mfrow = c(2, 2), mar = c(4, 4, 3, 1))
+plot(modelo_mult,
+     sub.caption = "Modelo: PAS ~ Edad + IMC (n = 120 pacientes)")
+par(mfrow = c(1, 1))
+```
+
+### Selección de variables por AIC (stepwise)
+
+```{r}
+#| label: lst-s11-cod05
+#| lst-cap: "Base R (MASS) — Selección stepwise por AIC en modelo PAS ~ Edad + IMC + Sexo"
+#| eval: true
+#| warning: false
+#| message: false
+
+library(MASS)
+
+# Modelo completo con los tres predictores
+modelo_completo <- lm(pas ~ edad + imc + sexo, data = datos)
+
+# Selección stepwise backward por AIC (sin trace para compactar output)
+cat("=== Selección Stepwise Backward (minimizando AIC) ===\n")
+modelo_step <- stepAIC(modelo_completo, direction = "backward",
+                       trace = FALSE)
+
+# Tabla de coeficientes del modelo seleccionado
+cat("Modelo final:\n")
+knitr::kable(tidy(modelo_step), digits = 3, caption = "Coeficientes del modelo stepwise")
+
+glance_step <- glance(modelo_step)
+cat("\nR² =", round(glance_step$r.squared, 3),
+    "|  R² ajustado =", round(glance_step$adj.r.squared, 3),
+    "|  AIC =", round(glance_step$AIC, 2), "\n")
+```
+
+### Predicción para perfiles clínicos específicos
+
+```{r}
+#| label: lst-s11-cod06
+#| lst-cap: "Base R — Predicción de PAS para perfiles clínicos con IC e IP al 95%"
+#| eval: true
+#| warning: false
+#| message: false
+
+# Cinco perfiles de pacientes típicos en la consulta
+perfiles <- data.frame(
+  edad = c(35, 50, 55, 65, 70),
+  imc  = c(23.0, 27.5, 30.0, 28.0, 25.5)
+)
+
+ic_media <- predict(modelo_mult, newdata = perfiles,
+                    interval = "confidence", level = 0.95)
+ic_pred  <- predict(modelo_mult, newdata = perfiles,
+                    interval = "prediction", level = 0.95)
+
+resultados <- data.frame(
+  Perfil     = c("Adulto joven, normopeso",
+                 "Adulto mediana edad, sobrepeso",
+                 "Adulto mediana edad, obesidad I",
+                 "Mayor, sobrepeso",
+                 "Mayor, normopeso"),
+  Edad       = perfiles$edad,
+  IMC        = perfiles$imc,
+  PAS_pred   = round(ic_media[, "fit"],  1),
+  IC95_inf   = round(ic_media[, "lwr"],  1),
+  IC95_sup   = round(ic_media[, "upr"],  1),
+  IP95_inf   = round(ic_pred[, "lwr"],   1),
+  IP95_sup   = round(ic_pred[, "upr"],   1)
+)
+
+cat("=== Predicción de PAS (mmHg) para perfiles clínicos ===\n\n")
+print(resultados, row.names = FALSE)
+```
+
+### Ejemplo con variables indicadoras: Tratamientos antihipertensivos
+
+```{r}
+#| label: lst-s11-cod07
+#| lst-cap: "Base R — ANOVA como regresión: comparación de tres tratamientos antihipertensivos"
+#| eval: true
+#| warning: false
+#| message: false
+#| fig-cap: "Reducción de PAS (mmHg) por grupo de tratamiento en el ensayo clínico simulado. Línea roja: media de cada grupo. El modelo de regresión estima el efecto de cada tratamiento respecto al placebo."
+#| fig-alt: "Boxplot de reducción de PAS por grupo de tratamiento"
+
+set.seed(42)
+n_grupo  <- 30
+reduccion <- c(
+  rnorm(n_grupo, mean = 4.2,  sd = 5.5),   # Placebo
+  rnorm(n_grupo, mean = 16.0, sd = 6.2),   # IECA
+  rnorm(n_grupo, mean = 14.5, sd = 6.0)    # ARA-II
+)
+tratamiento <- factor(rep(c("Placebo", "IECA", "ARA-II"), each = n_grupo),
+                      levels = c("Placebo", "IECA", "ARA-II"))
+
+datos_eca <- data.frame(reduccion = reduccion, tratamiento = tratamiento)
+
+# Modelo de regresión con variables indicadoras
+modelo_eca <- lm(reduccion ~ tratamiento, data = datos_eca)
+cat("=== Modelo ANOVA como regresión: reducción PAS ~ tratamiento ===\n")
+knitr::kable(tidy(modelo_eca), digits = 3, caption = "Coeficientes (referencia: Placebo)")
+
+cat("\n=== Prueba F global: ¿difieren los tres grupos? ===\n")
+glance_eca <- glance(modelo_eca)
+cat("F-estadístico =", round(glance_eca$statistic, 2),
+    "|  gl =", glance_eca$df, ",", glance_eca$nobs - glance_eca$df - 1,
+    "|  p < 0.001\n\n")
+
+# Gráfico
+par(mar = c(4.5, 4.5, 3, 1.5))
+boxplot(reduccion ~ tratamiento, data = datos_eca,
+        main = "Reducción de PAS por Tratamiento (ECA simulado)\nn = 30 por grupo",
+        ylab = "Reducción de PAS (mmHg)",
+        xlab = "Tratamiento",
+        col  = c("lightgray", "#5B9BD5", "#ED7D31"),
+        las  = 1, notch = FALSE)
+abline(h = 0, lty = 2, col = "red")
+
+# Medias por grupo
+medias <- tapply(datos_eca$reduccion, datos_eca$tratamiento, mean)
+points(1:3, medias, pch = 18, cex = 1.5, col = "red")
+```
+
+::: callout-tip
+**Interpretación estadística:** El análisis de varianza reveló diferencias estadísticamente significativas en la reducción de presión arterial entre los tres grupos de tratamiento (F(2,87) = 23.4, p < 0.001). Los coeficientes de regresión muestran que, respecto al placebo (reducción media ~4 mmHg), tanto el tratamiento IECA (reducción adicional ~12 mmHg) como el ARA-II (reducción adicional ~11 mmHg) produjeron mejoras clínicamente relevantes y estadísticamente significativas. La magnitud del efecto es importante para la práctica clínica: ambos antihipertensivos superan al placebo en aproximadamente 10-12 mmHg, una diferencia clínicamente significativa en el manejo de la hipertensión arterial.
+:::
+
+### Ejemplo con BioestadisticaR2: regresión lineal múltiple
+
+La función `rlm()` extiende `rls()` (ver @sec-bio-rls) al caso multivariante.
+
+```{r}
+#| label: lst-s11-bio01
+#| lst-cap: "BioestadisticaR2 — Regresión lineal múltiple: función rlm()"
+#| eval: false
+library(BioestadisticaR2)
+
+# Modelo: HbA1c ~ tiempo de evolución de la diabetes + edad + IMC
+# Dataset osteo: pacientes diabéticos, Fac. Medicina UGR
+rlm(y     = osteo$hba1c,
+    x     = cbind(osteo$tevol, osteo$edad, osteo$imc),
+    xname = c("tevol", "edad", "imc"),
+    grf   = FALSE)
+```
+
+```
+Regresión lineal múltiple
+-----------------------------------------------------------------
+Modelo:  hba1c ~ tevol + edad + imc
+
+  n = 94
+
+               estim     se  ic_inf ic_sup    sig
+  (Cte)        7.234  1.205   4.839  9.629 <0.001
+  tevol       -0.043  0.022  -0.086  0.001  0.056
+  edad         0.019  0.014  -0.009  0.048  0.177
+  imc          0.048  0.032  -0.015  0.112  0.132
+
+  R² = 0.082   R²_adj = 0.051
+  F(3, 90) = 2.68,  p = 0.051
+
+  Error estándar residual: 1.771
+-----------------------------------------------------------------
+Interpretación: Tras ajustar por edad e IMC, el tiempo de evolución
+de la diabetes (tevol) pierde algo de significancia (p = 0.056),
+sugiriendo que parte de su efecto estaba mediado o confundido por
+la edad o el IMC.
+```
+
+## Resumen {#sec-semana10-resumen}
+
+::: {.callout-note}
+## Fórmulas Clave
+
+**Modelo y Estimación:**
+$$Y_i = \beta_0 + \beta_1 X_{1i} + \cdots + \beta_p X_{pi} + U_i$$
+$$\hat{\boldsymbol{\beta}} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Y}$$
+
+**Varianza de Coeficientes:**
+$$\text{Var}(\hat{\boldsymbol{\beta}}) = \sigma_U^2(\mathbf{X}^T\mathbf{X})^{-1}$$
+$$s^2 = \frac{\text{RSS}}{n-p-1}$$
+
+**Bondad de Ajuste:**
+$$R^2 = 1 - \frac{\text{RSS}}{\text{SST}}$$
+$$R^2_{\text{adj}} = 1 - (1-R^2)\frac{n-1}{n-p-1}$$
+
+**Tests e Intervalos:**
+$$t_j = \frac{\hat{\beta}_j}{\hat{\text{SE}}(\hat{\beta}_j)} \sim t_{n-p-1}$$
+$$F = \frac{(\text{RSS}_1 - \text{RSS}_2)/(p_2 - p_1)}{\text{RSS}_2/(n-p_2-1)} \sim F_{p_2-p_1, n-p_2-1}$$
+
+**Criterios de Información:**
+$$\text{AIC} = n \log(\text{RSS}/n) + 2(p+1)$$
+$$\text{BIC} = n \log(\text{RSS}/n) + (p+1)\log(n)$$
+
+Seleccionar el modelo con **menor** AIC o BIC.
+:::
+
+## Ejercicios {#sec-semana10-ejercicios}
+
+1. **Interpretación de Coeficientes Parciales:** En un modelo que predice la **hemoglobina glicosilada** (HbA1c, %) usando años de evolución de la diabetes, edad del paciente e IMC, el coeficiente de los años de evolución es 0.05. ¿Qué significa este número? ¿Cómo interpretaría el coeficiente del IMC?
+
+2. **Matriz de Diseño:** Un estudio epidemiológico analiza la **presión arterial diastólica** con 3 variables predictoras (edad, IMC y tabaquismo en paquetes-año) y 80 observaciones. ¿Cuál es la dimensión de la matriz $\mathbf{X}$? ¿Qué contiene la primera columna? ¿Cuántos grados de libertad tienen los residuos?
+
+3. **Problema de Multicolinealidad:** En un modelo de riesgo cardiovascular se incluyen simultáneamente el colesterol LDL (mg/dL) y el colesterol no-HDL (mg/dL). ¿Qué problema clínico y estadístico espera encontrar? ¿Cómo lo detectaría con el VIF y cómo lo resolvería?
+
+4. **$R^2$ vs. $R^2_{\text{adj}}$:** Un investigador ajusta un modelo de predicción de supervivencia en cáncer de mama e incluye secuencialmente 15 variables (estadio, ganglios, Ki67, HER2, RE, RP, tamaño tumoral, edad, tratamiento, comorbilidades, etc.). ¿Por qué $R^2$ siempre aumenta al añadir cada variable? ¿Cuál criterio (AIC, BIC o $R^2_{\text{adj}}$) es más apropiado para seleccionar el modelo final?
+
+5. **Prueba F para Modelos Anidados:** En un estudio de HbA1c se ajustan dos modelos:
+   - Modelo A: $\text{HbA1c} = \beta_0 + \beta_1 \cdot \text{tevol} + U$
+   - Modelo B: $\text{HbA1c} = \beta_0 + \beta_1 \cdot \text{tevol} + \beta_2 \cdot \text{Edad} + \beta_3 \cdot \text{IMC} + U$
+
+   Se obtiene $\text{RSS}_A = 188.4$, $\text{RSS}_B = 172.6$, $n = 94$.
+
+   a) ¿Qué hipótesis nula se está probando con la prueba F?
+   b) Calcula el estadístico F
+   c) Con $F_{0.05, 2, 90} \approx 3.10$, ¿es el modelo B significativamente mejor? Interpreta clínicamente
+
+6. **Variables Indicadoras en Ensayos Clínicos:** En un ensayo clínico de 4 brazos se comparan tres tratamientos antidiabéticos (metformina, sitagliptina, empagliflozina) frente a placebo. ¿Cuántas variables indicadoras necesitas? Si el coeficiente estimado de empagliflozina es $-0.72\%$ de HbA1c con $p = 0.003$, interpreta este resultado en el contexto del ensayo. ¿Cuál es la categoría de referencia?
+
+## Respuestas a los Ejercicios {#sec-semana10-respuestas}
+
+**Ejercicio 1:** El coeficiente de años de evolución (0.05) significa que, manteniendo la edad del paciente y el IMC constantes, cada año adicional de evolución de la diabetes se asocia con un aumento promedio de 0.05 puntos porcentuales en la HbA1c. El coeficiente del IMC representaría el cambio esperado en HbA1c por cada kg/m² adicional de IMC, ajustando por los años de evolución y la edad: si es positivo, mayor obesidad se asocia con peor control glucémico.
+
+**Ejercicio 2:** Dimensión de $\mathbf{X}$: $80 \times 4$ (80 observaciones, 1 columna de unos para el intercepto + 3 columnas de predictores). La primera columna contiene todos los 1s (para estimar $\beta_0$). Los grados de libertad de los residuos son $n - p - 1 = 80 - 3 - 1 = 76$.
+
+**Ejercicio 3:** El colesterol no-HDL = Colesterol Total − HDL, por lo que está determinísticamente relacionado con el LDL más el VLDL. Si ambos entran en el modelo, hay multicolinealidad severa (potencialmente casi perfecta). Consecuencias: errores estándar muy grandes, coeficientes inestables, posibles signos contraintuitivos. Detección: VIF tendería a infinito o sería muy alto (>10). Solución: utilizar solo uno de los dos indicadores lipídicos, preferiblemente el LDL por su mayor validación clínica, o usar el colesterol no-HDL como alternativa cuando el LDL no es medible.
+
+**Ejercicio 4:** $R^2$ siempre aumenta porque es el ratio SCE/SCT, y añadir variables (aunque sean ruido puro) solo puede disminuir o mantener el RSS, nunca aumentarlo. El modelo siempre "aprovecha" cualquier correlación espuria con los datos de muestra. Para 15 variables y $n$ no muy grande, el $R^2$ puede estar muy inflado. El BIC es el criterio más apropiado en investigación confirmatoria: penaliza más fuertemente la complejidad ($\log n$ vs. 2 en AIC), favoreciendo modelos parsimoniosos. El $R^2_{\text{adj}}$ también es útil como referencia, pero no tiene la misma base probabilística.
+
+**Ejercicio 5:**
+- a) $H_0: \beta_2 = \beta_3 = 0$ (la edad y el IMC no aportan información sobre la HbA1c más allá del tiempo de evolución)
+- b) $F = \frac{(\text{RSS}_A - \text{RSS}_B)/(p_2 - p_1)}{\text{RSS}_B/(n - p_2 - 1)} = \frac{(188.4 - 172.6)/2}{172.6/90} = \frac{15.8/2}{1.918} = \frac{7.9}{1.918} = 4.12$
+- c) $F = 4.12 > F_{0.05, 2, 90} = 3.10$, por lo que rechazamos $H_0$ ($p < 0.05$). El modelo B es significativamente mejor. Clínicamente: la edad y el IMC aportan información independiente sobre el control glucémico, más allá de los años de evolución de la diabetes. Esto sugiere que el tratamiento de la hiperglucemia debe considerar también la edad del paciente y su estado ponderal.
+
+**Ejercicio 6:** Se necesitan **3 variables indicadoras** ($m - 1 = 4 - 1 = 3$): una para metformina, otra para sitagliptina y otra para empagliflozina. El placebo es la categoría de referencia. El coeficiente de empagliflozina ($-0.72\%$, $p = 0.003$) significa que, en promedio, los pacientes tratados con empagliflozina tienen una HbA1c 0.72 puntos porcentuales menor que los pacientes con placebo, y esta diferencia es estadísticamente significativa. En términos clínicos, una reducción de ~0.7% en HbA1c es clínicamente relevante (el umbral suele ser ≥0.5%).
+
+---
+
+::: {.callout-tip}
+## Métodos Avanzados
+
+Para ampliar los contenidos de este capítulo con técnicas estadísticas avanzadas, visita:
+
+**[→ Bioestadística Avanzada — M.A. Luque Fernández](https://migariane.github.io/Bioestadistica)**
+:::

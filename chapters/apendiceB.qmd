@@ -1,0 +1,536 @@
+# Apéndice B: El Paquete BioestadisticaR2 — Guía de Referencia {#sec-apendiceB}
+
+El paquete **BioestadisticaR2** (versión 2.5, septiembre 2023) ha sido desarrollado por el Grupo de Bioestadística de la Facultad de Medicina de la Universidad de Granada: Pedro Femia, Pedro Carmona, Miguel A. Montero, Juan M. Melchor, Juan A. Villatoro, Miguel Ángel Luque Fernández, Manuela Expósito y Juan de Dios Luna. Proporciona funciones de alto nivel que integran contraste, estimación y visualización en una sola llamada, diseñadas específicamente para la docencia de bioestadística en ciencias de la salud.
+
+---
+
+## B.1 Instalación y el Conjunto de Datos `osteo` {#sec-bio-instalacion}
+
+::: {.callout-note}
+## Instalación
+
+```{r}
+#| lst-label: lst-apendiceB-1
+#| lst-cap: "Código R"
+
+# 1. Descarga la versión adecuada para tu sistema (Windows .zip o Mac .tar.gz) desde:
+# https://digibug.ugr.es/handle/10481/84535?show=full
+
+# 2. Instalar el paquete localmente usando R:
+# (Asegúrate de tener instalado el paquete 'remotes')
+# install.packages("remotes")
+# remotes::install_local("ruta/a/tu/archivo_descargado.zip_o_tar.gz")
+
+# Cargar el paquete
+library(BioestadisticaR2)
+```
+:::
+
+El paquete incluye el dataset `osteo`, con datos reales de 94 pacientes diabéticos de la Facultad de Medicina de la UGR. Es el conjunto de referencia de todos los ejemplos de este apéndice.
+
+::: {.callout-tip}
+## El Dataset `osteo`
+
+```{r}
+#| lst-label: lst-apendiceB-2
+#| lst-cap: "Código R"
+
+library(BioestadisticaR2)
+str(osteo)
+```
+
+
+Las 27 variables cubren factores de riesgo (tabaco, alcohol, actividad física), biomarcadores (HbA1c, calcio, creatinina), complicaciones (retinopatía, nefropatía, neuropatía) y medidas óseas (z-scores DXA, osteoporosis).
+:::
+
+---
+
+## B.2 Análisis Descriptivo: `freq()` y `grps()` {#sec-bio-descriptivo}
+
+### B.2.1 Tablas de Frecuencias: `freq()`
+
+```{r}
+#| lst-label: lst-apendiceB-3
+#| lst-cap: "Código R"
+x <-rnorm(50,250,2)
+freq(x, acum = TRUE, cuts = 0, agrup = TRUE, decs = 3, grf = TRUE)
+```
+
+Genera una tabla de frecuencias absolutas, relativas y acumuladas. Si `cuts > 0`, agrupa en intervalos de igual amplitud. El argumento `grf = FALSE` suprime el gráfico.
+
+::: {.callout-tip}
+## Ejemplo B.1: Distribución de la edad por intervalos
+
+```{r}
+#| lst-label: lst-apendiceB-4
+#| lst-cap: "Código R"
+
+library(BioestadisticaR2)
+freq(osteo$edad, grf = FALSE)
+```
+
+
+El 52.1% de los pacientes tiene menos de 28 años. La distribución es asimétrica positiva: más de la mitad son jóvenes en estadios iniciales de la diabetes.
+
+```{r}
+#| lst-label: lst-apendiceB-5
+#| lst-cap: "Código R"
+
+# Con 5 clases de igual amplitud para el IMC
+freq(osteo$imc, cuts = 5, grf = FALSE)
+```
+
+:::
+
+### B.2.2 Estadísticas por Grupos: `grps()`
+
+```{r}
+#| lst-label: lst-apendiceB-6
+#| lst-cap: "Código R"
+nivel<-c(1.1,2.1,2.2,3.2,0.1,.2,1.0,0.4,0.7,1.3,1.5,3.1,2.4,3.6,1.1,2.4,3.2,2.6,1.5,6.1,2.1,1.9,1,2.1,1.3,4.1,1.2)
+grupo<-c("A","A","A","A","A","A","A","B","B","B","B","B","B","C","C","C","C","C","C","C","C","C","D","D","D","D","D")
+grps(x=nivel, f=grupo, ic = FALSE, grf = TRUE, alfa = 0.05, conf = 0.95, decs = 3)
+```
+
+Proporciona media, desviación típica y tamaño de cada grupo. Con `ic = TRUE` añade intervalos de confianza por grupo.
+
+::: {.callout-tip}
+## Ejemplo B.2: IMC por sexo y por grupo de edad
+
+```{r}
+#| lst-label: lst-apendiceB-7
+#| lst-cap: "Código R"
+
+# IMC según sexo
+grps(osteo$imc, osteo$sexo, grf = FALSE)
+```
+
+
+```{r}
+#| lst-label: lst-apendiceB-8
+#| lst-cap: "Código R"
+
+# Con intervalos de confianza
+grps(osteo$imc, osteo$sexo, ic = TRUE, grf = FALSE)
+```
+:::
+
+---
+
+## B.3 Intervalos de Confianza: `icm()`, `icp()`, `icl()` {#sec-bio-ic}
+
+### B.3.1 IC para la Media: `icm()`
+
+```{r}
+#| lst-label: lst-apendiceB-9
+#| lst-cap: "Código R"
+
+icm(x = 0, n = 0, m = 0, s = 0, conf = 0.95, alfa = 0.05, decs = 3)
+```
+
+Intervalo de confianza bilateral para la media de una distribución normal. Acepta los estadísticos suficientes ($n$, $\bar{x}$, $s$) o directamente los datos (`x`).
+
+::: {.callout-tip}
+## Ejemplo B.3: IC para la media de HbA1c
+
+```{r}
+#| lst-label: lst-apendiceB-10
+#| lst-cap: "Código R"
+
+# Usando estadísticos suficientes
+icm(m = mean(osteo$hba1c), s = sd(osteo$hba1c), n = nrow(osteo))
+```
+
+
+**Interpretación:** Con 95% de confianza, la media poblacional de HbA1c en diabéticos de la UGR está entre 8.20% y 8.93%, lo que indica un control glucémico deficiente (meta clínica: < 7%).
+:::
+
+### B.3.2 IC para Proporción: `icp()`
+
+```{r}
+#| lst-label: lst-apendiceB-11
+#| lst-cap: "Código R"
+
+icp(x = 0, n = 0, level = "", conf = 0.95, alfa = 0.05, decs = 4)
+```
+
+Calcula el IC para una proporción con cuatro métodos: Clopper-Pearson (exacto), Wilson, Wald clásico y Agresti-Coull.
+
+::: {.callout-tip}
+## Ejemplo B.4: IC para la prevalencia de tabaquismo
+
+```{r}
+#| lst-label: lst-apendiceB-12
+#| lst-cap: "Código R"
+
+icp(x = sum(osteo$tabaco == "Sí"), n = nrow(osteo))
+```
+
+
+El 43.6% de los 94 pacientes diabéticos son fumadores (IC 95%: 33.9%–54.2%).
+:::
+
+### B.3.3 IC para Tasa Poisson: `icl()`
+
+```{r}
+#| lst-label: lst-apendiceB-13
+#| lst-cap: "Código R"
+
+icl(x = 0, n = 0, conf = 0.95, decs = 4)
+```
+
+IC para la tasa $\lambda$ de una distribución de Poisson basado en el método exacto (gamma-Poisson). Útil en vigilancia epidemiológica (tasas de incidencia por persona-año).
+
+---
+
+## B.4 Tamaño Muestral: `nm()` y `np()` {#sec-bio-n}
+
+### B.4.1 Para la Media: `nm()`
+
+```{r}
+#| lst-label: lst-apendiceB-14
+#| lst-cap: "Código R"
+
+nm(d=1.0, n=100, m=25.3, s=4.1)
+```
+
+Calcula el tamaño muestral necesario para estimar una media con precisión $d$ (semiamplitud del IC) dada una desviación típica esperada $s$.
+
+::: {.callout-tip}
+## Ejemplo B.5: ¿Cuántos pacientes para estimar HbA1c?
+
+¿Cuántos pacientes se necesitan para obtener un IC de amplitud total ≤ 0.8 puntos (d = 0.4) para la HbA1c, si $\sigma \approx 1.8$?
+
+```{r}
+#| lst-label: lst-apendiceB-15
+#| lst-cap: "Código R"
+
+nm(d = 0.4, n = 100, m = 8.565, s = 1.799, alfa=0.05)
+```
+
+Aumentar la precisión de ±0.37 (obtenida con n=94) a ±0.30 requeriría aproximadamente n ≈ 138 pacientes.
+:::
+
+### B.4.2 Para Proporciones: `np()`
+
+```{r}
+#| lst-label: lst-apendiceB-16
+#| lst-cap: "Código R"
+
+np(x=25, n=210, d=.05, conf=.90, decs=5)
+```
+
+Tamaño muestral para estimar una proporción con precisión $d$, usando la estimación piloto $\hat{p} = x/n$.
+
+---
+
+## B.5 Contrastes de Hipótesis {#sec-bio-contrastes}
+
+### B.5.1 Test de Normalidad: `testnormal()`
+
+```{r}
+#| lst-label: lst-apendiceB-17
+#| lst-cap: "Código R"
+#| warning: false
+
+testnormal(x, obs = TRUE, mod = TRUE, dens = TRUE, sw = TRUE, decs = 3, grf = TRUE)
+```
+
+Contraste de Shapiro-Wilk con visualización integrada (histograma + densidad teórica + QQ-plot).
+
+::: {.callout-tip}
+## Ejemplo B.6: ¿Es normal la HbA1c?
+
+```{r}
+#| lst-label: lst-apendiceB-18
+#| lst-cap: "Código R"
+#| warning: false
+
+testnormal(osteo$hba1c, grf = FALSE)
+```
+
+
+$W = 0.983$, $p = 0.276 > 0.05$: **no se rechaza normalidad**. La HbA1c sigue una distribución aproximadamente normal en esta muestra — contrasta con la edad ($W = 0.907$, $p < 0.001$).
+:::
+
+### B.5.2 Test t: `testt()`
+
+```{r}
+#| lst-label: lst-apendiceB-19
+#| lst-cap: "Código R"
+#| warning: false
+testt(m=37, s=7, n=158, m0=36,delta=3,potencia=0.95)
+```
+
+Integra en una sola función: verificación de normalidad (Shapiro-Wilk), t-test de una o dos muestras (pareadas o independientes), test de homogeneidad de varianzas, y IC.
+
+::: {.callout-tip}
+## Ejemplo B.7a: Contraste de una muestra — ¿HbA1c > 7.5%?
+
+```{r}
+#| lst-label: lst-apendiceB-20
+#| lst-cap: "Código R"
+
+# H₀: µ = 7.5  vs  H₁: µ > 7.5  (meta clínica)
+testt(m = osteo$hba1c, m0 = 7.5, grf = FALSE)
+```
+
+
+Rechazamos $H_0$: la media de HbA1c supera significativamente el umbral clínico de 7.5%.
+:::
+
+::: {.callout-tip}
+## Ejemplo B.7b: Contraste de dos muestras — HbA1c entre hombres y mujeres
+
+```{r}
+#| lst-label: lst-apendiceB-21
+#| lst-cap: "Código R"
+
+testt(grupos = osteo$sexo, m = osteo$hba1c, grf = FALSE)
+```
+
+
+No hay diferencia significativa en el control glucémico entre hombres y mujeres ($p = 0.953$).
+:::
+
+### B.5.3 Test F de Varianzas: `testf()`
+
+```{r}
+#| lst-label: lst-apendiceB-22
+#| lst-cap: "Código R"
+
+testf(s1=15, n1=120, s2=12, n2=65)
+```
+
+Contraste $H_0: \sigma_1^2 = \sigma_2^2$ usando el estadístico $F = s_1^2/s_2^2 \sim F_{n_1-1,\, n_2-1}$.
+
+::: {.callout-tip}
+## Ejemplo B.8: ¿Mismo IMC variable en hombres y mujeres?
+
+```{r}
+#| lst-label: lst-apendiceB-23
+#| lst-cap: "Código R"
+
+testf(s1 = sd(osteo$imc[osteo$sexo == "Hombre"]),
+      n1 = sum(osteo$sexo == "Hombre"),
+      s2 = sd(osteo$imc[osteo$sexo == "Mujer"]),
+      n2 = sum(osteo$sexo == "Mujer"))
+```
+
+
+$p = 0.006 < 0.05$: rechazamos igualdad de varianzas del IMC por sexo. Las mujeres presentan mayor variabilidad ($s = 4.39$ kg/m²) que los hombres ($s = 2.89$ kg/m²). Se debe usar la corrección de Welch en el t-test.
+:::
+
+### B.5.4 Test de Proporciones: `testp()`
+
+```{r}
+#| lst-label: lst-apendiceB-24
+#| lst-cap: "Código R"
+
+testp(x=30,n=70,p0=0.4,delta=0.05,potencia=0.9)
+```
+
+Contraste para una proporción (contra valor hipotético $\pi_0$) o para comparar dos proporciones independientes o pareadas.
+
+::: {.callout-tip}
+## Ejemplo B.9: ¿La prevalencia de tabaquismo supera el 35%?
+
+```{r}
+#| lst-label: lst-apendiceB-25
+#| lst-cap: "Código R"
+
+# H₀: π = 0.35  vs  H₁: π ≠ 0.35
+testp(x = sum(osteo$tabaco == "Sí"), n = nrow(osteo), p0 = 0.35)
+```
+
+No se rechaza $H_0$ al 5%: la proporción de fumadores (43.6%) no difiere significativamente del valor hipotético del 35% ($p = 0.100$).
+:::
+
+### B.5.5 Test de Wilcoxon: `testwx()`
+
+```{r}
+#| lst-label: lst-apendiceB-26
+#| lst-cap: "Código R"
+
+y1<-c(78,64,75,45,82,55,48)
+y2<-c(110,70,53,51,63,87,99)
+testwx(m1=y1,m2=y2,par=FALSE)
+```
+
+Test de Wilcoxon-Mann-Whitney para dos muestras independientes (`par = FALSE`) o test de los rangos con signo de Wilcoxon para datos pareados (`par = TRUE`). Incluye tamaño del efecto $r$ y probabilidad de superioridad.
+
+::: {.callout-tip}
+## Ejemplo B.10: IMC en diabéticos jóvenes vs mayores (distribución no normal)
+
+```{r}
+#| lst-label: lst-apendiceB-27
+#| lst-cap: "Código R"
+
+testwx(m1 = osteo$imc[osteo$grupo_edad == "< 25"],
+       m2 = osteo$imc[osteo$grupo_edad == "> 33"],
+       grf = FALSE)
+```
+
+
+Los pacientes mayores de 33 años presentan un IMC significativamente más elevado que los menores de 25 ($p = 0.005$, $r = 0.36$). Un paciente del grupo $> 33$ tiene una probabilidad del 70.9% de tener mayor IMC que uno del grupo $< 25$.
+:::
+
+### B.5.6 Test de McNemar: `testmcnemar()`
+
+```{r}
+#| lst-label: lst-apendiceB-28
+#| lst-cap: "Código R"
+
+testmcnemar(n11=27,n12=35,n21=43,n22=20,delta=0.05,alfa=0.05,beta=0.15)
+```
+
+Para comparar dos proporciones en muestras apareadas (antes/después, o dos pruebas diagnósticas en los mismos sujetos). El contraste se basa en las celdas discordantes $n_{12}$ y $n_{21}$.
+
+::: {.callout-tip}
+## Ejemplo B.11: Cambio en actividad física — intervención en diabéticos
+
+94 pacientes fueron evaluados en actividad física antes y después de una intervención de ejercicio estructurado.
+
+```{r}
+#| lst-label: lst-apendiceB-29
+#| lst-cap: "Código R"
+
+# n11 = 35 (activo→activo), n12 = 10 (activo→inactivo)
+# n21 =  5 (inactivo→activo), n22 = 44 (inactivo→inactivo)
+testmcnemar(n11 = 35, n12 = 10, n21 = 5, n22 = 44,
+            fcat = c("Activo","Inactivo"),
+            ccat = c("Antes","Después"))
+```
+
+
+No se detecta cambio significativo neto en los patrones de actividad física ($p = 0.245$). Las 10 personas que pasaron de activas a inactivas se compensan con las 5 que mejoraron.
+:::
+
+---
+
+## B.6 Regresión Lineal Simple: `rls()` {#sec-bio-rls}
+
+```{r}
+#| lst-label: lst-apendiceB-30
+#| lst-cap: "Código R"
+
+pre  <-c(200.1, 190.9, 192.7, 213, 241.4, 196.9, 172.2, 185.5, 205.2, 193.7)
+post <-c(392.9, 393.2, 345.1, 393, 434, 427.9, 422, 383.9, 392.3, 352.2)
+# Ejemplo - entrada como vectores individuales
+rls(post, pre) #ajusta el modelo post~pre
+# Ejemplo - entrada como formula
+datos<-data.frame(pre,post)
+rls(post~pre, data=datos)
+# Ejemplo - Pronosticos
+rls(post~pre, data=datos,pred=c(197,205))
+
+```
+
+Ajusta el modelo $Y = \beta_0 + \beta_1 X + \varepsilon$ e informa de: correlación de Pearson con IC, coeficientes con IC, $R^2$, diagnóstico de residuos, y (opcional) predicciones puntuales con IC.
+
+::: {.callout-tip}
+## Ejemplo B.12: ¿La evolución de la diabetes predice la HbA1c?
+
+```{r}
+#| lst-label: lst-apendiceB-31
+#| lst-cap: "Código R"
+
+rls(y = osteo$hba1c, x = osteo$tevol, grf = FALSE)
+```
+
+
+Existe una asociación negativa significativa ($r = -0.237$, $p = 0.021$): por cada año adicional de evolución de la diabetes, la HbA1c disminuye en promedio 0.05 puntos. Esta relación paradójica puede reflejar mejor adherencia al tratamiento en pacientes con más años de diagnóstico. Sin embargo, $R^2 = 0.056$: el tiempo de evolución solo explica el 5.6% de la variabilidad en HbA1c.
+:::
+
+---
+
+## B.7 Tablas de Contingencia: `tabla2x2()` y `tablarxc()` {#sec-bio-tablas}
+
+### B.7.1 Tabla 2×2: `tabla2x2()`
+
+```{r}
+#| lst-label: lst-apendiceB-32
+#| lst-cap: "Código R"
+
+tabla2x2(o=c(20, 26, 60,294), estudio = "T",fcat=c("Peso normal","Peso bajo"), ccat=c("fuma","No fuma"), tablas=c("F","E","S"))
+```
+
+Calcula: frecuencias observadas y esperadas, $\chi^2$ de Pearson (con y sin corrección de Yates), test exacto de Fisher, y medidas de asociación (OR, RR, RD) con sus IC al 95%, adaptadas al tipo de estudio (`estudio = "T"` transversal, `"C"` cohorte, `"CC"` caso-control).
+
+::: {.callout-tip}
+## Ejemplo B.13: Tabaquismo y osteoporosis del cuello femoral
+
+```{r}
+#| lst-label: lst-apendiceB-33
+#| lst-cap: "Código R"
+
+tabla2x2(fvar = osteo$tabaco, cvar = osteo$osteo_cue, o = osteo)
+```
+
+
+Los fumadores presentan una OR de 2.82 de tener osteoporosis del cuello femoral respecto a los no fumadores. La asociación es estadísticamente significativa ($p = 0.031$).
+:::
+
+### B.7.2 Tabla r×c: `tablarxc()`
+
+```{r}
+#| lst-label: lst-apendiceB-34
+#| lst-cap: "Código R"
+
+peor <-c(8,9,10)
+igual<-c(6,8,12)
+mejor<-c(4,9,10)
+tabla<-data.frame(peor,igual,mejor)
+tablarxc(frecs=tabla, tablas=c("E","F","S"), fcat=c("Trat1","Trat2"))
+
+```
+
+::: {.callout-tip}
+## Ejemplo B.14: Osteoporosis por grupo de edad (tabla 3×2)
+
+```{r}
+#| lst-label: lst-apendiceB-35
+#| lst-cap: "Código R"
+
+tab <- table(osteo$grupo_edad, osteo$osteo_cue)
+tablarxc(frecs = tab,
+         fcat  = c("< 25", "25-33", "> 33"),
+         ccat  = c("No",   "Sí"))
+```
+
+
+No hay diferencia significativa en la prevalencia de osteoporosis entre los tres grupos de edad ($\chi^2 = 2.99$, $p = 0.224$).
+:::
+
+---
+
+## B.8 Tabla Resumen de Funciones {#sec-bio-resumen}
+
+| Función | Capítulo | Propósito | Ejemplo de uso |
+|---------|----------|-----------|----------------|
+| `freq()` | 1, 2 | Tablas de frecuencias (absolutas, relativas, acumuladas) | `freq(osteo$edad, grf=FALSE)` |
+| `grps()` | 2 | Estadísticas descriptivas por grupos | `grps(osteo$imc, osteo$sexo)` |
+| `icm()` | 7 | IC bilateral para la media | `icm(m=8.565, s=1.799, n=94)` |
+| `icp()` | 7 | IC para proporción (4 métodos) | `icp(x=41, n=94)` |
+| `icl()` | 7 | IC para tasa Poisson (exacto) | `icl(x=12, n=1000)` |
+| `nm()` | 7 | Tamaño muestral para media | `nm(m=8.5, s=1.8, d=0.4)` |
+| `np()` | 7 | Tamaño muestral para proporción | `np(x=41, n=94, d=0.1)` |
+| `testnormal()` | 9, 12 | Test de Shapiro-Wilk + gráficos | `testnormal(osteo$hba1c)` |
+| `testt()` | 8, 9 | t-test (1 muestra, 2 muestras, pareado) | `testt(m=osteo$hba1c, m0=7.5)` |
+| `testf()` | 9 | Test F de igualdad de varianzas | `testf(s1=2.89, n1=45, s2=4.39, n2=49)` |
+| `testp()` | 8 | Test de proporciones (1 o 2 grupos) | `testp(x=41, n=94, p0=0.35)` |
+| `testwx()` | 9 | Wilcoxon-Mann-Whitney / rangos con signo | `testwx(m1=imc1, m2=imc2)` |
+| `testmcnemar()` | 12 | Test de McNemar (datos apareados) | `testmcnemar(n11=35, n12=10, n21=5, n22=44)` |
+| `rls()` | 10 | Regresión lineal simple con diagnósticos | `rls(y=osteo$hba1c, x=osteo$tevol)` |
+| `tabla2x2()` | 12 | Tabla 2×2: χ², Fisher, OR/RR/RD + IC | `tabla2x2(fvar=tabaco, cvar=osteo_cue, o=osteo)` |
+| `tablarxc()` | 12 | Tabla r×c: χ² con verificación de supuestos | `tablarxc(frecs=table(retin, nefro))` |
+
+::: {.callout-note}
+## Recursos del Paquete
+
+- **Web:** <https://digibug.ugr.es/handle/10481/84535?show=full>
+- **Contacto:** pfemia@ugr.es (Pedro Femia Marzo)
+- **Instalación:** Ver sección anterior (Instalación local desde archivo descargado)
+- **Dataset `osteo`:** 94 pacientes diabéticos, 27 variables, Facultad de Medicina UGR (2023)
+:::
+

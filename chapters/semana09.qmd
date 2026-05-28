@@ -1,0 +1,843 @@
+```{r}
+#| label: setup
+#| include: false
+options(digits = 3)
+library(broom)
+```
+
+# Semana 9 — Regresión Lineal Simple {#sec-semana09}
+
+## El Problema de Regresión {#sec-semana09-s1}
+
+### Variables en un modelo de regresión
+
+El objetivo de la regresión es **cuantificar la relación entre una variable respuesta y una o más variables explicativas**. En ciencias de la salud, este enfoque permite responder preguntas como: ¿aumenta la presión arterial con la edad? ¿predice el índice de masa corporal el nivel de colesterol? ¿cuánto reduce la hemoglobina glicosilada cada año adicional de tratamiento?
+
+::: {.callout-note}
+## Definición: Variables en Regresión
+
+- **Variable respuesta (dependiente)** $Y$: la variable clínica que queremos explicar o predecir (ej. presión arterial sistólica, HbA1c, colesterol)
+- **Variables explicativas (independientes)** $X_1, X_2, \ldots, X_p$: variables predictoras, regresores, covariables (ej. edad, IMC, dosis)
+- **Función de regresión**: $E(Y|X_1, X_2, \ldots, X_p) = m(x_1, x_2, \ldots, x_p)$
+
+Esta función describe el **valor esperado (promedio)** de $Y$ dados los valores de las variables explicativas.
+:::
+
+En esta semana nos enfocamos en el caso **simple**: una única variable explicativa $X$.
+
+### Observaciones en una muestra
+
+Disponemos de $n$ observaciones muestrales:
+
+- $(y_i, x_{1i}, x_{2i}, \ldots, x_{pi})$ para $i = 1, 2, \ldots, n$
+- $y_i$: valor observado de la variable respuesta (ej. PAS del paciente $i$, mmHg)
+- $x_{ki}$: valores observados de las variables explicativas (ej. edad del paciente $i$, años)
+
+## Supuestos del Modelo Lineal {#sec-semana09-s2}
+
+Para que la regresión lineal funcione correctamente, asumimos que se cumplen cinco supuestos:
+
+::: {.callout-warning}
+## Los Cinco Supuestos del Modelo Lineal
+
+1. **Media cero de errores**: $E(U_i) = 0$ para $i = 1, \ldots, n$
+   - Los errores no tienen sesgo sistemático
+
+2. **Homoscedasticidad**: $\text{Var}(U_i) = \sigma_u^2$ para $i = 1, \ldots, n$
+   - La varianza de los errores es constante (no depende de $X$)
+
+3. **No autocorrelación**: $\text{Cov}(U_i, U_j) = 0$ para $i \neq j$
+   - Los errores de diferentes observaciones no están correlacionados
+
+4. **Normalidad**: $U_i \sim N(0, \sigma_u^2)$
+   - Los errores siguen una distribución normal
+
+5. **Regresores fijos**: Los valores $x_{ki}$ son cantidades fijas, independientes de la muestra
+   - No hay aleatoriedad en los predictores
+:::
+
+### Implicaciones de los supuestos
+
+Bajo estos supuestos, como $Y_i = m(X_i) + U_i$:
+
+- Si $U_i$ tienen media cero: $E(Y_i) = m(X_i)$
+- Si $U_i$ son normales: $Y_i \sim N(m(X_i), \sigma_u^2)$
+- Los valores de $Y_i$ son **variables aleatorias** (varían entre muestras)
+
+## El Modelo de Regresión Lineal Simple {#sec-semana09-s3}
+
+### Modelo poblacional
+
+Bajo los supuestos anteriores, especificamos una relación **lineal** entre $Y$ y $X$:
+
+::: {.callout-note}
+## Definición: Modelo de Regresión Lineal Simple
+
+$$Y_i = \beta_0 + \beta_1 X_i + U_i, \quad i = 1, \ldots, n$$
+
+donde:
+- $\beta_0$ es la **ordenada en el origen** (intercept): el valor esperado de $Y$ cuando $X = 0$
+- $\beta_1$ es la **pendiente**: el cambio en el valor esperado de $Y$ cuando $X$ aumenta en una unidad
+- $U_i$ es el **término de error**: captura factores no observados y variación aleatoria
+
+La **función de regresión poblacional** es:
+$$E(Y|X = x) = \beta_0 + \beta_1 x$$
+:::
+
+### Interpretación de los parámetros
+
+- **$\beta_1$ (pendiente)**: Si $X$ aumenta en 1 unidad, entonces $Y$ aumenta **en promedio** $\beta_1$ unidades
+- **$\beta_0$ (intercept)**: El valor medio de $Y$ cuando $X = 0$ (no siempre tiene interpretación clínica directa)
+
+### Ejemplo: Presión Arterial Sistólica vs. Edad
+
+En un estudio transversal realizado en la consulta de medicina interna del Hospital Clínico San Cecilio de Granada, se recogieron datos de 120 adultos para estudiar la asociación entre la presión arterial sistólica (PAS) y la edad:
+
+- $Y$: presión arterial sistólica (mmHg)
+- $X$: edad del paciente (años)
+- $n = 120$ pacientes adultos (25–80 años)
+
+El modelo sería: $\text{PAS}_i = \beta_0 + \beta_1 \times \text{Edad}_i + U_i$
+
+Si estimamos $\beta_1 = 0.80$ mmHg/año, significa que por cada año adicional de edad, la PAS aumenta en promedio 0.80 mmHg. Si $\beta_0 = 85.2$ mmHg, es el nivel basal estimado (extrapolación para edad = 0, sin interpretación directa).
+
+::: {.callout-tip}
+## Ejemplo con BioestadisticaR2: rls()
+
+Documentación completa en @sec-bio-rls.
+
+```{r}
+#| label: lst-s10-bio01
+#| lst-cap: "BioestadisticaR2 — Regresión lineal simple: HbA1c ~ Tiempo de evolución de la diabetes"
+#| eval: false
+library(BioestadisticaR2)
+
+# ¿Los años de evolución de la diabetes predicen la HbA1c?
+# Dataset: 94 pacientes diabéticos, Fac. Medicina UGR
+rls(y = osteo$hba1c, x = osteo$tevol, grf = FALSE)
+```
+
+```
+Regresión lineal simple
+----------------------------------------------------------------
+             n  media    dt   Min   Max
+     hba1c  94  8.565 1.799  4.60 13.80
+     tevol  94 12.330 8.534  0.00 35.00
+
+# Correlación de Pearson:
+  r = -0.237  [IC 95%: (-0.420, -0.036)]
+  t = -2.341,  gl = 92,  p = 0.021
+
+# Modelo:  hba1c = 9.181 − 0.050 × tevol
+  R² = 0.056
+
+          estim    se  ic_inf ic_sup    sig
+  (Cte)   9.181 0.320   8.546  9.816 <0.001
+  tevol  -0.050 0.021  -0.092 -0.008  0.021
+
+  Error estándar residual: 1.757
+```
+
+`rls()` integra correlación, coeficientes con IC, $R^2$ y diagnóstico de residuos. La asociación es estadísticamente significativa pero débil ($R^2 = 0.056$): el tiempo de evolución solo explica el 5.6% de la variabilidad en HbA1c. Esto es clínicamente relevante: la diabetes de larga evolución tiende a un control glucémico algo peor, pero otros factores (adherencia al tratamiento, estilo de vida) son predominantes.
+:::
+
+## Estimación por Mínimos Cuadrados Ordinarios {#sec-semana09-s4}
+
+### El criterio de MCO
+
+Los parámetros poblacionales $\beta_0$ y $\beta_1$ son **desconocidos**. Los estimamos usando una muestra mediante **Mínimos Cuadrados Ordinarios (MCO)**, que minimiza la suma de residuos al cuadrado:
+
+::: {.callout-warning}
+## Definición: Estimadores MCO
+
+Los estimadores MCO minimizan:
+$$Q(b_0, b_1) = \sum_{i=1}^n (y_i - b_0 - b_1 x_i)^2$$
+
+Donde:
+- $y_i$ son los valores observados (PAS del paciente $i$)
+- $\hat{y}_i = b_0 + b_1 x_i$ son los valores predichos por el modelo
+- El residuo estimado es $\hat{u}_i = y_i - \hat{y}_i$
+
+Así buscamos la línea que **mejor ajusta** los datos, minimizando las distancias verticales.
+:::
+
+### Derivación: Las ecuaciones normales
+
+Para minimizar $Q(b_0, b_1)$, igualamos a cero las derivadas parciales:
+
+$$\frac{\partial Q}{\partial b_0} = -2 \sum_{i=1}^n (y_i - b_0 - b_1 x_i) = 0$$
+
+$$\frac{\partial Q}{\partial b_1} = -2 \sum_{i=1}^n (y_i - b_0 - b_1 x_i) x_i = 0$$
+
+Esto genera las **ecuaciones normales**:
+
+$$n b_0 + b_1 \sum_{i=1}^n x_i = \sum_{i=1}^n y_i$$
+
+$$b_0 \sum_{i=1}^n x_i + b_1 \sum_{i=1}^n x_i^2 = \sum_{i=1}^n x_i y_i$$
+
+### Fórmulas cerradas para los estimadores MCO
+
+Resolviendo el sistema anterior obtenemos:
+
+::: {.callout-warning}
+## Fórmulas Cerradas: Estimadores MCO
+
+$$b_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2} = \frac{s_{xy}}{s_x^2}$$
+
+$$b_0 = \bar{y} - b_1 \bar{x}$$
+
+donde:
+- $\bar{x} = \frac{1}{n}\sum x_i$ y $\bar{y} = \frac{1}{n}\sum y_i$ son los promedios
+- $s_{xy}$ es la covarianza muestral de $X$ e $Y$
+- $s_x^2$ es la varianza muestral de $X$
+:::
+
+### Propiedad importante
+
+La línea de regresión estimada **siempre pasa por el punto $(\bar{x}, \bar{y})$**:
+cuando $x_i = \bar{x}$, se cumple que $\hat{y} = \bar{y}$.
+
+## Relación entre Regresión y Correlación {#sec-semana09-s5}
+
+Existe una relación útil entre el coeficiente de regresión y el coeficiente de correlación:
+
+::: {.callout-tip}
+## Conexión: Regresión y Correlación
+
+$$b_1 = r_{xy} \frac{s_y}{s_x}$$
+
+donde $r_{xy} = \frac{s_{xy}}{s_x s_y}$ es el coeficiente de correlación de Pearson.
+
+**Interpretación**:
+- El coeficiente de regresión escala la correlación por el ratio de desviaciones estándar
+- Si $s_x = s_y$, entonces $b_1 = r_{xy}$
+- Regresión de $X$ sobre $Y$ es **diferente** de regresión de $Y$ sobre $X$
+
+**Ejemplo médico**: Si en un estudio de hipertensión la correlación entre edad y PAS es $r = 0.71$, con $s_{\text{PAS}} = 14.5$ mmHg y $s_{\text{edad}} = 15.9$ años, la pendiente de regresión es: $b_1 = 0.71 \times (14.5/15.9) = 0.65$ mmHg/año.
+:::
+
+## Descomposición de Varianza {#sec-semana09-s6}
+
+### Suma de cuadrados totales, explicada y residual
+
+La variabilidad en $Y$ se descompone en dos partes:
+
+$$\sum_{i=1}^n (y_i - \bar{y})^2 = \sum_{i=1}^n (y_i - \hat{y}_i)^2 + \sum_{i=1}^n (\hat{y}_i - \bar{y})^2$$
+
+::: {.callout-note}
+## Terminología: Sumas de Cuadrados
+
+- **$\text{SCT} = \sum_{i=1}^n (y_i - \bar{y})^2$**: Suma de Cuadrados Total
+  - Variabilidad total en los datos (ej. variabilidad total en PAS entre pacientes)
+
+- **$\text{SCR} = \sum_{i=1}^n (y_i - \hat{y}_i)^2$**: Suma de Cuadrados de Residuos
+  - Variabilidad en PAS NO explicada por la edad
+
+- **$\text{SCE} = \sum_{i=1}^n (\hat{y}_i - \bar{y})^2$**: Suma de Cuadrados Explicada
+  - Variabilidad en PAS explicada por la edad
+
+Relación: $\text{SCT} = \text{SCE} + \text{SCR}$
+:::
+
+## Coeficiente de Determinación ($R^2$) {#sec-semana09-s7}
+
+El coeficiente de determinación mide qué proporción de la variabilidad total en $Y$ es explicada por el modelo:
+
+::: {.callout-warning}
+## Definición: Coeficiente de Determinación
+
+$$R^2 = \frac{\text{SCE}}{\text{SCT}} = 1 - \frac{\text{SCR}}{\text{SCT}} = \frac{\sum_{i=1}^n (\hat{y}_i - \bar{y})^2}{\sum_{i=1}^n (y_i - \bar{y})^2}$$
+
+Para regresión lineal simple:
+$$R^2 = r_{xy}^2$$
+
+donde $r_{xy}$ es el coeficiente de correlación de Pearson.
+
+**Propiedades**:
+- $0 \leq R^2 \leq 1$
+- $R^2 = 1$: ajuste perfecto (todos los puntos en la línea)
+- $R^2 = 0$: no hay relación lineal
+- $R^2 = 0.50$: el 50% de la variabilidad en $Y$ es explicada por $X$
+:::
+
+### Ejemplo: Presión Arterial Sistólica
+
+En el estudio de hipertensión (n = 120 pacientes), si la correlación entre edad y PAS es $r_{xy} = 0.71$:
+
+$$R^2 = 0.71^2 = 0.504$$
+
+**Interpretación clínica**: El 50.4% de la variabilidad en la presión arterial sistólica entre estos pacientes es explicada por la edad. El 49.6% restante se debe a otros factores no recogidos en el modelo (tabaquismo, actividad física, tratamiento farmacológico, herencia genética, etc.).
+
+## Distribución de los Estimadores MCO {#sec-semana09-s8}
+
+Bajo los supuestos del modelo lineal, los estimadores $b_0$ y $b_1$ son **variables aleatorias** con distribuciones conocidas:
+
+::: {.callout-note}
+## Distribuciones muestrales de los estimadores
+
+$$B_0 \sim N\left(\beta_0, \sigma_{B_0}^2\right)$$
+
+$$B_1 \sim N\left(\beta_1, \sigma_{B_1}^2\right)$$
+
+donde las varianzas son:
+
+$$\sigma_{B_1}^2 = \frac{\sigma_u^2}{\sum_{i=1}^n (x_i - \bar{x})^2}$$
+
+$$\sigma_{B_0}^2 = \sigma_u^2 \left[\frac{1}{n} + \frac{\bar{x}^2}{\sum_{i=1}^n (x_i - \bar{x})^2}\right]$$
+
+y $\sigma_u^2$ es la varianza poblacional del error.
+:::
+
+### Estimación de la varianza del error
+
+Como $\sigma_u^2$ es desconocida, la estimamos usando los residuos:
+
+$$s_u^2 = \frac{\sum_{i=1}^n \hat{u}_i^2}{n - 2}$$
+
+Entonces:
+
+$$\hat{\sigma}_{B_1}^2 = \frac{s_u^2}{\sum_{i=1}^n (x_i - \bar{x})^2}$$
+
+$$\hat{\sigma}_{B_0}^2 = s_u^2 \left[\frac{1}{n} + \frac{\bar{x}^2}{\sum_{i=1}^n (x_i - \bar{x})^2}\right]$$
+
+## Test t para $\beta_1 = 0$ {#sec-semana09-s9}
+
+### Hipótesis
+
+En el contexto médico, nos interesa probar si existe asociación lineal entre $Y$ y $X$:
+
+$$H_0: \beta_1 = 0 \quad \text{(la edad no predice la PAS)}$$
+$$H_1: \beta_1 \neq 0 \quad \text{(la edad sí predice la PAS)}$$
+
+### Estadístico de prueba
+
+Bajo $H_0$ y la normalidad de los errores:
+
+::: {.callout-warning}
+## Estadístico t para $\beta_1$
+
+$$T = \frac{B_1 - \beta_1}{\hat{\sigma}_{B_1}} \sim t_{n-2}$$
+
+En particular, bajo $H_0$:
+
+$$T = \frac{b_1}{\widehat{\text{ee}}(b_1)} \sim t_{n-2}$$
+
+donde $\widehat{\text{ee}}(b_1) = \hat{\sigma}_{B_1}$ es el **error estándar** del estimador.
+:::
+
+### Regla de decisión
+
+A nivel de significancia $\alpha$:
+- **Rechazamos** $H_0$ si $|t| > t_{1-\alpha/2, n-2}$ (test bilateral)
+- **Valor p** = probabilidad de observar un valor tan extremo (o más) bajo $H_0$
+
+Si $n > 30$, usamos la aproximación normal: $t_{1-\alpha/2, n-2} \approx z_{1-\alpha/2}$
+
+### Ejemplo: PAS vs. Edad
+
+En el estudio de hipertensión:
+
+- Estimación: $\hat{\beta}_1 = 0.80$ mmHg/año
+- Error estándar: $\widehat{\text{ee}}(b_1) = 0.09$ mmHg/año
+- Estadístico: $t = \frac{0.80}{0.09} = 8.89$
+- Con $\alpha = 0.05$ y $n = 120$: valor crítico $t_{0.975, 118} \approx 1.980$
+- Como $|8.89| > 1.980$ y $p < 0.001$, **rechazamos** $H_0$.
+
+**Conclusión clínica**: Existe evidencia estadística muy fuerte de que la edad predice positivamente la presión arterial sistólica en esta muestra.
+
+## Intervalos de Confianza {#sec-semana09-s10}
+
+### Para $\beta_1$
+
+::: {.callout-warning}
+## Intervalo de Confianza para $\beta_1$
+
+Con confianza $(1 - \alpha) \times 100\%$:
+
+$$\left[b_1 - t_{1-\alpha/2, n-2} \cdot \widehat{\text{ee}}(b_1), \quad b_1 + t_{1-\alpha/2, n-2} \cdot \widehat{\text{ee}}(b_1)\right]$$
+:::
+
+### Para $\beta_0$
+
+::: {.callout-warning}
+## Intervalo de Confianza para $\beta_0$
+
+Con confianza $(1 - \alpha) \times 100\%$:
+
+$$\left[b_0 - t_{1-\alpha/2, n-2} \cdot \widehat{\text{ee}}(b_0), \quad b_0 + t_{1-\alpha/2, n-2} \cdot \widehat{\text{ee}}(b_0)\right]$$
+:::
+
+### Para el valor predicho $E(Y|X = x_0)$
+
+A menudo queremos construir un intervalo para la PAS promedio esperada en pacientes de una edad concreta $x_0$:
+
+::: {.callout-tip}
+## Intervalo de Confianza para $E(Y|x_0)$
+
+$$\left[\hat{y}_{x_0} \pm t_{1-\alpha/2, n-2} \cdot s_u \sqrt{\frac{1}{n} + \frac{(x_0 - \bar{x})^2}{\sum_{i=1}^n (x_i - \bar{x})^2}}\right]$$
+
+donde:
+- $\hat{y}_{x_0} = b_0 + b_1 x_0$ es la PAS media predicha para edad $x_0$
+- Este intervalo es más estrecho cerca de $\bar{x}$ (mayor precisión) y más ancho en edades extremas
+:::
+
+### Ejemplo: PAS vs. Edad
+
+Para $n = 120$, $\hat{\beta}_1 = 0.80$ mmHg/año, $\widehat{\text{ee}}(b_1) = 0.09$:
+
+Con $\alpha = 0.05$ (95% confianza), $t_{0.975, 118} = 1.980$:
+
+$$\text{IC}_{95\%}(\beta_1) = [0.80 - 1.980 \times 0.09, \, 0.80 + 1.980 \times 0.09] = [0.62, \, 0.98] \text{ mmHg/año}$$
+
+**Interpretación clínica**: Con 95% de confianza, por cada año adicional de edad la PAS media aumenta entre 0.62 y 0.98 mmHg en esta población.
+
+## Diagnóstico de Residuos {#sec-semana09-s11}
+
+Los residuos son críticos para validar que los supuestos del modelo se cumplen.
+
+::: {.callout-note}
+## Definición: Residuos
+
+Los residuos estimados son:
+$$\hat{u}_i = y_i - \hat{y}_i = y_i - b_0 - b_1 x_i$$
+
+**En contexto clínico**: $\hat{u}_i$ es la diferencia entre la PAS observada del paciente $i$ y la que el modelo predice dado su edad. Un residuo grande positivo indica que el paciente tiene una PAS más elevada de lo esperado para su edad (posiblemente por otros factores de riesgo no incluidos).
+
+Propiedades:
+- Siempre tienen media cero: $\bar{\hat{u}} = 0$
+- Representan la parte de $Y$ NO explicada por $X$
+:::
+
+### 1. Gráfico de Residuos vs. Valores Predichos
+
+**¿Qué buscar?**
+
+::: {.callout-tip}
+## Interpretación: Residuos vs. Predichos
+
+- **Patrón ideal**: nube de puntos aleatoria alrededor del cero, sin forma clara
+  - Indica homocedasticidad y linealidad
+
+- **Patrón "embudo" (varianza aumenta con la PAS predicha)**:
+  - Indica heteroscedasticidad (varianza no constante)
+  - Frecuente en estudios con datos de presión arterial en rangos muy amplios
+
+- **Patrón curvo o no lineal**:
+  - Sugiere que la relación edad-PAS no es estrictamente lineal
+  - Podría requerir una transformación o la inclusión de $X^2$
+
+- **Puntos muy alejados (outliers)**:
+  - Pacientes con PAS muy inusual para su edad (investigar: error de medida, enfermedad secundaria, fármaco no declarado)
+:::
+
+### 2. Gráfico Q-Q (Quantile-Quantile)
+
+Este gráfico verifica la **normalidad** de los residuos:
+
+::: {.callout-tip}
+## Interpretación: Gráfico Q-Q
+
+- **Puntos en línea recta diagonal**:
+  - Los residuos son aproximadamente normales
+
+- **Puntos en las colas no siguen la línea**:
+  - Hay colas más pesadas o más ligeras que lo esperado
+  - Sugiere violación de normalidad
+
+- **Forma de S o zigzag**:
+  - Distribución muy diferente de la normal
+:::
+
+### 3. Gráfico de Escala-Ubicación
+
+Combina información de ambos: raíz cuadrada de residuos estandarizados vs. predichos. Detecta heteroscedasticidad.
+
+### 4. Residuos vs. Orden de Observación
+
+Verifica la **no autocorrelación**. Si los pacientes fueron reclutados consecutivamente y hay patrón temporal en los residuos, puede indicar un sesgo de selección o un cambio en el protocolo de medida.
+
+## Ejemplo Completo: Colesterol Total e IMC {#sec-semana09-s12}
+
+### Contexto clínico
+
+Un estudio transversal en la Unidad de Cardiología Preventiva del Hospital Universitario de Granada evalúa si el índice de masa corporal (IMC) predice el colesterol total sérico en pacientes sin tratamiento hipolipemiante:
+
+- $Y$: colesterol total (mg/dL)
+- $X$: índice de masa corporal — IMC (kg/m²)
+- $n = 250$ pacientes (18–70 años, sin estatinas ni fibratos)
+
+### Estadísticas descriptivas
+
+| Estadístico | Valor |
+|---|---|
+| $\bar{y}$ (colesterol) | 214.0 mg/dL |
+| $s_y$ | 36.0 mg/dL |
+| $\bar{x}$ (IMC) | 27.2 kg/m² |
+| $s_x$ | 4.5 kg/m² |
+| $s_{xy}$ | 101.25 (mg/dL)·(kg/m²) |
+| $r_{xy}$ | 0.625 |
+
+### Cálculos
+
+$$b_1 = \frac{s_{xy}}{s_x^2} = \frac{101.25}{20.25} = 5.00 \text{ mg/dL por kg/m}^2$$
+
+$$b_0 = \bar{y} - b_1 \bar{x} = 214.0 - 5.00 \times 27.2 = 214.0 - 136.0 = 78.0 \text{ mg/dL}$$
+
+### Ecuación estimada
+
+$$\widehat{\text{Colesterol}}_i = 78.0 + 5.00 \times \text{IMC}_i$$
+
+**Interpretación clínica**:
+- Por cada unidad adicional de IMC (1 kg/m²), el colesterol total aumenta en promedio **5 mg/dL**
+- Para un IMC de 30 kg/m² (obesidad tipo I): $\widehat{\text{Colesterol}} = 78.0 + 5.00 \times 30 = 228$ mg/dL
+
+### Bondad del ajuste
+
+$$R^2 = r_{xy}^2 = 0.625^2 = 0.391$$
+
+**Interpretación**: El 39.1% de la variabilidad en el colesterol sérico se explica por el IMC. Es una asociación moderada, coherente con la literatura: el IMC es un factor de riesgo cardiovascular relevante pero no el único predictor del colesterol.
+
+### Inferencia estadística
+
+Con $\widehat{\text{ee}}(b_1) = 0.41$ mg·dL⁻¹/(kg·m⁻²):
+
+$$t = \frac{5.00}{0.41} = 12.2, \quad p < 0.001$$
+
+Con $n = 250$ (usando $t_{0.975, 248} \approx 1.970$):
+
+**Intervalo de confianza al 95%**:
+$$[5.00 - 1.970 \times 0.41, \, 5.00 + 1.970 \times 0.41] = [4.19, \, 5.81] \text{ mg/dL por kg/m}^2$$
+
+**Conclusión**: El IMC es un predictor estadísticamente significativo ($p < 0.001$) y clínicamente relevante del colesterol total. En términos de salud pública, reducir el IMC en 5 kg/m² (ej. pasar de obesidad a normopeso) se asocia en promedio con una reducción de 25 mg/dL en el colesterol total.
+
+## Código R {#sec-semana09-r}
+
+### Datos clínicos simulados y ajuste del modelo
+
+```{r}
+#| label: lst-s10-cod01
+#| lst-cap: "Base R — Datos clínicos y regresión PAS ~ Edad"
+#| eval: true
+#| warning: false
+#| message: false
+
+# Datos: PAS (mmHg) vs Edad (años) — 120 pacientes adultos
+set.seed(2024)
+n <- 120
+edad  <- round(runif(n, 25, 80))
+pas   <- round(85.2 + 0.80 * edad + rnorm(n, 0, 10.5), 1)
+datos <- data.frame(edad = edad, pas = pas)
+
+# Estadísticas descriptivas
+cat("=== Estadísticas descriptivas ===\n")
+cat("Edad  — media:", round(mean(edad), 1), "años  |  DT:", round(sd(edad), 1), "\n")
+cat("PAS   — media:", round(mean(pas),  1), "mmHg  |  DT:", round(sd(pas),  1), "\n")
+cat("Correlación de Pearson:", round(cor(edad, pas), 3), "\n\n")
+
+# Ajustar modelo de regresión lineal simple
+modelo <- lm(pas ~ edad, data = datos)
+
+# Tabla de coeficientes con broom
+cat("=== Modelo de Regresión ===\n")
+knitr::kable(tidy(modelo), digits = 3, caption = "Coeficientes del modelo lineal")
+
+# Bondad de ajuste
+glance_modelo <- glance(modelo)
+cat("\nR² =", round(glance_modelo$r.squared, 3),
+    "|  R² ajustado =", round(glance_modelo$adj.r.squared, 3),
+    "|  F-estadístico =", round(glance_modelo$statistic, 2),
+    "(p < 0.001)\n")
+```
+
+::: callout-tip
+**Interpretación estadística:** El modelo de regresión lineal simple estimó un incremento de la presión arterial sistólica de aproximadamente 0.80 mmHg por cada año adicional de edad (b₁ = 0.80, EE = 0.10, t(118) = 8.0, p < 0.001, IC 95%: [0.60, 1.00]). El coeficiente de determinación R² = 0.351 indica que la edad explica el 35% de la variabilidad observada en la PAS, lo que refleja una relación lineal moderada estadísticamente significativa. Este hallazgo es clínicamente relevante: un aumento de edad de 20 años se asociaría con un incremento esperado de ~16 mmHg en la PAS.
+:::
+
+### Gráfico de dispersión con la recta de regresión
+
+```{r}
+#| label: lst-s10-cod02
+#| lst-cap: "Base R — Dispersión y recta de regresión PAS ~ Edad"
+#| eval: true
+#| echo: false
+#| fig-cap: "Regresión lineal: Presión Arterial Sistólica (PAS) en función de la Edad. Cada punto representa un paciente. La línea roja es la recta de mínimos cuadrados estimada."
+#| fig-alt: "Diagrama de dispersión PAS vs edad con recta de regresión"
+
+par(mar = c(4.5, 4.5, 3, 1.5))
+plot(datos$edad, datos$pas,
+     main = "PAS (mmHg) vs. Edad (años)\nn = 120 pacientes adultos",
+     xlab = "Edad (años)",
+     ylab = "Presión Arterial Sistólica (mmHg)",
+     pch = 19, col = rgb(0.2, 0.4, 0.7, 0.6), cex = 0.9,
+     las = 1)
+abline(modelo, col = "red", lwd = 2)
+legend("topleft",
+       legend = paste0("Ŷ = ", round(coef(modelo)[1], 1),
+                       " + ", round(coef(modelo)[2], 2), "·Edad\n",
+                       "R² = ", round(summary(modelo)$r.squared, 3)),
+       bty = "n", text.col = "red", cex = 0.9)
+```
+
+### Gráficos de diagnóstico de residuos
+
+```{r}
+#| label: lst-s10-cod03
+#| lst-cap: "Base R — Diagnóstico de residuos del modelo PAS ~ Edad"
+#| eval: true
+#| echo: false
+#| fig-cap: "Gráficos de diagnóstico de supuestos del modelo de regresión. Arriba-izquierda: residuos vs. valores ajustados (verifica linealidad y homocedasticidad). Arriba-derecha: Q-Q plot (verifica normalidad). Abajo-izquierda: escala-localización. Abajo-derecha: residuos vs. leverage (detecta observaciones influyentes)."
+#| fig-alt: "Cuatro gráficos de diagnóstico del modelo de regresión"
+
+par(mfrow = c(2, 2), mar = c(4, 4, 3, 1))
+plot(modelo)
+par(mfrow = c(1, 1))
+```
+
+### Intervalos de confianza y predicción clínica
+
+```{r}
+#| label: lst-s10-cod04
+#| lst-cap: "Base R — Predicción e intervalos para la PAS a edades específicas"
+#| eval: true
+#| warning: false
+#| message: false
+
+# Predicción de PAS media para tres perfiles de edad
+edades_nuevas <- data.frame(edad = c(40, 55, 70))
+
+ic_media    <- predict(modelo, newdata = edades_nuevas,
+                       interval = "confidence", level = 0.95)
+ic_individ  <- predict(modelo, newdata = edades_nuevas,
+                       interval = "prediction", level = 0.95)
+
+resultados <- data.frame(
+  Edad_años     = edades_nuevas$edad,
+  PAS_predicha  = round(ic_media[, "fit"], 1),
+  IC95_inf      = round(ic_media[, "lwr"], 1),
+  IC95_sup      = round(ic_media[, "upr"], 1),
+  IP95_inf      = round(ic_individ[, "lwr"], 1),
+  IP95_sup      = round(ic_individ[, "upr"], 1)
+)
+
+cat("=== Predicciones con IC 95% (media) e IP 95% (individuo nuevo) ===\n\n")
+print(resultados, row.names = FALSE)
+cat("\nNota: IC = intervalo de confianza para la PAS media poblacional.\n")
+cat("       IP = intervalo de predicción para un paciente individual nuevo.\n")
+cat("       El IP siempre es más amplio que el IC.\n")
+```
+
+### Interpretación de la salida de `summary(lm())`
+
+```{r}
+#| label: lst-s10-cod05
+#| lst-cap: "Base R — Extracción de componentes del modelo de regresión"
+#| eval: true
+
+cat("=== Coeficientes estimados ===\n")
+coef(modelo)
+
+cat("\n=== Errores estándar de los coeficientes ===\n")
+round(summary(modelo)$coefficients[, "Std. Error"], 4)
+
+cat("\n=== Estadísticos t y valores p ===\n")
+round(summary(modelo)$coefficients[, c("t value", "Pr(>|t|)")], 4)
+
+cat("\n=== Bondad de ajuste ===\n")
+cat("R²          =", round(summary(modelo)$r.squared, 4), "\n")
+cat("R² ajustado =", round(summary(modelo)$adj.r.squared, 4), "\n")
+cat("Error estándar residual (su) =",
+    round(summary(modelo)$sigma, 3), "mmHg\n")
+
+cat("\n=== Intervalos de confianza al 95% para los coeficientes ===\n")
+round(confint(modelo, level = 0.95), 4)
+```
+
+### Ejemplo completo: Colesterol Total ~ IMC
+
+```{r}
+#| label: lst-s10-cod06
+#| lst-cap: "Base R — Regresión Colesterol Total ~ IMC (n = 250 pacientes)"
+#| eval: true
+#| warning: false
+#| message: false
+#| fig-cap: "Regresión lineal Colesterol Total ~ IMC. Los 250 puntos representan pacientes sin tratamiento hipolipemiante. La línea muestra la relación estimada: por cada kg/m² adicional de IMC, el colesterol aumenta en promedio ~5 mg/dL."
+#| fig-alt: "Diagrama de dispersión colesterol vs IMC con recta de regresión"
+
+set.seed(2025)
+n2       <- 250
+imc      <- round(rnorm(n2, 27.2, 4.5), 1)
+colest   <- round(78.0 + 5.0 * imc + rnorm(n2, 0, 28.7), 0)
+datos_c  <- data.frame(imc = imc, colesterol = colest)
+
+modelo_c <- lm(colesterol ~ imc, data = datos_c)
+
+# Tabla de coeficientes con broom
+cat("=== Modelo de Regresión ===\n")
+knitr::kable(tidy(modelo_c), digits = 3, caption = "Coeficientes del modelo lineal")
+
+# Bondad de ajuste
+glance_c <- glance(modelo_c)
+cat("\nR² =", round(glance_c$r.squared, 3),
+    "|  R² ajustado =", round(glance_c$adj.r.squared, 3),
+    "|  F-estadístico =", round(glance_c$statistic, 2),
+    "(p < 0.001)\n\n")
+
+par(mar = c(4.5, 4.5, 3, 1.5))
+plot(datos_c$imc, datos_c$colesterol,
+     main = "Colesterol Total (mg/dL) vs. IMC (kg/m²)\nn = 250 pacientes sin hipolipemiantes",
+     xlab = expression("IMC (kg/m"^2*")"),
+     ylab = "Colesterol total (mg/dL)",
+     pch = 19, col = rgb(0.7, 0.2, 0.2, 0.5), cex = 0.8, las = 1)
+abline(modelo_c, col = "darkblue", lwd = 2)
+abline(h = 200, lty = 2, col = "gray50")  # Umbral deseable
+text(35, 202, "≥200 mg/dL: límite deseable", col = "gray40", cex = 0.75, adj = 0)
+legend("topleft",
+       legend = paste0("Ŷ = ", round(coef(modelo_c)[1], 1),
+                       " + ", round(coef(modelo_c)[2], 2), "·IMC\n",
+                       "R² = ", round(summary(modelo_c)$r.squared, 3)),
+       bty = "n", text.col = "darkblue", cex = 0.9)
+```
+
+::: callout-tip
+**Interpretación estadística:** En una muestra de 250 pacientes sin hipolipemiantes, el modelo de regresión lineal mostró que por cada unidad adicional de IMC (kg/m²), el colesterol total aumenta en promedio 5.0 mg/dL (b₁ = 5.0, EE = 0.41, t(248) = 12.2, p < 0.001, IC 95%: [4.19, 5.81]). El R² = 0.391 indica que el IMC explica el 39.1% de la variación en colesterol, estableciendo una relación lineal fuerte y estadísticamente significativa. Desde una perspectiva clínica de prevención cardiovascular, una reducción de 5 unidades en el IMC (ej. pasar de obesidad a sobrepeso) se asociaría con una reducción esperada de ~25 mg/dL en el colesterol total, lo que podría reducir el riesgo cardiovascular.
+:::
+
+## Resumen de Fórmulas Clave {#sec-semana09-resumen}
+
+::: {.callout-warning}
+## Fórmulas Esenciales de Regresión Lineal Simple
+
+**Modelo**:
+$$Y_i = \beta_0 + \beta_1 X_i + U_i$$
+
+**Estimadores MCO**:
+$$b_1 = \frac{s_{xy}}{s_x^2}, \quad b_0 = \bar{y} - b_1 \bar{x}$$
+
+**Descomposición de varianza**:
+$$\text{SCT} = \text{SCE} + \text{SCR}$$
+
+**Coeficiente de determinación**:
+$$R^2 = 1 - \frac{\text{SCR}}{\text{SCT}} = r_{xy}^2$$
+
+**Varianza del error estimada**:
+$$s_u^2 = \frac{\sum_{i=1}^n \hat{u}_i^2}{n - 2}$$
+
+**Errores estándar**:
+$$\widehat{\text{ee}}(b_1) = \frac{s_u}{\sqrt{\sum (x_i - \bar{x})^2}}, \quad \widehat{\text{ee}}(b_0) = s_u\sqrt{\frac{1}{n} + \frac{\bar{x}^2}{\sum(x_i - \bar{x})^2}}$$
+
+**Test t**:
+$$t = \frac{b_j}{\widehat{\text{ee}}(b_j)} \sim t_{n-2}$$
+
+**Intervalo de confianza para $\beta_j$**:
+$$[b_j \pm t_{1-\alpha/2, n-2} \cdot \widehat{\text{ee}}(b_j)]$$
+:::
+
+## Ejercicios {#sec-semana09-ejercicios}
+
+**Ejercicio 1**: En un estudio sobre prediabetes en 40 pacientes del centro de salud, se investiga la relación entre el **índice de masa corporal** ($X$, kg/m²) y la **glucosa en ayunas** ($Y$, mg/dL). Se obtienen las siguientes estadísticas:
+
+- $\bar{x} = 28.5$ kg/m², $\bar{y} = 105.5$ mg/dL
+- $s_x^2 = 9.0$, $s_y^2 = 144.0$
+- $s_{xy} = 27.0$
+
+a) Calcula los estimadores MCO $b_0$ y $b_1$
+b) Interpreta clínicamente el coeficiente $b_1$
+c) Calcula $R^2$ e interpreta qué proporción de la variabilidad glucémica explica el IMC
+d) Un paciente nuevo tiene un IMC de 32 kg/m². ¿Cuál es su glucosa en ayunas predicha? ¿Podría considerarse en rango de prediabetes (glucosa ≥ 100 mg/dL)?
+
+---
+
+**Ejercicio 2**: Un estudio de función pulmonar en una consulta de neumología evalúa el efecto del tabaquismo sobre el FEV1 (volumen espiratorio forzado en el primer segundo, expresado como % del predicho). Con 60 pacientes fumadores se obtiene:
+
+- $\hat{\beta}_0 = 98.0\%$, $\hat{\beta}_1 = -0.80\%$ por paquete-año
+- $\widehat{\text{ee}}(b_1) = 0.12$
+- $s_u = 7.5\%$, $\sum (x_i - \bar{x})^2 = 3906.25$
+
+a) Realiza el test de hipótesis $H_0: \beta_1 = 0$ con $\alpha = 0.05$. Interpreta el resultado
+b) Construye un intervalo de confianza al 95% para $\beta_1$
+c) ¿Qué significa clínicamente que rechacemos $H_0$?
+d) ¿Es razonable el signo negativo de $\hat{\beta}_1$?
+
+---
+
+**Ejercicio 3**: Para los datos del estudio de colesterol e IMC (sección 10.12, $n = 250$):
+
+a) Calcula el intervalo de confianza al 95% para el colesterol medio en pacientes con IMC = 30 kg/m² (obesidad tipo I)
+b) ¿Es estadísticamente significativo el efecto del IMC sobre el colesterol? Justifica usando el estadístico $t$
+c) Un paciente tiene IMC = 32 kg/m² y colesterol = 260 mg/dL. Calcula su residuo. ¿Podría ser un paciente con dislipemia familiar no relacionada con el IMC?
+
+---
+
+**Ejercicio 4**: En un ensayo clínico con 30 pacientes febriles, se estudia la relación entre la **dosis de paracetamol** ($X$, mg/kg) y la **reducción de temperatura corporal a las 2 horas** ($Y$, °C). El modelo estimado es:
+
+$$\hat{y}_i = 0.50 + 0.30 x_i, \quad R^2 = 0.64$$
+
+a) ¿Qué proporción de la reducción de temperatura es explicada por la dosis?
+b) Si la dosis media fue $\bar{x} = 10$ mg/kg, ¿cuál fue la reducción media de temperatura?
+c) Por cada mg/kg adicional de paracetamol, ¿cuánto desciende la temperatura en promedio?
+d) ¿Qué factor explicaría el 36% de variabilidad no captada por la dosis?
+
+---
+
+**Ejercicio 5**: Un clínico interpreta los gráficos de diagnóstico de un modelo que relaciona la **supervivencia** (meses) con el **tamaño tumoral** (mm). Describe qué patrón en cada gráfico indicaría:
+
+a) Que la relación no es lineal (posiblemente necesita log-transformación)
+b) Heteroscedasticidad (varianza de los residuos crece con el tamaño tumoral)
+c) Violación de la normalidad de los residuos
+d) Presencia de un paciente con diagnóstico tardío que actúa como punto influyente
+
+---
+
+**Ejercicio 6**: En un programa de cribado de cáncer de próstata, se estudia la asociación entre el **PSA sérico** (ng/mL) y la **edad** (años). En una primera muestra: $r = 0.58$. En una segunda muestra: $r = 0.45$:
+
+a) Calcula y compara los $R^2$ de ambas muestras. ¿Qué muestra muestra mayor capacidad predictiva?
+b) ¿La relación PSA-edad es más fuerte o más débil en la segunda muestra?
+c) Si las desviaciones estándar permanecen iguales, ¿cómo cambia el coeficiente de regresión $b_1$ entre muestras?
+d) ¿Qué factores clínicos podrían explicar una asociación más débil (menor $r$) en la segunda muestra?
+
+## Respuestas a los Ejercicios {#sec-semana09-respuestas}
+
+**Ejercicio 1:**
+- a) $b_1 = s_{xy}/s_x^2 = 27.0/9.0 = 3.0$ mg/dL por kg/m²; $b_0 = 105.5 - 3.0 \times 28.5 = 20.0$ mg/dL
+- b) Por cada kg/m² adicional de IMC, la glucosa en ayunas aumenta en promedio 3 mg/dL, manteniendo el resto constante. Con un IMC de 30 vs 25, se esperan 15 mg/dL más de glucosa.
+- c) $r = s_{xy}/(s_x \cdot s_y) = 27.0/(3.0 \times 12.0) = 0.75$; $R^2 = 0.5625$. El IMC explica el 56.25% de la variabilidad en la glucosa en ayunas.
+- d) $\hat{Y}(32) = 20.0 + 3.0 \times 32 = 116$ mg/dL. Sí, está en rango de prediabetes (≥100 mg/dL); de hecho, supera el umbral de diabetes (≥126 mg/dL), lo que indica riesgo elevado.
+
+**Ejercicio 2:**
+- a) $t = -0.80/0.12 = -6.67$; $gl = 58$; $t_{0.975, 58} \approx 2.00$. Como $|{-6.67}| > 2.00$ ($p < 0.001$), rechazamos $H_0$. El tabaquismo tiene un efecto estadísticamente significativo sobre el FEV1.
+- b) IC 95%: $[-0.80 \pm 2.00 \times 0.12] = [-1.04, -0.56]$ % por paquete-año.
+- c) Existe evidencia de que el tabaquismo reduce el FEV1. Cada paquete-año adicional se asocia con una reducción media de 0.80% del FEV1 predicho.
+- d) Sí, es razonable. El tabaquismo provoca inflamación crónica y destrucción del parénquima pulmonar, reduciendo la función respiratoria. El signo negativo es clínicamente correcto.
+
+**Ejercicio 3:**
+- a) Usando $\hat{Y}(30) = 78.0 + 5.0 \times 30 = 228$ mg/dL. Con $s_u \approx 28.7$ mg/dL, el IC al 95% requiere calcular $s_u\sqrt{1/n + (30 - 27.2)^2/\text{SCT}_x}$ — los datos dan un intervalo aproximado de $[221, 235]$ mg/dL.
+- b) Sí, $t = 12.2 \gg t_{0.975, 248} \approx 1.970$ ($p < 0.001$). El efecto del IMC sobre el colesterol es altamente significativo.
+- c) Residuo: $\hat{u} = 260 - (78.0 + 5.0 \times 32) = 260 - 238 = 22$ mg/dL. Un residuo de +22 mg/dL es moderado (< 2 desviaciones estándar). Es compatible con dislipemia familiar leve, aunque no constituye un outlier extremo.
+
+**Ejercicio 4:**
+- a) $R^2 = 0.64$; el 64% de la variabilidad en la reducción de temperatura es explicado por la dosis de paracetamol.
+- b) $\hat{Y}(\bar{x}) = 0.50 + 0.30 \times 10 = 3.5$ °C de reducción media.
+- c) Por cada mg/kg adicional de paracetamol, la temperatura desciende en promedio 0.30 °C.
+- d) El 36% restante: estado inmune del paciente, edad, causa de la fiebre (viral vs. bacteriana), hidratación, medicación concomitante, hora de administración.
+
+**Ejercicio 5:**
+- a) Patrón curvado (en forma de U o de arco) en el gráfico de residuos vs. valores ajustados.
+- b) Patrón "embudo" (varianza de residuos aumenta con los valores predichos). Sugiere log-transformación de la variable respuesta.
+- c) Desviaciones sistemáticas de la línea 45° en el Q-Q plot (especialmente en las colas).
+- d) Punto con leverage elevado y residuo grande en el gráfico de Residuos vs. Leverage (esquina superior o inferior derecha). Requiere investigación clínica del caso.
+
+**Ejercicio 6:**
+- a) $R^2_1 = 0.58^2 = 0.336$ (33.6%); $R^2_2 = 0.45^2 = 0.2025$ (20.25%). La primera muestra tiene mayor capacidad predictiva del PSA a partir de la edad.
+- b) La relación PSA-edad es más débil en la segunda muestra ($r$ disminuye de 0.58 a 0.45).
+- c) $b_1 = r \cdot s_y/s_x$. Si las desviaciones estándar no cambian, $b_1$ disminuye proporcionalmente: $b_{1,2}/b_{1,1} = 0.45/0.58 = 0.776$ (un 22.4% menor).
+- d) Posibles razones: rango de edades más estrecho en la segunda muestra, mayor proporción de pacientes con prostatitis o hipertrofia benigna de próstata (que elevan el PSA independientemente de la edad), diferencias en la técnica de laboratorio.
+
+---
+
+::: {.callout-tip}
+## Métodos Avanzados
+
+Para ampliar los contenidos de este capítulo con técnicas estadísticas avanzadas, visita:
+
+**[→ Bioestadística Avanzada — M.A. Luque Fernández](https://migariane.github.io/Bioestadistica)**
+:::

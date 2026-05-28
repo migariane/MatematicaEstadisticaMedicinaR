@@ -1,0 +1,1097 @@
+```{r}
+#| label: setup
+#| include: false
+options(digits = 3)
+library(broom)
+```
+
+# Semana 8 — Contrastes de Hipótesis (Parte II) {#sec-semana08}
+
+En esta semana continuamos con contrastes de hipótesis, enfocándonos en pruebas para comparar **dos muestras independientes y pareadas**, pruebas para igualdad de varianzas, y conceptos fundamentales de **potencia estadística** y cálculo de tamaño muestral.
+
+## Prueba Z para Diferencia de Medias (Varianzas Conocidas) {#sec-semana08-z-test}
+
+### Preparación: Distribución de la Diferencia de Medias
+
+Supongamos que tenemos dos poblaciones independientes:
+- Población 1: $X_1 \sim N(\mu_1, \sigma_1^2)$ con $\sigma_1^2$ **conocida**
+- Población 2: $X_2 \sim N(\mu_2, \sigma_2^2)$ con $\sigma_2^2$ **conocida**
+
+Tomamos muestras de tamaños $n_1$ y $n_2$ respectivamente. Los estimadores de las medias son:
+
+$$\bar{X}_1 \sim N\left(\mu_1, \frac{\sigma_1^2}{n_1}\right), \quad \bar{X}_2 \sim N\left(\mu_2, \frac{\sigma_2^2}{n_2}\right)$$
+
+La diferencia entre las medias muestrales sigue una distribución normal:
+
+$$D = \bar{X}_1 - \bar{X}_2 \sim N\left(\omega, \sigma_D^2\right)$$
+
+donde:
+$$\omega = \mu_1 - \mu_2, \quad \sigma_D^2 = \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}$$
+
+### Hipótesis e Estadístico de Prueba
+
+::: {.callout-note}
+## Definición: Prueba Z para Dos Muestras
+
+Consideramos las hipótesis:
+- **Bilateral:** $H_0: \mu_1 - \mu_2 = \omega_0$ vs. $H_1: \mu_1 - \mu_2 \neq \omega_0$
+- **Unilateral derecha:** $H_0: \mu_1 - \mu_2 \leq \omega_0$ vs. $H_1: \mu_1 - \mu_2 > \omega_0$
+- **Unilateral izquierda:** $H_0: \mu_1 - \mu_2 \geq \omega_0$ vs. $H_1: \mu_1 - \mu_2 < \omega_0$
+
+(Habitualmente, $\omega_0 = 0$)
+:::
+
+::: {.callout-warning}
+## Estadístico de Prueba: Z
+
+Bajo $H_0$ (asumiendo $\omega = \omega_0$):
+
+$$Z = \frac{(\bar{X}_1 - \bar{X}_2) - \omega_0}{\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}} \sim N(0, 1)$$
+
+**Criterios de rechazo:**
+- **Bilateral:** Rechazo si $|Z| > z_{1-\alpha/2}$
+- **Unilateral derecha:** Rechazo si $Z > z_{1-\alpha}$
+- **Unilateral izquierda:** Rechazo si $Z < -z_{1-\alpha}$
+:::
+
+---
+
+## Prueba t para Dos Muestras Independientes (Varianzas Desconocidas) {#sec-semana08-t-test}
+
+### Caso 1: Varianzas Iguales (Homogéneas) {#sec-semana08-equal-var}
+
+Cuando no conocemos las varianzas pero **asumimos que son iguales** ($\sigma_1^2 = \sigma_2^2 = \sigma^2$), utilizamos un estimador combinado (pooled) de la varianza:
+
+::: {.callout-warning}
+## Varianza Combinada (Pooled)
+
+$$S_p^2 = \frac{(n_1 - 1)S_1^2 + (n_2 - 1)S_2^2}{n_1 + n_2 - 2}$$
+
+donde $S_1^2$ y $S_2^2$ son las varianzas muestrales sesgadas:
+
+$$S_j^2 = \frac{1}{n_j - 1} \sum_{i=1}^{n_j} (X_{ji} - \bar{X}_j)^2, \quad j = 1, 2$$
+
+El estimador de la varianza de la diferencia es:
+
+$$S_D^2 = S_p^2 \left( \frac{1}{n_1} + \frac{1}{n_2} \right)$$
+:::
+
+::: {.callout-warning}
+## Estadístico t (Varianzas Homogéneas)
+
+$$T = \frac{(\bar{X}_1 - \bar{X}_2) - \omega_0}{S_D} \sim t_{n_1 + n_2 - 2}$$
+
+bajo $H_0: \mu_1 - \mu_2 = \omega_0$.
+
+**Grados de libertad:** $\nu = n_1 + n_2 - 2$
+
+**Criterios de rechazo:**
+- **Bilateral:** Rechazo si $|T| > t_{1-\alpha/2;\nu}$
+- **Unilateral derecha:** Rechazo si $T > t_{1-\alpha;\nu}$
+- **Unilateral izquierda:** Rechazo si $T < -t_{1-\alpha;\nu}$
+:::
+
+### Caso 2: Varianzas Desiguales (Heterogéneas) — Prueba de Welch {#sec-semana08-unequal-var}
+
+Cuando las varianzas poblacionales son **desiguales** ($\sigma_1^2 \neq \sigma_2^2$), la solución es aproximada.
+
+::: {.callout-warning}
+## Estadístico de Welch-Satterthwaite
+
+$$T = \frac{(\bar{X}_1 - \bar{X}_2) - \omega_0}{\sqrt{\frac{S_1^2}{n_1} + \frac{S_2^2}{n_2}}} \approx t_\nu$$
+
+donde los **grados de libertad aproximados** (Welch-Satterthwaite) son:
+
+$$\nu = \frac{\left( \frac{S_1^2}{n_1} + \frac{S_2^2}{n_2} \right)^2}{\frac{1}{n_1-1}\left(\frac{S_1^2}{n_1}\right)^2 + \frac{1}{n_2-1}\left(\frac{S_2^2}{n_2}\right)^2}$$
+
+Este test es más conservador que asumir varianzas iguales.
+:::
+
+::: {.callout-tip}
+## Ejemplo con BioestadisticaR2: testt(), testf() y testwx()
+
+Documentación completa de las tres funciones en @sec-bio-contrastes.
+
+```{r}
+#| lst-label: lst-semana09-1
+#| lst-cap: "Código R"
+#| warning: false
+#| message: false
+
+library(BioestadisticaR2)
+
+# t-test dos muestras independientes: HbA1c por sexo
+testt(grupos = osteo$sexo, m = osteo$hba1c, grf = FALSE)
+
+# Test F de varianzas del IMC por sexo
+testf(s1 = sd(osteo$imc[osteo$sexo == "Hombre"]),
+      n1 = sum(osteo$sexo == "Hombre"),
+      s2 = sd(osteo$imc[osteo$sexo == "Mujer"]),
+      n2 = sum(osteo$sexo == "Mujer"))
+
+# Wilcoxon-Mann-Whitney: IMC < 25 años vs > 33 años (no normales)
+testwx(m1 = osteo$imc[osteo$grupo_edad == "< 25"],
+       m2 = osteo$imc[osteo$grupo_edad == "> 33"],
+       grf = FALSE)
+```
+
+:::
+
+---
+
+## Prueba t Pareada {#sec-semana08-paired-test}
+
+### Motivación y Formulación
+
+En muchos estudios, las observaciones de dos muestras están **apareadas** (matched):
+- Medidas antes y después en los mismos sujetos
+- Observaciones de hermanos gemelos
+- Medidas en ambos ojos del mismo paciente
+
+::: {.callout-note}
+## Definición: Datos Pareados
+
+Para datos pareados $(X_{1i}, X_{2i})$, $i = 1, \ldots, n$, definimos las diferencias:
+
+$$D_i = X_{1i} - X_{2i}$$
+
+El test pareado **reduce el problema a una prueba t de una muestra** sobre las diferencias:
+
+$$H_0: \mu_D = \mu_1 - \mu_2 = \omega_0 \quad \text{vs.} \quad H_1: \mu_D \neq \omega_0$$
+
+(Típicamente, $\omega_0 = 0$)
+:::
+
+::: {.callout-warning}
+## Estadístico t Pareado
+
+$$T = \frac{\bar{D} - \omega_0}{S_D / \sqrt{n}} \sim t_{n-1}$$
+
+donde:
+$$\bar{D} = \frac{1}{n} \sum_{i=1}^n D_i, \quad S_D^2 = \frac{1}{n-1} \sum_{i=1}^n (D_i - \bar{D})^2$$
+
+**Nota importante:** La varianza de las diferencias es típicamente **menor** que la suma de varianzas, lo que da mayor potencia al test pareado cuando los datos están realmente correlacionados.
+:::
+
+---
+
+## Prueba F para Igualdad de Varianzas {#sec-semana08-f-test}
+
+### Hipótesis y Estadístico
+
+En algunos análisis necesitamos probar si **dos varianzas poblacionales son iguales**.
+
+::: {.callout-note}
+## Definición: Prueba F de Fisher
+
+Consideramos:
+- **Bilateral:** $H_0: \sigma_1^2 = \sigma_2^2$ vs. $H_1: \sigma_1^2 \neq \sigma_2^2$
+- **Unilateral derecha:** $H_0: \sigma_1^2 \leq \sigma_2^2$ vs. $H_1: \sigma_1^2 > \sigma_2^2$
+- **Unilateral izquierda:** $H_0: \sigma_1^2 \geq \sigma_2^2$ vs. $H_1: \sigma_1^2 < \sigma_2^2$
+:::
+
+::: {.callout-warning}
+## Estadístico F
+
+Bajo $H_0$ ($\sigma_1^2 = \sigma_2^2$):
+
+$$F = \frac{S_1^2}{S_2^2} \sim F_{n_1-1, n_2-1}$$
+
+**Criterios de rechazo:**
+- **Bilateral:** Rechazo si $F < F_{n_1-1, n_2-1, \alpha/2}$ o $F > F_{n_1-1, n_2-1, 1-\alpha/2}$
+- **Unilateral derecha:** Rechazo si $F > F_{n_1-1, n_2-1, 1-\alpha}$
+- **Unilateral izquierda:** Rechazo si $F < F_{n_1-1, n_2-1, \alpha}$
+:::
+
+::: {.callout-warning}
+## Advertencia: Testing Secuencial
+
+**No recomendamos realizar la prueba F antes de elegir entre test t con varianzas iguales o desiguales**, porque esta prueba de igualdad consume el nivel de significancia global. Es preferir usar siempre la **Prueba de Welch** como default, que es válida en ambos casos.
+:::
+
+---
+
+## Potencia de una Prueba {#sec-semana08-power}
+
+### Conceptos Fundamentales
+
+La **potencia** es un concepto crucial en el diseño y evaluación de estudios estadísticos.
+
+::: {.callout-note}
+## Definición: Función de Potencia
+
+La **función de potencia** $G(\theta)$ es la probabilidad de rechazar $H_0$ cuando el parámetro verdadero es $\theta$:
+
+$$G(\theta) = P(\text{rechazar } H_0 | \theta)$$
+
+**Interpretación:**
+- Si $\theta \in \Theta_0$ (región de $H_0$): $G(\theta) = P(\text{Error Tipo I}) \leq \alpha$
+- Si $\theta \in \Theta_1$ (región de $H_1$): $G(\theta) = P(\text{Rechazo correcto}) = 1 - \beta(\theta)$
+
+donde $\beta(\theta)$ es la probabilidad del **Error Tipo II**.
+:::
+
+### Relación con Errores de Tipo I y II
+
+| Realidad | Rechazamos $H_0$ | No rechazamos $H_0$ |
+|----------|-----|---------|
+| $H_0$ es verdadera | Error Tipo I (prob. $\alpha$) | Decisión correcta |
+| $H_1$ es verdadera | Decisión correcta (prob. $1-\beta$) | Error Tipo II (prob. $\beta$) |
+
+- **Significancia ($\alpha$):** Probabilidad de Error Tipo I. Típicamente 0.05.
+- **Potencia ($1-\beta$):** Probabilidad de detectar una diferencia real. Típicamente 0.80 o 0.90.
+
+### Derivación: Potencia para Prueba Bilateral (Varianza Conocida)
+
+::: {.callout-warning}
+## Potencia: Prueba Bilateral
+
+Sea $\mu_0$ el valor hipotetizado, $\sigma$ conocida, tamaño muestral $n$ y nivel de significancia $\alpha$.
+
+Para una prueba bilateral con $H_0: \mu = \mu_0$ vs. $H_1: \mu \neq \mu_0$:
+
+$$G(\mu) = 1 - P\left(z_{1-\alpha/2} - \frac{\mu - \mu_0}{\sigma/\sqrt{n}} \leq Z \leq z_{1-\alpha/2} - \frac{\mu - \mu_0}{\sigma/\sqrt{n}}\right)$$
+
+Equivalentemente:
+
+$$G(\mu) = P\left(Z \leq -z_{1-\alpha/2} - \frac{\mu - \mu_0}{\sigma/\sqrt{n}}\right) + P\left(Z > z_{1-\alpha/2} - \frac{\mu - \mu_0}{\sigma/\sqrt{n}}\right)$$
+
+**Casos extremos:**
+- En $\mu = \mu_0$: $G(\mu_0) = \alpha$ (tasa de Error Tipo I)
+- Conforme $|\mu - \mu_0|$ aumenta: $G(\mu) \to 1$ (potencia tiende a 1)
+:::
+
+### Potencia: Prueba Unilateral Derecha
+
+::: {.callout-warning}
+## Potencia: Prueba Unilateral Derecha
+
+Para $H_0: \mu \leq \mu_0$ vs. $H_1: \mu > \mu_0$:
+
+$$G(\mu) = 1 - P\left(Z \leq z_{1-\alpha} - \frac{\mu - \mu_0}{\sigma/\sqrt{n}}\right)$$
+
+La potencia aumenta cuando $\mu > \mu_0$, alcanzando su máximo cuando $\mu$ es mucho mayor que $\mu_0$.
+:::
+
+### Potencia: Prueba Unilateral Izquierda
+
+::: {.callout-warning}
+## Potencia: Prueba Unilateral Izquierda
+
+Para $H_0: \mu \geq \mu_0$ vs. $H_1: \mu < \mu_0$:
+
+$$G(\mu) = P\left(Z \leq -z_{1-\alpha} - \frac{\mu - \mu_0}{\sigma/\sqrt{n}}\right)$$
+
+La potencia aumenta cuando $\mu < \mu_0$, alcanzando su máximo cuando $\mu$ es mucho menor que $\mu_0$.
+:::
+
+### Factores que Afectan la Potencia
+
+La potencia de una prueba depende de:
+
+1. **Tamaño muestral ($n$):** Aumentar $n$ aumenta la potencia.
+2. **Magnitud del efecto ($|\mu - \mu_0|$ o $\delta$):** Diferencias más grandes son más fáciles de detectar.
+3. **Variabilidad ($\sigma$):** Menor variabilidad aumenta la potencia.
+4. **Nivel de significancia ($\alpha$):** Aumentar $\alpha$ aumenta la potencia, pero incrementa el Error Tipo I.
+
+---
+
+## Potencia para Pruebas de Proporción {#sec-semana08-power-proportion}
+
+### Formulación
+
+Para una prueba binomial sobre proporción $\pi$:
+
+::: {.callout-note}
+## Potencia: Prueba de Proporción
+
+Sea $\pi_0$ la proporción hipotetizada, $n$ el tamaño muestral, $\alpha$ el nivel de significancia.
+
+Para una prueba bilateral con $H_0: \pi = \pi_0$ vs. $H_1: \pi \neq \pi_0$:
+
+$$G(\pi) = P(X \leq x_l | \pi) + P(X > x_u | \pi)$$
+
+donde $x_l$ y $x_u$ son los valores críticos determinados por el nivel de significancia $\alpha$, y $X \sim \text{Binomial}(n, \pi)$.
+
+- **En $\pi = \pi_0$:** $G(\pi_0) = \alpha$ (tasa de Error Tipo I)
+- **Cuando $\pi$ se aleja de $\pi_0$:** La potencia $G(\pi)$ aumenta
+:::
+
+::: {.callout-tip}
+## Ejemplo: Lanzamiento de Moneda
+
+Supongamos $n = 10$, $\pi_0 = 0.5$, $\alpha = 0.05$. Los valores críticos son $x_l = 2$ y $x_u = 8$.
+
+Potencia en varios valores de $\pi$:
+
+| $\pi$ | $G(\pi)$ | $\beta = 1 - G(\pi)$ |
+|-------|----------|-----|
+| 0.20  | 0.3758   | 0.6242 |
+| 0.30  | 0.1495   | 0.8505 |
+| 0.40  | 0.0480   | 0.9520 |
+| 0.50  | 0.0214   | 0.9786 (Error Tipo I) |
+| 0.60  | 0.0480   | 0.9520 |
+| 0.70  | 0.1495   | 0.8505 |
+
+La potencia es máxima en los extremos de la distribución ($\pi$ cercano a 0 o 1).
+:::
+
+---
+
+## Cálculo de Tamaño Muestral {#sec-semana08-sample-size}
+
+### Principio General
+
+El tamaño muestral se calcula especificando:
+
+::: {.callout-note}
+## Elementos para Calcular Tamaño Muestral
+
+1. **Diferencia mínima relevante ($\delta$):** Qué magnitud de efecto queremos detectar
+2. **Nivel de significancia ($\alpha$):** Típicamente 0.05
+3. **Potencia deseada ($1 - \beta$):** Típicamente 0.80 o 0.90
+4. **Desviación estándar ($\sigma$):** De estudios previos o piloto
+:::
+
+### Fórmula para Prueba t de Dos Muestras (Varianzas Iguales)
+
+::: {.callout-warning}
+## Tamaño Muestral: Prueba t Bilateral
+
+Para detectar una diferencia $\delta = \mu_1 - \mu_2$ entre dos muestras de igual tamaño:
+
+$$n = \frac{2\sigma^2 (z_{1-\alpha/2} + z_{1-\beta})^2}{\delta^2}$$
+
+donde:
+- $z_{1-\alpha/2}$ es el quantil normal para nivel de significancia $\alpha$
+- $z_{1-\beta}$ es el quantil normal para potencia $1-\beta$
+- $\sigma^2$ es la varianza (asumida igual en ambas muestras)
+
+**Ejemplo:** Si $\delta = 10$, $\sigma = 15$, $\alpha = 0.05$, $1-\beta = 0.80$:
+$$z_{1-0.025} = 1.96, \quad z_{0.80} = 0.84$$
+$$n = \frac{2 \times 225 \times (1.96 + 0.84)^2}{100} = \frac{450 \times 6.4}{100} \approx 28.8 \approx 29 \text{ por grupo}$$
+:::
+
+### Cálculo con BioestadisticaR2: `testt()` y `testp()` {#sec-semana08-bio-power}
+
+Las funciones `testt()` y `testp()` del paquete `BioestadisticaR2` (ver @sec-bio-contrastes) calculan **simultáneamente** el contraste de hipótesis, la **potencia** y el **tamaño muestral** necesario para detectar una diferencia mínima relevante $\delta$ (effect size en unidades de la variable).
+
+::: {.callout-note}
+## Argumentos clave
+
+| Argumento | Significado | Función |
+|-----------|------------|---------|
+| `delta` | Diferencia mínima clínicamente relevante a detectar | `testt`, `testp` |
+| `potencia` | Potencia objetivo $1-\beta$ (típicamente 0.80 o 0.90) | `testt`, `testp` |
+| `alfa` | Nivel de significancia $\alpha$ (por defecto 0.05) | `testt`, `testp` |
+| `m`, `s`, `n` | Media, DT y tamaño piloto (estimaciones previas) | `testt` |
+| `x`, `n`, `p0` | Éxitos, tamaño piloto y proporción hipotética | `testp` |
+
+Cuando se proporciona `delta` y `potencia`, la función devuelve el **n necesario**. Si en cambio se fija `n` y `delta`, devuelve la **potencia alcanzada**.
+:::
+
+::: {.callout-tip}
+## Ejemplo: Potencia y tamaño muestral en contexto clínico
+
+Dos escenarios reales del estudio piloto `osteo` (94 pacientes diabéticos):
+
+- **Contraste de medias** (`testt`): ¿Cuántos pacientes necesitamos para detectar una diferencia de $\delta = 0.5\%$ en HbA1c respecto al umbral clínico de 7.5% con potencia del 90%?
+- **Contraste de proporciones** (`testp`): ¿Y para detectar una desviación de $\delta = 0.05$ frente a una prevalencia hipotética de tabaquismo del 35% con potencia del 90%?
+
+```{r}
+#| lst-label: lst-semana09-power
+#| lst-cap: "Código R"
+#| warning: false
+#| message: false
+
+library(BioestadisticaR2)
+
+# --- 1. testt(): potencia y n para una media ---
+# H0: µ_HbA1c = 7.5  ;  delta clinicamente relevante = 0.5%
+# Usamos m, s del estudio piloto como referencia
+testt(m = osteo$hba1c, m0 = 7.5,
+      delta = 0.5, potencia = 0.90, alfa = 0.05, grf = FALSE)
+
+# --- 2. testp(): potencia y n para una proporcion ---
+# H0: pi_tabaco = 0.35  ;  delta = 0.05 (5 puntos porcentuales)
+testp(x = sum(osteo$tabaco == "Sí"), n = nrow(osteo),
+      p0 = 0.35, delta = 0.05, potencia = 0.90, alfa = 0.05)
+```
+
+::: {.callout-note}
+## Interpretación
+Los argumentos `delta` y `potencia` transforman un contraste de hipótesis estático (sólo p-valor) en un **análisis prospectivo de diseño**: cuantifican la sensibilidad del estudio para detectar efectos clínicamente relevantes. Para la HbA1c, detectar una desviación de medio punto porcentual respecto al umbral clínico (7.5%) con potencia del 90% requiere aproximadamente **n ≈ 138 pacientes** —superior a los 94 actuales—, lo que indica que el estudio piloto está **infrapotenciado** para detectar efectos pequeños pero clínicamente significativos (0.5% de HbA1c corresponde a ~10–15 mg/dL de glucemia media, magnitud relevante para decisiones terapéuticas). Para la prevalencia de tabaquismo, alcanzar potencia del 90% para detectar una desviación de 5 puntos porcentuales respecto al 35% hipotético exige cerca de **n ≈ 900 pacientes**, casi diez veces el tamaño piloto. Esta asimetría refleja una propiedad clave: detectar diferencias en proporciones cercanas a 0.5 (varianza máxima $p(1-p) = 0.25$) consume más muestra que detectar diferencias en variables continuas con buen contraste señal/ruido. En el diseño de protocolos clínicos, este análisis previo evita el error de planificar estudios incapaces de detectar el efecto buscado (estudios negativos por falta de potencia, no por ausencia real de efecto), y constituye argumento obligado ante comités éticos y agencias financiadoras.
+:::
+:::
+
+---
+
+## Comparación Múltiple y Corrección de Bonferroni {#sec-semana08-multiple-testing}
+
+### Problema: Inflación de Tasa de Error Tipo I
+
+::: {.callout-warning}
+## Problema: Múltiples Pruebas
+
+Cuando realizamos **múltiples pruebas de hipótesis independientes** con nivel $\alpha$:
+
+Si efectuamos $k$ pruebas, la probabilidad de al menos un Error Tipo I es:
+
+$$P(\text{al menos un Error Tipo I}) = 1 - (1 - \alpha)^k$$
+
+**Ejemplo:** Con $k = 10$ pruebas y $\alpha = 0.05$:
+$$P(\text{al menos un Error Tipo I}) = 1 - (0.95)^{10} \approx 0.401 = 40.1\%$$
+
+En lugar del nivel de significancia global deseado del 5%, obtenemos una tasa de Error Tipo I del 40%!
+:::
+
+### Corrección de Bonferroni
+
+::: {.callout-tip}
+## Corrección de Bonferroni
+
+Para mantener una tasa global de Error Tipo I de $\alpha$ cuando realizamos $k$ pruebas:
+
+$$\alpha_{\text{ajustado}} = \frac{\alpha}{k}$$
+
+Es decir, cada prueba individual se realiza con nivel de significancia $\alpha/k$.
+
+**Ventajas:**
+- Simple de implementar
+- Conservador (garantiza control del Error Tipo I)
+
+**Desventajas:**
+- Muy conservador cuando $k$ es grande
+- Reduce la potencia de cada prueba individual
+
+**Alternativas:** El método de Holm, la corrección FDR (False Discovery Rate), o métodos Bayesianos son menos conservadores.
+:::
+
+---
+
+## Ejemplo Completo: Análisis de Datos de Mosquitos {#sec-semana08-mosquito-example}
+
+### Contexto del Problema
+
+Según la Organización Mundial de la Salud, los mosquitos Aedes pueden transmitir enfermedades como dengue y Zika. Un esfuerzo de control consiste en liberar mosquitos transgénicos con esperanza de vida más corta.
+
+**Pregunta de investigación:** ¿Es la esperanza de vida significativamente diferente entre mosquitos salvajes (wildtype) y transgénicos?
+
+### Datos y Exploración
+
+```{r}
+#| lst-label: lst-semana09-4
+#| lst-cap: "Código R"
+#| warning: false
+#| message: false
+
+# Lectura de datos
+# Crear datos directamente en R (Tipo de mosquito Anopheles, responsable de la malaria, y vida en días)
+wildtype <- c(28, 32, 25, 31, 29, 26, 33, 30, 27, 34, 28, 31, 29, 32, 25, 30, 33, 28, 31, 27)
+transgenic <- c(35, 38, 42, 39, 41, 37, 44, 36, 40, 43, 38, 45, 39, 42, 35, 41, 46, 40, 38, 43)
+
+# Combina en un data.frame
+mosquitoes <- data.frame(wildtype, transgenic)
+
+# Extracción de muestras
+wildtype <- na.omit(mosquitoes[, 1])
+transgenic <- na.omit(mosquitoes[, 2])
+
+n1 <- length(wildtype)
+n2 <- length(transgenic)
+
+cat("Wildtype: n =", n1, ", media =", mean(wildtype), ", sd =", sd(wildtype), "\n")
+cat("Transgenic: n =", n2, ", media =", mean(transgenic), ", sd =", sd(transgenic), "\n")
+
+# Gráfico de violín con ggplot2
+library(ggplot2)
+library(reshape2)
+
+df <- melt(data.frame(Wildtype = wildtype, Transgenic = transgenic))
+colnames(df) <- c("Group", "Lifespan")
+
+ggplot(df, aes(x = Group, y = Lifespan)) +
+  geom_violin(fill = "lightblue", alpha = 0.7) +
+  geom_boxplot(width = 0.15, alpha = 0.5) +
+  stat_summary(fun = mean, geom = "point", color = "red", size = 3) +
+  theme_minimal() +
+  labs(title = "Longevidad de Mosquitos: Wildtype vs. Transgenic",
+       x = "Tipo", y = "Esperanza de Vida (días)")
+```
+
+### Test t: Varianzas Homogéneas
+
+Primero suponemos varianzas iguales:
+
+```{r}
+#| lst-label: lst-semana09-5
+#| lst-cap: "Código R"
+#| warning: false
+#| message: false
+options(scipen = 999) # Evitar notación científica)
+# Test t con varianzas iguales
+tt_equal <- t.test(wildtype, transgenic,
+                   alternative = "two.sided",
+                   var.equal = TRUE,
+                   conf.level = 0.95)
+
+print(tt_equal)
+
+# Interpretación:
+# Si p-value < 0.05, rechazamos H_0 (las medias son significativamente diferentes)
+# Si p-value >= 0.05, no hay evidencia de diferencia significativa
+```
+
+### Test t: Varianzas Heterogéneas (Welch)
+
+Si observamos varianzas muy diferentes, usamos la prueba de Welch:
+
+```{r}
+#| lst-label: lst-semana09-6
+#| lst-cap: "Código R"
+#| warning: false
+#| message: false
+
+# Test t con varianzas desiguales (Welch)
+tt_welch <- t.test(wildtype, transgenic,
+                   alternative = "two.sided",
+                   var.equal = FALSE,
+                   conf.level = 0.95)
+
+print(tt_welch)
+```
+
+### Test F: Igualdad de Varianzas
+
+Podemos probar formalmente si las varianzas son iguales:
+
+```{r}
+#| lst-label: lst-semana09-7
+#| lst-cap: "Código R"
+#| warning: false
+#| message: false
+
+# Test F para igualdad de varianzas
+f_test <- var.test(wildtype, transgenic, alternative = "two.sided")
+
+print(f_test)
+
+# Interpretación:
+# Si p-value < 0.05, hay evidencia de que las varianzas son desiguales
+#   → Usar Welch test
+# Si p-value >= 0.05, no hay evidencia de desigualdad de varianzas
+#   → Usar test t con varianzas iguales
+```
+
+### Cálculo de Potencia
+
+Si el estudio fuera diseñado ahora, ¿qué tamaño muestral necesitaríamos?
+
+```{r}
+#| lst-label: lst-semana09-8
+#| lst-cap: "Código R"
+#| warning: false
+#| message: false
+
+library(stats)
+
+# Supongamos que queremos detectar una diferencia de 5 días
+# con desviación estándar combinada de 10 días
+# Potencia deseada = 0.80, significancia = 0.05
+
+power_result <- power.t.test(
+  n = NULL,           # Queremos calcular n
+  delta = 5,          # Diferencia a detectar
+  sd = 10,            # Desviación estándar
+  sig.level = 0.05,   # Significancia bilateral
+  power = 0.80,       # Potencia deseada
+  alternative = "two.sided"
+)
+
+cat("Tamaño muestral requerido por grupo:", round(power_result$n), "\n")
+
+# También podemos calcular la potencia de nuestro estudio actual
+power_actual <- power.t.test(
+  n = n1,             # Tamaño muestral observado
+  delta = mean(wildtype) - mean(transgenic),  # Diferencia observada
+  sd = sqrt((var(wildtype) + var(transgenic)) / 2),  # SD combinada
+  sig.level = 0.05,
+  alternative = "two.sided"
+)
+
+cat("Potencia del estudio observado:", round(power_actual$power, 3), "\n")
+```
+
+---
+
+## Tabla Resumen: Contrastes de Dos Muestras {#sec-semana08-summary-table}
+
+| Escenario | Estadístico | Distribución | Grados de Libertad | Fórmula |
+|-----------|-------------|--------------|-------------------|---------|
+| **Z-test** (varianzas conocidas) | $Z = \frac{(\bar{X}_1 - \bar{X}_2) - \omega_0}{\sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}}$ | $N(0,1)$ | ∞ | Conocidas |
+| **t-test** (varianzas iguales) | $T = \frac{(\bar{X}_1 - \bar{X}_2) - \omega_0}{S_p\sqrt{1/n_1 + 1/n_2}}$ | $t$ | $n_1 + n_2 - 2$ | Estimadas |
+| **Welch** (varianzas desiguales) | $T = \frac{(\bar{X}_1 - \bar{X}_2) - \omega_0}{\sqrt{S_1^2/n_1 + S_2^2/n_2}}$ | $t$ (aprox.) | W-S formula | Estimadas |
+| **t pareado** | $T = \frac{\bar{D} - \omega_0}{S_D/\sqrt{n}}$ | $t$ | $n - 1$ | Diferencias |
+| **F-test** | $F = \frac{S_1^2}{S_2^2}$ | $F$ | $(n_1-1, n_2-1)$ | Varianzas |
+
+---
+
+## Resumen {#sec-semana08-resumen}
+
+### Conceptos Clave
+
+- **Prueba Z de dos muestras:** Para varianzas conocidas, estadístico sigue $N(0,1)$
+
+- **Prueba t de dos muestras (varianzas iguales):** Varianza combinada (pooled), grados de libertad $= n_1 + n_2 - 2$
+
+- **Prueba t de Welch:** Para varianzas desiguales, usa grados de libertad Welch-Satterthwaite
+
+- **Prueba t pareada:** Reduce a una prueba t de una muestra sobre diferencias
+
+- **Prueba F:** Para comparar varianzas, estadístico $F = S_1^2 / S_2^2 \sim F_{n_1-1, n_2-1}$
+
+### Potencia Estadística
+
+- **Potencia ($1-\beta$):** Probabilidad de rechazar $H_0$ cuando $H_1$ es verdadera (detectar un efecto real)
+
+- **Error Tipo I ($\alpha$):** Probabilidad de rechazar $H_0$ cuando es verdadera (típicamente 0.05)
+
+- **Error Tipo II ($\beta$):** Probabilidad de no rechazar $H_0$ cuando $H_1$ es verdadera (típicamente 0.10-0.20)
+
+- **Factores que aumentan potencia:**
+  - Mayor tamaño muestral ($n$)
+  - Mayor diferencia/efecto a detectar ($\delta$)
+  - Menor variabilidad ($\sigma$)
+  - Mayor nivel de significancia ($\alpha$) — pero aumenta Error Tipo I
+
+### Tamaño Muestral
+
+- Se calcula especificando: efecto a detectar, potencia deseada, nivel de significancia, variabilidad
+
+- Fórmula para t-test bilateral: $n = \frac{2\sigma^2 (z_{1-\alpha/2} + z_{1-\beta})^2}{\delta^2}$
+
+### Testing Múltiple
+
+- **Corrección de Bonferroni:** Usar $\alpha_{\text{ajustado}} = \alpha/k$ cuando se hacen $k$ pruebas
+
+- Evitar prueba de igualdad de varianzas antes de elegir test (mejor usar Welch siempre)
+
+---
+
+
+## Verificación de Supuestos: Normalidad y Homogeneidad {#sec-semana08-supuestos}
+
+Los contrastes asintóticos basados en el Teorema Central del Límite —como el t-test y el F-test— requieren verificar dos condiciones: (1) normalidad de los datos o residuos, y (2) igualdad de varianzas entre grupos. Con $n \geq 60$ el TCL garantiza normalidad asintótica de la media, pero para muestras menores conviene comprobarlo formalmente.
+
+### Test de Shapiro-Wilk: Normalidad
+
+El test de Shapiro-Wilk [@Shapiro1965] es la prueba de normalidad más potente para muestras pequeñas y moderadas ($n \leq 5000$).
+
+::: {.callout-note}
+## Definición: Test de Shapiro-Wilk
+
+Dada una muestra $x_1, \ldots, x_n$, el estadístico es:
+
+$$W = \frac{\left(\displaystyle\sum_{i=1}^{n} a_i\, x_{(i)}\right)^2}{\displaystyle\sum_{i=1}^{n} (x_i - \bar{x})^2}$$
+
+donde $x_{(i)}$ son los estadísticos de orden y $a_i$ son coeficientes tabulados que dependen de la distribución normal estándar.
+
+- $H_0$: la muestra proviene de una distribución normal
+- $H_1$: la distribución no es normal
+- Se rechaza $H_0$ cuando $W$ es **pequeño** (p-valor < $\alpha$)
+- $W \in (0, 1]$; valores próximos a 1 indican normalidad
+:::
+
+::: {.callout-tip}
+## Ejemplo: Test de normalidad en datos clínicos
+
+Usando el conjunto de datos `osteo` de `BioestadisticaR2`, que contiene 94 pacientes diabéticos de la Facultad de Medicina de la UGR, comprobamos la normalidad de la variable edad:
+
+```{r}
+#| lst-label: lst-semana09-9
+#| lst-cap: "Código R"
+#| warning: false
+#| message: false
+
+library(BioestadisticaR2)
+
+# Test de Shapiro-Wilk con BioestadisticaR2
+testnormal(osteo$edad)
+
+# Test de Shapiro-Wilk con R base
+shapiro.test(osteo$edad)
+```
+
+
+**Interpretación:** Con $W = 0.907$ y $p < 0.001$, rechazamos normalidad ($\alpha = 0.05$). Para alternativas cuando no hay normalidad y $n < 60$, ver @sec-semana12-bootstrap.
+:::
+
+### Test de Bartlett: Homogeneidad de Varianzas
+
+El test de Bartlett contrasta si $k$ grupos independientes tienen la misma varianza poblacional, bajo el supuesto de que los datos son normales.
+
+::: {.callout-note}
+## Definición: Test de Bartlett
+
+Sean $k$ grupos con tamaños $n_1, \ldots, n_k$ y varianzas muestrales $s_1^2, \ldots, s_k^2$.
+
+**Hipótesis:** $H_0: \sigma_1^2 = \sigma_2^2 = \cdots = \sigma_k^2$ frente a $H_1$: al menos dos varianzas difieren.
+
+**Varianza combinada:**
+$$s_p^2 = \frac{\sum_{j=1}^k (n_j - 1)\,s_j^2}{n - k}, \quad n = \sum_{j=1}^k n_j$$
+
+**Estadístico de Bartlett:**
+$$\chi^2_B = \frac{1}{c}\left[(n-k)\ln s_p^2 - \sum_{j=1}^k (n_j - 1)\ln s_j^2\right]$$
+
+donde $c = 1 + \frac{1}{3(k-1)}\left(\sum_{j=1}^k \frac{1}{n_j - 1} - \frac{1}{n-k}\right)$ es un factor de corrección.
+
+Bajo $H_0$: $\chi^2_B \sim \chi^2_{k-1}$ (asintóticamente). Sensible a no normalidad — si los datos no son normales, usar **Test de Levene** (`car::leveneTest()`).
+:::
+
+::: {.callout-tip}
+## Ejemplo: Homogeneidad del IMC por grupo de edad
+
+```{r}
+#| lst-label: lst-semana09-10
+#| lst-cap: "Código R"
+#| warning: false
+#| message: false
+
+library(BioestadisticaR2)
+
+# Test de Bartlett: IMC igual en los 3 grupos de edad?
+bartlett.test(imc ~ grupo_edad, data = osteo)
+```
+
+
+**Interpretación:** $\chi^2_B = 2.18$, $gl = 2$, $p = 0.335 > 0.05$: no se rechaza igualdad de varianzas. El supuesto de homocedasticidad se cumple; procede usar t-test o ANOVA clásico.
+:::
+
+::: {.callout-warning}
+## Regla Práctica: ¿Cuándo verificar los supuestos?
+
+| Supuesto | Test | Función R | Cuándo usarlo |
+|----------|------|-----------|---------------|
+| Normalidad | Shapiro-Wilk | `shapiro.test()` | Siempre si $n < 60$ |
+| Homogeneidad | Bartlett | `bartlett.test()` | Datos normales |
+| Homogeneidad | Levene | `car::leveneTest()` | Datos no normales |
+
+**TCL:** Con $n \geq 60$, el t-test es robusto a la no normalidad [@Casella2002]. Para $n < 60$ y datos no normales, ver métodos bootstrap en @sec-semana12-bootstrap.
+:::
+
+---
+
+## Bootstrap y Métodos Robustos como Alternativas {#sec-semana9-bootstrap}
+
+
+Cuando el test de Shapiro-Wilk rechaza normalidad **y** el tamaño muestral es insuficiente para garantizar el TCL ($n < 60$), los métodos clásicos basados en la distribución $t$ o $F$ pueden producir inferencias incorrectas. El **bootstrap** y los **tests de permutación** son alternativas válidas que no requieren supuestos distribucionales [@Chihara2019].
+
+::: {.callout-note}
+## Definición: Bootstrap (Efron, 1979)
+
+El bootstrap simula la distribución muestral de un estadístico $\hat{\theta}$ remuestreando **con reemplazo** de la muestra original.
+
+**Algoritmo del IC bootstrap por percentiles:**
+
+1. Sea $\mathbf{x} = (x_1, \ldots, x_n)$ la muestra original.
+2. Para $b = 1, \ldots, B$ (con $B = 10000$ recomendado):
+   - Generar muestra bootstrap $\mathbf{x}^{(b)}$: extraer $n$ valores con reemplazo de $\mathbf{x}$
+   - Calcular $\hat{\theta}^{(b)} = T(\mathbf{x}^{(b)})$
+3. El IC al $(1-\alpha)$% por percentiles es:
+$$\left[\hat{\theta}^{*}_{(\alpha/2)}, \; \hat{\theta}^{*}_{(1-\alpha/2)}\right]$$
+donde los superíndices son cuantiles de la distribución bootstrap $\{\hat{\theta}^{(b)}\}_{b=1}^{B}$.
+
+El **método BCa** (Bias-Corrected and Accelerated) ajusta por sesgo y asimetría — es más preciso y se recomienda para muestras pequeñas.
+:::
+
+::: {.callout-note}
+## Definición: Test de Permutación
+
+Para contrastar $H_0: \mu_1 = \mu_2$ (igualdad de medias entre dos grupos), el test de permutación calcula la distribución exacta del estadístico de prueba bajo $H_0$ permutando aleatoriamente las etiquetas de grupo.
+
+**Algoritmo:**
+
+1. Calcular la diferencia observada: $D_{\text{obs}} = \bar{x}_1 - \bar{x}_2$
+2. Para $b = 1, \ldots, B$: permutar aleatoriamente las asignaciones de grupo → calcular $D^{(b)}$
+3. p-valor bilateral: $\hat{p} = \frac{\#\{|D^{(b)}| \geq |D_{\text{obs}}|\}}{B}$
+
+No requiere normalidad ni homocedasticidad. Válido para cualquier tamaño muestral.
+:::
+
+::: {.callout-tip}
+## Ejemplo: IMC en hombres diabéticos — bootstrap manual con bucle
+
+El IMC de los pacientes masculinos del dataset `osteo` **no sigue una distribución normal** (Shapiro-Wilk: $W = 0.924$, $p = 0.006$). Implementamos el bootstrap **manualmente con un bucle `for`** (estilo @Chihara2019), siguiendo paso a paso el algoritmo de Efron. Después comparamos con el método BCa (paquete `boot`) y con el IC clásico $t$.
+
+```{r}
+#| lst-label: lst-semana09-11
+#| lst-cap: "Código R"
+#| warning: false
+#| message: false
+
+library(BioestadisticaR2)
+library(boot)
+set.seed(2024)
+
+# --- Datos: IMC de hombres diabéticos (n = 45, no normal) ---
+x <- osteo$imc[osteo$sexo == "Hombre"]
+n <- length(x)
+media_obs <- mean(x)
+
+shapiro.test(x)   # Confirma no-normalidad
+
+# --- 1. BOOTSTRAP MANUAL CON BUCLE FOR (algoritmo paso a paso) ---
+B <- 10000                          # número de réplicas bootstrap
+boot_means <- numeric(B)            # vector para almacenar las medias bootstrap
+
+for (b in 1:B) {
+  # (i) Remuestrear con reemplazo: extraer n valores de la muestra original
+  muestra_boot <- sample(x, size = n, replace = TRUE)
+  # (ii) Calcular el estadístico de interés sobre la muestra bootstrap
+  boot_means[b] <- mean(muestra_boot)
+}
+
+# (iii) Intervalo de confianza por percentiles 2.5% y 97.5%
+IC_perc <- quantile(boot_means, c(0.025, 0.975))
+
+cat("Media muestral observada:", round(media_obs, 3), "kg/m²\n")
+cat("Réplicas bootstrap (B):", B, "\n")
+cat("Media bootstrap promedio:", round(mean(boot_means), 3), "kg/m²\n")
+cat("Error estándar bootstrap:", round(sd(boot_means), 3), "\n")
+cat("IC 95% (percentiles, bucle manual): [",
+    round(IC_perc[1], 3), ", ", round(IC_perc[2], 3), "] kg/m²\n\n")
+
+# --- 2. BOOTSTRAP BCa con el paquete boot (recomendado en n pequeñas) ---
+boot_fn  <- function(data, i) mean(data[i])
+boot_obj <- boot(x, statistic = boot_fn, R = B)
+boot.ci(boot_obj, type = "bca")
+
+# --- 3. IC clásico t para comparación ---
+t.test(x)$conf.int
+```
+
+::: {.callout-note}
+## Interpretación
+El bootstrap manual con bucle `for` reproduce paso a paso el algoritmo de Efron (1979): en cada una de las B = 10.000 iteraciones se construye una pseudomuestra extrayendo n = 45 pacientes con reemplazo del IMC observado, se calcula su media, y al final se ordenan las 10.000 medias para extraer los percentiles 2.5% y 97.5%. El IC 95% resultante (≈ [27.2, 29.1] kg/m²) se interpreta clínicamente como el rango plausible del IMC poblacional medio de varones diabéticos —situado en el umbral entre sobrepeso (25–29.9) y obesidad (≥ 30) según criterios OMS. Comparado con el IC $t$ clásico, el bootstrap proporciona inferencia válida sin requerir normalidad, lo cual es relevante en cohortes pequeñas con asimetría en la distribución del IMC (común en diabetes tipo 2). El método BCa corrige por sesgo y asimetría y se recomienda como referencia cuando $n < 30$; con $n = 45$ los tres intervalos convergen porque el TCL ya comienza a actuar. Esta convergencia se romperá si reducimos n por debajo de 20 o si analizamos variables muy asimétricas (p. ej., triglicéridos o carga viral).
+:::
+:::
+
+::: {.callout-tip}
+## Ejemplo: Test de permutación — diferencia de IMC por sexo
+
+Shapiro-Wilk rechaza normalidad tanto en hombres ($p = 0.006$) como en mujeres ($p = 0.001$). Usamos un test de permutación en lugar del t-test clásico.
+
+```{r}
+#| lst-label: lst-semana09-12
+#| lst-cap: "Código R"
+#| warning: false
+#| message: false
+
+library(BioestadisticaR2)
+set.seed(2024)
+B <- 10000
+
+g1 <- osteo$imc[osteo$sexo == "Hombre"]   # n = 45
+g2 <- osteo$imc[osteo$sexo == "Mujer"]    # n = 49
+
+# Diferencia observada
+D_obs <- mean(g1) - mean(g2)
+
+# Distribución de permutación bajo H0
+combined <- c(g1, g2)
+n1 <- length(g1)
+perm_diffs <- replicate(B, {
+  perm <- sample(combined)
+  mean(perm[1:n1]) - mean(perm[(n1+1):length(combined)])
+})
+
+# p-valor bilateral
+p_perm <- mean(abs(perm_diffs) >= abs(D_obs))
+cat("Diferencia observada:", round(D_obs, 3), "\n")
+cat("p-valor permutacion: ", round(p_perm, 4), "\n")
+
+# Comparación con t-test clásico
+t.test(g1, g2)$p.value
+```
+
+
+**Interpretación:** Ambos métodos concuerdan: no hay diferencia significativa en el IMC entre hombres y mujeres ($p \approx 0.32$). Cuando los tamaños son moderados ($n_1 = 45$, $n_2 = 49$), el TCL protege al t-test. El test de permutación proporciona validez exacta sin supuestos.
+:::
+
+::: {.callout-warning}
+## Cuándo usar cada método
+
+| Situación | Método recomendado | Función R |
+|-----------|-------------------|-----------|
+| Normal, $n$ cualquiera | t-test, ANOVA clásico | `t.test()`, `aov()` |
+| No normal, $n \geq 60$ | t-test (TCL garantiza) | `t.test()` |
+| No normal, $n < 60$, 1 muestra | IC Bootstrap BCa | `boot()`, `boot.ci()` |
+| No normal, $n < 60$, 2 grupos | Permutación o Wilcoxon | `replicate()`, `wilcox.test()` |
+| No normal, $k > 2$ grupos | Kruskal-Wallis | `kruskal.test()` |
+| Varianzas desiguales | Welch t-test | `t.test(var.equal=FALSE)` |
+
+**Referencia:** @Chihara2019 proporciona una tratamiento riguroso de bootstrap y permutaciones con implementación completa en R, incluyendo la justificación teórica de cada método.
+:::
+
+---
+
+## Pruebas No Paramétricas Basadas en Rangos {#sec-semana08-non-parametric}
+
+Las pruebas no paramétricas son alternativas a las pruebas paramétricas (como el t-test o el ANOVA) que no requieren que los datos sigan una distribución normal. Se basan en el **rango** (posición) de las observaciones en lugar de sus valores originales, lo que las hace robustas frente a valores atípicos (outliers) y distribuciones asimétricas.
+
+### Prueba de Wilcoxon-Mann-Whitney (Muestras Independientes) {#sec-semana08-wilcoxon-indep}
+
+Es la alternativa no paramétrica al t-test de dos muestras independientes. Contrasta si las distribuciones de dos grupos son idénticas, evaluando si un valor seleccionado al azar de una población tiende a ser mayor que uno de la otra.
+
+::: {.callout-note}
+## Definición: Estadístico U de Mann-Whitney
+
+Dadas dos muestras independientes de tamaños $n_1$ y $n_2$:
+1. Se combinan ambas muestras y se asignan rangos (de 1 a $n_1+n_2$).
+2. Se calcula la suma de rangos para cada grupo ($R_1$ y $R_2$).
+3. El estadístico $U$ es el mínimo de:
+   $$U_1 = n_1n_2 + \frac{n_1(n_1+1)}{2} - R_1, \quad U_2 = n_1n_2 + \frac{n_2(n_2+1)}{2} - R_2$$
+:::
+
+::: {.callout-tip}
+## Ejemplo: Comparación del IMC (Wilcoxon-Mann-Whitney)
+
+Contrastamos si el Índice de Masa Corporal (IMC) difiere entre hombres y mujeres usando la alternativa no paramétrica, dado que el IMC frecuentemente presenta asimetría.
+
+```{r}
+#| lst-label: lst-semana09-13
+#| lst-cap: "Código R"
+#| warning: false
+#| message: false
+
+library(BioestadisticaR2)
+
+# Wilcoxon-Mann-Whitney con BioestadisticaR2
+testwx(m1 = osteo$imc[osteo$sexo == "Hombre"],
+       m2 = osteo$imc[osteo$sexo == "Mujer"],
+       grf = FALSE)
+```
+
+
+**Interpretación:** No se observan diferencias significativas en las distribuciones de IMC entre sexos ($p = 0.523$). La probabilidad de que un hombre tenga un IMC mayor que una mujer elegida al azar es del 46.1%.
+:::
+
+### Prueba de Wilcoxon de los Rangos con Signo (Muestras Pareadas) {#sec-semana08-wilcoxon-paired}
+
+Es la alternativa no paramétrica al t-test pareado. Se utiliza para comparar dos medidas relacionadas (antes-después) sobre los mismos sujetos cuando las diferencias no siguen una distribución normal.
+
+::: {.callout-note}
+## Procedimiento
+
+1. Calcular las diferencias $D_i = X_{1i} - X_{2i}$.
+2. Eliminar las diferencias iguales a cero.
+3. Asignar rangos a los valores absolutos $|D_i|$.
+4. El estadístico $W$ es la suma de los rangos de las diferencias positivas.
+:::
+
+::: {.callout-tip}
+## Ejemplo: Prueba pareada con BioestadisticaR2
+
+Supongamos que evaluamos el calcio sérico (`ca`) antes y después de un tratamiento en 10 pacientes (datos simulados para ilustración).
+
+```{r}
+#| lst-label: lst-semana09-14
+#| lst-cap: "Código R"
+#| warning: false
+#| message: false
+
+# Calcio inicial y final (simulados)
+ca_pre  <- c(9.2, 8.4, 8.8, 9.1, 9.5, 9.0, 8.9, 9.3, 8.5, 8.7)
+ca_post <- c(9.5, 8.7, 9.0, 9.4, 9.6, 9.1, 9.0, 9.6, 8.9, 8.8)
+
+# Wilcoxon pareado con BioestadisticaR2 (par = TRUE)
+testwx(m1 = ca_pre, m2 = ca_post, par = TRUE, grf = FALSE)
+```
+
+
+**Interpretación:** Existe un aumento significativo en los niveles de calcio tras el tratamiento ($p = 0.005$). El tamaño del efecto es muy fuerte ($r = 0.89$).
+:::
+
+### Prueba de Kruskal-Wallis (K Muestras Independientes) {#sec-semana08-kruskal}
+
+Es la alternativa no paramétrica al ANOVA de un factor. Se utiliza para comparar las medianas de tres o más grupos independientes.
+
+::: {.callout-note}
+## Estadístico H de Kruskal-Wallis
+
+Para $k$ grupos con tamaños $n_j$ y suma de rangos $R_j$:
+
+$$H = \frac{12}{n(n+1)} \sum_{j=1}^k \frac{R_j^2}{n_j} - 3(n+1)$$
+
+donde $n = \sum n_j$. Bajo $H_0$, $H \sim \chi^2_{k-1}$ asintóticamente.
+:::
+
+::: {.callout-tip}
+## Ejemplo: IMC por grupo de edad (> 2 grupos)
+
+```{r}
+#| lst-label: lst-semana09-15
+#| lst-cap: "Código R"
+#| warning: false
+#| message: false
+
+# Contrastar si el IMC difiere entre los 3 grupos de edad
+kruskal.test(imc ~ grupo_edad, data = osteo)
+```
+
+
+**Interpretación:** Como $p = 0.017 < 0.05$, rechazamos la hipótesis de igualdad. Al menos un grupo de edad tiene una distribución de IMC significativamente distinta.
+:::
+
+---
+
+## Ejercicios {#sec-semana08-ejercicios}
+
+**Ejercicio 9.1:** Se comparan dos métodos de enseñanza en estadística. El Método A (n₁ = 30) tiene media 75 y desviación estándar 8. El Método B (n₂ = 35) tiene media 78 y desviación estándar 7. ¿Hay diferencia significativa entre los métodos a nivel α = 0.05? (Suponga varianzas iguales)
+
+**Ejercicio 9.2:** Un investigador mide presión arterial en 10 pacientes antes y después de tomar un medicamento. Las diferencias promedio son -5 mmHg con desviación estándar 8 mmHg. ¿Es el medicamento efectivo en reducir presión (prueba unilateral, α = 0.05)?
+
+**Ejercicio 9.3:** Se comparan dos proveedores de materia prima. Proveedor 1: S₁² = 15, n₁ = 20. Proveedor 2: S₂² = 8, n₂ = 18. ¿Hay diferencia significativa en variabilidad (α = 0.05, bilateral)?
+
+**Ejercicio 9.4:** Se diseña un estudio para detectar una diferencia de 12 puntos en una escala (σ = 10) con potencia 0.90 y α = 0.05. ¿Cuántos sujetos se necesitan por grupo?
+
+**Ejercicio 9.5:** Un investigador realiza 15 pruebas independientes con α = 0.05 sin corrección. ¿Cuál es la probabilidad aproximada de cometer al menos un Error Tipo I?
+
+**Ejercicio 9.6:** Interprete este resultado de R: `t.test(x, y, var.equal=FALSE)` da t = 2.34, df = 45.2, p-value = 0.024. ¿Qué conclusión saca?
+
+**Ejercicio 9.7:** Un estudio observa media₁ = 100, media₂ = 105, pero el intervalo de confianza al 95% para la diferencia incluye cero. ¿Qué significa esto respecto a la significancia estadística y práctica?
+
+**Ejercicio 9.8:** Si el test de Shapiro-Wilk rechaza la normalidad en una muestra pequeña ($n=15$), ¿qué prueba utilizaría para comparar dos grupos independientes?
+
+**Ejercicio 9.9:** ¿Cuál es la principal ventaja de la prueba de Kruskal-Wallis sobre el ANOVA de un factor?
+
+**Ejercicio 9.10:** En una muestra de 35 valores de presión arterial sistólica, el test de Shapiro-Wilk produce $W = 0.94$ con $p = 0.089$. ¿Es válido aplicar un test t de una muestra con $\alpha = 0.05$? ¿Cambiaría su decisión si $n = 75$?
+
+## Respuestas a los Ejercicios {#sec-semana08-respuestas}
+
+**Ejercicio 9.1:** t = (75-78)/√((29×64 + 34×49)/(63) × (1/30 + 1/35)) ≈ -1.81; df ≈ 63; p > 0.05. No hay diferencia significativa.
+
+**Ejercicio 9.2:** t = -5/(8/√10) ≈ -1.98; df = 9; p ≈ 0.038 < 0.05. El medicamento es efectivo en reducir presión.
+
+**Ejercicio 9.3:** F = 15/8 = 1.875; df₁ = 19, df₂ = 17. F crítico ≈ 2.74. No rechaza H₀; no hay diferencia significativa en variabilidad.
+
+**Ejercicio 9.4:** Usando fórmula de potencia: n ≈ 2×(10)²×(1.96 + 1.28)²/(12)² ≈ 29-30 sujetos por grupo.
+
+**Ejercicio 9.5:** P(al menos 1 error) = 1 - (1-0.05)¹⁵ ≈ 1 - 0.463 = 0.537 (53.7%). El problema de multiplicidad es importante.
+
+**Ejercicio 9.6:** t = 2.34, df = 45.2, p = 0.024 < 0.05. Se rechaza H₀. Hay diferencia significativa entre x e y (usando Welch's t-test por varianzas desiguales).
+
+**Ejercicio 9.7:** Si el IC 95% incluye cero, la diferencia no es estadísticamente significativa (p > 0.05), aunque hay diferencia práctica de 5 unidades. Sin significancia estadística, no podemos afirmar que la diferencia poblacional es real.
+
+**Ejercicio 9.8:** Utilizaría la prueba de Wilcoxon-Mann-Whitney (o un test de permutación).
+
+**Ejercicio 9.9:** No requiere el supuesto de normalidad en los datos, siendo más robusta cuando hay outliers o distribuciones muy asimétricas.
+
+**Ejercicio 9.10:** Con $p = 0.089 > 0.05$, **no rechazamos** $H_0$ de normalidad → el test t es válido. Con $n = 75$, el TCL garantiza normalidad asintótica de la media, por lo que el test t es válido independientemente del resultado de Shapiro-Wilk.
+
+## Recursos Adicionales {#sec-semana08-resources}
+
+- **Software R:** Funciones `t.test()`, `var.test()`, `power.t.test()`, `wilcox.test()`, `kruskal.test()` en stats
+- **OpenIntro Statistics:** Capítulos sobre comparación de dos medias y potencia
+- **Referencias clásicas:** Rosner (2011) Fundamentals of Biostatistics; Kahn & Sempos (2002) Statistical Methods in Epidemiology
+

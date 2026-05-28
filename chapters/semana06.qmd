@@ -1,0 +1,850 @@
+```{r}
+#| label: setup
+#| include: false
+options(digits = 3)
+library(broom)
+```
+
+# Semana 6 — Estimación de Parámetros {#sec-semana06}
+
+En este capítulo estudiamos los métodos fundamentales para estimar parámetros poblacionales desconocidos basándonos en datos muestrales. Cubriremos desde los conceptos básicos de estimadores puntuales hasta la construcción de intervalos de confianza, pasando por dos de los métodos más importantes: el método de momentos y la estimación por máxima verosimilitud.
+
+## El Modelo Estadístico Paramétrico {#sec-semana06-modelo}
+
+Un modelo estadístico paramétrico especifica una familia de distribuciones, cada una de las cuales es indexada por parámetros desconocidos que queremos estimar.
+
+::: {.callout-note}
+## Definición: Modelo Estadístico Paramétrico
+
+Un **modelo estadístico paramétrico** es una colección de distribuciones de probabilidad:
+
+$$\{f(x; \boldsymbol{\theta}) : \boldsymbol{\theta} \in \Theta\}$$
+
+donde:
+- $f(x; \boldsymbol{\theta})$ es la función de densidad o de probabilidad
+- $\boldsymbol{\theta} = (\theta_1, \ldots, \theta_p)$ es el vector de parámetros desconocidos
+- $\Theta$ es el **espacio de parámetros**, el conjunto de todos los valores posibles que $\boldsymbol{\theta}$ puede tomar
+:::
+
+**Ejemplo:** Si modelamos una variable aleatoria como Normal, el modelo paramétrico es $\{N(\mu, \sigma) : \mu \in \mathbb{R}, \sigma > 0\}$, donde los parámetros desconocidos son la media $\mu$ y la desviación estándar $\sigma$.
+
+## Estimadores Puntuales {#sec-semana06-estimadores}
+
+Un estimador puntual es una función de la muestra que proporciona un único valor estimado para el parámetro de interés.
+
+::: {.callout-note}
+## Definición: Estimador Puntual
+
+Un **estimador puntual** de un parámetro $\theta$ es una función de la muestra:
+
+$$\hat{\theta} = g(X_1, X_2, \ldots, X_n)$$
+
+Antes de observar la muestra, $\hat{\theta}$ es una **variable aleatoria** que varía de muestra a muestra. Después de observar los datos muestrales $(x_1, \ldots, x_n)$, el estimador toma un valor concreto llamado **estimación** o **valor estimado**:
+
+$$\hat{\theta} = g(x_1, x_2, \ldots, x_n)$$
+:::
+
+**Observación clave:** Es importante distinguir entre:
+- El **estimador** (antes de ver los datos): variable aleatoria
+- El **valor estimado** (después de ver los datos): número concreto
+
+## Propiedades de los Estimadores {#sec-semana06-propiedades}
+
+Un buen estimador debe satisfacer ciertas propiedades deseables. Las más importantes son la insesgadez, la eficiencia, la consistencia y el error cuadrático medio bajo.
+
+### Insesgadez
+
+::: {.callout-note}
+## Definición: Insesgadez
+
+Un estimador $\hat{\theta}$ es **insesgado** para $\theta$ si:
+
+$$E(\hat{\theta}) = \theta$$
+
+El **sesgo** (o bias) del estimador se define como:
+
+$$\text{Sesgo}(\hat{\theta}) = E(\hat{\theta}) - \theta$$
+
+Un estimador es insesgado si y solo si su sesgo es cero.
+:::
+
+::: {.callout-warning}
+## Nota Importante: Insesgadez Asintótica
+
+Un estimador es **asintóticamente insesgado** si:
+
+$$\lim_{n \to \infty} E(\hat{\theta}) = \theta$$
+
+Es decir, el sesgo desaparece cuando el tamaño de muestra crece indefinidamente.
+:::
+
+### Eficiencia
+
+La eficiencia compara la varianza de estimadores insesgados. Cuanto menor sea la varianza, más eficiente es el estimador.
+
+::: {.callout-note}
+## Definición: Eficiencia Relativa y Absoluta
+
+Sean $\hat{\theta}^{(1)}$ y $\hat{\theta}^{(2)}$ dos estimadores insesgados de $\theta$ (es decir, $E(\hat{\theta}^{(1)}) = E(\hat{\theta}^{(2)}) = \theta$).
+
+- **Eficiencia Relativa:** $\hat{\theta}^{(1)}$ es más eficiente que $\hat{\theta}^{(2)}$ si:
+$$\text{Var}(\hat{\theta}^{(1)}) \leq \text{Var}(\hat{\theta}^{(2)})$$
+
+- **Eficiencia Absoluta (o Eficiencia de Mínima Varianza):** $\hat{\theta}^{(1)}$ es eficiente para $\theta$ si tiene la menor varianza entre todos los estimadores insesgados de $\theta$.
+:::
+
+### Consistencia
+
+::: {.callout-note}
+## Definición: Consistencia
+
+Un estimador $\hat{\theta}$ es **consistente** para $\theta$ si se cumplen ambas condiciones:
+
+$$\lim_{n \to \infty} E(\hat{\theta}) = \theta \quad \text{y} \quad \lim_{n \to \infty} \text{Var}(\hat{\theta}) = 0$$
+
+Es decir, a medida que el tamaño de muestra crece, tanto el sesgo como la varianza del estimador se acercan a cero.
+:::
+
+La consistencia garantiza que con suficientes datos, el estimador converge en probabilidad al parámetro verdadero.
+
+### Error Cuadrático Medio (ECM)
+
+::: {.callout-warning}
+## Resultado Importante: Descomposición del ECM
+
+El **Error Cuadrático Medio** (o Mean Squared Error) se define como:
+
+$$\text{ECM}(\hat{\theta}) = E[(\hat{\theta} - \theta)^2]$$
+
+Se puede descomponer como:
+
+$$\text{ECM}(\hat{\theta}) = \text{Var}(\hat{\theta}) + [\text{Sesgo}(\hat{\theta})]^2$$
+
+Esta descomposición muestra que el error total proviene de dos fuentes: la variabilidad del estimador y su sesgo.
+:::
+
+Un estimador con menor ECM es preferible, incluso si es ligeramente sesgado. A veces, un estimador sesgado con baja varianza tiene ECM menor que un estimador insesgado con alta varianza.
+
+## Tabla Comparativa de Estimadores Comunes {#sec-semana06-tabla}
+
+La siguiente tabla resume propiedades de estimadores frecuentemente utilizados:
+
+| Estimador | Parámetro | Sesgo | Varianza | ECM | Condiciones |
+|-----------|-----------|-------|----------|-----|-------------|
+| $\bar{X} = \frac{1}{n}\sum_{i=1}^n X_i$ | $\mu$ | 0 | $\frac{\sigma^2}{n}$ | $\frac{\sigma^2}{n}$ | Insesgado |
+| $\hat{\pi} = \frac{1}{n}\sum_{i=1}^n X_i$ | $\pi$ (proporción) | 0 | $\frac{\pi(1-\pi)}{n}$ | $\frac{\pi(1-\pi)}{n}$ | Insesgado, $X_i \sim \text{Bernoulli}(\pi)$ |
+| $S^{*2} = \frac{1}{n}\sum_{i=1}^n (X_i - \mu)^2$ | $\sigma^2$ (media conocida) | 0 | $\frac{2\sigma^4}{n}$ | $\frac{2\sigma^4}{n}$ | Insesgado si $\mu$ es conocida |
+| $S^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \bar{X})^2$ | $\sigma^2$ (media desconocida) | 0 | $\frac{2\sigma^4}{n-1}$ | $\frac{2\sigma^4}{n-1}$ | Insesgado, varianza muestral |
+| $S'^2 = \frac{1}{n}\sum_{i=1}^n (X_i - \bar{X})^2$ | $\sigma^2$ (media desconocida) | $-\frac{\sigma^2}{n}$ | $\frac{2\sigma^4(n-1)}{n^2}$ | $\frac{\sigma^4(2n-1)}{n^2}$ | Sesgado pero asintóticamente insesgado |
+
+**Nota:** Para tamaños de muestra grandes, todos estos estimadores son aproximadamente insesgados y consistentes. La diferencia clave es que $S^2$ (con divisor $n-1$) es insesgado incluso para muestras pequeñas.
+
+## Método de los Momentos (MoM) {#sec-semana06-momentos}
+
+El método de los momentos es uno de los procedimientos más antiguos y simples para estimar parámetros. Se basa en igualar los momentos poblacionales con los momentos muestrales.
+
+::: {.callout-note}
+## Definición: Método de los Momentos
+
+El **método de los momentos** estima los parámetros igualando los primeros $k$ momentos poblacionales con los $k$ momentos muestrales, donde $k$ es el número de parámetros a estimar:
+
+**Momentos poblacionales:** $E(X^j) = \mu_j$ para $j = 1, 2, \ldots, k$
+
+**Momentos muestrales:** $m_j = \frac{1}{n}\sum_{i=1}^n X_i^j$ para $j = 1, 2, \ldots, k$
+
+**Igualación:** $m_j = \mu_j$ para $j = 1, 2, \ldots, k$
+:::
+
+### Procedimiento del Método de Momentos
+
+El procedimiento consiste en tres pasos:
+
+1. **Calcular momentos poblacionales:** Expresar $E(X^j)$ en términos de los parámetros desconocidos $\theta_1, \ldots, \theta_k$.
+
+2. **Invertir las expresiones:** Despejar los parámetros en términos de los momentos poblacionales.
+
+3. **Sustituir momentos muestrales:** Reemplazar los momentos poblacionales por sus versiones muestrales para obtener los estimadores.
+
+### Ejemplo 6.5.1: Distribución Normal
+
+Supongamos que tenemos una muestra de una distribución Normal $N(\mu, \sigma^2)$ con ambos parámetros desconocidos.
+
+**Paso 1:** Momentos poblacionales:
+- Primer momento: $E(X) = \mu$
+- Segundo momento: $E(X^2) = \mu^2 + \sigma^2$
+
+**Paso 2:** Inversión:
+- $\mu = E(X)$
+- $\sigma^2 = E(X^2) - [E(X)]^2$
+
+**Paso 3:** Estimadores MoM:
+$$\hat{\mu}_{\text{MoM}} = \bar{X} = \frac{1}{n}\sum_{i=1}^n X_i$$
+
+$$\hat{\sigma}^2_{\text{MoM}} = \frac{1}{n}\sum_{i=1}^n X_i^2 - \bar{X}^2 = \frac{1}{n}\sum_{i=1}^n (X_i - \bar{X})^2 = S'^2$$
+
+::: {.callout-tip}
+## Ejemplo: Estimación por Momentos en R
+
+```{r}
+#| lst-label: lst-semana07-1
+#| lst-cap: "Código R"
+#| warning: false
+#| message: false
+
+# Simular niveles de glucosa basal en ayunas (mg/dL) de 100 pacientes
+# Modelo: Normal con μ = 95 mg/dL (rango normoglucemia) y σ = 12 mg/dL
+set.seed(123)
+glucosa <- rnorm(100, mean = 95, sd = 12)
+
+# Momentos muestrales
+m1 <- mean(glucosa)           # Primer momento muestral
+m2 <- mean(glucosa^2)         # Segundo momento muestral
+
+# Estimadores por método de momentos
+mu_mom <- m1
+sigma2_mom <- m2 - m1^2
+
+cat("Estimadores por Método de Momentos (Glucosa basal, mg/dL):\n")
+cat("μ (MoM)  =", round(mu_mom, 2), "mg/dL\n")
+cat("σ² (MoM) =", round(sigma2_mom, 2), "\n")
+
+# Comparar con los parámetros verdaderos
+cat("\nParámetros verdaderos:\n")
+cat("μ        =", 95, "mg/dL\n")
+cat("σ²       =", 144, "\n")
+```
+
+::: {.callout-note}
+## Interpretación
+El método de momentos recupera estimaciones muy próximas a los parámetros poblacionales verdaderos de la glucosa basal (μ̂ ≈ 95 mg/dL vs μ = 95; σ̂² ≈ 144 vs σ² = 144), evidenciando que el procedimiento de igualar momentos muestrales con poblacionales proporciona estimadores consistentes. Esta propiedad es fundamental en estudios epidemiológicos sobre control glucémico, donde se busca estimar parámetros poblacionales de biomarcadores (glucemia, HbA1c, insulina) a partir de cohortes muestrales. La proximidad de las estimaciones al valor verdadero con n = 100 pacientes valida el MoM como método práctico y computacionalmente eficiente para caracterizar distribuciones de variables clínicas continuas.
+:::
+
+:::
+
+### Ejemplo 6.5.3: Distribución de Poisson
+
+Para una distribución de Poisson $\text{Poisson}(\lambda)$:
+
+- Momento poblacional: $E(X) = \lambda$
+- Estimador MoM: $\hat{\lambda}_{\text{MoM}} = \bar{X}$
+
+### Ejemplo 6.5.4: Distribución Gamma
+
+Para una distribución Gamma con parámetros $\alpha$ (forma) y $\beta$ (tasa):
+
+- $E(X) = \alpha/\beta$
+- $\text{Var}(X) = \alpha/\beta^2$
+
+Resolviendo:
+$$\hat{\alpha}_{\text{MoM}} = \frac{\bar{X}^2}{S^2}, \quad \hat{\beta}_{\text{MoM}} = \frac{\bar{X}}{S^2}$$
+
+## Estimación por Máxima Verosimilitud (MLE) {#sec-semana06-mle}
+
+El método de máxima verosimilitud es el procedimiento más importante y ampliamente utilizado en estadística. Se basa en el principio de que la muestra observada es la "más probable" bajo el verdadero modelo.
+
+### La Función de Verosimilitud
+
+::: {.callout-note}
+## Definición: Función de Verosimilitud
+
+Para una muestra aleatoria simple $\mathbf{X} = (X_1, X_2, \ldots, X_n)$ con valores observados $\mathbf{x} = (x_1, x_2, \ldots, x_n)$, la **función de verosimilitud** es:
+
+$$L(\theta; \mathbf{x}) = \prod_{i=1}^n f(x_i; \theta)$$
+
+Si las observaciones son independientes (asunción estándar en muestreo aleatorio simple), la verosimilitud conjunta es el producto de las verosimilitudes individuales.
+
+Interpretación: $L(\theta; \mathbf{x})$ mide la probabilidad (o densidad de probabilidad) de observar la muestra $\mathbf{x}$ para cada posible valor del parámetro $\theta$.
+:::
+
+Después de observar los datos, $L(\theta)$ se considera como una función de $\theta$ solamente (los datos son fijos). Diferentes valores de $\theta$ producen diferentes valores de $L(\theta)$.
+
+### El Estimador de Máxima Verosimilitud
+
+::: {.callout-note}
+## Definición: Estimador de Máxima Verosimilitud (EMV)
+
+El **estimador de máxima verosimilitud** (o MLE, del inglés) de $\theta$ es el valor que maximiza la función de verosimilitud:
+
+$$\hat{\theta}_{\text{MLE}} = \arg\max_{\theta \in \Theta} L(\theta; \mathbf{x})$$
+
+Si la verosimilitud es diferenciable, el EMV satisface:
+
+$$\frac{\partial L(\theta)}{\partial \theta}\bigg|_{\theta=\hat{\theta}} = 0$$
+
+y verificar que es un máximo: $\frac{\partial^2 L(\theta)}{\partial \theta^2}\bigg|_{\theta=\hat{\theta}} < 0$
+:::
+
+### La Función Log-Verosimilitud
+
+En la práctica, es más fácil maximizar el **logaritmo** de la verosimilitud, llamado **log-verosimilitud**:
+
+$$\ell(\theta; \mathbf{x}) = \ln L(\theta; \mathbf{x}) = \sum_{i=1}^n \ln f(x_i; \theta)$$
+
+::: {.callout-warning}
+## Propiedad Fundamental
+
+Las funciones $L(\theta)$ y $\ell(\theta)$ tienen el mismo máximo porque el logaritmo es una función monótona creciente:
+
+$$\max_\theta L(\theta) \Leftrightarrow \max_\theta \ell(\theta)$$
+
+Por lo tanto:
+$$\frac{\partial \ell(\theta)}{\partial \theta}\bigg|_{\theta=\hat{\theta}} = 0 \quad \Leftrightarrow \quad \frac{\partial L(\theta)}{\partial \theta}\bigg|_{\theta=\hat{\theta}} = 0$$
+
+Usar log-verosimilitud es computacionalmente más conveniente porque:
+- Convierte productos en sumas
+- Es numéricamente más estable
+- Es más fácil de derivar
+:::
+
+### Ejemplo 6.6.1: MLE para Distribución Binomial
+
+Supongamos que observamos $x$ éxitos en $n$ ensayos Bernoulli independientes, donde $p$ es la probabilidad desconocida de éxito.
+
+**Función de verosimilitud:**
+$$L(p) = \binom{n}{x} p^x (1-p)^{n-x}$$
+
+**Log-verosimilitud:**
+$$\ell(p) = \ln\binom{n}{x} + x\ln p + (n-x)\ln(1-p)$$
+
+**Derivada:**
+$$\frac{\partial \ell}{\partial p} = \frac{x}{p} - \frac{n-x}{1-p}$$
+
+**Igualando a cero:**
+$$\frac{x}{p} = \frac{n-x}{1-p}$$
+$$x(1-p) = (n-x)p$$
+$$x = np$$
+
+**Estimador MLE:**
+$$\hat{p}_{\text{MLE}} = \frac{x}{n}$$
+
+### Ejemplo 6.6.2: MLE para Distribución Normal
+
+Para una muestra de una distribución Normal $N(\mu, \sigma^2)$:
+
+**Log-verosimilitud:**
+$$\ell(\mu, \sigma^2) = -\frac{n}{2}\ln(2\pi) - \frac{n}{2}\ln(\sigma^2) - \frac{1}{2\sigma^2}\sum_{i=1}^n (x_i - \mu)^2$$
+
+**Derivadas parciales:**
+$$\frac{\partial \ell}{\partial \mu} = \frac{1}{\sigma^2}\sum_{i=1}^n (x_i - \mu)$$
+
+$$\frac{\partial \ell}{\partial \sigma^2} = -\frac{n}{2\sigma^2} + \frac{1}{2\sigma^4}\sum_{i=1}^n (x_i - \mu)^2$$
+
+**Igualando a cero y resolviendo:**
+$$\hat{\mu}_{\text{MLE}} = \bar{X} = \frac{1}{n}\sum_{i=1}^n X_i$$
+
+$$\hat{\sigma}^2_{\text{MLE}} = \frac{1}{n}\sum_{i=1}^n (X_i - \bar{X})^2 = S'^2$$
+
+**Nota:** Para la media, el EMV coincide con el estimador MoM. Para la varianza, el EMV es $S'^2$ (con divisor $n$), que es sesgado, mientras que el EMV del MoM es también $S'^2$.
+
+### Propiedades del EMV
+
+::: {.callout-warning}
+## Propiedades Importantes del EMV
+
+Bajo condiciones de regularidad (que suelen cumplirse en la práctica):
+
+1. **Consistencia:** El EMV es consistente, es decir, $\hat{\theta}_{\text{MLE}} \xrightarrow{p} \theta_0$ cuando $n \to \infty$.
+
+2. **Eficiencia Asintótica:** El EMV es asintóticamente eficiente; es decir, entre todos los estimadores consistentes, el EMV tiene la menor varianza asintótica.
+
+3. **Distribución Asintótica:** Para tamaños de muestra grandes,
+$$\hat{\theta}_{\text{MLE}} \approx N\left(\theta_0, \frac{1}{nI(\theta_0)}\right)$$
+donde $I(\theta)$ es la información de Fisher.
+
+4. **Invariancia:** Si $\hat{\theta}$ es el EMV de $\theta$, entonces $g(\hat{\theta})$ es el EMV de $g(\theta)$ para cualquier función $g$.
+:::
+
+## Optimización Numérica para MLE {#sec-semana06-optim}
+
+En muchos casos, no es posible encontrar una solución analítica para el EMV. En estos casos, usamos algoritmos numéricos de optimización.
+
+::: {.callout-tip}
+## Ejemplo: Optimización Numérica con optim() en R
+
+Modelamos el **tiempo (en días) hasta la primera hipoglucemia** en 100 pacientes con diabetes tipo 1 mediante una distribución Gamma. Los parámetros `shape` y `rate` no tienen forma analítica cerrada en su EMV conjunto, por lo que recurrimos a optimización numérica.
+
+```{r}
+#| lst-label: lst-semana07-2
+#| lst-cap: "Código R"
+#| warning: false
+#| message: false
+
+# Tiempo (días) hasta primera hipoglucemia — 100 pacientes DM1
+# Modelo poblacional: Gamma(shape = 2, rate = 0.5)
+# E[T] = α/β = 4 días, Var[T] = α/β² = 8
+set.seed(42)
+tiempo_hipo <- rgamma(100, shape = 2, rate = 0.5)
+
+# Función de log-verosimilitud negativa
+# (minimizamos lo negativo para usar funciones de minimización)
+neg_log_lik <- function(params, datos) {
+  shape <- params[1]
+  rate <- params[2]
+
+  # Evitar parámetros no válidos
+  if (shape <= 0 || rate <= 0) return(Inf)
+
+  # Log-verosimilitud para Gamma
+  # f(t; α, β) = (β^α / Γ(α)) * t^(α-1) * exp(-βt)
+  -sum(dgamma(datos, shape = shape, rate = rate, log = TRUE))
+}
+
+# Valores iniciales
+inicial <- c(shape = 1, rate = 1)
+
+# Optimización numérica de Nelder-Mead
+resultado <- optim(inicial, neg_log_lik, datos = tiempo_hipo,
+                   method = "Nelder-Mead")
+
+cat("Estimadores MLE numéricos — Tiempo hasta hipoglucemia (días):\n")
+cat("Shape (α) =", round(resultado$par[1], 4), "\n")
+cat("Rate (β)  =", round(resultado$par[2], 4), "\n")
+cat("Tiempo medio estimado E[T] = α/β =",
+    round(resultado$par[1]/resultado$par[2], 2), "días\n")
+
+# Valores verdaderos del modelo
+cat("\nParámetros poblacionales verdaderos:\n")
+cat("Shape (α) = 2 ; Rate (β) = 0.5 ; E[T] = 4 días\n")
+```
+
+::: {.callout-note}
+## Interpretación
+La optimización numérica recupera estimadores MLE de los parámetros de forma (α̂ ≈ 2.00) y tasa (β̂ ≈ 0.50) indistinguibles de los parámetros poblacionales verdaderos, con tiempo medio estimado hasta hipoglucemia próximo a 4 días. El algoritmo de Nelder-Mead converge adecuadamente sin necesidad de derivadas analíticas, lo cual es fundamental en aplicaciones biomédicas de análisis de supervivencia (tiempo hasta evento clínico) donde la verosimilitud carece de forma cerrada. La penalización con `Inf` para parámetros no admisibles y el uso de log-densidades garantizan estabilidad numérica. En diabetes tipo 1, conocer la distribución del tiempo hasta hipoglucemia permite diseñar pautas de monitorización glucémica y educación al paciente basadas en cuantiles poblacionales.
+:::
+
+:::
+
+## Intervalos de Confianza {#sec-semana06-ic}
+
+Un intervalo de confianza proporciona un rango de valores plausibles para el parámetro desconocido, cuantificando la incertidumbre en nuestra estimación.
+
+### Definición de Intervalo de Confianza
+
+::: {.callout-note}
+## Definición: Intervalo de Confianza
+
+Un **intervalo de confianza** de nivel $1-\alpha$ (o nivel de confianza $100(1-\alpha)\%$) para el parámetro $\theta$ es un intervalo aleatorio $[L(\mathbf{X}), U(\mathbf{X})]$ tales que:
+
+$$P(L(\mathbf{X}) \leq \theta \leq U(\mathbf{X})) = 1 - \alpha$$
+
+donde $L(\mathbf{X})$ y $U(\mathbf{X})$ son funciones de la muestra aleatoria, y $1-\alpha$ se llama **nivel de confianza** o **coeficiente de confianza**.
+
+Típicamente, $1 - \alpha = 0.90$, $0.95$, o $0.99$.
+:::
+
+### Interpretación Frecuentista
+
+::: {.callout-warning}
+## Interpretación Correcta de un IC
+
+**Antes de observar los datos:** El intervalo $[L(\mathbf{X}), U(\mathbf{X})]$ es **aleatorio**. La afirmación $P(L \leq \theta \leq U) = 1-\alpha$ significa que si repitiéramos el procedimiento de muestreo muchas veces, aproximadamente $100(1-\alpha)\%$ de los intervalos resultantes contendrían el verdadero parámetro.
+
+**Después de observar los datos:** El intervalo observado $[l, u]$ es **fijo** (con números reales). No es correcto decir "la probabilidad de que $\theta$ esté en $[l, u]$ es $1-\alpha$" porque $\theta$ es una constante desconocida, no una variable aleatoria. Simplemente decimos que el intervalo observado es una realización de un procedimiento que acierta $100(1-\alpha)\%$ de las veces.
+:::
+
+### Intervalo de Confianza para la Media (Varianza Conocida)
+
+**Supuestos:**
+- Población Normal: $X \sim N(\mu, \sigma)$
+- Varianza poblacional $\sigma^2$ **conocida**
+- Muestra aleatoria simple de tamaño $n$
+
+**Distribución del estimador:**
+$$\bar{X} \sim N\left(\mu, \frac{\sigma}{\sqrt{n}}\right) \quad \Rightarrow \quad Z = \frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim N(0,1)$$
+
+**Construcción del IC:**
+Para un nivel de confianza $1-\alpha$, buscamos $z_{1-\alpha/2}$ tal que $P(-z_{1-\alpha/2} \leq Z \leq z_{1-\alpha/2}) = 1-\alpha$.
+
+$$P\left(\bar{X} - z_{1-\alpha/2} \frac{\sigma}{\sqrt{n}} \leq \mu \leq \bar{X} + z_{1-\alpha/2} \frac{\sigma}{\sqrt{n}}\right) = 1 - \alpha$$
+
+**Intervalo de Confianza:**
+$$\text{IC}_{1-\alpha}(\mu) = \left[\bar{x} - z_{1-\alpha/2} \frac{\sigma}{\sqrt{n}}, \quad \bar{x} + z_{1-\alpha/2} \frac{\sigma}{\sqrt{n}}\right]$$
+
+### Intervalo de Confianza para la Media (Varianza Desconocida)
+
+**Supuestos:**
+- Población Normal: $X \sim N(\mu, \sigma)$
+- Varianza poblacional $\sigma^2$ **desconocida**
+
+**Distribución del estimador:**
+$$T = \frac{\bar{X} - \mu}{S/\sqrt{n}} \sim t_{n-1}$$
+
+donde $S = \sqrt{\frac{1}{n-1}\sum_{i=1}^n (X_i - \bar{X})^2}$ es la desviación estándar muestral.
+
+**Intervalo de Confianza:**
+$$\text{IC}_{1-\alpha}(\mu) = \left[\bar{x} - t_{1-\alpha/2, n-1} \frac{s}{\sqrt{n}}, \quad \bar{x} + t_{1-\alpha/2, n-1} \frac{s}{\sqrt{n}}\right]$$
+
+donde $t_{1-\alpha/2, n-1}$ es el cuantil $(1-\alpha/2)$ de la distribución $t$ con $n-1$ grados de libertad.
+
+::: {.callout-tip}
+## Ejemplo: IC para la Media en R
+
+```{r}
+#| lst-label: lst-semana07-3
+#| lst-cap: "Código R"
+#| warning: false
+#| message: false
+
+# Presión arterial sistólica (mmHg) en 25 pacientes adultos
+# Modelo poblacional: Normal con μ ≈ 130 mmHg y σ = 15 mmHg
+set.seed(100)
+pas <- rnorm(25, mean = 130, sd = 15)
+
+# IC con t-Student (varianza desconocida) — caso habitual en clínica
+resultado <- t.test(pas, conf.level = 0.95)
+
+cat("Intervalo de Confianza 95% para la PAS media (mmHg):\n")
+cat("Media muestral:", round(resultado$estimate, 2), "mmHg\n")
+cat("IC: [", round(resultado$conf.int[1], 2), ",",
+    round(resultado$conf.int[2], 2), "] mmHg\n")
+
+# IC con z (varianza poblacional σ = 15 mmHg supuesta conocida)
+# Útil cuando se dispone de datos históricos/literatura
+n <- length(pas)
+media_muestral <- mean(pas)
+sigma <- 15
+error_estandar <- sigma / sqrt(n)
+z_critico <- qnorm(0.975)  # α = 0.05, bilateral
+
+IC_conocida <- c(media_muestral - z_critico * error_estandar,
+                 media_muestral + z_critico * error_estandar)
+
+cat("\nIC con varianza conocida (σ = 15 mmHg):\n")
+cat("IC: [", round(IC_conocida[1], 2), ",",
+    round(IC_conocida[2], 2), "] mmHg\n")
+```
+:::
+
+### Intervalo de Confianza para una Proporción
+
+**Supuestos:**
+- Población dicotómica: $P(A) = \pi$ (proporción de éxitos)
+- Muestra aleatoria simple de tamaño $n$ (con $n$ suficientemente grande)
+- Condiciones: $n\pi \geq 5$ y $n(1-\pi) \geq 5$ (o aproximadamente $n > 30$)
+
+**Distribución del estimador:**
+$$\hat{\pi} = \frac{X}{n} \approx N\left(\pi, \sqrt{\frac{\pi(1-\pi)}{n}}\right)$$
+
+**Problema:** La varianza contiene el parámetro desconocido $\pi$. **Solución:** Usar $\hat{\pi}$ como estimador consistente de $\pi$ en la varianza.
+
+**Intervalo de Confianza (aproximado):**
+$$\text{IC}_{1-\alpha}(\pi) = \left[\hat{\pi} - z_{1-\alpha/2}\sqrt{\frac{\hat{\pi}(1-\hat{\pi})}{n}}, \quad \hat{\pi} + z_{1-\alpha/2}\sqrt{\frac{\hat{\pi}(1-\hat{\pi})}{n}}\right]$$
+
+::: {.callout-tip}
+## Ejemplo: IC para una Proporción en R
+
+```{r}
+#| lst-label: lst-semana07-4
+#| lst-cap: "Código R"
+#| warning: false
+#| message: false
+
+# Estudio en 200 pacientes hipertensos en seguimiento clínico:
+# 132 alcanzan control adecuado de PAS (< 140/90 mmHg)
+
+n <- 200
+x <- 132
+p_hat <- x / n
+
+# Intervalo de confianza 95% para la proporción
+conf_level <- 0.95
+alpha <- 1 - conf_level
+z_critico <- qnorm(1 - alpha/2)
+
+error_estandar <- sqrt(p_hat * (1 - p_hat) / n)
+IC <- c(p_hat - z_critico * error_estandar,
+        p_hat + z_critico * error_estandar)
+
+cat("IC 95% para la proporción de hipertensos controlados:\n")
+cat("Proporción muestral:", round(p_hat, 4),
+    "(", round(p_hat*100, 1), "%)\n")
+cat("IC: [", round(IC[1], 4), ",", round(IC[2], 4), "]\n")
+cat("Interpretación: con 95% de confianza, entre el",
+    round(IC[1]*100, 1), "% y el",
+    round(IC[2]*100, 1), "%\n")
+cat("de los pacientes hipertensos poblacionales alcanzan control adecuado.\n")
+```
+:::
+
+## Interpretación de Intervalos de Confianza {#sec-semana06-interp-ic}
+
+Interpretar correctamente un intervalo de confianza es fundamental. Consideremos un ejemplo:
+
+**Supongamos** que construimos un IC 95% para la media y obtenemos $[48.3, 51.7]$.
+
+::: {.callout-warning}
+## Interpretación CORRECTA
+
+"Si repitiéramos el proceso de muestreo muchas veces (con muestras de igual tamaño de la misma población) y construyéramos un intervalo de confianza del 95% para cada muestra, aproximadamente el 95% de estos intervalos contendría el verdadero valor de la media poblacional."
+
+En otras palabras, el IC es sobre la **fiabilidad del procedimiento**, no sobre la probabilidad de que un intervalo específico contenga el parámetro.
+:::
+
+::: {.callout-warning}
+## Interpretación INCORRECTA (Evitar)
+
+"La verdadera media está en $[48.3, 51.7]$ con probabilidad 0.95"
+
+Esto es incorrecto porque después de observar los datos, el intervalo es fijo y la verdadera media es constante (no aleatoria). El parámetro o está en el intervalo o no está.
+:::
+
+## Trabajando con Ejemplos Completos {#sec-semana06-ejemplos-completos}
+
+::: {.callout-tip}
+## Ejemplo: Análisis Completo de Datos de HbA1c (Diabetes Tipo 2)
+
+```{r}
+#| lst-label: lst-semana07-5
+#| lst-cap: "Código R"
+#| warning: false
+#| message: false
+
+# Datos de HbA1c (%) de 20 pacientes con diabetes tipo 2
+# atendidos en la Facultad de Medicina, Universidad de Granada
+
+hba1c <- c(7.2, 8.1, 6.8, 9.3, 7.5, 8.8, 6.5, 10.2,
+           7.9, 8.4, 7.1, 9.7, 7.3, 8.6, 6.9, 11.4,
+           8.2, 7.0, 9.1, 7.6)
+
+# 1. ESTADÍSTICA DESCRIPTIVA
+media_muestral <- mean(hba1c)
+desv_est <- sd(hba1c)  # Usa divisor n-1 (insesgado)
+n <- length(hba1c)
+
+cat("=== ESTADÍSTICA DESCRIPTIVA ===\n")
+cat("n =", n, "\n")
+cat("Media muestral = ", round(media_muestral, 2), "%\n")
+cat("Desviación estándar = ", round(desv_est, 2), "%\n")
+cat("Varianza muestral = ", round(desv_est^2, 2), "\n\n")
+
+# 2. ESTIMACIÓN PUNTUAL (MLE/MoM para Normal)
+cat("=== ESTIMACIÓN PUNTUAL ===\n")
+cat("μ (estimado) = ", round(media_muestral, 2), "%\n")
+cat("σ² (estimado) = ", round(desv_est^2, 2), "\n\n")
+
+# 3. INTERVALO DE CONFIANZA 95% (varianza desconocida)
+cat("=== INTERVALO DE CONFIANZA (95%) ===\n")
+t_critico <- qt(0.975, df = n - 1)
+error_estandar <- desv_est / sqrt(n)
+margen_error <- t_critico * error_estandar
+
+IC_inferior <- media_muestral - margen_error
+IC_superior <- media_muestral + margen_error
+
+cat("Error estándar = ", round(error_estandar, 2), "%\n")
+cat("Margen de error = ", round(margen_error, 2), "%\n")
+cat("IC 95% = [", round(IC_inferior, 2), "%, ",
+    round(IC_superior, 2), "%]\n\n")
+
+# Alternativamente, usar t.test()
+test_result <- t.test(hba1c, conf.level = 0.95)
+cat("Verificación con t.test():\n")
+cat("IC 95% = [", round(test_result$conf.int[1], 2), "%, ",
+    round(test_result$conf.int[2], 2), "%]\n")
+```
+
+**Interpretación:** Con el 95% de confianza, el nivel medio de HbA1c poblacional en pacientes diabéticos está entre 7.54% y 8.62%. Este intervalo incluye el objetivo clínico de HbA1c < 7%, sugiriendo que la cohorte presenta control glucémico moderado. El margen de error (~0.54%) refleja la variabilidad en control metabólico entre pacientes, lo que en práctica clínica orienta decisiones de intensificación terapéutica.
+:::
+
+::: {.callout-tip}
+## Ejemplo: MLE para tiempos entre eventos cardiovasculares
+
+Modelamos el **tiempo (en años) entre eventos cardiovasculares mayores** en una cohorte de 50 pacientes con cardiopatía isquémica como una distribución Exponencial con tasa λ. La media poblacional es $1/\lambda$ años entre eventos.
+
+```{r}
+#| lst-label: lst-semana07-6
+#| lst-cap: "Código R"
+#| warning: false
+#| message: false
+
+# Tiempo (años) entre eventos cardiovasculares — 50 pacientes
+# Modelo poblacional: Exponencial con tasa λ = 0.5 eventos/año
+# (i.e., un evento cada 2 años en promedio)
+set.seed(999)
+tiempo_eventos <- rexp(50, rate = 0.5)
+
+# Función de log-verosimilitud para Exponencial
+log_verosimilitud <- function(lambda, datos) {
+  if (lambda <= 0) return(-Inf)
+  sum(dexp(datos, rate = lambda, log = TRUE))
+}
+
+# Maximizar log-verosimilitud numéricamente
+resultado_optim <- optimize(
+  function(lambda) log_verosimilitud(lambda, tiempo_eventos),
+  interval = c(0.01, 5),
+  maximum = TRUE
+)
+
+lambda_mle <- resultado_optim$maximum
+cat("Estimador MLE de λ:", round(lambda_mle, 4), "eventos/año\n")
+cat("Log-verosimilitud máxima:",
+    round(resultado_optim$objective, 2), "\n")
+cat("Tiempo medio estimado entre eventos: 1/λ =",
+    round(1/lambda_mle, 2), "años\n")
+
+# MoM también da λ = 1/media para Exponencial
+lambda_mom <- 1 / mean(tiempo_eventos)
+cat("\nEstimador MoM de λ:", round(lambda_mom, 4), "eventos/año\n")
+
+# Para Exponencial, MLE = MoM (propiedad teórica)
+cat("\nNota: Para la distribución Exponencial,\n")
+cat("MLE y MoM coinciden algebraicamente (λ̂ = 1/X̄).\n")
+```
+:::
+
+## Resumen {#sec-semana06-resumen}
+
+| Concepto | Definición Clave |
+|----------|-----------------|
+| **Modelo Paramétrico** | Familia de distribuciones $\{f(x;\boldsymbol{\theta}) : \boldsymbol{\theta} \in \Theta\}$ |
+| **Estimador** | Función de la muestra $\hat{\theta} = g(X_1, \ldots, X_n)$ que varía aleatoriamente |
+| **Insesgadez** | $E(\hat{\theta}) = \theta$ |
+| **Eficiencia** | Comparación de varianzas entre estimadores insesgados |
+| **Consistencia** | $\lim_{n \to \infty} E(\hat{\theta}) = \theta$ y $\lim_{n \to \infty} \text{Var}(\hat{\theta}) = 0$ |
+| **Error Cuadrático Medio** | $\text{ECM}(\hat{\theta}) = \text{Var}(\hat{\theta}) + [\text{Sesgo}(\hat{\theta})]^2$ |
+| **Método de Momentos** | Igualar momentos poblacionales con muestrales: $E(X^j) = m_j$ |
+| **Función de Verosimilitud** | $L(\theta) = \prod_{i=1}^n f(x_i; \theta)$ |
+| **Log-Verosimilitud** | $\ell(\theta) = \ln L(\theta) = \sum_{i=1}^n \ln f(x_i; \theta)$ |
+| **Estimador MLE** | $\hat{\theta}_{\text{MLE}} = \arg\max_\theta L(\theta)$ |
+| **Intervalo de Confianza** | Intervalo aleatorio $[L(\mathbf{X}), U(\mathbf{X})]$ con $P(L \leq \theta \leq U) = 1-\alpha$ |
+
+### Fórmulas Clave para Intervalos de Confianza
+
+**Media (varianza conocida):**
+$$\text{IC}_{1-\alpha}(\mu) = \left[\bar{x} \pm z_{1-\alpha/2} \frac{\sigma}{\sqrt{n}}\right]$$
+
+**Media (varianza desconocida):**
+$$\text{IC}_{1-\alpha}(\mu) = \left[\bar{x} \pm t_{1-\alpha/2, n-1} \frac{s}{\sqrt{n}}\right]$$
+
+**Proporción:**
+$$\text{IC}_{1-\alpha}(\pi) = \left[\hat{\pi} \pm z_{1-\alpha/2} \sqrt{\frac{\hat{\pi}(1-\hat{\pi})}{n}}\right]$$
+
+::: {.callout-tip}
+## Ejemplo con BioestadisticaR2: icm() e icp()
+
+Documentación completa de ambas funciones en @sec-bio-ic.
+
+```{r}
+#| lst-label: lst-semana07-7
+#| lst-cap: "Código R"
+#| warning: false
+#| message: false
+
+library(BioestadisticaR2)
+
+# IC para la media de HbA1c — 94 pacientes diabéticos, Fac. Medicina UGR
+icm(m = mean(osteo$hba1c), s = sd(osteo$hba1c), n = nrow(osteo))
+
+# IC para la proporción de fumadores (41 de 94 pacientes)
+icp(x = sum(osteo$tabaco == "Sí"), n = nrow(osteo))
+```
+
+
+`icp()` calcula cuatro métodos simultáneamente. Para muestras pequeñas se recomienda Clopper-Pearson (exacto); para muestras grandes los cuatro coinciden.
+:::
+
+## Cálculo del Tamaño Muestral: `nm()` y `np()` {#sec-semana06-tamano}
+
+Antes de iniciar un estudio clínico es esencial determinar el **tamaño muestral** necesario para alcanzar una precisión deseada en los intervalos de confianza. Las funciones `nm()` y `np()` del paquete `BioestadisticaR2` (ver @sec-bio-n) calculan el tamaño muestral requerido para una **media** o una **proporción**, respectivamente, dada una semiamplitud objetivo $d$ del IC.
+
+### Fórmulas del Tamaño Muestral
+
+**Para la media** (con estimación piloto $s$ de la desviación típica):
+$$n = \left(\frac{z_{1-\alpha/2}\, s}{d}\right)^2$$
+
+**Para la proporción** (con estimación piloto $\hat{p} = x/n$):
+$$n = \left(\frac{z_{1-\alpha/2}}{d}\right)^2 \hat{p}\,(1-\hat{p})$$
+
+donde $d$ es la **semiamplitud** (precisión) deseada del IC y $z_{1-\alpha/2}$ es el cuantil normal estándar. La dependencia cuadrática $n \propto 1/d^2$ implica que reducir la semiamplitud a la mitad cuadruplica el tamaño muestral.
+
+::: {.callout-tip}
+## Ejemplo: Tamaño muestral para HbA1c y prevalencia de tabaquismo
+
+Partiendo del estudio piloto `osteo` (94 pacientes diabéticos, Fac. Medicina UGR):
+
+- **HbA1c**: $\bar{x} \approx 8.57\%$, $s \approx 1.80$. ¿Cuántos pacientes hacen falta para reducir la semiamplitud del IC a $d = 0.3\%$?
+- **Tabaquismo**: 41/94 fumadores ($\hat{p} \approx 0.436$). ¿Cuántos pacientes para alcanzar precisión $d = 0.05$ al 95% de confianza?
+
+```{r}
+#| lst-label: lst-semana07-9
+#| lst-cap: "Código R"
+#| warning: false
+#| message: false
+
+library(BioestadisticaR2)
+
+# nm(): tamaño muestral para la media de HbA1c
+# d = 0.3% (semiamplitud deseada), datos piloto del estudio osteo
+nm(d = 0.3, n = nrow(osteo),
+   m = mean(osteo$hba1c), s = sd(osteo$hba1c), alfa = 0.05)
+
+# np(): tamaño muestral para la proporción de fumadores
+# d = 0.05 (semiamplitud deseada), conf = 0.95
+np(x = sum(osteo$tabaco == "Sí"), n = nrow(osteo),
+   d = 0.05, conf = 0.95)
+```
+
+::: {.callout-note}
+## Interpretación
+El cálculo del tamaño muestral cuantifica el coste estadístico de incrementar la precisión. Para estimar la HbA1c media con una semiamplitud del IC $\leq 0.3\%$ (frente a los $\approx 0.37\%$ obtenidos con $n = 94$), se necesitarían aproximadamente **n ≈ 138 pacientes diabéticos** — un incremento del 47%. Análogamente, para estimar la prevalencia de tabaquismo con precisión $\pm 5\%$ (IC 95%) se requerirían cerca de **n ≈ 380 pacientes**, cuatro veces el tamaño del estudio piloto. En la fase de diseño de un protocolo clínico, estos cálculos orientan el balance entre **precisión científica** (estimaciones más estrechas guían mejor las decisiones terapéuticas) y **viabilidad logística-financiera** (reclutamiento, seguimiento, presupuesto). La dependencia cuadrática $n \propto 1/d^2$ explica por qué ganar un factor 2 en precisión cuadruplica el coste muestral — un argumento decisivo al justificar el tamaño muestral ante comités éticos y agencias financiadoras.
+:::
+:::
+
+## Ejercicios {#sec-semana06-ejercicios}
+
+1. **Concepto de Estimador:** Define con tus palabras la diferencia entre un parámetro poblacional, un estimador y un valor estimado. ¿Por qué es importante considerar un estimador como una variable aleatoria?
+
+2. **Insesgadez vs. Eficiencia:** Considera dos estimadores insesgados del mismo parámetro. ¿Cuál prefieres si uno tiene varianza dos veces mayor que el otro? Razona tu respuesta.
+
+3. **Error Cuadrático Medio:** Explica por qué a veces puede ser preferible un estimador sesgado con baja varianza sobre uno insesgado con alta varianza. Proporciona un ejemplo numérico simple.
+
+4. **Método de Momentos:** Para una muestra de una distribución Uniform$[0, \theta]$:
+   - Encuentra el estimador por método de momentos de $\theta$
+   - ¿Es insesgado?
+
+5. **Máxima Verosimilitud:** Para una muestra de $n$ observaciones de una distribución Poisson$(\lambda)$:
+   - Escribe la función de verosimilitud
+   - Encuentra el EMV de $\lambda$
+   - ¿Coincide con el estimador MoM?
+
+6. **Intervalo de Confianza:** Se observa una muestra de 36 datos con $\bar{x} = 50$ y $s = 12$. Construye un IC 95% para la media poblacional. ¿Cómo cambiaría el intervalo si usáramos un nivel de confianza del 99%?
+
+7. **Intervalo de Confianza para Proporción:** En una encuesta de 500 personas, 325 responden afirmativamente a una pregunta. Construye un IC 95% para la proporción poblacional e interpreta el resultado.
+
+8. **Programación en R:** Escribe un script en R que:
+   - Genere una muestra de una distribución Normal$(\mu=100, \sigma=15)$ de tamaño $n=50$
+   - Calcule estimadores puntuales para $\mu$ y $\sigma^2$
+   - Construya un IC 95% para $\mu$
+   - Verifique si el verdadero valor de $\mu$ cae dentro del intervalo
+
+## Respuestas a los Ejercicios {#sec-semana06-respuestas}
+
+**Ejercicio 1:** Un parámetro es el valor verdadero desconocido de la población (θ). Un estimador es una función de los datos muestrales (T(X₁,...,Xₙ)) que genera diferentes valores según la muestra. Es una variable aleatoria porque depende de la muestra. Es importante reconocer esto para entender su distribución y propiedades.
+
+**Ejercicio 2:** Prefieres el estimador con menor varianza porque tendrá una distribución más concentrada alrededor del parámetro. Si ambos son insesgados, el de menor varianza es más eficiente.
+
+**Ejercicio 3:** Ejemplo: θ=0, Estimador A: insesgado, Var=100; Estimador B: sesgo=2, Var=10. ECM_A = 100; ECM_B = 4 + 10 = 14. B es mejor a pesar del sesgo.
+
+**Ejercicio 4:** Para Uniform[0,θ], el método de momentos da θ̂ = 2X̄. No es insesgado (subestima).
+
+**Ejercicio 5:** L(λ) = λⁿe^(-nλ)∏xᵢ!/∏xᵢ!. EMV: λ̂ = X̄. Sí coincide con MoM.
+
+**Ejercicio 6:** n=36, X̄=50, s=12, t₀.₀₂₅,₃₅ ≈ 2.03
+IC95% = [50 ± 2.03×(12/6)] = [50 ± 4.06] = [45.94, 54.06]
+IC99%: más amplio ≈ [44.35, 55.65] (usa t₀.₀₀₅,₃₅ ≈ 2.72)
+
+**Ejercicio 7:** p̂ = 325/500 = 0.65, SE = √(0.65×0.35/500) ≈ 0.0214
+IC95% = [0.65 ± 1.96×0.0214] ≈ [0.608, 0.692]
+
+**Ejercicio 8:** Código R básico:
+```r
+set.seed(123)
+muestra <- rnorm(50, mean=100, sd=15)
+media <- mean(muestra)
+var_est <- var(muestra)
+se <- sd(muestra)/sqrt(50)
+ic <- c(media - 1.96*se, media + 1.96*se)
+# Verificar: 100 ∈ ic?
+```
+
