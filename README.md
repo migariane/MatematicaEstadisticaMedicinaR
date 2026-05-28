@@ -33,7 +33,7 @@ El libro cubre los fundamentos de la estadística en 10 semanas:
 
 ## 🌐 Acceso al Libro
 
-El libro está disponible en línea en: **https://migariane.github.io/CursoMatematicaEstadistica/**
+El libro está disponible en línea en: **https://migariane.github.io/MatematicaEstadisticaMedicinaR/**
 
 Puedes descargar una versión en PDF desde el sitio web.
 
