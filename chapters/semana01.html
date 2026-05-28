@@ -1,0 +1,2827 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Material docence de Matemáticas para la Estadística Médica con R (Bioestadística) desarrollados por el autor en el Departamento de Estadística e Investigación Operativa, Unidad Docente de Bioestadística de la Universidad de Granada.">
+
+<title>1&nbsp; Semana 1 — Análisis Exploratorio de Datos (Parte I) – Matemáticas para la Estadística Médica con R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/semana02.html" rel="next">
+<link href="../index.html" rel="prev">
+<link href="../figures/ugr-logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-bf8030b5a8b8f2de5bceddfb8bf38a1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script>
+MathJax = {
+  tex: {
+    macros: {
+      btheta: "\\boldsymbol{\\theta}",
+      bbeta: "\\boldsymbol{\\beta}",
+      bmu: "\\boldsymbol{\\mu}",
+      bSigma: "\\boldsymbol{\\Sigma}",
+      bx: "\\mathbf{x}",
+      bX: "\\mathbf{X}",
+      by: "\\mathbf{y}",
+      bY: "\\mathbf{Y}",
+      bU: "\\mathbf{U}",
+      E: "\\mathbb{E}",
+      Var: ["\\operatorname{Var}"],
+      Cov: ["\\operatorname{Cov}"],
+      Corr: ["\\operatorname{Corr}"],
+      iid: "\\stackrel{\\text{i.i.d.}}{\\sim}",
+      tendD: "\\stackrel{\\mathcal{D}}{\\longrightarrow}",
+      reals: "\\mathbb{R}",
+      PP: "\\mathbb{P}"
+    }
+  }
+};
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/semana01.html">Parte I: Análisis Exploratorio de Datos</a></li><li class="breadcrumb-item"><a href="../chapters/semana01.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Semana 1 — Análisis Exploratorio de Datos (Parte I)</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Matemáticas para la Estadística Médica con R</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/migariane/CursoMatematicaEstadistica" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="../Matemáticas-para-la-Estadística-Médica-con-R.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefacio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte I: Análisis Exploratorio de Datos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana01.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Semana 1 — Análisis Exploratorio de Datos (Parte I)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Semana 2 — Análisis Exploratorio de Datos (Parte II)</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte II: Probabilidad y Variables Aleatorias</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Semana 3 — Fundamentos de la Teoría de la Probabilidad</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Semana 4 — Variables Aleatorias y Distribuciones de Probabilidad</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Semana 5 — Muestreo y Distribuciones Muestrales</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte III: Inferencia Estadística</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Semana 6 — Estimación de Parámetros</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Semana 7 — Contrastes de Hipótesis (Parte I)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Semana 8 — Contrastes de Hipótesis (Parte II)</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte IV: Regresión Lineal</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Semana 9 — Regresión Lineal Simple</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Semana 10 — Regresión Lineal Múltiple</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte V: Análisis de Datos Categóricos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referencias</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/apendiceA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Apéndice A: Repaso Matemático Riguroso</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/apendiceB.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Apéndice B: El Paquete BioestadisticaR2 — Guía de Referencia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/apendiceC.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Apéndice C: Guía de R para Estadística Médica</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/examen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Examen Final</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contenidos</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción"><span class="header-section-number">1.1</span> Introducción</a></li>
+  <li><a href="#conceptos-fundamentales" id="toc-conceptos-fundamentales" class="nav-link" data-scroll-target="#conceptos-fundamentales"><span class="header-section-number">1.2</span> Conceptos Fundamentales</a>
+  <ul class="collapse">
+  <li><a href="#unidades-estadísticas-variables-y-valores" id="toc-unidades-estadísticas-variables-y-valores" class="nav-link" data-scroll-target="#unidades-estadísticas-variables-y-valores"><span class="header-section-number">1.2.1</span> Unidades Estadísticas, Variables y Valores</a></li>
+  <li><a href="#observaciones-atípicas-outliers" id="toc-observaciones-atípicas-outliers" class="nav-link" data-scroll-target="#observaciones-atípicas-outliers"><span class="header-section-number">1.2.2</span> Observaciones Atípicas (Outliers)</a></li>
+  </ul></li>
+  <li><a href="#escalas-de-medición" id="toc-escalas-de-medición" class="nav-link" data-scroll-target="#escalas-de-medición"><span class="header-section-number">1.3</span> Escalas de Medición</a>
+  <ul class="collapse">
+  <li><a href="#variables-categóricas" id="toc-variables-categóricas" class="nav-link" data-scroll-target="#variables-categóricas"><span class="header-section-number">1.3.1</span> Variables Categóricas</a></li>
+  <li><a href="#variables-ordinales" id="toc-variables-ordinales" class="nav-link" data-scroll-target="#variables-ordinales"><span class="header-section-number">1.3.2</span> Variables Ordinales</a></li>
+  <li><a href="#variables-numéricas" id="toc-variables-numéricas" class="nav-link" data-scroll-target="#variables-numéricas"><span class="header-section-number">1.3.3</span> Variables Numéricas</a></li>
+  </ul></li>
+  <li><a href="#agrupación-de-datos-en-clases-binning" id="toc-agrupación-de-datos-en-clases-binning" class="nav-link" data-scroll-target="#agrupación-de-datos-en-clases-binning"><span class="header-section-number">1.4</span> Agrupación de Datos en Clases (Binning)</a></li>
+  <li><a href="#tablas-de-frecuencias-y-distribución-empírica" id="toc-tablas-de-frecuencias-y-distribución-empírica" class="nav-link" data-scroll-target="#tablas-de-frecuencias-y-distribución-empírica"><span class="header-section-number">1.5</span> Tablas de Frecuencias y Distribución Empírica</a>
+  <ul class="collapse">
+  <li><a href="#frecuencias-absolutas-y-relativas" id="toc-frecuencias-absolutas-y-relativas" class="nav-link" data-scroll-target="#frecuencias-absolutas-y-relativas"><span class="header-section-number">1.5.1</span> Frecuencias Absolutas y Relativas</a></li>
+  <li><a href="#tabla-de-frecuencias" id="toc-tabla-de-frecuencias" class="nav-link" data-scroll-target="#tabla-de-frecuencias"><span class="header-section-number">1.5.2</span> Tabla de Frecuencias</a></li>
+  <li><a href="#frecuencias-acumuladas" id="toc-frecuencias-acumuladas" class="nav-link" data-scroll-target="#frecuencias-acumuladas"><span class="header-section-number">1.5.3</span> Frecuencias Acumuladas</a></li>
+  <li><a href="#función-de-distribución-empírica-ecdf" id="toc-función-de-distribución-empírica-ecdf" class="nav-link" data-scroll-target="#función-de-distribución-empírica-ecdf"><span class="header-section-number">1.5.4</span> Función de Distribución Empírica (ECDF)</a></li>
+  </ul></li>
+  <li><a href="#histogramas-y-gráficos-de-densidad" id="toc-histogramas-y-gráficos-de-densidad" class="nav-link" data-scroll-target="#histogramas-y-gráficos-de-densidad"><span class="header-section-number">1.6</span> Histogramas y Gráficos de Densidad</a>
+  <ul class="collapse">
+  <li><a href="#construcción-de-histogramas" id="toc-construcción-de-histogramas" class="nav-link" data-scroll-target="#construcción-de-histogramas"><span class="header-section-number">1.6.1</span> Construcción de Histogramas</a></li>
+  <li><a href="#histograma-vs-gráfico-de-densidad" id="toc-histograma-vs-gráfico-de-densidad" class="nav-link" data-scroll-target="#histograma-vs-gráfico-de-densidad"><span class="header-section-number">1.6.2</span> Histograma vs Gráfico de Densidad</a></li>
+  </ul></li>
+  <li><a href="#sec-semana01-clasificacion" id="toc-sec-semana01-clasificacion" class="nav-link" data-scroll-target="#sec-semana01-clasificacion"><span class="header-section-number">1.7</span> Clasificación de Medidas Estadísticas</a></li>
+  <li><a href="#medidas-de-posición-central" id="toc-medidas-de-posición-central" class="nav-link" data-scroll-target="#medidas-de-posición-central"><span class="header-section-number">1.8</span> Medidas de Posición Central</a>
+  <ul class="collapse">
+  <li><a href="#media-aritmética" id="toc-media-aritmética" class="nav-link" data-scroll-target="#media-aritmética"><span class="header-section-number">1.8.1</span> Media Aritmética</a></li>
+  <li><a href="#media-para-datos-agrupados" id="toc-media-para-datos-agrupados" class="nav-link" data-scroll-target="#media-para-datos-agrupados"><span class="header-section-number">1.8.2</span> Media para Datos Agrupados</a></li>
+  <li><a href="#moda" id="toc-moda" class="nav-link" data-scroll-target="#moda"><span class="header-section-number">1.8.3</span> Moda</a></li>
+  <li><a href="#mediana" id="toc-mediana" class="nav-link" data-scroll-target="#mediana"><span class="header-section-number">1.8.4</span> Mediana</a></li>
+  <li><a href="#relación-entre-media-mediana-y-moda" id="toc-relación-entre-media-mediana-y-moda" class="nav-link" data-scroll-target="#relación-entre-media-mediana-y-moda"><span class="header-section-number">1.8.5</span> Relación entre Media, Mediana y Moda</a></li>
+  </ul></li>
+  <li><a href="#medidas-de-forma-sesgo-y-curtosis" id="toc-medidas-de-forma-sesgo-y-curtosis" class="nav-link" data-scroll-target="#medidas-de-forma-sesgo-y-curtosis"><span class="header-section-number">1.9</span> Medidas de Forma: Sesgo y Curtosis</a>
+  <ul class="collapse">
+  <li><a href="#sec-semana01-r-stats" id="toc-sec-semana01-r-stats" class="nav-link" data-scroll-target="#sec-semana01-r-stats"><span class="header-section-number">1.9.1</span> Cálculo con R</a></li>
+  <li><a href="#cuantiles" id="toc-cuantiles" class="nav-link" data-scroll-target="#cuantiles"><span class="header-section-number">1.9.2</span> Cuantiles</a></li>
+  </ul></li>
+  <li><a href="#comparación-de-medidas-de-posición" id="toc-comparación-de-medidas-de-posición" class="nav-link" data-scroll-target="#comparación-de-medidas-de-posición"><span class="header-section-number">1.10</span> Comparación de Medidas de Posición</a></li>
+  <li><a href="#sec-semana01-resumen" id="toc-sec-semana01-resumen" class="nav-link" data-scroll-target="#sec-semana01-resumen"><span class="header-section-number">1.11</span> Resumen de Conceptos Clave</a>
+  <ul class="collapse">
+  <li><a href="#tabla-resumen-escalas-de-medición-y-estadísticos-apropiados" id="toc-tabla-resumen-escalas-de-medición-y-estadísticos-apropiados" class="nav-link" data-scroll-target="#tabla-resumen-escalas-de-medición-y-estadísticos-apropiados"><span class="header-section-number">1.11.1</span> Tabla Resumen: Escalas de Medición y Estadísticos Apropiados</a></li>
+  <li><a href="#tabla-resumen-fórmulas-importantes" id="toc-tabla-resumen-fórmulas-importantes" class="nav-link" data-scroll-target="#tabla-resumen-fórmulas-importantes"><span class="header-section-number">1.11.2</span> Tabla Resumen: Fórmulas Importantes</a></li>
+  </ul></li>
+  <li><a href="#sec-semana01-ejercicios" id="toc-sec-semana01-ejercicios" class="nav-link" data-scroll-target="#sec-semana01-ejercicios"><span class="header-section-number">1.12</span> Ejercicios</a></li>
+  <li><a href="#sec-semana01-respuestas" id="toc-sec-semana01-respuestas" class="nav-link" data-scroll-target="#sec-semana01-respuestas"><span class="header-section-number">1.13</span> Respuestas a los Ejercicios</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/migariane/CursoMatematicaEstadistica/edit/main/chapters/semana01.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/migariane/CursoMatematicaEstadistica/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li><li><a href="https://github.com/migariane/CursoMatematicaEstadistica/blob/main/chapters/semana01.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/semana01.html">Parte I: Análisis Exploratorio de Datos</a></li><li class="breadcrumb-item"><a href="../chapters/semana01.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Semana 1 — Análisis Exploratorio de Datos (Parte I)</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-semana01" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Semana 1 — Análisis Exploratorio de Datos (Parte I)</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introducción" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="introducción"><span class="header-section-number">1.1</span> Introducción</h2>
+<p>El análisis exploratorio de datos (AED) es el primer paso en cualquier análisis estadístico. A través de visualizaciones, tablas y estadísticos descriptivos, aprendemos a entender las características principales de un conjunto de datos antes de realizar inferencia estadística más compleja.</p>
+</section>
+<section id="conceptos-fundamentales" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="conceptos-fundamentales"><span class="header-section-number">1.2</span> Conceptos Fundamentales</h2>
+<section id="unidades-estadísticas-variables-y-valores" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="unidades-estadísticas-variables-y-valores"><span class="header-section-number">1.2.1</span> Unidades Estadísticas, Variables y Valores</h3>
+<p>En estadística trabajamos con conceptos fundamentales que debemos dominar desde el principio.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Conceptos Fundamentales
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p><strong>Unidad estadística</strong> (o individuo): cada elemento sobre el que se realiza la observación. Puede ser una persona, animal, planta, empresa, etc.</p></li>
+<li><p><strong>Variable</strong>: una característica de una unidad estadística que puede variar de una unidad a otra. Se denota con letras mayúsculas (<span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span>, etc.)</p></li>
+<li><p><strong>Valor</strong>: el resultado específico de observar una variable en una unidad estadística. Se denota con letras minúsculas (<span class="math inline">\(x_i\)</span>, <span class="math inline">\(y_i\)</span>, etc.)</p></li>
+<li><p><strong>Población</strong>: el conjunto completo de todas las unidades estadísticas de interés en un estudio.</p></li>
+<li><p><strong>Muestra</strong>: un subconjunto de la población observado en la práctica. La muestra se utiliza para extraer conclusiones sobre la población.</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo 1.1: Presión Arterial en Pacientes Diabéticos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Supongamos que deseamos estudiar la presión arterial sistólica (PAS) en pacientes diabéticos de Granada.</p>
+<ul>
+<li><strong>Unidad estadística</strong>: cada paciente diabético individual</li>
+<li><strong>Variable</strong>: presión arterial sistólica (<span class="math inline">\(X\)</span>)</li>
+<li><strong>Valores</strong>: mediciones específicas en mmHg (ej. <span class="math inline">\(x_1 = 125\)</span>, <span class="math inline">\(x_2 = 130\)</span>, <span class="math inline">\(x_3 = 145\)</span>, …)</li>
+<li><strong>Población</strong>: todos los pacientes diabéticos de Granada</li>
+<li><strong>Muestra</strong>: los 200 pacientes diabéticos seleccionados para el estudio</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="observaciones-atípicas-outliers" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="observaciones-atípicas-outliers"><span class="header-section-number">1.2.2</span> Observaciones Atípicas (Outliers)</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Outlier
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>outlier</strong> (observación atípica) es un valor que:</p>
+<ul>
+<li>Parece desviarse marcadamente de los otros miembros de la muestra</li>
+<li>Aparece o está ausente de forma inesperada</li>
+<li>Puede reflejar una anomalía en la característica medida o un error en la medición/registro</li>
+</ul>
+<p><strong>Ejemplo</strong>: En el conjunto de presiones arteriales sistólicas <span class="math inline">\(\{125, 128, 130, 131, 198\}\)</span>, el valor <span class="math inline">\(198\)</span> podría considerarse un outlier, ya que es sustancialmente mayor que los otros valores.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="escalas-de-medición" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="escalas-de-medición"><span class="header-section-number">1.3</span> Escalas de Medición</h2>
+<p>El tipo de escala utilizada para medir una variable determina qué técnicas analíticas son apropiadas y qué conclusiones se pueden extraer.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Escalas de Medición
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Las variables se clasifican en cuatro tipos según la escala en que se miden:</p>
+<ol type="1">
+<li><strong>Variables nominales (categóricas sin orden)</strong></li>
+<li><strong>Variables ordinales (categóricas con orden)</strong></li>
+<li><strong>Variables discretas (numéricas, valores aislados)</strong></li>
+<li><strong>Variables continuas (numéricas, infinitos valores posibles)</strong></li>
+</ol>
+</div>
+</div>
+<section id="variables-categóricas" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="variables-categóricas"><span class="header-section-number">1.3.1</span> Variables Categóricas</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Variables Categóricas (Nominales)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una <strong>variable categórica</strong> es aquella que puede tomar uno de un conjunto limitado de valores posibles, asignando cada unidad a una categoría particular basada en una propiedad cualitativa.</p>
+<p><strong>Ejemplos</strong>: - Grupo sanguíneo: A, B, AB, O - Estado civil: soltero, casado, divorciado, viudo - Género: masculino, femenino - Región: Andalucía, Cataluña, Madrid, etc.</p>
+<p>Los valores de una variable categórica se llaman <strong>niveles</strong>.</p>
+<p>Las variables categóricas pueden ser: - <strong>Binarias (dicotómicas)</strong>: solo dos niveles (ej. éxito/fracaso, enfermo/sano) - <strong>Politómicas</strong>: más de dos niveles (ej. grupo sanguíneo)</p>
+</div>
+</div>
+</section>
+<section id="variables-ordinales" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="variables-ordinales"><span class="header-section-number">1.3.2</span> Variables Ordinales</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Variables Ordinales
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una <strong>variable ordinal</strong> es una variable categórica en la que los niveles tienen un orden natural, pero las diferencias entre ellos no son cuantificables.</p>
+<p>Relaciones válidas: “mayor que” y “menor que” (o “mejor que” y “peor que”).</p>
+<p><strong>Ejemplos</strong>: - Estadio de un tumor: I, II, III, IV - Grado de dependencia: leve, moderada, severa, total - Escala de dolor: nada, poco, moderado, intenso, insoportable</p>
+</div>
+</div>
+</section>
+<section id="variables-numéricas" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="variables-numéricas"><span class="header-section-number">1.3.3</span> Variables Numéricas</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Variables Discretas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una <strong>variable discreta</strong> es una variable numérica que solo puede tomar un número finito o contablemente infinito de valores. Cada valor tiene vecinos claramente identificables.</p>
+<p><strong>Ejemplos</strong>: - Número de nacimientos en un mes - Número de episodios de hipoglucemia - Número de dientes extraídos - Cantidad de admisiones previas en el hospital</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Variables Continuas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una <strong>variable continua</strong> es una variable numérica que puede tomar infinitos valores no contables. Entre dos valores cualesquiera siempre existen otros valores posibles.</p>
+<p><strong>Ejemplos</strong>: - Presión arterial sistólica (en mmHg) - Peso corporal (en kg) - Altura (en cm) - Temperatura (en °C)</p>
+<p><strong>En la práctica</strong>: variables con muchas unidades contables (como el recuento de glóbulos rojos o blancos) se tratan como continuas y a veces se llaman “cuasi-continuas”.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="agrupación-de-datos-en-clases-binning" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="agrupación-de-datos-en-clases-binning"><span class="header-section-number">1.4</span> Agrupación de Datos en Clases (Binning)</h2>
+<p>Cuando disponemos de muchas observaciones de una variable continua, frecuentemente es útil agruparlas en intervalos de clase para mejorar la claridad.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Binning (Agrupación en Clases)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El <strong>binning</strong> es la partición de los valores de una variable continua en varias clases (típicamente intervalos). Esto mejora la claridad cuando se tiene gran cantidad de datos.</p>
+<p>Para cada intervalo o clase <span class="math inline">\(j\)</span> definimos:</p>
+<ul>
+<li><strong>Límite inferior de la clase</strong>: <span class="math inline">\(x_j^l\)</span></li>
+<li><strong>Límite superior de la clase</strong>: <span class="math inline">\(x_j^u\)</span></li>
+<li><strong>Amplitud de la clase</strong>: <span class="math inline">\(\Delta x_j = x_j^u - x_j^l\)</span></li>
+</ul>
+<p><strong>Propiedades importantes</strong>: - Los intervalos son no superpuestos (disjuntos) y adyacentes - <span class="math inline">\(x_j^u = x_{j+1}^l\)</span> (el límite superior de una clase es el límite inferior de la siguiente) - Convencionalmente: <span class="math inline">\(x_j^l &lt; X \leq x_j^u\)</span> (incluimos el límite superior, excluimos el inferior)</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo 1.2: Niveles de Colesterol Total
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En un estudio sobre salud cardiovascular tenemos: - <strong>Unidad estadística</strong>: paciente - <strong>Variable</strong>: nivel de colesterol total (en mg/dL)</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Intervalo de Colesterol (mg/dL)</th>
+<th style="text-align: right;">Límites</th>
+<th style="text-align: right;">Amplitud</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">150 – 200 (Deseable)</td>
+<td style="text-align: right;"><span class="math inline">\(x_1^l = 150\)</span>, <span class="math inline">\(x_1^u = 200\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(\Delta x_1 = 50\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">200 – 240 (Límite alto)</td>
+<td style="text-align: right;"><span class="math inline">\(x_2^l = 200\)</span>, <span class="math inline">\(x_2^u = 240\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(\Delta x_2 = 40\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">240 – 300 (Alto)</td>
+<td style="text-align: right;"><span class="math inline">\(x_3^l = 240\)</span>, <span class="math inline">\(x_3^u = 300\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(\Delta x_3 = 60\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<hr>
+</section>
+<section id="tablas-de-frecuencias-y-distribución-empírica" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="tablas-de-frecuencias-y-distribución-empírica"><span class="header-section-number">1.5</span> Tablas de Frecuencias y Distribución Empírica</h2>
+<p>Una forma eficaz de resumir un conjunto de datos es construir una tabla de frecuencias.</p>
+<section id="frecuencias-absolutas-y-relativas" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="frecuencias-absolutas-y-relativas"><span class="header-section-number">1.5.1</span> Frecuencias Absolutas y Relativas</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Frecuencia Absoluta
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La <strong>frecuencia absoluta</strong> de un valor <span class="math inline">\(x_j\)</span> es el número de unidades estadísticas con ese valor característico:</p>
+<p><span class="math display">\[h(x_j) = h_j\]</span></p>
+<p><strong>Propiedades</strong>: <span class="math display">\[0 \leq h(x_j) \leq n, \quad \sum_{j=1}^{k} h(x_j) = n\]</span></p>
+<p>donde <span class="math inline">\(n\)</span> es el número total de observaciones y <span class="math inline">\(k\)</span> es el número de valores distintos.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Frecuencia Relativa
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La <strong>frecuencia relativa</strong> de un valor <span class="math inline">\(x_j\)</span> es la proporción de unidades estadísticas con ese valor:</p>
+<p><span class="math display">\[f(x_j) = \frac{h(x_j)}{n}\]</span></p>
+<p><strong>Propiedades</strong>: <span class="math display">\[0 \leq f(x_j) \leq 1, \quad \sum_{j=1}^{k} f(x_j) = 1\]</span></p>
+<p>La frecuencia relativa es útil para comparar distribuciones de diferentes tamaños.</p>
+</div>
+</div>
+</section>
+<section id="tabla-de-frecuencias" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="tabla-de-frecuencias"><span class="header-section-number">1.5.2</span> Tabla de Frecuencias</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Distribución de Frecuencias Empírica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una <strong>distribución de frecuencias empírica</strong> es una tabla que lista los valores (o intervalos de valores) de una variable junto con sus frecuencias (absolutas o relativas).</p>
+<p><strong>Estructura de una tabla de frecuencias</strong>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Valor (<span class="math inline">\(x_j\)</span>)</th>
+<th style="text-align: right;">Frecuencia Absoluta (<span class="math inline">\(h_j\)</span>)</th>
+<th style="text-align: right;">Frecuencia Relativa (<span class="math inline">\(f_j\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(x_1\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(h_1\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(f_1\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(x_2\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(h_2\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(f_2\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">…</td>
+<td style="text-align: right;">…</td>
+<td style="text-align: right;">…</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(x_k\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(h_k\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(f_k\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Suma</strong></td>
+<td style="text-align: right;"><strong>n</strong></td>
+<td style="text-align: right;"><strong>1</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="frecuencias-acumuladas" class="level3" data-number="1.5.3">
+<h3 data-number="1.5.3" class="anchored" data-anchor-id="frecuencias-acumuladas"><span class="header-section-number">1.5.3</span> Frecuencias Acumuladas</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Frecuencia Acumulada
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La <strong>frecuencia acumulada</strong> es la suma de las frecuencias de todos los valores hasta un punto determinado.</p>
+<p><strong>Frecuencia acumulada absoluta</strong>: <span class="math display">\[H(x_j) = \sum_{i=1}^{j} h(x_i), \quad j = 1, \ldots, k\]</span></p>
+<p><strong>Frecuencia acumulada relativa</strong>: <span class="math display">\[F(x_j) = \frac{H(x_j)}{n} = \sum_{i=1}^{j} f(x_i), \quad j = 1, \ldots, k\]</span></p>
+<p><strong>Propiedades</strong>: - <span class="math inline">\(H(x_1) = h(x_1)\)</span> y <span class="math inline">\(F(x_1) = f(x_1)\)</span> - <span class="math inline">\(H(x_k) = n\)</span> y <span class="math inline">\(F(x_k) = 1\)</span> - Las frecuencias acumuladas son secuencias no decrecientes</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo 1.3: Tabla de Frecuencias
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consideremos los datos de 10 pacientes diabéticos. Sus presiones arteriales sistólicas (en mmHg) son: 120, 125, 118, 130, 122, 128, 115, 135, 124, 129</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">PAS (mmHg)</th>
+<th style="text-align: right;"><span class="math inline">\(h_j\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(f_j\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(H_j\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(F_j\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">115</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">118</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">120</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">122</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.40</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">124</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.50</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">125</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0.60</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">128</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">0.70</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">129</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">0.80</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">130</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0.90</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">135</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+</tbody>
+</table>
+<p>Podemos observar que todas las presiones son diferentes en este ejemplo, por lo que cada una aparece una sola vez.</p>
+<div class="cell">
+<div id="lst-semana01-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-summary="Código R para tabla de frecuencias de PAS">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana01-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;1.1: Código R para tabla de frecuencias de PAS
+</figcaption>
+<div aria-describedby="lst-semana01-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Código R para tabla de frecuencias de PAS</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datos de presión arterial sistólica (PAS) en pacientes diabéticos</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pas_diabeticos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">120</span>, <span class="dv">125</span>, <span class="dv">118</span>, <span class="dv">130</span>, <span class="dv">122</span>, <span class="dv">128</span>, <span class="dv">115</span>, <span class="dv">135</span>, <span class="dv">124</span>, <span class="dv">129</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear tabla de frecuencias</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>tabla_freq <span class="ot">&lt;-</span> <span class="fu">table</span>(pas_diabeticos)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>freq_rel <span class="ot">&lt;-</span> tabla_freq <span class="sc">/</span> <span class="fu">length</span>(pas_diabeticos)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>freq_acum <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(tabla_freq)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>freq_acum_rel <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(freq_rel)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear data frame</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">PAS =</span> <span class="fu">as.numeric</span>(<span class="fu">names</span>(tabla_freq)),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">h =</span> <span class="fu">as.numeric</span>(tabla_freq),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">f =</span> <span class="fu">round</span>(freq_rel, <span class="dv">2</span>),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">H =</span> freq_acum,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">F =</span> <span class="fu">round</span>(freq_acum_rel, <span class="dv">2</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    PAS h f.pas_diabeticos f.Freq  H   F
+115 115 1              115    0.1  1 0.1
+118 118 1              118    0.1  2 0.2
+120 120 1              120    0.1  3 0.3
+122 122 1              122    0.1  4 0.4
+124 124 1              124    0.1  5 0.5
+125 125 1              125    0.1  6 0.6
+128 128 1              128    0.1  7 0.7
+129 129 1              129    0.1  8 0.8
+130 130 1              130    0.1  9 0.9
+135 135 1              135    0.1 10 1.0</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo 1.4: BioestadisticaR2: freq()
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La función <code>freq()</code> genera automáticamente la tabla de frecuencias con proporciones y acumuladas (documentación completa en <a href="apendiceB.html#sec-bio-descriptivo" class="quarto-xref"><span>Sección B.2</span></a>):</p>
+<div class="cell">
+<div id="lst-semana01-2" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana01-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;1.2: Código R
+</figcaption>
+<div aria-describedby="lst-semana01-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioestadisticaR2)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla de frecuencias de la edad — pacientes diabéticos, UGR</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(osteo<span class="sc">$</span>edad, <span class="at">grf =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Distribución de frecuencias
+--------------------------------
+Variable:  osteo$edad 
+n = 94 
+ 
+        x Freq  Prop Prop.Acum
+1 (18,23]   27 0.287     0.287
+2 (23,28]   22 0.234     0.521
+3 (28,33]   14 0.149     0.670
+4 (33,38]   15 0.160     0.830
+5 (38,43]    4 0.043     0.873
+6 (43,48]    5 0.053     0.926
+7 (48,53]    3 0.032     0.958
+8 (53,58]    3 0.032     0.990</code></pre>
+</div>
+</div>
+<p>El 52.1% de los pacientes tiene menos de 28 años. Con <code>grf = TRUE</code> (por defecto) también genera el histograma. Con <code>cuts = 5</code> agrupa en 5 clases de igual amplitud.</p>
+</div>
+</div>
+</section>
+<section id="función-de-distribución-empírica-ecdf" class="level3" data-number="1.5.4">
+<h3 data-number="1.5.4" class="anchored" data-anchor-id="función-de-distribución-empírica-ecdf"><span class="header-section-number">1.5.4</span> Función de Distribución Empírica (ECDF)</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Función de Distribución Empírica (ECDF)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La <strong>Función de Distribución Empírica</strong> (ECDF) asigna a cada valor <span class="math inline">\(x\)</span> la proporción de observaciones en la muestra que son menores o iguales a <span class="math inline">\(x\)</span>.</p>
+<p>Para datos no agrupados, la ECDF es una <strong>función escalonada</strong> que salta en cada valor observado:</p>
+<p><span class="math display">\[F(x) = \begin{cases}
+0 &amp; \text{si } x &lt; x_{(1)} \\
+\frac{i}{n} &amp; \text{si } x_{(i)} \leq x &lt; x_{(i+1)} \\
+1 &amp; \text{si } x \geq x_{(n)}
+\end{cases}\]</span></p>
+<p>donde <span class="math inline">\(x_{(1)} \leq x_{(2)} \leq \cdots \leq x_{(n)}\)</span> son los valores ordenados de la muestra.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo 1.5: Visualización: ECDF Escalonada (Datos de PAS)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Usando los datos de PAS del Ejemplo 1.3, observamos cómo la función acumula probabilidad en saltos de <span class="math inline">\(1/n\)</span> en cada valor observado:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-semana01-ecdf-step" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-semana01-ecdf-step-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="semana01_files/figure-html/fig-semana01-ecdf-step-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-semana01-ecdf-step-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.1: ECDF Escalonada para datos de PAS
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Propiedad Importante: ECDF
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>De la ECDF podemos recuperar las frecuencias relativas mediante:</p>
+<p><span class="math display">\[f(x_j) = F(x_j) - F(x_{j-1}) \quad \text{para } j = 1, \ldots, k\]</span></p>
+<p>con la convención <span class="math inline">\(F(x_0) = 0\)</span>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo 1.6: Tiempo de Supervivencia de Pacientes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se estudió el tiempo de supervivencia (en días) tras el diagnóstico de una patología agresiva en una cohorte de 100 pacientes. Los datos se agrupan en clases:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Intervalo (días)</th>
+<th style="text-align: right;"><span class="math inline">\(h_j\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(f_j\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(H_j\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(F_j\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0 – 100</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">100 – 500</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">0.24</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">0.25</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">500 – 1000</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">0.45</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">0.70</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1000 – 4000</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Total</strong></td>
+<td style="text-align: right;"><strong>100</strong></td>
+<td style="text-align: right;"><strong>1.00</strong></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table>
+<section id="interpolación-lineal-para-datos-agrupados" class="level3" data-number="1.5.5">
+<h3 data-number="1.5.5" class="anchored" data-anchor-id="interpolación-lineal-para-datos-agrupados"><span class="header-section-number">1.5.5</span> Interpolación Lineal para Datos Agrupados</h3>
+<p>Para datos agrupados, no conocemos los valores exactos dentro de cada clase. Por ello, aproximamos la ECDF mediante una <strong>interpolación lineal</strong> entre los límites de las clases. Esto genera una línea quebrada llamada <strong>polígono de frecuencias acumuladas</strong> (u ojiva).</p>
+<p>La fórmula general de interpolación para un valor <span class="math inline">\(x\)</span> dentro de la clase <span class="math inline">\(j = [x_j^l, x_j^u]\)</span> es:</p>
+<p><span class="math display">\[F(x) = F(x_j^l) + \frac{x - x_j^l}{x_j^u - x_j^l} \cdot f(x_j)\]</span></p>
+<p>Donde: - <span class="math inline">\(x_j^l\)</span> y <span class="math inline">\(x_j^u\)</span> son los límites inferior y superior de la clase. - <span class="math inline">\(F(x_j^l)\)</span> es la frecuencia relativa acumulada hasta la clase anterior. - <span class="math inline">\(f(x_j)\)</span> es la frecuencia relativa de la clase actual.</p>
+<p><strong>Nota</strong>: Esta fórmula es la base para estimar <strong>cuantiles</strong> en datos agrupados. Si despejamos <span class="math inline">\(x\)</span> para un valor de <span class="math inline">\(F(x) = p\)</span>, obtenemos el valor del cuantil correspondiente.</p>
+<p>Aplicando esto a nuestros datos:</p>
+<p><span class="math display">\[F(x) = \begin{cases}
+0 &amp; \text{si } x \leq 0 \\
+\frac{x - 0}{100} \cdot 0.01 &amp; \text{si } 0 &lt; x \leq 100 \\
+0.01 + \frac{x - 100}{400} \cdot 0.24 &amp; \text{si } 100 &lt; x \leq 500 \\
+0.25 + \frac{x - 500}{500} \cdot 0.45 &amp; \text{si } 500 &lt; x \leq 1000 \\
+0.70 + \frac{x - 1000}{3000} \cdot 0.30 &amp; \text{si } 1000 &lt; x \leq 4000 \\
+1 &amp; \text{si } x &gt; 4000
+\end{cases}\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-semana01-ecdf-interp" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-semana01-ecdf-interp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="semana01_files/figure-html/fig-semana01-ecdf-interp-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-semana01-ecdf-interp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.2: Polígono de frecuencias acumuladas (ECDF interpolada)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="histogramas-y-gráficos-de-densidad" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="histogramas-y-gráficos-de-densidad"><span class="header-section-number">1.6</span> Histogramas y Gráficos de Densidad</h2>
+<p>Para variables continuas agrupadas en clases, el histograma es la forma estándar de visualización.</p>
+<section id="construcción-de-histogramas" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="construcción-de-histogramas"><span class="header-section-number">1.6.1</span> Construcción de Histogramas</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Histograma
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>histograma</strong> es una representación gráfica de una distribución de frecuencias para datos agrupados. Se construye de la siguiente manera:</p>
+<ul>
+<li><strong>Eje X</strong>: límites de las clases <span class="math inline">\(x_j^l, x_j^u\)</span></li>
+<li><strong>Eje Y</strong>: densidad de frecuencia (frecuencia dividida por la amplitud de la clase)</li>
+</ul>
+<p><strong>Densidad de frecuencia absoluta</strong>: <span class="math display">\[\hat{h}(x_j) = \frac{h(x_j)}{\Delta x_j} = \frac{h(x_j)}{x_j^u - x_j^l}\]</span></p>
+<p><strong>Densidad de frecuencia relativa</strong>: <span class="math display">\[\hat{f}(x_j) = \frac{f(x_j)}{\Delta x_j} = \frac{f(x_j)}{x_j^u - x_j^l}\]</span></p>
+<p><strong>Propiedad fundamental</strong>: El <strong>área</strong> de cada rectángulo representa la frecuencia (relativa o absoluta), y el área total del histograma es igual a <span class="math inline">\(n\)</span> (si usamos densidades absolutas) o <span class="math inline">\(1\)</span> (si usamos densidades relativas).</p>
+<p><span class="math display">\[\sum_{j=1}^{k} \hat{f}(x_j) \cdot \Delta x_j = \sum_{j=1}^{k} f(x_j) = 1\]</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo 1.7: Índice de Masa Corporal (IMC)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se recopilaron los IMC de 274 pacientes. Los datos se clasifican en intervalos según los criterios de la OMS:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">IMC (kg/m²)</th>
+<th style="text-align: right;"><span class="math inline">\(h_j\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(f_j\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(\Delta x_j\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(\hat{f}(x_j)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0 – 18.5 (Bajo peso)</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">0.055</td>
+<td style="text-align: right;">18.5</td>
+<td style="text-align: right;">0.0030</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">18.5 – 25 (Normal)</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">0.339</td>
+<td style="text-align: right;">6.5</td>
+<td style="text-align: right;">0.0522</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">25 – 30 (Sobrepeso)</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: right;">0.336</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.0672</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">30 – 35 (Obesidad I)</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">0.197</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.0394</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">35 – 50 (Obesidad II/III)</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">0.073</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">0.0049</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Total</strong></td>
+<td style="text-align: right;"><strong>274</strong></td>
+<td style="text-align: right;"><strong>1.000</strong></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interpretación</strong>: La densidad más alta está en la clase de “Sobrepeso”, indicando que ese intervalo tiene la mayor concentración de pacientes en esta muestra.</p>
+<div class="cell">
+<div id="lst-semana01-4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-summary="Código R para histograma de IMC">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana01-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;1.3: Código R para histograma de IMC
+</figcaption>
+<div aria-describedby="lst-semana01-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Código R para histograma de IMC</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simular datos de IMC basados en la tabla</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>imc <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">runif</span>(<span class="dv">15</span>, <span class="dv">15</span>, <span class="fl">18.5</span>), <span class="fu">runif</span>(<span class="dv">93</span>, <span class="fl">18.5</span>, <span class="dv">25</span>), <span class="fu">runif</span>(<span class="dv">92</span>, <span class="dv">25</span>, <span class="dv">30</span>),</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">runif</span>(<span class="dv">54</span>, <span class="dv">30</span>, <span class="dv">35</span>), <span class="fu">runif</span>(<span class="dv">20</span>, <span class="dv">35</span>, <span class="dv">50</span>))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear histograma con densidad</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(imc, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">18.5</span>, <span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">50</span>),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">freq =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Histograma: Índice de Masa Corporal (IMC)"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"IMC (kg/m²)"</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Densidad de Frecuencia"</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"lightgreen"</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">border =</span> <span class="st">"darkgreen"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="semana01_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>:::</p>
+</section>
+<section id="histograma-vs-gráfico-de-densidad" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="histograma-vs-gráfico-de-densidad"><span class="header-section-number">1.6.2</span> Histograma vs Gráfico de Densidad</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo 1.8: Visualización en R
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div id="lst-semana01-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-summary="Comparación de gráficos">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana01-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;1.4: Comparación de gráficos
+</figcaption>
+<div aria-describedby="lst-semana01-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Comparación de gráficos</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simular datos de Presión Arterial Diastólica (en mmHg)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>pad <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="at">mean =</span> <span class="dv">80</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurar área de trazado para 2 gráficos</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Histograma</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(pad, <span class="at">breaks =</span> <span class="dv">20</span>, <span class="at">freq =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Histograma de PAD"</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Presión Diastólica (mmHg)"</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Densidad"</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"salmon"</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de densidad suavizada</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(pad),</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Gráfico de Densidad"</span>,</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Presión Diastólica (mmHg)"</span>,</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Densidad"</span>,</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkred"</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="fu">polygon</span>(<span class="fu">density</span>(pad), <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.3</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="semana01_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div id="lst-semana01-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-summary="Comparación de gráficos">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana01-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;1.5: Comparación de gráficos
+</figcaption>
+<div aria-describedby="lst-semana01-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Comparación de gráficos</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Restaurar configuración</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-semana01-clasificacion" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="sec-semana01-clasificacion"><span class="header-section-number">1.7</span> Clasificación de Medidas Estadísticas</h2>
+<p>Para describir una distribución, utilizamos diferentes medidas que resumen la información.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Clasificación: Tendencia Central vs.&nbsp;Posición
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Medidas de Tendencia Central</strong>: Buscan identificar el “valor representativo” o centro de la distribución.
+<ul>
+<li><strong>Media (<span class="math inline">\(\bar{x}\)</span>)</strong>: Promedio aritmético.</li>
+<li><strong>Mediana (<span class="math inline">\(\tilde{x}\)</span>)</strong>: Valor central (posición central).</li>
+<li><strong>Moda (<span class="math inline">\(Mo\)</span>)</strong>: Valor más frecuente.</li>
+</ul></li>
+<li><strong>Medidas de Posición (No central)</strong>: Indican la posición de un valor respecto al conjunto de datos, permitiendo dividir la distribución en partes iguales.
+<ul>
+<li><strong>Cuartiles (<span class="math inline">\(Q_1, Q_2, Q_3\)</span>)</strong>: Dividen los datos en 4 partes iguales.</li>
+<li><strong>Percentiles (<span class="math inline">\(P_k\)</span>)</strong>: Dividen los datos en 100 partes iguales.</li>
+</ul></li>
+<li><strong>Sesgo (Skewness)</strong>: Medida de asimetría.
+<ul>
+<li><strong>Simétrica</strong>: Media <span class="math inline">\(\approx\)</span> Mediana.</li>
+<li><strong>Sesgo Derecha (Positivo)</strong>: Media &gt; Mediana.</li>
+<li><strong>Sesgo Izquierda (Negativo)</strong>: Media &lt; Mediana.</li>
+</ul></li>
+<li><strong>Curtosis (Kurtosis)</strong>: Medida del grado de apuntamiento o concentración en las colas.</li>
+</ul>
+</div>
+</div>
+<hr>
+</section>
+<section id="medidas-de-posición-central" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="medidas-de-posición-central"><span class="header-section-number">1.8</span> Medidas de Posición Central</h2>
+<p>Las medidas de posición central nos indican dónde se concentran los datos. Son fundamentales para resumir la tendencia central de una distribución.</p>
+<section id="media-aritmética" class="level3" data-number="1.8.1">
+<h3 data-number="1.8.1" class="anchored" data-anchor-id="media-aritmética"><span class="header-section-number">1.8.1</span> Media Aritmética</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Media Aritmética
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La <strong>media aritmética</strong> de una muestra <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span> es:</p>
+<p><span class="math display">\[\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i\]</span></p>
+<p>Representa el “centro de gravedad” de los datos. Es la suma de todos los valores dividida por el número total de observaciones.</p>
+<p>Para datos en una distribución de frecuencias:</p>
+<p><span class="math display">\[\bar{x} = \frac{1}{n}\sum_{j=1}^{k} x_j h(x_j) = \sum_{j=1}^{k} x_j f(x_j)\]</span></p>
+<p>donde <span class="math inline">\(x_j\)</span> es el valor distintivo y <span class="math inline">\(h(x_j)\)</span> es su frecuencia absoluta.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Propiedades Algebraicas de la Media
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong>Propiedad de desviación nula</strong>: <span class="math display">\[\sum_{i=1}^{n}(x_i - \bar{x}) = 0\]</span> Las desviaciones positivas y negativas de la media se cancelan.</p></li>
+<li><p><strong>Propiedad de suma</strong>: Si <span class="math inline">\(z_i = x_i + y_i\)</span>, entonces: <span class="math display">\[\bar{z} = \bar{x} + \bar{y}\]</span></p></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="media-para-datos-agrupados" class="level3" data-number="1.8.2">
+<h3 data-number="1.8.2" class="anchored" data-anchor-id="media-para-datos-agrupados"><span class="header-section-number">1.8.2</span> Media para Datos Agrupados</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Media Aproximada para Datos Binned
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Cuando solo disponemos de datos agrupados en clases, aproximamos la media usando la marca de clase:</p>
+<p><span class="math display">\[\bar{x} = \frac{1}{n}\sum_{j=1}^{k} x_j \cdot n_j\]</span></p>
+<p>donde <span class="math inline">\(x_j\)</span> es la <strong>marca de clase</strong> (punto medio del intervalo <span class="math inline">\(j\)</span>): <span class="math display">\[x_j = \frac{x_j^l + x_j^u}{2}\]</span></p>
+<p>y <span class="math inline">\(n_j\)</span> es el número de observaciones en la clase <span class="math inline">\(j\)</span>.</p>
+<p><strong>Nota</strong>: Esta es una aproximación porque asumimos que todas las observaciones en una clase están concentradas en su punto medio.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo 1.9: Tiempo de Estancia Hospitalaria
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se estudia el tiempo de estancia (en días) de una muestra de pacientes en una unidad de cuidados intensivos. La distribución es:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Intervalo (días)</th>
+<th style="text-align: right;">Marca de Clase (<span class="math inline">\(x_j\)</span>)</th>
+<th style="text-align: right;"><span class="math inline">\(f(x_j)\)</span></th>
+<th style="text-align: right;">Contribución</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1 – 3</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;"><span class="math inline">\(2 \times 0.20 = 0.40\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3 – 7</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.45</td>
+<td style="text-align: right;"><span class="math inline">\(5 \times 0.45 = 2.25\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">7 – 14</td>
+<td style="text-align: right;">10.5</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;"><span class="math inline">\(10.5 \times 0.25 = 2.625\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">14 – 30</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;"><span class="math inline">\(22 \times 0.08 = 1.76\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">30 – 60</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;"><span class="math inline">\(45 \times 0.02 = 0.90\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Media aproximada</strong>: <span class="math display">\[\bar{x} = 0.40 + 2.25 + 2.625 + 1.76 + 0.90 = 7.935 \text{ días}\]</span></p>
+<div class="cell">
+<div id="lst-semana01-6" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-summary="Cálculo de estancia media en R">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana01-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;1.6: Cálculo de estancia media en R
+</figcaption>
+<div aria-describedby="lst-semana01-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Cálculo de estancia media en R</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datos</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>marca_clase <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="fl">10.5</span>, <span class="dv">22</span>, <span class="dv">45</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>frecuencia_rel <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.20</span>, <span class="fl">0.45</span>, <span class="fl">0.25</span>, <span class="fl">0.08</span>, <span class="fl">0.02</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Media</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>media_estancia <span class="ot">&lt;-</span> <span class="fu">sum</span>(marca_clase <span class="sc">*</span> frecuencia_rel)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Media de estancia aproximada:"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">round</span>(media_estancia, <span class="dv">3</span>), <span class="st">"días"</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Media de estancia aproximada: 7.935 días"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="moda" class="level3" data-number="1.8.3">
+<h3 data-number="1.8.3" class="anchored" data-anchor-id="moda"><span class="header-section-number">1.8.3</span> Moda</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Moda
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La <strong>moda</strong> <span class="math inline">\(x_D\)</span> es el valor más frecuente en un conjunto de observaciones:</p>
+<p><span class="math display">\[x_D = \{x_j \mid h(x_j) = \max_k h(x_k) \text{ o } f(x_j) = \max_k f(x_k)\}\]</span></p>
+<p>Es útil para variables nominales, ordinales, discretas o clasificadas, pero <strong>no es apropiada para variables continuas</strong>.</p>
+<p>Para datos agrupados, hablamos de la <strong>clase modal</strong> (la clase con la frecuencia más alta) y estimamos la moda como la marca de clase.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo 1.10: Moda en Tiempo de Supervivencia
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Usando la tabla de supervivencia del Ejemplo 1.6:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Intervalo (días)</th>
+<th style="text-align: right;"><span class="math inline">\(h_j\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0 – 100</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">100 – 500</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>500 – 1000</strong></td>
+<td style="text-align: right;"><strong>45</strong> (máximo)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1000 – 4000</td>
+<td style="text-align: right;">30</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Clase modal</strong>: 500 – 1000 días</li>
+<li><strong>Moda estimada</strong>: <span class="math inline">\(x_D = 750\)</span> días (marca de clase)</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="mediana" class="level3" data-number="1.8.4">
+<h3 data-number="1.8.4" class="anchored" data-anchor-id="mediana"><span class="header-section-number">1.8.4</span> Mediana</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Mediana
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La <strong>mediana</strong> <span class="math inline">\(x_{0.5}\)</span> es el valor que divide los datos ordenados en dos partes de igual tamaño: 50% de las observaciones están por debajo y 50% están por encima.</p>
+<p><strong>Para datos no agrupados</strong>: - Si <span class="math inline">\(n\)</span> es <strong>impar</strong>: <span class="math display">\[x_{0.5} = x_{\left(\frac{n+1}{2}\right)}\]</span></p>
+<ul>
+<li>Si <span class="math inline">\(n\)</span> es <strong>par</strong>: <span class="math display">\[x_{0.5} = \frac{1}{2}\left\{x_{\left(\frac{n}{2}\right)} + x_{\left(\frac{n}{2}+1\right)}\right\}\]</span></li>
+</ul>
+<p>donde <span class="math inline">\(x_{(i)}\)</span> es la <span class="math inline">\(i\)</span>-ésima observación cuando los datos están <strong>ordenados de menor a mayor</strong>.</p>
+<p><strong>Ventaja</strong>: La mediana es <strong>robusta</strong> (insensible a outliers), a diferencia de la media.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo 1.11: Cálculo de Mediana
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Conjunto 1</strong> (n impar): 115, 118, 120, 122, 124, 125, 128, 129, 130, 135</p>
+<p>Datos ya ordenados. Con <span class="math inline">\(n = 10\)</span> (par): <span class="math display">\[x_{0.5} = \frac{1}{2}(x_{(5)} + x_{(6)}) = \frac{1}{2}(124 + 125) = 124.5 \text{ mmHg}\]</span></p>
+<div class="cell">
+<div id="lst-semana01-7" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-summary="Cálculo de mediana en R">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana01-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;1.7: Cálculo de mediana en R
+</figcaption>
+<div aria-describedby="lst-semana01-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Cálculo de mediana en R</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">120</span>, <span class="dv">125</span>, <span class="dv">118</span>, <span class="dv">130</span>, <span class="dv">122</span>, <span class="dv">128</span>, <span class="dv">115</span>, <span class="dv">135</span>, <span class="dv">124</span>, <span class="dv">129</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mediana_pas <span class="ot">&lt;-</span> <span class="fu">median</span>(pas)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Mediana de PAS:"</span>, mediana_pas, <span class="st">"mmHg"</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Mediana de PAS: 124.5 mmHg"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="relación-entre-media-mediana-y-moda" class="level3" data-number="1.8.5">
+<h3 data-number="1.8.5" class="anchored" data-anchor-id="relación-entre-media-mediana-y-moda"><span class="header-section-number">1.8.5</span> Relación entre Media, Mediana y Moda</h3>
+<p>La siguiente figura ilustra la posición relativa de la media, mediana y moda según el sesgo de la distribución:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-semana01-skewness" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-semana01-skewness-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="semana01_files/figure-html/fig-semana01-skewness-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-semana01-skewness-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.3: Relación entre media, mediana y moda según el sesgo
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="medidas-de-forma-sesgo-y-curtosis" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="medidas-de-forma-sesgo-y-curtosis"><span class="header-section-number">1.9</span> Medidas de Forma: Sesgo y Curtosis</h2>
+<p>Además de la tendencia central y la dispersión, la <strong>forma</strong> de la distribución es crucial para entender el comportamiento de los datos.</p>
+<section id="coeficiente-de-asimetría-sesgo" class="level4">
+<h4 class="anchored" data-anchor-id="coeficiente-de-asimetría-sesgo">Coeficiente de Asimetría (Sesgo)</h4>
+<p>Mide el grado de simetría de la distribución respecto a su media. El coeficiente de asimetría de Fisher se define como:</p>
+<p><span class="math display">\[g_1 = \frac{\frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^3}{s^3}\]</span></p>
+<p>donde <span class="math inline">\(s\)</span> es la desviación típica.</p>
+<p><strong>Interpretación</strong>: - <strong><span class="math inline">\(g_1 = 0\)</span></strong>: La distribución es <strong>simétrica</strong>. - <strong><span class="math inline">\(g_1 &gt; 0\)</span></strong>: <strong>Asimetría positiva</strong> (sesgo a la derecha). La cola derecha es más larga. - <strong><span class="math inline">\(g_1 &lt; 0\)</span></strong>: <strong>Asimetría negativa</strong> (sesgo a la izquierda). La cola izquierda es más larga.</p>
+</section>
+<section id="curtosis-o-apuntamiento" class="level4">
+<h4 class="anchored" data-anchor-id="curtosis-o-apuntamiento">Curtosis o Apuntamiento</h4>
+<p>Mide el grado de concentración de los valores alrededor de la zona central de la distribución y el “peso” de las colas. Se calcula mediante el coeficiente de curtosis de Fisher:</p>
+<p><span class="math display">\[g_2 = \frac{\frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^4}{s^4}\]</span></p>
+<p>En muchos paquetes estadísticos (incluido R), se utiliza la <strong>curtosis en exceso</strong> (<span class="math inline">\(g_2 - 3\)</span>) para comparar con la distribución normal.</p>
+<p><strong>Interpretación (Curtosis en exceso)</strong>: - <strong><span class="math inline">\(g_2 - 3 = 0\)</span></strong>: <strong>Mesocúrtica</strong>. El apuntamiento es similar al de una distribución normal. - <strong><span class="math inline">\(g_2 - 3 &gt; 0\)</span></strong>: <strong>Leptocúrtica</strong>. La distribución es más apuntada y tiene colas más gruesas (“pesadas”) que la normal. - <strong><span class="math inline">\(g_2 - 3 &lt; 0\)</span></strong>: <strong>Platicúrtica</strong>. La distribución es más plana y tiene colas más delgadas que la normal.</p>
+</section>
+<section id="sec-semana01-r-stats" class="level3" data-number="1.9.1">
+<h3 data-number="1.9.1" class="anchored" data-anchor-id="sec-semana01-r-stats"><span class="header-section-number">1.9.1</span> Cálculo con R</h3>
+<div class="cell">
+<div id="lst-semana01-stats" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana01-stats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;1.8: Cálculo de estadísticos básicos
+</figcaption>
+<div aria-describedby="lst-semana01-stats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(moments)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Datos de ejemplo</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">120</span>, <span class="dv">125</span>, <span class="dv">118</span>, <span class="dv">130</span>, <span class="dv">122</span>, <span class="dv">128</span>, <span class="dv">115</span>, <span class="dv">135</span>, <span class="dv">124</span>, <span class="dv">129</span>, <span class="dv">150</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen básico</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>resumen <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Media =</span> <span class="fu">mean</span>(datos),</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Mediana =</span> <span class="fu">median</span>(datos),</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">Sesgo =</span> <span class="fu">skewness</span>(datos), <span class="co"># g1</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">Curtosis =</span> <span class="fu">kurtosis</span>(datos), <span class="co"># g2 (Pearson, restar 3 para exceso)</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">Curtosis_Exceso =</span> <span class="fu">kurtosis</span>(datos) <span class="sc">-</span> <span class="dv">3</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(resumen)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Media Mediana    Sesgo Curtosis Curtosis_Exceso
+1 126.9091     125 1.191328  4.14324         1.14324</code></pre>
+</div>
+</div>
+</section>
+<section id="cuantiles" class="level3" data-number="1.9.2">
+<h3 data-number="1.9.2" class="anchored" data-anchor-id="cuantiles"><span class="header-section-number">1.9.2</span> Cuantiles</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Cuantiles
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El <strong>cuantil <span class="math inline">\(x_p\)</span></strong> es el valor que divide los datos ordenados en la proporción <span class="math inline">\(p\)</span> a <span class="math inline">\((1-p)\)</span>, donde <span class="math inline">\(0 \leq p \leq 1\)</span>.</p>
+<ul>
+<li>Debajo del cuantil <span class="math inline">\(x_p\)</span> se encuentran aproximadamente <span class="math inline">\(p \times 100\%\)</span> de los datos</li>
+<li>Arriba del cuantil <span class="math inline">\(x_p\)</span> se encuentran aproximadamente <span class="math inline">\((1-p) \times 100\%\)</span> de los datos</li>
+</ul>
+<p><strong>Cuantiles especiales</strong>: - <strong>Cuartiles</strong>: <span class="math inline">\(p = 0.25, 0.50, 0.75\)</span> (dividen en 4 partes) - <span class="math inline">\(x_{0.25}\)</span> = primer cuartil (Q1) - <span class="math inline">\(x_{0.50}\)</span> = mediana - <span class="math inline">\(x_{0.75}\)</span> = tercer cuartil (Q3)</p>
+<ul>
+<li><p><strong>Deciles</strong>: <span class="math inline">\(p = 0.1, 0.2, \ldots, 0.9\)</span> (dividen en 10 partes)</p></li>
+<li><p><strong>Percentiles</strong>: <span class="math inline">\(p = 0.01, 0.02, \ldots, 0.99\)</span> (dividen en 100 partes)</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo 1.12: Cuartiles de Supervivencia
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Con los datos de supervivencia de pacientes (Ejemplo 1.6), podemos aproximar los cuartiles usando interpolación en la ECDF:</p>
+<p>Para el primer cuartil (<span class="math inline">\(p = 0.25\)</span>): - <span class="math inline">\(F(x_j^l) = 0.01\)</span> (límite inferior de clase 100–500) - <span class="math inline">\(f(x_j) = 0.24\)</span> (frecuencia relativa de clase 100–500) - Fórmula: <span class="math inline">\(x_{0.25} = x_j^l + \frac{p - F(x_j^l)}{f(x_j)} \cdot \Delta x_j\)</span></p>
+<p><span class="math display">\[x_{0.25} = 100 + \frac{0.25 - 0.01}{0.24} \times 400 = 100 + 400 = 500 \text{ días}\]</span></p>
+</div>
+</div>
+<div class="cell">
+<div id="lst-semana01-8" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-summary="Cálculo de cuantiles">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana01-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;1.9: Cálculo de cuantiles
+</figcaption>
+<div aria-describedby="lst-semana01-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Cálculo de cuantiles</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generamos los mismos datos que en el Ejemplo 1.4.2</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>supervivencia <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">runif</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">100</span>),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">runif</span>(<span class="dv">24</span>, <span class="dv">100</span>, <span class="dv">500</span>),</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">runif</span>(<span class="dv">45</span>, <span class="dv">500</span>, <span class="dv">1000</span>),</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">runif</span>(<span class="dv">25</span>, <span class="dv">1000</span>, <span class="dv">2000</span>),</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="dv">3200</span>, <span class="dv">3500</span>, <span class="dv">3700</span>, <span class="dv">3800</span>, <span class="dv">3950</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>Q1 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(supervivencia, <span class="at">probs =</span> <span class="fl">0.25</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>Q2 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(supervivencia, <span class="at">probs =</span> <span class="fl">0.50</span>)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>Q3 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(supervivencia, <span class="at">probs =</span> <span class="fl">0.75</span>)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Q1 (25%):"</span>, <span class="fu">round</span>(Q1, <span class="dv">2</span>)))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Q1 (25%): 500.37"</code></pre>
+</div>
+<div id="lst-semana01-8" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-summary="Cálculo de cuantiles">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana01-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;1.10: Cálculo de cuantiles
+</figcaption>
+<div aria-describedby="lst-semana01-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Cálculo de cuantiles</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Q2 (50%, mediana):"</span>, <span class="fu">round</span>(Q2, <span class="dv">2</span>)))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Q2 (50%, mediana): 828.9"</code></pre>
+</div>
+<div id="lst-semana01-8" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-summary="Cálculo de cuantiles">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana01-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;1.11: Cálculo de cuantiles
+</figcaption>
+<div aria-describedby="lst-semana01-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Cálculo de cuantiles</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Q3 (75%):"</span>, <span class="fu">round</span>(Q3, <span class="dv">2</span>)))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Q3 (75%): 1086.7"</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Visualización: Diagrama de Caja (Boxplot)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El <strong>diagrama de caja</strong> (boxplot) es una herramienta robusta para visualizar la distribución, la mediana, los cuartiles y detectar valores atípicos (outliers) de forma intuitiva.</p>
+<div class="cell">
+<div id="lst-semana01-9" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-summary="Boxplot con ggplot2">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana01-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;1.12: Boxplot mejorado con ggplot2
+</figcaption>
+<div aria-describedby="lst-semana01-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Boxplot con ggplot2</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un data frame con los datos de supervivencia</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">supervivencia =</span> supervivencia)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualización con ggplot2 y labels para cuartiles</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">y =</span> supervivencia)) <span class="sc">+</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, </span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">outlier.colour =</span> <span class="st">"red"</span>, <span class="at">outlier.shape =</span> <span class="dv">16</span>, <span class="at">outlier.size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribución del Tiempo de Supervivencia"</span>,</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Se observan outliers en la parte superior"</span>,</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Días"</span>,</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="co"># Para orientación horizontal</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="semana01_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Lectura del Boxplot
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un boxplot divide los datos en:<br>
+- <strong>Caja</strong>: Contiene el 50% central (IQR: de <span class="math inline">\(Q_1\)</span> a <span class="math inline">\(Q_3\)</span>).<br>
+- <strong>Línea central</strong>: Mediana.<br>
+- <strong>Bigotes</strong>: Extienden hasta 1.5 veces el IQR.<br>
+- <strong>Puntos (outliers)</strong>: Valores fuera del rango de los bigotes.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="comparación-de-medidas-de-posición" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="comparación-de-medidas-de-posición"><span class="header-section-number">1.10</span> Comparación de Medidas de Posición</h2>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Robustez de las Medidas de Tendencia Central
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La <strong>media</strong> es muy sensible a valores extremos (outliers): - Fácil de calcular algebraicamente - Propiedad de suma útil para combinación de datos - Se ve afectada por datos atípicos</p>
+<p>La <strong>mediana</strong> es robusta: - Insensible a outliers - Más representativa en distribuciones asimétricas - Requiere ordenar los datos</p>
+<p>La <strong>moda</strong> es útil para datos categóricos pero limitado para continuos.</p>
+<p><strong>Recomendación</strong>: En presencia de outliers, la mediana es preferible a la media como medida de tendencia central.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-semana01-resumen" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="sec-semana01-resumen"><span class="header-section-number">1.11</span> Resumen de Conceptos Clave</h2>
+<section id="tabla-resumen-escalas-de-medición-y-estadísticos-apropiados" class="level3" data-number="1.11.1">
+<h3 data-number="1.11.1" class="anchored" data-anchor-id="tabla-resumen-escalas-de-medición-y-estadísticos-apropiados"><span class="header-section-number">1.11.1</span> Tabla Resumen: Escalas de Medición y Estadísticos Apropiados</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Tipo de Variable</th>
+<th style="text-align: left;">Ejemplos</th>
+<th style="text-align: left;">Estadísticos Apropiados</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Nominal</strong></td>
+<td style="text-align: left;">Género, grupo sanguíneo</td>
+<td style="text-align: left;">Moda, frecuencias</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Ordinal</strong></td>
+<td style="text-align: left;">Satisfacción, grado</td>
+<td style="text-align: left;">Mediana, moda, cuantiles</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Discreta</strong></td>
+<td style="text-align: left;">Número de eventos</td>
+<td style="text-align: left;">Media, mediana, varianza</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Continua</strong></td>
+<td style="text-align: left;">Peso, presión arterial</td>
+<td style="text-align: left;">Media, mediana, varianza, cuantiles</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="tabla-resumen-fórmulas-importantes" class="level3" data-number="1.11.2">
+<h3 data-number="1.11.2" class="anchored" data-anchor-id="tabla-resumen-fórmulas-importantes"><span class="header-section-number">1.11.2</span> Tabla Resumen: Fórmulas Importantes</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Estadístico</th>
+<th style="text-align: left;">Datos No Agrupados</th>
+<th style="text-align: left;">Datos Agrupados (Intervalos)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Media (<span class="math inline">\(\bar{x}\)</span>)</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\frac{1}{n}\sum_{i=1}^{n} x_i\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\sum_{j=1}^{k} x_j f_j\)</span> (<span class="math inline">\(x_j\)</span>: marca clase)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Mediana/Cuantil (<span class="math inline">\(x_p\)</span>)</strong></td>
+<td style="text-align: left;">Valor en pos. ordenado</td>
+<td style="text-align: left;"><span class="math inline">\(x_j^l + \frac{p - F(x_j^l)}{f(x_j)} \cdot \Delta x_j\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Moda (<span class="math inline">\(Mo\)</span>)</strong></td>
+<td style="text-align: left;">Valor con máx. <span class="math inline">\(h_j\)</span></td>
+<td style="text-align: left;">Marca de la clase modal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>ECDF (<span class="math inline">\(F(x)\)</span>)</strong></td>
+<td style="text-align: left;">Función escalonada</td>
+<td style="text-align: left;">Interpolación lineal (ojiva)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Sesgo (<span class="math inline">\(g_1\)</span>)</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\frac{\frac{1}{n} \sum (x_i - \bar{x})^3}{s^3}\)</span></td>
+<td style="text-align: left;">(Aprox. marcas de clase)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Curtosis (<span class="math inline">\(g_2\)</span>)</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\frac{\frac{1}{n} \sum (x_i - \bar{x})^4}{s^4}\)</span></td>
+<td style="text-align: left;">(Aprox. marcas de clase)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="sec-semana01-ejercicios" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="sec-semana01-ejercicios"><span class="header-section-number">1.12</span> Ejercicios</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 1.1: Conceptos Fundamentales
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Define con tus propias palabras (desde una perspectiva clínica): a) La diferencia entre una variable y un valor (ej. Glucemia) b) Por qué necesitamos distinguir entre población y muestra en un ensayo clínico c) Qué es un outlier y cómo podría afectar a la media de una serie de mediciones de tensión arterial</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 1.2: Identificación de Escalas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para cada una de las siguientes variables clínicas, identifica la escala de medición (nominal, ordinal, discreta, continua) y justifica tu respuesta:</p>
+<ol type="a">
+<li>Número de episodios asmáticos al año</li>
+<li>Gravedad de una quemadura (Primer, Segundo, Tercer grado)</li>
+<li>Concentración de hemoglobina en sangre (g/dL)</li>
+<li>Factor Rh (Positivo, Negativo)</li>
+<li>Escala de coma de Glasgow (puntuación de 3 a 15)</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 1.3: Cálculo de la Media
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se registraron los tiempos de espera (en minutos) en urgencias de 8 pacientes: 12, 8, 15, 10, 7, 14, 9, 11</p>
+<ol type="a">
+<li>Calcula la media aritmética</li>
+<li>Ordena los datos y encuentra la mediana</li>
+<li>¿Cuál es más representativa en este caso? ¿Por qué?</li>
+</ol>
+<div class="cell">
+<div id="lst-semana01-10" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-summary="Solución en R">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana01-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;1.13: Solución en R
+</figcaption>
+<div aria-describedby="lst-semana01-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Solución en R</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>tiempos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">7</span>, <span class="dv">14</span>, <span class="dv">9</span>, <span class="dv">11</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="fu">mean</span>(tiempos)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>mediana <span class="ot">&lt;-</span> <span class="fu">median</span>(tiempos)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Media:"</span>, media, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Media: 10.75 </code></pre>
+</div>
+<div id="lst-semana01-10" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-summary="Solución en R">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana01-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;1.14: Solución en R
+</figcaption>
+<div aria-describedby="lst-semana01-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Solución en R</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Mediana:"</span>, mediana, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Mediana: 10.5 </code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 1.4: Tabla de Frecuencias
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Los siguientes datos representan el número de admisiones hospitalarias previas para 20 pacientes crónicos: 3, 2, 5, 2, 4, 3, 6, 2, 3, 4, 5, 2, 3, 4, 2, 5, 3, 6, 4, 2</p>
+<ol type="a">
+<li>Construye una tabla de frecuencias (absoluta, relativa, acumulada)</li>
+<li>¿Cuál es la moda (número más frecuente de admisiones)?</li>
+<li>¿Qué proporción de pacientes tuvieron 3 o menos admisiones?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 1.5: Datos Agrupados
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se agrupan los niveles de glucosa en ayunas (mg/dL) de 100 pacientes en riesgo de diabetes:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Intervalo (mg/dL)</th>
+<th style="text-align: right;">Frecuencia (<span class="math inline">\(h_j\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">70 – 90</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">90 – 100</td>
+<td style="text-align: right;">32</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">100 – 110</td>
+<td style="text-align: right;">35</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">110 – 126</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">126 – 150</td>
+<td style="text-align: right;">3</td>
+</tr>
+</tbody>
+</table>
+<ol type="a">
+<li>Calcula la media aproximada de la glucemia</li>
+<li>Identifica la clase modal</li>
+<li>Estima el percentil 50 (mediana) usando interpolación</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div id="lst-semana01-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-summary="Solución en R">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana01-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;1.15: Solución en R
+</figcaption>
+<div aria-describedby="lst-semana01-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Solución en R</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datos</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>marca_clase <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">80</span>, <span class="dv">95</span>, <span class="dv">105</span>, <span class="dv">118</span>, <span class="dv">138</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>frecuencia <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">32</span>, <span class="dv">35</span>, <span class="dv">15</span>, <span class="dv">3</span>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">sum</span>(frecuencia)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Media</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>media_aprox <span class="ot">&lt;-</span> <span class="fu">sum</span>(marca_clase <span class="sc">*</span> frecuencia) <span class="sc">/</span> n</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Media aproximada:"</span>, <span class="fu">round</span>(media_aprox, <span class="dv">2</span>), <span class="st">"mg/dL"</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Media aproximada: 100.99 mg/dL"</code></pre>
+</div>
+<div id="lst-semana01-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-summary="Solución en R">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana01-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;1.16: Solución en R
+</figcaption>
+<div aria-describedby="lst-semana01-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Solución en R</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Frecuencia relativa acumulada</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>freq_rel <span class="ot">&lt;-</span> frecuencia <span class="sc">/</span> n</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>freq_acum <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(freq_rel)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Clase que contiene la mediana (F &gt;= 0.5)</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">data.frame</span>(<span class="at">Clase =</span> <span class="fu">c</span>(<span class="st">"70-90"</span>, <span class="st">"90-100"</span>, <span class="st">"100-110"</span>, <span class="st">"110-126"</span>, <span class="st">"126-150"</span>),</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">Frecuencia =</span> frecuencia,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">F_acum =</span> freq_acum))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Clase Frecuencia F_acum
+1   70-90         15   0.15
+2  90-100         32   0.47
+3 100-110         35   0.82
+4 110-126         15   0.97
+5 126-150          3   1.00</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 1.6: Interpretación de Histograma
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Considera el histograma de IMC del Ejemplo 1.5.1:</p>
+<ol type="a">
+<li>¿Qué clase tiene la mayor densidad de pacientes?</li>
+<li>¿Qué porcentaje de pacientes tienen un IMC inferior a 25 (Normal o bajo peso)?</li>
+<li>¿En qué rango se encuentra el 25% de pacientes con menor IMC?</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="sec-semana01-respuestas" class="level2" data-number="1.13">
+<h2 data-number="1.13" class="anchored" data-anchor-id="sec-semana01-respuestas"><span class="header-section-number">1.13</span> Respuestas a los Ejercicios</h2>
+<p><strong>Ejercicio 1.1: Conceptos</strong> a) Variable: Característica (Glucemia). Valor: Resultado medido (105 mg/dL). b) Población: Todos los pacientes con la patología. Muestra: Los que participan en el estudio. c) Un outlier (ej. una medición de 220/120 por error de manguito) elevaría artificialmente la media, haciendo que la tensión promedio parezca más alta de lo que realmente es.</p>
+<p><strong>Ejercicio 1.2: Escalas</strong> a) Discreta (conteo de eventos). b) Ordinal (hay un orden de gravedad). c) Continua (puede tomar cualquier valor decimal). d) Nominal (categorías sin orden). e) Ordinal (puntuación con orden intrínseco).</p>
+<p><strong>Ejercicio 1.3: Tiempos de espera</strong> a) Media = 86 / 8 = 10.75 min. b) Ordenados: 7, 8, 9, 10, 11, 12, 14, 15. Mediana = (10+11)/2 = 10.5 min. c) Ambas son similares porque no hay outliers extremos.</p>
+<p><strong>Ejercicio 1.4: Admisiones</strong> a)</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Admisiones</th>
+<th style="text-align: right;"><span class="math inline">\(h_j\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(f_j\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(H_j\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(F_j\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0.30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0.55</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">0.75</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">5</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">0.90</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">6</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Total</strong></td>
+<td style="text-align: right;"><strong>20</strong></td>
+<td style="text-align: right;"><strong>1.00</strong></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table>
+<ol start="2" type="a">
+<li>Moda = 2 admisiones (<span class="math inline">\(h_j=6\)</span>). c) Proporción = <span class="math inline">\(F_3 = 0.55\)</span> (55%).</li>
+</ol>
+<p><strong>Ejercicio 1.5: Glucemia</strong> a) Media ≈ 101.4 mg/dL. b) Clase modal: 100-110 mg/dL. c) P₅₀ ≈ 100 + (0.50 - 0.47)/0.35 * 10 ≈ 100.86 mg/dL.</p>
+<p><strong>Ejercicio 1.6: IMC (Ejemplo 1.5.1)</strong> a) Sobrepeso (25-30) con densidad 0.0672. b) <span class="math inline">\(F(25) = 0.055 + 0.339 = 0.394\)</span> (39.4%). c) En el rango de 0 a 25 (específicamente, el P₂₅ está en la clase “Normal”).</p>
+<p><strong>Fin de Semana 1</strong></p>
+<p>Para referencias avanzadas sobre análisis exploratorio de datos y estimación robusta, consulta: <a href="https://rpubs.com/FJRubio/MM">Robust Estimation of Location</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../index.html" class="pagination-link" aria-label="Prefacio">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Prefacio</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/semana02.html" class="pagination-link" aria-label="Semana 2 — Análisis Exploratorio de Datos (Parte II)">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Semana 2 — Análisis Exploratorio de Datos (Parte II)</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Matemáticas para la Estadística Médica con R, por Miguel Ángel Luque Fernández</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/migariane/CursoMatematicaEstadistica/edit/main/chapters/semana01.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/migariane/CursoMatematicaEstadistica/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li><li><a href="https://github.com/migariane/CursoMatematicaEstadistica/blob/main/chapters/semana01.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>© 2026 Universidad de Granada · <a href="https://www.ugr.es">ugr.es</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

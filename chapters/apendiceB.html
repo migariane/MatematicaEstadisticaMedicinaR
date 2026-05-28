@@ -1,0 +1,3186 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Material docence de Matemáticas para la Estadística Médica con R (Bioestadística) desarrollados por el autor en el Departamento de Estadística e Investigación Operativa, Unidad Docente de Bioestadística de la Universidad de Granada.">
+
+<title>Apéndice B — Apéndice B: El Paquete BioestadisticaR2 — Guía de Referencia – Matemáticas para la Estadística Médica con R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/apendiceC.html" rel="next">
+<link href="../chapters/apendiceA.html" rel="prev">
+<link href="../figures/ugr-logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-bf8030b5a8b8f2de5bceddfb8bf38a1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script>
+MathJax = {
+  tex: {
+    macros: {
+      btheta: "\\boldsymbol{\\theta}",
+      bbeta: "\\boldsymbol{\\beta}",
+      bmu: "\\boldsymbol{\\mu}",
+      bSigma: "\\boldsymbol{\\Sigma}",
+      bx: "\\mathbf{x}",
+      bX: "\\mathbf{X}",
+      by: "\\mathbf{y}",
+      bY: "\\mathbf{Y}",
+      bU: "\\mathbf{U}",
+      E: "\\mathbb{E}",
+      Var: ["\\operatorname{Var}"],
+      Cov: ["\\operatorname{Cov}"],
+      Corr: ["\\operatorname{Corr}"],
+      iid: "\\stackrel{\\text{i.i.d.}}{\\sim}",
+      tendD: "\\stackrel{\\mathcal{D}}{\\longrightarrow}",
+      reals: "\\mathbb{R}",
+      PP: "\\mathbb{P}"
+    }
+  }
+};
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/apendiceA.html">Appendices</a></li><li class="breadcrumb-item"><a href="../chapters/apendiceB.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Apéndice B: El Paquete BioestadisticaR2 — Guía de Referencia</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Matemáticas para la Estadística Médica con R</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/migariane/CursoMatematicaEstadistica" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="../Matemáticas-para-la-Estadística-Médica-con-R.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefacio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte I: Análisis Exploratorio de Datos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Semana 1 — Análisis Exploratorio de Datos (Parte I)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Semana 2 — Análisis Exploratorio de Datos (Parte II)</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte II: Probabilidad y Variables Aleatorias</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Semana 3 — Fundamentos de la Teoría de la Probabilidad</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Semana 4 — Variables Aleatorias y Distribuciones de Probabilidad</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Semana 5 — Muestreo y Distribuciones Muestrales</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte III: Inferencia Estadística</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Semana 6 — Estimación de Parámetros</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Semana 7 — Contrastes de Hipótesis (Parte I)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Semana 8 — Contrastes de Hipótesis (Parte II)</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte IV: Regresión Lineal</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Semana 9 — Regresión Lineal Simple</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Semana 10 — Regresión Lineal Múltiple</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte V: Análisis de Datos Categóricos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referencias</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/apendiceA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Apéndice A: Repaso Matemático Riguroso</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/apendiceB.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Apéndice B: El Paquete BioestadisticaR2 — Guía de Referencia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/apendiceC.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Apéndice C: Guía de R para Estadística Médica</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/examen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Examen Final</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contenidos</h2>
+   
+  <ul>
+  <li><a href="#sec-bio-instalacion" id="toc-sec-bio-instalacion" class="nav-link active" data-scroll-target="#sec-bio-instalacion"><span class="header-section-number">B.1</span> B.1 Instalación y el Conjunto de Datos <code>osteo</code></a></li>
+  <li><a href="#sec-bio-descriptivo" id="toc-sec-bio-descriptivo" class="nav-link" data-scroll-target="#sec-bio-descriptivo"><span class="header-section-number">B.2</span> B.2 Análisis Descriptivo: <code>freq()</code> y <code>grps()</code></a>
+  <ul class="collapse">
+  <li><a href="#b.2.1-tablas-de-frecuencias-freq" id="toc-b.2.1-tablas-de-frecuencias-freq" class="nav-link" data-scroll-target="#b.2.1-tablas-de-frecuencias-freq"><span class="header-section-number">B.2.1</span> B.2.1 Tablas de Frecuencias: <code>freq()</code></a></li>
+  <li><a href="#b.2.2-estadísticas-por-grupos-grps" id="toc-b.2.2-estadísticas-por-grupos-grps" class="nav-link" data-scroll-target="#b.2.2-estadísticas-por-grupos-grps"><span class="header-section-number">B.2.2</span> B.2.2 Estadísticas por Grupos: <code>grps()</code></a></li>
+  </ul></li>
+  <li><a href="#sec-bio-ic" id="toc-sec-bio-ic" class="nav-link" data-scroll-target="#sec-bio-ic"><span class="header-section-number">B.3</span> B.3 Intervalos de Confianza: <code>icm()</code>, <code>icp()</code>, <code>icl()</code></a>
+  <ul class="collapse">
+  <li><a href="#b.3.1-ic-para-la-media-icm" id="toc-b.3.1-ic-para-la-media-icm" class="nav-link" data-scroll-target="#b.3.1-ic-para-la-media-icm"><span class="header-section-number">B.3.1</span> B.3.1 IC para la Media: <code>icm()</code></a></li>
+  <li><a href="#b.3.2-ic-para-proporción-icp" id="toc-b.3.2-ic-para-proporción-icp" class="nav-link" data-scroll-target="#b.3.2-ic-para-proporción-icp"><span class="header-section-number">B.3.2</span> B.3.2 IC para Proporción: <code>icp()</code></a></li>
+  <li><a href="#b.3.3-ic-para-tasa-poisson-icl" id="toc-b.3.3-ic-para-tasa-poisson-icl" class="nav-link" data-scroll-target="#b.3.3-ic-para-tasa-poisson-icl"><span class="header-section-number">B.3.3</span> B.3.3 IC para Tasa Poisson: <code>icl()</code></a></li>
+  </ul></li>
+  <li><a href="#sec-bio-n" id="toc-sec-bio-n" class="nav-link" data-scroll-target="#sec-bio-n"><span class="header-section-number">B.4</span> B.4 Tamaño Muestral: <code>nm()</code> y <code>np()</code></a>
+  <ul class="collapse">
+  <li><a href="#b.4.1-para-la-media-nm" id="toc-b.4.1-para-la-media-nm" class="nav-link" data-scroll-target="#b.4.1-para-la-media-nm"><span class="header-section-number">B.4.1</span> B.4.1 Para la Media: <code>nm()</code></a></li>
+  <li><a href="#b.4.2-para-proporciones-np" id="toc-b.4.2-para-proporciones-np" class="nav-link" data-scroll-target="#b.4.2-para-proporciones-np"><span class="header-section-number">B.4.2</span> B.4.2 Para Proporciones: <code>np()</code></a></li>
+  </ul></li>
+  <li><a href="#sec-bio-contrastes" id="toc-sec-bio-contrastes" class="nav-link" data-scroll-target="#sec-bio-contrastes"><span class="header-section-number">B.5</span> B.5 Contrastes de Hipótesis</a>
+  <ul class="collapse">
+  <li><a href="#b.5.1-test-de-normalidad-testnormal" id="toc-b.5.1-test-de-normalidad-testnormal" class="nav-link" data-scroll-target="#b.5.1-test-de-normalidad-testnormal"><span class="header-section-number">B.5.1</span> B.5.1 Test de Normalidad: <code>testnormal()</code></a></li>
+  <li><a href="#b.5.2-test-t-testt" id="toc-b.5.2-test-t-testt" class="nav-link" data-scroll-target="#b.5.2-test-t-testt"><span class="header-section-number">B.5.2</span> B.5.2 Test t: <code>testt()</code></a></li>
+  <li><a href="#b.5.3-test-f-de-varianzas-testf" id="toc-b.5.3-test-f-de-varianzas-testf" class="nav-link" data-scroll-target="#b.5.3-test-f-de-varianzas-testf"><span class="header-section-number">B.5.3</span> B.5.3 Test F de Varianzas: <code>testf()</code></a></li>
+  <li><a href="#b.5.4-test-de-proporciones-testp" id="toc-b.5.4-test-de-proporciones-testp" class="nav-link" data-scroll-target="#b.5.4-test-de-proporciones-testp"><span class="header-section-number">B.5.4</span> B.5.4 Test de Proporciones: <code>testp()</code></a></li>
+  <li><a href="#b.5.5-test-de-wilcoxon-testwx" id="toc-b.5.5-test-de-wilcoxon-testwx" class="nav-link" data-scroll-target="#b.5.5-test-de-wilcoxon-testwx"><span class="header-section-number">B.5.5</span> B.5.5 Test de Wilcoxon: <code>testwx()</code></a></li>
+  <li><a href="#b.5.6-test-de-mcnemar-testmcnemar" id="toc-b.5.6-test-de-mcnemar-testmcnemar" class="nav-link" data-scroll-target="#b.5.6-test-de-mcnemar-testmcnemar"><span class="header-section-number">B.5.6</span> B.5.6 Test de McNemar: <code>testmcnemar()</code></a></li>
+  </ul></li>
+  <li><a href="#sec-bio-rls" id="toc-sec-bio-rls" class="nav-link" data-scroll-target="#sec-bio-rls"><span class="header-section-number">B.6</span> B.6 Regresión Lineal Simple: <code>rls()</code></a></li>
+  <li><a href="#sec-bio-tablas" id="toc-sec-bio-tablas" class="nav-link" data-scroll-target="#sec-bio-tablas"><span class="header-section-number">B.7</span> B.7 Tablas de Contingencia: <code>tabla2x2()</code> y <code>tablarxc()</code></a>
+  <ul class="collapse">
+  <li><a href="#b.7.1-tabla-22-tabla2x2" id="toc-b.7.1-tabla-22-tabla2x2" class="nav-link" data-scroll-target="#b.7.1-tabla-22-tabla2x2"><span class="header-section-number">B.7.1</span> B.7.1 Tabla 2×2: <code>tabla2x2()</code></a></li>
+  <li><a href="#b.7.2-tabla-rc-tablarxc" id="toc-b.7.2-tabla-rc-tablarxc" class="nav-link" data-scroll-target="#b.7.2-tabla-rc-tablarxc"><span class="header-section-number">B.7.2</span> B.7.2 Tabla r×c: <code>tablarxc()</code></a></li>
+  </ul></li>
+  <li><a href="#sec-bio-resumen" id="toc-sec-bio-resumen" class="nav-link" data-scroll-target="#sec-bio-resumen"><span class="header-section-number">B.8</span> B.8 Tabla Resumen de Funciones</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/migariane/CursoMatematicaEstadistica/edit/main/chapters/apendiceB.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/migariane/CursoMatematicaEstadistica/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li><li><a href="https://github.com/migariane/CursoMatematicaEstadistica/blob/main/chapters/apendiceB.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/apendiceA.html">Appendices</a></li><li class="breadcrumb-item"><a href="../chapters/apendiceB.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Apéndice B: El Paquete BioestadisticaR2 — Guía de Referencia</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-apendiceB" class="quarto-section-identifier">Apéndice B — Apéndice B: El Paquete BioestadisticaR2 — Guía de Referencia</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>El paquete <strong>BioestadisticaR2</strong> (versión 2.5, septiembre 2023) ha sido desarrollado por el Grupo de Bioestadística de la Facultad de Medicina de la Universidad de Granada: Pedro Femia, Pedro Carmona, Miguel A. Montero, Juan M. Melchor, Juan A. Villatoro, Miguel Ángel Luque Fernández, Manuela Expósito y Juan de Dios Luna. Proporciona funciones de alto nivel que integran contraste, estimación y visualización en una sola llamada, diseñadas específicamente para la docencia de bioestadística en ciencias de la salud.</p>
+<hr>
+<section id="sec-bio-instalacion" class="level2" data-number="B.1">
+<h2 data-number="B.1" class="anchored" data-anchor-id="sec-bio-instalacion"><span class="header-section-number">B.1</span> B.1 Instalación y el Conjunto de Datos <code>osteo</code></h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Instalación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div id="lst-apendiceB-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.1: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Descarga la versión adecuada para tu sistema (Windows .zip o Mac .tar.gz) desde:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># https://digibug.ugr.es/handle/10481/84535?show=full</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Instalar el paquete localmente usando R:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># (Asegúrate de tener instalado el paquete 'remotes')</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("remotes")</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># remotes::install_local("ruta/a/tu/archivo_descargado.zip_o_tar.gz")</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar el paquete</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioestadisticaR2)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>El paquete incluye el dataset <code>osteo</code>, con datos reales de 94 pacientes diabéticos de la Facultad de Medicina de la UGR. Es el conjunto de referencia de todos los ejemplos de este apéndice.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>El Dataset <code>osteo</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div id="lst-apendiceB-2" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.2: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioestadisticaR2)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(osteo)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   94 obs. of  27 variables:
+ $ num       : num  1 2 3 4 5 6 7 8 9 10 ...
+ $ edad      : num  23 35 51 44 54 36 21 20 27 27 ...
+ $ grupo_edad: Factor w/ 3 levels "&lt; 25","&gt; 33",..: 1 2 2 2 2 2 1 1 3 3 ...
+ $ sexo      : Factor w/ 2 levels "Hombre","Mujer": 1 1 1 1 2 2 1 2 2 2 ...
+ $ peso      : num  72.3 82.5 61 67 51 61.5 73.8 62 46 49 ...
+ $ talla     : num  175 173 170 167 168 158 180 170 148 144 ...
+ $ imc       : num  23.6 27.6 21.1 24 18.1 ...
+ $ tevol     : num  2 4 17 17 30 2 3 12 16 19 ...
+ $ tabaco    : Factor w/ 2 levels "No","Sí": 2 1 2 2 2 2 2 2 1 1 ...
+ $ alcohol   : Factor w/ 3 levels "Excesivo","Moderado",..: 2 2 2 2 2 2 2 2 2 2 ...
+ $ ingca     : Factor w/ 2 levels "Insuficiente",..: 2 2 2 1 2 2 2 2 2 1 ...
+ $ acfis     : Factor w/ 2 levels "No","Sí": 2 1 2 2 2 2 1 2 2 1 ...
+ $ retin     : Factor w/ 3 levels "Grave","Leve",..: 3 3 3 2 3 3 3 3 2 2 ...
+ $ nefro     : Factor w/ 3 levels "Grave","Leve",..: 3 3 3 3 3 3 3 2 2 3 ...
+ $ neuro     : Factor w/ 3 levels "Grave","Leve",..: 3 3 3 1 3 3 3 3 3 3 ...
+ $ hba1c     : num  4.6 6.1 6.7 8.2 9.7 8.4 10.1 10.3 5.4 8.7 ...
+ $ ca        : num  9.6 9.5 9.9 8.3 9.5 9.9 9.8 9.2 9.6 8.9 ...
+ $ p         : num  4.2 3.4 4.7 3.2 3.7 4.7 4.7 4.2 2.6 3.9 ...
+ $ cr        : num  1.02 1.07 1.35 0.99 0.86 0.8 1 0.7 0.92 1.08 ...
+ $ pthm      : num  2.9 3.1 NA NA 3.1 1.1 3.4 NA 0.7 2.6 ...
+ $ pthi      : num  49 NA 54.3 NA 49.8 59.9 20.9 NA NA 10 ...
+ $ bmdcue    : num  22 NA 23.7 NA 35.7 38.3 6.2 NA NA 10.3 ...
+ $ szl24     : num  1.07 0.83 0.83 0.72 0.56 0.92 1 0.83 0.72 0.69 ...
+ $ sztri     : num  0.55 -1.62 -1.28 -1.11 -1.68 2.05 -0.75 -1.11 -0.98 -0.91 ...
+ $ szcue     : num  1.44 -0.93 -0.07 -2.07 -3.1 0.35 0.08 -1.62 -2.25 -1.41 ...
+ $ osteo_cue : Factor w/ 2 levels "No","Sí": 1 1 1 2 2 1 1 1 2 1 ...
+ $ osteo_tri : Factor w/ 2 levels "No","Sí": 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+</div>
+</div>
+<p>Las 27 variables cubren factores de riesgo (tabaco, alcohol, actividad física), biomarcadores (HbA1c, calcio, creatinina), complicaciones (retinopatía, nefropatía, neuropatía) y medidas óseas (z-scores DXA, osteoporosis).</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-bio-descriptivo" class="level2" data-number="B.2">
+<h2 data-number="B.2" class="anchored" data-anchor-id="sec-bio-descriptivo"><span class="header-section-number">B.2</span> B.2 Análisis Descriptivo: <code>freq()</code> y <code>grps()</code></h2>
+<section id="b.2.1-tablas-de-frecuencias-freq" class="level3" data-number="B.2.1">
+<h3 data-number="B.2.1" class="anchored" data-anchor-id="b.2.1-tablas-de-frecuencias-freq"><span class="header-section-number">B.2.1</span> B.2.1 Tablas de Frecuencias: <code>freq()</code></h3>
+<div class="cell">
+<div id="lst-apendiceB-3" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.3: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span><span class="fu">rnorm</span>(<span class="dv">50</span>,<span class="dv">250</span>,<span class="dv">2</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(x, <span class="at">acum =</span> <span class="cn">TRUE</span>, <span class="at">cuts =</span> <span class="dv">0</span>, <span class="at">agrup =</span> <span class="cn">TRUE</span>, <span class="at">decs =</span> <span class="dv">3</span>, <span class="at">grf =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Distribución de frecuencias
+--------------------------------
+Variable:  x 
+n = 50 
+ 
+          x Freq Prop Prop.Acum
+1 (244,246]    4 0.08      0.08
+2 (246,248]    6 0.12      0.20
+3 (248,250]   25 0.50      0.70
+4 (250,252]   10 0.20      0.90
+5 (252,254]    5 0.10      1.00</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Genera una tabla de frecuencias absolutas, relativas y acumuladas. Si <code>cuts &gt; 0</code>, agrupa en intervalos de igual amplitud. El argumento <code>grf = FALSE</code> suprime el gráfico.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo B.1: Distribución de la edad por intervalos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div id="lst-apendiceB-4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.4: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioestadisticaR2)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(osteo<span class="sc">$</span>edad, <span class="at">grf =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Distribución de frecuencias
+--------------------------------
+Variable:  osteo$edad 
+n = 94 
+ 
+        x Freq  Prop Prop.Acum
+1 (18,23]   27 0.287     0.287
+2 (23,28]   22 0.234     0.521
+3 (28,33]   14 0.149     0.670
+4 (33,38]   15 0.160     0.830
+5 (38,43]    4 0.043     0.873
+6 (43,48]    5 0.053     0.926
+7 (48,53]    3 0.032     0.958
+8 (53,58]    3 0.032     0.990</code></pre>
+</div>
+</div>
+<p>El 52.1% de los pacientes tiene menos de 28 años. La distribución es asimétrica positiva: más de la mitad son jóvenes en estadios iniciales de la diabetes.</p>
+<div class="cell">
+<div id="lst-apendiceB-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.5: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Con 5 clases de igual amplitud para el IMC</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(osteo<span class="sc">$</span>imc, <span class="at">cuts =</span> <span class="dv">5</span>, <span class="at">grf =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Distribución de frecuencias
+--------------------------------
+Variable:  osteo$imc 
+n = 94 
+ 
+        x Freq  Prop Prop.Acum
+1 (18,22]   37 0.394     0.394
+2 (22,26]   36 0.383     0.777
+3 (26,30]   13 0.138     0.915
+4 (30,34]    5 0.053     0.968
+5 (34,38]    1 0.011     0.979</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="b.2.2-estadísticas-por-grupos-grps" class="level3" data-number="B.2.2">
+<h3 data-number="B.2.2" class="anchored" data-anchor-id="b.2.2-estadísticas-por-grupos-grps"><span class="header-section-number">B.2.2</span> B.2.2 Estadísticas por Grupos: <code>grps()</code></h3>
+<div class="cell">
+<div id="lst-apendiceB-6" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.6: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nivel<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">1.1</span>,<span class="fl">2.1</span>,<span class="fl">2.2</span>,<span class="fl">3.2</span>,<span class="fl">0.1</span>,.<span class="dv">2</span>,<span class="fl">1.0</span>,<span class="fl">0.4</span>,<span class="fl">0.7</span>,<span class="fl">1.3</span>,<span class="fl">1.5</span>,<span class="fl">3.1</span>,<span class="fl">2.4</span>,<span class="fl">3.6</span>,<span class="fl">1.1</span>,<span class="fl">2.4</span>,<span class="fl">3.2</span>,<span class="fl">2.6</span>,<span class="fl">1.5</span>,<span class="fl">6.1</span>,<span class="fl">2.1</span>,<span class="fl">1.9</span>,<span class="dv">1</span>,<span class="fl">2.1</span>,<span class="fl">1.3</span>,<span class="fl">4.1</span>,<span class="fl">1.2</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>grupo<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"A"</span>,<span class="st">"A"</span>,<span class="st">"A"</span>,<span class="st">"A"</span>,<span class="st">"A"</span>,<span class="st">"A"</span>,<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"B"</span>,<span class="st">"B"</span>,<span class="st">"B"</span>,<span class="st">"B"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>,<span class="st">"C"</span>,<span class="st">"C"</span>,<span class="st">"C"</span>,<span class="st">"C"</span>,<span class="st">"C"</span>,<span class="st">"C"</span>,<span class="st">"C"</span>,<span class="st">"C"</span>,<span class="st">"D"</span>,<span class="st">"D"</span>,<span class="st">"D"</span>,<span class="st">"D"</span>,<span class="st">"D"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grps</span>(<span class="at">x=</span>nivel, <span class="at">f=</span>grupo, <span class="at">ic =</span> <span class="cn">FALSE</span>, <span class="at">grf =</span> <span class="cn">TRUE</span>, <span class="at">alfa =</span> <span class="fl">0.05</span>, <span class="at">conf =</span> <span class="fl">0.95</span>, <span class="at">decs =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+# Descriptiva de nivel por grupo
+# ------------------------------
+ grupo 
+        n media    dt
+ A      7 1.414 1.136
+ B      6 1.567 1.023
+ C      9 2.722 1.488
+ D      5 1.940 1.278
+ Total 27 1.981 1.322</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-6-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-6-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Proporciona media, desviación típica y tamaño de cada grupo. Con <code>ic = TRUE</code> añade intervalos de confianza por grupo.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo B.2: IMC por sexo y por grupo de edad
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div id="lst-apendiceB-7" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.7: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># IMC según sexo</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grps</span>(osteo<span class="sc">$</span>imc, osteo<span class="sc">$</span>sexo, <span class="at">grf =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+# Descriptiva de osteo$imc por osteo$sexo
+# ---------------------------------------
+ osteo$sexo 
+         n  media    dt
+ Hombre 45 23.514 2.890
+ Mujer  49 24.294 4.389
+ Total  94 23.921 3.748</code></pre>
+</div>
+</div>
+<div class="cell">
+<div id="lst-apendiceB-8" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.8: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Con intervalos de confianza</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grps</span>(osteo<span class="sc">$</span>imc, osteo<span class="sc">$</span>sexo, <span class="at">ic =</span> <span class="cn">TRUE</span>, <span class="at">grf =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+# Descriptiva de osteo$imc por osteo$sexo
+# ---------------------------------------
+ osteo$sexo 
+         n  media    dt ic_inf ic_sup
+ Hombre 45 23.514 2.890 22.646 24.382
+ Mujer  49 24.294 4.389 23.033 25.555
+ Total  94 23.921 3.748 23.153 24.689
+ ___________ 
+ * ICs para las medias μ[i] y μ global al 95% de confianza 
+   (sin corrección por inferencia múltiple)  </code></pre>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-bio-ic" class="level2" data-number="B.3">
+<h2 data-number="B.3" class="anchored" data-anchor-id="sec-bio-ic"><span class="header-section-number">B.3</span> B.3 Intervalos de Confianza: <code>icm()</code>, <code>icp()</code>, <code>icl()</code></h2>
+<section id="b.3.1-ic-para-la-media-icm" class="level3" data-number="B.3.1">
+<h3 data-number="B.3.1" class="anchored" data-anchor-id="b.3.1-ic-para-la-media-icm"><span class="header-section-number">B.3.1</span> B.3.1 IC para la Media: <code>icm()</code></h3>
+<div class="cell">
+<div id="lst-apendiceB-9" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.9: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">icm</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">n =</span> <span class="dv">0</span>, <span class="at">m =</span> <span class="dv">0</span>, <span class="at">s =</span> <span class="dv">0</span>, <span class="at">conf =</span> <span class="fl">0.95</span>, <span class="at">alfa =</span> <span class="fl">0.05</span>, <span class="at">decs =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ ERROR: No valid data </code></pre>
+</div>
+</div>
+<p>Intervalo de confianza bilateral para la media de una distribución normal. Acepta los estadísticos suficientes (<span class="math inline">\(n\)</span>, <span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span>) o directamente los datos (<code>x</code>).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo B.3: IC para la media de HbA1c
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div id="lst-apendiceB-10" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.10: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Usando estadísticos suficientes</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">icm</span>(<span class="at">m =</span> <span class="fu">mean</span>(osteo<span class="sc">$</span>hba1c), <span class="at">s =</span> <span class="fu">sd</span>(osteo<span class="sc">$</span>hba1c), <span class="at">n =</span> <span class="fu">nrow</span>(osteo))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Intervalo de confianza bilateral para la media de una VA normal 
+----------------------------------------------------------------
+Información muestral: 
+  Tamaño muestral: n =  94 
+  Media: m =  8.565 
+  Desviación típica: s =  1.799 
+  Error estándar de la media: sem =  0.186 
+
+Estimación: 
+ 95%-IC(µ):  (8.196, 8.933)
+  Precisión obtenida: 0.368 </code></pre>
+</div>
+</div>
+<p><strong>Interpretación:</strong> Con 95% de confianza, la media poblacional de HbA1c en diabéticos de la UGR está entre 8.20% y 8.93%, lo que indica un control glucémico deficiente (meta clínica: &lt; 7%).</p>
+</div>
+</div>
+</section>
+<section id="b.3.2-ic-para-proporción-icp" class="level3" data-number="B.3.2">
+<h3 data-number="B.3.2" class="anchored" data-anchor-id="b.3.2-ic-para-proporción-icp"><span class="header-section-number">B.3.2</span> B.3.2 IC para Proporción: <code>icp()</code></h3>
+<div class="cell">
+<div id="lst-apendiceB-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.11: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">icp</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">n =</span> <span class="dv">0</span>, <span class="at">level =</span> <span class="st">""</span>, <span class="at">conf =</span> <span class="fl">0.95</span>, <span class="at">alfa =</span> <span class="fl">0.05</span>, <span class="at">decs =</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ ERROR: No valid data </code></pre>
+</div>
+</div>
+<p>Calcula el IC para una proporción con cuatro métodos: Clopper-Pearson (exacto), Wilson, Wald clásico y Agresti-Coull.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo B.4: IC para la prevalencia de tabaquismo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div id="lst-apendiceB-12" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.12: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">icp</span>(<span class="at">x =</span> <span class="fu">sum</span>(osteo<span class="sc">$</span>tabaco <span class="sc">==</span> <span class="st">"Sí"</span>), <span class="at">n =</span> <span class="fu">nrow</span>(osteo))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Intervalo de confianza para una proporción binomial 
+--------------------------------------------------- 
+
+Información muestral: 
+  Tamaño de muestra: n = 94
+  Estimación puntual clásica: p=x/n = 0.4362, q=(1-p)=0.5638
+  Casos observados: x = 41
+
+# Método exacto (Clooper-Pearson):
+  Pseudo-estimación puntual: p' = 0.4405, q'=(1-p')=0.5595
+  95%-IC(π): (0.3385, 0.5424) 
+  Semiamplitud: 0.1019
+
+# Método de Wilson (con cpc):
+  Pseudo-estimación puntual: p' = 0.4388, q'=(1-p')=0.5612
+  95%-IC(π): (0.3354, 0.5422) 
+  Semiamplitud: 0.1034
+
+# Método de Wald (con cpc):
+  Estimación puntual (clásica): p=x/n = 0.4362, q=(1-p)=0.5638
+  95%-IC(π): (0.3306, 0.5417) 
+  Precisión: 0.1056
+
+# Método de Wald ajustado (Agresti-Coull):
+  Estimación puntual: p=(x+2)/(n+4) = 0.4388, q=(1-p)=0.5612
+  95%-IC(π): (0.3405, 0.537) 
+  Precisión: 0.0982</code></pre>
+</div>
+</div>
+<p>El 43.6% de los 94 pacientes diabéticos son fumadores (IC 95%: 33.9%–54.2%).</p>
+</div>
+</div>
+</section>
+<section id="b.3.3-ic-para-tasa-poisson-icl" class="level3" data-number="B.3.3">
+<h3 data-number="B.3.3" class="anchored" data-anchor-id="b.3.3-ic-para-tasa-poisson-icl"><span class="header-section-number">B.3.3</span> B.3.3 IC para Tasa Poisson: <code>icl()</code></h3>
+<div class="cell">
+<div id="lst-apendiceB-13" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.13: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">icl</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">n =</span> <span class="dv">0</span>, <span class="at">conf =</span> <span class="fl">0.95</span>, <span class="at">decs =</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Intervalo de confianza bilateral para el parámetro  λ de una VA con distribución de Poisson 
+----------------------------------------------------------------------------------------------
+Información muestral: 
+  Muestra de una sola observación  
+  Tamaño muestral: n =  1 
+  Media observada: m =  0 
+
+Estimación: 
+  [1] Método exacto: 
+      95 %-IC(λ):  ( 0 ,  2.9957 )
+      Semiamplitud del intervalo: 1.4979 
+
+  [2] Aproximación a la normal (transformación de la raiz): 
+      Validez de la aproximación: Σx =  0  &lt; 15 --- NO es válida --- 
+      95 %-IC(λ):  ( 0.9604 ,  3.9203 )
+      Precisión obtenida: 1.48 </code></pre>
+</div>
+</div>
+<p>IC para la tasa <span class="math inline">\(\lambda\)</span> de una distribución de Poisson basado en el método exacto (gamma-Poisson). Útil en vigilancia epidemiológica (tasas de incidencia por persona-año).</p>
+<hr>
+</section>
+</section>
+<section id="sec-bio-n" class="level2" data-number="B.4">
+<h2 data-number="B.4" class="anchored" data-anchor-id="sec-bio-n"><span class="header-section-number">B.4</span> B.4 Tamaño Muestral: <code>nm()</code> y <code>np()</code></h2>
+<section id="b.4.1-para-la-media-nm" class="level3" data-number="B.4.1">
+<h3 data-number="B.4.1" class="anchored" data-anchor-id="b.4.1-para-la-media-nm"><span class="header-section-number">B.4.1</span> B.4.1 Para la Media: <code>nm()</code></h3>
+<div class="cell">
+<div id="lst-apendiceB-14" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.14: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nm</span>(<span class="at">d=</span><span class="fl">1.0</span>, <span class="at">n=</span><span class="dv">100</span>, <span class="at">m=</span><span class="fl">25.3</span>, <span class="at">s=</span><span class="fl">4.1</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+# Tamaño de muestra para la estimación de la media de una VA normal o su aproximación
+# -----------------------------------------------------------------------------------
+
+# Muestra piloto:
+  Tamaño muestral:  n = 100 
+  Media: m = 25.3000 
+  Desviación típica: s = 4.1000 
+  Error estandar de la media: sem = 0.4100 
+  Precisión observada: d = 0.8135 
+
+# Estimación del tamaño muestral:
+  Precisión deseada: δ = 1.0000 
+  Tamaño muestral necesario: n ≥ 67 
+  La muestra actual es suficiente para obtener una precisión de1 unidades </code></pre>
+</div>
+</div>
+<p>Calcula el tamaño muestral necesario para estimar una media con precisión <span class="math inline">\(d\)</span> (semiamplitud del IC) dada una desviación típica esperada <span class="math inline">\(s\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo B.5: ¿Cuántos pacientes para estimar HbA1c?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>¿Cuántos pacientes se necesitan para obtener un IC de amplitud total ≤ 0.8 puntos (d = 0.4) para la HbA1c, si <span class="math inline">\(\sigma \approx 1.8\)</span>?</p>
+<div class="cell">
+<div id="lst-apendiceB-15" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.15: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nm</span>(<span class="at">d =</span> <span class="fl">0.4</span>, <span class="at">n =</span> <span class="dv">100</span>, <span class="at">m =</span> <span class="fl">8.565</span>, <span class="at">s =</span> <span class="fl">1.799</span>, <span class="at">alfa=</span><span class="fl">0.05</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+# Tamaño de muestra para la estimación de la media de una VA normal o su aproximación
+# -----------------------------------------------------------------------------------
+
+# Muestra piloto:
+  Tamaño muestral:  n = 100 
+  Media: m = 8.5650 
+  Desviación típica: s = 1.7990 
+  Error estandar de la media: sem = 0.1799 
+  Precisión observada: d = 0.3570 
+
+# Estimación del tamaño muestral:
+  Precisión deseada: δ = 0.4000 
+  Tamaño muestral necesario: n ≥ 80 
+  La muestra actual es suficiente para obtener una precisión de0.4 unidades </code></pre>
+</div>
+</div>
+<p>Aumentar la precisión de ±0.37 (obtenida con n=94) a ±0.30 requeriría aproximadamente n ≈ 138 pacientes.</p>
+</div>
+</div>
+</section>
+<section id="b.4.2-para-proporciones-np" class="level3" data-number="B.4.2">
+<h3 data-number="B.4.2" class="anchored" data-anchor-id="b.4.2-para-proporciones-np"><span class="header-section-number">B.4.2</span> B.4.2 Para Proporciones: <code>np()</code></h3>
+<div class="cell">
+<div id="lst-apendiceB-16" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.16: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">np</span>(<span class="at">x=</span><span class="dv">25</span>, <span class="at">n=</span><span class="dv">210</span>, <span class="at">d=</span>.<span class="dv">05</span>, <span class="at">conf=</span>.<span class="dv">90</span>, <span class="at">decs=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Tamaño de muestra para estimar una proporción binomial 
+-------------------------------------------------------
+
+Información muestral 
+  Tamaño de la muestra: n = 210
+  Casos: x = 25
+  Inferencia para la proporción basada en el método de Wald ajustado: 
+  90%-IC(π): (0.08883, 0.16350) 
+  precisión observada: d = 0.03733 (3.73%) 
+
+Tamaño muestral requerido para δ = 0.05 (5.00%), conf.= 90% 
+  - Basado en la muestra actual (po = 0.16350):   n ≥ 149
+  - Sin considerar la información previa: n ≥ 271</code></pre>
+</div>
+</div>
+<p>Tamaño muestral para estimar una proporción con precisión <span class="math inline">\(d\)</span>, usando la estimación piloto <span class="math inline">\(\hat{p} = x/n\)</span>.</p>
+<hr>
+</section>
+</section>
+<section id="sec-bio-contrastes" class="level2" data-number="B.5">
+<h2 data-number="B.5" class="anchored" data-anchor-id="sec-bio-contrastes"><span class="header-section-number">B.5</span> B.5 Contrastes de Hipótesis</h2>
+<section id="b.5.1-test-de-normalidad-testnormal" class="level3" data-number="B.5.1">
+<h3 data-number="B.5.1" class="anchored" data-anchor-id="b.5.1-test-de-normalidad-testnormal"><span class="header-section-number">B.5.1</span> B.5.1 Test de Normalidad: <code>testnormal()</code></h3>
+<div class="cell">
+<div id="lst-apendiceB-17" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-17-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.17: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-17-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">testnormal</span>(x, <span class="at">obs =</span> <span class="cn">TRUE</span>, <span class="at">mod =</span> <span class="cn">TRUE</span>, <span class="at">dens =</span> <span class="cn">TRUE</span>, <span class="at">sw =</span> <span class="cn">TRUE</span>, <span class="at">decs =</span> <span class="dv">3</span>, <span class="at">grf =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+# Test de normalidad de Shapiro-Wilk  
+ ------------------------------------- 
+   n = 50,  W = 0.98,  p = 0.551 </code></pre>
+</div>
+</div>
+<p>Contraste de Shapiro-Wilk con visualización integrada (histograma + densidad teórica + QQ-plot).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo B.6: ¿Es normal la HbA1c?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div id="lst-apendiceB-18" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-18-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.18: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-18-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">testnormal</span>(osteo<span class="sc">$</span>hba1c, <span class="at">grf =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+# Test de normalidad de Shapiro-Wilk  
+ ------------------------------------- 
+   n = 94,  W = 0.983,  p = 0.276 </code></pre>
+</div>
+</div>
+<p><span class="math inline">\(W = 0.983\)</span>, <span class="math inline">\(p = 0.276 &gt; 0.05\)</span>: <strong>no se rechaza normalidad</strong>. La HbA1c sigue una distribución aproximadamente normal en esta muestra — contrasta con la edad (<span class="math inline">\(W = 0.907\)</span>, <span class="math inline">\(p &lt; 0.001\)</span>).</p>
+</div>
+</div>
+</section>
+<section id="b.5.2-test-t-testt" class="level3" data-number="B.5.2">
+<h3 data-number="B.5.2" class="anchored" data-anchor-id="b.5.2-test-t-testt"><span class="header-section-number">B.5.2</span> B.5.2 Test t: <code>testt()</code></h3>
+<div class="cell">
+<div id="lst-apendiceB-19" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.19: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">testt</span>(<span class="at">m=</span><span class="dv">37</span>, <span class="at">s=</span><span class="dv">7</span>, <span class="at">n=</span><span class="dv">158</span>, <span class="at">m0=</span><span class="dv">36</span>,<span class="at">delta=</span><span class="dv">3</span>,<span class="at">potencia=</span><span class="fl">0.95</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+# t-Test con una muestra
+# ----------------------
+
+# Resumen de 'Muestra'
+    n = 158.000 
+    media = 37.000 
+    d.t. = 7.000 
+    sem = 0.557 
+
+# Estimación de la media μ:
+  95%-IC(μ) = (35.900, 38.100) 
+
+# Test de Student para contrastar H₀:μ=μ₀ con μ₀=36.000
+  texp = 1.796, gl = 157 
+    p = 0.074 para la alternativa bilateral H₁:μ≠μ₀ 
+    p = 0.037 para la alternativa unilateral H₁:μ&gt;μ₀ 
+
+  Estimación del efecto bruto 
+  95%-IC(μ-μ₀) = (-0.100, 2.100) 
+
+# Estudio de la potencia: δ = 3 -&gt; [33, 39], potencia θ = 95%
+    90%-IC(μ-μ₀) = (0.079, 1.921) con μ₀ = 36.000 
+    90%-IC(μ) = (36.079, 37.921) 
+
+     ---[--|(-)-]----    potencia &gt; 95% 
+
+    Leyenda:   --(---)--    --[---|---]--  
+                IC- IC+     μ₀-δ  μ₀  μ₀+δ 
+
+# Estimación del tamaño muestral
+  Efecto a detectar: δ = 3 
+  Potencia: θ = 0.95 
+  Error de tipo I: α = 0.05 
+  n ⩾ 72 casos </code></pre>
+</div>
+</div>
+<p>Integra en una sola función: verificación de normalidad (Shapiro-Wilk), t-test de una o dos muestras (pareadas o independientes), test de homogeneidad de varianzas, y IC.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo B.7a: Contraste de una muestra — ¿HbA1c &gt; 7.5%?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div id="lst-apendiceB-20" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.20: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># H₀: µ = 7.5  vs  H₁: µ &gt; 7.5  (meta clínica)</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">testt</span>(<span class="at">m =</span> osteo<span class="sc">$</span>hba1c, <span class="at">m0 =</span> <span class="fl">7.5</span>, <span class="at">grf =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+# t-Test con una muestra
+# ----------------------
+
+# Resumen de 'osteo$hba1c'
+    n = 94.000 
+    media = 8.565 
+    d.t. = 1.799 
+    sem = 0.186 
+
+# Estimación de la media μ:
+  95%-IC(μ) = (8.196, 8.933) 
+
+# Test de normalidad de Shapiro-Wilk:
+  W = 0.983, gl = 94, p = 0.276 
+
+# Test de Student para contrastar H₀:μ=μ₀ con μ₀=7.500
+  texp = 5.740, gl = 93 
+    p &lt; 0.001 para la alternativa bilateral H₁:μ≠μ₀ 
+    p &lt; 0.001 para la alternativa unilateral H₁:μ&gt;μ₀ 
+
+  Estimación del efecto bruto 
+  95%-IC(μ-μ₀) = (0.696, 1.433) </code></pre>
+</div>
+</div>
+<p>Rechazamos <span class="math inline">\(H_0\)</span>: la media de HbA1c supera significativamente el umbral clínico de 7.5%.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo B.7b: Contraste de dos muestras — HbA1c entre hombres y mujeres
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div id="lst-apendiceB-21" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-21-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.21: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-21-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">testt</span>(<span class="at">grupos =</span> osteo<span class="sc">$</span>sexo, <span class="at">m =</span> osteo<span class="sc">$</span>hba1c, <span class="at">grf =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> 
+
+# t-test para 2 Muestras Independientes
+# -------------------------------------
+
+# Información muestral y estimación de las medias
+  Niveles de agrupación: Hombre, Mujer 
+
+                        n media    dt   sem             IC
+  osteo$hba1c [Hombre] 45 8.553 1.745 0.260 (8.029, 9.078)
+  osteo$hba1c [Mujer]  49 8.576 1.864 0.266  (8.04, 9.111)
+  ____ 
+  * IC elaborados al 95% de confianza para estimar μ₁ y μ₂ respectivamente 
+
+
+# Pruebas de normalidad (test de Shapiro-Wilk)
+[1] Para grupo = Hombre, W = 0.958, gl = 45, p = 0.102
+[2] Para grupo = Mujer, W = 0.980, gl = 49, p = 0.566
+
+# Test de homogeneidad de varianzas. Fexp = (var₂/var₁)
+  Fexp = 1.141, gl₁ = 48, gl₂ = 44, p = 0.660 
+
+# Diferencia de medias (osteo$hba1c [Mujer] - osteo$hba1c [Hombre])
+  Hipótesis a contrastar: H₀:μ₁=μ₂ (μ₂-μ₁=0) 
+
+  a) Test de Student (varianzas homogéneas) 
+  texp = 0.059, gl = 92 
+    p = 0.953 para la alternativa bilateral H₁:μ₁≠μ₂ 
+    p = 0.476 para la alternativa unilateral H₁:μ₁&lt;μ₂ 
+  95%-IC(μ₂-μ₁) = (-0.719, 0.764) 
+
+  b) Test de Welch (varianzas no homogéneas) 
+  texp = 0.060, gl = 91.96 
+    p = 0.953 para la alternativa bilateral H₁:μ₁≠μ₂ 
+    p = 0.476 para la alternativa unilateral H₁:μ₁&lt;μ₂ 
+  95%-IC(μ₂-μ₁) = (-0.717, 0.762) </code></pre>
+</div>
+</div>
+<p>No hay diferencia significativa en el control glucémico entre hombres y mujeres (<span class="math inline">\(p = 0.953\)</span>).</p>
+</div>
+</div>
+</section>
+<section id="b.5.3-test-f-de-varianzas-testf" class="level3" data-number="B.5.3">
+<h3 data-number="B.5.3" class="anchored" data-anchor-id="b.5.3-test-f-de-varianzas-testf"><span class="header-section-number">B.5.3</span> B.5.3 Test F de Varianzas: <code>testf()</code></h3>
+<div class="cell">
+<div id="lst-apendiceB-22" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-22-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.22: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-22-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">testf</span>(<span class="at">s1=</span><span class="dv">15</span>, <span class="at">n1=</span><span class="dv">120</span>, <span class="at">s2=</span><span class="dv">12</span>, <span class="at">n2=</span><span class="dv">65</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 1.5625
+
+[[2]]
+[1] 119
+
+[[3]]
+[1] 64
+
+[[4]]
+[1] 0.05037974</code></pre>
+</div>
+</div>
+<p>Contraste <span class="math inline">\(H_0: \sigma_1^2 = \sigma_2^2\)</span> usando el estadístico <span class="math inline">\(F = s_1^2/s_2^2 \sim F_{n_1-1,\, n_2-1}\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo B.8: ¿Mismo IMC variable en hombres y mujeres?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div id="lst-apendiceB-23" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-23-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.23: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-23-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">testf</span>(<span class="at">s1 =</span> <span class="fu">sd</span>(osteo<span class="sc">$</span>imc[osteo<span class="sc">$</span>sexo <span class="sc">==</span> <span class="st">"Hombre"</span>]),</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">n1 =</span> <span class="fu">sum</span>(osteo<span class="sc">$</span>sexo <span class="sc">==</span> <span class="st">"Hombre"</span>),</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">s2 =</span> <span class="fu">sd</span>(osteo<span class="sc">$</span>imc[osteo<span class="sc">$</span>sexo <span class="sc">==</span> <span class="st">"Mujer"</span>]),</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">n2 =</span> <span class="fu">sum</span>(osteo<span class="sc">$</span>sexo <span class="sc">==</span> <span class="st">"Mujer"</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 2.306145
+
+[[2]]
+[1] 48
+
+[[3]]
+[1] 44
+
+[[4]]
+[1] 0.00584978</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(p = 0.006 &lt; 0.05\)</span>: rechazamos igualdad de varianzas del IMC por sexo. Las mujeres presentan mayor variabilidad (<span class="math inline">\(s = 4.39\)</span> kg/m²) que los hombres (<span class="math inline">\(s = 2.89\)</span> kg/m²). Se debe usar la corrección de Welch en el t-test.</p>
+</div>
+</div>
+</section>
+<section id="b.5.4-test-de-proporciones-testp" class="level3" data-number="B.5.4">
+<h3 data-number="B.5.4" class="anchored" data-anchor-id="b.5.4-test-de-proporciones-testp"><span class="header-section-number">B.5.4</span> B.5.4 Test de Proporciones: <code>testp()</code></h3>
+<div class="cell">
+<div id="lst-apendiceB-24" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-24-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.24: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-24-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">testp</span>(<span class="at">x=</span><span class="dv">30</span>,<span class="at">n=</span><span class="dv">70</span>,<span class="at">p0=</span><span class="fl">0.4</span>,<span class="at">delta=</span><span class="fl">0.05</span>,<span class="at">potencia=</span><span class="fl">0.9</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+# Test para contrastar una proporción binomial
+# --------------------------------------------
+
+# Información muestral
+  n = 70
+  x = 30   n-x=40
+  p = 0.429; q = (1-p) = 0.571
+
+# Test Ho:π=0.400
+  [1] Método exacto
+                      H1  Fexp Valor.p
+    Cola derecha π&gt;0.400 1.098   0.355
+    Bilateral    π≠0.400     -   0.709
+
+    95%-IC(π) = (0.315, 0.553) (método de Clooper-Pearson)
+
+  [2] Método aproximado a la distribución normal
+    Validez: min(nπ₀, n(1-π₀)) = 28.0 (&gt;5, el método es válido)
+    zexp = 0.366,  p  = 0.714
+
+    95%-IC(π) = (0.313, 0.552) (método de Wilson)
+
+
+# Tamaño de muestra para detectar |π-p₀|=δ
+  p₀ = 0.400;  δ = 0.05
+  Casos (cpc = corrección por continuidad):
+                            p1    n n_cpc
+  1 Unilateral π&lt;0.400   0.350  804   824
+  2 Unilateral π&gt;0.400   0.450  804   824
+  3 Bilateral  π≠0.400   0.450 1022  1042</code></pre>
+</div>
+</div>
+<p>Contraste para una proporción (contra valor hipotético <span class="math inline">\(\pi_0\)</span>) o para comparar dos proporciones independientes o pareadas.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo B.9: ¿La prevalencia de tabaquismo supera el 35%?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div id="lst-apendiceB-25" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-25-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.25: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-25-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># H₀: π = 0.35  vs  H₁: π ≠ 0.35</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">testp</span>(<span class="at">x =</span> <span class="fu">sum</span>(osteo<span class="sc">$</span>tabaco <span class="sc">==</span> <span class="st">"Sí"</span>), <span class="at">n =</span> <span class="fu">nrow</span>(osteo), <span class="at">p0 =</span> <span class="fl">0.35</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+# Test para contrastar una proporción binomial
+# --------------------------------------------
+
+# Información muestral
+  n = 94
+  x = 41   n-x=53
+  p = 0.436; q = (1-p) = 0.564
+
+# Test Ho:π=0.350
+  [1] Método exacto
+                      H1  Fexp Valor.p
+    Cola derecha π&gt;0.350 1.410   0.052
+    Bilateral    π≠0.350     -   0.103
+
+    95%-IC(π) = (0.339, 0.542) (método de Clooper-Pearson)
+
+  [2] Método aproximado a la distribución normal
+    Validez: min(nπ₀, n(1-π₀)) = 32.9 (&gt;5, el método es válido)
+    zexp = 1.643,  p  = 0.100
+
+    95%-IC(π) = (0.335, 0.542) (método de Wilson)</code></pre>
+</div>
+</div>
+<p>No se rechaza <span class="math inline">\(H_0\)</span> al 5%: la proporción de fumadores (43.6%) no difiere significativamente del valor hipotético del 35% (<span class="math inline">\(p = 0.100\)</span>).</p>
+</div>
+</div>
+</section>
+<section id="b.5.5-test-de-wilcoxon-testwx" class="level3" data-number="B.5.5">
+<h3 data-number="B.5.5" class="anchored" data-anchor-id="b.5.5-test-de-wilcoxon-testwx"><span class="header-section-number">B.5.5</span> B.5.5 Test de Wilcoxon: <code>testwx()</code></h3>
+<div class="cell">
+<div id="lst-apendiceB-26" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-26-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.26: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-26-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>y1<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">78</span>,<span class="dv">64</span>,<span class="dv">75</span>,<span class="dv">45</span>,<span class="dv">82</span>,<span class="dv">55</span>,<span class="dv">48</span>)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>y2<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">110</span>,<span class="dv">70</span>,<span class="dv">53</span>,<span class="dv">51</span>,<span class="dv">63</span>,<span class="dv">87</span>,<span class="dv">99</span>)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">testwx</span>(<span class="at">m1=</span>y1,<span class="at">m2=</span>y2,<span class="at">par=</span><span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Test de Wilcoxon/Mann-Whithney para dos muestras independientes 
+----------------------------------------------------------------
+# Información muestral ---
+
+  Muestra n    min     Q1     Q2     Q3     max    RIQ
+1      y1 7 45.000 51.500 64.000 76.500  82.000 25.000
+2      y2 7 51.000 58.000 70.000 93.000 110.000 35.000
+
+# Rangos ---
+
+  Muestra n Suma_rangos Rango_medio      U
+1      y1 7          45       6.429 32.000
+2      y2 7          60       8.571 17.000
+
+# Test ---
+
+  U = 17.000; Z = 0.958; W = 17.000; p = 0.383
+
+# Tamaño del efecto ---
+
+  Diferencia de localización: -9.000    95%-IC = (-39.000, 13.000) 
+  r = 0.256  (criterio: 0.1 pequeño; 0.3 mediano; &gt;0.5 grande)
+  Probabilidad de superioridad PS = 0.653
+  (probabilidad de que un valor al azar de M1 sea &lt; a un valor al azar de M2) </code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-26-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Test de Wilcoxon-Mann-Whitney para dos muestras independientes (<code>par = FALSE</code>) o test de los rangos con signo de Wilcoxon para datos pareados (<code>par = TRUE</code>). Incluye tamaño del efecto <span class="math inline">\(r\)</span> y probabilidad de superioridad.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo B.10: IMC en diabéticos jóvenes vs mayores (distribución no normal)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div id="lst-apendiceB-27" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-27-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.27: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-27-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">testwx</span>(<span class="at">m1 =</span> osteo<span class="sc">$</span>imc[osteo<span class="sc">$</span>grupo_edad <span class="sc">==</span> <span class="st">"&lt; 25"</span>],</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">m2 =</span> osteo<span class="sc">$</span>imc[osteo<span class="sc">$</span>grupo_edad <span class="sc">==</span> <span class="st">"&gt; 33"</span>],</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">grf =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Test de Wilcoxon/Mann-Whithney para dos muestras independientes 
+----------------------------------------------------------------
+# Información muestral ---
+
+                                Muestra  n    min     Q1     Q2     Q3    max
+1 osteo$imc[osteo$grupo_edad == "&lt; 25"] 32 19.628 21.421 22.845 24.149 32.475
+2 osteo$imc[osteo$grupo_edad == "&gt; 33"] 30 18.070 23.382 25.889 28.945 37.333
+    RIQ
+1 2.728
+2 5.563
+
+# Rangos ---
+
+                                Muestra  n Suma_rangos Rango_medio       U
+1 osteo$imc[osteo$grupo_edad == "&lt; 25"] 32         807      25.219 681.000
+2 osteo$imc[osteo$grupo_edad == "&gt; 33"] 30        1146      38.200 279.000
+
+# Test ---
+
+  U = 279.000; Z = 2.831; W = 279.000; p = 0.005
+
+# Tamaño del efecto ---
+
+  Diferencia de localización: -2.667    95%-IC = (-4.518, -0.778) 
+  r = 0.360  (criterio: 0.1 pequeño; 0.3 mediano; &gt;0.5 grande)
+  Probabilidad de superioridad PS = 0.709
+  (probabilidad de que un valor al azar de M1 sea &lt; a un valor al azar de M2) </code></pre>
+</div>
+</div>
+<p>Los pacientes mayores de 33 años presentan un IMC significativamente más elevado que los menores de 25 (<span class="math inline">\(p = 0.005\)</span>, <span class="math inline">\(r = 0.36\)</span>). Un paciente del grupo <span class="math inline">\(&gt; 33\)</span> tiene una probabilidad del 70.9% de tener mayor IMC que uno del grupo <span class="math inline">\(&lt; 25\)</span>.</p>
+</div>
+</div>
+</section>
+<section id="b.5.6-test-de-mcnemar-testmcnemar" class="level3" data-number="B.5.6">
+<h3 data-number="B.5.6" class="anchored" data-anchor-id="b.5.6-test-de-mcnemar-testmcnemar"><span class="header-section-number">B.5.6</span> B.5.6 Test de McNemar: <code>testmcnemar()</code></h3>
+<div class="cell">
+<div id="lst-apendiceB-28" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-28-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.28: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-28-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">testmcnemar</span>(<span class="at">n11=</span><span class="dv">27</span>,<span class="at">n12=</span><span class="dv">35</span>,<span class="at">n21=</span><span class="dv">43</span>,<span class="at">n22=</span><span class="dv">20</span>,<span class="at">delta=</span><span class="fl">0.05</span>,<span class="at">alfa=</span><span class="fl">0.05</span>,<span class="at">beta=</span><span class="fl">0.15</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+# Inferencia con dos proporciones (muestras apareadas)
+# ----------------------------------------------------
+
+# Frecuencias observadas pretest x posttest
+            +    - Total
+   +       27   35    62
+   -       43   20    63
+   Total   70   55   125
+
+
+# Proporciones observadas pretest x posttest
+             +     - Total
+   +     0.216 0.280 0.496
+   -     0.344 0.160 0.504
+   Total 0.560 0.440 1.000
+
+# Test de McNemar: H₀:π₁₂=π₂₁
+   Validez: n₁₂+n₂₁ = 78 &gt; 10 el test es válido 
+   Zexp =  0.8492 
+               valor.p Alternativa
+    Bilateral   0.3958  H₁:π₁₂≠π₂₁
+    Unilateral  0.1979  H₁:π₁₂&lt;π₂₁
+
+
+# Test exacto de Fisher:
+  H₀:π₁₂=0.5 para n₁₂ ~ B(n₁₂+n₂₁, π₁₂) 
+               Valor.p Alternativa
+    Bilateral   0.4426  H₁:π₁₂≠0.5
+    Unilateral  0.2141  H₁:π₁₂&lt;0.5
+  ____
+  * Aquí se alude a la probabilidad total de la discordancia, es decir que π₁₂+π₂₁=1
+
+# Estimación de las proporciones individuales de discordancias π₁₂ y π₂₁ (método de Wald ajustado)
+   [1] p₁₂ = 0.2868, 95%-IC(π₁₂) = (0.2088, 0.3649) 
+   [2] p₂₁ = 0.3488, 95%-IC(π₂₁) = (0.2666, 0.4311) 
+
+
+# Intervalo de confianza para la diferencia de 2 proporciones apareadas
+   [1] Método de Wald (clásico con cpc):
+      Estimación puntual de π₁₂-π₂₁ = -0.0640 
+      Validez: n₁₂+n₂₁ = 78 &gt; 5, el IC es válido 
+      95%-IC(π₁₂-π₂₁) = (-0.2025, 0.0745) 
+
+   [2] Método de Agresti-Min:
+      Estimación puntual de π₁₂-π₂₁ = -0.0630 
+      Validez: siempre es válido 
+      95%-IC(π₁₂-π₂₁) = (-0.1997, 0.0737) 
+
+
+# Estudio de la potencia: δ = 0.05 -&gt; ±δ=[-0.05, 0.05], potencia θ = 0.85, α = 0.05
+  70%-IC(π₁₂-π₂₁) = (-0.1353, 0.0093) (método de Agresti-Min) 
+
+     -(--[--|)---]---    potencia &lt; 85% 
+
+    Leyenda:   --(---)--    --[---|---]--  
+                IC- IC+      -δ   0  +δ 
+
+
+# Tamaño de muestra necesario para declarar significativa una diferencia δ
+  Diferencia: δ = 0.05 
+  Potencia: θ = 0.850 
+  Error de tipo I: α = 0.050 
+
+   [1] Estimación para la varianza máxima:  
+      Asumiendo p₁₂ = 0.4750   p₂₁ = 0.5250 
+      n ⩾ 3589 
+
+   [2] Basado en la información muestral:  
+      Asumiendo p₁₂ = 0.3649   p₂₁ = 0.4149 
+      n ⩾ 2798 
+  ____
+  *Si se desea la estimación de n para el test unilateral, repetir
+   el análisis indicando alfa=0.1000 y asumir el n obtenido.</code></pre>
+</div>
+</div>
+<p>Para comparar dos proporciones en muestras apareadas (antes/después, o dos pruebas diagnósticas en los mismos sujetos). El contraste se basa en las celdas discordantes <span class="math inline">\(n_{12}\)</span> y <span class="math inline">\(n_{21}\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo B.11: Cambio en actividad física — intervención en diabéticos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>94 pacientes fueron evaluados en actividad física antes y después de una intervención de ejercicio estructurado.</p>
+<div class="cell">
+<div id="lst-apendiceB-29" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-29-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.29: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-29-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># n11 = 35 (activo→activo), n12 = 10 (activo→inactivo)</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="co"># n21 =  5 (inactivo→activo), n22 = 44 (inactivo→inactivo)</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">testmcnemar</span>(<span class="at">n11 =</span> <span class="dv">35</span>, <span class="at">n12 =</span> <span class="dv">10</span>, <span class="at">n21 =</span> <span class="dv">5</span>, <span class="at">n22 =</span> <span class="dv">44</span>,</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">fcat =</span> <span class="fu">c</span>(<span class="st">"Activo"</span>,<span class="st">"Inactivo"</span>),</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">ccat =</span> <span class="fu">c</span>(<span class="st">"Antes"</span>,<span class="st">"Después"</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+# Inferencia con dos proporciones (muestras apareadas)
+# ----------------------------------------------------
+
+# Frecuencias observadas pretest x posttest
+               Antes    Después Total
+   Activo         35         10    45
+   Inactivo        5         44    49
+   Total          40         54    94
+
+
+# Proporciones observadas pretest x posttest
+               Antes    Después  Total
+   Activo     0.3723     0.1064 0.4787
+   Inactivo   0.0532     0.4681 0.5213
+   Total      0.4255     0.5745 1.0000
+
+# Test de McNemar: H₀:π₁₂=π₂₁
+   Validez: n₁₂+n₂₁ = 15 &gt; 10 el test es válido 
+   Zexp =  1.1619 
+               valor.p Alternativa
+    Bilateral   0.2453  H₁:π₁₂≠π₂₁
+    Unilateral  0.1226  H₁:π₁₂&gt;π₂₁
+
+
+# Test exacto de Fisher:
+  H₀:π₁₂=0.5 para n₁₂ ~ B(n₁₂+n₂₁, π₁₂) 
+               Valor.p Alternativa
+    Bilateral   0.3018  H₁:π₁₂≠0.5
+    Unilateral  0.1509  H₁:π₁₂&gt;0.5
+  ____
+  * Aquí se alude a la probabilidad total de la discordancia, es decir que π₁₂+π₂₁=1
+
+# Estimación de las proporciones individuales de discordancias π₁₂ y π₂₁ (método de Wald ajustado)
+   [1] p₁₂ = 0.1224, 95%-IC(π₁₂) = (0.0575, 0.1873) 
+   [2] p₂₁ = 0.0714, 95%-IC(π₂₁) = (0.0204, 0.1224) 
+
+
+# Intervalo de confianza para la diferencia de 2 proporciones apareadas
+   [1] Método de Wald (clásico con cpc):
+      Estimación puntual de π₁₂-π₂₁ = 0.0532 
+      Validez: n₁₂+n₂₁ = 15 &gt; 5, el IC es válido 
+      95%-IC(π₁₂-π₂₁) = (-0.0282, 0.1346) 
+
+   [2] Método de Agresti-Min:
+      Estimación puntual de π₁₂-π₂₁ = 0.0521 
+      Validez: siempre es válido 
+      95%-IC(π₁₂-π₂₁) = (-0.0289, 0.1331) </code></pre>
+</div>
+</div>
+<p>No se detecta cambio significativo neto en los patrones de actividad física (<span class="math inline">\(p = 0.245\)</span>). Las 10 personas que pasaron de activas a inactivas se compensan con las 5 que mejoraron.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-bio-rls" class="level2" data-number="B.6">
+<h2 data-number="B.6" class="anchored" data-anchor-id="sec-bio-rls"><span class="header-section-number">B.6</span> B.6 Regresión Lineal Simple: <code>rls()</code></h2>
+<div class="cell">
+<div id="lst-apendiceB-30" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.30: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>pre  <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">200.1</span>, <span class="fl">190.9</span>, <span class="fl">192.7</span>, <span class="dv">213</span>, <span class="fl">241.4</span>, <span class="fl">196.9</span>, <span class="fl">172.2</span>, <span class="fl">185.5</span>, <span class="fl">205.2</span>, <span class="fl">193.7</span>)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>post <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">392.9</span>, <span class="fl">393.2</span>, <span class="fl">345.1</span>, <span class="dv">393</span>, <span class="dv">434</span>, <span class="fl">427.9</span>, <span class="dv">422</span>, <span class="fl">383.9</span>, <span class="fl">392.3</span>, <span class="fl">352.2</span>)</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo - entrada como vectores individuales</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rls</span>(post, pre) <span class="co">#ajusta el modelo post~pre</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Regresión lineal simple 
+----------------------------------------------------------------
+# Información muestral ---
+
+  variable  n  media     dt   Min   Max Rango
+1     &lt;NA&gt; 10 393.65 29.398 345.1 434.0  88.9
+2     &lt;NA&gt; 10 199.16 18.474 172.2 241.4  69.2
+
+  Cov(NA,NA) = 169.073
+
+# Correlación de Pearson --- 
+
+      r IC_inf IC_sup gl  texp     sig
+  0.311 -0.396  0.787  8 0.927 = 0.381
+
+# Modelo lineal --- 
+
+  Modelo:  NA ~ NA 
+  R² =  0.097 
+  S²residual =  878.04 
+  Coeficientes del modelo:
+
+         Coef   estim      se ic_inf  ic_sup  texp   sig
+1 (Constante) 294.982 106.896 48.478 541.485 2.760 0.025
+2        &lt;NA&gt;   0.495   0.535 -0.738   1.728 0.927 0.381
+
+# Distribución residual --- 
+  Error estándar residual:  29.632 
+        res   zres
+min -45.350 -1.626
+Q1   -6.716 -0.246
+Q2   -2.099 -0.077
+Q3   15.478  0.903
+max  41.707  1.728
+
+  Test de normalidad residual (Shapiro-Wilk): 
+  w =0.938, p= 0.526</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-8.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-9.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div id="lst-apendiceB-30" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.31: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo - entrada como formula</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>datos<span class="ot">&lt;-</span><span class="fu">data.frame</span>(pre,post)</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rls</span>(post<span class="sc">~</span>pre, <span class="at">data=</span>datos)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Regresión lineal simple 
+----------------------------------------------------------------
+# Información muestral ---
+
+  variable  n  media     dt   Min   Max Rango
+1     post 10 393.65 29.398 345.1 434.0  88.9
+2      pre 10 199.16 18.474 172.2 241.4  69.2
+
+  Cov(post,pre) = 169.073
+
+# Correlación de Pearson --- 
+
+      r IC_inf IC_sup gl  texp     sig
+  0.311 -0.396  0.787  8 0.927 = 0.381
+
+# Modelo lineal --- 
+
+  Modelo:  post ~ pre 
+  R² =  0.097 
+  S²residual =  878.04 
+  Coeficientes del modelo:
+
+         Coef   estim      se ic_inf  ic_sup  texp   sig
+1 (Constante) 294.982 106.896 48.478 541.485 2.760 0.025
+2         pre   0.495   0.535 -0.738   1.728 0.927 0.381
+
+# Distribución residual --- 
+  Error estándar residual:  29.632 
+        res   zres
+min -45.350 -1.626
+Q1   -6.716 -0.246
+Q2   -2.099 -0.077
+Q3   15.478  0.903
+max  41.707  1.728
+
+  Test de normalidad residual (Shapiro-Wilk): 
+  w =0.938, p= 0.526</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-10.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-11.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-12.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-13.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-14.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-15.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-16.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-17.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-18.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div id="lst-apendiceB-30" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.32: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo - Pronosticos</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rls</span>(post<span class="sc">~</span>pre, <span class="at">data=</span>datos,<span class="at">pred=</span><span class="fu">c</span>(<span class="dv">197</span>,<span class="dv">205</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Regresión lineal simple 
+----------------------------------------------------------------
+# Información muestral ---
+
+  variable  n  media     dt   Min   Max Rango
+1     post 10 393.65 29.398 345.1 434.0  88.9
+2      pre 10 199.16 18.474 172.2 241.4  69.2
+
+  Cov(post,pre) = 169.073
+
+# Correlación de Pearson --- 
+
+      r IC_inf IC_sup gl  texp     sig
+  0.311 -0.396  0.787  8 0.927 = 0.381
+
+# Modelo lineal --- 
+
+  Modelo:  post ~ pre 
+  R² =  0.097 
+  S²residual =  878.04 
+  Coeficientes del modelo:
+
+         Coef   estim      se ic_inf  ic_sup  texp   sig
+1 (Constante) 294.982 106.896 48.478 541.485 2.760 0.025
+2         pre   0.495   0.535 -0.738   1.728 0.927 0.381
+
+# Pronósticos con el modelo --- 
+  Pronosticos puntuales y bandas al 95 % de confianza para 
+  promedios IC(m), y para una nueva observación: IC(obs)  
+
+  Predictor  Puntual IC(m)_inf IC(m)_sup IC(obs)_inf IC(obs)_sup
+1       197 392.5799  370.8083  414.3515    320.8643    464.2954
+2       205 396.5433  373.7670  419.3195    324.5164    468.5702
+
+# Distribución residual --- 
+  Error estándar residual:  29.632 
+        res   zres
+min -45.350 -1.626
+Q1   -6.716 -0.246
+Q2   -2.099 -0.077
+Q3   15.478  0.903
+max  41.707  1.728
+
+  Test de normalidad residual (Shapiro-Wilk): 
+  w =0.938, p= 0.526</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-19.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-20.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-21.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-22.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-23.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-24.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-25.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-26.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceB_files/figure-html/unnamed-chunk-30-27.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Ajusta el modelo <span class="math inline">\(Y = \beta_0 + \beta_1 X + \varepsilon\)</span> e informa de: correlación de Pearson con IC, coeficientes con IC, <span class="math inline">\(R^2\)</span>, diagnóstico de residuos, y (opcional) predicciones puntuales con IC.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo B.12: ¿La evolución de la diabetes predice la HbA1c?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div id="lst-apendiceB-31" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-31-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.33: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-31-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rls</span>(<span class="at">y =</span> osteo<span class="sc">$</span>hba1c, <span class="at">x =</span> osteo<span class="sc">$</span>tevol, <span class="at">grf =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Regresión lineal simple 
+----------------------------------------------------------------
+# Información muestral ---
+
+  variable  n  media    dt Min  Max Rango
+1    hba1c 94  8.565 1.799 4.6 13.8   9.2
+2    tevol 94 12.330 8.534 0.0 35.0  35.0
+
+  Cov(hba1c,tevol) = -3.64
+
+# Correlación de Pearson --- 
+
+       r IC_inf IC_sup gl   texp     sig
+  -0.237  -0.42 -0.036 92 -2.341 = 0.021
+
+# Modelo lineal --- 
+
+  Modelo:  hba1c ~ tevol 
+  R² =  0.056 
+  S²residual =  3.087 
+  Coeficientes del modelo:
+
+         Coef  estim    se ic_inf ic_sup   texp    sig
+1 (Constante)  9.181 0.320  8.546  9.816 28.730 &lt;0.001
+2       tevol -0.050 0.021 -0.092 -0.008  2.341  0.021
+
+# Distribución residual --- 
+  Error estándar residual:  1.757 
+       res   zres
+min -4.481 -2.585
+Q1  -0.981 -0.562
+Q2  -0.056 -0.032
+Q3   0.956  0.551
+max  4.669  2.698
+
+  Test de normalidad residual (Shapiro-Wilk): 
+  w =0.989, p= 0.625</code></pre>
+</div>
+</div>
+<p>Existe una asociación negativa significativa (<span class="math inline">\(r = -0.237\)</span>, <span class="math inline">\(p = 0.021\)</span>): por cada año adicional de evolución de la diabetes, la HbA1c disminuye en promedio 0.05 puntos. Esta relación paradójica puede reflejar mejor adherencia al tratamiento en pacientes con más años de diagnóstico. Sin embargo, <span class="math inline">\(R^2 = 0.056\)</span>: el tiempo de evolución solo explica el 5.6% de la variabilidad en HbA1c.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-bio-tablas" class="level2" data-number="B.7">
+<h2 data-number="B.7" class="anchored" data-anchor-id="sec-bio-tablas"><span class="header-section-number">B.7</span> B.7 Tablas de Contingencia: <code>tabla2x2()</code> y <code>tablarxc()</code></h2>
+<section id="b.7.1-tabla-22-tabla2x2" class="level3" data-number="B.7.1">
+<h3 data-number="B.7.1" class="anchored" data-anchor-id="b.7.1-tabla-22-tabla2x2"><span class="header-section-number">B.7.1</span> B.7.1 Tabla 2×2: <code>tabla2x2()</code></h3>
+<div class="cell">
+<div id="lst-apendiceB-32" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-32-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.34: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-32-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tabla2x2</span>(<span class="at">o=</span><span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">26</span>, <span class="dv">60</span>,<span class="dv">294</span>), <span class="at">estudio =</span> <span class="st">"T"</span>,<span class="at">fcat=</span><span class="fu">c</span>(<span class="st">"Peso normal"</span>,<span class="st">"Peso bajo"</span>), <span class="at">ccat=</span><span class="fu">c</span>(<span class="st">"fuma"</span>,<span class="st">"No fuma"</span>), <span class="at">tablas=</span><span class="fu">c</span>(<span class="st">"F"</span>,<span class="st">"E"</span>,<span class="st">"S"</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+# Análisis de tablas 2x2
+# ----------------------
+
+# Frecuencias observadas
+                fuma   No fuma Total
+  Peso normal     20        26    46
+  Peso bajo       60       294   354
+  Total           80       320   400
+
+# Frecuencias esperadas
+                fuma   No fuma Total
+  Peso normal    9.2      36.8  46.0
+  Peso bajo     70.8     283.2 354.0
+  Total         80.0     320.0 400.0
+
+
+# Test Chi-cuadrado para un estudio transversal
+
+  χ² = 17.903,   gl = 1,  p &lt; 0.001, (cpc = 0.5) 
+  Validez: Frecuencia mínima esperada = 9.20  &gt; 3.9  
+
+  Test exacto de Fisher (bilateral): p &lt; 0.001 
+
+  --- Otros criterios χ²:  
+  χ² = 17.907,   gl = 1,  p &lt; 0.001, (sin cpc) 
+  χ² = 16.287,   gl = 1,  p &lt; 0.001, (cpc de Yates = 200.00) 
+
+# Residuos estandarizados
+                fuma   No fuma
+  Peso normal  4.232    -4.232
+  Peso bajo   -4.232     4.232
+
+# Porcentajes por filas
+                fuma   No fuma Total
+  Peso normal  0.435     0.565 1.000
+  Peso bajo    0.169     0.831 1.000
+  Total        0.200     0.800 1.000
+
+# Estimación de la prevalenciaπ en un estudio transversal
+  Método de Wald ajustado: 
+  p=0.119; 95%-IC(π)=(0.087, 0.150) 
+
+# Medidas de asociación para un estudio transversal
+  [!] Las medidas de riesgo se calculan como riesgo de la categoría  
+      en la 1a columna (frente a la 2a) para la categoría en la 1a 
+      fila (frente a la 2a)
+
+  Riesgo absoluto (diferencia de Berkson; método de Agresti-Caffo): 
+  d=0.169; 95%-IC(d)=(0.073, 0.271) 
+
+  Riesgo relativo: 
+  Rr=3.077; 95%-IC(Rr)=(1.818, 5.169) 
+
+  Riesgo atribuible:
+  Ra=0.293; 95%-IC(Ra)= (0.104, 0.443) 
+
+  Razón del producto cruzado (odds ratio):
+  OR=3.769; 95%-IC(OR)= (1.987, 7.137) </code></pre>
+</div>
+</div>
+<p>Calcula: frecuencias observadas y esperadas, <span class="math inline">\(\chi^2\)</span> de Pearson (con y sin corrección de Yates), test exacto de Fisher, y medidas de asociación (OR, RR, RD) con sus IC al 95%, adaptadas al tipo de estudio (<code>estudio = "T"</code> transversal, <code>"C"</code> cohorte, <code>"CC"</code> caso-control).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo B.13: Tabaquismo y osteoporosis del cuello femoral
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div id="lst-apendiceB-33" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-33-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.35: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-33-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tabla2x2</span>(<span class="at">fvar =</span> osteo<span class="sc">$</span>tabaco, <span class="at">cvar =</span> osteo<span class="sc">$</span>osteo_cue, <span class="at">o =</span> osteo)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+# Análisis de tablas 2x2
+# ----------------------
+
+# Frecuencias observadas
+          C1   C2 Total
+  F1      44    9    53
+  F2      26   15    41
+  Total   70   24    94
+
+
+# Test Chi-cuadrado para un estudio transversal
+
+  χ² = 4.662,   gl = 1,  p = 0.031, (cpc = 0.5) 
+  Validez: Frecuencia mínima esperada = 10.47  &gt; 3.9  
+
+  Test exacto de Fisher (bilateral): p = 0.035 
+
+  --- Otros criterios χ²:  
+  χ² = 4.673,   gl = 1,  p = 0.054, (sin cpc) 
+  χ² = 3.699,   gl = 1,  p = 0.054, (cpc de Yates = 47.00) 
+
+# Estimación de la prevalenciaπ en un estudio transversal
+  Método de Wald ajustado: 
+  p=0.561; 95%-IC(π)=(0.463, 0.659) 
+
+# Medidas de asociación para un estudio transversal
+  [!] Las medidas de riesgo se calculan como riesgo de la categoría  
+      en la 1a columna (frente a la 2a) para la categoría en la 1a 
+      fila (frente a la 2a)
+
+  Riesgo absoluto (diferencia de Berkson; método de Agresti-Caffo): 
+  d=0.254; 95%-IC(d)=(0.023, 0.459) 
+
+  Riesgo relativo: 
+  Rr=1.676; 95%-IC(Rr)=(0.969, 2.808) 
+
+  Riesgo atribuible:
+  Ra=0.335; 95%-IC(Ra)= (-0.049, 0.578) 
+
+  Razón del producto cruzado (odds ratio):
+  OR=2.821; 95%-IC(OR)= (1.070, 7.013) </code></pre>
+</div>
+</div>
+<p>Los fumadores presentan una OR de 2.82 de tener osteoporosis del cuello femoral respecto a los no fumadores. La asociación es estadísticamente significativa (<span class="math inline">\(p = 0.031\)</span>).</p>
+</div>
+</div>
+</section>
+<section id="b.7.2-tabla-rc-tablarxc" class="level3" data-number="B.7.2">
+<h3 data-number="B.7.2" class="anchored" data-anchor-id="b.7.2-tabla-rc-tablarxc"><span class="header-section-number">B.7.2</span> B.7.2 Tabla r×c: <code>tablarxc()</code></h3>
+<div class="cell">
+<div id="lst-apendiceB-34" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-34-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.36: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-34-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>peor <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>)</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>igual<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">12</span>)</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>mejor<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">9</span>,<span class="dv">10</span>)</span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>tabla<span class="ot">&lt;-</span><span class="fu">data.frame</span>(peor,igual,mejor)</span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tablarxc</span>(<span class="at">frecs=</span>tabla, <span class="at">tablas=</span><span class="fu">c</span>(<span class="st">"E"</span>,<span class="st">"F"</span>,<span class="st">"S"</span>), <span class="at">fcat=</span><span class="fu">c</span>(<span class="st">"Trat1"</span>,<span class="st">"Trat2"</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+# Test Chi-cuadrado para tablas RxC
+# ---------------------------------
+
+# Frecuencias observadas
+          peor   igual   mejor Total
+  1          8       6       4    18
+  2          9       8       9    26
+  3         10      12      10    32
+  Total     27      26      23    76
+
+# Frecuencias esperadas
+          peor   igual   mejor Total
+  1       6.39    6.16    5.45 18.00
+  2       9.24    8.89    7.87 26.00
+  3      11.37   10.95    9.68 32.00
+  Total  27.00   26.00   23.00 76.00
+
+# Test chi-cuadrado 
+  Validez: Frecuencia mínima esperada = 5.45 
+           0 frecuencias esperadas son menores a 1
+           0 son menores a 5 (el 0% de la tabla) 
+  χ²(4 gl) = 1.327, p = 0.857 
+
+# Residuos estandarizados
+      peor   igual   mejor
+  1  0.905  -0.090  -0.850
+  2 -0.120  -0.456   0.596
+  3 -0.664   0.516   0.160
+
+# Porcentajes por filas
+          peor   igual   mejor Total
+  1      0.444   0.333   0.222 1.000
+  2      0.346   0.308   0.346 1.000
+  3      0.312   0.375   0.312 1.000
+  Total  0.355   0.342   0.303 1.000</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo B.14: Osteoporosis por grupo de edad (tabla 3×2)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div id="lst-apendiceB-35" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceB-35-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;B.37: Código R
+</figcaption>
+<div aria-describedby="lst-apendiceB-35-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">table</span>(osteo<span class="sc">$</span>grupo_edad, osteo<span class="sc">$</span>osteo_cue)</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tablarxc</span>(<span class="at">frecs =</span> tab,</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">fcat  =</span> <span class="fu">c</span>(<span class="st">"&lt; 25"</span>, <span class="st">"25-33"</span>, <span class="st">"&gt; 33"</span>),</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">ccat  =</span> <span class="fu">c</span>(<span class="st">"No"</span>,   <span class="st">"Sí"</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+# Test Chi-cuadrado para tablas RxC
+# ---------------------------------
+
+# Frecuencias observadas
+            No   Sí Total
+  &lt; 25      27    5    32
+  &gt; 33      22    8    30
+  25 - 33   21   11    32
+  Total     70   24    94
+
+# Test chi-cuadrado 
+  Validez: Frecuencia mínima esperada = 7.66 
+           0 frecuencias esperadas son menores a 1
+           0 son menores a 5 (el 0% de la tabla) 
+  χ²(2 gl) = 2.988, p = 0.224 </code></pre>
+</div>
+</div>
+<p>No hay diferencia significativa en la prevalencia de osteoporosis entre los tres grupos de edad (<span class="math inline">\(\chi^2 = 2.99\)</span>, <span class="math inline">\(p = 0.224\)</span>).</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-bio-resumen" class="level2" data-number="B.8">
+<h2 data-number="B.8" class="anchored" data-anchor-id="sec-bio-resumen"><span class="header-section-number">B.8</span> B.8 Tabla Resumen de Funciones</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 21%">
+<col style="width: 23%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Función</th>
+<th>Capítulo</th>
+<th>Propósito</th>
+<th>Ejemplo de uso</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>freq()</code></td>
+<td>1, 2</td>
+<td>Tablas de frecuencias (absolutas, relativas, acumuladas)</td>
+<td><code>freq(osteo$edad, grf=FALSE)</code></td>
+</tr>
+<tr class="even">
+<td><code>grps()</code></td>
+<td>2</td>
+<td>Estadísticas descriptivas por grupos</td>
+<td><code>grps(osteo$imc, osteo$sexo)</code></td>
+</tr>
+<tr class="odd">
+<td><code>icm()</code></td>
+<td>7</td>
+<td>IC bilateral para la media</td>
+<td><code>icm(m=8.565, s=1.799, n=94)</code></td>
+</tr>
+<tr class="even">
+<td><code>icp()</code></td>
+<td>7</td>
+<td>IC para proporción (4 métodos)</td>
+<td><code>icp(x=41, n=94)</code></td>
+</tr>
+<tr class="odd">
+<td><code>icl()</code></td>
+<td>7</td>
+<td>IC para tasa Poisson (exacto)</td>
+<td><code>icl(x=12, n=1000)</code></td>
+</tr>
+<tr class="even">
+<td><code>nm()</code></td>
+<td>7</td>
+<td>Tamaño muestral para media</td>
+<td><code>nm(m=8.5, s=1.8, d=0.4)</code></td>
+</tr>
+<tr class="odd">
+<td><code>np()</code></td>
+<td>7</td>
+<td>Tamaño muestral para proporción</td>
+<td><code>np(x=41, n=94, d=0.1)</code></td>
+</tr>
+<tr class="even">
+<td><code>testnormal()</code></td>
+<td>9, 12</td>
+<td>Test de Shapiro-Wilk + gráficos</td>
+<td><code>testnormal(osteo$hba1c)</code></td>
+</tr>
+<tr class="odd">
+<td><code>testt()</code></td>
+<td>8, 9</td>
+<td>t-test (1 muestra, 2 muestras, pareado)</td>
+<td><code>testt(m=osteo$hba1c, m0=7.5)</code></td>
+</tr>
+<tr class="even">
+<td><code>testf()</code></td>
+<td>9</td>
+<td>Test F de igualdad de varianzas</td>
+<td><code>testf(s1=2.89, n1=45, s2=4.39, n2=49)</code></td>
+</tr>
+<tr class="odd">
+<td><code>testp()</code></td>
+<td>8</td>
+<td>Test de proporciones (1 o 2 grupos)</td>
+<td><code>testp(x=41, n=94, p0=0.35)</code></td>
+</tr>
+<tr class="even">
+<td><code>testwx()</code></td>
+<td>9</td>
+<td>Wilcoxon-Mann-Whitney / rangos con signo</td>
+<td><code>testwx(m1=imc1, m2=imc2)</code></td>
+</tr>
+<tr class="odd">
+<td><code>testmcnemar()</code></td>
+<td>12</td>
+<td>Test de McNemar (datos apareados)</td>
+<td><code>testmcnemar(n11=35, n12=10, n21=5, n22=44)</code></td>
+</tr>
+<tr class="even">
+<td><code>rls()</code></td>
+<td>10</td>
+<td>Regresión lineal simple con diagnósticos</td>
+<td><code>rls(y=osteo$hba1c, x=osteo$tevol)</code></td>
+</tr>
+<tr class="odd">
+<td><code>tabla2x2()</code></td>
+<td>12</td>
+<td>Tabla 2×2: χ², Fisher, OR/RR/RD + IC</td>
+<td><code>tabla2x2(fvar=tabaco, cvar=osteo_cue, o=osteo)</code></td>
+</tr>
+<tr class="even">
+<td><code>tablarxc()</code></td>
+<td>12</td>
+<td>Tabla r×c: χ² con verificación de supuestos</td>
+<td><code>tablarxc(frecs=table(retin, nefro))</code></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Recursos del Paquete
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Web:</strong> <a href="https://digibug.ugr.es/handle/10481/84535?show=full" class="uri">https://digibug.ugr.es/handle/10481/84535?show=full</a></li>
+<li><strong>Contacto:</strong> pfemia@ugr.es (Pedro Femia Marzo)</li>
+<li><strong>Instalación:</strong> Ver sección anterior (Instalación local desde archivo descargado)</li>
+<li><strong>Dataset <code>osteo</code>:</strong> 94 pacientes diabéticos, 27 variables, Facultad de Medicina UGR (2023)</li>
+</ul>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/apendiceA.html" class="pagination-link" aria-label="Apéndice A: Repaso Matemático Riguroso">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Apéndice A: Repaso Matemático Riguroso</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/apendiceC.html" class="pagination-link" aria-label="Apéndice C: Guía de R para Estadística Médica">
+        <span class="nav-page-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Apéndice C: Guía de R para Estadística Médica</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Matemáticas para la Estadística Médica con R, por Miguel Ángel Luque Fernández</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/migariane/CursoMatematicaEstadistica/edit/main/chapters/apendiceB.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/migariane/CursoMatematicaEstadistica/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li><li><a href="https://github.com/migariane/CursoMatematicaEstadistica/blob/main/chapters/apendiceB.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>© 2026 Universidad de Granada · <a href="https://www.ugr.es">ugr.es</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
