@@ -3,34 +3,34 @@ project:
   output-dir: docs
 
 book:
-  title: "Matemáticas para la Estadística Médica con R"
-  subtitle: "Bioestadística — Universidad de Granada"
+  title: "Matemáticas para la Estadística Médica con R"
+  subtitle: "Bioestadística — Universidad de Granada"
   author:
-    - name: "Miguel Ángel Luque Fernández"
-      affiliation: "Dpto. de Estadística e Investigación Operativa, Universidad de Granada"
+    - name: "Miguel Ángel Luque Fernández"
+      affiliation: "Dpto. de Estadística e Investigación Operativa, Universidad de Granada"
       email: "mluquefe@ugr.es"
       url: "https://migariane.github.io"
   date: "2026-05-21"
   date-format: "YYYY"
   description: |
-    Material docence de Matemáticas para la Estadística Médica con R (Bioestadística) desarrollados por el autor en el
-    Departamento de Estadística e Investigación Operativa, Unidad Docente de Bioestadística de la Universidad de Granada.
+    Material docence de Matemáticas para la Estadística Médica con R (Bioestadística) desarrollados por el autor en el
+    Departamento de Estadística e Investigación Operativa, Unidad Docente de Bioestadística de la Universidad de Granada.
   cover-image: figures/ugr-logo.png
   favicon: figures/ugr-logo.png
-  repo-url: https://github.com/migariane/CursoMatematicaEstadistica
+  repo-url: https://github.com/migariane/MatematicaEstadisticaMedicinaR
   repo-actions: [edit, issue, source]
   sharing: [twitter, linkedin]
   downloads: [pdf]
   search: true
   page-footer:
     left: |
-      Matemáticas para la Estadística Médica con R, por Miguel Ángel Luque Fernández
+      Matemáticas para la Estadística Médica con R, por Miguel Ángel Luque Fernández
     right: |
       © 2026 Universidad de Granada · <a href="https://www.ugr.es">ugr.es</a>
 
   chapters:
     - index.qmd
-    - part: "Parte I: Análisis Exploratorio de Datos"
+    - part: "Parte I: Análisis Exploratorio de Datos"
       chapters:
         - chapters/semana01.qmd
         - chapters/semana02.qmd
@@ -39,16 +39,16 @@ book:
         - chapters/semana03.qmd
         - chapters/semana04.qmd
         - chapters/semana05.qmd
-    - part: "Parte III: Inferencia Estadística"
+    - part: "Parte III: Inferencia Estadística"
       chapters:
         - chapters/semana06.qmd
         - chapters/semana07.qmd
         - chapters/semana08.qmd
-    - part: "Parte IV: Regresión Lineal"
+    - part: "Parte IV: Regresión Lineal"
       chapters:
         - chapters/semana09.qmd
         - chapters/semana10.qmd
-    - part: "Parte V: Análisis de Datos Categóricos"
+    - part: "Parte V: Análisis de Datos Categóricos"
       chapters:
         - chapters/semana11.qmd
     - references.qmd
@@ -62,10 +62,10 @@ bibliography: references.bib
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 
 language:
-  code-tools-menu-caption: "Código"
-  code-tools-show-all-code: "Mostrar todo el código"
-  code-tools-hide-all-code: "Ocultar todo el código"
-  code-summary: "Mostrar el código"
+  code-tools-menu-caption: "Código"
+  code-tools-show-all-code: "Mostrar todo el código"
+  code-tools-hide-all-code: "Ocultar todo el código"
+  code-summary: "Mostrar el código"
   crossref-lst-title: "Cuadro"
   crossref-lst-prefix: "Cuadro"
   listing-caption-title: "Cuadro"
@@ -88,11 +88,11 @@ format:
     number-depth: 3
     html-math-method: mathjax
     code-fold: true
-    code-summary: "Mostrar el código"
+    code-summary: "Mostrar el código"
     code-tools:
       source: false
       toggle: true
-      caption: "Código"
+      caption: "Código"
     code-copy: true
     code-overflow: wrap
     smooth-scroll: true
