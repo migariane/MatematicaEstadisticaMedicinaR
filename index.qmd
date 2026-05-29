@@ -1,13 +1,13 @@
 # Prefacio {.unnumbered}
 
-Este libro contiene el material docente del curso **Matemáticas para la Estadística Médica con R** desarrollados por [[**Miguel Ángel Luque Fernández**](https://migariane.github.io)]{.highlight-yellow} en el [Departamento de Estadística e Investigación Operativa](https://estadistica.ugr.es) de la [Universidad de Granada](https://www.ugr.es).
+Este libro contiene el material docente del curso **Matemáticas para la Estadística Médica con R** desarrollado por [[**Miguel Ángel Luque Fernández**](https://migariane.github.io)]{.highlight-yellow} en el [Departamento de Estadística e Investigación Operativa](https://estadistica.ugr.es) de la [Universidad de Granada](https://www.ugr.es).
 
 ## Objetivos del Curso {.unnumbered}
 
-El objetivo principal de este curso y material docente es proporcionar al estudiante en ciencias de la salud los fundamentos matemáticos y estadísticos necesarios para el análisis cuantitativo de datos médicos con un alto grado de rigor académico y con ejemplos contextualizados en la práctica clínica. El libro se sustenta de la filosofia de ciencia reproducible, abierta y computacionalmente aplicada usando el software libre R. Al final del libro se presentan tres apendices reforzando a los alumnos que quieran repasar sobre: i) los contenidos matemáticos básicos necesarios para el buen aprovechamieto del curso, ii) una introducción básica a la programación con R y iii) una introducción al paquete BioestadisticaR2 producido para la docencia especifica de este curso cuyo interés radica en la rica interepretación de los resultados de las funciones del paquete. El curso no se limita al uso del paquete BioestadísticaR2 ya que se complementa con el uso de las funciones clásicas de R base para todos los ejemplos presentados. Además se invita al estudiante a explorar y hacer uso de JAMOVI, una plataforma de estadística gratuita y de código abierto diseñada para ser fácil de usar. Al finalizar el curso, el estudiante será capaz de:
+El objetivo principal de este curso y material docente es proporcionar al estudiante de ciencias de la salud los fundamentos matemáticos y estadísticos necesarios para el análisis cuantitativo de datos médicos con un alto grado de rigor académico y con ejemplos contextualizados en la práctica clínica. El libro se sustenta de la filosofia de ciencia reproducible, abierta y computacionalmente aplicada usando el software libre R. Al final del libro se presentan tres apendices reforzando a los alumnos que quieran repasar sobre: i) los contenidos matemáticos básicos necesarios para el buen aprovechamieto del curso, ii) una introducción básica a la programación con R y iii) una introducción al paquete BioestadisticaR2 producido para la docencia especifica de este curso cuyo interés radica en la rica interepretación de los resultados de las funciones del paquete. El curso no se limita al uso del paquete BioestadísticaR2, ya que se complementa con el uso de las funciones clásicas de R base para todos los ejemplos presentados. Además, se invita al estudiante a explorar y utilizar JAMOVI, una plataforma de estadística gratuita y de código abierto diseñada para ser fácil de usar. Al finalizar el curso, el estudiante será capaz de:
 
 1.  **Describir y visualizar** conjuntos de datos mediante técnicas de Análisis Exploratorio de Datos.
-2.  **Comprender los fundamentos** de la Teoría de la Probabilidad como base del razonamiento estadístico.
+2.  **Comprender los fundamentos** de la teoría de la probabilidad como base del razonamiento estadístico.
 3.  **Manejar las distribuciones** de probabilidad más importantes, tanto discretas como continuas.
 4.  **Aplicar métodos de inferencia estadística**: estimación puntual, estimación por intervalos y contraste de hipótesis.
 5.  **Construir e interpretar modelos de regresión lineal** simple y múltiple.
@@ -18,7 +18,7 @@ El material está organizado en cuatro partes, correspondientes a las diez seman
 
 **Parte I — Análisis Exploratorio de Datos** (Semanas 1–2) Introducción a los tipos de variables, estadísticos descriptivos univariantes y bivariantes, medidas de dispersión, correlación y representaciones gráficas básicas.
 
-**Parte II — Probabilidad y Variables Aleatorias** (Semanas 3–5) Fundamentos de la teoría de la probabilidad: espacio muestral, axiomas de Kolmogórov, probabilidad condicional y Teorema de Bayes. Variables aleatorias discretas y continuas, distribuciones de probabilidad más importantes y el Teorema Central del Límite.
+**Parte II — Probabilidad y Variables Aleatorias** (Semanas 3–5) Fundamentos de la teoría de la probabilidad: espacio muestral, axiomas de Kolmogórov, probabilidad condicional y teorema de Bayes. Variables aleatorias discretas y continuas, distribuciones de probabilidad más importantes y el teorema del límite central.
 
 **Parte III — Inferencia Estadística** (Semanas 7–9) Conceptos de muestreo y estadísticos muestrales. Estimación puntual: propiedades de los estimadores, método de momentos y máxima verosimilitud. Estimación por intervalos de confianza. Contrastes de hipótesis: errores de tipo I y II, potencia del contraste, pruebas t, z y F.
 
@@ -68,7 +68,7 @@ El código fuente completo de este libro está disponible en: <https://github.co
 
 ## Nota sobre el Material {.unnumbered}
 
-Este material ha sido elaborados por el autor para uso docente en la Universidad de Granada. El material tiene carácter introductorio y no pretende ser un tratado exhaustivo de ninguno de los temas cubiertos. Para cada tema se proporcionan referencias para una lectura más profunda.
+Este material docente ha sido elaborado por el autor para uso docente en la Universidad de Granada. El material tiene carácter introductorio y no pretende ser un tratado exhaustivo de ninguno de los temas cubiertos. Para cada tema se proporcionan referencias para una lectura más profunda.
 
 > **Aviso:** Estos apuntes se encuentran en continua revisión. Si detecta algún error o imprecisión, por favor comuníquelo al autor a través del repositorio de GitHub o por correo electrónico.
 
