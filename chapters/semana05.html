@@ -378,7 +378,7 @@ window.Quarto = {
   <li><a href="#qué-es-el-muestreo" id="toc-qué-es-el-muestreo" class="nav-link" data-scroll-target="#qué-es-el-muestreo"><span class="header-section-number">5.1.1</span> ¿Qué es el Muestreo?</a></li>
   <li><a href="#parámetros-poblacionales" id="toc-parámetros-poblacionales" class="nav-link" data-scroll-target="#parámetros-poblacionales"><span class="header-section-number">5.1.2</span> Parámetros Poblacionales</a></li>
   <li><a href="#parámetros-vs.-estadísticos" id="toc-parámetros-vs.-estadísticos" class="nav-link" data-scroll-target="#parámetros-vs.-estadísticos"><span class="header-section-number">5.1.3</span> Parámetros vs.&nbsp;Estadísticos</a></li>
-  <li><a href="#el-problema-del-sesgo-de-muestreo-el-caso-del-literary-digest-1936" id="toc-el-problema-del-sesgo-de-muestreo-el-caso-del-literary-digest-1936" class="nav-link" data-scroll-target="#el-problema-del-sesgo-de-muestreo-el-caso-del-literary-digest-1936"><span class="header-section-number">5.1.4</span> El Problema del Sesgo de Muestreo: El Caso del Literary Digest (1936)</a></li>
+  <li><a href="#el-problema-del-sesgo-de-muestreo-el-estudio-nurses-health-nhs-y-la-terapia-hormonal-sustitutiva" id="toc-el-problema-del-sesgo-de-muestreo-el-estudio-nurses-health-nhs-y-la-terapia-hormonal-sustitutiva" class="nav-link" data-scroll-target="#el-problema-del-sesgo-de-muestreo-el-estudio-nurses-health-nhs-y-la-terapia-hormonal-sustitutiva"><span class="header-section-number">5.1.4</span> El Problema del Sesgo de Muestreo: El Estudio Nurses’ Health (NHS) y la Terapia Hormonal Sustitutiva</a></li>
   </ul></li>
   <li><a href="#sec-semana05-s2" id="toc-sec-semana05-s2" class="nav-link" data-scroll-target="#sec-semana05-s2"><span class="header-section-number">5.2</span> Tipos de Muestreo</a>
   <ul class="collapse">
@@ -542,28 +542,59 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="el-problema-del-sesgo-de-muestreo-el-caso-del-literary-digest-1936" class="level3" data-number="5.1.4">
-<h3 data-number="5.1.4" class="anchored" data-anchor-id="el-problema-del-sesgo-de-muestreo-el-caso-del-literary-digest-1936"><span class="header-section-number">5.1.4</span> El Problema del Sesgo de Muestreo: El Caso del Literary Digest (1936)</h3>
-<p>La importancia de un muestreo adecuado se ilustra con uno de los mayores fracasos en la historia de las encuestas:</p>
+<section id="el-problema-del-sesgo-de-muestreo-el-estudio-nurses-health-nhs-y-la-terapia-hormonal-sustitutiva" class="level3" data-number="5.1.4">
+<h3 data-number="5.1.4" class="anchored" data-anchor-id="el-problema-del-sesgo-de-muestreo-el-estudio-nurses-health-nhs-y-la-terapia-hormonal-sustitutiva"><span class="header-section-number">5.1.4</span> El Problema del Sesgo de Muestreo: El Estudio Nurses’ Health (NHS) y la Terapia Hormonal Sustitutiva</h3>
+<p>La importancia de un muestreo y un diseño adecuados se ilustra con uno de los casos más comentados en la epidemiología moderna: la aparente discrepancia entre los estudios observacionales y los ensayos clínicos sobre la <strong>terapia hormonal sustitutiva</strong> (THS) en mujeres postmenopáusicas y el riesgo cardiovascular.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Advertencia</span>Advertencia: El Ejemplo del Literary Digest
+<span class="screen-reader-only">Advertencia</span>Advertencia: El sesgo de selección en el Nurses’ Health Study (NHS)
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>En la elección presidencial de EE.UU. de 1936:</p>
+<p>Durante los años 80 y 90, el <strong>Nurses’ Health Study</strong> (Universidad de Harvard) — un estudio observacional prospectivo de gran tamaño (n ≈ 120 000 enfermeras) — concluyó que las mujeres que tomaban <strong>terapia hormonal sustitutiva</strong> presentaban una reducción <strong>≈ 40–50 %</strong> del riesgo de enfermedad coronaria. Sobre la base de estos resultados, durante años se prescribió la THS de forma sistemática como <strong>cardioprotección primaria</strong>.</p>
+<p>Sin embargo, el ensayo aleatorizado <strong>Women’s Health Initiative (WHI)</strong> (publicado en <em>JAMA</em>, 2002, con n ≈ 16 000 mujeres asignadas al azar a THS o placebo) mostró exactamente lo contrario: un <strong>incremento</strong> del riesgo cardiovascular, de cáncer de mama y de eventos tromboembólicos. El ensayo se interrumpió prematuramente por razones de seguridad.</p>
+<p>¿Por qué dos estudios sobre la misma intervención llegan a conclusiones opuestas?</p>
 <ul>
-<li>La revista <strong>The Literary Digest</strong> encuestó a <strong>10 millones de personas</strong> (seleccionadas de propietarios de teléfono y coche, y suscriptores de la revista)</li>
-<li>Recibieron 2.3 millones de respuestas</li>
-<li><strong>Predicción</strong>: 60% republicanos, 40% demócratas</li>
-<li><strong>Resultado real</strong>: 36.5% republicanos, 60.8% demócratas</li>
-<li><strong>Gallup Institute</strong>, con solo 50,000 encuestados aleatorios, predijo correctamente</li>
+<li>En el NHS, las mujeres que <strong>se autoseleccionaban</strong> para tomar THS eran sistemáticamente <strong>más sanas, más delgadas, con mejor nivel socioeconómico, no fumadoras y con mejor acceso a controles médicos</strong> que las que no la tomaban.</li>
+<li>Este <strong>sesgo de selección</strong> (también llamado <em>healthy user bias</em>) confundía el efecto del tratamiento con el efecto del perfil basal de las pacientes.</li>
+<li>En el WHI, en cambio, la <strong>aleatorización</strong> equilibró todas las características basales (medidas y no medidas) entre los grupos. Aquí sí podía atribuirse causalmente la diferencia observada a la intervención.</li>
 </ul>
-<p><strong>Lección</strong>: Un número grande de respuestas NO garantiza una muestra sin sesgo. El sesgo de selección (muestra no representativa) es más importante que el tamaño.</p>
+<p><strong>Tamaños muestrales:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 12%">
+<col style="width: 4%">
+<col style="width: 69%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Estudio</th>
+<th>Diseño</th>
+<th>n</th>
+<th>Conclusión sobre THS y riesgo cardiovascular</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NHS (1985–2000)</td>
+<td>Observacional, autoseleccionado</td>
+<td>≈ 120 000</td>
+<td><strong>−40 %</strong> (protector)</td>
+</tr>
+<tr class="even">
+<td>WHI (1993–2002)</td>
+<td>Aleatorizado, doble ciego</td>
+<td>≈ 16 000</td>
+<td><strong>+29 %</strong> (perjudicial)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Lección epidemiológica:</strong> Un tamaño muestral 8 veces mayor <strong>no compensa</strong> un mal diseño de muestreo. El sesgo de selección puede invertir completamente la conclusión clínica, con consecuencias para millones de pacientes. La aleatorización sigue siendo el estándar de oro precisamente porque elimina la confusión por características basales —medidas y no medidas— entre los grupos. Este episodio motivó el desarrollo de los modernos métodos de <strong>inferencia causal</strong> (Hernán &amp; Robins, <em>Causal Inference: What If</em>, 2020) para tratar de “emular” un ensayo a partir de datos observacionales.</p>
 </div>
 </div>
 <hr>
