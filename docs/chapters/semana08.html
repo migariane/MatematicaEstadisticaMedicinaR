@@ -641,7 +641,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Documentacion completa de las tres funciones en <a href="#sec-bio-contrastes" class="quarto-xref"><span class="quarto-unresolved-ref">sec-bio-contrastes</span></a>.</p>
+<p>Documentacion completa de las tres funciones en <a href="apendiceB.html#sec-bio-contrastes" class="quarto-xref"><span>Sección B.5</span></a>.</p>
 <div class="cell">
 <div id="lst-semana09-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
@@ -1120,7 +1120,7 @@ Test de Wilcoxon/Mann-Whithney para dos muestras independientes
 </section>
 <section id="sec-semana08-bio-power" class="level3" data-number="8.7.3">
 <h3 data-number="8.7.3" class="anchored" data-anchor-id="sec-semana08-bio-power"><span class="header-section-number">8.7.3</span> Cálculo con BioStatR: <code>testt()</code> y <code>testp()</code></h3>
-<p>Las funciones <code>testt()</code> y <code>testp()</code> del paquete <code>BioStatR</code> (ver <a href="#sec-bio-contrastes" class="quarto-xref"><span class="quarto-unresolved-ref">sec-bio-contrastes</span></a>) calculan <strong>simultáneamente</strong> el contraste de hipótesis, la <strong>potencia</strong> y el <strong>tamaño muestral</strong> necesario para detectar una diferencia mínima relevante <span class="math inline">\(\delta\)</span> (effect size en unidades de la variable).</p>
+<p>Las funciones <code>testt()</code> y <code>testp()</code> del paquete <code>BioStatR</code> (ver <a href="apendiceB.html#sec-bio-contrastes" class="quarto-xref"><span>Sección B.5</span></a>) calculan <strong>simultáneamente</strong> el contraste de hipótesis, la <strong>potencia</strong> y el <strong>tamaño muestral</strong> necesario para detectar una diferencia mínima relevante <span class="math inline">\(\delta\)</span> (effect size en unidades de la variable).</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1758,7 +1758,7 @@ Cuadro&nbsp;8.15: Código R
 <p>Los contrastes asintóticos basados en el Teorema Central del Límite —como el t-test y el F-test— requieren verificar dos condiciones: (1) normalidad de los datos o residuos, y (2) igualdad de varianzas entre grupos. Con <span class="math inline">\(n \geq 60\)</span> el TCL garantiza normalidad asintótica de la media, pero para muestras menores conviene comprobarlo formalmente.</p>
 <section id="test-de-shapiro-wilk-normalidad" class="level3" data-number="8.12.1">
 <h3 data-number="8.12.1" class="anchored" data-anchor-id="test-de-shapiro-wilk-normalidad"><span class="header-section-number">8.12.1</span> Test de Shapiro-Wilk: Normalidad</h3>
-<p>El test de Shapiro-Wilk <span class="citation" data-cites="Shapiro1965">(<a href="#ref-Shapiro1965" role="doc-biblioref">Shapiro &amp; Wilk, 1965</a>)</span> es la prueba de normalidad más potente para muestras pequeñas y moderadas (<span class="math inline">\(n \leq 5000\)</span>).</p>
+<p>El test de Shapiro-Wilk <span class="citation" data-cites="Shapiro1965">(<a href="../references.html#ref-Shapiro1965" role="doc-biblioref">Shapiro &amp; Wilk, 1965</a>)</span> es la prueba de normalidad más potente para muestras pequeñas y moderadas (<span class="math inline">\(n \leq 5000\)</span>).</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1843,7 +1843,7 @@ data:  osteo$edad
 W = 0.9, p-value = 0.000005</code></pre>
 </div>
 </div>
-<p><strong>Interpretación:</strong> Con <span class="math inline">\(W = 0.907\)</span> y <span class="math inline">\(p &lt; 0.001\)</span>, rechazamos normalidad (<span class="math inline">\(\alpha = 0.05\)</span>). Para alternativas cuando no hay normalidad y <span class="math inline">\(n &lt; 60\)</span>, ver <a href="#sec-semana12-bootstrap" class="quarto-xref"><span class="quarto-unresolved-ref">sec-semana12-bootstrap</span></a>.</p>
+<p><strong>Interpretación:</strong> Con <span class="math inline">\(W = 0.907\)</span> y <span class="math inline">\(p &lt; 0.001\)</span>, rechazamos normalidad (<span class="math inline">\(\alpha = 0.05\)</span>). Para alternativas cuando no hay normalidad y <span class="math inline">\(n &lt; 60\)</span>, ver <span class="quarto-unresolved-ref">?sec-semana12-bootstrap</span>.</p>
 </div>
 </div>
 </section>
@@ -1946,7 +1946,7 @@ Bartlett's K-squared = 11, df = 2, p-value = 0.004</code></pre>
 </tr>
 </tbody>
 </table>
-<p><strong>TCL:</strong> Con <span class="math inline">\(n \geq 60\)</span>, el t-test es robusto a la no normalidad <span class="citation" data-cites="Casella2002">(<a href="#ref-Casella2002" role="doc-biblioref">Casella &amp; Berger, 2002</a>)</span>. Para <span class="math inline">\(n &lt; 60\)</span> y datos no normales, ver métodos bootstrap en <a href="#sec-semana12-bootstrap" class="quarto-xref"><span class="quarto-unresolved-ref">sec-semana12-bootstrap</span></a>.</p>
+<p><strong>TCL:</strong> Con <span class="math inline">\(n \geq 60\)</span>, el t-test es robusto a la no normalidad <span class="citation" data-cites="Casella2002">(<a href="../references.html#ref-Casella2002" role="doc-biblioref">Casella &amp; Berger, 2002</a>)</span>. Para <span class="math inline">\(n &lt; 60\)</span> y datos no normales, ver métodos bootstrap en <span class="quarto-unresolved-ref">?sec-semana12-bootstrap</span>.</p>
 </div>
 </div>
 <hr>
@@ -1954,7 +1954,7 @@ Bartlett's K-squared = 11, df = 2, p-value = 0.004</code></pre>
 </section>
 <section id="sec-semana9-bootstrap" class="level2" data-number="8.13">
 <h2 data-number="8.13" class="anchored" data-anchor-id="sec-semana9-bootstrap"><span class="header-section-number">8.13</span> Bootstrap y Métodos Robustos como Alternativas</h2>
-<p>Cuando el test de Shapiro-Wilk rechaza normalidad <strong>y</strong> el tamaño muestral es insuficiente para garantizar el TCL (<span class="math inline">\(n &lt; 60\)</span>), los métodos clásicos basados en la distribución <span class="math inline">\(t\)</span> o <span class="math inline">\(F\)</span> pueden producir inferencias incorrectas. El <strong>bootstrap</strong> y los <strong>tests de permutación</strong> son alternativas válidas que no requieren supuestos distribucionales <span class="citation" data-cites="Chihara2019">(<a href="#ref-Chihara2019" role="doc-biblioref">Chihara &amp; Hesterberg, 2019</a>)</span>.</p>
+<p>Cuando el test de Shapiro-Wilk rechaza normalidad <strong>y</strong> el tamaño muestral es insuficiente para garantizar el TCL (<span class="math inline">\(n &lt; 60\)</span>), los métodos clásicos basados en la distribución <span class="math inline">\(t\)</span> o <span class="math inline">\(F\)</span> pueden producir inferencias incorrectas. El <strong>bootstrap</strong> y los <strong>tests de permutación</strong> son alternativas válidas que no requieren supuestos distribucionales <span class="citation" data-cites="Chihara2019">(<a href="../references.html#ref-Chihara2019" role="doc-biblioref">Chihara &amp; Hesterberg, 2019</a>)</span>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2009,7 +2009,7 @@ Bartlett's K-squared = 11, df = 2, p-value = 0.004</code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>El IMC de los pacientes masculinos del dataset <code>osteo</code> <strong>no sigue una distribución normal</strong> (Shapiro-Wilk: <span class="math inline">\(W = 0.924\)</span>, <span class="math inline">\(p = 0.006\)</span>). Implementamos el bootstrap <strong>manualmente con un bucle <code>for</code></strong> (estilo <span class="citation" data-cites="Chihara2019">Chihara &amp; Hesterberg (<a href="#ref-Chihara2019" role="doc-biblioref">2019</a>)</span>), siguiendo paso a paso el algoritmo de Efron. Después comparamos con el método BCa (paquete <code>boot</code>) y con el IC clásico <span class="math inline">\(t\)</span>.</p>
+<p>El IMC de los pacientes masculinos del dataset <code>osteo</code> <strong>no sigue una distribución normal</strong> (Shapiro-Wilk: <span class="math inline">\(W = 0.924\)</span>, <span class="math inline">\(p = 0.006\)</span>). Implementamos el bootstrap <strong>manualmente con un bucle <code>for</code></strong> (estilo <span class="citation" data-cites="Chihara2019">Chihara &amp; Hesterberg (<a href="../references.html#ref-Chihara2019" role="doc-biblioref">2019</a>)</span>), siguiendo paso a paso el algoritmo de Efron. Después comparamos con el método BCa (paquete <code>boot</code>) y con el IC clásico <span class="math inline">\(t\)</span>.</p>
 <div class="cell">
 <div id="lst-semana09-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
@@ -2339,7 +2339,7 @@ Cuadro&nbsp;8.29: Código R
 </tr>
 </tbody>
 </table>
-<p><strong>Referencia:</strong> <span class="citation" data-cites="Chihara2019">Chihara &amp; Hesterberg (<a href="#ref-Chihara2019" role="doc-biblioref">2019</a>)</span> proporciona una tratamiento riguroso de bootstrap y permutaciones con implementación completa en R, incluyendo la justificación teórica de cada método.</p>
+<p><strong>Referencia:</strong> <span class="citation" data-cites="Chihara2019">Chihara &amp; Hesterberg (<a href="../references.html#ref-Chihara2019" role="doc-biblioref">2019</a>)</span> proporciona una tratamiento riguroso de bootstrap y permutaciones con implementación completa en R, incluyendo la justificación teórica de cada método.</p>
 </div>
 </div>
 <hr>
@@ -2606,7 +2606,7 @@ Kruskal-Wallis chi-squared = 17, df = 2, p-value = 0.0002</code></pre>
 </ul>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-Casella2002" class="csl-entry" role="listitem">
 Casella, G., &amp; Berger, R. L. (2002). <em>Statistical Inference</em> (2nd ed.). Duxbury Press.
 </div>

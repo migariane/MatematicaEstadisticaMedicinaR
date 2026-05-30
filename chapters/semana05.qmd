@@ -46,21 +46,31 @@ Un **parámetro** es una característica desconocida de la población (p.ej., $\
 Un **estadístico** es una función de la muestra calculada a partir de datos observados. Los estadísticos se usan para estimar parámetros desconocidos.
 :::
 
-### El Problema del Sesgo de Muestreo: El Caso del Literary Digest (1936)
+### El Problema del Sesgo de Muestreo: El Estudio Nurses' Health (NHS) y la Terapia Hormonal Sustitutiva
 
-La importancia de un muestreo adecuado se ilustra con uno de los mayores fracasos en la historia de las encuestas:
+La importancia de un muestreo y un diseño adecuados se ilustra con uno de los casos más comentados en la epidemiología moderna: la aparente discrepancia entre los estudios observacionales y los ensayos clínicos sobre la **terapia hormonal sustitutiva** (THS) en mujeres postmenopáusicas y el riesgo cardiovascular.
 
 ::: {.callout-warning}
-## Advertencia: El Ejemplo del Literary Digest
-En la elección presidencial de EE.UU. de 1936:
+## Advertencia: El sesgo de selección en el Nurses' Health Study (NHS)
 
-- La revista **The Literary Digest** encuestó a **10 millones de personas** (seleccionadas de propietarios de teléfono y coche, y suscriptores de la revista)
-- Recibieron 2.3 millones de respuestas
-- **Predicción**: 60% republicanos, 40% demócratas
-- **Resultado real**: 36.5% republicanos, 60.8% demócratas
-- **Gallup Institute**, con solo 50,000 encuestados aleatorios, predijo correctamente
+Durante los años 80 y 90, el **Nurses' Health Study** (Universidad de Harvard) — un estudio observacional prospectivo de gran tamaño (n ≈ 120 000 enfermeras) — concluyó que las mujeres que tomaban **terapia hormonal sustitutiva** presentaban una reducción **≈ 40–50 %** del riesgo de enfermedad coronaria. Sobre la base de estos resultados, durante años se prescribió la THS de forma sistemática como **cardioprotección primaria**.
 
-**Lección**: Un número grande de respuestas NO garantiza una muestra sin sesgo. El sesgo de selección (muestra no representativa) es más importante que el tamaño.
+Sin embargo, el ensayo aleatorizado **Women's Health Initiative (WHI)** (publicado en *JAMA*, 2002, con n ≈ 16 000 mujeres asignadas al azar a THS o placebo) mostró exactamente lo contrario: un **incremento** del riesgo cardiovascular, de cáncer de mama y de eventos tromboembólicos. El ensayo se interrumpió prematuramente por razones de seguridad.
+
+¿Por qué dos estudios sobre la misma intervención llegan a conclusiones opuestas?
+
+- En el NHS, las mujeres que **se autoseleccionaban** para tomar THS eran sistemáticamente **más sanas, más delgadas, con mejor nivel socioeconómico, no fumadoras y con mejor acceso a controles médicos** que las que no la tomaban.
+- Este **sesgo de selección** (también llamado *healthy user bias*) confundía el efecto del tratamiento con el efecto del perfil basal de las pacientes.
+- En el WHI, en cambio, la **aleatorización** equilibró todas las características basales (medidas y no medidas) entre los grupos. Aquí sí podía atribuirse causalmente la diferencia observada a la intervención.
+
+**Tamaños muestrales:**
+
+| Estudio | Diseño | n | Conclusión sobre THS y riesgo cardiovascular |
+|---------|--------|---|----------------------------------------------|
+| NHS (1985–2000) | Observacional, autoseleccionado | ≈ 120 000 | **−40 %** (protector) |
+| WHI (1993–2002) | Aleatorizado, doble ciego | ≈ 16 000 | **+29 %** (perjudicial) |
+
+**Lección epidemiológica:** Un tamaño muestral 8 veces mayor **no compensa** un mal diseño de muestreo. El sesgo de selección puede invertir completamente la conclusión clínica, con consecuencias para millones de pacientes. La aleatorización sigue siendo el estándar de oro precisamente porque elimina la confusión por características basales —medidas y no medidas— entre los grupos. Este episodio motivó el desarrollo de los modernos métodos de **inferencia causal** (Hernán & Robins, *Causal Inference: What If*, 2020) para tratar de "emular" un ensayo a partir de datos observacionales.
 :::
 
 ---

@@ -31,16 +31,21 @@ df <- data.frame(
   grupo = rep(c("Grupo A (Homogéneo)", "Grupo B (Diverso)"), each = 100)
 )
 
-# Gráfico de densidad con líneas de media
-ggplot(df, aes(x = valor, fill = grupo)) +
-  geom_density(alpha = 0.5) +
-  scale_fill_manual(values = c("Grupo A (Homogéneo)" = "steelblue", "Grupo B (Diverso)" = "seagreen")) +
-  geom_vline(xintercept = 170, linetype = "dashed", color = "black", size = 0.8) +
+# Gráfico de densidad con líneas de media (paleta Okabe-Ito)
+ggplot(df, aes(x = valor, fill = grupo, color = grupo)) +
+  geom_density(alpha = 0.55, linewidth = 0.9) +
+  scale_fill_manual(values  = c("Grupo A (Homogéneo)" = "#0072B2",
+                                 "Grupo B (Diverso)"   = "#D55E00")) +
+  scale_color_manual(values = c("Grupo A (Homogéneo)" = "#0072B2",
+                                 "Grupo B (Diverso)"   = "#D55E00")) +
+  geom_vline(xintercept = 170, linetype = "dashed", color = "black", linewidth = 0.9) +
   labs(title = "Comparación de Variabilidad",
        subtitle = "Ambas distribuciones tienen media = 170 mg/dL",
        x = "Glucemia (mg/dL)",
-       y = "Densidad") +
-  theme_minimal()
+       y = "Densidad",
+       fill = NULL, color = NULL) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "top")
 ```
 
 Como se observa en el gráfico (la línea discontinua representa la media compartida), el **Grupo B** presenta una dispersión mucho mayor, lo que demuestra que el promedio no siempre es suficiente para caracterizar la realidad de un conjunto de datos médicos.
@@ -270,7 +275,7 @@ print(round(presion_z, 2))
 La función `scale()` resta la media (`mean(presion) = 125`) y divide por la desviación estándar (`sd(presion) ≈ 11.18`), transformando directamente los datos a z-scores.
 :::
 
-# No es Ejemplo {#sec-semana02-s3-ejemplo-pob}
+### Z-scores con Parámetros Poblacionales {#sec-semana02-s3-ejemplo-pob}
 
 Cuando conocemos la media poblacional ($\mu$) y la desviación típica poblacional ($\sigma$), podemos calcular la probabilidad (porcentaje de personas) de que un valor caiga en un rango utilizando la función `pnorm()`.
 
@@ -323,28 +328,31 @@ En otras palabras, la tipificación “estandariza” cualquier normal a la mism
 x <- seq(-4, 4, length.out = 200)
 y <- dnorm(x)
 
-# Graficar
-plot(x, y, type = "l", lwd = 2, col = "darkblue",
+# Graficar (paleta Okabe-Ito: azul oscuro #0072B2 + amarillo #F0E442 + vermellón #D55E00)
+plot(x, y, type = "l", lwd = 2.5, col = "#0072B2",
      main = "Distribución Normal: Regla 68-95-99.7",
      xlab = "Z-score", ylab = "Densidad", axes = FALSE)
 axis(1, at = -3:3)
-axis(2)
+axis(2, las = 1)
 
-# Definir áreas y añadir etiquetas
+# Definir áreas y añadir etiquetas — colores diferenciables y de alto contraste
 # 99.7%
-x_99 <- seq(-3, 3, length.out=150)
-polygon(c(-3, x_99, 3), c(0, dnorm(x_99), 0), col = rgb(0,0,1,0.05), border = "darkblue")
-text(0, 0.02, "99.7% (±3σ)", col = "darkblue", font = 2)
+x_99 <- seq(-3, 3, length.out = 150)
+polygon(c(-3, x_99, 3), c(0, dnorm(x_99), 0),
+        col = "#56B4E91A", border = "#0072B2")
+text(0, 0.02, "99.7% (±3σ)", col = "#0072B2", font = 2)
 
 # 95%
-x_95 <- seq(-2, 2, length.out=100)
-polygon(c(-2, x_95, 2), c(0, dnorm(x_95), 0), col = rgb(0,0,1,0.1), border = "darkblue")
-text(0, 0.08, "95% (±2σ)", col = "darkblue", font = 2)
+x_95 <- seq(-2, 2, length.out = 100)
+polygon(c(-2, x_95, 2), c(0, dnorm(x_95), 0),
+        col = "#F0E44266", border = "#D55E00")
+text(0, 0.08, "95% (±2σ)", col = "#D55E00", font = 2)
 
 # 68%
-x_68 <- seq(-1, 1, length.out=50)
-polygon(c(-1, x_68, 1), c(0, dnorm(x_68), 0), col = rgb(0,0,1,0.2), border = "darkblue")
-text(0, 0.25, "68% (±1σ)", col = "darkblue", font = 2)
+x_68 <- seq(-1, 1, length.out = 50)
+polygon(c(-1, x_68, 1), c(0, dnorm(x_68), 0),
+        col = "#009E7399", border = "#005C46")
+text(0, 0.25, "68% (±1σ)", col = "#003D2E", font = 2)
 ```
 
 
@@ -391,12 +399,16 @@ set.seed(123)
 grupo1 <- rnorm(100, mean = 100, sd = 10)
 grupo2 <- rnorm(100, mean = 110, sd = 15)
 
-# Crear boxplots comparativos
+# Boxplots comparativos con paleta Okabe-Ito (alto contraste, accesible)
 boxplot(grupo1, grupo2,
         names = c("Grupo 1", "Grupo 2"),
-        main = "Comparación de Distribuciones",
-        ylab = "Valor",
-        col = c("steelblue", "seagreen"))
+        main  = "Comparación de Distribuciones",
+        ylab  = "Valor",
+        col   = c("#0072B2", "#D55E00"),
+        border = "grey20",
+        las   = 1,
+        notch = FALSE)
+grid(nx = NA, ny = NULL, col = "grey85", lty = "dotted")
 ```
 :::
 
@@ -552,34 +564,73 @@ Para ampliar los contenidos sobre los test diagnósticos y otras técnicas estad
 :::
 
 ::: {.callout-tip}
-## Ejemplo 2.8: Covarianza y Correlación
+## Ejemplo 2.8: Covarianza y Correlación — Peso e IMC en pacientes diabéticos
+
+Estudiamos la asociación lineal entre el **peso corporal** (kg) y el **índice de masa corporal** (IMC, kg/m²) en los 94 pacientes diabéticos del dataset `osteo` (Facultad de Medicina, UGR).
+
 ```{r}
 #| lst-label: lst-semana02-10
-#| lst-cap: "Covarianza y Correlación con R Base"
-#| code-summary: "Covarianza y Correlación con R Base"
+#| lst-cap: "Covarianza y correlación entre peso e IMC en osteo"
+#| code-summary: "Covarianza y correlación con R base"
 #| message: false
 #| warning: false
+#| fig-width: 7
+#| fig-height: 5
 
-# Cargar el dataset women
-data(women)
+library(BioStatR)
+data(osteo)
 
-# Calcular estadísticas
-cov_hw <- cov(women$height, women$weight)
-cor_hw <- cor(women$height, women$weight)
+# Eliminar valores perdidos en peso e IMC
+dat <- na.omit(osteo[, c("peso", "imc", "sexo")])
 
-cat("Covarianza:", round(cov_hw, 2), "\n")
-cat("Correlación:", round(cor_hw, 2), "\n")
+# 1) Estadísticos descriptivos
+cov_pi <- cov(dat$peso, dat$imc)
+cor_pi <- cor(dat$peso, dat$imc)
+test_cor <- cor.test(dat$peso, dat$imc)
 
-# Gráfico de dispersión
-plot(women$height, women$weight,
-     main = "Altura vs Peso",
-     xlab = "Altura (pulgadas)",
-     ylab = "Peso (libras)",
-     pch = 19, col = "steelblue")
+cat(sprintf("Covarianza(peso, IMC)  = %.2f kg·(kg/m²)\n", cov_pi))
+cat(sprintf("Correlación de Pearson r = %.3f  (IC 95%%: %.3f – %.3f, p = %.3g)\n",
+            cor_pi, test_cor$conf.int[1], test_cor$conf.int[2], test_cor$p.value))
 
-# Agregar línea de regresión
-abline(lm(weight ~ height, data = women), col = "red", lwd = 2)
+# 2) Gráfico de dispersión coloreado por sexo, con línea de regresión
+modelo <- lm(imc ~ peso, data = dat)
+
+# Paleta Okabe-Ito (alta accesibilidad, segura para daltónicos)
+col_pts <- ifelse(dat$sexo == "Hombre", "#0072B2", "#D55E00")
+
+plot(dat$peso, dat$imc,
+     main = "Peso vs. IMC en pacientes diabéticos (dataset osteo)",
+     xlab = "Peso (kg)",
+     ylab = "IMC (kg/m²)",
+     pch  = 19,
+     col  = col_pts,
+     cex  = 1.2,
+     las  = 1,
+     panel.first = grid(col = "grey85", lty = "dotted"))
+
+abline(modelo, col = "#009E73", lwd = 2.5)
+
+legend("topleft",
+       legend = c("Hombre", "Mujer", "Recta de regresión"),
+       col    = c("#0072B2", "#D55E00", "#009E73"),
+       pch    = c(19, 19, NA),
+       lwd    = c(NA, NA, 2.5),
+       bty    = "n",
+       cex    = 0.9)
 ```
+
+**Interpretación:**
+
+- La **covarianza** es positiva ($\widehat{\text{Cov}}(\text{peso}, \text{IMC}) > 0$), lo que indica que peso e IMC tienden a crecer simultáneamente. Sin embargo, su magnitud depende de las unidades y no es directamente comparable entre estudios.
+- La **correlación de Pearson** $r \approx 0.7$ con $p < 0.001$ cuantifica la asociación de forma adimensional: existe una asociación lineal positiva fuerte. Esto es **esperable por construcción** ($\text{IMC} = \text{peso} / \text{talla}^2$), pero la dispersión visible en el gráfico refleja la heterogeneidad debida a la talla.
+- Los puntos en **azul oscuro** (`#0072B2`, hombres) y **vermellón** (`#D55E00`, mujeres) permiten apreciar visualmente que las mujeres se sitúan mayoritariamente en rangos de peso menores con IMC ligeramente más variable, mientras que los hombres se concentran en pesos superiores.
+- La línea de regresión en **verde** (`#009E73`) muestra la mejor aproximación lineal de mínimos cuadrados.
+
+::: {.callout-note}
+## Paleta Okabe-Ito: accesibilidad cromática
+
+Los colores `#0072B2` (azul), `#D55E00` (vermellón) y `#009E73` (verde azulado) pertenecen a la paleta **Okabe-Ito**, diseñada específicamente para ser distinguible por personas con deuteranopía, protanopía y tritanopía (las formas más comunes de daltonismo). Se recomienda su uso sistemático en gráficos científicos en lugar de las combinaciones tradicionales rojo/verde o rojo/azul (Okabe & Ito, 2008).
+:::
 :::
 
 ### Covarianza y Correlacion: Advertencia Visual {#sec-semana02-s6-datasaurus}
@@ -617,9 +668,19 @@ y <- 0.8 * x + rnorm(100, sd = 0.3)
 df3 <- data.frame(x, y)
 r3 <- round(cor(x, y), 2)
 
-p1 <- ggplot(df1, aes(x, y)) + geom_point(color = "steelblue") + labs(title=paste("No lineal, r =", r1))
-p2 <- ggplot(df2, aes(x, y)) + geom_point(color = "seagreen") + labs(title=paste("Círculo, r =", r2))
-p3 <- ggplot(df3, aes(x, y)) + geom_point(color = "steelblue") + labs(title=paste("Lineal, r =", r3))
+tema_alto_contraste <- theme_minimal(base_size = 12) +
+  theme(plot.title = element_text(face = "bold"),
+        panel.grid.minor = element_blank())
+
+p1 <- ggplot(df1, aes(x, y)) +
+  geom_point(color = "#0072B2", size = 1.8, alpha = 0.85) +
+  labs(title = paste("No lineal, r =", r1)) + tema_alto_contraste
+p2 <- ggplot(df2, aes(x, y)) +
+  geom_point(color = "#D55E00", size = 1.8, alpha = 0.85) +
+  labs(title = paste("Círculo, r =", r2)) + tema_alto_contraste
+p3 <- ggplot(df3, aes(x, y)) +
+  geom_point(color = "#009E73", size = 1.8, alpha = 0.85) +
+  labs(title = paste("Lineal, r =", r3)) + tema_alto_contraste
 
 grid.arrange(p1, p2, p3, ncol = 3)
 ```
@@ -650,13 +711,29 @@ x1 <- rnorm(n, mean = 50, sd = 10); y1 <- 20 + 0.5 * x1 + rnorm(n, sd = 5)
 # Subgrupo 2 (Graves)
 x2 <- rnorm(n, mean = 70, sd = 10); y2 <- 50 + 0.5 * x2 + rnorm(n, sd = 5)
 
-# Gráfico
-plot(c(x1, x2), c(y1, y2), 
-     col = rep(c("blue", "red"), each = n),
-     pch = 19,
+# Gráfico (paleta Okabe-Ito: azul oscuro + vermellón, alto contraste)
+plot(c(x1, x2), c(y1, y2),
+     col  = rep(c("#0072B2", "#D55E00"), each = n),
+     pch  = 19,
+     cex  = 1.2,
      main = "Paradoja de Simpson en un ensayo clínico",
-     xlab = "Dosificación (mg)", ylab = "Recuperación (%)")
-legend("topleft", legend=c("Pacientes Leves", "Pacientes Graves"), col=c("blue", "red"), pch=19)
+     xlab = "Dosificación (mg)", ylab = "Recuperación (%)",
+     las  = 1,
+     panel.first = grid(col = "grey85", lty = "dotted"))
+
+# Líneas de regresión por subgrupo (refuerzan visualmente la paradoja)
+abline(lm(y1 ~ x1), col = "#0072B2", lwd = 2)
+abline(lm(y2 ~ x2), col = "#D55E00", lwd = 2)
+# Línea de regresión global (efecto agregado, sentido opuesto)
+abline(lm(c(y1, y2) ~ c(x1, x2)), col = "black", lwd = 2, lty = 2)
+
+legend("topleft",
+       legend = c("Pacientes Leves", "Pacientes Graves", "Tendencia global"),
+       col    = c("#0072B2", "#D55E00", "black"),
+       pch    = c(19, 19, NA),
+       lwd    = c(NA, NA, 2),
+       lty    = c(NA, NA, 2),
+       bty    = "n")
 ```
 :::
 
@@ -686,10 +763,12 @@ pas <- 110 + 0.5 * edad + 1.5 * imc + rnorm(n, 0, 8)
 data_clinica <- data.frame(Edad = edad, IMC = imc, Colesterol = colesterol, PAS = pas)
 
 # Visualización mediante matriz de dispersión (Pairs plot)
+# Color Okabe-Ito (azul oscuro) con transparencia para que solapamientos sean visibles
 pairs(data_clinica,
       main = "Matriz de Relaciones Clínicas",
-      pch = 19,
-      col = "darkgreen")
+      pch  = 19,
+      cex  = 0.9,
+      col  = adjustcolor("#0072B2", alpha.f = 0.55))
 
 # Correlaciones numéricas
 cor(data_clinica)
@@ -740,16 +819,17 @@ alturas <- c(168, 172, 165, 175, 170, 169, 173, 166, 174, 171,
 # Calcular ECDF
 ecdf_alturas <- ecdf(alturas)
 
-# Graficar la ECDF
+# Graficar la ECDF (paleta Okabe-Ito: azul oscuro de alto contraste)
 plot(ecdf_alturas,
      main = "Función de Distribución Empírica (ECDF)\nAlturas de Estudiantes",
      xlab = "Altura (cm)",
-     ylab = "F_n(x)",
+     ylab = expression(F[n](x)),
      verticals = TRUE,
      do.points = FALSE,
-     col = "darkblue",
-     lwd = 2)
-grid()
+     col  = "#0072B2",
+     lwd  = 2.5,
+     las  = 1)
+grid(col = "grey85", lty = "dotted")
 ```
 
 ### Interpretación
