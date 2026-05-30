@@ -8,7 +8,7 @@
 
 <meta name="description" content="Material docence de Matemáticas para la Estadística Médica con R (Bioestadística) desarrollados por el autor en el Departamento de Estadística e Investigación Operativa, Unidad Docente de Bioestadística de la Universidad de Granada.">
 
-<title>Apéndice D — Examen Final – Matemáticas para la Estadística Médica con R</title>
+<title>Apéndice E — Examen Final – Matemáticas para la Estadística Médica con R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/apendiceC.html" rel="prev">
+<link href="../chapters/apendiceD.html" rel="prev">
 <link href="../figures/ugr-logo.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -140,7 +140,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/apendiceA.html">Appendices</a></li><li class="breadcrumb-item"><a href="../chapters/examen.html"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Examen Final</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/apendiceA.html">Appendices</a></li><li class="breadcrumb-item"><a href="../chapters/examen.html"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Examen Final</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -339,7 +339,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/apendiceB.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Apéndice B: El Paquete BioestadisticaR2 — Guía de Referencia</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Apéndice B: El Paquete <code>BioStatR</code> — Guía de Referencia</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -350,8 +350,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/apendiceD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Apéndice D: Investigación Reproducible con Git, GitHub y RStudio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/examen.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Examen Final</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Examen Final</span></span></a>
   </div>
 </li>
       </ul>
@@ -366,41 +372,41 @@ window.Quarto = {
     <h2 id="toc-title">Contenidos</h2>
    
   <ul>
-  <li><a href="#instrucciones" id="toc-instrucciones" class="nav-link active" data-scroll-target="#instrucciones"><span class="header-section-number">D.1</span> Instrucciones</a></li>
-  <li><a href="#parte-i-análisis-exploratorio-de-datos-25-puntos" id="toc-parte-i-análisis-exploratorio-de-datos-25-puntos" class="nav-link" data-scroll-target="#parte-i-análisis-exploratorio-de-datos-25-puntos"><span class="header-section-number">D.2</span> Parte I: Análisis Exploratorio de Datos (25 puntos)</a>
+  <li><a href="#instrucciones" id="toc-instrucciones" class="nav-link active" data-scroll-target="#instrucciones"><span class="header-section-number">E.1</span> Instrucciones</a></li>
+  <li><a href="#parte-i-análisis-exploratorio-de-datos-25-puntos" id="toc-parte-i-análisis-exploratorio-de-datos-25-puntos" class="nav-link" data-scroll-target="#parte-i-análisis-exploratorio-de-datos-25-puntos"><span class="header-section-number">E.2</span> Parte I: Análisis Exploratorio de Datos (25 puntos)</a>
   <ul class="collapse">
-  <li><a href="#pregunta-1.1-12-puntos" id="toc-pregunta-1.1-12-puntos" class="nav-link" data-scroll-target="#pregunta-1.1-12-puntos"><span class="header-section-number">D.2.1</span> Pregunta 1.1 (12 puntos)</a></li>
-  <li><a href="#pregunta-1.2-13-puntos" id="toc-pregunta-1.2-13-puntos" class="nav-link" data-scroll-target="#pregunta-1.2-13-puntos"><span class="header-section-number">D.2.2</span> Pregunta 1.2 (13 puntos)</a></li>
+  <li><a href="#pregunta-1.1-12-puntos" id="toc-pregunta-1.1-12-puntos" class="nav-link" data-scroll-target="#pregunta-1.1-12-puntos"><span class="header-section-number">E.2.1</span> Pregunta 1.1 (12 puntos)</a></li>
+  <li><a href="#pregunta-1.2-13-puntos" id="toc-pregunta-1.2-13-puntos" class="nav-link" data-scroll-target="#pregunta-1.2-13-puntos"><span class="header-section-number">E.2.2</span> Pregunta 1.2 (13 puntos)</a></li>
   </ul></li>
-  <li><a href="#parte-ii-probabilidad-y-variables-aleatorias-25-puntos" id="toc-parte-ii-probabilidad-y-variables-aleatorias-25-puntos" class="nav-link" data-scroll-target="#parte-ii-probabilidad-y-variables-aleatorias-25-puntos"><span class="header-section-number">D.3</span> Parte II: Probabilidad y Variables Aleatorias (25 puntos)</a>
+  <li><a href="#parte-ii-probabilidad-y-variables-aleatorias-25-puntos" id="toc-parte-ii-probabilidad-y-variables-aleatorias-25-puntos" class="nav-link" data-scroll-target="#parte-ii-probabilidad-y-variables-aleatorias-25-puntos"><span class="header-section-number">E.3</span> Parte II: Probabilidad y Variables Aleatorias (25 puntos)</a>
   <ul class="collapse">
-  <li><a href="#pregunta-2.1-12-puntos" id="toc-pregunta-2.1-12-puntos" class="nav-link" data-scroll-target="#pregunta-2.1-12-puntos"><span class="header-section-number">D.3.1</span> Pregunta 2.1 (12 puntos)</a></li>
-  <li><a href="#pregunta-2.2-13-puntos" id="toc-pregunta-2.2-13-puntos" class="nav-link" data-scroll-target="#pregunta-2.2-13-puntos"><span class="header-section-number">D.3.2</span> Pregunta 2.2 (13 puntos)</a></li>
+  <li><a href="#pregunta-2.1-12-puntos" id="toc-pregunta-2.1-12-puntos" class="nav-link" data-scroll-target="#pregunta-2.1-12-puntos"><span class="header-section-number">E.3.1</span> Pregunta 2.1 (12 puntos)</a></li>
+  <li><a href="#pregunta-2.2-13-puntos" id="toc-pregunta-2.2-13-puntos" class="nav-link" data-scroll-target="#pregunta-2.2-13-puntos"><span class="header-section-number">E.3.2</span> Pregunta 2.2 (13 puntos)</a></li>
   </ul></li>
-  <li><a href="#parte-iii-inferencia-estadística-25-puntos" id="toc-parte-iii-inferencia-estadística-25-puntos" class="nav-link" data-scroll-target="#parte-iii-inferencia-estadística-25-puntos"><span class="header-section-number">D.4</span> Parte III: Inferencia Estadística (25 puntos)</a>
+  <li><a href="#parte-iii-inferencia-estadística-25-puntos" id="toc-parte-iii-inferencia-estadística-25-puntos" class="nav-link" data-scroll-target="#parte-iii-inferencia-estadística-25-puntos"><span class="header-section-number">E.4</span> Parte III: Inferencia Estadística (25 puntos)</a>
   <ul class="collapse">
-  <li><a href="#pregunta-3.1-12-puntos" id="toc-pregunta-3.1-12-puntos" class="nav-link" data-scroll-target="#pregunta-3.1-12-puntos"><span class="header-section-number">D.4.1</span> Pregunta 3.1 (12 puntos)</a></li>
-  <li><a href="#pregunta-3.2-13-puntos" id="toc-pregunta-3.2-13-puntos" class="nav-link" data-scroll-target="#pregunta-3.2-13-puntos"><span class="header-section-number">D.4.2</span> Pregunta 3.2 (13 puntos)</a></li>
+  <li><a href="#pregunta-3.1-12-puntos" id="toc-pregunta-3.1-12-puntos" class="nav-link" data-scroll-target="#pregunta-3.1-12-puntos"><span class="header-section-number">E.4.1</span> Pregunta 3.1 (12 puntos)</a></li>
+  <li><a href="#pregunta-3.2-13-puntos" id="toc-pregunta-3.2-13-puntos" class="nav-link" data-scroll-target="#pregunta-3.2-13-puntos"><span class="header-section-number">E.4.2</span> Pregunta 3.2 (13 puntos)</a></li>
   </ul></li>
-  <li><a href="#parte-iv-regresión-lineal-25-puntos" id="toc-parte-iv-regresión-lineal-25-puntos" class="nav-link" data-scroll-target="#parte-iv-regresión-lineal-25-puntos"><span class="header-section-number">D.5</span> Parte IV: Regresión Lineal (25 puntos)</a>
+  <li><a href="#parte-iv-regresión-lineal-25-puntos" id="toc-parte-iv-regresión-lineal-25-puntos" class="nav-link" data-scroll-target="#parte-iv-regresión-lineal-25-puntos"><span class="header-section-number">E.5</span> Parte IV: Regresión Lineal (25 puntos)</a>
   <ul class="collapse">
-  <li><a href="#pregunta-4.1-25-puntos" id="toc-pregunta-4.1-25-puntos" class="nav-link" data-scroll-target="#pregunta-4.1-25-puntos"><span class="header-section-number">D.5.1</span> Pregunta 4.1 (25 puntos)</a></li>
+  <li><a href="#pregunta-4.1-25-puntos" id="toc-pregunta-4.1-25-puntos" class="nav-link" data-scroll-target="#pregunta-4.1-25-puntos"><span class="header-section-number">E.5.1</span> Pregunta 4.1 (25 puntos)</a></li>
   </ul></li>
-  <li><a href="#parte-v-análisis-de-datos-categóricos-25-puntos" id="toc-parte-v-análisis-de-datos-categóricos-25-puntos" class="nav-link" data-scroll-target="#parte-v-análisis-de-datos-categóricos-25-puntos"><span class="header-section-number">D.6</span> Parte V: Análisis de Datos Categóricos (25 puntos)</a>
+  <li><a href="#parte-v-análisis-de-datos-categóricos-25-puntos" id="toc-parte-v-análisis-de-datos-categóricos-25-puntos" class="nav-link" data-scroll-target="#parte-v-análisis-de-datos-categóricos-25-puntos"><span class="header-section-number">E.6</span> Parte V: Análisis de Datos Categóricos (25 puntos)</a>
   <ul class="collapse">
-  <li><a href="#pregunta-5.1-12-puntos" id="toc-pregunta-5.1-12-puntos" class="nav-link" data-scroll-target="#pregunta-5.1-12-puntos"><span class="header-section-number">D.6.1</span> Pregunta 5.1 (12 puntos)</a></li>
-  <li><a href="#pregunta-5.2-13-puntos" id="toc-pregunta-5.2-13-puntos" class="nav-link" data-scroll-target="#pregunta-5.2-13-puntos"><span class="header-section-number">D.6.2</span> Pregunta 5.2 (13 puntos)</a></li>
+  <li><a href="#pregunta-5.1-12-puntos" id="toc-pregunta-5.1-12-puntos" class="nav-link" data-scroll-target="#pregunta-5.1-12-puntos"><span class="header-section-number">E.6.1</span> Pregunta 5.1 (12 puntos)</a></li>
+  <li><a href="#pregunta-5.2-13-puntos" id="toc-pregunta-5.2-13-puntos" class="nav-link" data-scroll-target="#pregunta-5.2-13-puntos"><span class="header-section-number">E.6.2</span> Pregunta 5.2 (13 puntos)</a></li>
   </ul></li>
-  <li><a href="#instrucciones-finales" id="toc-instrucciones-finales" class="nav-link" data-scroll-target="#instrucciones-finales"><span class="header-section-number">D.7</span> Instrucciones Finales</a></li>
+  <li><a href="#instrucciones-finales" id="toc-instrucciones-finales" class="nav-link" data-scroll-target="#instrucciones-finales"><span class="header-section-number">E.7</span> Instrucciones Finales</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/edit/main/chapters/examen.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/blob/main/chapters/examen.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/apendiceA.html">Appendices</a></li><li class="breadcrumb-item"><a href="../chapters/examen.html"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Examen Final</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/apendiceA.html">Appendices</a></li><li class="breadcrumb-item"><a href="../chapters/examen.html"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Examen Final</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-examen" class="quarto-section-identifier">Apéndice D — Examen Final</span></h1>
+<h1 class="title"><span id="sec-examen" class="quarto-section-identifier">Apéndice E — Examen Final</span></h1>
 </div>
 
 
@@ -429,8 +435,8 @@ function showInstructorAnswer(button) {
 }
 </script>
 <p><strong>Asignatura:</strong> Matemáticas para la Estadística <strong>Institución:</strong> Universidad de Granada <strong>Duración:</strong> 2 horas 30 minutos <strong>Puntuación Total:</strong> 125 puntos (seleccionar 4 de 5 partes = 100 puntos, o responder las 5 para nota extra)</p>
-<section id="instrucciones" class="level2" data-number="D.1">
-<h2 data-number="D.1" class="anchored" data-anchor-id="instrucciones"><span class="header-section-number">D.1</span> Instrucciones</h2>
+<section id="instrucciones" class="level2" data-number="E.1">
+<h2 data-number="E.1" class="anchored" data-anchor-id="instrucciones"><span class="header-section-number">E.1</span> Instrucciones</h2>
 <ul>
 <li>Este examen cubre los 5 bloques: Análisis Exploratorio, Probabilidad, Inferencia, Regresión Lineal y Datos Categóricos</li>
 <li>Se permite material de consulta: calculadora, tablas de distribuciones y tablas de la distribución <span class="math inline">\(\chi^2\)</span></li>
@@ -440,10 +446,10 @@ function showInstructorAnswer(button) {
 </ul>
 <hr>
 </section>
-<section id="parte-i-análisis-exploratorio-de-datos-25-puntos" class="level2" data-number="D.2">
-<h2 data-number="D.2" class="anchored" data-anchor-id="parte-i-análisis-exploratorio-de-datos-25-puntos"><span class="header-section-number">D.2</span> Parte I: Análisis Exploratorio de Datos (25 puntos)</h2>
-<section id="pregunta-1.1-12-puntos" class="level3" data-number="D.2.1">
-<h3 data-number="D.2.1" class="anchored" data-anchor-id="pregunta-1.1-12-puntos"><span class="header-section-number">D.2.1</span> Pregunta 1.1 (12 puntos)</h3>
+<section id="parte-i-análisis-exploratorio-de-datos-25-puntos" class="level2" data-number="E.2">
+<h2 data-number="E.2" class="anchored" data-anchor-id="parte-i-análisis-exploratorio-de-datos-25-puntos"><span class="header-section-number">E.2</span> Parte I: Análisis Exploratorio de Datos (25 puntos)</h2>
+<section id="pregunta-1.1-12-puntos" class="level3" data-number="E.2.1">
+<h3 data-number="E.2.1" class="anchored" data-anchor-id="pregunta-1.1-12-puntos"><span class="header-section-number">E.2.1</span> Pregunta 1.1 (12 puntos)</h3>
 <p>Se recopilaron datos de altura (cm) de 50 estudiantes de primer año:</p>
 <pre><code>165, 168, 171, 160, 175, 172, 169, 166, 173, 170, 167, 164, 176, 168, 172,
 165, 169, 171, 174, 168, 170, 166, 173, 167, 175, 169, 168, 172, 171, 165,
@@ -499,8 +505,8 @@ Mostrar respuesta 1.1 (solo instructor)
 <p><strong>c) Interpretación:</strong> La distribución es aproximadamente simétrica, centrada alrededor de 170 cm, con una concentración principal en 168-172 cm (44% de los datos). La dispersión es moderada (s ≈ 3.8 cm). No hay valores atípicos evidentes.</p>
 </div>
 </section>
-<section id="pregunta-1.2-13-puntos" class="level3" data-number="D.2.2">
-<h3 data-number="D.2.2" class="anchored" data-anchor-id="pregunta-1.2-13-puntos"><span class="header-section-number">D.2.2</span> Pregunta 1.2 (13 puntos)</h3>
+<section id="pregunta-1.2-13-puntos" class="level3" data-number="E.2.2">
+<h3 data-number="E.2.2" class="anchored" data-anchor-id="pregunta-1.2-13-puntos"><span class="header-section-number">E.2.2</span> Pregunta 1.2 (13 puntos)</h3>
 <p>Se estudia la relación entre número de horas de estudio (X) y calificación en examen (Y) de 10 estudiantes:</p>
 <table class="caption-top table">
 <thead>
@@ -554,10 +560,10 @@ Mostrar respuesta 1.2 (solo instructor)
 <hr>
 </section>
 </section>
-<section id="parte-ii-probabilidad-y-variables-aleatorias-25-puntos" class="level2" data-number="D.3">
-<h2 data-number="D.3" class="anchored" data-anchor-id="parte-ii-probabilidad-y-variables-aleatorias-25-puntos"><span class="header-section-number">D.3</span> Parte II: Probabilidad y Variables Aleatorias (25 puntos)</h2>
-<section id="pregunta-2.1-12-puntos" class="level3" data-number="D.3.1">
-<h3 data-number="D.3.1" class="anchored" data-anchor-id="pregunta-2.1-12-puntos"><span class="header-section-number">D.3.1</span> Pregunta 2.1 (12 puntos)</h3>
+<section id="parte-ii-probabilidad-y-variables-aleatorias-25-puntos" class="level2" data-number="E.3">
+<h2 data-number="E.3" class="anchored" data-anchor-id="parte-ii-probabilidad-y-variables-aleatorias-25-puntos"><span class="header-section-number">E.3</span> Parte II: Probabilidad y Variables Aleatorias (25 puntos)</h2>
+<section id="pregunta-2.1-12-puntos" class="level3" data-number="E.3.1">
+<h3 data-number="E.3.1" class="anchored" data-anchor-id="pregunta-2.1-12-puntos"><span class="header-section-number">E.3.1</span> Pregunta 2.1 (12 puntos)</h3>
 <p>Un examen tiene 20 preguntas de verdadero/falso. Un estudiante responde al azar (50% de probabilidad de acierto).</p>
 <ol type="a">
 <li>¿Cuál es la probabilidad de acertar exactamente 12 preguntas?</li>
@@ -580,8 +586,8 @@ Mostrar respuesta 2.1 (solo instructor)
 <p><span class="math display">\[\sigma = \sqrt{np(1-p)} = \sqrt{20 \times 0.5 \times 0.5} = \sqrt{5} \approx 2.24\]</span></p>
 </div>
 </section>
-<section id="pregunta-2.2-13-puntos" class="level3" data-number="D.3.2">
-<h3 data-number="D.3.2" class="anchored" data-anchor-id="pregunta-2.2-13-puntos"><span class="header-section-number">D.3.2</span> Pregunta 2.2 (13 puntos)</h3>
+<section id="pregunta-2.2-13-puntos" class="level3" data-number="E.3.2">
+<h3 data-number="E.3.2" class="anchored" data-anchor-id="pregunta-2.2-13-puntos"><span class="header-section-number">E.3.2</span> Pregunta 2.2 (13 puntos)</h3>
 <p>El tiempo de atención en una consulta médica sigue distribución normal con media 15 minutos y desviación estándar 3 minutos.</p>
 <ol type="a">
 <li>¿Qué porcentaje de consultas duran más de 20 minutos?</li>
@@ -607,10 +613,10 @@ Mostrar respuesta 2.2 (solo instructor)
 <hr>
 </section>
 </section>
-<section id="parte-iii-inferencia-estadística-25-puntos" class="level2" data-number="D.4">
-<h2 data-number="D.4" class="anchored" data-anchor-id="parte-iii-inferencia-estadística-25-puntos"><span class="header-section-number">D.4</span> Parte III: Inferencia Estadística (25 puntos)</h2>
-<section id="pregunta-3.1-12-puntos" class="level3" data-number="D.4.1">
-<h3 data-number="D.4.1" class="anchored" data-anchor-id="pregunta-3.1-12-puntos"><span class="header-section-number">D.4.1</span> Pregunta 3.1 (12 puntos)</h3>
+<section id="parte-iii-inferencia-estadística-25-puntos" class="level2" data-number="E.4">
+<h2 data-number="E.4" class="anchored" data-anchor-id="parte-iii-inferencia-estadística-25-puntos"><span class="header-section-number">E.4</span> Parte III: Inferencia Estadística (25 puntos)</h2>
+<section id="pregunta-3.1-12-puntos" class="level3" data-number="E.4.1">
+<h3 data-number="E.4.1" class="anchored" data-anchor-id="pregunta-3.1-12-puntos"><span class="header-section-number">E.4.1</span> Pregunta 3.1 (12 puntos)</h3>
 <p>Se realizó un estudio de presión arterial sistólica en una muestra de 40 pacientes hipertensos. La media muestral fue 145 mmHg y la desviación estándar muestral 12 mmHg. Asuma distribución normal.</p>
 <ol type="a">
 <li>Calcule un intervalo de confianza del 95% para la media poblacional.</li>
@@ -633,8 +639,8 @@ Mostrar respuesta 3.1 (solo instructor)
 <p>Se necesitan aproximadamente <strong>n = 66 pacientes</strong>.</p>
 </div>
 </section>
-<section id="pregunta-3.2-13-puntos" class="level3" data-number="D.4.2">
-<h3 data-number="D.4.2" class="anchored" data-anchor-id="pregunta-3.2-13-puntos"><span class="header-section-number">D.4.2</span> Pregunta 3.2 (13 puntos)</h3>
+<section id="pregunta-3.2-13-puntos" class="level3" data-number="E.4.2">
+<h3 data-number="E.4.2" class="anchored" data-anchor-id="pregunta-3.2-13-puntos"><span class="header-section-number">E.4.2</span> Pregunta 3.2 (13 puntos)</h3>
 <p>Un laboratorio afirma que el 90% de sus pruebas de COVID tienen sensibilidad ≥ 95%. Para verificar, se prueban 50 muestras positivas y se detectan correctamente 47.</p>
 <ol type="a">
 <li>Plantee las hipótesis nula y alternativa.</li>
@@ -660,10 +666,10 @@ Mostrar respuesta 3.2 (solo instructor)
 <hr>
 </section>
 </section>
-<section id="parte-iv-regresión-lineal-25-puntos" class="level2" data-number="D.5">
-<h2 data-number="D.5" class="anchored" data-anchor-id="parte-iv-regresión-lineal-25-puntos"><span class="header-section-number">D.5</span> Parte IV: Regresión Lineal (25 puntos)</h2>
-<section id="pregunta-4.1-25-puntos" class="level3" data-number="D.5.1">
-<h3 data-number="D.5.1" class="anchored" data-anchor-id="pregunta-4.1-25-puntos"><span class="header-section-number">D.5.1</span> Pregunta 4.1 (25 puntos)</h3>
+<section id="parte-iv-regresión-lineal-25-puntos" class="level2" data-number="E.5">
+<h2 data-number="E.5" class="anchored" data-anchor-id="parte-iv-regresión-lineal-25-puntos"><span class="header-section-number">E.5</span> Parte IV: Regresión Lineal (25 puntos)</h2>
+<section id="pregunta-4.1-25-puntos" class="level3" data-number="E.5.1">
+<h3 data-number="E.5.1" class="anchored" data-anchor-id="pregunta-4.1-25-puntos"><span class="header-section-number">E.5.1</span> Pregunta 4.1 (25 puntos)</h3>
 <p>Se estudia la relación entre precio de venta (Y, en miles €) y tamaño de la vivienda (X, en m²) en 8 pisos vendidos:</p>
 <table class="caption-top table">
 <thead>
@@ -720,10 +726,10 @@ Mostrar respuesta 4.1 (solo instructor)
 <hr>
 </section>
 </section>
-<section id="parte-v-análisis-de-datos-categóricos-25-puntos" class="level2" data-number="D.6">
-<h2 data-number="D.6" class="anchored" data-anchor-id="parte-v-análisis-de-datos-categóricos-25-puntos"><span class="header-section-number">D.6</span> Parte V: Análisis de Datos Categóricos (25 puntos)</h2>
-<section id="pregunta-5.1-12-puntos" class="level3" data-number="D.6.1">
-<h3 data-number="D.6.1" class="anchored" data-anchor-id="pregunta-5.1-12-puntos"><span class="header-section-number">D.6.1</span> Pregunta 5.1 (12 puntos)</h3>
+<section id="parte-v-análisis-de-datos-categóricos-25-puntos" class="level2" data-number="E.6">
+<h2 data-number="E.6" class="anchored" data-anchor-id="parte-v-análisis-de-datos-categóricos-25-puntos"><span class="header-section-number">E.6</span> Parte V: Análisis de Datos Categóricos (25 puntos)</h2>
+<section id="pregunta-5.1-12-puntos" class="level3" data-number="E.6.1">
+<h3 data-number="E.6.1" class="anchored" data-anchor-id="pregunta-5.1-12-puntos"><span class="header-section-number">E.6.1</span> Pregunta 5.1 (12 puntos)</h3>
 <p>En un estudio sobre la asociación entre consumo de tabaco y enfermedad cardiovascular se obtiene la siguiente tabla:</p>
 <table class="caption-top table">
 <thead>
@@ -771,8 +777,8 @@ Mostrar respuesta 5.1 (solo instructor)
 <p><strong>d) Condiciones:</strong> Mínima frecuencia esperada = 40 &gt; 5. ✓ Condición cumplida.</p>
 </div>
 </section>
-<section id="pregunta-5.2-13-puntos" class="level3" data-number="D.6.2">
-<h3 data-number="D.6.2" class="anchored" data-anchor-id="pregunta-5.2-13-puntos"><span class="header-section-number">D.6.2</span> Pregunta 5.2 (13 puntos)</h3>
+<section id="pregunta-5.2-13-puntos" class="level3" data-number="E.6.2">
+<h3 data-number="E.6.2" class="anchored" data-anchor-id="pregunta-5.2-13-puntos"><span class="header-section-number">E.6.2</span> Pregunta 5.2 (13 puntos)</h3>
 <p>Un estudio caso-control investiga la asociación entre obesidad (IMC ≥ 30) e infarto de miocardio. Se reclutan 100 casos (infarto) y 100 controles. De los casos, 60 son obesos; de los controles, 30 son obesos.</p>
 <ol type="a">
 <li>Construya la tabla 2×2 con la notación estándar <span class="math inline">\((a, b, c, d)\)</span>.</li>
@@ -827,8 +833,8 @@ Mostrar respuesta 5.2 (solo instructor)
 <hr>
 </section>
 </section>
-<section id="instrucciones-finales" class="level2" data-number="D.7">
-<h2 data-number="D.7" class="anchored" data-anchor-id="instrucciones-finales"><span class="header-section-number">D.7</span> Instrucciones Finales</h2>
+<section id="instrucciones-finales" class="level2" data-number="E.7">
+<h2 data-number="E.7" class="anchored" data-anchor-id="instrucciones-finales"><span class="header-section-number">E.7</span> Instrucciones Finales</h2>
 <ul>
 <li>Revise sus respuestas antes de entregar</li>
 <li>Indique claramente los pasos de sus cálculos</li>
@@ -1294,8 +1300,8 @@ Mostrar respuesta 5.2 (solo instructor)
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/apendiceC.html" class="pagination-link" aria-label="Apéndice C: Guía de R para Estadística Médica">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Apéndice C: Guía de R para Estadística Médica</span></span>
+      <a href="../chapters/apendiceD.html" class="pagination-link" aria-label="Apéndice D: Investigación Reproducible con Git, GitHub y RStudio">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Apéndice D: Investigación Reproducible con Git, GitHub y RStudio</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

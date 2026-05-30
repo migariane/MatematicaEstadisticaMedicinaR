@@ -375,7 +375,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/apendiceB.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Apéndice B: El Paquete BioestadisticaR2 — Guía de Referencia</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Apéndice B: El Paquete <code>BioStatR</code> — Guía de Referencia</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -386,8 +386,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/apendiceD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Apéndice D: Investigación Reproducible con Git, GitHub y RStudio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/examen.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Examen Final</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Examen Final</span></span></a>
   </div>
 </li>
       </ul>
@@ -444,7 +450,7 @@ window.Quarto = {
   <li><a href="#selección-de-variables-por-aic-stepwise" id="toc-selección-de-variables-por-aic-stepwise" class="nav-link" data-scroll-target="#selección-de-variables-por-aic-stepwise"><span class="header-section-number">10.17.4</span> Selección de variables por AIC (stepwise)</a></li>
   <li><a href="#predicción-para-perfiles-clínicos-específicos" id="toc-predicción-para-perfiles-clínicos-específicos" class="nav-link" data-scroll-target="#predicción-para-perfiles-clínicos-específicos"><span class="header-section-number">10.17.5</span> Predicción para perfiles clínicos específicos</a></li>
   <li><a href="#ejemplo-con-variables-indicadoras-tratamientos-antihipertensivos" id="toc-ejemplo-con-variables-indicadoras-tratamientos-antihipertensivos" class="nav-link" data-scroll-target="#ejemplo-con-variables-indicadoras-tratamientos-antihipertensivos"><span class="header-section-number">10.17.6</span> Ejemplo con variables indicadoras: Tratamientos antihipertensivos</a></li>
-  <li><a href="#ejemplo-con-bioestadisticar2-regresión-lineal-múltiple" id="toc-ejemplo-con-bioestadisticar2-regresión-lineal-múltiple" class="nav-link" data-scroll-target="#ejemplo-con-bioestadisticar2-regresión-lineal-múltiple"><span class="header-section-number">10.17.7</span> Ejemplo con BioestadisticaR2: regresión lineal múltiple</a></li>
+  <li><a href="#ejemplo-con-biostatr-regresión-lineal-múltiple" id="toc-ejemplo-con-biostatr-regresión-lineal-múltiple" class="nav-link" data-scroll-target="#ejemplo-con-biostatr-regresión-lineal-múltiple"><span class="header-section-number">10.17.7</span> Ejemplo con <code>BioStatR</code>: regresión lineal múltiple</a></li>
   </ul></li>
   <li><a href="#sec-semana10-resumen" id="toc-sec-semana10-resumen" class="nav-link" data-scroll-target="#sec-semana10-resumen"><span class="header-section-number">10.18</span> Resumen</a></li>
   <li><a href="#sec-semana10-ejercicios" id="toc-sec-semana10-ejercicios" class="nav-link" data-scroll-target="#sec-semana10-ejercicios"><span class="header-section-number">10.19</span> Ejercicios</a></li>
@@ -1547,43 +1553,159 @@ Tip
 </div>
 </div>
 </section>
-<section id="ejemplo-con-bioestadisticar2-regresión-lineal-múltiple" class="level3" data-number="10.17.7">
-<h3 data-number="10.17.7" class="anchored" data-anchor-id="ejemplo-con-bioestadisticar2-regresión-lineal-múltiple"><span class="header-section-number">10.17.7</span> Ejemplo con BioestadisticaR2: regresión lineal múltiple</h3>
-<p>La función <code>rlm()</code> extiende <code>rls()</code> (ver <a href="apendiceB.html#sec-bio-rls" class="quarto-xref"><span>Sección B.6</span></a>) al caso multivariante.</p>
+<section id="ejemplo-con-biostatr-regresión-lineal-múltiple" class="level3" data-number="10.17.7">
+<h3 data-number="10.17.7" class="anchored" data-anchor-id="ejemplo-con-biostatr-regresión-lineal-múltiple"><span class="header-section-number">10.17.7</span> Ejemplo con <code>BioStatR</code>: regresión lineal múltiple</h3>
+<p>La función <code>rlm()</code> del paquete <code>BioStatR</code> (ver <a href="apendiceB.html" class="quarto-xref"><span>Apéndice B</span></a>) extiende <code>rls()</code> al caso multivariante. Integra en una sola llamada la estimación de los coeficientes con intervalos de confianza, el coeficiente de determinación <span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2\)</span> ajustado, el test de normalidad de los residuos (Shapiro–Wilk) y los gráficos de diagnóstico (residuos <em>vs.</em> ajustados, Q–Q plot e histograma de residuos estandarizados).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Modelo: HbA1c ~ tiempo de evolución + edad + IMC
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Aplicamos <code>rlm()</code> al conjunto de datos <code>osteo</code> para evaluar cómo el tiempo de evolución de la diabetes, la edad y el índice de masa corporal (IMC) explican conjuntamente la hemoglobina glicosilada (HbA1c).</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43" data-lst-cap="BioestadisticaR2 — Regresión lineal múltiple: función rlm()"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioestadisticaR2)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo: HbA1c ~ tiempo de evolución de la diabetes + edad + IMC</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Dataset osteo: pacientes diabéticos, Fac. Medicina UGR</span></span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rlm</span>(<span class="at">y     =</span> osteo<span class="sc">$</span>hba1c,</span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x     =</span> <span class="fu">cbind</span>(osteo<span class="sc">$</span>tevol, osteo<span class="sc">$</span>edad, osteo<span class="sc">$</span>imc),</span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">xname =</span> <span class="fu">c</span>(<span class="st">"tevol"</span>, <span class="st">"edad"</span>, <span class="st">"imc"</span>),</span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">grf   =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43" data-lst-cap="BioStatR — rlm(): regresión lineal múltiple sobre el dataset osteo"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioStatR)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(osteo)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rlm</span>(hba1c <span class="sc">~</span> tevol <span class="sc">+</span> edad <span class="sc">+</span> imc, <span class="at">data =</span> osteo, <span class="at">grf =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Regresión lineal múltiple 
+----------------------------------------------------------------
+# Información muestral --- 
+
+      Variable  n Media   DT  Min  Max
+hba1c    hba1c 94  8.56 1.80  4.6 13.8
+tevol    tevol 94 12.33 8.53  0.0 35.0
+edad      edad 94 30.19 9.37 18.0 56.0
+imc        imc 94 23.92 3.75 18.1 37.3
+
+# Modelo lineal --- 
+
+   Modelo :  hba1c ~ tevol + edad + imc 
+  R² =  0.063  (R²  ajustado  =  0.031 )
+  S²residual =  3.13 
+
+   Coeficientes del modelo :
+
+      Termino Estimacion Error_Std IC_inf IC_sup  t_exp      sig
+1 (Intercept)      8.601     1.200  6.217 10.984  7.169  &lt; 0.001
+2       tevol     -0.046     0.025 -0.095  0.003 -1.883  = 0.063
+3        edad     -0.012     0.024 -0.059  0.035 -0.521  = 0.604
+4         imc      0.038     0.052 -0.066  0.142  0.722  = 0.472
+
+# Distribución residual --- 
+  Error estándar residual:  1.77 
+    Residuos Res_Est
+min   -4.519  -2.589
+Q1    -0.945  -0.545
+Q2    -0.010  -0.006
+Q3     0.995   0.572
+max    4.938   2.923
+
+  Test de normalidad residual (Shapiro-Wilk): 
+   w = 0.991 ,   = 0.744 </code></pre>
 </div>
-<pre><code>Regresión lineal múltiple
------------------------------------------------------------------
-Modelo:  hba1c ~ tevol + edad + imc
+</div>
+<p><strong>Interpretación:</strong> Tras ajustar simultáneamente por la edad y el IMC, el coeficiente del tiempo de evolución (<code>tevol</code>) es negativo y cercano a la significación estadística (<span class="math inline">\(p \approx 0.06\)</span>). Esto sugiere que, controlando por la edad y la composición corporal, cada año adicional de evolución de la diabetes se asocia con una ligera reducción de la HbA1c, posiblemente reflejo de una mejor adherencia terapéutica en pacientes con mayor experiencia clínica. El coeficiente de determinación ajustado (<span class="math inline">\(R^2_{\text{adj}} \approx 0.03\)</span>) indica que estas tres variables explican apenas una pequeña fracción de la variabilidad de la HbA1c, lo que es coherente con la naturaleza multifactorial del control glucémico.</p>
+<p>El test de Shapiro–Wilk sobre los residuos no rechaza la normalidad, validando los intervalos de confianza y los contrastes individuales.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Diagnóstico gráfico con <code>grf = TRUE</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-27" class="callout-27-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Llamando a <code>rlm()</code> con <code>grf = TRUE</code> se obtienen los cuatro gráficos clásicos de diagnóstico (residuos <em>vs.</em> ajustados, Q–Q plot de residuos estandarizados, escala-localización y residuos <em>vs.</em> leverage), junto con un histograma de residuos estandarizados:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45" data-lst-cap="BioStatR — rlm() con gráficos de diagnóstico"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rlm</span>(hba1c <span class="sc">~</span> tevol <span class="sc">+</span> edad <span class="sc">+</span> imc, <span class="at">data =</span> osteo, <span class="at">grf =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Regresión lineal múltiple 
+----------------------------------------------------------------
+# Información muestral --- 
 
-  n = 94
+      Variable  n Media   DT  Min  Max
+hba1c    hba1c 94  8.56 1.80  4.6 13.8
+tevol    tevol 94 12.33 8.53  0.0 35.0
+edad      edad 94 30.19 9.37 18.0 56.0
+imc        imc 94 23.92 3.75 18.1 37.3
 
-               estim     se  ic_inf ic_sup    sig
-  (Cte)        7.234  1.205   4.839  9.629 &lt;0.001
-  tevol       -0.043  0.022  -0.086  0.001  0.056
-  edad         0.019  0.014  -0.009  0.048  0.177
-  imc          0.048  0.032  -0.015  0.112  0.132
+# Modelo lineal --- 
 
-  R² = 0.082   R²_adj = 0.051
-  F(3, 90) = 2.68,  p = 0.051
+   Modelo :  hba1c ~ tevol + edad + imc 
+  R² =  0.063  (R²  ajustado  =  0.031 )
+  S²residual =  3.13 
 
-  Error estándar residual: 1.771
------------------------------------------------------------------
-Interpretación: Tras ajustar por edad e IMC, el tiempo de evolución
-de la diabetes (tevol) pierde algo de significancia (p = 0.056),
-sugiriendo que parte de su efecto estaba mediado o confundido por
-la edad o el IMC.</code></pre>
+   Coeficientes del modelo :
+
+      Termino Estimacion Error_Std IC_inf IC_sup  t_exp      sig
+1 (Intercept)      8.601     1.200  6.217 10.984  7.169  &lt; 0.001
+2       tevol     -0.046     0.025 -0.095  0.003 -1.883  = 0.063
+3        edad     -0.012     0.024 -0.059  0.035 -0.521  = 0.604
+4         imc      0.038     0.052 -0.066  0.142  0.722  = 0.472
+
+# Distribución residual --- 
+  Error estándar residual:  1.77 
+    Residuos Res_Est
+min   -4.519  -2.589
+Q1    -0.945  -0.545
+Q2    -0.010  -0.006
+Q3     0.995   0.572
+max    4.938   2.923
+
+  Test de normalidad residual (Shapiro-Wilk): 
+   w = 0.991 ,   = 0.744 </code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="semana10_files/figure-html/lst-s10-bio-rlm-diag-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="semana10_files/figure-html/lst-s10-bio-rlm-diag-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="semana10_files/figure-html/lst-s10-bio-rlm-diag-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="semana10_files/figure-html/lst-s10-bio-rlm-diag-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="sec-semana10-resumen" class="level2" data-number="10.18">

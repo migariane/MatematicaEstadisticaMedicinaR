@@ -375,7 +375,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/apendiceB.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Apéndice B: El Paquete BioestadisticaR2 — Guía de Referencia</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Apéndice B: El Paquete <code>BioStatR</code> — Guía de Referencia</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -386,8 +386,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/apendiceD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Apéndice D: Investigación Reproducible con Git, GitHub y RStudio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/examen.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Examen Final</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Examen Final</span></span></a>
   </div>
 </li>
       </ul>
@@ -636,7 +642,7 @@ Cuadro&nbsp;2.1: Distribuciones con igual media pero distinta varianza
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Ejemplo 2.1: BioestadisticaR2 grps()
+<span class="screen-reader-only">Tip</span>Ejemplo 2.1: BioStatR grps()
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -650,7 +656,7 @@ Cuadro&nbsp;2.2: Código R
 <div aria-describedby="lst-semana02-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details class="code-fold">
 <summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioestadisticaR2)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioStatR)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># IMC según sexo — pacientes diabéticos UGR (n = 94)</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">grps</span>(osteo<span class="sc">$</span>imc, osteo<span class="sc">$</span>sexo, <span class="at">grf =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -675,7 +681,7 @@ Cuadro&nbsp;2.2: Código R
 </section>
 <section id="sec-semana02-s1-base-r" class="level3" data-number="2.1.5">
 <h3 data-number="2.1.5" class="anchored" data-anchor-id="sec-semana02-s1-base-r"><span class="header-section-number">2.1.5</span> Cálculo de Estadísticos con R Base</h3>
-<p>Aunque paquetes como <code>BioestadisticaR2</code> son potentes, es fundamental saber usar las funciones básicas de R para un análisis rápido.</p>
+<p>Aunque paquetes como <code>BioStatR</code> son potentes, es fundamental saber usar las funciones básicas de R para un análisis rápido.</p>
 <div class="cell">
 <div id="lst-semana02-2" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-summary="Cálculos con Base R">
 <figure class="quarto-float quarto-float-lst figure">
