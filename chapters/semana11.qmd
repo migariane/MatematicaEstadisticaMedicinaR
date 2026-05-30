@@ -81,12 +81,12 @@ Analizamos la asociación entre tabaquismo (`tabaco`) y osteoporosis de cúbito 
 
 ```{r}
 #| label: lst-s12-bio01
-#| lst-cap: "BioestadisticaR2 — tabla2x2(): tabaquismo y osteoporosis"
+#| lst-cap: "BioStatR — tabla2x2(): tabaquismo y osteoporosis"
 #| warning: false
 #| message: false
 #| echo: false
 
-library(BioestadisticaR2)
+library(BioStatR)
 
 # Frecuencias extraídas de osteo: tabaco vs osteo_cue
 # No fumadores (n=53): 44 sin osteoporosis, 9 con osteoporosis
@@ -134,12 +134,12 @@ Ensayo clínico con 3 grupos de tratamiento (Control, Dosis baja, Dosis alta) y 
 
 ```{r}
 #| label: lst-s12-bio02
-#| lst-cap: "BioestadisticaR2 — tablarxc(): homogeneidad entre 3 grupos de tratamiento"
+#| lst-cap: "BioStatR — tablarxc(): homogeneidad entre 3 grupos de tratamiento"
 #| warning: false
 #| message: false
 #| echo: false
 
-library(BioestadisticaR2)
+library(BioStatR)
 
 # Construir tabla de datos
 # Control: 20 curados, 30 no curados
@@ -411,19 +411,19 @@ Como $11.11 > 3.84$ ($p < 0.001$), rechazamos $H_0$. La intervención mejora sig
 Si se hubiera aplicado incorrectamente un $\chi^2$ de independencia (ignorando el apareamiento), la prueba sería errónea porque las observaciones no son independientes.
 :::
 
-### Implementación: BioestadisticaR2 vs. Base R
+### Implementación: BioStatR vs. Base R
 
 ::: {.callout-tip}
-## BioestadisticaR2 — testmcnemar(): Datos apareados
+## BioStatR — testmcnemar(): Datos apareados
 
-Para datos apareados (donde las observaciones son dependientes), utilizamos la función `testmcnemar()` del paquete `BioestadisticaR2`.
+Para datos apareados (donde las observaciones son dependientes), utilizamos la función `testmcnemar()` del paquete `BioStatR`.
 
 ```{r}
 #| label: lst-s12-bio03
-#| lst-cap: "BioestadisticaR2: Test de McNemar para datos apareados"
+#| lst-cap: "BioStatR: Test de McNemar para datos apareados"
 #| eval: true
 
-library(BioestadisticaR2)
+library(BioStatR)
 
 # Tabla 2×2 apareada: testmcnemar()
 testmcnemar(n11 = 42, n12 = 8, n21 = 28, n22 = 22,
@@ -550,7 +550,7 @@ $$IC_{95\%}(OR) = \exp\!\left[\ln\widehat{OR} \pm 1.96\sqrt{\frac{1}{a} + \frac{
 - $OR = 1$: sin asociación
 - $OR > 1$: exposición asociada con mayor odds de resultado
 - $OR \approx RR$ cuando la enfermedad es **rara** (prevalencia < 10%)
-- `tabla2x2()` de BioestadisticaR2 calcula OR e IC directamente
+- `tabla2x2()` de BioStatR calcula OR e IC directamente
 :::
 
 ::: {.callout-tip}
@@ -558,11 +558,11 @@ $$IC_{95\%}(OR) = \exp\!\left[\ln\widehat{OR} \pm 1.96\sqrt{\frac{1}{a} + \frac{
 
 ```{r}
 #| label: lst-s12-bio04
-#| lst-cap: "BioestadisticaR2 — tabla2x2(): caso-control, OR con IC"
+#| lst-cap: "BioStatR — tabla2x2(): caso-control, OR con IC"
 #| warning: false
 #| message: false
 
-library(BioestadisticaR2)
+library(BioStatR)
 
 # 200 casos de cirrosis y 200 controles
 # Consumo excesivo de alcohol: 120 casos, 60 controles
@@ -609,13 +609,13 @@ El OR sobreestima al RR cuando la prevalencia/incidencia del resultado es alta (
 
 ```{r}
 #| label: lst-s12-bio05
-#| lst-cap: "BioestadisticaR2 — testnormal() y Base R — shapiro.test()"
+#| lst-cap: "BioStatR — testnormal() y Base R — shapiro.test()"
 #| warning: false
 #| message: false
 
-library(BioestadisticaR2)
+library(BioStatR)
 
-# Con BioestadisticaR2 (reporte completo con histograma)
+# Con BioStatR (reporte completo con histograma)
 testnormal(osteo$imc)
 
 # Con R base
@@ -626,11 +626,11 @@ shapiro.test(osteo$imc)
 
 ```{r}
 #| label: lst-s12-r05
-#| lst-cap: "Comparación BioestadisticaR2 vs. Base R — Chi-cuadrado en tabla 2×2"
+#| lst-cap: "Comparación BioStatR vs. Base R — Chi-cuadrado en tabla 2×2"
 #| warning: false
 #| message: false
 
-# Con BioestadisticaR2 (tabla 2x2, Chi-cuadrado + OR + Fisher integrado)
+# Con BioStatR (tabla 2x2, Chi-cuadrado + OR + Fisher integrado)
 tabla2x2(o11 = 44, o12 = 9, o21 = 26, o22 = 15,
          fcat = c("No fumador", "Fumador"),
          ccat = c("Sin osteoporosis", "Con osteoporosis"))
@@ -649,7 +649,7 @@ fisher.test(m)
 
 ```{r}
 #| label: lst-s12-r06
-#| lst-cap: "Comparación BioestadisticaR2 vs. Base R — Test de McNemar"
+#| lst-cap: "Comparación BioStatR vs. Base R — Test de McNemar"
 #| eval: true
 #| warning: false
 #| message: false
@@ -663,8 +663,8 @@ m_paired <- matrix(c(42, 28, 8, 22), nrow = 2,
 cat("=== mcnemar.test() — Base R ===\n")
 mcnemar.test(m_paired, correct = FALSE)  # Sin corrección (b+c=36 >= 25)
 
-# BioestadisticaR2: tabla2x2(..., estudio = "AP")
-# (ver sección 12.5.5 para la salida completa; requiere BioestadisticaR2)
+# BioStatR: tabla2x2(..., estudio = "AP")
+# (ver sección 12.5.5 para la salida completa; requiere BioStatR)
 # tabla2x2(o11=42, o12=8, o21=28, o22=22,
 #          fcat = c("Pre: Controlada","Pre: No controlada"),
 #          ccat = c("Post: Controlada","Post: No controlada"),
@@ -675,7 +675,7 @@ mcnemar.test(m_paired, correct = FALSE)  # Sin corrección (b+c=36 >= 25)
 
 ```{r}
 #| label: lst-s12-bio06
-#| lst-cap: "BioestadisticaR2 — tablarxc(): grupos de edad y tabaquismo"
+#| lst-cap: "BioStatR — tablarxc(): grupos de edad y tabaquismo"
 #| warning: false
 #| message: false
 
@@ -729,11 +729,11 @@ El dataset `osteo` contiene datos de 94 pacientes diabéticos atendidos en la Fa
 
 ```{r}
 #| label: lst-s12-bio07
-#| lst-cap: "BioestadisticaR2 — Análisis completo: osteo dataset UGR"
+#| lst-cap: "BioStatR — Análisis completo: osteo dataset UGR"
 #| warning: false
 #| message: false
 
-library(BioestadisticaR2)
+library(BioStatR)
 
 # 1. Normalidad del IMC
 testnormal(osteo$imc)
@@ -823,6 +823,74 @@ La gravedad actúa como un factor de confusión ya que está asociada tanto a la
 Sin embargo, es crucial notar que existe una **interacción** (modificación del efecto): el fármaco parece ser más eficaz en pacientes leves que en pacientes graves. En presencia de una interacción tan marcada, la mejor recomendación epidemiológica es presentar los **resultados estratificados**, ya que un único OR ajustado (MH) ocultaría esta heterogeneidad clínicamente relevante. 
 
 Por último, para superar las limitaciones de los métodos tradicionales, la generalización de la estandarización mediante la **g-formula** (Robins, 1987) representa hoy en día una alternativa avanzada y robusta para ajustar el efecto del fármaco. Para aquellos interesados en introducirse en la inferencia causal desde una perspectiva tanto histórica como computacional, se recomienda como punto de partida el tutorial *Computational Causal Inference* (Smith & Luque-Fernandez, 2020, publicado en *Statistics in Medicine*), el cual ofrece una excelente guía con ejemplos prácticos implementados en **R, Python y Stata**.
+
+### Control multivariable de la confusión: regresión logística múltiple con `rlogitm()` {#sec-semana11-rlogitm}
+
+El estimador de Mantel–Haenszel es elegante y didácticamente potente, pero presenta dos limitaciones operativas importantes:
+
+1. **Sólo permite controlar por una variable de confusión categórica** (la que define los estratos). Si necesitamos ajustar simultáneamente por edad, IMC, tabaquismo y tiempo de evolución, la estratificación produce demasiados estratos con frecuencias muy pequeñas en cada uno.
+2. **Asume homogeneidad del OR a través de los estratos**. Cuando esa hipótesis se rompe (interacción, como en el ejemplo previo), el OR de M–H promedia efectos heterogéneos y oculta la modificación del efecto.
+
+La **regresión logística múltiple** generaliza el ajuste por confusión: permite incluir un número arbitrario de covariables (continuas o categóricas) simultáneamente, estima un OR ajustado para cada predictor manteniendo constantes las demás, y proporciona una medida global de capacidad discriminante mediante el **área bajo la curva ROC** (AUC). El paquete `BioStatR` integra todo este flujo en la función `rlogitm()` (ver @sec-apendiceB), que devuelve:
+
+- Estimación de los coeficientes con sus odds ratios e intervalos de confianza.
+- Bondad de ajuste mediante el **test de Hosmer–Lemeshow**.
+- Pseudo-$R^2$ de **Nagelkerke**.
+- **AUC** con su intervalo de confianza al 95 %.
+- Curva ROC (opcional, con `grf = TRUE`).
+
+::: {.callout-tip}
+## Ejemplo: osteoporosis del cuello femoral ajustada por múltiples factores
+
+Volvamos al estudio observacional de la sección de tablas de contingencia, donde habíamos detectado una asociación entre tabaquismo y osteoporosis del cuello femoral (`osteo_cue`) en 94 pacientes diabéticos. La pregunta clínica relevante es: **¿persiste la asociación tras controlar simultáneamente por edad, índice de masa corporal y tiempo de evolución de la diabetes?**
+
+```{r}
+#| label: lst-s11-rlogitm
+#| lst-cap: "BioStatR — rlogitm(): regresión logística múltiple sobre el dataset osteo"
+#| warning: false
+#| message: false
+#| fig-width: 6
+#| fig-height: 5
+library(BioStatR)
+data(osteo)
+
+# Modelo: osteoporosis del cuello femoral ajustada por tabaco + edad + IMC + tevol
+rlogitm(osteo_cue ~ tabaco + edad + imc + tevol,
+        data = osteo,
+        grf  = TRUE)
+```
+
+**Interpretación epidemiológica:**
+
+- **Tabaquismo (variable de exposición principal):** tras ajustar por edad, IMC y tiempo de evolución, los fumadores presentan un OR ajustado $\approx 2.4$ (IC 95 %: 0.82 – 7.22) frente a los no fumadores. La asociación cruda obtenida en la tabla 2×2 (OR $\approx 2.8$, $p = 0.031$) se atenúa ligeramente al ajustar por las demás covariables y pierde significación estadística al 5 %, lo que sugiere que parte del efecto observado podría estar mediado o confundido por la edad y el IMC. Este es un ejemplo clásico de cómo el **OR ajustado por regresión multivariable** difiere del OR crudo y, también, del OR de Mantel–Haenszel restringido a un único estratificador.
+
+- **IMC:** muestra una asociación inversa estadísticamente significativa ($\text{OR} \approx 0.80$, $p \approx 0.03$). Cada unidad adicional de IMC reduce las odds de osteoporosis del cuello femoral aproximadamente un 20 %, en consonancia con la literatura sobre el efecto protector de la masa corporal sobre la densidad ósea.
+
+- **Tiempo de evolución de la diabetes (`tevol`):** asociación positiva significativa ($\text{OR} \approx 1.07$, $p \approx 0.04$). Cada año adicional de evolución incrementa las odds de osteoporosis del cuello femoral en torno a un 7 %.
+
+- **Edad:** no aporta información independiente del resto de predictores ($p \approx 0.92$), probablemente porque su efecto está capturado por `tevol` (variable altamente correlacionada con la edad en pacientes diabéticos).
+
+**Bondad de ajuste y discriminación:**
+
+- El test de Hosmer–Lemeshow no rechaza el ajuste del modelo ($\chi^2 \approx 2.07$, $p \approx 0.98$): las probabilidades predichas son coherentes con las frecuencias observadas en deciles de riesgo.
+- El pseudo-$R^2$ de Nagelkerke alcanza $\approx 0.21$, un valor moderado para datos observacionales en bioestadística clínica.
+- El AUC de la curva ROC es $\approx 0.74$, indicando una **capacidad discriminante aceptable**: en términos prácticos, si tomamos al azar a un paciente con osteoporosis y a otro sin osteoporosis, la probabilidad predicha de osteoporosis es mayor en el primero el 74 % de las veces.
+
+:::
+
+::: {.callout-note}
+## Mantel–Haenszel vs. regresión logística múltiple
+
+| Criterio | Mantel–Haenszel | Regresión logística múltiple |
+|----------|:---------------:|:----------------------------:|
+| Nº de covariables de ajuste | 1 (categórica, define estratos) | Arbitrario (continuas y categóricas) |
+| Supuesto sobre OR | Homogeneidad entre estratos | Linealidad en el log-odds; no interacción salvo que se modelice |
+| Output principal | OR ajustado único | OR ajustado por covariable + bondad de ajuste + AUC |
+| Detección de interacción | Test de Breslow–Day | Términos producto en la fórmula |
+| Cuando elegirlo | Análisis exploratorio rápido, una sola covariable de confusión | Análisis confirmatorio, múltiples confusores, predicción |
+
+En la práctica epidemiológica moderna ambas técnicas se utilizan de forma complementaria: M–H ofrece una **lectura rápida y transparente** del efecto de una variable de exposición estratificada, mientras que la **regresión logística múltiple** proporciona el modelo de ajuste definitivo con todas las covariables relevantes y una medida global de discriminación (AUC).
+:::
 
 ## Ejercicios del tema
 

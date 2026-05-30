@@ -108,7 +108,7 @@ Este test es más conservador que asumir varianzas iguales.
 :::
 
 ::: {.callout-tip}
-## Ejemplo con BioestadisticaR2: testt(), testf() y testwx()
+## Ejemplo con BioStatR: testt(), testf() y testwx()
 
 Documentacion completa de las tres funciones en @sec-bio-contrastes.
 
@@ -118,7 +118,7 @@ Documentacion completa de las tres funciones en @sec-bio-contrastes.
 #| warning: false
 #| message: false
 
-library(BioestadisticaR2)
+library(BioStatR)
 
 # t-test dos muestras independientes: HbA1c por sexo
 testt(grupos = osteo$sexo, m = osteo$hba1c, grf = FALSE)
@@ -370,9 +370,9 @@ $$z_{1-0.025} = 1.96, \quad z_{0.80} = 0.84$$
 $$n = \frac{2 \times 225 \times (1.96 + 0.84)^2}{100} = \frac{450 \times 6.4}{100} \approx 28.8 \approx 29 \text{ por grupo}$$
 :::
 
-### Cálculo con BioestadisticaR2: `testt()` y `testp()` {#sec-semana08-bio-power}
+### Cálculo con BioStatR: `testt()` y `testp()` {#sec-semana08-bio-power}
 
-Las funciones `testt()` y `testp()` del paquete `BioestadisticaR2` (ver @sec-bio-contrastes) calculan **simultáneamente** el contraste de hipótesis, la **potencia** y el **tamaño muestral** necesario para detectar una diferencia mínima relevante $\delta$ (effect size en unidades de la variable).
+Las funciones `testt()` y `testp()` del paquete `BioStatR` (ver @sec-bio-contrastes) calculan **simultáneamente** el contraste de hipótesis, la **potencia** y el **tamaño muestral** necesario para detectar una diferencia mínima relevante $\delta$ (effect size en unidades de la variable).
 
 ::: {.callout-note}
 ## Argumentos clave
@@ -402,7 +402,7 @@ Dos escenarios reales del estudio piloto `osteo` (94 pacientes diabéticos):
 #| warning: false
 #| message: false
 
-library(BioestadisticaR2)
+library(BioStatR)
 
 # --- 1. testt(): potencia y n para una media ---
 # H0: µ_HbA1c = 7.5  ;  delta clinicamente relevante = 0.5%
@@ -703,7 +703,7 @@ donde $x_{(i)}$ son los estadísticos de orden y $a_i$ son coeficientes tabulad
 ::: {.callout-tip}
 ## Ejemplo: Test de normalidad en datos clínicos
 
-Usando el conjunto de datos `osteo` de `BioestadisticaR2`, que contiene 94 pacientes diabéticos de la Facultad de Medicina de la UGR, comprobamos la normalidad de la variable edad:
+Usando el conjunto de datos `osteo` de `BioStatR`, que contiene 94 pacientes diabéticos de la Facultad de Medicina de la UGR, comprobamos la normalidad de la variable edad:
 
 ```{r}
 #| lst-label: lst-semana09-9
@@ -711,9 +711,9 @@ Usando el conjunto de datos `osteo` de `BioestadisticaR2`, que contiene 94 pacie
 #| warning: false
 #| message: false
 
-library(BioestadisticaR2)
+library(BioStatR)
 
-# Test de Shapiro-Wilk con BioestadisticaR2
+# Test de Shapiro-Wilk con BioStatR
 testnormal(osteo$edad)
 
 # Test de Shapiro-Wilk con R base
@@ -755,7 +755,7 @@ Bajo $H_0$: $\chi^2_B \sim \chi^2_{k-1}$ (asintóticamente). Sensible a no norm
 #| warning: false
 #| message: false
 
-library(BioestadisticaR2)
+library(BioStatR)
 
 # Test de Bartlett: IMC igual en los 3 grupos de edad?
 bartlett.test(imc ~ grupo_edad, data = osteo)
@@ -827,7 +827,7 @@ El IMC de los pacientes masculinos del dataset `osteo` **no sigue una distribuci
 #| warning: false
 #| message: false
 
-library(BioestadisticaR2)
+library(BioStatR)
 library(boot)
 set.seed(2024)
 
@@ -885,7 +885,7 @@ Shapiro-Wilk rechaza normalidad tanto en hombres ($p = 0.006$) como en mujeres (
 #| warning: false
 #| message: false
 
-library(BioestadisticaR2)
+library(BioStatR)
 set.seed(2024)
 B <- 10000
 
@@ -962,9 +962,9 @@ Contrastamos si el Índice de Masa Corporal (IMC) difiere entre hombres y mujer
 #| warning: false
 #| message: false
 
-library(BioestadisticaR2)
+library(BioStatR)
 
-# Wilcoxon-Mann-Whitney con BioestadisticaR2
+# Wilcoxon-Mann-Whitney con BioStatR
 testwx(m1 = osteo$imc[osteo$sexo == "Hombre"],
        m2 = osteo$imc[osteo$sexo == "Mujer"],
        grf = FALSE)
@@ -988,7 +988,7 @@ Es la alternativa no paramétrica al t-test pareado. Se utiliza para comparar d
 :::
 
 ::: {.callout-tip}
-## Ejemplo: Prueba pareada con BioestadisticaR2
+## Ejemplo: Prueba pareada con BioStatR
 
 Supongamos que evaluamos el calcio sérico (`ca`) antes y después de un tratamiento en 10 pacientes (datos simulados para ilustración).
 
@@ -1002,7 +1002,7 @@ Supongamos que evaluamos el calcio sérico (`ca`) antes y después de un trata
 ca_pre  <- c(9.2, 8.4, 8.8, 9.1, 9.5, 9.0, 8.9, 9.3, 8.5, 8.7)
 ca_post <- c(9.5, 8.7, 9.0, 9.4, 9.6, 9.1, 9.0, 9.6, 8.9, 8.8)
 
-# Wilcoxon pareado con BioestadisticaR2 (par = TRUE)
+# Wilcoxon pareado con BioStatR (par = TRUE)
 testwx(m1 = ca_pre, m2 = ca_post, par = TRUE, grf = FALSE)
 ```
 

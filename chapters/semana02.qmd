@@ -112,7 +112,7 @@ La desviación estándar está en las mismas unidades que los datos originales, 
 :::
 
 ::: {.callout-tip}
-## Ejemplo 2.1: BioestadisticaR2 grps()
+## Ejemplo 2.1: BioStatR grps()
 
 La función `grps()` calcula estadísticos descriptivos comparativos por grupos en una sola llamada (documentación completa en @sec-bio-descriptivo):
 
@@ -120,7 +120,7 @@ La función `grps()` calcula estadísticos descriptivos comparativos por grupos 
 #| lst-label: lst-semana02-1
 #| lst-cap: "Código R"
 
-library(BioestadisticaR2)
+library(BioStatR)
 
 # IMC según sexo — pacientes diabéticos UGR (n = 94)
 grps(osteo$imc, osteo$sexo, grf = FALSE)
@@ -132,7 +132,7 @@ Las mujeres presentan mayor IMC medio y mayor variabilidad (dt = 4.39 vs 2.89 en
 
 ### Cálculo de Estadísticos con R Base {#sec-semana02-s1-base-r}
 
-Aunque paquetes como `BioestadisticaR2` son potentes, es fundamental saber usar las funciones básicas de R para un análisis rápido.
+Aunque paquetes como `BioStatR` son potentes, es fundamental saber usar las funciones básicas de R para un análisis rápido.
 
 ```{r}
 #| lst-label: lst-semana02-2

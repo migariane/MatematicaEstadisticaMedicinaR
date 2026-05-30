@@ -56,6 +56,7 @@ book:
     - chapters/apendiceA.qmd
     - chapters/apendiceB.qmd
     - chapters/apendiceC.qmd
+    - chapters/apendiceD.qmd
     - chapters/examen.qmd
 
 bibliography: references.bib

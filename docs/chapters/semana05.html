@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Material docence de Matemáticas para la Estadística Médica con R (Bioestadística) desarrollados por el autor en el Departamento de Estadística e Investigación Operativa, Unidad Docente de Bioestadística de la Universidad de Granada.">
+
+<title>5&nbsp; Semana 5 — Muestreo y Distribuciones Muestrales – Matemáticas para la Estadística Médica con R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/semana06.html" rel="next">
+<link href="../chapters/semana04.html" rel="prev">
+<link href="../figures/ugr-logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-bf8030b5a8b8f2de5bceddfb8bf38a1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script>
+MathJax = {
+  tex: {
+    macros: {
+      btheta: "\\boldsymbol{\\theta}",
+      bbeta: "\\boldsymbol{\\beta}",
+      bmu: "\\boldsymbol{\\mu}",
+      bSigma: "\\boldsymbol{\\Sigma}",
+      bx: "\\mathbf{x}",
+      bX: "\\mathbf{X}",
+      by: "\\mathbf{y}",
+      bY: "\\mathbf{Y}",
+      bU: "\\mathbf{U}",
+      E: "\\mathbb{E}",
+      Var: ["\\operatorname{Var}"],
+      Cov: ["\\operatorname{Cov}"],
+      Corr: ["\\operatorname{Corr}"],
+      iid: "\\stackrel{\\text{i.i.d.}}{\\sim}",
+      tendD: "\\stackrel{\\mathcal{D}}{\\longrightarrow}",
+      reals: "\\mathbb{R}",
+      PP: "\\mathbb{P}"
+    }
+  }
+};
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/semana03.html">Parte II: Probabilidad y Variables Aleatorias</a></li><li class="breadcrumb-item"><a href="../chapters/semana05.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Semana 5 — Muestreo y Distribuciones Muestrales</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Matemáticas para la Estadística Médica con R</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="../Matemáticas-para-la-Estadística-Médica-con-R.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefacio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte I: Análisis Exploratorio de Datos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Semana 1 — Análisis Exploratorio de Datos (Parte I)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Semana 2 — Análisis Exploratorio de Datos (Parte II)</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte II: Probabilidad y Variables Aleatorias</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Semana 3 — Fundamentos de la Teoría de la Probabilidad</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Semana 4 — Variables Aleatorias y Distribuciones de Probabilidad</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana05.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Semana 5 — Muestreo y Distribuciones Muestrales</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte III: Inferencia Estadística</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Semana 6 — Estimación de Parámetros</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Semana 7 — Contrastes de Hipótesis (Parte I)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Semana 8 — Contrastes de Hipótesis (Parte II)</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte IV: Regresión Lineal</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Semana 9 — Regresión Lineal Simple</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Semana 10 — Regresión Lineal Múltiple</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte V: Análisis de Datos Categóricos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referencias</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/apendiceA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Apéndice A: Repaso Matemático Riguroso</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/apendiceB.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Apéndice B: El Paquete <code>BioStatR</code> — Guía de Referencia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/apendiceC.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Apéndice C: Guía de R para Estadística Médica</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/apendiceD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Apéndice D: Investigación Reproducible con Git, GitHub y RStudio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/examen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Examen Final</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contenidos</h2>
+   
+  <ul>
+  <li><a href="#sec-semana05-s1" id="toc-sec-semana05-s1" class="nav-link active" data-scroll-target="#sec-semana05-s1"><span class="header-section-number">5.1</span> Conceptos Fundamentales de Muestreo</a>
+  <ul class="collapse">
+  <li><a href="#qué-es-el-muestreo" id="toc-qué-es-el-muestreo" class="nav-link" data-scroll-target="#qué-es-el-muestreo"><span class="header-section-number">5.1.1</span> ¿Qué es el Muestreo?</a></li>
+  <li><a href="#parámetros-poblacionales" id="toc-parámetros-poblacionales" class="nav-link" data-scroll-target="#parámetros-poblacionales"><span class="header-section-number">5.1.2</span> Parámetros Poblacionales</a></li>
+  <li><a href="#parámetros-vs.-estadísticos" id="toc-parámetros-vs.-estadísticos" class="nav-link" data-scroll-target="#parámetros-vs.-estadísticos"><span class="header-section-number">5.1.3</span> Parámetros vs.&nbsp;Estadísticos</a></li>
+  <li><a href="#el-problema-del-sesgo-de-muestreo-el-caso-del-literary-digest-1936" id="toc-el-problema-del-sesgo-de-muestreo-el-caso-del-literary-digest-1936" class="nav-link" data-scroll-target="#el-problema-del-sesgo-de-muestreo-el-caso-del-literary-digest-1936"><span class="header-section-number">5.1.4</span> El Problema del Sesgo de Muestreo: El Caso del Literary Digest (1936)</a></li>
+  </ul></li>
+  <li><a href="#sec-semana05-s2" id="toc-sec-semana05-s2" class="nav-link" data-scroll-target="#sec-semana05-s2"><span class="header-section-number">5.2</span> Tipos de Muestreo</a>
+  <ul class="collapse">
+  <li><a href="#muestreo-aleatorio-simple" id="toc-muestreo-aleatorio-simple" class="nav-link" data-scroll-target="#muestreo-aleatorio-simple"><span class="header-section-number">5.2.1</span> Muestreo Aleatorio Simple</a></li>
+  <li><a href="#muestreo-estratificado" id="toc-muestreo-estratificado" class="nav-link" data-scroll-target="#muestreo-estratificado"><span class="header-section-number">5.2.2</span> Muestreo Estratificado</a></li>
+  <li><a href="#muestreo-por-conglomerados" id="toc-muestreo-por-conglomerados" class="nav-link" data-scroll-target="#muestreo-por-conglomerados"><span class="header-section-number">5.2.3</span> Muestreo por Conglomerados</a></li>
+  <li><a href="#muestreo-por-criterio-judgment-sampling" id="toc-muestreo-por-criterio-judgment-sampling" class="nav-link" data-scroll-target="#muestreo-por-criterio-judgment-sampling"><span class="header-section-number">5.2.4</span> Muestreo por Criterio (Judgment Sampling)</a></li>
+  </ul></li>
+  <li><a href="#sec-semana05-s3" id="toc-sec-semana05-s3" class="nav-link" data-scroll-target="#sec-semana05-s3"><span class="header-section-number">5.3</span> Estadísticos Muestrales como Variables Aleatorias</a>
+  <ul class="collapse">
+  <li><a href="#el-concepto-clave" id="toc-el-concepto-clave" class="nav-link" data-scroll-target="#el-concepto-clave"><span class="header-section-number">5.3.1</span> El Concepto Clave</a></li>
+  <li><a href="#estadísticos-importantes" id="toc-estadísticos-importantes" class="nav-link" data-scroll-target="#estadísticos-importantes"><span class="header-section-number">5.3.2</span> Estadísticos Importantes</a></li>
+  </ul></li>
+  <li><a href="#sec-semana05-s4" id="toc-sec-semana05-s4" class="nav-link" data-scroll-target="#sec-semana05-s4"><span class="header-section-number">5.4</span> Distribución Muestral de la Media</a>
+  <ul class="collapse">
+  <li><a href="#caso-muestreo-con-reemplazo" id="toc-caso-muestreo-con-reemplazo" class="nav-link" data-scroll-target="#caso-muestreo-con-reemplazo"><span class="header-section-number">5.4.1</span> Caso: Muestreo con Reemplazo</a></li>
+  <li><a href="#caso-muestreo-sin-reemplazo" id="toc-caso-muestreo-sin-reemplazo" class="nav-link" data-scroll-target="#caso-muestreo-sin-reemplazo"><span class="header-section-number">5.4.2</span> Caso: Muestreo sin Reemplazo</a></li>
+  <li><a href="#distribución-exacta-cuando-x-sim-nmu-sigma2" id="toc-distribución-exacta-cuando-x-sim-nmu-sigma2" class="nav-link" data-scroll-target="#distribución-exacta-cuando-x-sim-nmu-sigma2"><span class="header-section-number">5.4.3</span> Distribución Exacta Cuando <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span></a></li>
+  </ul></li>
+  <li><a href="#sec-semana05-s5" id="toc-sec-semana05-s5" class="nav-link" data-scroll-target="#sec-semana05-s5"><span class="header-section-number">5.5</span> Distribución Muestral de la Proporción</a>
+  <ul class="collapse">
+  <li><a href="#con-reemplazo" id="toc-con-reemplazo" class="nav-link" data-scroll-target="#con-reemplazo"><span class="header-section-number">5.5.1</span> Con Reemplazo</a></li>
+  <li><a href="#normalidad-asintótica" id="toc-normalidad-asintótica" class="nav-link" data-scroll-target="#normalidad-asintótica"><span class="header-section-number">5.5.2</span> Normalidad Asintótica</a></li>
+  </ul></li>
+  <li><a href="#sec-semana05-s6" id="toc-sec-semana05-s6" class="nav-link" data-scroll-target="#sec-semana05-s6"><span class="header-section-number">5.6</span> Distribución Muestral de la Varianza</a>
+  <ul class="collapse">
+  <li><a href="#caso-mu-conocida" id="toc-caso-mu-conocida" class="nav-link" data-scroll-target="#caso-mu-conocida"><span class="header-section-number">5.6.1</span> Caso: <span class="math inline">\(\mu\)</span> Conocida</a></li>
+  <li><a href="#caso-mu-desconocida" id="toc-caso-mu-desconocida" class="nav-link" data-scroll-target="#caso-mu-desconocida"><span class="header-section-number">5.6.2</span> Caso: <span class="math inline">\(\mu\)</span> Desconocida</a></li>
+  </ul></li>
+  <li><a href="#sec-semana05-s7" id="toc-sec-semana05-s7" class="nav-link" data-scroll-target="#sec-semana05-s7"><span class="header-section-number">5.7</span> Teorema Central del Límite (Versión Formal)</a>
+  <ul class="collapse">
+  <li><a href="#interpretación" id="toc-interpretación" class="nav-link" data-scroll-target="#interpretación"><span class="header-section-number">5.7.1</span> Interpretación</a></li>
+  </ul></li>
+  <li><a href="#sec-semana05-s8" id="toc-sec-semana05-s8" class="nav-link" data-scroll-target="#sec-semana05-s8"><span class="header-section-number">5.8</span> La Distribución t de Student</a>
+  <ul class="collapse">
+  <li><a href="#propiedades-de-la-distribución-t" id="toc-propiedades-de-la-distribución-t" class="nav-link" data-scroll-target="#propiedades-de-la-distribución-t"><span class="header-section-number">5.8.1</span> Propiedades de la Distribución t</a></li>
+  <li><a href="#cuándo-usar-cada-distribución" id="toc-cuándo-usar-cada-distribución" class="nav-link" data-scroll-target="#cuándo-usar-cada-distribución"><span class="header-section-number">5.8.2</span> Cuándo Usar Cada Distribución</a></li>
+  </ul></li>
+  <li><a href="#sec-semana05-s9" id="toc-sec-semana05-s9" class="nav-link" data-scroll-target="#sec-semana05-s9"><span class="header-section-number">5.9</span> Ejemplo 5.1: Simulando el Teorema Central del Límite</a></li>
+  <li><a href="#sec-semana05-resumen" id="toc-sec-semana05-resumen" class="nav-link" data-scroll-target="#sec-semana05-resumen"><span class="header-section-number">5.10</span> Resumen de Distribuciones Muestrales</a></li>
+  <li><a href="#sec-semana05-cpf" id="toc-sec-semana05-cpf" class="nav-link" data-scroll-target="#sec-semana05-cpf"><span class="header-section-number">5.11</span> Corrección por Población Finita</a></li>
+  <li><a href="#sec-semana05-ejercicios" id="toc-sec-semana05-ejercicios" class="nav-link" data-scroll-target="#sec-semana05-ejercicios"><span class="header-section-number">5.12</span> Ejercicios</a></li>
+  <li><a href="#sec-semana05-respuestas" id="toc-sec-semana05-respuestas" class="nav-link" data-scroll-target="#sec-semana05-respuestas"><span class="header-section-number">5.13</span> Respuestas a los Ejercicios</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/edit/main/chapters/semana05.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/blob/main/chapters/semana05.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/semana03.html">Parte II: Probabilidad y Variables Aleatorias</a></li><li class="breadcrumb-item"><a href="../chapters/semana05.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Semana 5 — Muestreo y Distribuciones Muestrales</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-semana05" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Semana 5 — Muestreo y Distribuciones Muestrales</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>En esta semana estudiamos los fundamentos del muestreo y las propiedades estadísticas de los estimadores. Los conceptos que aprenderemos son la base de toda inferencia estadística: cómo usar datos de una muestra para hacer afirmaciones sobre la población completa.</p>
+<section id="sec-semana05-s1" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="sec-semana05-s1"><span class="header-section-number">5.1</span> Conceptos Fundamentales de Muestreo</h2>
+<section id="qué-es-el-muestreo" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="qué-es-el-muestreo"><span class="header-section-number">5.1.1</span> ¿Qué es el Muestreo?</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Muestreo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El <strong>muestreo</strong> es el proceso de seleccionar una parte de la población para observar y estudiar, de manera que podamos hacer inferencias sobre características de interés en toda la población.</p>
+</div>
+</div>
+<p>Imagine que queremos estimar el gasto en alimentos de las familias en España. Tenemos dos opciones:</p>
+<ul>
+<li><strong>Censo</strong>: Encuestar a TODAS las familias del país (costoso, largo, casi imposible)</li>
+<li><strong>Muestra</strong>: Encuestar al 5% de las familias e inferir sobre toda la población (barato, rápido, práctico)</li>
+</ul>
+<section id="notación-fundamental" class="level4">
+<h4 class="anchored" data-anchor-id="notación-fundamental">Notación Fundamental</h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Símbolo</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(N\)</span></td>
+<td>Tamaño de la población</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(n\)</span></td>
+<td>Tamaño de la muestra</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(f = n/N\)</span></td>
+<td>Fracción muestral</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(X_i\)</span></td>
+<td><span class="math inline">\(i\)</span>-ésima observación (variable aleatoria)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(x_i\)</span></td>
+<td><span class="math inline">\(i\)</span>-ésimo valor observado (número)</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="parámetros-poblacionales" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="parámetros-poblacionales"><span class="header-section-number">5.1.2</span> Parámetros Poblacionales</h3>
+<p>Los parámetros son características desconocidas de la población que queremos estimar:</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Parámetros de Interés
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Media poblacional</strong>: <span class="math inline">\(\mu = \frac{1}{N}\sum_{i=1}^N x_i\)</span></li>
+<li><strong>Varianza poblacional</strong>: <span class="math inline">\(\sigma^2 = \frac{1}{N}\sum_{i=1}^N (x_i - \mu)^2\)</span></li>
+<li><strong>Proporción poblacional</strong> (variables binarias): <span class="math inline">\(\pi = \frac{1}{N}\sum_{i=1}^N x_i\)</span>, donde <span class="math inline">\(x_i \in \{0,1\}\)</span></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="parámetros-vs.-estadísticos" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="parámetros-vs.-estadísticos"><span class="header-section-number">5.1.3</span> Parámetros vs.&nbsp;Estadísticos</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definiciones Clave
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un <strong>parámetro</strong> es una característica desconocida de la población (p.ej., <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma^2\)</span>, <span class="math inline">\(\pi\)</span>).</p>
+<p>Un <strong>estadístico</strong> es una función de la muestra calculada a partir de datos observados. Los estadísticos se usan para estimar parámetros desconocidos.</p>
+</div>
+</div>
+</section>
+<section id="el-problema-del-sesgo-de-muestreo-el-caso-del-literary-digest-1936" class="level3" data-number="5.1.4">
+<h3 data-number="5.1.4" class="anchored" data-anchor-id="el-problema-del-sesgo-de-muestreo-el-caso-del-literary-digest-1936"><span class="header-section-number">5.1.4</span> El Problema del Sesgo de Muestreo: El Caso del Literary Digest (1936)</h3>
+<p>La importancia de un muestreo adecuado se ilustra con uno de los mayores fracasos en la historia de las encuestas:</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Advertencia: El Ejemplo del Literary Digest
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En la elección presidencial de EE.UU. de 1936:</p>
+<ul>
+<li>La revista <strong>The Literary Digest</strong> encuestó a <strong>10 millones de personas</strong> (seleccionadas de propietarios de teléfono y coche, y suscriptores de la revista)</li>
+<li>Recibieron 2.3 millones de respuestas</li>
+<li><strong>Predicción</strong>: 60% republicanos, 40% demócratas</li>
+<li><strong>Resultado real</strong>: 36.5% republicanos, 60.8% demócratas</li>
+<li><strong>Gallup Institute</strong>, con solo 50,000 encuestados aleatorios, predijo correctamente</li>
+</ul>
+<p><strong>Lección</strong>: Un número grande de respuestas NO garantiza una muestra sin sesgo. El sesgo de selección (muestra no representativa) es más importante que el tamaño.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-semana05-s2" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="sec-semana05-s2"><span class="header-section-number">5.2</span> Tipos de Muestreo</h2>
+<p>Para obtener muestras representativas y hacer inferencias válidas, existen varios diseños de muestreo:</p>
+<section id="muestreo-aleatorio-simple" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="muestreo-aleatorio-simple"><span class="header-section-number">5.2.1</span> Muestreo Aleatorio Simple</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En el <strong>muestreo aleatorio simple</strong>, cada elemento de la población tiene la misma probabilidad de ser seleccionado.</p>
+</div>
+</div>
+<p>Distinguimos dos variantes:</p>
+<p><strong>1. Muestreo sin reemplazo:</strong> - Cada unidad puede ser seleccionada como máximo una vez - Los elementos muestreados NO se devuelven a la población - Los valores muestrales NO son independientes - Aplicable a poblaciones finitas</p>
+<p><strong>2. Muestreo con reemplazo:</strong> - Cada unidad puede ser seleccionada más de una vez - Los elementos se devuelven a la población después de cada extracción - Los valores muestrales SON independientes - Matemáticamente equivalente a una población infinita</p>
+</section>
+<section id="muestreo-estratificado" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="muestreo-estratificado"><span class="header-section-number">5.2.2</span> Muestreo Estratificado</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En el <strong>muestreo estratificado</strong>, la población se divide en subgrupos (estratos) no solapados, y se extrae una muestra aleatoria simple de cada estrato.</p>
+</div>
+</div>
+<p><strong>Ejemplo</strong>: Para estudiar opiniones políticas, estratificar por región, edad, o nivel educativo asegura que cada grupo esté representado adecuadamente.</p>
+<p><strong>Ventaja</strong>: Proporciona estimaciones más precisas que el muestreo simple cuando existe variación dentro de los estratos.</p>
+</section>
+<section id="muestreo-por-conglomerados" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="muestreo-por-conglomerados"><span class="header-section-number">5.2.3</span> Muestreo por Conglomerados</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En el <strong>muestreo por conglomerados</strong>, la población se divide en conglomerados (clusters), se seleccionan aleatoriamente algunos conglomerados, y se observan TODOS los elementos dentro de esos conglomerados.</p>
+</div>
+</div>
+<p><strong>Ejemplo</strong>: Para encuestar hogares en un país, seleccionar 30 ciudades al azar y encuestar todos los hogares en esas ciudades.</p>
+<p><strong>Ventaja</strong>: Más barato que muestreo simple cuando los elementos están geográficamente dispersos. <strong>Desventaja</strong>: Menos preciso si hay mucha variación entre conglomerados.</p>
+</section>
+<section id="muestreo-por-criterio-judgment-sampling" class="level3" data-number="5.2.4">
+<h3 data-number="5.2.4" class="anchored" data-anchor-id="muestreo-por-criterio-judgment-sampling"><span class="header-section-number">5.2.4</span> Muestreo por Criterio (Judgment Sampling)</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En el <strong>muestreo por criterio</strong>, los elementos se seleccionan según el juicio de expertos, no aleatoriamente.</p>
+</div>
+</div>
+<p><strong>Advertencia</strong>: Este tipo de muestreo puede introducir sesgo y no permite hacer inferencia estadística formal.</p>
+<hr>
+</section>
+</section>
+<section id="sec-semana05-s3" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="sec-semana05-s3"><span class="header-section-number">5.3</span> Estadísticos Muestrales como Variables Aleatorias</h2>
+<section id="el-concepto-clave" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="el-concepto-clave"><span class="header-section-number">5.3.1</span> El Concepto Clave</h3>
+<p>Antes de observar una muestra, los valores que obtendremos son aleatorios. Por lo tanto:</p>
+<ul>
+<li>Los valores <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> son <strong>variables aleatorias</strong></li>
+<li>Cualquier función de estos valores es también una <strong>variable aleatoria</strong></li>
+<li>Esto incluye la media muestral <span class="math inline">\(\bar{X}\)</span>, la proporción muestral <span class="math inline">\(\hat{\pi}\)</span>, y la varianza muestral <span class="math inline">\(S^2\)</span></li>
+</ul>
+</section>
+<section id="estadísticos-importantes" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="estadísticos-importantes"><span class="header-section-number">5.3.2</span> Estadísticos Importantes</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Estadísticos Muestrales
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Media muestral</strong>: <span class="math inline">\(\bar{X} = \frac{1}{n}\sum_{i=1}^n X_i\)</span></li>
+<li><strong>Proporción muestral</strong> (variables binarias): <span class="math inline">\(\hat{\pi} = \frac{1}{n}\sum_{i=1}^n X_i\)</span></li>
+<li><strong>Varianza muestral (μ conocida)</strong>: <span class="math inline">\(S^{*2} = \frac{1}{n}\sum_{i=1}^n (X_i - \mu)^2\)</span></li>
+<li><strong>Varianza muestral (μ desconocida)</strong>: <span class="math inline">\(S^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \bar{X})^2\)</span></li>
+<li><strong>Varianza muestral (μ desconocida, alternativa)</strong>: <span class="math inline">\(S'^2 = \frac{1}{n}\sum_{i=1}^n (X_i - \bar{X})^2\)</span></li>
+</ul>
+</div>
+</div>
+<p>Cada uno de estos estadísticos tiene su propia <strong>distribución muestral</strong>: la distribución de probabilidad del estadístico a través de todas las posibles muestras de tamaño <span class="math inline">\(n\)</span>.</p>
+<hr>
+</section>
+</section>
+<section id="sec-semana05-s4" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="sec-semana05-s4"><span class="header-section-number">5.4</span> Distribución Muestral de la Media</h2>
+<section id="caso-muestreo-con-reemplazo" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="caso-muestreo-con-reemplazo"><span class="header-section-number">5.4.1</span> Caso: Muestreo con Reemplazo</h3>
+<p>Cuando extraemos la muestra con reemplazo (o de una población infinita), los valores muestrales son independientes.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Propiedades de <span class="math inline">\(\bar{X}\)</span> (con reemplazo)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para variables aleatorias independientes <span class="math inline">\(X_i\)</span> con <span class="math inline">\(E(X_i) = \mu\)</span> y <span class="math inline">\(\text{Var}(X_i) = \sigma^2\)</span>:</p>
+<p><span class="math display">\[E(\bar{X}) = \mu\]</span></p>
+<p><span class="math display">\[\text{Var}(\bar{X}) = \frac{\sigma^2}{n}\]</span></p>
+<p><span class="math display">\[\sigma(\bar{X}) = \frac{\sigma}{\sqrt{n}} \quad \text{(error estándar)}\]</span></p>
+</div>
+</div>
+<p><strong>Interpretación</strong>: Mientras mayor sea <span class="math inline">\(n\)</span>, menor será la varianza de la media muestral. Esto explica por qué muestras grandes dan estimaciones más precisas.</p>
+</section>
+<section id="caso-muestreo-sin-reemplazo" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="caso-muestreo-sin-reemplazo"><span class="header-section-number">5.4.2</span> Caso: Muestreo sin Reemplazo</h3>
+<p>Cuando la muestra se extrae sin reemplazo de una población finita, existe un factor de corrección:</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Propiedades de <span class="math inline">\(\bar{X}\)</span> (sin reemplazo)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[E(\bar{X}) = \mu\]</span></p>
+<p><span class="math display">\[\text{Var}(\bar{X}) = \frac{\sigma^2}{n} \cdot \frac{N-n}{N-1}\]</span></p>
+<p><span class="math display">\[\sigma(\bar{X}) = \frac{\sigma}{\sqrt{n}} \cdot \sqrt{\frac{N-n}{N-1}}\]</span></p>
+<p>donde <span class="math inline">\(\frac{N-n}{N-1}\)</span> es el <strong>factor de corrección por población finita</strong> (CPF).</p>
+</div>
+</div>
+<p><strong>Nota</strong>: Cuando <span class="math inline">\(N \gg n\)</span>, el CPF <span class="math inline">\(\approx 1\)</span> y recuperamos la fórmula del caso con reemplazo.</p>
+</section>
+<section id="distribución-exacta-cuando-x-sim-nmu-sigma2" class="level3" data-number="5.4.3">
+<h3 data-number="5.4.3" class="anchored" data-anchor-id="distribución-exacta-cuando-x-sim-nmu-sigma2"><span class="header-section-number">5.4.3</span> Distribución Exacta Cuando <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span></h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Resultado Fundamental
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> son i.i.d. <span class="math inline">\(N(\mu, \sigma^2)\)</span>, entonces:</p>
+<p><span class="math display">\[\bar{X} \sim N\left(\mu, \frac{\sigma^2}{n}\right)\]</span></p>
+<p>Estandarizando: <span class="math display">\[Z = \frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim N(0, 1)\]</span></p>
+<p>Este estadístico <span class="math inline">\(Z\)</span> sigue una <strong>distribución normal estándar</strong>.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-semana05-s5" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="sec-semana05-s5"><span class="header-section-number">5.5</span> Distribución Muestral de la Proporción</h2>
+<p>Cuando estudiamos variables binarias (éxito/fracaso, sí/no), la proporción muestral es el estadístico de interés.</p>
+<section id="con-reemplazo" class="level3" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="con-reemplazo"><span class="header-section-number">5.5.1</span> Con Reemplazo</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Distribución de <span class="math inline">\(\hat{\pi}\)</span> (con reemplazo)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para una muestra de variables Bernoulli independientes con parámetro <span class="math inline">\(\pi\)</span>:</p>
+<p><span class="math display">\[E(\hat{\pi}) = \pi\]</span></p>
+<p><span class="math display">\[\text{Var}(\hat{\pi}) = \frac{\pi(1-\pi)}{n}\]</span></p>
+<p><span class="math display">\[\sigma(\hat{\pi}) = \sqrt{\frac{\pi(1-\pi)}{n}}\]</span></p>
+</div>
+</div>
+<p><strong>Ejemplo práctico</strong>: Si queremos estimar la proporción de votantes que apoyan una política, con <span class="math inline">\(\pi = 0.5\)</span> y <span class="math inline">\(n = 1000\)</span>:</p>
+<p><span class="math display">\[\sigma(\hat{\pi}) = \sqrt{\frac{0.5 \times 0.5}{1000}} = \sqrt{0.00025} \approx 0.0158\]</span></p>
+<p>Esto significa que la proporción muestral varía típicamente en ±1.58% entre diferentes muestras.</p>
+</section>
+<section id="normalidad-asintótica" class="level3" data-number="5.5.2">
+<h3 data-number="5.5.2" class="anchored" data-anchor-id="normalidad-asintótica"><span class="header-section-number">5.5.2</span> Normalidad Asintótica</h3>
+<p>Para muestras grandes (<span class="math inline">\(n &gt; 30\)</span> o <span class="math inline">\(n\pi &gt; 5\)</span> y <span class="math inline">\(n(1-\pi) &gt; 5\)</span>):</p>
+<p><span class="math display">\[Z = \frac{\hat{\pi} - \pi}{\sqrt{\pi(1-\pi)/n}} \approx N(0,1)\]</span></p>
+<hr>
+</section>
+</section>
+<section id="sec-semana05-s6" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="sec-semana05-s6"><span class="header-section-number">5.6</span> Distribución Muestral de la Varianza</h2>
+<p>La varianza muestral también es una variable aleatoria y su distribución depende de si conocemos la media poblacional.</p>
+<section id="caso-mu-conocida" class="level3" data-number="5.6.1">
+<h3 data-number="5.6.1" class="anchored" data-anchor-id="caso-mu-conocida"><span class="header-section-number">5.6.1</span> Caso: <span class="math inline">\(\mu\)</span> Conocida</h3>
+<p>Cuando la media poblacional <span class="math inline">\(\mu\)</span> es conocida:</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Distribución de <span class="math inline">\(S^{*2}\)</span> (μ conocida)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si <span class="math inline">\(X_i \sim N(\mu, \sigma^2)\)</span> y <span class="math inline">\(\mu\)</span> es conocida:</p>
+<p><span class="math display">\[S^{*2} = \frac{1}{n}\sum_{i=1}^n (X_i - \mu)^2\]</span></p>
+<p><span class="math display">\[\frac{nS^{*2}}{\sigma^2} \sim \chi^2_n\]</span></p>
+<p>donde <span class="math inline">\(\chi^2_n\)</span> es la distribución chi-cuadrado con <span class="math inline">\(n\)</span> grados de libertad.</p>
+<p><strong>Propiedades:</strong> - <span class="math inline">\(E(S^{*2}) = \sigma^2\)</span> (insesgada) - <span class="math inline">\(\text{Var}(S^{*2}) = \frac{2\sigma^4}{n}\)</span></p>
+</div>
+</div>
+</section>
+<section id="caso-mu-desconocida" class="level3" data-number="5.6.2">
+<h3 data-number="5.6.2" class="anchored" data-anchor-id="caso-mu-desconocida"><span class="header-section-number">5.6.2</span> Caso: <span class="math inline">\(\mu\)</span> Desconocida</h3>
+<p>Cuando estimamos la media con <span class="math inline">\(\bar{X}\)</span>, pierden un grado de libertad:</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Distribución de <span class="math inline">\(S^2\)</span> (μ desconocida)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si <span class="math inline">\(X_i \sim N(\mu, \sigma^2)\)</span> y <span class="math inline">\(\mu\)</span> es desconocida:</p>
+<p><span class="math display">\[S^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \bar{X})^2\]</span></p>
+<p><span class="math display">\[\frac{(n-1)S^2}{\sigma^2} \sim \chi^2_{n-1}\]</span></p>
+<p><strong>Propiedades:</strong> - <span class="math inline">\(E(S^2) = \sigma^2\)</span> (insesgada) - <span class="math inline">\(\text{Var}(S^2) = \frac{2\sigma^4}{n-1}\)</span></p>
+</div>
+</div>
+<p><strong>Alternativa sesgada</strong>: <span class="math display">\[S'^2 = \frac{1}{n}\sum_{i=1}^n (X_i - \bar{X})^2 = \frac{n-1}{n}S^2\]</span></p>
+<ul>
+<li><span class="math inline">\(E(S'^2) = \frac{n-1}{n}\sigma^2\)</span> (sesgada, subestima <span class="math inline">\(\sigma^2\)</span>)</li>
+</ul>
+<p><strong>Conclusión</strong>: Use <span class="math inline">\(S^2\)</span> (dividir por <span class="math inline">\(n-1\)</span>) para estimaciones insesgadas de <span class="math inline">\(\sigma^2\)</span>.</p>
+<hr>
+</section>
+</section>
+<section id="sec-semana05-s7" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="sec-semana05-s7"><span class="header-section-number">5.7</span> Teorema Central del Límite (Versión Formal)</h2>
+<p>El Teorema Central del Límite (TCL) es el resultado más importante en estadística. Explica por qué la distribución normal es ubicua.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Teorema Central del Límite
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sea <span class="math inline">\(X_1, X_2, \ldots\)</span> una secuencia de variables aleatorias independientes e idénticamente distribuidas (i.i.d.) con media <span class="math inline">\(\mu\)</span> y varianza <span class="math inline">\(\sigma^2\)</span> finitas.</p>
+<p>Define <span class="math inline">\(S_n = X_1 + X_2 + \cdots + X_n\)</span>. Entonces:</p>
+<p><span class="math display">\[\frac{S_n - n\mu}{\sigma\sqrt{n}} \xrightarrow{d} N(0, 1) \quad \text{cuando} \quad n \to \infty\]</span></p>
+<p>Equivalentemente, para la media muestral:</p>
+<p><span class="math display">\[\frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \xrightarrow{d} N(0, 1)\]</span></p>
+</div>
+</div>
+<section id="interpretación" class="level3" data-number="5.7.1">
+<h3 data-number="5.7.1" class="anchored" data-anchor-id="interpretación"><span class="header-section-number">5.7.1</span> Interpretación</h3>
+<p><strong>Mensaje principal</strong>: La suma (y la media) de muchas variables aleatorias ES APROXIMADAMENTE normal, sin importar la distribución original de cada variable.</p>
+<p><strong>Requisito único</strong>: Que las variables tengan varianza finita. La distribución original puede ser cualquiera: exponencial, uniforme, Bernoulli, etc.</p>
+<p><strong>Implicación práctica</strong>: Para <span class="math inline">\(n\)</span> suficientemente grande (típicamente <span class="math inline">\(n \geq 30\)</span>), la media muestral es aproximadamente normal, incluso si los datos originales no son normales. Esto justifica el uso de técnicas basadas en la normalidad para inferencia estadística, como intervalos de confianza y pruebas de hipótesis, en una amplia variedad de situaciones.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Advertencia
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Notese que si la población es extremadamente asimétrica, se podría necesitar <strong><span class="math inline">\(n \ge 60\)</span></strong> o más para que la aproximación normal sea adecuada.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-semana05-s8" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="sec-semana05-s8"><span class="header-section-number">5.8</span> La Distribución t de Student</h2>
+<p>En la práctica, casi nunca conocemos <span class="math inline">\(\sigma\)</span>. Cuando estimamos la desviación típica con la muestra, la distribución cambia.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>La Distribución t de Student
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si <span class="math inline">\(X_i \sim N(\mu, \sigma^2)\)</span> (normales) y <span class="math inline">\(\sigma^2\)</span> es DESCONOCIDA, entonces:</p>
+<p><span class="math display">\[T = \frac{\bar{X} - \mu}{S/\sqrt{n}} \sim t_{n-1}\]</span></p>
+<p>donde <span class="math inline">\(t_{n-1}\)</span> es la <strong>distribución t de Student con <span class="math inline">\(n-1\)</span> grados de libertad</strong>.</p>
+<p><span class="math inline">\(S = \sqrt{S^2}\)</span> es la desviación típica muestral (raíz cuadrada del estimador insesgado de varianza).</p>
+</div>
+</div>
+<section id="propiedades-de-la-distribución-t" class="level3" data-number="5.8.1">
+<h3 data-number="5.8.1" class="anchored" data-anchor-id="propiedades-de-la-distribución-t"><span class="header-section-number">5.8.1</span> Propiedades de la Distribución t</h3>
+<ul>
+<li><strong>Forma</strong>: Simétrica, con colas más pesadas que la normal estándar <span class="math inline">\(N(0,1)\)</span></li>
+<li><strong>Media</strong>: <span class="math inline">\(E(T) = 0\)</span> (para <span class="math inline">\(n &gt; 1\)</span>)</li>
+<li><strong>Varianza</strong>: <span class="math inline">\(\text{Var}(T) = \frac{n-1}{n-3}\)</span> (para <span class="math inline">\(n &gt; 3\)</span>)</li>
+<li><strong>Convergencia</strong>: Conforme <span class="math inline">\(n \to \infty\)</span>, <span class="math inline">\(t_n \to N(0,1)\)</span></li>
+<li><strong>Regla práctica</strong>: Para <span class="math inline">\(n &gt; 30\)</span>, <span class="math inline">\(t_n \approx N(0,1)\)</span></li>
+</ul>
+</section>
+<section id="cuándo-usar-cada-distribución" class="level3" data-number="5.8.2">
+<h3 data-number="5.8.2" class="anchored" data-anchor-id="cuándo-usar-cada-distribución"><span class="header-section-number">5.8.2</span> Cuándo Usar Cada Distribución</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 44%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Situación</th>
+<th>Distribución</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span>, <span class="math inline">\(\sigma\)</span> conocida</td>
+<td><span class="math inline">\(Z = \frac{\bar{X}-\mu}{\sigma/\sqrt{n}} \sim N(0,1)\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span>, <span class="math inline">\(\sigma\)</span> desconocida</td>
+<td><span class="math inline">\(T = \frac{\bar{X}-\mu}{S/\sqrt{n}} \sim t_{n-1}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Cualquier distribución, <span class="math inline">\(n &gt; 30\)</span>, <span class="math inline">\(\sigma\)</span> conocida</td>
+<td><span class="math inline">\(Z \approx N(0,1)\)</span> (TCL)</td>
+</tr>
+<tr class="even">
+<td>Cualquier distribución, <span class="math inline">\(n &gt; 30\)</span>, <span class="math inline">\(\sigma\)</span> desconocida</td>
+<td><span class="math inline">\(T \approx N(0,1)\)</span> (TCL aproximado)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="sec-semana05-s9" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="sec-semana05-s9"><span class="header-section-number">5.9</span> Ejemplo 5.1: Simulando el Teorema Central del Límite</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo 5.2: TCL con Variables Exponenciales
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Simularemos el TCL mostrando que la suma de variables exponenciales (muy asimétricas) se aproxima a una distribución normal conforme aumentamos el número de variables.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="semana05_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Interpretación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La simulación demuestra empíricamente el Teorema Central del Límite. La suma de dos variables exponenciales (distribución altamente asimétrica hacia la derecha) aún muestra desviación respecto a la normalidad, con solapamiento limitado entre histograma y curva teórica. Con diez exponenciales sumadas, la concordancia mejora notablemente. Con cien exponenciales, la distribución muestral es prácticamente indistinguible de una curva normal (línea roja), a pesar de que cada variable individual es exponencial pura. Este comportamiento es independiente de la distribución original y requiere únicamente varianza finita, ilustrando por qué la normalidad emerge como distribución universal en estadística aplicada.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo: Distribuciones Muestrales de la Media
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Comparamos la distribución teórica con simulaciones.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="semana05_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Interpretación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La simulación de 1000 muestras (n=30 cada una) de una población normal N(100,15) genera medias muestrales distribuidas teóricamente como N(100, 15/√30) = N(100, 2.74). El histograma (barras azules) se superpone casi perfectamente con la curva normal teórica (línea roja), confirmando que el error estándar de la media es σ/√n = 15/√30 ≈ 2.74. Esta concordancia exacta entre simulación y teoría valida la predicción analítica de distribuciones muestrales y justifica el uso de la distribución normal para intervalos de confianza e inferencia en muestras grandes.</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-semana05-resumen" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="sec-semana05-resumen"><span class="header-section-number">5.10</span> Resumen de Distribuciones Muestrales</h2>
+<div class="callout callout-style-default callout-warning callout-empty-content callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Tabla Resumen: Estadísticos y sus Distribuciones
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 27%">
+<col style="width: 20%">
+<col style="width: 11%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Estadístico</th>
+<th style="text-align: left;">Condiciones</th>
+<th style="text-align: center;"><span class="math inline">\(E(\cdot)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\text{Var}(\cdot)\)</span></th>
+<th style="text-align: center;">Distribución</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\bar{X}\)</span></td>
+<td style="text-align: left;">RS c/ reemplazo, <span class="math inline">\(\sigma\)</span> conocida</td>
+<td style="text-align: center;"><span class="math inline">\(\mu\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sigma^2/n\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(N(\mu, \sigma^2/n)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\bar{X}\)</span></td>
+<td style="text-align: left;">RS s/ reemplazo, <span class="math inline">\(\sigma\)</span> conocida</td>
+<td style="text-align: center;"><span class="math inline">\(\mu\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sigma^2/n \cdot \frac{N-n}{N-1}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(N(\mu, \cdots)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\bar{X}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(X \sim N(\mu,\sigma^2)\)</span>, <span class="math inline">\(\sigma\)</span> conocida</td>
+<td style="text-align: center;"><span class="math inline">\(\mu\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sigma^2/n\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(N(\mu, \sigma^2/n)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\bar{X}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(X \sim N(\mu,\sigma^2)\)</span>, <span class="math inline">\(\sigma\)</span> desconocida</td>
+<td style="text-align: center;"><span class="math inline">\(\mu\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(S^2/n\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(t_{n-1}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\hat{\pi}\)</span></td>
+<td style="text-align: left;">Variables binarias, <span class="math inline">\(n\)</span> grande</td>
+<td style="text-align: center;"><span class="math inline">\(\pi\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\pi(1-\pi)/n\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(N(\pi, \frac{\pi(1-\pi)}{n})\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(S^2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(X \sim N(\mu,\sigma^2)\)</span>, <span class="math inline">\(\mu\)</span> desconocida</td>
+<td style="text-align: center;"><span class="math inline">\(\sigma^2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{2\sigma^4}{n-1}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{(n-1)S^2}{\sigma^2} \sim \chi^2_{n-1}\)</span></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="sec-semana05-cpf" class="level2" data-number="5.11">
+<h2 data-number="5.11" class="anchored" data-anchor-id="sec-semana05-cpf"><span class="header-section-number">5.11</span> Corrección por Población Finita</h2>
+<p>Cuando la población es finita y la fracción muestral <span class="math inline">\(f = n/N\)</span> es apreciable (típicamente <span class="math inline">\(f &gt; 0.05\)</span>), se aplica la <strong>corrección por población finita</strong>:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Factor de Corrección por Población Finita
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\text{CPF} = \sqrt{\frac{N-n}{N-1}}\]</span></p>
+<p>La varianza del estimador se multiplica por este factor: <span class="math display">\[\text{Var}(\bar{X}) = \frac{\sigma^2}{n} \cdot \frac{N-n}{N-1}\]</span></p>
+</div>
+</div>
+<p><strong>Casos extremos:</strong> - Si <span class="math inline">\(N \to \infty\)</span>, entonces CPF <span class="math inline">\(\to 1\)</span> (población infinita, no hay corrección) - Si <span class="math inline">\(n = N\)</span> (censo), entonces CPF <span class="math inline">\(= 0\)</span> (varianza = 0, estimación perfecta) - Si <span class="math inline">\(n = N/2\)</span>, entonces CPF <span class="math inline">\(\approx 0.71\)</span></p>
+<hr>
+</section>
+<section id="sec-semana05-ejercicios" class="level2" data-number="5.12">
+<h2 data-number="5.12" class="anchored" data-anchor-id="sec-semana05-ejercicios"><span class="header-section-number">5.12</span> Ejercicios</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 5.1: Varianza de la Media Muestral
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un hospital desea estimar el peso medio al nacer de los neonatos en una región. De una población de 5000 nacimientos anuales, toma una muestra de 100. Se sabe que la desviación típica poblacional es <span class="math inline">\(\sigma = 200\)</span> gramos.</p>
+<ol type="a">
+<li>Calcule la varianza de la media muestral <span class="math inline">\(\bar{X}\)</span>.</li>
+<li>Calcule el error estándar <span class="math inline">\(\sigma(\bar{X})\)</span>.</li>
+<li>¿Cuál sería el error estándar si la muestra fuera de 400 neonatos?</li>
+<li>¿Qué efecto tiene aumentar el tamaño muestral?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 5.2: Corrección por Población Finita
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un centro de salud tiene 8,000 pensionistas a su cargo. Se desea estimar el gasto mensual medio por paciente en tratamientos anticoagulantes y protectores cardiovasculares avanzados. Se planea tomar una muestra de 320 pacientes. Sabiendo que el gasto medio estimado ronda los 65 euros y la desviación típica poblacional es de <span class="math inline">\(\sigma = 45\)</span> euros:</p>
+<ol type="a">
+<li>Calcule la fracción muestral <span class="math inline">\(f\)</span>.</li>
+<li>¿Debería aplicarse la corrección por población finita?</li>
+<li>Calcule <span class="math inline">\(\text{Var}(\bar{X})\)</span> con y sin corrección.</li>
+<li>¿Cuál es la diferencia porcentual?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 5.3: Distribución de la Proporción
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un candidato jefe de servicio quiere conocer el porcentaje de facultativos que lo apoyan para ser director del hospital. Un sondeo con <span class="math inline">\(n = 600\)</span> facultativos de área encuentra que 324 lo apoyan.</p>
+<ol type="a">
+<li>Estime la proporción muestral <span class="math inline">\(\hat{\pi}\)</span>.</li>
+<li>Calcule <span class="math inline">\(\sigma(\hat{\pi})\)</span> asumiendo que la proporción poblacional verdadera es <span class="math inline">\(\pi = 0.5\)</span> (máxima incertidumbre).</li>
+<li>Construya un intervalo del 95% alrededor de <span class="math inline">\(\hat{\pi}\)</span> usando la normalidad asintótica.</li>
+<li>¿Es compatible el verdadero apoyo de 50% con el sondeo observado?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 5.4: Aplicación del Teorema Central del Límite
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se sabe que el ingreso mensual de los trabajadores sanitarios de un hospital sigue una distribución exponencial con media <span class="math inline">\(\mu = 2000\)</span> euros y varianza <span class="math inline">\(\sigma^2 = 4.000.000\)</span>.</p>
+<ol type="a">
+<li>¿Por qué NO podemos usar directamente una distribución normal para un trabajador individual?</li>
+<li>Si tomamos una muestra aleatoria de 100 trabajadores, ¿cuál es la distribución aproximada de <span class="math inline">\(\bar{X}\)</span>?</li>
+<li>¿Cuál es la probabilidad aproximada de que la media muestral esté entre 1900 y 2100 euros?</li>
+<li>¿Qué tamaño muestral sería necesario para que <span class="math inline">\(P(|\bar{X} - 2000| &lt; 100) \approx 0.95\)</span>?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 5.5: Distribución t de Student
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una clínica desea estimar el peso medio de recién nacidos. Una muestra de 16 bebés tiene peso promedio <span class="math inline">\(\bar{x} = 3500\)</span> gramos con desviación típica muestral <span class="math inline">\(s = 400\)</span> gramos. Se asume que los pesos siguen una distribución normal.</p>
+<ol type="a">
+<li>Calcule el error estándar estimado <span class="math inline">\(s(\bar{X})\)</span>.</li>
+<li>¿Cuál es el valor crítico <span class="math inline">\(t_{0.975, 15}\)</span> para un intervalo del 95%? (Pista: use tablas o R)</li>
+<li>Construya un intervalo de confianza del 95% para el peso medio poblacional.</li>
+<li>¿Por qué usamos distribución t en lugar de normal estándar?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 5.6: Distribución Chi-Cuadrado y Varianza
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se mide el contenido de grasa en leche de 25 muestras. La varianza muestral es <span class="math inline">\(s^2 = 1.44\)</span> (porcentaje al cuadrado). Asuma que el contenido sigue una distribución normal con varianza poblacional <span class="math inline">\(\sigma^2 = 1.0\)</span>.</p>
+<ol type="a">
+<li>Calcule el estadístico <span class="math inline">\(\chi^2 = \frac{(n-1)s^2}{\sigma^2}\)</span>.</li>
+<li>¿Cuál es la distribución de este estadístico?</li>
+<li>¿Cuál es la probabilidad de observar una varianza muestral mayor o igual a 1.44?</li>
+<li>¿Es la varianza observada compatible con <span class="math inline">\(\sigma^2 = 1.0\)</span>?</li>
+</ol>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-semana05-respuestas" class="level2" data-number="5.13">
+<h2 data-number="5.13" class="anchored" data-anchor-id="sec-semana05-respuestas"><span class="header-section-number">5.13</span> Respuestas a los Ejercicios</h2>
+<p><strong>Ejercicio 5.1:</strong><br>
+- (a) <span class="math inline">\(\text{Var}(\bar{X}) = \frac{200^2}{100} \cdot \frac{5000-100}{5000-1} \approx 388\)</span> (con CPF)<br>
+- (b) <span class="math inline">\(\sigma(\bar{X}) = \sqrt{388} \approx 19.7\)</span> horas<br>
+- (c) Con <span class="math inline">\(n=400\)</span>: <span class="math inline">\(\sigma(\bar{X}) \approx 9.8\)</span> horas<br>
+- (d) Aumentar <span class="math inline">\(n\)</span> reduce el error estándar proporcionalmente a <span class="math inline">\(1/\sqrt{n}\)</span></p>
+<p><strong>Ejercicio 5.2:</strong><br>
+- (a) <span class="math inline">\(f = 320/8000 = 0.04\)</span> (justo al borde)<br>
+- (b) Como <span class="math inline">\(f = 0.04 &lt; 0.05\)</span>, la corrección es pequeña pero aplicable<br>
+- (c) Sin CPF: <span class="math inline">\(\text{Var} = 45^2/320 = 6.33\)</span>; Con CPF: <span class="math inline">\(\text{Var} \approx 6.19\)</span> (diferencia 2%)</p>
+<p><strong>Ejercicio 5.3:</strong><br>
+- (a) <span class="math inline">\(\hat{\pi} = 324/600 = 0.54\)</span><br>
+- (b) <span class="math inline">\(\sigma(\hat{\pi}) = \sqrt{0.5 \times 0.5 / 600} \approx 0.0204\)</span><br>
+- (c) IC: <span class="math inline">\(0.54 \pm 1.96 \times 0.0204 \approx [0.499, 0.581]\)</span><br>
+- (d) Sí, 0.50 está dentro del intervalo</p>
+<p><strong>Ejercicio 5.4:</strong><br>
+- (a) La distribución exponencial es sesgada a la derecha<br>
+- (b) <span class="math inline">\(\bar{X} \approx N(2000, 40000)\)</span> con <span class="math inline">\(\sigma(\bar{X}) = 200\)</span><br>
+- (c) <span class="math inline">\(P(1900 &lt; \bar{X} &lt; 2100) = P(-0.5 &lt; Z &lt; 0.5) \approx 0.383\)</span><br>
+- (d) <span class="math inline">\(n \approx 1537\)</span> para precisión de ±100 euros al 95%</p>
+<p><strong>Ejercicio 5.5:</strong><br>
+- (a) <span class="math inline">\(s(\bar{X}) = 400/\sqrt{16} = 100\)</span> gramos<br>
+- (b) <span class="math inline">\(t_{0.975, 15} \approx 2.131\)</span><br>
+- (c) IC: <span class="math inline">\(3500 \pm 2.131 \times 100 \approx [3287, 3713]\)</span> gramos<br>
+- (d) Porque <span class="math inline">\(\sigma\)</span> es desconocida; la distribución t tiene colas más pesadas, reflejando incertidumbre adicional</p>
+<p><strong>Ejercicio 5.6:</strong><br>
+- (a) <span class="math inline">\(\chi^2 = (24 \times 1.44) / 1.0 = 34.56\)</span><br>
+- (b) <span class="math inline">\(\chi^2_{24}\)</span><br>
+- (c) <span class="math inline">\(P(\chi^2_{24} \geq 34.56) \approx 0.055\)</span> (cola superior 5%)<br>
+- (d) El valor es inusualmente alto pero no rechazable al nivel 5%</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/semana04.html" class="pagination-link" aria-label="Semana 4 — Variables Aleatorias y Distribuciones de Probabilidad">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Semana 4 — Variables Aleatorias y Distribuciones de Probabilidad</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/semana06.html" class="pagination-link" aria-label="Semana 6 — Estimación de Parámetros">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Semana 6 — Estimación de Parámetros</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Matemáticas para la Estadística Médica con R, por Miguel Ángel Luque Fernández</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/edit/main/chapters/semana05.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/blob/main/chapters/semana05.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>© 2026 Universidad de Granada · <a href="https://www.ugr.es">ugr.es</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
