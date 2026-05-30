@@ -271,24 +271,44 @@ $$\text{Var}(X) = \frac{1}{n} \sum_{i=1}^n (x_i - E(X))^2$$
 :::
 
 ::: {.callout-tip}
-## Ejemplo 4.1: Lanzamiento de dado
+## Ejemplo 4.1: Asignación aleatoria de pacientes a 6 brazos de un ensayo clínico
 
-Un dado justo tiene $n = 6$ caras:
+Un ensayo clínico **factorial 2×3** evalúa dos fármacos antihipertensivos (A, B) combinados con tres dosis (baja, media, alta), generando 6 brazos de tratamiento. Para evitar el sesgo de selección, cada paciente es asignado **aleatoriamente** a uno de los 6 brazos con la misma probabilidad. Si codificamos los brazos $k = 1, 2, \ldots, 6$, la variable $X$ "brazo asignado" sigue una distribución uniforme discreta $X \sim U(6)$:
 $$P(X = k) = \frac{1}{6} \quad \text{para } k = 1, 2, 3, 4, 5, 6$$
 
 $$E(X) = \frac{1}{6}(1 + 2 + 3 + 4 + 5 + 6) = 3.5$$
 $$\text{Var}(X) = \frac{1}{6}\sum_{k=1}^6 (k - 3.5)^2 \approx 2.92$$
+
+La esperanza $E(X) = 3.5$ no tiene aquí interpretación clínica directa —los brazos son etiquetas, no magnitudes— sino que actúa como **verificación de balance**: si la aleatorización funciona correctamente, la media de los códigos asignados en una muestra grande tiende a 3.5. Una media muy alejada indicaría un problema en el procedimiento de aleatorización.
 
 ```{r}
 #| lst-label: lst-semana04-2
 #| lst-cap: "Código R"
 
 # En R: calcular probabilidades para distribución uniforme discreta
-x <- 1:6
-probs <- rep(1/6, 6);probs
-mean_x <- sum(x * probs);mean_x
-var_x <- sum((x - mean_x)^2 * probs); var_x
+k     <- 1:6
+probs <- rep(1/6, 6)
+mean_x <- sum(k * probs)
+var_x  <- sum((k - mean_x)^2 * probs)
+
+cat(sprintf("P(X = k) = %.4f para cada brazo k = 1..6\n", probs[1]))
+cat(sprintf("E(X) = %.2f   Var(X) = %.3f\n", mean_x, var_x))
+
+# Simulacion de la asignacion aleatoria de 600 pacientes
+set.seed(2026)
+n_pac <- 600
+asig  <- sample(1:6, size = n_pac, replace = TRUE)
+
+# Verificacion del balance entre brazos
+tabla_asig <- table(factor(asig, levels = 1:6,
+                           labels = c("A-baja","A-media","A-alta",
+                                      "B-baja","B-media","B-alta")))
+print(tabla_asig)
+cat(sprintf("\nMedia muestral de los codigos asignados = %.3f (esperada: 3.5)\n",
+            mean(asig)))
 ```
+
+**Interpretación clínica:** Con 600 pacientes asignados aleatoriamente, cada brazo recibe aproximadamente $100 \approx n/6$ pacientes y la media de los códigos asignados se aproxima al valor teórico 3.5, confirmando que la aleatorización está bien implementada. Este principio se utiliza en todos los ensayos clínicos aleatorizados (RCT) para garantizar la **comparabilidad de los grupos** y eliminar el sesgo de confusión por características basales.
 :::
 
 ### Distribución de Bernoulli $B(p)$
