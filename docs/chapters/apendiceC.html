@@ -1,0 +1,2358 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Material docence de Matemáticas para la Estadística Médica con R (Bioestadística) desarrollados por el autor en el Departamento de Estadística e Investigación Operativa, Unidad Docente de Bioestadística de la Universidad de Granada.">
+
+<title>Apéndice C — Apéndice C: Guía de R para Estadística Médica – Matemáticas para la Estadística Médica con R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/apendiceD.html" rel="next">
+<link href="../chapters/apendiceB.html" rel="prev">
+<link href="../figures/ugr-logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-bf8030b5a8b8f2de5bceddfb8bf38a1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script>
+MathJax = {
+  tex: {
+    macros: {
+      btheta: "\\boldsymbol{\\theta}",
+      bbeta: "\\boldsymbol{\\beta}",
+      bmu: "\\boldsymbol{\\mu}",
+      bSigma: "\\boldsymbol{\\Sigma}",
+      bx: "\\mathbf{x}",
+      bX: "\\mathbf{X}",
+      by: "\\mathbf{y}",
+      bY: "\\mathbf{Y}",
+      bU: "\\mathbf{U}",
+      E: "\\mathbb{E}",
+      Var: ["\\operatorname{Var}"],
+      Cov: ["\\operatorname{Cov}"],
+      Corr: ["\\operatorname{Corr}"],
+      iid: "\\stackrel{\\text{i.i.d.}}{\\sim}",
+      tendD: "\\stackrel{\\mathcal{D}}{\\longrightarrow}",
+      reals: "\\mathbb{R}",
+      PP: "\\mathbb{P}"
+    }
+  }
+};
+</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/apendiceA.html">Appendices</a></li><li class="breadcrumb-item"><a href="../chapters/apendiceC.html"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Apéndice C: Guía de R para Estadística Médica</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Matemáticas para la Estadística Médica con R</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="../Matemáticas-para-la-Estadística-Médica-con-R.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefacio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte I: Análisis Exploratorio de Datos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Semana 1 — Análisis Exploratorio de Datos (Parte I)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Semana 2 — Análisis Exploratorio de Datos (Parte II)</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte II: Probabilidad y Variables Aleatorias</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Semana 3 — Fundamentos de la Teoría de la Probabilidad</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Semana 4 — Variables Aleatorias y Distribuciones de Probabilidad</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Semana 5 — Muestreo y Distribuciones Muestrales</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte III: Inferencia Estadística</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Semana 6 — Estimación de Parámetros</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Semana 7 — Contrastes de Hipótesis (Parte I)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Semana 8 — Contrastes de Hipótesis (Parte II)</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte IV: Regresión Lineal</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Semana 9 — Regresión Lineal Simple</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Semana 10 — Regresión Lineal Múltiple</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte V: Análisis de Datos Categóricos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referencias</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/apendiceA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Apéndice A: Repaso Matemático Riguroso</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/apendiceB.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Apéndice B: El Paquete <code>BioStatR</code> — Guía de Referencia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/apendiceC.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Apéndice C: Guía de R para Estadística Médica</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/apendiceD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Apéndice D: Investigación Reproducible con Git, GitHub y RStudio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/examen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Examen Final</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contenidos</h2>
+   
+  <ul>
+  <li><a href="#sec-apendiceC-fundamentos" id="toc-sec-apendiceC-fundamentos" class="nav-link active" data-scroll-target="#sec-apendiceC-fundamentos"><span class="header-section-number">C.1</span> C.1 Conceptos Fundamentales</a>
+  <ul class="collapse">
+  <li><a href="#asignación-tipos-y-vectores" id="toc-asignación-tipos-y-vectores" class="nav-link" data-scroll-target="#asignación-tipos-y-vectores"><span class="header-section-number">C.1.1</span> Asignación, Tipos y Vectores</a></li>
+  <li><a href="#indexación-posicional-y-lógica" id="toc-indexación-posicional-y-lógica" class="nav-link" data-scroll-target="#indexación-posicional-y-lógica"><span class="header-section-number">C.1.2</span> Indexación: posicional y lógica</a></li>
+  <li><a href="#valores-perdidos-na" id="toc-valores-perdidos-na" class="nav-link" data-scroll-target="#valores-perdidos-na"><span class="header-section-number">C.1.3</span> Valores Perdidos: <code>NA</code></a></li>
+  </ul></li>
+  <li><a href="#sec-apendiceC-estructuras" id="toc-sec-apendiceC-estructuras" class="nav-link" data-scroll-target="#sec-apendiceC-estructuras"><span class="header-section-number">C.2</span> C.2 Estructuras de Datos</a>
+  <ul class="collapse">
+  <li><a href="#data-frames-y-tibbles" id="toc-data-frames-y-tibbles" class="nav-link" data-scroll-target="#data-frames-y-tibbles"><span class="header-section-number">C.2.1</span> Data Frames y Tibbles</a></li>
+  <li><a href="#listas" id="toc-listas" class="nav-link" data-scroll-target="#listas"><span class="header-section-number">C.2.2</span> Listas</a></li>
+  </ul></li>
+  <li><a href="#sec-apendiceC-factores" id="toc-sec-apendiceC-factores" class="nav-link" data-scroll-target="#sec-apendiceC-factores"><span class="header-section-number">C.3</span> C.3 Factores y Variables Categóricas</a>
+  <ul class="collapse">
+  <li><a href="#recodificación-con-cut-y-dplyrcase_when" id="toc-recodificación-con-cut-y-dplyrcase_when" class="nav-link" data-scroll-target="#recodificación-con-cut-y-dplyrcase_when"><span class="header-section-number">C.3.1</span> Recodificación con <code>cut()</code> y <code>dplyr::case_when()</code></a></li>
+  </ul></li>
+  <li><a href="#sec-apendiceC-importacion" id="toc-sec-apendiceC-importacion" class="nav-link" data-scroll-target="#sec-apendiceC-importacion"><span class="header-section-number">C.4</span> C.4 Importación de Datos Clínicos</a></li>
+  <li><a href="#sec-apendiceC-dplyr" id="toc-sec-apendiceC-dplyr" class="nav-link" data-scroll-target="#sec-apendiceC-dplyr"><span class="header-section-number">C.5</span> C.5 Manipulación de Datos con <code>dplyr</code></a>
+  <ul class="collapse">
+  <li><a href="#uniones-_join-y-reestructuración-pivot_" id="toc-uniones-_join-y-reestructuración-pivot_" class="nav-link" data-scroll-target="#uniones-_join-y-reestructuración-pivot_"><span class="header-section-number">C.5.1</span> Uniones (<code>*_join</code>) y reestructuración (<code>pivot_*</code>)</a></li>
+  </ul></li>
+  <li><a href="#sec-apendiceC-descriptivos" id="toc-sec-apendiceC-descriptivos" class="nav-link" data-scroll-target="#sec-apendiceC-descriptivos"><span class="header-section-number">C.6</span> C.6 Estadísticos Descriptivos</a>
+  <ul class="collapse">
+  <li><a href="#variables-continuas" id="toc-variables-continuas" class="nav-link" data-scroll-target="#variables-continuas"><span class="header-section-number">C.6.1</span> Variables Continuas</a></li>
+  <li><a href="#variables-categóricas" id="toc-variables-categóricas" class="nav-link" data-scroll-target="#variables-categóricas"><span class="header-section-number">C.6.2</span> Variables Categóricas</a></li>
+  <li><a href="#resumen-estratificado" id="toc-resumen-estratificado" class="nav-link" data-scroll-target="#resumen-estratificado"><span class="header-section-number">C.6.3</span> Resumen Estratificado</a></li>
+  </ul></li>
+  <li><a href="#sec-apendiceC-funciones" id="toc-sec-apendiceC-funciones" class="nav-link" data-scroll-target="#sec-apendiceC-funciones"><span class="header-section-number">C.7</span> C.7 Funciones Propias y Control de Flujo</a>
+  <ul class="collapse">
+  <li><a href="#definir-funciones" id="toc-definir-funciones" class="nav-link" data-scroll-target="#definir-funciones"><span class="header-section-number">C.7.1</span> Definir funciones</a></li>
+  <li><a href="#control-de-flujo-if-for-sapply" id="toc-control-de-flujo-if-for-sapply" class="nav-link" data-scroll-target="#control-de-flujo-if-for-sapply"><span class="header-section-number">C.7.2</span> Control de flujo: <code>if</code>, <code>for</code>, <code>sapply</code></a></li>
+  </ul></li>
+  <li><a href="#sec-apendiceC-ggplot" id="toc-sec-apendiceC-ggplot" class="nav-link" data-scroll-target="#sec-apendiceC-ggplot"><span class="header-section-number">C.8</span> C.8 Visualización con <code>ggplot2</code></a></li>
+  <li><a href="#sec-apendiceC-tests" id="toc-sec-apendiceC-tests" class="nav-link" data-scroll-target="#sec-apendiceC-tests"><span class="header-section-number">C.9</span> C.9 Tests Estadísticos en R Base</a></li>
+  <li><a href="#sec-apendiceC-paquetes" id="toc-sec-apendiceC-paquetes" class="nav-link" data-scroll-target="#sec-apendiceC-paquetes"><span class="header-section-number">C.10</span> C.10 Paquetes Esenciales en Bioestadística</a></li>
+  <li><a href="#sec-apendiceC-reproducibilidad" id="toc-sec-apendiceC-reproducibilidad" class="nav-link" data-scroll-target="#sec-apendiceC-reproducibilidad"><span class="header-section-number">C.11</span> C.11 Reproducibilidad en Investigación Médica</a></li>
+  <li><a href="#sec-apendiceC-troubleshooting" id="toc-sec-apendiceC-troubleshooting" class="nav-link" data-scroll-target="#sec-apendiceC-troubleshooting"><span class="header-section-number">C.12</span> C.12 Resolución de Problemas Comunes</a>
+  <ul class="collapse">
+  <li><a href="#comandos-de-ayuda" id="toc-comandos-de-ayuda" class="nav-link" data-scroll-target="#comandos-de-ayuda"><span class="header-section-number">C.12.1</span> Comandos de ayuda</a></li>
+  </ul></li>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen"><span class="header-section-number">C.13</span> Resumen</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/edit/main/chapters/apendiceC.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/blob/main/chapters/apendiceC.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/apendiceA.html">Appendices</a></li><li class="breadcrumb-item"><a href="../chapters/apendiceC.html"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Apéndice C: Guía de R para Estadística Médica</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-apendiceC" class="quarto-section-identifier">Apéndice C — Apéndice C: Guía de R para Estadística Médica</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar todo el código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Ocultar todo el código</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Esta guía cubre los fundamentos de R orientados a la práctica de la bioestadística y la investigación médica: importación de datos clínicos, manejo de variables categóricas (exposición, enfermedad, grupo), descripción de cohortes, contraste de hipótesis y visualización. Complementa al <a href="apendiceB.html" class="quarto-xref"><span>Apéndice B</span></a> (paquete <code>BioStatR</code>) y al <a href="apendiceA.html" class="quarto-xref"><span>Apéndice A</span></a> (repaso matemático).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Cómo usar este apéndice
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El material está organizado como referencia rápida. Cada sección incluye ejemplos ejecutables con datos clínicos simulados y, donde procede, código no ejecutable (<code>eval: false</code>) que muestra la sintaxis para tareas habituales en investigación médica (importar SPSS, ajustar modelos de supervivencia, etc.).</p>
+</div>
+</div>
+<hr>
+<section id="sec-apendiceC-fundamentos" class="level2" data-number="C.1">
+<h2 data-number="C.1" class="anchored" data-anchor-id="sec-apendiceC-fundamentos"><span class="header-section-number">C.1</span> C.1 Conceptos Fundamentales</h2>
+<section id="asignación-tipos-y-vectores" class="level3" data-number="C.1.1">
+<h3 data-number="C.1.1" class="anchored" data-anchor-id="asignación-tipos-y-vectores"><span class="header-section-number">C.1.1</span> Asignación, Tipos y Vectores</h3>
+<div class="cell">
+<div id="lst-apendiceC-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.1: Tipos básicos y vectores en R
+</figcaption>
+<div aria-describedby="lst-apendiceC-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Asignación con &lt;- (recomendado en R)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>edad     <span class="ot">&lt;-</span> <span class="dv">45</span>L            <span class="co"># entero</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>peso_kg  <span class="ot">&lt;-</span> <span class="fl">78.4</span>           <span class="co"># numérico (double)</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sexo     <span class="ot">&lt;-</span> <span class="st">"Mujer"</span>        <span class="co"># carácter</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>diabetes <span class="ot">&lt;-</span> <span class="cn">TRUE</span>           <span class="co"># lógico</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Vectores con c()</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>edades       <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">45</span>, <span class="dv">22</span>, <span class="dv">60</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>diagnostico  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"HTA"</span>, <span class="st">"DM2"</span>, <span class="st">"HTA"</span>, <span class="st">"Sano"</span>, <span class="st">"DM2"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>hospitalizado <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspeccionar</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(edades);  <span class="fu">length</span>(edades);  <span class="fu">range</span>(edades)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 22 60</code></pre>
+</div>
+</div>
+</section>
+<section id="indexación-posicional-y-lógica" class="level3" data-number="C.1.2">
+<h3 data-number="C.1.2" class="anchored" data-anchor-id="indexación-posicional-y-lógica"><span class="header-section-number">C.1.2</span> Indexación: posicional y lógica</h3>
+<div class="cell">
+<div id="lst-apendiceC-2" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.2: Indexación de vectores
+</figcaption>
+<div aria-describedby="lst-apendiceC-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Posicional</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>edades[<span class="dv">1</span>]            <span class="co"># primer paciente</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 25</code></pre>
+</div>
+<div id="lst-apendiceC-2" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.3: Indexación de vectores
+</figcaption>
+<div aria-describedby="lst-apendiceC-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>edades[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)]   <span class="co"># pacientes 1, 3 y 5</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 25 45 60</code></pre>
+</div>
+<div id="lst-apendiceC-2" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.4: Indexación de vectores
+</figcaption>
+<div aria-describedby="lst-apendiceC-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>edades[<span class="sc">-</span><span class="dv">1</span>]           <span class="co"># todos menos el primero</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 30 45 22 60</code></pre>
+</div>
+<div id="lst-apendiceC-2" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.5: Indexación de vectores
+</figcaption>
+<div aria-describedby="lst-apendiceC-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lógica (filtros clínicos)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>edades[edades <span class="sc">&gt;=</span> <span class="dv">45</span>]                <span class="co"># adultos mayores</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 45 60</code></pre>
+</div>
+<div id="lst-apendiceC-2" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.6: Indexación de vectores
+</figcaption>
+<div aria-describedby="lst-apendiceC-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>diagnostico[hospitalizado]          <span class="co"># diagnósticos de hospitalizados</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "DM2" "HTA" "DM2"</code></pre>
+</div>
+<div id="lst-apendiceC-2" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.7: Indexación de vectores
+</figcaption>
+<div aria-describedby="lst-apendiceC-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>edades[diagnostico <span class="sc">==</span> <span class="st">"DM2"</span>]        <span class="co"># edad de diabéticos</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 30 60</code></pre>
+</div>
+</div>
+</section>
+<section id="valores-perdidos-na" class="level3" data-number="C.1.3">
+<h3 data-number="C.1.3" class="anchored" data-anchor-id="valores-perdidos-na"><span class="header-section-number">C.1.3</span> Valores Perdidos: <code>NA</code></h3>
+<p>En estudios clínicos los datos faltantes son la norma, no la excepción. R los representa con <code>NA</code>.</p>
+<div class="cell">
+<div id="lst-apendiceC-3" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.8: Manejo de valores perdidos
+</figcaption>
+<div aria-describedby="lst-apendiceC-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>hba1c <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">6.2</span>, <span class="fl">7.8</span>, <span class="cn">NA</span>, <span class="fl">8.5</span>, <span class="fl">6.9</span>, <span class="cn">NA</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(hba1c)                <span class="co"># NA: cualquier NA contamina el resultado</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+<div id="lst-apendiceC-3" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.9: Manejo de valores perdidos
+</figcaption>
+<div aria-describedby="lst-apendiceC-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(hba1c, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)  <span class="co"># 7.35: ignorar NAs</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7.35</code></pre>
+</div>
+<div id="lst-apendiceC-3" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.10: Manejo de valores perdidos
+</figcaption>
+<div aria-describedby="lst-apendiceC-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(hba1c)               <span class="co"># vector lógico</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE FALSE  TRUE FALSE FALSE  TRUE</code></pre>
+</div>
+<div id="lst-apendiceC-3" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.11: Manejo de valores perdidos
+</figcaption>
+<div aria-describedby="lst-apendiceC-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(hba1c))          <span class="co"># 2 valores perdidos</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div id="lst-apendiceC-3" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.12: Manejo de valores perdidos
+</figcaption>
+<div aria-describedby="lst-apendiceC-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>hba1c[<span class="sc">!</span><span class="fu">is.na</span>(hba1c)]       <span class="co"># eliminar NAs</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.2 7.8 8.5 6.9</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>NA no es 0 ni cadena vacía
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>NA == NA</code> devuelve <code>NA</code>, no <code>TRUE</code>. Usa siempre <code>is.na(x)</code> para comprobar valores perdidos. En análisis observacional, documenta el patrón de pérdida (¿MCAR, MAR o MNAR?) antes de elegir entre análisis de casos completos, imputación múltiple o ponderación inversa.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-apendiceC-estructuras" class="level2" data-number="C.2">
+<h2 data-number="C.2" class="anchored" data-anchor-id="sec-apendiceC-estructuras"><span class="header-section-number">C.2</span> C.2 Estructuras de Datos</h2>
+<section id="data-frames-y-tibbles" class="level3" data-number="C.2.1">
+<h3 data-number="C.2.1" class="anchored" data-anchor-id="data-frames-y-tibbles"><span class="header-section-number">C.2.1</span> Data Frames y Tibbles</h3>
+<p>El <strong>data frame</strong> es la estructura central de R para datos tabulares. Un <em>tibble</em> (de <code>tibble</code>/<code>dplyr</code>) es un data frame con impresión más legible.</p>
+<div class="cell">
+<div id="lst-apendiceC-4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.13: Construcción de un data frame clínico
+</figcaption>
+<div aria-describedby="lst-apendiceC-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>pacientes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id        =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">edad      =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">45</span>, <span class="dv">60</span>, <span class="dv">55</span>, <span class="dv">72</span>),</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">sexo      =</span> <span class="fu">c</span>(<span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"M"</span>),</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">imc       =</span> <span class="fu">c</span>(<span class="fl">22.5</span>, <span class="fl">28.0</span>, <span class="fl">31.2</span>, <span class="fl">26.5</span>, <span class="fl">33.1</span>, <span class="fl">24.8</span>),</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">hba1c     =</span> <span class="fu">c</span>(<span class="fl">5.4</span>, <span class="fl">6.2</span>, <span class="fl">7.8</span>, <span class="fl">6.8</span>, <span class="fl">8.5</span>, <span class="fl">5.9</span>),</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">diabetes  =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pacientes)        <span class="co"># estructura y tipos</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   6 obs. of  6 variables:
+ $ id      : int  1 2 3 4 5 6
+ $ edad    : num  25 30 45 60 55 72
+ $ sexo    : chr  "M" "F" "F" "M" ...
+ $ imc     : num  22.5 28 31.2 26.5 33.1 24.8
+ $ hba1c   : num  5.4 6.2 7.8 6.8 8.5 5.9
+ $ diabetes: num  0 0 1 1 1 0</code></pre>
+</div>
+<div id="lst-apendiceC-4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.14: Construcción de un data frame clínico
+</figcaption>
+<div aria-describedby="lst-apendiceC-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pacientes, <span class="dv">3</span>)    <span class="co"># primeras 3 filas</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  id edad sexo  imc hba1c diabetes
+1  1   25    M 22.5   5.4        0
+2  2   30    F 28.0   6.2        0
+3  3   45    F 31.2   7.8        1</code></pre>
+</div>
+<div id="lst-apendiceC-4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.15: Construcción de un data frame clínico
+</figcaption>
+<div aria-describedby="lst-apendiceC-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(pacientes)        <span class="co"># filas x columnas</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6 6</code></pre>
+</div>
+<div id="lst-apendiceC-4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.16: Construcción de un data frame clínico
+</figcaption>
+<div aria-describedby="lst-apendiceC-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(pacientes)      <span class="co"># nombres de variables</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "id"       "edad"     "sexo"     "imc"      "hba1c"    "diabetes"</code></pre>
+</div>
+</div>
+</section>
+<section id="listas" class="level3" data-number="C.2.2">
+<h3 data-number="C.2.2" class="anchored" data-anchor-id="listas"><span class="header-section-number">C.2.2</span> Listas</h3>
+<p>Las listas almacenan objetos heterogéneos (el resultado típico de un test estadístico es una lista):</p>
+<div class="cell">
+<div id="lst-apendiceC-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.17: Listas: contenedores heterogéneos
+</figcaption>
+<div aria-describedby="lst-apendiceC-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">test       =</span> <span class="st">"t-Student"</span>,</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">p_valor    =</span> <span class="fl">0.034</span>,</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">ic95       =</span> <span class="fu">c</span>(<span class="fl">0.12</span>, <span class="fl">1.85</span>),</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_total    =</span> <span class="dv">120</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>resultado<span class="sc">$</span>p_valor</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.034</code></pre>
+</div>
+<div id="lst-apendiceC-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.18: Listas: contenedores heterogéneos
+</figcaption>
+<div aria-describedby="lst-apendiceC-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>resultado[[<span class="st">"ic95"</span>]]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.12 1.85</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-apendiceC-factores" class="level2" data-number="C.3">
+<h2 data-number="C.3" class="anchored" data-anchor-id="sec-apendiceC-factores"><span class="header-section-number">C.3</span> C.3 Factores y Variables Categóricas</h2>
+<p>En investigación médica, casi toda variable de exposición o desenlace es <strong>categórica</strong> (caso/control, expuesto/no expuesto, grupo de tratamiento). R las representa con <strong>factores</strong>.</p>
+<div class="cell">
+<div id="lst-apendiceC-6" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.19: Factores, niveles y niveles de referencia
+</figcaption>
+<div aria-describedby="lst-apendiceC-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir a factor</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>pacientes<span class="sc">$</span>sexo_f <span class="ot">&lt;-</span> <span class="fu">factor</span>(pacientes<span class="sc">$</span>sexo, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"M"</span>, <span class="st">"F"</span>),</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Hombre"</span>, <span class="st">"Mujer"</span>))</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>pacientes<span class="sc">$</span>diabetes_f <span class="ot">&lt;-</span> <span class="fu">factor</span>(pacientes<span class="sc">$</span>diabetes,</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>                               <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"No diabético"</span>, <span class="st">"Diabético"</span>))</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(pacientes<span class="sc">$</span>diabetes_f)    <span class="co"># niveles</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "No diabético" "Diabético"   </code></pre>
+</div>
+<div id="lst-apendiceC-6" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.20: Factores, niveles y niveles de referencia
+</figcaption>
+<div aria-describedby="lst-apendiceC-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pacientes<span class="sc">$</span>diabetes_f)     <span class="co"># frecuencia</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+No diabético    Diabético 
+           3            3 </code></pre>
+</div>
+</div>
+<section id="recodificación-con-cut-y-dplyrcase_when" class="level3" data-number="C.3.1">
+<h3 data-number="C.3.1" class="anchored" data-anchor-id="recodificación-con-cut-y-dplyrcase_when"><span class="header-section-number">C.3.1</span> Recodificación con <code>cut()</code> y <code>dplyr::case_when()</code></h3>
+<div class="cell">
+<div id="lst-apendiceC-7" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.21: Categorizar variables continuas
+</figcaption>
+<div aria-describedby="lst-apendiceC-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>pacientes <span class="ot">&lt;-</span> pacientes <span class="sc">%&gt;%</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Grupos de edad clínicos</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">edad_grupo =</span> <span class="fu">cut</span>(edad,</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">40</span>, <span class="dv">65</span>, <span class="cn">Inf</span>),</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"&lt;40"</span>, <span class="st">"40-64"</span>, <span class="st">"&gt;=65"</span>),</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">right  =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Clasificación IMC (OMS)</span></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">imc_cat =</span> <span class="fu">case_when</span>(</span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>      imc <span class="sc">&lt;</span>  <span class="fl">18.5</span>             <span class="sc">~</span> <span class="st">"Bajo peso"</span>,</span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>      imc <span class="sc">&lt;</span>  <span class="dv">25</span>               <span class="sc">~</span> <span class="st">"Normopeso"</span>,</span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>      imc <span class="sc">&lt;</span>  <span class="dv">30</span>               <span class="sc">~</span> <span class="st">"Sobrepeso"</span>,</span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>      imc <span class="sc">&gt;=</span> <span class="dv">30</span>               <span class="sc">~</span> <span class="st">"Obesidad"</span></span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">imc_cat =</span> <span class="fu">factor</span>(imc_cat,</span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a>                     <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Bajo peso"</span>, <span class="st">"Normopeso"</span>,</span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"Sobrepeso"</span>, <span class="st">"Obesidad"</span>))</span>
+<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pacientes<span class="sc">$</span>edad_grupo, pacientes<span class="sc">$</span>imc_cat)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       
+        Bajo peso Normopeso Sobrepeso Obesidad
+  &lt;40           0         1         1        0
+  40-64         0         0         1        2
+  &gt;=65          0         1         0        0</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Nivel de referencia
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En regresión (lineal, logística, Cox), el <strong>nivel de referencia</strong> del factor define la categoría con la que se compara cada coeficiente. Por defecto R toma el primer nivel alfabético. Para forzar uno específico (p.&nbsp;ej. <em>Normopeso</em> como referencia):</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>pacientes<span class="sc">$</span>imc_cat <span class="ot">&lt;-</span> <span class="fu">relevel</span>(pacientes<span class="sc">$</span>imc_cat, <span class="at">ref =</span> <span class="st">"Normopeso"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-apendiceC-importacion" class="level2" data-number="C.4">
+<h2 data-number="C.4" class="anchored" data-anchor-id="sec-apendiceC-importacion"><span class="header-section-number">C.4</span> C.4 Importación de Datos Clínicos</h2>
+<p>En la práctica los datos llegan en CSV, Excel, SPSS o Stata. El paquete <code>readr</code> y <code>haven</code> cubren todos los formatos habituales en investigación biomédica.</p>
+<div class="cell">
+<div id="lst-apendiceC-8" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.22: Importación desde distintos formatos
+</figcaption>
+<div aria-describedby="lst-apendiceC-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CSV (recomendado: readr es más rápido y robusto que read.csv)</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"datos/cohorte.csv"</span>)</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Excel (.xlsx)</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"datos/cohorte.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"Visita1"</span>)</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="co"># SPSS (.sav) -- muy común en investigación clínica</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read_sav</span>(<span class="st">"datos/cohorte.sav"</span>)</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">as_factor</span>(datos)   <span class="co"># convertir variables etiquetadas a factor</span></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Stata (.dta)</span></span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"datos/cohorte.dta"</span>)</span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Exportar a CSV con codificación correcta (acentos)</span></span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(datos, <span class="st">"datos/cohorte_limpia.csv"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Rutas robustas con <code>here::here()</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Evita rutas absolutas (<code>"C:/Users/.../"</code>). Usa proyectos de RStudio y <code>here::here("datos", "cohorte.csv")</code> para que el código funcione en cualquier máquina.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-apendiceC-dplyr" class="level2" data-number="C.5">
+<h2 data-number="C.5" class="anchored" data-anchor-id="sec-apendiceC-dplyr"><span class="header-section-number">C.5</span> C.5 Manipulación de Datos con <code>dplyr</code></h2>
+<p>Las cinco verbos esenciales de <code>dplyr</code> para preparar una cohorte:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Verbo</th>
+<th>Acción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>select()</code></td>
+<td>elegir columnas</td>
+</tr>
+<tr class="even">
+<td><code>filter()</code></td>
+<td>filtrar filas</td>
+</tr>
+<tr class="odd">
+<td><code>mutate()</code></td>
+<td>crear/modificar variables</td>
+</tr>
+<tr class="even">
+<td><code>summarise()</code></td>
+<td>resumir (con o sin <code>group_by()</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>arrange()</code></td>
+<td>ordenar</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div id="lst-apendiceC-9" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.23: Pipeline típico de preparación de una cohorte
+</figcaption>
+<div aria-describedby="lst-apendiceC-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>resumen <span class="ot">&lt;-</span> pacientes <span class="sc">%&gt;%</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(edad <span class="sc">&gt;=</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span>                                  <span class="co"># adultos</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hba1c_alta =</span> <span class="fu">if_else</span>(hba1c <span class="sc">&gt;=</span> <span class="fl">6.5</span>, <span class="dv">1</span>L, <span class="dv">0</span>L)) <span class="sc">%&gt;%</span>  <span class="co"># ≥6.5: DM</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sexo_f) <span class="sc">%&gt;%</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">n             =</span> <span class="fu">n</span>(),</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">edad_media    =</span> <span class="fu">mean</span>(edad, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">imc_mediana   =</span> <span class="fu">median</span>(imc, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_hba1c_alta =</span> <span class="fu">mean</span>(hba1c_alta, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>resumen</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  sexo_f     n edad_media imc_mediana pct_hba1c_alta
+  &lt;fct&gt;  &lt;int&gt;      &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;
+1 Hombre     2         66        25.6             50
+2 Mujer      2         50        32.2            100</code></pre>
+</div>
+</div>
+<section id="uniones-_join-y-reestructuración-pivot_" class="level3" data-number="C.5.1">
+<h3 data-number="C.5.1" class="anchored" data-anchor-id="uniones-_join-y-reestructuración-pivot_"><span class="header-section-number">C.5.1</span> Uniones (<code>*_join</code>) y reestructuración (<code>pivot_*</code>)</h3>
+<div class="cell">
+<div id="lst-apendiceC-10" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.24: Unir tablas y pivotar a formato largo/ancho
+</figcaption>
+<div aria-describedby="lst-apendiceC-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr); <span class="fu">library</span>(tidyr)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Unir cohorte con tabla de laboratorio por id de paciente</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>cohorte_lab <span class="ot">&lt;-</span> pacientes <span class="sc">%&gt;%</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(laboratorio, <span class="at">by =</span> <span class="st">"id"</span>)</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Pasar de ancho (una columna por visita) a largo (una fila por visita)</span></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>largo <span class="ot">&lt;-</span> visitas <span class="sc">%&gt;%</span></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"pas_v"</span>),</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> <span class="st">"visita"</span>,</span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"pas_mmHg"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-apendiceC-descriptivos" class="level2" data-number="C.6">
+<h2 data-number="C.6" class="anchored" data-anchor-id="sec-apendiceC-descriptivos"><span class="header-section-number">C.6</span> C.6 Estadísticos Descriptivos</h2>
+<section id="variables-continuas" class="level3" data-number="C.6.1">
+<h3 data-number="C.6.1" class="anchored" data-anchor-id="variables-continuas"><span class="header-section-number">C.6.1</span> Variables Continuas</h3>
+<div class="cell">
+<div id="lst-apendiceC-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.25: Resumen univariante de variables continuas
+</figcaption>
+<div aria-describedby="lst-apendiceC-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pacientes<span class="sc">$</span>imc)                                  <span class="co"># min, Q1, med, mean, Q3, max</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  22.50   25.23   27.25   27.68   30.40   33.10 </code></pre>
+</div>
+<div id="lst-apendiceC-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.26: Resumen univariante de variables continuas
+</figcaption>
+<div aria-describedby="lst-apendiceC-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">media =</span> <span class="fu">mean</span>(pacientes<span class="sc">$</span>imc),</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">de    =</span> <span class="fu">sd</span>(pacientes<span class="sc">$</span>imc),</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mediana =</span> <span class="fu">median</span>(pacientes<span class="sc">$</span>imc),</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">RIC =</span> <span class="fu">IQR</span>(pacientes<span class="sc">$</span>imc))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    media        de   mediana       RIC 
+27.683333  3.959503 27.250000  5.175000 </code></pre>
+</div>
+<div id="lst-apendiceC-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.27: Resumen univariante de variables continuas
+</figcaption>
+<div aria-describedby="lst-apendiceC-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cuantiles personalizados</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(pacientes<span class="sc">$</span>imc, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">0.95</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    5%    25%    50%    75%    95% 
+23.075 25.225 27.250 30.400 32.625 </code></pre>
+</div>
+</div>
+</section>
+<section id="variables-categóricas" class="level3" data-number="C.6.2">
+<h3 data-number="C.6.2" class="anchored" data-anchor-id="variables-categóricas"><span class="header-section-number">C.6.2</span> Variables Categóricas</h3>
+<div class="cell">
+<div id="lst-apendiceC-12" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.28: Frecuencias absolutas y relativas
+</figcaption>
+<div aria-describedby="lst-apendiceC-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Frecuencias</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pacientes<span class="sc">$</span>imc_cat)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Bajo peso Normopeso Sobrepeso  Obesidad 
+        0         2         2         2 </code></pre>
+</div>
+<div id="lst-apendiceC-12" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.29: Frecuencias absolutas y relativas
+</figcaption>
+<div aria-describedby="lst-apendiceC-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Proporciones</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(pacientes<span class="sc">$</span>imc_cat)) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Bajo peso Normopeso Sobrepeso  Obesidad 
+  0.00000  33.33333  33.33333  33.33333 </code></pre>
+</div>
+<div id="lst-apendiceC-12" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.30: Frecuencias absolutas y relativas
+</figcaption>
+<div aria-describedby="lst-apendiceC-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla de contingencia 2x2</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>tabla <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">diabetes =</span> pacientes<span class="sc">$</span>diabetes_f,</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">obesidad =</span> pacientes<span class="sc">$</span>imc <span class="sc">&gt;=</span> <span class="dv">30</span>)</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>tabla</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              obesidad
+diabetes       FALSE TRUE
+  No diabético     3    0
+  Diabético        1    2</code></pre>
+</div>
+<div id="lst-apendiceC-12" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.31: Frecuencias absolutas y relativas
+</figcaption>
+<div aria-describedby="lst-apendiceC-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tabla, <span class="at">margin =</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">100</span>   <span class="co"># % por fila (riesgo en expuestos)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              obesidad
+diabetes           FALSE      TRUE
+  No diabético 100.00000   0.00000
+  Diabético     33.33333  66.66667</code></pre>
+</div>
+</div>
+</section>
+<section id="resumen-estratificado" class="level3" data-number="C.6.3">
+<h3 data-number="C.6.3" class="anchored" data-anchor-id="resumen-estratificado"><span class="header-section-number">C.6.3</span> Resumen Estratificado</h3>
+<div class="cell">
+<div id="lst-apendiceC-13" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.32: Descriptivos por grupo (típico de Tabla 1)
+</figcaption>
+<div aria-describedby="lst-apendiceC-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>pacientes <span class="sc">%&gt;%</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(diabetes_f) <span class="sc">%&gt;%</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n          =</span> <span class="fu">n</span>(),</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">edad_media =</span> <span class="fu">mean</span>(edad),</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">edad_de    =</span> <span class="fu">sd</span>(edad),</span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">imc_mediana =</span> <span class="fu">median</span>(imc),</span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">imc_RIC    =</span> <span class="fu">IQR</span>(imc),</span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 6
+  diabetes_f       n edad_media edad_de imc_mediana imc_RIC
+  &lt;fct&gt;        &lt;int&gt;      &lt;dbl&gt;   &lt;dbl&gt;       &lt;dbl&gt;   &lt;dbl&gt;
+1 No diabético     3       42.3   25.8         24.8    2.75
+2 Diabético        3       53.3    7.64        31.2    3.30</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-apendiceC-funciones" class="level2" data-number="C.7">
+<h2 data-number="C.7" class="anchored" data-anchor-id="sec-apendiceC-funciones"><span class="header-section-number">C.7</span> C.7 Funciones Propias y Control de Flujo</h2>
+<section id="definir-funciones" class="level3" data-number="C.7.1">
+<h3 data-number="C.7.1" class="anchored" data-anchor-id="definir-funciones"><span class="header-section-number">C.7.1</span> Definir funciones</h3>
+<div class="cell">
+<div id="lst-apendiceC-14" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.33: Función propia: cálculo e interpretación clínica
+</figcaption>
+<div aria-describedby="lst-apendiceC-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo del IMC con interpretación</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>clasificar_imc <span class="ot">&lt;-</span> <span class="cf">function</span>(peso_kg, altura_m) {</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  imc <span class="ot">&lt;-</span> peso_kg <span class="sc">/</span> (altura_m<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>  categoria <span class="ot">&lt;-</span> <span class="fu">cut</span>(imc,</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">18.5</span>, <span class="dv">25</span>, <span class="dv">30</span>, <span class="cn">Inf</span>),</span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Bajo peso"</span>, <span class="st">"Normopeso"</span>,</span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Sobrepeso"</span>, <span class="st">"Obesidad"</span>),</span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">right =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">imc =</span> <span class="fu">round</span>(imc, <span class="dv">1</span>), <span class="at">categoria =</span> categoria)</span>
+<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-12"><a href="#cb66-12" aria-hidden="true" tabindex="-1"></a><span class="fu">clasificar_imc</span>(<span class="at">peso_kg =</span> <span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">72</span>, <span class="dv">95</span>),</span>
+<span id="cb66-13"><a href="#cb66-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">altura_m =</span> <span class="fu">c</span>(<span class="fl">1.70</span>, <span class="fl">1.75</span>, <span class="fl">1.78</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   imc categoria
+1 19.0 Normopeso
+2 23.5 Normopeso
+3 30.0 Sobrepeso</code></pre>
+</div>
+</div>
+</section>
+<section id="control-de-flujo-if-for-sapply" class="level3" data-number="C.7.2">
+<h3 data-number="C.7.2" class="anchored" data-anchor-id="control-de-flujo-if-for-sapply"><span class="header-section-number">C.7.2</span> Control de flujo: <code>if</code>, <code>for</code>, <code>sapply</code></h3>
+<div class="cell">
+<div id="lst-apendiceC-15" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.34: Iteración vectorizada con sapply
+</figcaption>
+<div aria-describedby="lst-apendiceC-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vectorizado (preferido en R)</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>hba1c_vals <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">5.6</span>, <span class="fl">6.1</span>, <span class="fl">6.5</span>, <span class="fl">7.2</span>, <span class="fl">8.0</span>)</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>categoria_dm <span class="ot">&lt;-</span> <span class="fu">sapply</span>(hba1c_vals, <span class="cf">function</span>(x) {</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>      (x <span class="sc">&lt;</span>  <span class="fl">5.7</span>) <span class="st">"Normal"</span></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&lt;</span>  <span class="fl">6.5</span>) <span class="st">"Prediabetes"</span></span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>               <span class="st">"Diabetes"</span></span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>categoria_dm</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Normal"      "Prediabetes" "Diabetes"    "Diabetes"    "Diabetes"   </code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Preferir vectorización sobre bucles
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En R, <code>for</code> es más lento y verboso que la familia <code>apply</code>/<code>map</code> y que las funciones vectorizadas. Para un dataset clínico real (miles de filas), usa siempre <code>dplyr::mutate()</code> con <code>case_when()</code> o <code>sapply()</code>/<code>purrr::map_*()</code>.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-apendiceC-ggplot" class="level2" data-number="C.8">
+<h2 data-number="C.8" class="anchored" data-anchor-id="sec-apendiceC-ggplot"><span class="header-section-number">C.8</span> C.8 Visualización con <code>ggplot2</code></h2>
+<p><code>ggplot2</code> es la herramienta estándar para visualización en publicaciones biomédicas.</p>
+<div class="cell">
+<div id="lst-apendiceC-16" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.35: Histograma con curva de densidad
+</figcaption>
+<div aria-describedby="lst-apendiceC-16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pacientes, <span class="fu">aes</span>(<span class="at">x =</span> imc)) <span class="sc">+</span></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)),</span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">6</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">"darkred"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"IMC (kg/m²)"</span>, <span class="at">y =</span> <span class="st">"Densidad"</span>,</span>
+<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Distribución del IMC"</span>) <span class="sc">+</span></span>
+<span id="cb70-9"><a href="#cb70-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceC_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div id="lst-apendiceC-17" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-17-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.36: Boxplot estratificado: HbA1c por estado diabético
+</figcaption>
+<div aria-describedby="lst-apendiceC-17-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pacientes, <span class="fu">aes</span>(<span class="at">x =</span> diabetes_f, <span class="at">y =</span> hba1c, <span class="at">fill =</span> diabetes_f)) <span class="sc">+</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.15</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"HbA1c (%)"</span>,</span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"HbA1c por estado diabético"</span>) <span class="sc">+</span></span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceC_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div id="lst-apendiceC-18" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-18-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.37: Diagrama de dispersión con línea de regresión
+</figcaption>
+<div aria-describedby="lst-apendiceC-18-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pacientes, <span class="fu">aes</span>(<span class="at">x =</span> imc, <span class="at">y =</span> hba1c)) <span class="sc">+</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"darkred"</span>) <span class="sc">+</span></span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"IMC (kg/m²)"</span>, <span class="at">y =</span> <span class="st">"HbA1c (%)"</span>,</span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Relación IMC-HbA1c"</span>) <span class="sc">+</span></span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="apendiceC_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-apendiceC-tests" class="level2" data-number="C.9">
+<h2 data-number="C.9" class="anchored" data-anchor-id="sec-apendiceC-tests"><span class="header-section-number">C.9</span> C.9 Tests Estadísticos en R Base</h2>
+<p>Tabla de referencia con los contrastes más usados en investigación médica:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 58%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pregunta clínica</th>
+<th>Función de R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>¿Difieren las medias de dos grupos?</td>
+<td><code>t.test()</code></td>
+</tr>
+<tr class="even">
+<td>¿Difieren las medianas (no normal)?</td>
+<td><code>wilcox.test()</code></td>
+</tr>
+<tr class="odd">
+<td>¿Difieren tres o más medias?</td>
+<td><code>aov()</code>, <code>oneway.test()</code></td>
+</tr>
+<tr class="even">
+<td>¿Asociación entre dos variables categóricas?</td>
+<td><code>chisq.test()</code>, <code>fisher.test()</code></td>
+</tr>
+<tr class="odd">
+<td>¿Datos apareados (antes/después)?</td>
+<td><code>mcnemar.test()</code>, <code>t.test(paired=T)</code></td>
+</tr>
+<tr class="even">
+<td>¿Es la variable normal?</td>
+<td><code>shapiro.test()</code></td>
+</tr>
+<tr class="odd">
+<td>¿Hay correlación lineal?</td>
+<td><code>cor.test()</code></td>
+</tr>
+<tr class="even">
+<td>Regresión lineal</td>
+<td><code>lm()</code></td>
+</tr>
+<tr class="odd">
+<td>Regresión logística / Poisson</td>
+<td><code>glm(family = binomial / poisson)</code></td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div id="lst-apendiceC-19" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.38: Ejemplos: t-test, chi-cuadrado, regresión lineal
+</figcaption>
+<div aria-describedby="lst-apendiceC-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1) Comparar HbA1c entre diabéticos y no diabéticos</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(hba1c <span class="sc">~</span> diabetes_f, <span class="at">data =</span> pacientes)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  hba1c by diabetes_f
+t = -3.4207, df = 2.8523, p-value = 0.04515
+alternative hypothesis: true difference in means between group No diabético and group Diabético is not equal to 0
+95 percent confidence interval:
+ -3.65529198 -0.07804135
+sample estimates:
+mean in group No diabético    mean in group Diabético 
+                  5.833333                   7.700000 </code></pre>
+</div>
+<div id="lst-apendiceC-19" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.39: Ejemplos: t-test, chi-cuadrado, regresión lineal
+</figcaption>
+<div aria-describedby="lst-apendiceC-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2) Asociación diabetes ~ obesidad (Fisher por n pequeño)</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(<span class="fu">table</span>(pacientes<span class="sc">$</span>diabetes_f, pacientes<span class="sc">$</span>imc <span class="sc">&gt;=</span> <span class="dv">30</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Fisher's Exact Test for Count Data
+
+data:  table(pacientes$diabetes_f, pacientes$imc &gt;= 30)
+p-value = 0.4
+alternative hypothesis: true odds ratio is not equal to 1
+95 percent confidence interval:
+ 0.2031288       Inf
+sample estimates:
+odds ratio 
+       Inf </code></pre>
+</div>
+<div id="lst-apendiceC-19" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.40: Ejemplos: t-test, chi-cuadrado, regresión lineal
+</figcaption>
+<div aria-describedby="lst-apendiceC-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3) Regresión lineal: HbA1c ~ IMC + edad</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(hba1c <span class="sc">~</span> imc <span class="sc">+</span> edad, <span class="at">data =</span> pacientes)</span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = hba1c ~ imc + edad, data = pacientes)
+
+Residuals:
+      1       2       3       4       5       6 
+ 0.2795 -0.4996  0.0762  0.2576  0.1586 -0.2723 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)   
+(Intercept) -1.379357   1.316864  -1.047  0.37184   
+imc          0.279194   0.046683   5.981  0.00936 **
+edad         0.008718   0.010235   0.852  0.45692   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4079 on 3 degrees of freedom
+Multiple R-squared:  0.9288,    Adjusted R-squared:  0.8814 
+F-statistic: 19.57 on 2 and 3 DF,  p-value: 0.01899</code></pre>
+</div>
+<div id="lst-apendiceC-19" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.41: Ejemplos: t-test, chi-cuadrado, regresión lineal
+</figcaption>
+<div aria-describedby="lst-apendiceC-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(modelo)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                  2.5 %     97.5 %
+(Intercept) -5.57020549 2.81149089
+imc          0.13062701 0.42776027
+edad        -0.02385378 0.04128988</code></pre>
+</div>
+</div>
+<div class="cell">
+<div id="lst-apendiceC-20" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.42: Regresión logística: probabilidad de diabetes
+</figcaption>
+<div aria-describedby="lst-apendiceC-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pacientes simulados más amplios para que el modelo sea estimable</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">edad =</span> <span class="fu">rnorm</span>(n, <span class="dv">55</span>, <span class="dv">12</span>),</span>
+<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">imc  =</span> <span class="fu">rnorm</span>(n, <span class="dv">28</span>, <span class="dv">5</span>)</span>
+<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a>sim<span class="sc">$</span>diabetes <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>,</span>
+<span id="cb81-9"><a href="#cb81-9" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">plogis</span>(<span class="sc">-</span><span class="dv">7</span> <span class="sc">+</span> <span class="fl">0.05</span><span class="sc">*</span>sim<span class="sc">$</span>edad <span class="sc">+</span> <span class="fl">0.12</span><span class="sc">*</span>sim<span class="sc">$</span>imc))</span>
+<span id="cb81-10"><a href="#cb81-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-11"><a href="#cb81-11" aria-hidden="true" tabindex="-1"></a>mod_log <span class="ot">&lt;-</span> <span class="fu">glm</span>(diabetes <span class="sc">~</span> edad <span class="sc">+</span> imc, <span class="at">data =</span> sim, <span class="at">family =</span> binomial)</span>
+<span id="cb81-12"><a href="#cb81-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Odds ratios con IC95%</span></span>
+<span id="cb81-13"><a href="#cb81-13" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">OR =</span> <span class="fu">coef</span>(mod_log), <span class="fu">confint.default</span>(mod_log)))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                      OR        2.5 %      97.5 %
+(Intercept) 0.0005718736 3.304375e-05 0.009897163
+edad        1.0414789433 1.011409e+00 1.072443165
+imc         1.1652214003 1.085568e+00 1.250719795</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-apendiceC-paquetes" class="level2" data-number="C.10">
+<h2 data-number="C.10" class="anchored" data-anchor-id="sec-apendiceC-paquetes"><span class="header-section-number">C.10</span> C.10 Paquetes Esenciales en Bioestadística</h2>
+<p>Selección curada de paquetes que el investigador clínico encuentra de forma recurrente. El bloque siguiente es informativo (no ejecutado).</p>
+<div class="cell">
+<div id="lst-apendiceC-21" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-21-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.43: Paquetes recomendados según tarea
+</figcaption>
+<div aria-describedby="lst-apendiceC-21-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Reportes clínicos y "Tabla 1" ---------------------------------------</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)   <span class="co"># Tablas publicables a partir de modelos / data frames</span></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tableone)    <span class="co"># Tabla 1 demográfica clásica</span></span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>tabla1 <span class="ot">&lt;-</span> <span class="fu">tbl_summary</span>(pacientes,</span>
+<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">by =</span> diabetes_f,</span>
+<span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">missing =</span> <span class="st">"no"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb83-8"><a href="#cb83-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_p</span>() <span class="sc">%&gt;%</span> <span class="fu">add_overall</span>()</span>
+<span id="cb83-9"><a href="#cb83-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-10"><a href="#cb83-10" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Análisis epidemiológico ---------------------------------------------</span></span>
+<span id="cb83-11"><a href="#cb83-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epiR)        <span class="co"># Medidas de asociación 2x2 (RR, OR, NNT)</span></span>
+<span id="cb83-12"><a href="#cb83-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epitools)    <span class="co"># Tablas, cálculo de IC para incidencia / prevalencia</span></span>
+<span id="cb83-13"><a href="#cb83-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-14"><a href="#cb83-14" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Supervivencia -------------------------------------------------------</span></span>
+<span id="cb83-15"><a href="#cb83-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survival)</span>
+<span id="cb83-16"><a href="#cb83-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survminer)</span>
+<span id="cb83-17"><a href="#cb83-17" aria-hidden="true" tabindex="-1"></a>fit_km  <span class="ot">&lt;-</span> <span class="fu">survfit</span>(<span class="fu">Surv</span>(tiempo, evento) <span class="sc">~</span> grupo, <span class="at">data =</span> cohorte)</span>
+<span id="cb83-18"><a href="#cb83-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsurvplot</span>(fit_km, <span class="at">risk.table =</span> <span class="cn">TRUE</span>, <span class="at">pval =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb83-19"><a href="#cb83-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-20"><a href="#cb83-20" aria-hidden="true" tabindex="-1"></a>fit_cox <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(tiempo, evento) <span class="sc">~</span> edad <span class="sc">+</span> sexo <span class="sc">+</span> tratamiento,</span>
+<span id="cb83-21"><a href="#cb83-21" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> cohorte)</span>
+<span id="cb83-22"><a href="#cb83-22" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_cox)</span>
+<span id="cb83-23"><a href="#cb83-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-24"><a href="#cb83-24" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Inferencia causal / emparejamiento ----------------------------------</span></span>
+<span id="cb83-25"><a href="#cb83-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MatchIt)     <span class="co"># Propensity score matching</span></span>
+<span id="cb83-26"><a href="#cb83-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(WeightIt)    <span class="co"># Ponderación inversa de probabilidad (IPTW)</span></span>
+<span id="cb83-27"><a href="#cb83-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-28"><a href="#cb83-28" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Datos perdidos ------------------------------------------------------</span></span>
+<span id="cb83-29"><a href="#cb83-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice)        <span class="co"># Imputación múltiple (FCS)</span></span>
+<span id="cb83-30"><a href="#cb83-30" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(naniar)      <span class="co"># Visualización del patrón de missing</span></span>
+<span id="cb83-31"><a href="#cb83-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-32"><a href="#cb83-32" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Modelos: limpieza y extracción de resultados ------------------------</span></span>
+<span id="cb83-33"><a href="#cb83-33" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)       <span class="co"># tidy(), glance(), augment() para modelos</span></span>
+<span id="cb83-34"><a href="#cb83-34" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(performance) <span class="co"># Diagnósticos de regresión (colinealidad, supuestos)</span></span>
+<span id="cb83-35"><a href="#cb83-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-36"><a href="#cb83-36" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Meta-análisis -------------------------------------------------------</span></span>
+<span id="cb83-37"><a href="#cb83-37" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(meta)        <span class="co"># Meta-análisis clásico (efecto fijo / aleatorio)</span></span>
+<span id="cb83-38"><a href="#cb83-38" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(metafor)     <span class="co"># Meta-análisis y meta-regresión flexibles</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Citar los paquetes que usas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La revista te pedirá la versión de R y los paquetes. Usa <code>citation("survival")</code> y <code>sessionInfo()</code> en el cierre del análisis y guarda la salida.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-apendiceC-reproducibilidad" class="level2" data-number="C.11">
+<h2 data-number="C.11" class="anchored" data-anchor-id="sec-apendiceC-reproducibilidad"><span class="header-section-number">C.11</span> C.11 Reproducibilidad en Investigación Médica</h2>
+<p>Un análisis médico debe poder reproducirse exactamente meses o años después (revisión por pares, auditoría, dudas del comité ético).</p>
+<div class="cell">
+<div id="lst-apendiceC-22" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-22-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.44: Buenas prácticas de reproducibilidad
+</figcaption>
+<div aria-describedby="lst-apendiceC-22-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1) Semilla aleatoria SIEMPRE antes de cualquier simulación o aleatorización</span></span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20260101</span>)</span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2) Proyecto de RStudio + rutas relativas con here</span></span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"datos"</span>, <span class="st">"cohorte_v3.csv"</span>))</span>
+<span id="cb84-7"><a href="#cb84-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-8"><a href="#cb84-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 3) Capturar el entorno: versión de R y paquetes</span></span>
+<span id="cb84-9"><a href="#cb84-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span>
+<span id="cb84-10"><a href="#cb84-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-11"><a href="#cb84-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 4) (Opcional) renv para bloquear versiones de paquetes</span></span>
+<span id="cb84-12"><a href="#cb84-12" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("renv"); renv::init(); renv::snapshot()</span></span>
+<span id="cb84-13"><a href="#cb84-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-14"><a href="#cb84-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 5) Análisis dentro de un documento Quarto/Rmd</span></span>
+<span id="cb84-15"><a href="#cb84-15" aria-hidden="true" tabindex="-1"></a><span class="co">#    -&gt; el código y los resultados viven juntos</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Sin semilla, sin reproducibilidad
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Cualquier procedimiento estocástico (bootstrap, validación cruzada, imputación múltiple, simulación) <strong>debe</strong> ir precedido por <code>set.seed()</code>. Sin semilla, dos ejecuciones del mismo script darán p-valores e intervalos distintos — inaceptable en un análisis clínico.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="sec-apendiceC-troubleshooting" class="level2" data-number="C.12">
+<h2 data-number="C.12" class="anchored" data-anchor-id="sec-apendiceC-troubleshooting"><span class="header-section-number">C.12</span> C.12 Resolución de Problemas Comunes</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 32%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Síntoma</th>
+<th>Causa habitual</th>
+<th>Solución</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>mean(x)</code> devuelve <code>NA</code></td>
+<td>Hay valores perdidos</td>
+<td><code>mean(x, na.rm = TRUE)</code></td>
+</tr>
+<tr class="even">
+<td>Coeficiente de un factor no aparece</td>
+<td>Es el nivel de referencia</td>
+<td><code>relevel(f, ref = "...")</code></td>
+</tr>
+<tr class="odd">
+<td>El gráfico no se ve en RStudio</td>
+<td>Ventana cerrada o tamaño nulo</td>
+<td><code>dev.off()</code> y volver a ejecutar</td>
+</tr>
+<tr class="even">
+<td><code>cannot find function "..."</code></td>
+<td>Paquete no cargado</td>
+<td><code>library(paquete)</code> o <code>install.packages("paquete")</code></td>
+</tr>
+<tr class="odd">
+<td><code>argument "x" is missing</code></td>
+<td>Olvidaste un argumento</td>
+<td>Consulta <code>?nombre_funcion</code></td>
+</tr>
+<tr class="even">
+<td>Lectura de CSV con acentos rotos</td>
+<td>Codificación incorrecta</td>
+<td><code>read_csv(..., locale = locale(encoding = "Latin1"))</code></td>
+</tr>
+<tr class="odd">
+<td><code>non-numeric argument to binary operator</code></td>
+<td>Tipo carácter donde esperabas numérico</td>
+<td><code>as.numeric(x)</code> (cuidado con factores: <code>as.numeric(as.character(x))</code>)</td>
+</tr>
+<tr class="even">
+<td>Resultados distintos en cada ejecución</td>
+<td>Falta <code>set.seed()</code></td>
+<td>Fijar semilla antes del análisis</td>
+</tr>
+<tr class="odd">
+<td><code>object '...' not found</code></td>
+<td>Nombre mal escrito o variable de otro entorno</td>
+<td><code>ls()</code> para listar objetos, <code>names(df)</code> para variables</td>
+</tr>
+</tbody>
+</table>
+<section id="comandos-de-ayuda" class="level3" data-number="C.12.1">
+<h3 data-number="C.12.1" class="anchored" data-anchor-id="comandos-de-ayuda"><span class="header-section-number">C.12.1</span> Comandos de ayuda</h3>
+<div class="cell">
+<div id="lst-apendiceC-23" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-apendiceC-23-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Cuadro&nbsp;C.45: Sistema de ayuda de R
+</figcaption>
+<div aria-describedby="lst-apendiceC-23-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>?mean                  <span class="co"># ayuda de una función</span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>??<span class="st">"survival analysis"</span>  <span class="co"># búsqueda por palabra clave</span></span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(<span class="at">package =</span> <span class="st">"dplyr"</span>)</span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="st">"dplyr"</span>)      <span class="co"># tutoriales largos del paquete</span></span>
+<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(lm)            <span class="co"># ejemplos ejecutables</span></span>
+<span id="cb85-6"><a href="#cb85-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-7"><a href="#cb85-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Diagnóstico rápido del entorno</span></span>
+<span id="cb85-8"><a href="#cb85-8" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>();  <span class="fu">setwd</span>(<span class="st">"ruta"</span>)</span>
+<span id="cb85-9"><a href="#cb85-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>();     <span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())   <span class="co"># listar / limpiar objetos</span></span>
+<span id="cb85-10"><a href="#cb85-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="resumen" class="level2" data-number="C.13">
+<h2 data-number="C.13" class="anchored" data-anchor-id="resumen"><span class="header-section-number">C.13</span> Resumen</h2>
+<p>Esta guía te ha llevado del vector más simple a un flujo completo de análisis clínico en R: importar (C.4), preparar (C.3, C.5), describir (C.6), visualizar (C.8), contrastar (C.9) y dejar todo reproducible (C.11). Para funciones de alto nivel específicas del curso (<code>freq()</code>, <code>icm()</code>, <code>tabla2x2()</code>, etc.) consulta el <a href="apendiceB.html" class="quarto-xref"><span>Apéndice B</span></a>. Para el repaso matemático subyacente, el <a href="apendiceA.html" class="quarto-xref"><span>Apéndice A</span></a>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/apendiceB.html" class="pagination-link" aria-label="Apéndice B: El Paquete `BioStatR` — Guía de Referencia">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Apéndice B: El Paquete <code>BioStatR</code> — Guía de Referencia</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/apendiceD.html" class="pagination-link" aria-label="Apéndice D: Investigación Reproducible con Git, GitHub y RStudio">
+        <span class="nav-page-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Apéndice D: Investigación Reproducible con Git, GitHub y RStudio</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Matemáticas para la Estadística Médica con R, por Miguel Ángel Luque Fernández</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/edit/main/chapters/apendiceC.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/blob/main/chapters/apendiceC.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>© 2026 Universidad de Granada · <a href="https://www.ugr.es">ugr.es</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

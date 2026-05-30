@@ -6,11 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Miguel Ángel Luque Fernández">
-<meta name="dcterms.date" content="2026-01-01">
 <meta name="description" content="Material docence de Matemáticas para la Estadística Médica con R (Bioestadística) desarrollados por el autor en el Departamento de Estadística e Investigación Operativa, Unidad Docente de Bioestadística de la Universidad de Granada.">
 
-<title>Matemáticas para la Estadística Médica con R</title>
+<title>Referencias – Matemáticas para la Estadística Médica con R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,42 +21,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
 }
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
 }
-</style>
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -68,7 +51,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./chapters/semana01.html" rel="next">
+<link href="./chapters/apendiceA.html" rel="next">
+<link href="./chapters/semana11.html" rel="prev">
 <link href="./figures/ugr-logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -135,35 +119,6 @@ MathJax = {
 };
 </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -177,7 +132,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Prefacio</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">Referencias</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -227,7 +182,7 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Prefacio</span></a>
   </div>
 </li>
@@ -354,7 +309,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
+  <a href="./references.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Referencias</span></a>
   </div>
 </li>
@@ -409,55 +364,35 @@ window.Quarto = {
     <h2 id="toc-title">Contenidos</h2>
    
   <ul>
-  <li><a href="#prefacio" id="toc-prefacio" class="nav-link active" data-scroll-target="#prefacio">Prefacio</a>
-  <ul class="collapse">
-  <li><a href="#objetivos-del-curso" id="toc-objetivos-del-curso" class="nav-link" data-scroll-target="#objetivos-del-curso">Objetivos del Curso</a></li>
-  <li><a href="#estructura-del-libro" id="toc-estructura-del-libro" class="nav-link" data-scroll-target="#estructura-del-libro">Estructura del Libro</a></li>
-  <li><a href="#sobre-el-autor" id="toc-sobre-el-autor" class="nav-link" data-scroll-target="#sobre-el-autor">Sobre el Autor</a></li>
-  <li><a href="#software-y-reproducibilidad" id="toc-software-y-reproducibilidad" class="nav-link" data-scroll-target="#software-y-reproducibilidad">Software y Reproducibilidad</a></li>
-  <li><a href="#nota-sobre-el-material" id="toc-nota-sobre-el-material" class="nav-link" data-scroll-target="#nota-sobre-el-material">Nota sobre el Material</a></li>
-  </ul></li>
+  <li><a href="#sobre-esta-sección" id="toc-sobre-esta-sección" class="nav-link active" data-scroll-target="#sobre-esta-sección">Sobre esta sección</a></li>
+  <li><a href="#libros-de-referencia-general" id="toc-libros-de-referencia-general" class="nav-link" data-scroll-target="#libros-de-referencia-general">Libros de Referencia General</a></li>
+  <li><a href="#análisis-exploratorio-de-datos" id="toc-análisis-exploratorio-de-datos" class="nav-link" data-scroll-target="#análisis-exploratorio-de-datos">Análisis Exploratorio de Datos</a></li>
+  <li><a href="#probabilidad-y-variables-aleatorias" id="toc-probabilidad-y-variables-aleatorias" class="nav-link" data-scroll-target="#probabilidad-y-variables-aleatorias">Probabilidad y Variables Aleatorias</a></li>
+  <li><a href="#teoría-del-muestreo-e-inferencia-estadística" id="toc-teoría-del-muestreo-e-inferencia-estadística" class="nav-link" data-scroll-target="#teoría-del-muestreo-e-inferencia-estadística">Teoría del Muestreo e Inferencia Estadística</a></li>
+  <li><a href="#regresión-lineal" id="toc-regresión-lineal" class="nav-link" data-scroll-target="#regresión-lineal">Regresión Lineal</a></li>
+  <li><a href="#análisis-de-datos-categóricos-y-epidemiología" id="toc-análisis-de-datos-categóricos-y-epidemiología" class="nav-link" data-scroll-target="#análisis-de-datos-categóricos-y-epidemiología">Análisis de Datos Categóricos y Epidemiología</a></li>
+  <li><a href="#recursos-en-r" id="toc-recursos-en-r" class="nav-link" data-scroll-target="#recursos-en-r">Recursos en R</a></li>
+  <li><a href="#perspectivas-bayesianas" id="toc-perspectivas-bayesianas" class="nav-link" data-scroll-target="#perspectivas-bayesianas">Perspectivas Bayesianas</a></li>
+  <li><a href="#tópicos-especializados" id="toc-tópicos-especializados" class="nav-link" data-scroll-target="#tópicos-especializados">Tópicos Especializados</a></li>
+  <li><a href="#diccionarios-y-referencias-rápidas" id="toc-diccionarios-y-referencias-rápidas" class="nav-link" data-scroll-target="#diccionarios-y-referencias-rápidas">Diccionarios y Referencias Rápidas</a></li>
+  <li><a href="#cómo-citar-este-curso" id="toc-cómo-citar-este-curso" class="nav-link" data-scroll-target="#cómo-citar-este-curso">Cómo citar este curso</a></li>
+  <li><a href="#acceso-abierto" id="toc-acceso-abierto" class="nav-link" data-scroll-target="#acceso-abierto">Acceso Abierto</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/blob/main/index.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/edit/main/references.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/blob/main/references.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Matemáticas para la Estadística Médica con R</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar todo el código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Ocultar todo el código</a></li></ul></div></div>
-<p class="subtitle lead">Bioestadística — Universidad de Granada</p>
+<h1 class="title">Referencias</h1>
 </div>
 
-<div>
-  <div class="description">
-    <p>Material docence de Matemáticas para la Estadística Médica con R (Bioestadística) desarrollados por el autor en el Departamento de Estadística e Investigación Operativa, Unidad Docente de Bioestadística de la Universidad de Granada.</p>
-  </div>
-</div>
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Autor/a</div>
-  <div class="quarto-title-meta-heading">Afiliación</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author"><a href="https://migariane.github.io">Miguel Ángel Luque Fernández</a> <a href="mailto:mluquefe@ugr.es" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            Dpto. de Estadística e Investigación Operativa, Universidad de Granada
-          </p>
-      </div>
-  </div>
 
 <div class="quarto-title-meta">
 
-      
-    <div>
-    <div class="quarto-title-meta-heading">Fecha de publicación</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">2026</p>
-    </div>
-  </div>
+    
   
     
   </div>
@@ -467,96 +402,312 @@ window.Quarto = {
 </header>
 
 
-
-<section id="prefacio" class="level1 unnumbered">
-<h1 class="unnumbered">Prefacio</h1><p><img src="figures/ugr-logo.png" title="Matemáticas para la Estadística Médica con R" class="quarto-cover-image nolightbox img-fluid"></p>
-<p>Este libro contiene el material docente del curso <strong>Matemáticas para la Estadística Médica con R</strong> desarrollado por <span class="highlight-yellow"><a href="https://migariane.github.io"><strong>Miguel Ángel Luque Fernández</strong></a></span> en el <a href="https://estadistica.ugr.es">Departamento de Estadística e Investigación Operativa</a> de la <a href="https://www.ugr.es">Universidad de Granada</a>.</p>
-<section id="objetivos-del-curso" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="objetivos-del-curso">Objetivos del Curso</h2>
-<p>El objetivo principal de este curso y material docente es proporcionar al estudiante de ciencias de la salud los fundamentos matemáticos y estadísticos necesarios para el análisis cuantitativo de datos médicos con un alto grado de rigor académico y con ejemplos contextualizados en la práctica clínica. El libro se sustenta de la filosofía de ciencia reproducible, abierta y computacionalmente aplicada usando el software libre R. Al final del libro se presentan cuatro apéndices reforzando a los alumnos que quieran repasar sobre: i) los contenidos matemáticos básicos necesarios para el buen aprovechamiento del curso, ii) una introducción básica a la programación con R, iii) una introducción al paquete <strong>BioStatR</strong> producido para la docencia específica de este curso cuyo interés radica en la rica interpretación de los resultados de las funciones del paquete y iv) una introducción a la <strong>investigación reproducible</strong> mediante el control de versiones con Git, GitHub y RStudio. El curso no se limita al uso del paquete <code>BioStatR</code>, ya que se complementa con el uso de las funciones clásicas de R base para todos los ejemplos presentados. Además, se invita al estudiante a explorar y utilizar JAMOVI, una plataforma de estadística gratuita y de código abierto diseñada para ser fácil de usar. Al finalizar el curso, el estudiante será capaz de:</p>
-<ol type="1">
-<li><strong>Describir y visualizar</strong> conjuntos de datos mediante técnicas de Análisis Exploratorio de Datos.</li>
-<li><strong>Comprender los fundamentos</strong> de la teoría de la probabilidad como base del razonamiento estadístico.</li>
-<li><strong>Manejar las distribuciones</strong> de probabilidad más importantes, tanto discretas como continuas.</li>
-<li><strong>Aplicar métodos de inferencia estadística</strong>: estimación puntual, estimación por intervalos y contraste de hipótesis.</li>
-<li><strong>Construir e interpretar modelos de regresión lineal</strong> simple y múltiple.</li>
-</ol>
+<section id="sobre-esta-sección" class="level2">
+<h2 class="anchored" data-anchor-id="sobre-esta-sección">Sobre esta sección</h2>
+<p>Esta página reúne las referencias bibliográficas utilizadas en el curso <strong>Matemáticas para la Estadística</strong>. Los materiales están organizados por temas para facilitar la búsqueda según los tópicos de interés.</p>
 </section>
-<section id="estructura-del-libro" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="estructura-del-libro">Estructura del Libro</h2>
-<p>El material está organizado en cuatro partes, correspondientes a las diez semanas lectivas del curso:</p>
-<p><strong>Parte I — Análisis Exploratorio de Datos</strong> (Semanas 1–2) Introducción a los tipos de variables, estadísticos descriptivos univariantes y bivariantes, medidas de dispersión, correlación y representaciones gráficas básicas.</p>
-<p><strong>Parte II — Probabilidad y Variables Aleatorias</strong> (Semanas 3–5) Fundamentos de la teoría de la probabilidad: espacio muestral, axiomas de Kolmogórov, probabilidad condicional y teorema de Bayes. Variables aleatorias discretas y continuas, distribuciones de probabilidad más importantes y el teorema del límite central.</p>
-<p><strong>Parte III — Inferencia Estadística</strong> (Semanas 7–9) Conceptos de muestreo y estadísticos muestrales. Estimación puntual: propiedades de los estimadores, método de momentos y máxima verosimilitud. Estimación por intervalos de confianza. Contrastes de hipótesis: errores de tipo I y II, potencia del contraste, pruebas t, z y F.</p>
-<p><strong>Parte IV — Regresión Lineal</strong> (Semanas 10–11) Regresión lineal simple: mínimos cuadrados ordinarios, interpretación de coeficientes, <span class="math inline">\(R^2\)</span> y análisis de residuos. Regresión lineal múltiple: formulación matricial, selección de variables y ANOVA de regresión.</p>
-<p><strong>Parte V — Métodos Avanzados en Bioestadística</strong> Para profundizar en técnicas estadísticas avanzadas aplicadas a la medicina, se recomienda consultar el recurso complementario: <a href="https://migariane.github.io/Bioestadistica"><strong>Bioestadística Avanzada</strong></a>.</p>
-<p>Este material avanzado cubre temas críticos para la investigación médica moderna, incluyendo: - <strong>Pruebas Diagnósticas:</strong> Evaluación de precisión, sensibilidad, especificidad y curvas ROC. - <strong>Regresión Logística:</strong> Modelado de variables dependientes binarias y cálculo de Odds Ratios. - <strong>Análisis de Supervivencia:</strong> Estimadores de Kaplan-Meier y modelos de riesgos proporcionales de Cox para datos de tiempo a evento. - <strong>Inferencia Causal y Métodos Robustos:</strong> Técnicas avanzadas para el control de la confusión y el análisis de datos longitudinale (en preparación).</p>
-</section>
-<section id="sobre-el-autor" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="sobre-el-autor">Sobre el Autor</h2>
-<p><strong>Miguel Ángel Luque Fernández</strong> es Catedrático del <a href="https://estadistica.ugr.es">Departamento de Estadística e Investigación Operativa</a> de la Universidad de Granada. Sus líneas de investigación se centran en la epidemiología cuantitativa, la bioestadística y la inferencia causal.</p>
+<section id="libros-de-referencia-general" class="level2">
+<h2 class="anchored" data-anchor-id="libros-de-referencia-general">Libros de Referencia General</h2>
+<p>Los siguientes textos proporcionan cobertura completa de los temas tratados en el curso:</p>
 <ul>
-<li>Correo: <span class="highlight-yellow"><a href="mailto:mluquefe@go.ugr.es">mluquefe@ugr.es</a></span></li>
-<li>Web: <a href="https://migariane.github.io">migariane.github.io</a></li>
-<li>GitHub: <a href="https://github.com/migariane">github.com/migariane</a></li>
+<li><span class="citation" data-cites="Casella2002">Casella &amp; Berger (<a href="references.html#ref-Casella2002" role="doc-biblioref">2002</a>)</span> — Texto clásico y riguroso sobre inferencia estadística, fundamental para cursos avanzados.</li>
+<li><span class="citation" data-cites="Rice2007">Rice (<a href="references.html#ref-Rice2007" role="doc-biblioref">2007</a>)</span> — Excelente balance entre teoría y práctica con muchos ejemplos.</li>
+<li><span class="citation" data-cites="Wackerly2008">Wackerly et&nbsp;al. (<a href="references.html#ref-Wackerly2008" role="doc-biblioref">2008</a>)</span> — Orientado a aplicaciones en ingeniería y ciencias, con numerosos ejercicios.</li>
+<li><span class="citation" data-cites="Wasserman2006">Wasserman (<a href="references.html#ref-Wasserman2006" role="doc-biblioref">2006</a>)</span> — Curso conciso pero riguroso en inferencia estadística.</li>
+<li><span class="citation" data-cites="Wood2015">Wood (<a href="references.html#ref-Wood2015" role="doc-biblioref">2015</a>)</span> — Introducción accesible a estadística desde una perspectiva moderna.</li>
 </ul>
 </section>
-<section id="software-y-reproducibilidad" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="software-y-reproducibilidad">Software y Reproducibilidad</h2>
-<p>Todos los ejemplos de código en este libro están escritos en <a href="https://www.r-project.org/">R</a>. Para reproducir los análisis se recomienda instalar R (versión ≥ 4.3) y los siguientes paquetes:</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"ggplot2"</span>, <span class="st">"dplyr"</span>, <span class="st">"tidyr"</span>, <span class="st">"knitr"</span>, <span class="st">"kableExtra"</span>, <span class="st">"MASS"</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<p>Además, para facilitar el aprendizaje y la aplicación práctica, contamos con:</p>
+<section id="análisis-exploratorio-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="análisis-exploratorio-de-datos">Análisis Exploratorio de Datos</h2>
+<p>Para los tópicos de la Semana 1 y 2 (EDA):</p>
 <ul>
-<li><p><strong>BioStatR:</strong> Paquete de R desarrollado en la Unidad de Bioestadística de la Facultad de Medicina de la Universidad de Granada por <strong>Pedro Femia Marzo</strong> y <strong>Miguel Ángel Luque Fernández</strong>. Proporciona funciones de alto nivel que integran descripción, inferencia, modelización (lineal y logística) y visualización en una sola llamada, diseñadas específicamente para la docencia de bioestadística en ciencias de la salud. El paquete incluye también el conjunto de datos <code>osteo</code> (94 pacientes diabéticos, 27 variables), utilizado como hilo conductor de los ejemplos del libro.</p>
-<ul>
-<li><strong>Sitio web del paquete:</strong> <a href="https://migariane.github.io/BioStatR/" class="uri">https://migariane.github.io/BioStatR/</a></li>
-<li><strong>Repositorio GitHub:</strong> <a href="https://github.com/migariane/BioStatR" class="uri">https://github.com/migariane/BioStatR</a></li>
-<li><strong>Documentación del Apéndice B</strong> del libro: guía de referencia completa de las 22 funciones del paquete.</li>
-</ul></li>
+<li><span class="citation" data-cites="Tukey1961">Tukey (<a href="references.html#ref-Tukey1961" role="doc-biblioref">1961</a>)</span> — Artículo seminal que define el Análisis Exploratorio de Datos (EDA).</li>
+<li><span class="citation" data-cites="Wickham2016">Wickham &amp; Grolemund (<a href="references.html#ref-Wickham2016" role="doc-biblioref">2016</a>)</span> — Guía moderna para manipulación y visualización de datos en R.</li>
 </ul>
-<p>Para instalarlo basta con ejecutar (requiere el paquete <code>remotes</code>):</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instala el paquete remotes si no lo tienes</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Instala BioStatR directamente desde GitHub (compila para tu sistema)</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"migariane/BioStatR"</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar el paquete y el conjunto de datos osteo</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioStatR)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(osteo)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<p>Para obtener la referencia bibliográfica del paquete:</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">"BioStatR"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<ul>
-<li><strong><a href="https://www.jamovi.org">jamovi</a>:</strong> Una plataforma de estadística gratuita y de código abierto diseñada para ser fácil de usar. <a href="https://www.jamovi.org">jamovi</a> proporciona una interfaz intuitiva basada en el motor estadístico de R, ideal para quienes desean realizar análisis complejos sin necesidad de escribir código directamente, facilitando la reproducibilidad de los resultados.</li>
-</ul>
-<p>El código fuente completo de este libro está disponible en: <a href="https://github.com/migariane/CursoMatematicaEstadistica" class="uri">https://github.com/migariane/CursoMatematicaEstadistica</a></p>
 </section>
-<section id="nota-sobre-el-material" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="nota-sobre-el-material">Nota sobre el Material</h2>
-<p>Este material docente ha sido elaborado por el autor para uso docente en la Universidad de Granada. El material tiene carácter introductorio y no pretende ser un tratado exhaustivo de ninguno de los temas cubiertos. Para cada tema se proporcionan referencias para una lectura más profunda.</p>
+<section id="probabilidad-y-variables-aleatorias" class="level2">
+<h2 class="anchored" data-anchor-id="probabilidad-y-variables-aleatorias">Probabilidad y Variables Aleatorias</h2>
+<p>Referencias para profundizar en los tópicos de las Semanas 3 y 4:</p>
+<ul>
+<li><span class="citation" data-cites="Rice2007">Rice (<a href="references.html#ref-Rice2007" role="doc-biblioref">2007</a>)</span> — Excelentes capítulos sobre probabilidad y variables aleatorias.</li>
+<li><span class="citation" data-cites="Ross2014">Ross (<a href="references.html#ref-Ross2014" role="doc-biblioref">2014</a>)</span> — Enfoque práctico para ingenieros y científicos.</li>
+<li><span class="citation" data-cites="Devore2020">Devore (<a href="references.html#ref-Devore2020" role="doc-biblioref">2020</a>)</span> — Texto ampliamente usado en cursos de ingeniería.</li>
+</ul>
+</section>
+<section id="teoría-del-muestreo-e-inferencia-estadística" class="level2">
+<h2 class="anchored" data-anchor-id="teoría-del-muestreo-e-inferencia-estadística">Teoría del Muestreo e Inferencia Estadística</h2>
+<p>Para las Semanas 5, 7, 8 y 9:</p>
+<ul>
+<li><span class="citation" data-cites="Casella2002">Casella &amp; Berger (<a href="references.html#ref-Casella2002" role="doc-biblioref">2002</a>)</span> — Riguroso tratamiento de estimación y contrastes de hipótesis.</li>
+<li><span class="citation" data-cites="Agresti2018">Agresti (<a href="references.html#ref-Agresti2018" role="doc-biblioref">2018</a>)</span> — Métodos estadísticos aplicados a ciencias sociales.</li>
+<li><span class="citation" data-cites="FDR2001">Benjamini &amp; Hochberg (<a href="references.html#ref-FDR2001" role="doc-biblioref">1995</a>)</span> — Control de tasa de falsos positivos en pruebas múltiples.</li>
+</ul>
+</section>
+<section id="regresión-lineal" class="level2">
+<h2 class="anchored" data-anchor-id="regresión-lineal">Regresión Lineal</h2>
+<p>Para las Semanas 10 y 11:</p>
+<ul>
+<li><span class="citation" data-cites="James2013">James et&nbsp;al. (<a href="references.html#ref-James2013" role="doc-biblioref">2013</a>)</span> — Introducción moderna a aprendizaje estadístico con énfasis en regresión.</li>
+<li><span class="citation" data-cites="Freedman2007">Freedman (<a href="references.html#ref-Freedman2007" role="doc-biblioref">2007</a>)</span> — Enfoque crítico y reflexivo sobre la práctica de la regresión.</li>
+<li><span class="citation" data-cites="Wooldridge2020">Wooldridge (<a href="references.html#ref-Wooldridge2020" role="doc-biblioref">2020</a>)</span> — Aplicaciones econométricas de modelos de regresión.</li>
+<li><span class="citation" data-cites="Greene2018">Greene (<a href="references.html#ref-Greene2018" role="doc-biblioref">2018</a>)</span> — Referencia avanzada en econometría.</li>
+<li><span class="citation" data-cites="Angrist2008">Angrist &amp; Pischke (<a href="references.html#ref-Angrist2008" role="doc-biblioref">2008</a>)</span> — Métodos empíricos para inferencia causal.</li>
+</ul>
+</section>
+<section id="análisis-de-datos-categóricos-y-epidemiología" class="level2">
+<h2 class="anchored" data-anchor-id="análisis-de-datos-categóricos-y-epidemiología">Análisis de Datos Categóricos y Epidemiología</h2>
+<p>Para la Semana 12 (tablas de contingencia, Chi-cuadrado, McNemar, medidas de asociación):</p>
+<ul>
+<li><span class="citation" data-cites="Agresti2013">Agresti (<a href="references.html#ref-Agresti2013" role="doc-biblioref">2013</a>)</span> — Referencia estándar para el análisis de datos categóricos: tablas de contingencia, pruebas Chi-cuadrado y modelos log-lineales.</li>
+<li><span class="citation" data-cites="Fleiss2003">Fleiss et&nbsp;al. (<a href="references.html#ref-Fleiss2003" role="doc-biblioref">2003</a>)</span> — Tratamiento riguroso de proporciones, tasas y pruebas para tablas 2×2, incluida la prueba de McNemar para datos apareados.</li>
+<li><span class="citation" data-cites="McNemar1947">McNemar (<a href="references.html#ref-McNemar1947" role="doc-biblioref">1947</a>)</span> — Artículo original de Quinn McNemar donde se propone la prueba para muestras relacionadas.</li>
+<li><span class="citation" data-cites="Altman1991">Altman (<a href="references.html#ref-Altman1991" role="doc-biblioref">1991</a>)</span> — Estadística médica aplicada: medidas de asociación (RR, OR, RD), tablas 2×2 y pruebas para datos apareados.</li>
+<li><span class="citation" data-cites="Rothman2008">Rothman et&nbsp;al. (<a href="references.html#ref-Rothman2008" role="doc-biblioref">2008</a>)</span> — Epidemiología moderna: diseños de cohorte, caso-control y transversal; estimación e interpretación de RR y OR.</li>
+<li><span class="citation" data-cites="Szklo2007">Szklo &amp; Nieto (<a href="references.html#ref-Szklo2007" role="doc-biblioref">2007</a>)</span> — Presentación accesible de epidemiología analítica con énfasis en medidas de efecto.</li>
+<li><span class="citation" data-cites="BioestadisticaR2">Femia Marzo et&nbsp;al. (<a href="references.html#ref-BioestadisticaR2" role="doc-biblioref">2024</a>)</span> — Paquete R del grupo de Bioestadística de la UGR (Pedro Femia et al.): funciones <code>tabla2x2()</code>, <code>tablarxc()</code> y <code>testnormal()</code> con el dataset <code>osteo</code>.</li>
+<li><span class="citation" data-cites="OpenIntro2019">Diez et&nbsp;al. (<a href="references.html#ref-OpenIntro2019" role="doc-biblioref">2019</a>)</span> — Introducción accesible a la inferencia sobre proporciones y tablas de contingencia.</li>
+</ul>
+</section>
+<section id="recursos-en-r" class="level2">
+<h2 class="anchored" data-anchor-id="recursos-en-r">Recursos en R</h2>
+<p>El curso utiliza ampliamente <strong>R</strong> para la implementación de conceptos estadísticos:</p>
+<ul>
+<li><span class="citation" data-cites="RCoreTeam2024">R Core Team (<a href="references.html#ref-RCoreTeam2024" role="doc-biblioref">2024</a>)</span> — Documentación oficial del proyecto R.</li>
+<li><span class="citation" data-cites="Wickham2016">Wickham &amp; Grolemund (<a href="references.html#ref-Wickham2016" role="doc-biblioref">2016</a>)</span> — Guía práctica para análisis de datos con R.</li>
+<li><span class="citation" data-cites="Kabacoff2015">Kabacoff (<a href="references.html#ref-Kabacoff2015" role="doc-biblioref">2015</a>)</span> — Referencia completa de gráficos y manipulación en R.</li>
+</ul>
+</section>
+<section id="perspectivas-bayesianas" class="level2">
+<h2 class="anchored" data-anchor-id="perspectivas-bayesianas">Perspectivas Bayesianas</h2>
+<p>Para estudiantes interesados en métodos Bayesianos:</p>
+<ul>
+<li><span class="citation" data-cites="Koop2011">Koop (<a href="references.html#ref-Koop2011" role="doc-biblioref">2011</a>)</span> — Introducción a econometría Bayesiana.</li>
+<li><span class="citation" data-cites="Gelman2013">Gelman et&nbsp;al. (<a href="references.html#ref-Gelman2013" role="doc-biblioref">2013</a>)</span> — Texto completo sobre análisis Bayesiano de datos.</li>
+<li><span class="citation" data-cites="McElreath2020">McElreath (<a href="references.html#ref-McElreath2020" role="doc-biblioref">2020</a>)</span> — Curso moderno en inferencia Bayesiana con Stan.</li>
+<li><span class="citation" data-cites="Peng2015">Peng &amp; Dominici (<a href="references.html#ref-Peng2015" role="doc-biblioref">2015</a>)</span> — Pensamiento estadístico desde perspectiva Bayesiana.</li>
+</ul>
+</section>
+<section id="tópicos-especializados" class="level2">
+<h2 class="anchored" data-anchor-id="tópicos-especializados">Tópicos Especializados</h2>
+<p>Lecturas complementarias para temas avanzados:</p>
+<ul>
+<li><span class="citation" data-cites="James2013">James et&nbsp;al. (<a href="references.html#ref-James2013" role="doc-biblioref">2013</a>)</span> — Aprendizaje estadístico (machine learning clásico).</li>
+<li><span class="citation" data-cites="Efron2016">Efron &amp; Hastie (<a href="references.html#ref-Efron2016" role="doc-biblioref">2016</a>)</span> — Perspectiva histórica sobre estadística en la era computacional.</li>
+<li><span class="citation" data-cites="Hyndman2018">Hyndman &amp; Athanasopoulos (<a href="references.html#ref-Hyndman2018" role="doc-biblioref">2018</a>)</span> — Métodos de pronóstico y series de tiempo.</li>
+<li><span class="citation" data-cites="Pearl2009">Pearl (<a href="references.html#ref-Pearl2009" role="doc-biblioref">2009</a>)</span> — Fundamentos matemáticos de causalidad.</li>
+<li><span class="citation" data-cites="Varian2014">Varian (<a href="references.html#ref-Varian2014" role="doc-biblioref">2014</a>)</span> — Aplicaciones de estadística a economía y “big data”.</li>
+<li><span class="citation" data-cites="Montgomery2020">Montgomery et&nbsp;al. (<a href="references.html#ref-Montgomery2020" role="doc-biblioref">2020</a>)</span> — Estadística aplicada a ingeniería.</li>
+<li><span class="citation" data-cites="OpenIntro2019">Diez et&nbsp;al. (<a href="references.html#ref-OpenIntro2019" role="doc-biblioref">2019</a>)</span> — Recurso abierto gratuito para aprendizaje de estadística.</li>
+</ul>
+</section>
+<section id="diccionarios-y-referencias-rápidas" class="level2">
+<h2 class="anchored" data-anchor-id="diccionarios-y-referencias-rápidas">Diccionarios y Referencias Rápidas</h2>
+<ul>
+<li><span class="citation" data-cites="Dodge2006">Dodge (<a href="references.html#ref-Dodge2006" role="doc-biblioref">2006</a>)</span> — Diccionario definitivo de términos estadísticos en inglés.</li>
+</ul>
+</section>
+<section id="cómo-citar-este-curso" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-citar-este-curso">Cómo citar este curso</h2>
+<p>Si utiliza los materiales de este curso en su investigación o trabajo, le recomendamos citar:</p>
 <blockquote class="blockquote">
-<p><strong>Aviso:</strong> Estos apuntes se encuentran en continua revisión. Si detecta algún error o imprecisión, por favor comuníquelo al autor a través del repositorio de GitHub o por correo electrónico.</p>
+<p>Luque Fernández, Miguel Ángel. (2025–2026). Matemáticas para la Estadística Médica. Universidad de Granada. Disponible en: https://migariane.github.io/CursoMatematicaEstadistica/</p>
 </blockquote>
-<hr>
-<p><em>Versión correspondiente al curso académico 2025–2026.</em></p>
-
-
 </section>
+<section id="acceso-abierto" class="level2">
+<h2 class="anchored" data-anchor-id="acceso-abierto">Acceso Abierto</h2>
+<p>Este curso es parte de una iniciativa de educación abierta. Los materiales están disponibles bajo licencia <strong>CC BY-NC-SA 4.0</strong>, lo que permite su uso para propósitos educativos y no comerciales.</p>
+<hr>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-Agresti2013" class="csl-entry" role="listitem">
+Agresti, A. (2013). <em>Categorical data analysis</em> (3rd ed.). Wiley.
+</div>
+<div id="ref-Agresti2018" class="csl-entry" role="listitem">
+Agresti, A. (2018). <em>Statistical methods for the social sciences</em>
+(5th ed.). Pearson.
+</div>
+<div id="ref-Altman1991" class="csl-entry" role="listitem">
+Altman, D. G. (1991). <em>Practical statistics for medical
+research</em>. Chapman; Hall/CRC.
+</div>
+<div id="ref-Angrist2008" class="csl-entry" role="listitem">
+Angrist, J. D., &amp; Pischke, J.-S. (2008). <em>Mostly harmless
+econometrics: An empiricist’s companion</em>. Princeton University
+Press.
+</div>
+<div id="ref-FDR2001" class="csl-entry" role="listitem">
+Benjamini, Y., &amp; Hochberg, Y. (1995). Controlling the false
+discovery rate: A practical and powerful approach to multiple testing.
+<em>Journal of the Royal Statistical Society</em>, <em>57</em>(1),
+289–300.
+</div>
+<div id="ref-Casella2002" class="csl-entry" role="listitem">
+Casella, G., &amp; Berger, R. L. (2002). <em>Statistical inference</em>
+(2nd ed.). Duxbury Press.
+</div>
+<div id="ref-Chihara2019" class="csl-entry" role="listitem">
+Chihara, L. M., &amp; Hesterberg, T. C. (2019). <em>Mathematical
+statistics with resampling and r</em> (2nd ed.). Wiley.
+</div>
+<div id="ref-Devore2020" class="csl-entry" role="listitem">
+Devore, J. L. (2020). <em>Probability and statistics for engineering and
+the sciences</em> (9th ed.). Cengage Learning.
+</div>
+<div id="ref-OpenIntro2019" class="csl-entry" role="listitem">
+Diez, D. M., Barr, C. D., &amp; Cetinkaya-Rundel, M. (2019).
+<em>OpenIntro statistics</em> (4th ed.). OpenIntro Inc. <a href="https://www.openintro.org">https://www.openintro.org</a>
+</div>
+<div id="ref-Dodge2006" class="csl-entry" role="listitem">
+Dodge, Y. (2006). <em>The oxford dictionary of statistical terms</em>
+(2nd ed.). Oxford University Press.
+</div>
+<div id="ref-Efron2016" class="csl-entry" role="listitem">
+Efron, B., &amp; Hastie, T. (2016). <em>Computer age statistical
+inference: Algorithms, evidence, and data science</em>. Cambridge
+University Press.
+</div>
+<div id="ref-BioestadisticaR2" class="csl-entry" role="listitem">
+Femia Marzo, P., Carmona Montes, P., &amp; Luque-Fernandez, M. A.
+(2024). <em><span>BioestadisticaR2</span>: Paquete de funciones de
+bioestadística para <span>R</span></em>. <a href="https://www.ugr.es/~bioest/BioestadisticaR/">https://www.ugr.es/~bioest/BioestadisticaR/</a>
+</div>
+<div id="ref-Fleiss2003" class="csl-entry" role="listitem">
+Fleiss, J. L., Levin, B., &amp; Paik, M. C. (2003). <em>Statistical
+methods for rates and proportions</em> (3rd ed.). Wiley.
+</div>
+<div id="ref-Freedman2007" class="csl-entry" role="listitem">
+Freedman, D. A. (2007). <em>Statistical models: Theory and practice</em>
+(2nd ed.). Cambridge University Press.
+</div>
+<div id="ref-Gelman2013" class="csl-entry" role="listitem">
+Gelman, A., Carlin, J. B., Stern, H. S., Dunson, D. B., Vehtari, A.,
+&amp; Rubin, D. B. (2013). <em>Bayesian data analysis</em> (3rd ed.).
+Chapman; Hall/CRC.
+</div>
+<div id="ref-Greene2018" class="csl-entry" role="listitem">
+Greene, W. H. (2018). <em>Econometric analysis</em> (8th ed.). Pearson.
+</div>
+<div id="ref-Hyndman2018" class="csl-entry" role="listitem">
+Hyndman, R. J., &amp; Athanasopoulos, G. (2018). <em>Forecasting:
+Principles and practice</em> (2nd ed.). OTexts. <a href="https://otexts.com/fpp2/">https://otexts.com/fpp2/</a>
+</div>
+<div id="ref-James2013" class="csl-entry" role="listitem">
+James, G., Witten, D., Hastie, T., &amp; Tibshirani, R. (2013). <em>An
+introduction to statistical learning</em>. Springer.
+</div>
+<div id="ref-Kabacoff2015" class="csl-entry" role="listitem">
+Kabacoff, R. I. (2015). <em>R in action: Data analysis and graphics with
+r</em> (2nd ed.). Manning Publications.
+</div>
+<div id="ref-Koop2011" class="csl-entry" role="listitem">
+Koop, G. (2011). <em>Bayesian econometrics</em> (2nd ed.). Wiley.
+</div>
+<div id="ref-MartinAndresLuna2004" class="csl-entry" role="listitem">
+Martı́n Andrés, A., &amp; Luna del Castillo, J. de D. (2004).
+<em>Bioestad<span>ı́</span>stica para las ciencias de la salud</em> (5th
+ed.). Norma-Capitel.
+</div>
+<div id="ref-MartinAndres1994" class="csl-entry" role="listitem">
+Martı́n Andrés, A., &amp; Silva Mato, A. (1994). Choosing the optimal
+unconditional test for comparing two independent proportions.
+<em>Computational Statistics &amp; Data Analysis</em>, <em>17</em>(5),
+555–574. <a href="https://doi.org/10.1016/0167-9473(94)90148-1">https://doi.org/10.1016/0167-9473(94)90148-1</a>
+</div>
+<div id="ref-McElreath2020" class="csl-entry" role="listitem">
+McElreath, R. (2020). <em>Statistical rethinking: A bayesian course with
+examples in r and stan</em> (2nd ed.). CRC Press.
+</div>
+<div id="ref-McNemar1947" class="csl-entry" role="listitem">
+McNemar, Q. (1947). Note on the sampling error of the difference between
+correlated proportions or percentages. <em>Psychometrika</em>,
+<em>12</em>(2), 153–157. <a href="https://doi.org/10.1007/BF02295996">https://doi.org/10.1007/BF02295996</a>
+</div>
+<div id="ref-Montgomery2020" class="csl-entry" role="listitem">
+Montgomery, D. C., Runger, G. C., &amp; Hubele, N. F. (2020).
+<em>Engineering statistics</em> (6th ed.). Wiley.
+</div>
+<div id="ref-Pearl2009" class="csl-entry" role="listitem">
+Pearl, J. (2009). <em>Causality: Models, reasoning, and inference</em>
+(2nd ed.). Cambridge University Press.
+</div>
+<div id="ref-Peng2015" class="csl-entry" role="listitem">
+Peng, R. D., &amp; Dominici, F. (2015). <em>Statistical rethinking</em>.
+Chapman; Hall/CRC.
+</div>
+<div id="ref-RCoreTeam2024" class="csl-entry" role="listitem">
+R Core Team. (2024). <em>R: A language and environment for statistical
+computing</em>. R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>
+</div>
+<div id="ref-Rice2007" class="csl-entry" role="listitem">
+Rice, J. A. (2007). <em>Mathematical statistics and data analysis</em>
+(3rd ed.). Duxbury Press.
+</div>
+<div id="ref-Robins1987" class="csl-entry" role="listitem">
+Robins, J. M. (1987). A new approach to causal inference in mortality
+studies with a sustained exposure period—application to control of the
+healthy worker survivor effect. <em>Mathematical Modelling</em>,
+<em>7</em>(5-8), 1393–1512. <a href="https://doi.org/10.1016/0270-0255(86)90088-6">https://doi.org/10.1016/0270-0255(86)90088-6</a>
+</div>
+<div id="ref-Ross2014" class="csl-entry" role="listitem">
+Ross, S. M. (2014). <em>Introduction to probability and statistics for
+engineers and scientists</em> (5th ed.). Academic Press.
+</div>
+<div id="ref-Rothman2008" class="csl-entry" role="listitem">
+Rothman, K. J., Greenland, S., &amp; Lash, T. L. (2008). <em>Modern
+epidemiology</em> (3rd ed.). Lippincott Williams; Wilkins.
+</div>
+<div id="ref-Saad2020" class="csl-entry" role="listitem">
+Saad, F. A., Freer, C. E., Rinard, M. C., &amp; Mansinghka, V. K.
+(2020). Optimal approximate sampling from discrete probability
+distributions. <em>Proceedings of the ACM on Programming Languages</em>,
+<em>4</em>(POPL). <a href="https://doi.org/10.1145/3371104">https://doi.org/10.1145/3371104</a>
+</div>
+<div id="ref-Shapiro1965" class="csl-entry" role="listitem">
+Shapiro, S. S., &amp; Wilk, M. B. (1965). An analysis of variance test
+for normality (complete samples). <em>Biometrika</em>, <em>52</em>(3–4),
+591–611.
+</div>
+<div id="ref-Smith2020" class="csl-entry" role="listitem">
+Smith, M., &amp; al., et. (2020). Computational causal inference.
+<em>Statistics in Medicine</em>, <em>39</em>(1), 1–35. <a href="https://doi.org/10.1002/sim.9234">https://doi.org/10.1002/sim.9234</a>
+</div>
+<div id="ref-Szklo2007" class="csl-entry" role="listitem">
+Szklo, M., &amp; Nieto, F. J. (2007). <em>Epidemiology: Beyond the
+basics</em> (2nd ed.). Jones; Bartlett.
+</div>
+<div id="ref-Tukey1961" class="csl-entry" role="listitem">
+Tukey, J. W. (1961). The future of data analysis. <em>The Annals of
+Mathematical Statistics</em>, <em>33</em>(1), 1–67.
+</div>
+<div id="ref-Varian2014" class="csl-entry" role="listitem">
+Varian, H. R. (2014). Big data: New tricks for econometrics. <em>Journal
+of Economic Perspectives</em>, <em>28</em>(2), 3–28.
+</div>
+<div id="ref-Wackerly2008" class="csl-entry" role="listitem">
+Wackerly, D. D., Mendenhall, W., &amp; Scheaffer, R. L. (2008).
+<em>Mathematical statistics with applications</em> (7th ed.). Duxbury
+Press.
+</div>
+<div id="ref-Wasserman2006" class="csl-entry" role="listitem">
+Wasserman, L. (2006). <em>All of statistics: A concise course in
+statistical inference</em>. Springer.
+</div>
+<div id="ref-Wickham2016" class="csl-entry" role="listitem">
+Wickham, H., &amp; Grolemund, G. (2016). <em>R for data science</em>.
+O’Reilly Media. <a href="https://r4ds.had.co.nz/">https://r4ds.had.co.nz/</a>
+</div>
+<div id="ref-Wood2015" class="csl-entry" role="listitem">
+Wood, S. N. (2015). <em>Core statistics</em>. Cambridge University
+Press.
+</div>
+<div id="ref-Wooldridge2020" class="csl-entry" role="listitem">
+Wooldridge, J. M. (2020). <em>Introductory econometrics: A modern
+approach</em> (7th ed.). Cengage Learning.
+</div>
+</div>
+<hr>
+<p><strong>Última actualización:</strong> Semestre 2025–2026</p>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -1013,10 +1164,13 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./chapters/semana11.html" class="pagination-link" aria-label="Semana 11 — Análisis de Datos Categóricos">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapters/semana01.html" class="pagination-link" aria-label="Semana 1 — Análisis Exploratorio de Datos (Parte I)">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Semana 1 — Análisis Exploratorio de Datos (Parte I)</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./chapters/apendiceA.html" class="pagination-link" aria-label="Apéndice A: Repaso Matemático Riguroso">
+        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Apéndice A: Repaso Matemático Riguroso</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1028,7 +1182,7 @@ window.Quarto = {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/blob/main/index.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/edit/main/references.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/blob/main/references.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>© 2026 Universidad de Granada · <a href="https://www.ugr.es">ugr.es</a></p>
 </div>

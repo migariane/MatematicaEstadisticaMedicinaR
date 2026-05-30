@@ -1,0 +1,444 @@
+# Apéndice D: Investigación Reproducible con Git, GitHub y RStudio {#sec-apendiceD}
+
+La **investigación reproducible** es el principio según el cual cualquier análisis cuantitativo —y, por extensión, cualquier resultado publicado— debe poder ser replicado por terceros a partir de los datos, el código y la documentación originales. En bioestadística, donde las decisiones clínicas pueden depender de un único valor *p* o de un único intervalo de confianza, la reproducibilidad no es un lujo sino una exigencia ética.
+
+Este apéndice introduce las tres herramientas mínimas que todo investigador en ciencias de la salud debería dominar para producir análisis reproducibles: **Git** (control de versiones), **GitHub** (plataforma de colaboración basada en Git) y **RStudio** (entorno de desarrollo integrado para R que incorpora un cliente Git).
+
+---
+
+## D.1 ¿Por qué investigación reproducible? {#sec-apendiceD-rationale}
+
+::: {.callout-important}
+## La crisis de la replicabilidad
+
+Múltiples estudios desde 2005 (Ioannidis, *PLoS Medicine*) han documentado que una fracción sustancial de los hallazgos publicados en biomedicina no logra replicarse cuando se repite el análisis con los datos originales o se realiza un estudio independiente. Esta **crisis de replicabilidad** ha motivado iniciativas internacionales (ICMJE, NIH, COS) que hoy exigen compartir datos y código como condición para publicar.
+:::
+
+### D.1.1 Niveles de reproducibilidad
+
+Siguiendo la taxonomía de **Goodman, Fanelli & Ioannidis (2016)**:
+
+| Nivel | Significado | Requiere |
+|-------|-------------|----------|
+| **Reproducibilidad de métodos** | Otra persona obtiene los mismos resultados a partir de los datos y el código originales | Código + datos + entorno computacional |
+| **Reproducibilidad de resultados** | Otro investigador, con datos nuevos, obtiene conclusiones consistentes | Diseño claro + protocolo público |
+| **Reproducibilidad inferencial** | El conocimiento extraído del estudio se confirma en revisiones sistemáticas y meta-análisis | Reporting estandarizado (CONSORT, STROBE…) |
+
+### D.1.2 Principios FAIR
+
+Los datos y el código de un estudio reproducible deben ser **FAIR**: *Findable* (con identificador persistente, p. ej. DOI), *Accessible* (depositados en un repositorio público), *Interoperable* (formatos abiertos como CSV, parquet) y *Reusable* (con licencia explícita y documentación).
+
+### D.1.3 ¿Qué herramientas mínimas necesitamos?
+
+- **Control de versiones** para registrar cada cambio del análisis (Git).
+- **Plataforma de colaboración** para alojar el repositorio y compartirlo (GitHub, GitLab…).
+- **Documentos computacionales** que mezclen código y narrativa (Quarto, R Markdown, Jupyter).
+- **Gestión de entornos** que congele las versiones de los paquetes (`renv`, `conda`).
+
+Este apéndice cubre los dos primeros, integrados en RStudio. La gestión de entornos se introduce brevemente en la sección D.5.
+
+---
+
+## D.2 Control de versiones con Git {#sec-apendiceD-git}
+
+**Git** es un sistema distribuido de control de versiones: registra el historial completo de cambios en un conjunto de archivos (un *repositorio*) y permite recuperar cualquier estado anterior, comparar versiones, y trabajar en paralelo en líneas alternativas (*ramas*) que después se fusionan.
+
+### D.2.1 Conceptos básicos
+
+| Concepto | Significado |
+|----------|-------------|
+| **Repositorio** | Carpeta del proyecto bajo control de versiones (`.git/` oculto en su raíz) |
+| **Commit** | Instantánea (snapshot) del estado del proyecto en un momento dado, con un mensaje descriptivo |
+| **Branch** (rama) | Línea de desarrollo paralela; `main` es la rama principal |
+| **Merge** | Fusión de los cambios de una rama en otra |
+| **HEAD** | Puntero al commit actualmente activo |
+| **Remoto (`origin`)** | Copia del repositorio alojada en un servidor (típicamente GitHub) |
+| **`.gitignore`** | Archivo que lista patrones que Git debe ignorar (datos crudos, caches, credenciales) |
+
+### D.2.2 Instalación
+
+::: {.callout-note}
+## Instalación de Git según el sistema operativo
+
+- **macOS:** preinstalado o `xcode-select --install` (Command Line Tools).
+- **Windows:** descargar **Git for Windows** desde <https://git-scm.com/download/win> (incluye *Git Bash*).
+- **Linux (Debian/Ubuntu):** `sudo apt install git`.
+
+Verificación:
+
+```bash
+git --version
+# git version 2.42.0 (o superior)
+```
+:::
+
+### D.2.3 Configuración inicial (una sola vez por máquina)
+
+```bash
+git config --global user.name  "Tu Nombre"
+git config --global user.email "tu_email@ugr.es"
+git config --global init.defaultBranch main
+```
+
+Equivalente desde R (recomendado para los lectores de este libro):
+
+```{r}
+#| eval: false
+# install.packages("usethis")
+usethis::use_git_config(
+  user.name  = "Tu Nombre",
+  user.email = "tu_email@ugr.es"
+)
+```
+
+### D.2.4 Flujo de trabajo básico (comandos esenciales)
+
+```bash
+git init                       # Crea un nuevo repositorio en la carpeta actual
+git status                     # Muestra archivos modificados/nuevos
+git add archivo.qmd            # Marca el archivo para incluirlo en el próximo commit
+git add .                      # Marca TODOS los archivos modificados (cuidado con datos sensibles)
+git commit -m "Mensaje claro"  # Crea un commit con los cambios marcados
+git log --oneline              # Historial resumido de commits
+git diff archivo.qmd           # Muestra los cambios sin hacer commit
+git checkout -- archivo.qmd    # Descarta los cambios no comprometidos
+```
+
+### D.2.5 Buenas prácticas para mensajes de commit
+
+::: {.callout-tip}
+## Reglas para escribir buenos mensajes
+
+1. **Línea de asunto** en **imperativo** y < 70 caracteres: *"Añade tabla descriptiva de la cohorte"* (no *"añadiendo tabla"* ni *"añadido tabla"*).
+2. **Una idea por commit:** un mensaje = un cambio coherente. Evita los *commits* monstruo que mezclan refactorizaciones con nuevas funcionalidades.
+3. **Explica el porqué, no el qué.** El *qué* ya lo muestra `git diff`; el mensaje debe responder a *por qué* se hizo el cambio.
+4. **Frecuencia:** mejor muchos *commits* pequeños y revertibles que pocos enormes.
+
+Ejemplos:
+
+- ✅ `Corrige criterio de inclusión: edad >= 18`
+- ✅ `Añade IC bootstrap al modelo de mortalidad`
+- ❌ `cambios` (vago)
+- ❌ `WIP` (uso interno aceptable, pero no en `main`)
+:::
+
+### D.2.6 Ramas y fusiones (introducción)
+
+Las **ramas** permiten experimentar sin tocar la versión "buena" del análisis:
+
+```bash
+git switch -c sensibilidad      # Crea y cambia a la rama 'sensibilidad'
+# … trabajo, commits …
+git switch main                 # Vuelve a la rama principal
+git merge sensibilidad          # Fusiona los cambios de 'sensibilidad' en main
+git branch -d sensibilidad      # Elimina la rama una vez fusionada
+```
+
+En proyectos colaborativos, las ramas se asocian habitualmente con *pull requests* en GitHub (ver D.3).
+
+---
+
+## D.3 GitHub como plataforma colaborativa {#sec-apendiceD-github}
+
+**GitHub** (<https://github.com>) es un servicio en la nube que aloja repositorios Git, añadiendo funcionalidades de colaboración:
+
+- **Repositorios públicos** (visibles y clonables por cualquiera) o **privados**.
+- **Issues:** sistema de tickets para reportar errores, proponer mejoras o discutir decisiones.
+- **Pull requests (PR):** mecanismo formal para revisar y fusionar cambios entre ramas, con discusión línea a línea.
+- **Releases:** versiones etiquetadas del proyecto (`v1.0`, `v2.0-beta`…) con notas y artefactos descargables.
+- **GitHub Pages:** publicación gratuita de sitios web estáticos (el propio libro que está leyendo se sirve mediante GitHub Pages).
+- **GitHub Actions:** automatización (re-renderizar el libro con cada commit, lanzar análisis, enviar avisos…).
+
+### D.3.1 Crear una cuenta y un repositorio remoto
+
+1. Crear cuenta en <https://github.com> (gratuita; usuarios académicos disponen del plan **GitHub Education** sin límite).
+2. Pulsar **New repository**, asignar nombre (ej. `tfg-osteoporosis`), elegir entre **Public** o **Private**, y crear sin README inicial si va a conectar un repositorio local ya existente.
+
+### D.3.2 Autenticación: HTTPS + PAT o SSH
+
+GitHub no permite contraseñas en línea de comandos desde 2021. Dos opciones modernas:
+
+- **HTTPS + Personal Access Token (PAT):** sencillo para usuarios noveles. Crear en *Settings → Developer settings → Personal access tokens*. R lo facilita:
+
+```{r}
+#| eval: false
+# install.packages(c("gitcreds", "usethis"))
+usethis::create_github_token()  # Abre la página de GitHub con permisos preseleccionados
+gitcreds::gitcreds_set()        # Guarda el token de forma segura en el llavero del sistema
+```
+
+- **SSH:** más cómodo a largo plazo. Generar par de claves con `ssh-keygen -t ed25519 -C "tu_email@ugr.es"`, copiar la clave pública (`~/.ssh/id_ed25519.pub`) y añadirla en GitHub → *Settings → SSH and GPG keys*.
+
+### D.3.3 Conectar un repositorio local con un remoto
+
+```bash
+# Una vez creado el repositorio vacío en GitHub:
+git remote add origin git@github.com:tu_usuario/tfg-osteoporosis.git
+git branch -M main
+git push -u origin main          # 'origin' es el remoto, 'main' la rama
+```
+
+A partir de aquí:
+
+```bash
+git pull             # Trae los cambios del remoto
+git push             # Sube tus commits al remoto
+```
+
+### D.3.4 Pull requests: revisión por pares del código
+
+El flujo típico para un cambio sustancial es:
+
+1. Crear una rama: `git switch -c modelo-logistico`.
+2. Hacer commits sobre esa rama.
+3. Publicarla: `git push -u origin modelo-logistico`.
+4. Abrir un **pull request** en GitHub desde la rama hacia `main`.
+5. Discutir, revisar línea a línea, ajustar y, finalmente, fusionar.
+
+Este flujo, equivalente a la revisión por pares de un artículo científico, mejora la calidad del código y deja registrado el porqué de cada decisión.
+
+---
+
+## D.4 Integración con RStudio {#sec-apendiceD-rstudio}
+
+RStudio incluye un **panel Git** que cubre el 90 % de las operaciones cotidianas sin abrir la terminal. Esto facilita enormemente la adopción de Git para usuarios de R que no se sienten cómodos en línea de comandos.
+
+### D.4.1 Crear un proyecto RStudio con Git desde cero
+
+1. **File → New Project → New Directory → New Project**.
+2. Marcar la casilla **Create a git repository**.
+3. RStudio crea la carpeta, inicializa Git e incluye un `.gitignore` razonable (`.Rproj.user/`, `.Rhistory`, `.RData`).
+4. El panel **Git** aparece en la esquina superior derecha.
+
+### D.4.2 Conectar un proyecto existente a Git
+
+Para un proyecto RStudio sin Git:
+
+```{r}
+#| eval: false
+# install.packages("usethis")
+usethis::use_git()           # Inicializa Git y hace el primer commit
+usethis::use_github()        # Crea el repositorio en GitHub y lo conecta (requiere PAT)
+```
+
+### D.4.3 El panel Git de RStudio
+
+| Acción en el panel | Equivalente en línea de comandos |
+|--------------------|----------------------------------|
+| Marcar la casilla del archivo (*staged*) | `git add archivo` |
+| Botón **Commit** + mensaje | `git commit -m "…"` |
+| Botón **Push** (flecha verde arriba) | `git push` |
+| Botón **Pull** (flecha azul abajo) | `git pull` |
+| Botón **History** (reloj) | `git log` (con interfaz gráfica) |
+| Botón **Diff** | `git diff` (visualización lado a lado) |
+
+::: {.callout-tip}
+## Workflow diario en RStudio
+
+1. Antes de empezar: **Pull** (sincronizar con el remoto).
+2. Trabajar en el análisis (editar `.R`, `.qmd`, etc.).
+3. Cada cambio coherente: **Stage** los archivos, **Commit** con un mensaje claro.
+4. Al final de la sesión: **Push** (compartir con el equipo).
+
+Repetir varias veces al día: *un commit, una idea*.
+:::
+
+### D.4.4 Visualización de cambios y resolución de conflictos
+
+El botón **Diff** en RStudio muestra los cambios línea a línea con colores (rojo = eliminado, verde = añadido). Cuando dos personas modifican la misma línea de un archivo, Git señala un **conflicto** que se resuelve manualmente editando los marcadores `<<<<<<<`, `=======` y `>>>>>>>` antes de hacer commit.
+
+---
+
+## D.5 Flujos de trabajo reproducibles para Bioestadística {#sec-apendiceD-flujos}
+
+### D.5.1 Estructura recomendada de un proyecto bioestadístico
+
+```
+mi-estudio/
+├── README.md              # Propósito, autor, citación
+├── LICENSE                # CC-BY, MIT, GPL…
+├── .gitignore             # Archivos a ignorar
+├── mi-estudio.Rproj       # Proyecto RStudio
+├── data/
+│   ├── raw/               # Datos originales (a menudo gitignored si son sensibles)
+│   └── processed/         # Datos derivados, reproducibles desde el script
+├── R/                     # Funciones reutilizables
+├── analysis/              # Cuadernos Quarto/Rmd con los análisis
+├── results/               # Tablas, figuras, modelos serializados (.rds)
+├── manuscript/            # Manuscrito en Quarto o LaTeX
+└── renv.lock              # Snapshot de las versiones de los paquetes (opcional)
+```
+
+### D.5.2 `.gitignore` típico para un proyecto en R
+
+```
+# Artefactos de R
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+
+# Salida de Quarto / RMarkdown
+*_files/
+*_cache/
+/_book/
+/_site/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Datos sensibles (¡nunca commitar PII!)
+data/raw/*.csv
+data/raw/*.xlsx
+```
+
+::: {.callout-warning}
+## Datos sensibles y RGPD
+
+**Jamás** se debe subir a GitHub información identificable de pacientes (PII): nombres, DNI, fechas de nacimiento, códigos de historia clínica, dirección, etc. Aunque elimine el archivo en un commit posterior, **permanece en el historial**. Si por accidente sube datos sensibles, debe utilizar herramientas como `git filter-repo` o `BFG Repo-Cleaner` y rotar inmediatamente cualquier credencial expuesta. Para datos clínicos, la recomendación es trabajar con datos **anonimizados o seudonimizados** desde el primer commit.
+:::
+
+### D.5.3 Entornos reproducibles con `renv`
+
+Para garantizar que el análisis se ejecuta dentro de cinco años con las mismas versiones de los paquetes:
+
+```{r}
+#| eval: false
+# install.packages("renv")
+renv::init()      # Crea un entorno local + renv.lock
+renv::snapshot()  # Actualiza renv.lock con las versiones actuales
+renv::restore()   # Reinstala exactamente las versiones del lockfile
+```
+
+Conviene comprometer (`git commit`) el archivo `renv.lock`.
+
+### D.5.4 Publicar un libro o análisis con GitHub Pages
+
+Este libro mismo está alojado en GitHub Pages. El flujo es:
+
+1. En `_quarto.yml`: `project: type: book` con `output-dir: docs`.
+2. Renderizar localmente: `quarto render` (se genera la carpeta `docs/`).
+3. Comprometer y subir: `git add docs/ && git commit -m "Publica versión X" && git push`.
+4. En GitHub → *Settings → Pages*, seleccionar **branch: main**, **folder: /docs**.
+5. La URL `https://tu_usuario.github.io/nombre-repo/` queda activa.
+
+Para automatizar la renderización en cada *push* se utiliza **GitHub Actions** (ver el archivo `.github/workflows/publish.yml` del repositorio de este libro como ejemplo).
+
+---
+
+## D.6 Ejercicio guiado: tu primer repositorio reproducible {#sec-apendiceD-ejercicio}
+
+Crear un repositorio público con un análisis del dataset `osteo` que se publique automáticamente como página web.
+
+::: {.callout-tip}
+## Pasos
+
+**1. Crear cuenta y proyecto:**
+
+- Crear cuenta en <https://github.com>.
+- En RStudio: **File → New Project → New Directory → Quarto Project** (Book/Website/Document).
+- Marcar **Create a git repository**.
+
+**2. Configurar Git e instalar BioStatR:**
+
+```{r}
+#| eval: false
+usethis::use_git_config(user.name = "Tu Nombre", user.email = "tu@ugr.es")
+remotes::install_github("migariane/BioStatR")
+```
+
+**3. Crear un análisis con Quarto:**
+
+Archivo `analisis.qmd` (contenido sugerido):
+
+```
+---
+title: "Análisis exploratorio del dataset osteo"
+author: "Tu Nombre"
+date: today
+format: html
+---
+
+`r ''````{r}
+library(BioStatR)
+data(osteo)
+freq(osteo$tabaco)
+grps(osteo$imc, osteo$sexo)
+tabla2x2(fvar = osteo$tabaco, cvar = osteo$osteo_cue, o = osteo)
+rls(hba1c ~ tevol, data = osteo)
+`r ''````
+```
+
+**4. Renderizar localmente:** `quarto render analisis.qmd` produce `analisis.html`.
+
+**5. Primer commit:**
+
+```bash
+git add .
+git commit -m "Primer análisis exploratorio del dataset osteo"
+```
+
+**6. Crear el repositorio en GitHub y conectarlo:**
+
+```{r}
+#| eval: false
+usethis::use_github(private = FALSE)
+```
+
+**7. Activar GitHub Pages** en *Settings → Pages → main / docs* (o `/root` si el HTML está en la raíz).
+
+**8. Verificar:** abrir `https://tu_usuario.github.io/nombre-repo/` y comprobar que el análisis es accesible públicamente.
+:::
+
+::: {.callout-note}
+## Criterios de éxito
+
+- El repositorio aparece en su perfil de GitHub con el archivo `analisis.qmd` y el commit inicial.
+- Existe un `README.md` que describe el propósito del repositorio y cita el paquete `BioStatR`.
+- El archivo `.gitignore` excluye `*_files/`, `.Rhistory`, `.Rproj.user/`.
+- La página renderizada es accesible desde la URL de GitHub Pages.
+- Cualquier persona puede clonar el repositorio (`git clone …`) y reproducir el análisis ejecutando `quarto render analisis.qmd` tras `remotes::install_github("migariane/BioStatR")`.
+:::
+
+---
+
+## D.7 Recursos adicionales {#sec-apendiceD-recursos}
+
+::: {.callout-note}
+## Lecturas recomendadas
+
+**Libros y guías (gratuitos y en abierto):**
+
+- **Bryan, J.** *Happy Git and GitHub for the useR*. <https://happygitwithr.com> — guía orientada a usuarios de R.
+- **Chacon, S. & Straub, B.** *Pro Git* (2.ª ed.). <https://git-scm.com/book> — referencia exhaustiva de Git.
+- **Wickham, H. & Bryan, J.** *R Packages* (2.ª ed.). <https://r-pkgs.org> — incluye flujos de trabajo con Git y GitHub para desarrollar paquetes de R.
+- **Xie, Y., Dervieux, C. & Riederer, E.** *R Markdown Cookbook*. <https://bookdown.org/yihui/rmarkdown-cookbook/>.
+- **Quarto Documentation.** *Publishing with GitHub Pages*. <https://quarto.org/docs/publishing/github-pages.html>.
+
+**Artículos clave sobre reproducibilidad en biomedicina:**
+
+- Ioannidis, J. P. A. (2005). *Why most published research findings are false*. PLoS Medicine, 2(8), e124.
+- Goodman, S. N., Fanelli, D. & Ioannidis, J. P. A. (2016). *What does research reproducibility mean?* Science Translational Medicine, 8(341).
+- Peng, R. D. (2011). *Reproducible research in computational science*. Science, 334(6060), 1226–1227.
+
+**Iniciativas y manifiestos:**
+
+- **TOP guidelines** (Transparency and Openness Promotion): <https://www.cos.io/initiatives/top-guidelines>
+- **FAIR Principles:** <https://www.go-fair.org/fair-principles/>
+- **EQUATOR Network** (reporting guidelines para investigación biomédica): <https://www.equator-network.org>
+:::
+
+::: {.callout-tip}
+## Cinco hábitos para empezar hoy
+
+1. **Inicializa Git en cada proyecto nuevo** (incluso TFG y prácticas).
+2. **Commit pequeño y frecuente** con mensaje claro en imperativo.
+3. **Sube a GitHub** tus análisis y código (manteniendo los datos sensibles fuera).
+4. **Documenta el README**: propósito, datos, instrucciones de reproducción.
+5. **Cita el código y los datos** con un DOI permanente al publicar (Zenodo se integra automáticamente con GitHub).
+:::
+
+---
+
+*La reproducibilidad no es un destino sino un hábito. Cada commit es un compromiso con la transparencia, y cada repositorio público es una contribución al conocimiento compartido.*

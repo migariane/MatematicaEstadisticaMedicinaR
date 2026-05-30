@@ -733,47 +733,46 @@ points(1:3, medias, pch = 18, cex = 1.5, col = "red")
 **Interpretación estadística:** El análisis de varianza reveló diferencias estadísticamente significativas en la reducción de presión arterial entre los tres grupos de tratamiento (F(2,87) = 23.4, p < 0.001). Los coeficientes de regresión muestran que, respecto al placebo (reducción media ~4 mmHg), tanto el tratamiento IECA (reducción adicional ~12 mmHg) como el ARA-II (reducción adicional ~11 mmHg) produjeron mejoras clínicamente relevantes y estadísticamente significativas. La magnitud del efecto es importante para la práctica clínica: ambos antihipertensivos superan al placebo en aproximadamente 10-12 mmHg, una diferencia clínicamente significativa en el manejo de la hipertensión arterial.
 :::
 
-### Ejemplo con BioestadisticaR2: regresión lineal múltiple
+### Ejemplo con `BioStatR`: regresión lineal múltiple
 
-La función `rlm()` extiende `rls()` (ver @sec-bio-rls) al caso multivariante.
+La función `rlm()` del paquete `BioStatR` (ver @sec-apendiceB) extiende `rls()` al caso multivariante. Integra en una sola llamada la estimación de los coeficientes con intervalos de confianza, el coeficiente de determinación $R^2$ y $R^2$ ajustado, el test de normalidad de los residuos (Shapiro–Wilk) y los gráficos de diagnóstico (residuos *vs.* ajustados, Q–Q plot e histograma de residuos estandarizados).
+
+::: {.callout-tip}
+## Modelo: HbA1c \~ tiempo de evolución + edad + IMC
+
+Aplicamos `rlm()` al conjunto de datos `osteo` para evaluar cómo el tiempo de evolución de la diabetes, la edad y el índice de masa corporal (IMC) explican conjuntamente la hemoglobina glicosilada (HbA1c).
 
 ```{r}
-#| label: lst-s11-bio01
-#| lst-cap: "BioestadisticaR2 — Regresión lineal múltiple: función rlm()"
-#| eval: false
-library(BioestadisticaR2)
+#| label: lst-s10-bio-rlm
+#| lst-cap: "BioStatR — rlm(): regresión lineal múltiple sobre el dataset osteo"
+#| warning: false
+#| message: false
+library(BioStatR)
+data(osteo)
 
-# Modelo: HbA1c ~ tiempo de evolución de la diabetes + edad + IMC
-# Dataset osteo: pacientes diabéticos, Fac. Medicina UGR
-rlm(y     = osteo$hba1c,
-    x     = cbind(osteo$tevol, osteo$edad, osteo$imc),
-    xname = c("tevol", "edad", "imc"),
-    grf   = FALSE)
+rlm(hba1c ~ tevol + edad + imc, data = osteo, grf = FALSE)
 ```
 
+**Interpretación:** Tras ajustar simultáneamente por la edad y el IMC, el coeficiente del tiempo de evolución (`tevol`) es negativo y cercano a la significación estadística ($p \approx 0.06$). Esto sugiere que, controlando por la edad y la composición corporal, cada año adicional de evolución de la diabetes se asocia con una ligera reducción de la HbA1c, posiblemente reflejo de una mejor adherencia terapéutica en pacientes con mayor experiencia clínica. El coeficiente de determinación ajustado ($R^2_{\text{adj}} \approx 0.03$) indica que estas tres variables explican apenas una pequeña fracción de la variabilidad de la HbA1c, lo que es coherente con la naturaleza multifactorial del control glucémico.
+
+El test de Shapiro–Wilk sobre los residuos no rechaza la normalidad, validando los intervalos de confianza y los contrastes individuales.
+:::
+
+::: {.callout-note collapse="true"}
+## Diagnóstico gráfico con `grf = TRUE`
+
+Llamando a `rlm()` con `grf = TRUE` se obtienen los cuatro gráficos clásicos de diagnóstico (residuos *vs.* ajustados, Q–Q plot de residuos estandarizados, escala-localización y residuos *vs.* leverage), junto con un histograma de residuos estandarizados:
+
+```{r}
+#| label: lst-s10-bio-rlm-diag
+#| lst-cap: "BioStatR — rlm() con gráficos de diagnóstico"
+#| warning: false
+#| message: false
+#| fig-width: 7
+#| fig-height: 5
+rlm(hba1c ~ tevol + edad + imc, data = osteo, grf = TRUE)
 ```
-Regresión lineal múltiple
------------------------------------------------------------------
-Modelo:  hba1c ~ tevol + edad + imc
-
-  n = 94
-
-               estim     se  ic_inf ic_sup    sig
-  (Cte)        7.234  1.205   4.839  9.629 <0.001
-  tevol       -0.043  0.022  -0.086  0.001  0.056
-  edad         0.019  0.014  -0.009  0.048  0.177
-  imc          0.048  0.032  -0.015  0.112  0.132
-
-  R² = 0.082   R²_adj = 0.051
-  F(3, 90) = 2.68,  p = 0.051
-
-  Error estándar residual: 1.771
------------------------------------------------------------------
-Interpretación: Tras ajustar por edad e IMC, el tiempo de evolución
-de la diabetes (tevol) pierde algo de significancia (p = 0.056),
-sugiriendo que parte de su efecto estaba mediado o confundido por
-la edad o el IMC.
-```
+:::
 
 ## Resumen {#sec-semana10-resumen}
 

@@ -1,0 +1,2263 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Material docence de Matemáticas para la Estadística Médica con R (Bioestadística) desarrollados por el autor en el Departamento de Estadística e Investigación Operativa, Unidad Docente de Bioestadística de la Universidad de Granada.">
+
+<title>10&nbsp; Semana 10 — Regresión Lineal Múltiple – Matemáticas para la Estadística Médica con R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/semana11.html" rel="next">
+<link href="../chapters/semana09.html" rel="prev">
+<link href="../figures/ugr-logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-bf8030b5a8b8f2de5bceddfb8bf38a1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script>
+MathJax = {
+  tex: {
+    macros: {
+      btheta: "\\boldsymbol{\\theta}",
+      bbeta: "\\boldsymbol{\\beta}",
+      bmu: "\\boldsymbol{\\mu}",
+      bSigma: "\\boldsymbol{\\Sigma}",
+      bx: "\\mathbf{x}",
+      bX: "\\mathbf{X}",
+      by: "\\mathbf{y}",
+      bY: "\\mathbf{Y}",
+      bU: "\\mathbf{U}",
+      E: "\\mathbb{E}",
+      Var: ["\\operatorname{Var}"],
+      Cov: ["\\operatorname{Cov}"],
+      Corr: ["\\operatorname{Corr}"],
+      iid: "\\stackrel{\\text{i.i.d.}}{\\sim}",
+      tendD: "\\stackrel{\\mathcal{D}}{\\longrightarrow}",
+      reals: "\\mathbb{R}",
+      PP: "\\mathbb{P}"
+    }
+  }
+};
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/semana09.html">Parte IV: Regresión Lineal</a></li><li class="breadcrumb-item"><a href="../chapters/semana10.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Semana 10 — Regresión Lineal Múltiple</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Matemáticas para la Estadística Médica con R</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="../Matemáticas-para-la-Estadística-Médica-con-R.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefacio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte I: Análisis Exploratorio de Datos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Semana 1 — Análisis Exploratorio de Datos (Parte I)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Semana 2 — Análisis Exploratorio de Datos (Parte II)</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte II: Probabilidad y Variables Aleatorias</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Semana 3 — Fundamentos de la Teoría de la Probabilidad</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Semana 4 — Variables Aleatorias y Distribuciones de Probabilidad</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Semana 5 — Muestreo y Distribuciones Muestrales</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte III: Inferencia Estadística</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Semana 6 — Estimación de Parámetros</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Semana 7 — Contrastes de Hipótesis (Parte I)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Semana 8 — Contrastes de Hipótesis (Parte II)</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte IV: Regresión Lineal</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Semana 9 — Regresión Lineal Simple</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana10.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Semana 10 — Regresión Lineal Múltiple</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte V: Análisis de Datos Categóricos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/semana11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referencias</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/apendiceA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Apéndice A: Repaso Matemático Riguroso</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/apendiceB.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Apéndice B: El Paquete <code>BioStatR</code> — Guía de Referencia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/apendiceC.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Apéndice C: Guía de R para Estadística Médica</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/apendiceD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Apéndice D: Investigación Reproducible con Git, GitHub y RStudio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/examen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Examen Final</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contenidos</h2>
+   
+  <ul>
+  <li><a href="#sec-semana10-s1" id="toc-sec-semana10-s1" class="nav-link active" data-scroll-target="#sec-semana10-s1"><span class="header-section-number">10.1</span> El Modelo de Regresión Lineal Múltiple</a></li>
+  <li><a href="#sec-semana10-s2" id="toc-sec-semana10-s2" class="nav-link" data-scroll-target="#sec-semana10-s2"><span class="header-section-number">10.2</span> Formulación Matricial del Modelo</a></li>
+  <li><a href="#sec-semana10-s3" id="toc-sec-semana10-s3" class="nav-link" data-scroll-target="#sec-semana10-s3"><span class="header-section-number">10.3</span> Estimación de Parámetros: Mínimos Cuadrados Ordinarios</a>
+  <ul class="collapse">
+  <li><a href="#derivación-del-estimador-ols" id="toc-derivación-del-estimador-ols" class="nav-link" data-scroll-target="#derivación-del-estimador-ols"><span class="header-section-number">10.3.1</span> Derivación del Estimador OLS</a></li>
+  <li><a href="#condiciones-para-invertibilidad" id="toc-condiciones-para-invertibilidad" class="nav-link" data-scroll-target="#condiciones-para-invertibilidad"><span class="header-section-number">10.3.2</span> Condiciones para Invertibilidad</a></li>
+  </ul></li>
+  <li><a href="#sec-semana10-s4" id="toc-sec-semana10-s4" class="nav-link" data-scroll-target="#sec-semana10-s4"><span class="header-section-number">10.4</span> Matriz de Varianza-Covarianza de los Coeficientes</a>
+  <ul class="collapse">
+  <li><a href="#estimador-insesgado-de-sigma_u2" id="toc-estimador-insesgado-de-sigma_u2" class="nav-link" data-scroll-target="#estimador-insesgado-de-sigma_u2"><span class="header-section-number">10.4.1</span> Estimador Insesgado de <span class="math inline">\(\sigma_U^2\)</span></a></li>
+  </ul></li>
+  <li><a href="#sec-semana10-s5" id="toc-sec-semana10-s5" class="nav-link" data-scroll-target="#sec-semana10-s5"><span class="header-section-number">10.5</span> Variables Indicadoras (Dummy)</a></li>
+  <li><a href="#sec-semana10-s6" id="toc-sec-semana10-s6" class="nav-link" data-scroll-target="#sec-semana10-s6"><span class="header-section-number">10.6</span> Bondad de Ajuste: <span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2\)</span> Ajustado</a>
+  <ul class="collapse">
+  <li><a href="#coeficiente-de-determinación-múltiple" id="toc-coeficiente-de-determinación-múltiple" class="nav-link" data-scroll-target="#coeficiente-de-determinación-múltiple"><span class="header-section-number">10.6.1</span> Coeficiente de Determinación Múltiple</a></li>
+  <li><a href="#r2-ajustado" id="toc-r2-ajustado" class="nav-link" data-scroll-target="#r2-ajustado"><span class="header-section-number">10.6.2</span> <span class="math inline">\(R^2\)</span> Ajustado</a></li>
+  </ul></li>
+  <li><a href="#sec-semana10-s7" id="toc-sec-semana10-s7" class="nav-link" data-scroll-target="#sec-semana10-s7"><span class="header-section-number">10.7</span> Criterios de Información para Selección de Modelos</a></li>
+  <li><a href="#sec-semana10-s8" id="toc-sec-semana10-s8" class="nav-link" data-scroll-target="#sec-semana10-s8"><span class="header-section-number">10.8</span> Pruebas de Hipótesis para Coeficientes Individuales</a>
+  <ul class="collapse">
+  <li><a href="#test-t-para-beta_j" id="toc-test-t-para-beta_j" class="nav-link" data-scroll-target="#test-t-para-beta_j"><span class="header-section-number">10.8.1</span> Test t para <span class="math inline">\(\beta_j\)</span></a></li>
+  </ul></li>
+  <li><a href="#sec-semana10-s9" id="toc-sec-semana10-s9" class="nav-link" data-scroll-target="#sec-semana10-s9"><span class="header-section-number">10.9</span> Prueba F para Comparación de Modelos Anidados</a></li>
+  <li><a href="#sec-semana10-s10" id="toc-sec-semana10-s10" class="nav-link" data-scroll-target="#sec-semana10-s10"><span class="header-section-number">10.10</span> ANOVA como Modelo Lineal</a></li>
+  <li><a href="#sec-semana10-s11" id="toc-sec-semana10-s11" class="nav-link" data-scroll-target="#sec-semana10-s11"><span class="header-section-number">10.11</span> Gráficos de Diagnóstico</a></li>
+  <li><a href="#sec-semana10-s12" id="toc-sec-semana10-s12" class="nav-link" data-scroll-target="#sec-semana10-s12"><span class="header-section-number">10.12</span> Transformaciones para Violaciones de Supuestos</a></li>
+  <li><a href="#sec-semana10-s13" id="toc-sec-semana10-s13" class="nav-link" data-scroll-target="#sec-semana10-s13"><span class="header-section-number">10.13</span> Intervalos de Confianza para Coeficientes</a></li>
+  <li><a href="#sec-semana10-s14" id="toc-sec-semana10-s14" class="nav-link" data-scroll-target="#sec-semana10-s14"><span class="header-section-number">10.14</span> Intervalos de Confianza y Predicción</a>
+  <ul class="collapse">
+  <li><a href="#intervalo-de-confianza-para-eymathbfx_0" id="toc-intervalo-de-confianza-para-eymathbfx_0" class="nav-link" data-scroll-target="#intervalo-de-confianza-para-eymathbfx_0"><span class="header-section-number">10.14.1</span> Intervalo de Confianza para <span class="math inline">\(E(Y|\mathbf{x}_0)\)</span></a></li>
+  <li><a href="#intervalo-de-predicción-para-una-nueva-observación" id="toc-intervalo-de-predicción-para-una-nueva-observación" class="nav-link" data-scroll-target="#intervalo-de-predicción-para-una-nueva-observación"><span class="header-section-number">10.14.2</span> Intervalo de Predicción para una Nueva Observación</a></li>
+  </ul></li>
+  <li><a href="#sec-semana10-s15" id="toc-sec-semana10-s15" class="nav-link" data-scroll-target="#sec-semana10-s15"><span class="header-section-number">10.15</span> Multicolinealidad</a></li>
+  <li><a href="#sec-semana10-s16" id="toc-sec-semana10-s16" class="nav-link" data-scroll-target="#sec-semana10-s16"><span class="header-section-number">10.16</span> Selección de Variables</a></li>
+  <li><a href="#sec-semana10-s17" id="toc-sec-semana10-s17" class="nav-link" data-scroll-target="#sec-semana10-s17"><span class="header-section-number">10.17</span> Ejemplo Completo en R</a>
+  <ul class="collapse">
+  <li><a href="#modelo-de-regresión-múltiple-pas-edad-imc" id="toc-modelo-de-regresión-múltiple-pas-edad-imc" class="nav-link" data-scroll-target="#modelo-de-regresión-múltiple-pas-edad-imc"><span class="header-section-number">10.17.1</span> Modelo de regresión múltiple: PAS ~ Edad + IMC</a></li>
+  <li><a href="#comparación-de-modelos-anidados-con-prueba-f" id="toc-comparación-de-modelos-anidados-con-prueba-f" class="nav-link" data-scroll-target="#comparación-de-modelos-anidados-con-prueba-f"><span class="header-section-number">10.17.2</span> Comparación de modelos anidados con prueba F</a></li>
+  <li><a href="#diagnóstico-de-residuos-del-modelo-múltiple" id="toc-diagnóstico-de-residuos-del-modelo-múltiple" class="nav-link" data-scroll-target="#diagnóstico-de-residuos-del-modelo-múltiple"><span class="header-section-number">10.17.3</span> Diagnóstico de residuos del modelo múltiple</a></li>
+  <li><a href="#selección-de-variables-por-aic-stepwise" id="toc-selección-de-variables-por-aic-stepwise" class="nav-link" data-scroll-target="#selección-de-variables-por-aic-stepwise"><span class="header-section-number">10.17.4</span> Selección de variables por AIC (stepwise)</a></li>
+  <li><a href="#predicción-para-perfiles-clínicos-específicos" id="toc-predicción-para-perfiles-clínicos-específicos" class="nav-link" data-scroll-target="#predicción-para-perfiles-clínicos-específicos"><span class="header-section-number">10.17.5</span> Predicción para perfiles clínicos específicos</a></li>
+  <li><a href="#ejemplo-con-variables-indicadoras-tratamientos-antihipertensivos" id="toc-ejemplo-con-variables-indicadoras-tratamientos-antihipertensivos" class="nav-link" data-scroll-target="#ejemplo-con-variables-indicadoras-tratamientos-antihipertensivos"><span class="header-section-number">10.17.6</span> Ejemplo con variables indicadoras: Tratamientos antihipertensivos</a></li>
+  <li><a href="#ejemplo-con-biostatr-regresión-lineal-múltiple" id="toc-ejemplo-con-biostatr-regresión-lineal-múltiple" class="nav-link" data-scroll-target="#ejemplo-con-biostatr-regresión-lineal-múltiple"><span class="header-section-number">10.17.7</span> Ejemplo con <code>BioStatR</code>: regresión lineal múltiple</a></li>
+  </ul></li>
+  <li><a href="#sec-semana10-resumen" id="toc-sec-semana10-resumen" class="nav-link" data-scroll-target="#sec-semana10-resumen"><span class="header-section-number">10.18</span> Resumen</a></li>
+  <li><a href="#sec-semana10-ejercicios" id="toc-sec-semana10-ejercicios" class="nav-link" data-scroll-target="#sec-semana10-ejercicios"><span class="header-section-number">10.19</span> Ejercicios</a></li>
+  <li><a href="#sec-semana10-respuestas" id="toc-sec-semana10-respuestas" class="nav-link" data-scroll-target="#sec-semana10-respuestas"><span class="header-section-number">10.20</span> Respuestas a los Ejercicios</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/edit/main/chapters/semana10.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/blob/main/chapters/semana10.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/semana09.html">Parte IV: Regresión Lineal</a></li><li class="breadcrumb-item"><a href="../chapters/semana10.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Semana 10 — Regresión Lineal Múltiple</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-semana10" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Semana 10 — Regresión Lineal Múltiple</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar todo el código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Ocultar todo el código</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>En esta semana extendemos la regresión lineal simple a múltiples variables predictoras. En medicina, raramente un único factor explica un desenlace clínico: la presión arterial depende de la edad, el IMC, el sexo y el tabaquismo simultáneamente; la supervivencia oncológica depende del estadio, el tratamiento y la edad al diagnóstico. La regresión lineal múltiple nos permite cuantificar el efecto de cada variable <strong>controlando por las demás</strong>.</p>
+<section id="sec-semana10-s1" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="sec-semana10-s1"><span class="header-section-number">10.1</span> El Modelo de Regresión Lineal Múltiple</h2>
+<p>La regresión múltiple permite modelar relaciones complejas mediante varias variables predictoras simultáneamente.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Modelo de Regresión Lineal Múltiple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El modelo de regresión lineal múltiple con <span class="math inline">\(p\)</span> variables predictoras es:</p>
+<p><span class="math display">\[Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \cdots + \beta_p X_{pi} + U_i\]</span></p>
+<p>para <span class="math inline">\(i = 1, 2, \ldots, n\)</span> observaciones, donde:</p>
+<ul>
+<li><span class="math inline">\(Y_i\)</span> es la variable respuesta (dependiente)</li>
+<li><span class="math inline">\(X_{ji}\)</span> son las variables predictoras (independientes) para <span class="math inline">\(j = 1, \ldots, p\)</span></li>
+<li><span class="math inline">\(\beta_0\)</span> es la ordenada al origen (intercepto)</li>
+<li><span class="math inline">\(\beta_j\)</span> es el <strong>coeficiente de regresión parcial</strong> de <span class="math inline">\(X_j\)</span> — representa el cambio esperado en <span class="math inline">\(Y\)</span> ante un aumento unitario de <span class="math inline">\(X_j\)</span>, <strong>manteniendo todas las demás variables constantes</strong></li>
+<li><span class="math inline">\(U_i\)</span> es el término de error aleatorio con <span class="math inline">\(E(U_i) = 0\)</span> y <span class="math inline">\(\text{Var}(U_i) = \sigma_U^2\)</span></li>
+</ul>
+</div>
+</div>
+<p><strong>Interpretación de coeficientes parciales:</strong> El coeficiente <span class="math inline">\(\beta_j\)</span> mide el efecto de <span class="math inline">\(X_j\)</span> sobre <span class="math inline">\(Y\)</span> después de <strong>controlar</strong> (ajustar) por todas las otras variables predictoras en el modelo. Esto es fundamental en la investigación médica para separar el efecto de cada factor de riesgo del de los demás.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo: Presión Arterial Sistólica — Extensión del modelo simple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Continuando con el estudio de hipertensión de la semana anterior (120 pacientes adultos), ahora incluimos <strong>dos predictores</strong> para explicar la presión arterial sistólica (PAS):</p>
+<ul>
+<li><span class="math inline">\(X_1\)</span> = edad (años)</li>
+<li><span class="math inline">\(X_2\)</span> = índice de masa corporal — IMC (kg/m²)</li>
+</ul>
+<p>El modelo es: <span class="math display">\[\text{PAS}_i = \beta_0 + \beta_1 \cdot \text{Edad}_i + \beta_2 \cdot \text{IMC}_i + U_i\]</span></p>
+<ul>
+<li><span class="math inline">\(\beta_1\)</span> mide el cambio esperado en PAS por cada año adicional de edad, <strong>manteniendo el IMC fijo</strong></li>
+<li><span class="math inline">\(\beta_2\)</span> mide el cambio esperado en PAS por cada kg/m² adicional de IMC, <strong>manteniendo la edad fija</strong></li>
+</ul>
+<p>Interpretación hipotética: si <span class="math inline">\(\hat{\beta}_1 = 0.60\)</span> mmHg/año y <span class="math inline">\(\hat{\beta}_2 = 1.80\)</span> mmHg/(kg/m²), un paciente que envejece 10 años (con mismo IMC) tendrá en promedio 6 mmHg más de PAS; un paciente con 5 kg/m² más de IMC (con misma edad) tendrá en promedio 9 mmHg más de PAS.</p>
+</div>
+</div>
+</section>
+<section id="sec-semana10-s2" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="sec-semana10-s2"><span class="header-section-number">10.2</span> Formulación Matricial del Modelo</h2>
+<p>Con múltiples variables predictoras, la notación escalar se vuelve engorrosa. La formulación matricial simplifica significativamente el tratamiento matemático.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Forma Matricial del Modelo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El modelo puede escribirse compactamente como:</p>
+<p><span class="math display">\[\mathbf{Y} = \mathbf{X}\boldsymbol{\beta} + \mathbf{U}\]</span></p>
+<p>donde:</p>
+<ul>
+<li><p><span class="math inline">\(\mathbf{Y} = \begin{bmatrix} Y_1 \\ Y_2 \\ \vdots \\ Y_n \end{bmatrix}\)</span> es el vector <span class="math inline">\(n \times 1\)</span> de respuestas (ej. PAS de cada paciente)</p></li>
+<li><p><span class="math inline">\(\boldsymbol{\beta} = \begin{bmatrix} \beta_0 \\ \beta_1 \\ \vdots \\ \beta_p \end{bmatrix}\)</span> es el vector <span class="math inline">\((p+1) \times 1\)</span> de parámetros</p></li>
+<li><p><span class="math inline">\(\mathbf{X} = \begin{bmatrix} 1 &amp; x_{11} &amp; x_{21} &amp; \cdots &amp; x_{p1} \\ 1 &amp; x_{12} &amp; x_{22} &amp; \cdots &amp; x_{p2} \\ \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 1 &amp; x_{1n} &amp; x_{2n} &amp; \cdots &amp; x_{pn} \end{bmatrix}\)</span> es la <strong>matriz de diseño</strong> <span class="math inline">\(n \times (p+1)\)</span></p></li>
+<li><p><span class="math inline">\(\mathbf{U} = \begin{bmatrix} U_1 \\ U_2 \\ \vdots \\ U_n \end{bmatrix}\)</span> es el vector <span class="math inline">\(n \times 1\)</span> de errores</p></li>
+</ul>
+<p><strong>Nota:</strong> La primera columna de <span class="math inline">\(\mathbf{X}\)</span> contiene unos (para el intercepto).</p>
+</div>
+</div>
+<p><strong>Ejemplo</strong>: Para el modelo PAS ~ Edad + IMC con <span class="math inline">\(n = 120\)</span> pacientes, <span class="math inline">\(\mathbf{X}\)</span> es una matriz <span class="math inline">\(120 \times 3\)</span>: columna de unos, columna de edades y columna de IMC de cada paciente.</p>
+</section>
+<section id="sec-semana10-s3" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="sec-semana10-s3"><span class="header-section-number">10.3</span> Estimación de Parámetros: Mínimos Cuadrados Ordinarios</h2>
+<section id="derivación-del-estimador-ols" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="derivación-del-estimador-ols"><span class="header-section-number">10.3.1</span> Derivación del Estimador OLS</h3>
+<p>El método de mínimos cuadrados ordinarios (OLS, <em>Ordinary Least Squares</em>) minimiza la suma de cuadrados residual:</p>
+<p><span class="math display">\[\text{RSS}(\boldsymbol{\beta}) = \sum_{i=1}^n (Y_i - \hat{Y}_i)^2 = (\mathbf{Y} - \mathbf{X}\boldsymbol{\beta})^T(\mathbf{Y} - \mathbf{X}\boldsymbol{\beta}) = \|\mathbf{Y} - \mathbf{X}\boldsymbol{\beta}\|^2\]</span></p>
+<p>Para encontrar el mínimo, tomamos la derivada con respecto a <span class="math inline">\(\boldsymbol{\beta}\)</span> e igualamos a cero:</p>
+<p><span class="math display">\[\frac{\partial \text{RSS}}{\partial \boldsymbol{\beta}} = -2\mathbf{X}^T(\mathbf{Y} - \mathbf{X}\boldsymbol{\beta}) = 0\]</span></p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Resultado Importante: Ecuaciones Normales y Estimador OLS
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Las <strong>ecuaciones normales</strong> son: <span class="math display">\[\mathbf{X}^T\mathbf{X}\hat{\boldsymbol{\beta}} = \mathbf{X}^T\mathbf{Y}\]</span></p>
+<p>Si la matriz <span class="math inline">\(\mathbf{X}^T\mathbf{X}\)</span> es invertible (no singular), el <strong>estimador OLS</strong> es:</p>
+<p><span class="math display">\[\hat{\boldsymbol{\beta}} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Y}\]</span></p>
+<p>donde <span class="math inline">\(\hat{\boldsymbol{\beta}} = \begin{bmatrix} \hat{\beta}_0 \\ \hat{\beta}_1 \\ \vdots \\ \hat{\beta}_p \end{bmatrix}\)</span></p>
+</div>
+</div>
+</section>
+<section id="condiciones-para-invertibilidad" class="level3" data-number="10.3.2">
+<h3 data-number="10.3.2" class="anchored" data-anchor-id="condiciones-para-invertibilidad"><span class="header-section-number">10.3.2</span> Condiciones para Invertibilidad</h3>
+<p>La matriz <span class="math inline">\(\mathbf{X}^T\mathbf{X}\)</span> es singular (no invertible) si:</p>
+<ul>
+<li>Las variables predictoras son linealmente dependientes (colinealidad exacta)</li>
+<li>Una variable es combinación lineal exacta de otras</li>
+</ul>
+<p><strong>Ejemplo médico:</strong> Si incluimos tanto el peso (kg) como el IMC (kg/m²) y la altura al cuadrado, hay colinealidad exacta porque IMC = peso/altura². R eliminará automáticamente una de las variables, pero esto debe evitarse en el diseño del estudio.</p>
+</section>
+</section>
+<section id="sec-semana10-s4" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="sec-semana10-s4"><span class="header-section-number">10.4</span> Matriz de Varianza-Covarianza de los Coeficientes</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Matriz de Varianza-Covarianza
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Bajo los supuestos del modelo de regresión lineal múltiple, la matriz de varianza-covarianza de los coeficientes estimados es:</p>
+<p><span class="math display">\[\text{Var}(\hat{\boldsymbol{\beta}}) = \sigma_U^2(\mathbf{X}^T\mathbf{X})^{-1}\]</span></p>
+<p>donde:</p>
+<ul>
+<li>Los elementos diagonales <span class="math inline">\([\sigma_U^2(\mathbf{X}^T\mathbf{X})^{-1}]_{jj}\)</span> son las varianzas <span class="math inline">\(\text{Var}(\hat{\beta}_j)\)</span></li>
+<li>Los elementos fuera de la diagonal son covarianzas <span class="math inline">\(\text{Cov}(\hat{\beta}_j, \hat{\beta}_k)\)</span></li>
+<li><span class="math inline">\(\sigma_U^2\)</span> es la varianza desconocida del error</li>
+</ul>
+</div>
+</div>
+<section id="estimador-insesgado-de-sigma_u2" class="level3" data-number="10.4.1">
+<h3 data-number="10.4.1" class="anchored" data-anchor-id="estimador-insesgado-de-sigma_u2"><span class="header-section-number">10.4.1</span> Estimador Insesgado de <span class="math inline">\(\sigma_U^2\)</span></h3>
+<p>Como <span class="math inline">\(\sigma_U^2\)</span> es desconocida, la estimamos con:</p>
+<p><span class="math display">\[s^2 = \hat{\sigma}_U^2 = \frac{\text{RSS}}{n-p-1} = \frac{\sum_{i=1}^n \hat{u}_i^2}{n-p-1}\]</span></p>
+<p>donde <span class="math inline">\(\hat{u}_i = Y_i - \hat{Y}_i\)</span> son los residuos estimados.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Resultado Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[s^2 = \frac{\text{RSS}}{n-p-1}\]</span></p>
+<p>es un estimador insesgado de <span class="math inline">\(\sigma_U^2\)</span>. Note que dividimos por <span class="math inline">\(n-p-1\)</span> (grados de libertad), no por <span class="math inline">\(n\)</span>. En el modelo PAS ~ Edad + IMC + Sexo con <span class="math inline">\(n = 120\)</span> pacientes y <span class="math inline">\(p = 3\)</span> predictores, los grados de libertad son <span class="math inline">\(120 - 3 - 1 = 116\)</span>.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-semana10-s5" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="sec-semana10-s5"><span class="header-section-number">10.5</span> Variables Indicadoras (Dummy)</h2>
+<p>Cuando tenemos variables predictoras categóricas (sexo, grupo de tratamiento, estadio tumoral), usamos <strong>variables indicadoras</strong> (0/1) para incorporarlas en el modelo lineal.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Variables Indicadoras
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una variable indicadora para una categoría es:</p>
+<p><span class="math display">\[X_j = \begin{cases} 1 &amp; \text{si la observación pertenece a la categoría } j \\ 0 &amp; \text{en caso contrario} \end{cases}\]</span></p>
+<p>Para una variable categórica con <span class="math inline">\(m\)</span> niveles, utilizamos exactamente <span class="math inline">\(m-1\)</span> variables indicadoras (dejamos una categoría como <strong>referencia</strong> o base).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo: Peso al Nacer según Edad Gestacional y Sexo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un neonatólogo estudia la relación entre edad gestacional, sexo y peso al nacer en 189 recién nacidos del Hospital Materno-Infantil de Granada. Define:</p>
+<ul>
+<li><span class="math inline">\(Y_i\)</span> = peso al nacer (gramos)</li>
+<li><span class="math inline">\(X_{1i}\)</span> = edad gestacional (semanas)</li>
+<li><span class="math inline">\(X_{2i}\)</span> = variable indicadora: 1 si el bebé es niña, 0 si es niño</li>
+</ul>
+<p>El modelo es: <span class="math display">\[\text{Peso}_i = \beta_0 + \beta_1 \cdot \text{Gestación}_i + \beta_2 \cdot \text{Niña}_i + U_i\]</span></p>
+<p>Estimando el modelo, se obtiene <span class="math inline">\(\hat{\beta}_0 = -1610.28\)</span>, <span class="math inline">\(\hat{\beta}_1 = 120.89\)</span>, <span class="math inline">\(\hat{\beta}_2 = -163.04\)</span>.</p>
+<p><strong>Interpretación:</strong></p>
+<ul>
+<li>Para niños (<span class="math inline">\(X_2 = 0\)</span>): <span class="math inline">\(\widehat{\text{Peso}} = -1610.28 + 120.89 \cdot \text{Gestación}\)</span></li>
+<li>Para niñas (<span class="math inline">\(X_2 = 1\)</span>): <span class="math inline">\(\widehat{\text{Peso}} = -1773.32 + 120.89 \cdot \text{Gestación}\)</span></li>
+</ul>
+<p>La diferencia de <span class="math inline">\(-163.04\)</span> gramos entre niñas y niños es el efecto del sexo <strong>controlando por la edad gestacional</strong>. Las niñas pesan en promedio 163 g menos que los niños a igual edad gestacional. Por cada semana adicional de gestación, el peso aumenta en promedio 120.89 g en ambos sexos.</p>
+<p><strong>Predicción</strong>: Un niño de 38 semanas: <span class="math inline">\(\hat{P} = -1610.28 + 120.89 \times 38 = 2983\)</span> g. Una niña de 38 semanas: <span class="math inline">\(\hat{P} = 2983 - 163 = 2820\)</span> g.</p>
+</div>
+</div>
+</section>
+<section id="sec-semana10-s6" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="sec-semana10-s6"><span class="header-section-number">10.6</span> Bondad de Ajuste: <span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2\)</span> Ajustado</h2>
+<section id="coeficiente-de-determinación-múltiple" class="level3" data-number="10.6.1">
+<h3 data-number="10.6.1" class="anchored" data-anchor-id="coeficiente-de-determinación-múltiple"><span class="header-section-number">10.6.1</span> Coeficiente de Determinación Múltiple</h3>
+<p>En regresión múltiple, el coeficiente <span class="math inline">\(R^2\)</span> se define igual que en regresión simple:</p>
+<p><span class="math display">\[R^2 = 1 - \frac{\text{RSS}}{\text{SST}} = \frac{\text{ESS}}{\text{SST}}\]</span></p>
+<p>donde:</p>
+<ul>
+<li><span class="math inline">\(\text{RSS} = \sum_{i=1}^n (Y_i - \hat{Y}_i)^2\)</span> (suma de cuadrados residual)</li>
+<li><span class="math inline">\(\text{SST} = \sum_{i=1}^n (Y_i - \bar{Y})^2\)</span> (suma de cuadrados total)</li>
+<li><span class="math inline">\(\text{ESS} = \sum_{i=1}^n (\hat{Y}_i - \bar{Y})^2\)</span> (suma de cuadrados explicada)</li>
+</ul>
+<p><strong>Problema clínico:</strong> Si al modelo PAS ~ Edad añadimos variables irrelevantes (número de calzado del paciente), <span class="math inline">\(R^2\)</span> aumentará o se mantendrá, aunque el número de calzado no prediga la PAS. Este problema nos lleva al <span class="math inline">\(R^2\)</span> ajustado.</p>
+</section>
+<section id="r2-ajustado" class="level3" data-number="10.6.2">
+<h3 data-number="10.6.2" class="anchored" data-anchor-id="r2-ajustado"><span class="header-section-number">10.6.2</span> <span class="math inline">\(R^2\)</span> Ajustado</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Resultado Importante: <span class="math inline">\(R^2\)</span> Ajustado
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El coeficiente de determinación ajustado penaliza por el número de parámetros:</p>
+<p><span class="math display">\[R^2_{\text{adj}} = 1 - \frac{\text{RSS}/(n-p-1)}{\text{SST}/(n-1)} = 1 - (1-R^2)\frac{n-1}{n-p-1}\]</span></p>
+<p>Propiedades:</p>
+<ul>
+<li><span class="math inline">\(R^2_{\text{adj}} \leq R^2\)</span> siempre</li>
+<li><span class="math inline">\(R^2_{\text{adj}}\)</span> <strong>puede disminuir</strong> si añadimos una variable que no mejora el modelo</li>
+<li>Es más útil que <span class="math inline">\(R^2\)</span> para comparar modelos con diferente número de predictores</li>
+</ul>
+<p><strong>Ejemplo médico</strong>: Modelo 1 (PAS ~ Edad): <span class="math inline">\(R^2 = 0.504\)</span>, <span class="math inline">\(R^2_{\text{adj}} = 0.499\)</span>. Modelo 2 (PAS ~ Edad + IMC): <span class="math inline">\(R^2 = 0.561\)</span>, <span class="math inline">\(R^2_{\text{adj}} = 0.553\)</span>. El <span class="math inline">\(R^2_{\text{adj}}\)</span> aumenta al añadir el IMC, lo que indica que esta variable aporta información real más allá de la edad.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-semana10-s7" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="sec-semana10-s7"><span class="header-section-number">10.7</span> Criterios de Información para Selección de Modelos</h2>
+<p>Además de <span class="math inline">\(R^2_{\text{adj}}\)</span>, existen criterios de información que penalizan la complejidad del modelo:</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Definición: AIC y BIC
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Criterio de Información de Akaike (AIC):</strong> <span class="math display">\[\text{AIC} = -2 \log L + 2(p+1)\]</span></p>
+<p><strong>Criterio de Información Bayesiano (BIC):</strong> <span class="math display">\[\text{BIC} = -2 \log L + (p+1)\log(n)\]</span></p>
+<p>donde <span class="math inline">\(L\)</span> es la función de verosimilitud maximizada y <span class="math inline">\(p+1\)</span> es el número de parámetros (incluyendo <span class="math inline">\(\sigma_U^2\)</span>).</p>
+<p>Para modelos normales: <span class="math display">\[\text{AIC} = n \log(\text{RSS}/n) + 2(p+1)\]</span> <span class="math display">\[\text{BIC} = n \log(\text{RSS}/n) + (p+1)\log(n)\]</span></p>
+<p><strong>Regla de decisión:</strong> Seleccionar el modelo con <strong>menor</strong> AIC o BIC.</p>
+<ul>
+<li>AIC usa penalización moderada (factor 2): útil en contextos predictivos</li>
+<li>BIC usa penalización más fuerte (factor <span class="math inline">\(\log n\)</span>): favorece modelos más parsimoniosos, preferible en investigación clínica confirmatoria</li>
+</ul>
+<p><strong>Ejemplo</strong>: Para comparar modelos de predicción de HbA1c con distintas combinaciones de variables (IMC, edad, actividad física, tabaquismo), el BIC es más apropiado en un estudio con <span class="math inline">\(n = 200\)</span> porque <span class="math inline">\(\log(200) = 5.30 &gt; 2\)</span>, penalizando más fuertemente la complejidad.</p>
+</div>
+</div>
+</section>
+<section id="sec-semana10-s8" class="level2" data-number="10.8">
+<h2 data-number="10.8" class="anchored" data-anchor-id="sec-semana10-s8"><span class="header-section-number">10.8</span> Pruebas de Hipótesis para Coeficientes Individuales</h2>
+<section id="test-t-para-beta_j" class="level3" data-number="10.8.1">
+<h3 data-number="10.8.1" class="anchored" data-anchor-id="test-t-para-beta_j"><span class="header-section-number">10.8.1</span> Test t para <span class="math inline">\(\beta_j\)</span></h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Supuestos del Modelo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para hacer inferencia estadística, asumimos:</p>
+<ul>
+<li><span class="math inline">\(E(U_i) = 0\)</span></li>
+<li><span class="math inline">\(\text{Var}(U_i) = \sigma_U^2\)</span> (homocedasticidad)</li>
+<li><span class="math inline">\(\text{Cov}(U_i, U_j) = 0\)</span> para <span class="math inline">\(i \neq j\)</span> (independencia)</li>
+<li><span class="math inline">\(U_i \sim N(0, \sigma_U^2)\)</span> (normalidad)</li>
+</ul>
+</div>
+</div>
+<p>Bajo estos supuestos, el estimador <span class="math inline">\(\hat{\beta}_j\)</span> sigue una distribución normal:</p>
+<p><span class="math display">\[\hat{\beta}_j \sim N(\beta_j, \text{Var}(\hat{\beta}_j))\]</span></p>
+<p>donde <span class="math inline">\(\text{Var}(\hat{\beta}_j) = \sigma_U^2 [(\mathbf{X}^T\mathbf{X})^{-1}]_{jj}\)</span>.</p>
+<p>El estadístico t para probar <span class="math inline">\(H_0: \beta_j = 0\)</span> es:</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Resultado Importante: Estadístico t
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[t_j = \frac{\hat{\beta}_j}{\hat{\text{SE}}(\hat{\beta}_j)} \sim t_{n-p-1}\]</span></p>
+<p>donde <span class="math inline">\(\hat{\text{SE}}(\hat{\beta}_j) = \sqrt{s^2 [(\mathbf{X}^T\mathbf{X})^{-1}]_{jj}}\)</span> es el error estándar estimado.</p>
+<p><strong>Procedimiento de prueba:</strong></p>
+<ol type="1">
+<li><strong>Hipótesis:</strong> <span class="math inline">\(H_0: \beta_j = 0\)</span> vs.&nbsp;<span class="math inline">\(H_1: \beta_j \neq 0\)</span></li>
+<li><strong>Estadístico:</strong> Calcular <span class="math inline">\(t_j\)</span> como arriba</li>
+<li><strong>Valor p:</strong> <span class="math inline">\(p\text{-valor} = 2 \cdot P(t_{n-p-1} &gt; |t_j|)\)</span></li>
+<li><strong>Decisión:</strong> Rechazar <span class="math inline">\(H_0\)</span> si <span class="math inline">\(|t_j| &gt; t_{1-\alpha/2, n-p-1}\)</span> o si <span class="math inline">\(p\text{-valor} &lt; \alpha\)</span></li>
+</ol>
+<p><strong>Interpretación clínica clave:</strong> Rechazar <span class="math inline">\(H_0: \beta_j = 0\)</span> significa que la variable <span class="math inline">\(X_j\)</span> aporta información significativa sobre <span class="math inline">\(Y\)</span> <strong>después de controlar por todos los demás predictores del modelo</strong>.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-semana10-s9" class="level2" data-number="10.9">
+<h2 data-number="10.9" class="anchored" data-anchor-id="sec-semana10-s9"><span class="header-section-number">10.9</span> Prueba F para Comparación de Modelos Anidados</h2>
+<p>Cuando tenemos dos modelos donde uno está <strong>anidado</strong> dentro del otro (sus variables predictoras son un subconjunto), podemos usar una prueba F para comparar su bondad de ajuste.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición: Modelos Anidados
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Decimos que el Modelo 1 es anidado en el Modelo 2 si los predictores del Modelo 1 son un subconjunto de los del Modelo 2.</p>
+<p><strong>Ejemplo clínico:</strong> - <strong>Modelo 1 (reducido):</strong> <span class="math inline">\(\text{PAS}_i = \beta_0 + \beta_1 \cdot \text{Edad}_i + U_i\)</span> - <strong>Modelo 2 (completo):</strong> <span class="math inline">\(\text{PAS}_i = \beta_0 + \beta_1 \cdot \text{Edad}_i + \beta_2 \cdot \text{IMC}_i + \beta_3 \cdot \text{Sexo}_i + U_i\)</span></p>
+<p>Claramente, <span class="math inline">\(\text{RSS}_2 \leq \text{RSS}_1\)</span> (el modelo más complejo siempre tiene un ajuste al menos tan bueno).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Resultado Importante: Prueba F para Modelos Anidados
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para probar: <span class="math display">\[H_0: \beta_{p_1+1} = \beta_{p_1+2} = \cdots = \beta_{p_2} = 0\]</span> <span class="math display">\[H_1: \text{Al menos uno de estos coeficientes es diferente de cero}\]</span></p>
+<p>El estadístico F es:</p>
+<p><span class="math display">\[F = \frac{(\text{RSS}_1 - \text{RSS}_2)/(p_2 - p_1)}{\text{RSS}_2/(n - p_2 - 1)} \sim F_{p_2-p_1, n-p_2-1}\]</span></p>
+<p><strong>Regla de decisión:</strong> Rechazar <span class="math inline">\(H_0\)</span> si <span class="math inline">\(F &gt; F_{1-\alpha, p_2-p_1, n-p_2-1}\)</span>.</p>
+<p><strong>Caso especial:</strong> Si el Modelo 1 contiene solo el intercepto, esta prueba evalúa si <em>al menos una</em> variable predictora es significativa (<strong>prueba F global</strong>).</p>
+</div>
+</div>
+</section>
+<section id="sec-semana10-s10" class="level2" data-number="10.10">
+<h2 data-number="10.10" class="anchored" data-anchor-id="sec-semana10-s10"><span class="header-section-number">10.10</span> ANOVA como Modelo Lineal</h2>
+<p>El análisis de varianza (ANOVA) es un caso especial de regresión lineal donde los predictores son variables categóricas (factores).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo: Comparación de Tres Tratamientos Antihipertensivos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En un ensayo clínico aleatorizado (ECA), 90 pacientes hipertensos son asignados aleatoriamente (30 por grupo) a tres tratamientos durante 12 semanas:</p>
+<ul>
+<li>Grupo control: <strong>Placebo</strong></li>
+<li>Grupo A: <strong>IECA</strong> (inhibidores de la enzima convertidora de angiotensina, ej. enalapril)</li>
+<li>Grupo B: <strong>ARA-II</strong> (antagonistas del receptor de angiotensina II, ej. losartán)</li>
+</ul>
+<p>La variable respuesta es la <strong>reducción de PAS</strong> (mmHg) al final del ensayo.</p>
+<p>Define variables indicadoras: - <span class="math inline">\(X_1 = 1\)</span> si se aplica IECA, 0 en caso contrario - <span class="math inline">\(X_2 = 1\)</span> si se aplica ARA-II, 0 en caso contrario - El placebo es la categoría de referencia (cuando <span class="math inline">\(X_1 = X_2 = 0\)</span>)</p>
+<p>El modelo es: <span class="math display">\[Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + U_i\]</span></p>
+<p>donde:</p>
+<ul>
+<li><span class="math inline">\(\beta_0 = \mu_{\text{placebo}}\)</span> (reducción media en el grupo placebo)</li>
+<li><span class="math inline">\(\beta_1 = \mu_{\text{IECA}} - \mu_{\text{placebo}}\)</span> (efecto adicional del IECA sobre el placebo)</li>
+<li><span class="math inline">\(\beta_2 = \mu_{\text{ARA-II}} - \mu_{\text{placebo}}\)</span> (efecto adicional del ARA-II sobre el placebo)</li>
+</ul>
+<p>Probar <span class="math inline">\(H_0: \mu_{\text{placebo}} = \mu_{\text{IECA}} = \mu_{\text{ARA-II}}\)</span> equivale a probar <span class="math inline">\(H_0: \beta_1 = \beta_2 = 0\)</span>, que se realiza con la prueba F para modelos anidados.</p>
+<p>Si el modelo ajustado da <span class="math inline">\(\hat{\beta}_0 = 4.2\)</span> mmHg, <span class="math inline">\(\hat{\beta}_1 = 11.8\)</span> mmHg (<span class="math inline">\(p &lt; 0.001\)</span>), <span class="math inline">\(\hat{\beta}_2 = 10.3\)</span> mmHg (<span class="math inline">\(p &lt; 0.001\)</span>): tanto el IECA como el ARA-II reducen significativamente más la PAS que el placebo. La prueba F global indicaría si existe al menos una diferencia entre los tres grupos.</p>
+</div>
+</div>
+</section>
+<section id="sec-semana10-s11" class="level2" data-number="10.11">
+<h2 data-number="10.11" class="anchored" data-anchor-id="sec-semana10-s11"><span class="header-section-number">10.11</span> Gráficos de Diagnóstico</h2>
+<p>Para verificar que los supuestos del modelo se mantienen, usamos gráficos de diagnóstico:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Gráficos de Diagnóstico
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>Valores ajustados vs.&nbsp;Residuos:</strong> Detecta no-linealidad y varianza no constante
+<ul>
+<li>En estudios clínicos: un patrón de embudo puede surgir si la variabilidad de la PAS es mayor en pacientes hipertensos severos</li>
+</ul></li>
+<li><strong>Q-Q Plot de Residuos:</strong> Evalúa normalidad de los errores
+<ul>
+<li>Los puntos deben estar cerca de la línea diagonal</li>
+<li>Desviaciones en las colas indican distribución no normal (frecuente si hay outliers clínicos)</li>
+</ul></li>
+<li><strong>Escala-Localización:</strong> Detecta heterocedasticidad
+<ul>
+<li>La raíz de los residuos estandarizados debe distribuirse uniformemente sobre los valores ajustados</li>
+</ul></li>
+<li><strong>Residuos vs.&nbsp;Orden:</strong> Detecta autocorrelación temporal
+<ul>
+<li>Relevante si los pacientes se reclutaron en un período largo (cambios en protocolos, estacionalidad)</li>
+</ul></li>
+<li><strong>Residuos vs.&nbsp;Leverage (Cook’s distance):</strong> Identifica observaciones influyentes
+<ul>
+<li>Pacientes con valores extremos de predictores (ej. muy anciano y obeso) pueden tener gran leverage</li>
+</ul></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="sec-semana10-s12" class="level2" data-number="10.12">
+<h2 data-number="10.12" class="anchored" data-anchor-id="sec-semana10-s12"><span class="header-section-number">10.12</span> Transformaciones para Violaciones de Supuestos</h2>
+<p>Si los gráficos de diagnóstico revelan problemas, podemos aplicar transformaciones:</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Transformaciones Comunes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Log:</strong> <span class="math inline">\(Y' = \log(Y)\)</span> — útil si la varianza aumenta con la media. Frecuente en biomarcadores (PCR, TSH, PSA)</li>
+<li><strong>Raíz cuadrada:</strong> <span class="math inline">\(Y' = \sqrt{Y}\)</span> — para datos de conteo o cuando la varianza es proporcional a la media (ej. número de recaídas)</li>
+<li><strong>Raíz cúbica:</strong> <span class="math inline">\(Y' = Y^{1/3}\)</span> — alternativa intermedia</li>
+<li><strong>Box-Cox:</strong> Encuentra transformación óptima automáticamente</li>
+</ul>
+<p><strong>Después de transformar:</strong> Reajustamos el modelo con la variable transformada y re-verificamos los supuestos. Los coeficientes interpretan en la escala transformada.</p>
+<p>En R, la función <code>boxcox()</code> del paquete <code>MASS</code> realiza búsqueda automática del parámetro de transformación óptimo.</p>
+</div>
+</div>
+</section>
+<section id="sec-semana10-s13" class="level2" data-number="10.13">
+<h2 data-number="10.13" class="anchored" data-anchor-id="sec-semana10-s13"><span class="header-section-number">10.13</span> Intervalos de Confianza para Coeficientes</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Intervalo de Confianza para <span class="math inline">\(\beta_j\)</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un intervalo de confianza de nivel <span class="math inline">\(1-\alpha\)</span> para <span class="math inline">\(\beta_j\)</span> es:</p>
+<p><span class="math display">\[\left[\hat{\beta}_j - t_{1-\alpha/2, n-p-1} \cdot \hat{\text{SE}}(\hat{\beta}_j), \quad \hat{\beta}_j + t_{1-\alpha/2, n-p-1} \cdot \hat{\text{SE}}(\hat{\beta}_j)\right]\]</span></p>
+<p>donde <span class="math inline">\(\hat{\text{SE}}(\hat{\beta}_j) = \sqrt{s^2 [(\mathbf{X}^T\mathbf{X})^{-1}]_{jj}}\)</span>.</p>
+<p><strong>Interpretación clínica</strong>: Si el IC 95% para el coeficiente de IMC en el modelo de PAS es [0.95, 2.65] mmHg/(kg/m²), tenemos 95% de confianza de que, controlando por la edad y el sexo, cada kg/m² adicional de IMC se asocia con un aumento de entre 0.95 y 2.65 mmHg en la PAS media.</p>
+</div>
+</div>
+</section>
+<section id="sec-semana10-s14" class="level2" data-number="10.14">
+<h2 data-number="10.14" class="anchored" data-anchor-id="sec-semana10-s14"><span class="header-section-number">10.14</span> Intervalos de Confianza y Predicción</h2>
+<section id="intervalo-de-confianza-para-eymathbfx_0" class="level3" data-number="10.14.1">
+<h3 data-number="10.14.1" class="anchored" data-anchor-id="intervalo-de-confianza-para-eymathbfx_0"><span class="header-section-number">10.14.1</span> Intervalo de Confianza para <span class="math inline">\(E(Y|\mathbf{x}_0)\)</span></h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Intervalo de Confianza para la Media Condicional
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para un perfil específico de valores <span class="math inline">\(\mathbf{x}_0 = (1, x_{1,0}, \ldots, x_{p,0})\)</span>, el intervalo de confianza para la PAS media esperada en <strong>todos los pacientes</strong> con ese perfil es:</p>
+<p><span class="math display">\[\left[\hat{Y}_0 - t_{1-\alpha/2, n-p-1} \cdot \hat{\text{SE}}(\hat{Y}_0), \quad \hat{Y}_0 + t_{1-\alpha/2, n-p-1} \cdot \hat{\text{SE}}(\hat{Y}_0)\right]\]</span></p>
+<p>donde <span class="math inline">\(\hat{\text{SE}}(\hat{Y}_0) = \sqrt{s^2 \cdot \mathbf{x}_0^T(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{x}_0}\)</span></p>
+</div>
+</div>
+</section>
+<section id="intervalo-de-predicción-para-una-nueva-observación" class="level3" data-number="10.14.2">
+<h3 data-number="10.14.2" class="anchored" data-anchor-id="intervalo-de-predicción-para-una-nueva-observación"><span class="header-section-number">10.14.2</span> Intervalo de Predicción para una Nueva Observación</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Intervalo de Predicción
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para predecir la PAS de <strong>un nuevo paciente específico</strong> con perfil <span class="math inline">\(\mathbf{x}_0\)</span>, el intervalo de predicción de nivel <span class="math inline">\(1-\alpha\)</span> es más amplio:</p>
+<p><span class="math display">\[\left[\hat{Y}_0 - t_{1-\alpha/2, n-p-1} \cdot \hat{\text{SE}}(Y_0 - \hat{Y}_0), \quad \hat{Y}_0 + t_{1-\alpha/2, n-p-1} \cdot \hat{\text{SE}}(Y_0 - \hat{Y}_0)\right]\]</span></p>
+<p>donde <span class="math inline">\(\hat{\text{SE}}(Y_0 - \hat{Y}_0) = \sqrt{s^2 \left(1 + \mathbf{x}_0^T(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{x}_0\right)}\)</span></p>
+<p><strong>Diferencia clínica clave:</strong> El IC para la media dice: “¿Cuál es la PAS media esperada en pacientes de 55 años con IMC = 28?” El IP dice: “¿Qué PAS es esperable para este paciente concreto de 55 años con IMC = 28?” El IP es siempre más amplio porque incluye la variabilidad individual.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-semana10-s15" class="level2" data-number="10.15">
+<h2 data-number="10.15" class="anchored" data-anchor-id="sec-semana10-s15"><span class="header-section-number">10.15</span> Multicolinealidad</h2>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Advertencia: Multicolinealidad
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Multicolinealidad</strong> ocurre cuando dos o más variables predictoras están altamente correlacionadas entre sí.</p>
+<p><strong>Ejemplo clínico</strong>: En un modelo de riesgo cardiovascular que incluye simultáneamente el <strong>colesterol LDL</strong>, el <strong>colesterol no-HDL</strong> y el <strong>colesterol total</strong>, estas variables están altamente correlacionadas (el colesterol no-HDL = colesterol total − HDL). Incluir las tres crea multicolinealidad severa.</p>
+<p><strong>Problemas causados:</strong></p>
+<ul>
+<li>Varianzas muy grandes en los estimadores <span class="math inline">\(\hat{\beta}_j\)</span> (errores estándar grandes)</li>
+<li>Intervalos de confianza anchos</li>
+<li>Tests t menos potentes (difícil rechazar <span class="math inline">\(H_0\)</span>)</li>
+<li>Los signos de los coeficientes pueden ser contraintuitivos (ej. el colesterol LDL aparece con signo negativo)</li>
+</ul>
+<p><strong>Detección:</strong></p>
+<ul>
+<li>Matriz de correlaciones entre predictores — buscar correlaciones altas (<span class="math inline">\(|r| &gt; 0.8\)</span> es preocupante)</li>
+<li><strong>Factor de Inflación de Varianza (VIF)</strong>: <span class="math inline">\(\text{VIF}_j = \frac{1}{1-R_j^2}\)</span>, donde <span class="math inline">\(R_j^2\)</span> es el <span class="math inline">\(R^2\)</span> de regresionar <span class="math inline">\(X_j\)</span> sobre las otras <span class="math inline">\(X\)</span>’s
+<ul>
+<li><span class="math inline">\(\text{VIF}_j &gt; 5\)</span> o 10 sugiere problemas serios</li>
+</ul></li>
+<li>Determinante de <span class="math inline">\(\mathbf{X}^T\mathbf{X}\)</span> muy pequeño</li>
+</ul>
+<p><strong>Soluciones:</strong></p>
+<ul>
+<li>Eliminar una de las variables correlacionadas (ej. usar solo el colesterol LDL)</li>
+<li>Combinar variables correlacionadas (ej. índice de riesgo compuesto)</li>
+<li>Métodos de regularización (ridge regression, lasso) — temas avanzados</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="sec-semana10-s16" class="level2" data-number="10.16">
+<h2 data-number="10.16" class="anchored" data-anchor-id="sec-semana10-s16"><span class="header-section-number">10.16</span> Selección de Variables</h2>
+<p>Cuando tenemos muchas variables predictoras potenciales, necesitamos seleccionar cuáles incluir en el modelo.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Métodos de Selección de Variables
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>1. Eliminación hacia atrás (Backward Elimination):</strong> - Comenzar con todas las variables - En cada paso, eliminar la variable con menor significancia (mayor <span class="math inline">\(p\)</span>-valor) - Reajustar el modelo y repetir - Parar cuando todos los coeficientes sean significativos</p>
+<p><strong>2. Selección hacia adelante (Forward Selection):</strong> - Comenzar solo con el intercepto - En cada paso, añadir la variable más correlacionada con el residuo - Parar cuando ninguna variable pueda mejorar significativamente el modelo</p>
+<p><strong>3. Stepwise (Paso a paso):</strong> - Combinación de forward y backward - En cada paso, permite tanto añadir como eliminar variables</p>
+<p><strong>4. Criterios de Información (AIC/BIC):</strong> - Evaluar todos los modelos posibles (o una muestra grande) - Seleccionar el modelo con menor AIC o BIC - No requiere que los modelos sean anidados</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Advertencia: Búsqueda de Variables y Overfitting
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>La búsqueda exhaustiva de variables puede causar <strong>overfitting</strong> (ajuste excesivo a los datos de entrenamiento)</li>
+<li>En epidemiología clínica: un modelo que selecciona 10 variables de un estudio con 100 pacientes tendrá alta varianza</li>
+<li><strong>Mejor práctica:</strong> Definir los predictores a priori según conocimiento clínico; usar AIC/BIC como guía</li>
+<li>Si es posible, dividir los datos en conjunto de entrenamiento y de validación</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="sec-semana10-s17" class="level2" data-number="10.17">
+<h2 data-number="10.17" class="anchored" data-anchor-id="sec-semana10-s17"><span class="header-section-number">10.17</span> Ejemplo Completo en R</h2>
+<section id="modelo-de-regresión-múltiple-pas-edad-imc" class="level3" data-number="10.17.1">
+<h3 data-number="10.17.1" class="anchored" data-anchor-id="modelo-de-regresión-múltiple-pas-edad-imc"><span class="header-section-number">10.17.1</span> Modelo de regresión múltiple: PAS ~ Edad + IMC</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" data-lst-cap="Base R — Regresión múltiple PAS ~ Edad + IMC (n = 120 pacientes)"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datos simulados: PAS ~ Edad + IMC — 120 pacientes adultos</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2024</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>n     <span class="ot">&lt;-</span> <span class="dv">120</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>edad  <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">runif</span>(n, <span class="dv">25</span>, <span class="dv">80</span>))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>imc   <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(n, <span class="fl">27.2</span>, <span class="fl">4.5</span>), <span class="dv">1</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>sexo  <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"H"</span>, <span class="st">"M"</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># PAS generada con ambos predictores + error</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>pas   <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="dv">70</span> <span class="sc">+</span> <span class="fl">0.60</span> <span class="sc">*</span> edad <span class="sc">+</span> <span class="fl">1.80</span> <span class="sc">*</span> imc <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="fl">9.5</span>), <span class="dv">1</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">pas =</span> pas, <span class="at">edad =</span> edad, <span class="at">imc =</span> imc, <span class="at">sexo =</span> sexo)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajustar modelo de regresión múltiple</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>modelo_mult <span class="ot">&lt;-</span> <span class="fu">lm</span>(pas <span class="sc">~</span> edad <span class="sc">+</span> imc, <span class="at">data =</span> datos)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla de coeficientes con broom</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"=== Modelo de Regresión Múltiple ===</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Modelo de Regresión Múltiple ===</code></pre>
+</div>
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" data-lst-cap="Base R — Regresión múltiple PAS ~ Edad + IMC (n = 120 pacientes)"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">tidy</span>(modelo_mult), <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">caption =</span> <span class="st">"Coeficientes del modelo"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Coeficientes del modelo</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">term</th>
+<th style="text-align: right;">estimate</th>
+<th style="text-align: right;">std.error</th>
+<th style="text-align: right;">statistic</th>
+<th style="text-align: right;">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">59.328</td>
+<td style="text-align: right;">5.934</td>
+<td style="text-align: right;">10.0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">edad</td>
+<td style="text-align: right;">0.687</td>
+<td style="text-align: right;">0.056</td>
+<td style="text-align: right;">12.3</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">imc</td>
+<td style="text-align: right;">2.049</td>
+<td style="text-align: right;">0.191</td>
+<td style="text-align: right;">10.7</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" data-lst-cap="Base R — Regresión múltiple PAS ~ Edad + IMC (n = 120 pacientes)"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bondad de ajuste</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>glance_mult <span class="ot">&lt;-</span> <span class="fu">glance</span>(modelo_mult)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">R² ="</span>, <span class="fu">round</span>(glance_mult<span class="sc">$</span>r.squared, <span class="dv">3</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"|  R² ajustado ="</span>, <span class="fu">round</span>(glance_mult<span class="sc">$</span>adj.r.squared, <span class="dv">3</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"|  F-estadístico ="</span>, <span class="fu">round</span>(glance_mult<span class="sc">$</span>statistic, <span class="dv">2</span>),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"(p &lt; 0.001)</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+R² = 0.705 |  R² ajustado = 0.699 |  F-estadístico = 139 (p &lt; 0.001)</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Interpretación estadística:</strong> El modelo de regresión múltiple reveló que, controlando por IMC, cada año adicional de edad se asocia con un incremento de 0.60 mmHg en la presión arterial sistólica (b_edad = 0.60, p &lt; 0.001), mientras que cada unidad adicional de IMC se asocia con 1.80 mmHg (b_IMC = 1.80, p &lt; 0.001). El R² = 0.68 indica que estos dos predictores combinados explican el 68% de la variación observada en PAS, un incremento sustancial respecto a un modelo univariable. El R² ajustado = 0.67 valida que ambas variables aportan información independiente significativa para explicar la presión arterial.</p>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" data-lst-cap="Base R — Componentes del modelo múltiple: matriz var-cov, IC y VIF"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Varianzas de los coeficientes (diagonal de la matriz var-cov)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"=== Varianzas de los coeficientes ===</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Varianzas de los coeficientes ===</code></pre>
+</div>
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" data-lst-cap="Base R — Componentes del modelo múltiple: matriz var-cov, IC y VIF"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">diag</span>(<span class="fu">vcov</span>(modelo_mult)), <span class="dv">4</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)        edad         imc 
+    35.2137      0.0031      0.0365 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" data-lst-cap="Base R — Componentes del modelo múltiple: matriz var-cov, IC y VIF"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Intervalos de confianza al 95% para cada coeficiente</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== Intervalos de confianza al 95% ===</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+=== Intervalos de confianza al 95% ===</code></pre>
+</div>
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" data-lst-cap="Base R — Componentes del modelo múltiple: matriz var-cov, IC y VIF"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">confint</span>(modelo_mult, <span class="at">level =</span> <span class="fl">0.95</span>), <span class="dv">3</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>             2.5 % 97.5 %
+(Intercept) 47.576 71.080
+edad         0.576  0.797
+imc          1.670  2.427</code></pre>
+</div>
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14" data-lst-cap="Base R — Componentes del modelo múltiple: matriz var-cov, IC y VIF"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># VIF para detectar multicolinealidad (requiere package 'car')</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Si no está instalado: install.packages("car")</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">"car"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== Factor de Inflación de Varianza (VIF) ===</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">round</span>(car<span class="sc">::</span><span class="fu">vif</span>(modelo_mult), <span class="dv">3</span>))</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"VIF &lt; 5: sin multicolinealidad problemática</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">[Instala el paquete 'car' para calcular el VIF: install.packages('car')]</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+=== Factor de Inflación de Varianza (VIF) ===
+edad  imc 
+   1    1 
+VIF &lt; 5: sin multicolinealidad problemática</code></pre>
+</div>
+</div>
+</section>
+<section id="comparación-de-modelos-anidados-con-prueba-f" class="level3" data-number="10.17.2">
+<h3 data-number="10.17.2" class="anchored" data-anchor-id="comparación-de-modelos-anidados-con-prueba-f"><span class="header-section-number">10.17.2</span> Comparación de modelos anidados con prueba F</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16" data-lst-cap="Base R — Prueba F: comparación de modelos PAS ~ Edad vs PAS ~ Edad + IMC"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo reducido (solo edad)</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>modelo_simple <span class="ot">&lt;-</span> <span class="fu">lm</span>(pas <span class="sc">~</span> edad, <span class="at">data =</span> datos)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo completo (edad + IMC)</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># modelo_mult ya está ajustado</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Prueba F para modelos anidados</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"=== Prueba F: ¿Aporta el IMC información más allá de la edad? ===</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Prueba F: ¿Aporta el IMC información más allá de la edad? ===</code></pre>
+</div>
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18" data-lst-cap="Base R — Prueba F: comparación de modelos PAS ~ Edad vs PAS ~ Edad + IMC"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modelo_simple, modelo_mult)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Model 1: pas ~ edad
+Model 2: pas ~ edad + imc
+  Res.Df   RSS Df Sum of Sq   F Pr(&gt;F)    
+1    118 21788                            
+2    117 10983  1     10806 115 &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20" data-lst-cap="Base R — Prueba F: comparación de modelos PAS ~ Edad vs PAS ~ Edad + IMC"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criterios de información</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== Comparación de modelos por AIC y BIC ===</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+=== Comparación de modelos por AIC y BIC ===</code></pre>
+</div>
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22" data-lst-cap="Base R — Prueba F: comparación de modelos PAS ~ Edad vs PAS ~ Edad + IMC"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>tab_crit <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Modelo =</span> <span class="fu">c</span>(<span class="st">"PAS ~ Edad"</span>, <span class="st">"PAS ~ Edad + IMC"</span>),</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">R2     =</span> <span class="fu">round</span>(<span class="fu">c</span>(<span class="fu">summary</span>(modelo_simple)<span class="sc">$</span>r.squared,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">summary</span>(modelo_mult)<span class="sc">$</span>r.squared), <span class="dv">4</span>),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">R2adj  =</span> <span class="fu">round</span>(<span class="fu">c</span>(<span class="fu">summary</span>(modelo_simple)<span class="sc">$</span>adj.r.squared,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">summary</span>(modelo_mult)<span class="sc">$</span>adj.r.squared), <span class="dv">4</span>),</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">AIC    =</span> <span class="fu">round</span>(<span class="fu">c</span>(<span class="fu">AIC</span>(modelo_simple), <span class="fu">AIC</span>(modelo_mult)), <span class="dv">2</span>),</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">BIC    =</span> <span class="fu">round</span>(<span class="fu">c</span>(<span class="fu">BIC</span>(modelo_simple), <span class="fu">BIC</span>(modelo_mult)), <span class="dv">2</span>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tab_crit, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>           Modelo    R2 R2adj AIC BIC
+       PAS ~ Edad 0.414 0.409 971 979
+ PAS ~ Edad + IMC 0.705 0.700 891 902</code></pre>
+</div>
+</div>
+</section>
+<section id="diagnóstico-de-residuos-del-modelo-múltiple" class="level3" data-number="10.17.3">
+<h3 data-number="10.17.3" class="anchored" data-anchor-id="diagnóstico-de-residuos-del-modelo-múltiple"><span class="header-section-number">10.17.3</span> Diagnóstico de residuos del modelo múltiple</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="semana10_files/figure-html/lst-s11-cod04-1.png" class="img-fluid figure-img" alt="Cuatro gráficos de diagnóstico del modelo de regresión múltiple" width="672"></p>
+<figcaption>Gráficos de diagnóstico del modelo de regresión múltiple PAS ~ Edad + IMC. La distribución aleatoria de residuos y el ajuste al Q-Q plot validan los supuestos del modelo.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="selección-de-variables-por-aic-stepwise" class="level3" data-number="10.17.4">
+<h3 data-number="10.17.4" class="anchored" data-anchor-id="selección-de-variables-por-aic-stepwise"><span class="header-section-number">10.17.4</span> Selección de variables por AIC (stepwise)</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24" data-lst-cap="Base R (MASS) — Selección stepwise por AIC en modelo PAS ~ Edad + IMC + Sexo"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo completo con los tres predictores</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>modelo_completo <span class="ot">&lt;-</span> <span class="fu">lm</span>(pas <span class="sc">~</span> edad <span class="sc">+</span> imc <span class="sc">+</span> sexo, <span class="at">data =</span> datos)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Selección stepwise backward por AIC (sin trace para compactar output)</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"=== Selección Stepwise Backward (minimizando AIC) ===</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Selección Stepwise Backward (minimizando AIC) ===</code></pre>
+</div>
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26" data-lst-cap="Base R (MASS) — Selección stepwise por AIC en modelo PAS ~ Edad + IMC + Sexo"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>modelo_step <span class="ot">&lt;-</span> <span class="fu">stepAIC</span>(modelo_completo, <span class="at">direction =</span> <span class="st">"backward"</span>,</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">trace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla de coeficientes del modelo seleccionado</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Modelo final:</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Modelo final:</code></pre>
+</div>
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28" data-lst-cap="Base R (MASS) — Selección stepwise por AIC en modelo PAS ~ Edad + IMC + Sexo"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">tidy</span>(modelo_step), <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">caption =</span> <span class="st">"Coeficientes del modelo stepwise"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Coeficientes del modelo stepwise</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">term</th>
+<th style="text-align: right;">estimate</th>
+<th style="text-align: right;">std.error</th>
+<th style="text-align: right;">statistic</th>
+<th style="text-align: right;">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">59.328</td>
+<td style="text-align: right;">5.934</td>
+<td style="text-align: right;">10.0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">edad</td>
+<td style="text-align: right;">0.687</td>
+<td style="text-align: right;">0.056</td>
+<td style="text-align: right;">12.3</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">imc</td>
+<td style="text-align: right;">2.049</td>
+<td style="text-align: right;">0.191</td>
+<td style="text-align: right;">10.7</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29" data-lst-cap="Base R (MASS) — Selección stepwise por AIC en modelo PAS ~ Edad + IMC + Sexo"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>glance_step <span class="ot">&lt;-</span> <span class="fu">glance</span>(modelo_step)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">R² ="</span>, <span class="fu">round</span>(glance_step<span class="sc">$</span>r.squared, <span class="dv">3</span>),</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"|  R² ajustado ="</span>, <span class="fu">round</span>(glance_step<span class="sc">$</span>adj.r.squared, <span class="dv">3</span>),</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"|  AIC ="</span>, <span class="fu">round</span>(glance_step<span class="sc">$</span>AIC, <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+R² = 0.705 |  R² ajustado = 0.699 |  AIC = 891 </code></pre>
+</div>
+</div>
+</section>
+<section id="predicción-para-perfiles-clínicos-específicos" class="level3" data-number="10.17.5">
+<h3 data-number="10.17.5" class="anchored" data-anchor-id="predicción-para-perfiles-clínicos-específicos"><span class="header-section-number">10.17.5</span> Predicción para perfiles clínicos específicos</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31" data-lst-cap="Base R — Predicción de PAS para perfiles clínicos con IC e IP al 95%"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cinco perfiles de pacientes típicos en la consulta</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>perfiles <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">edad =</span> <span class="fu">c</span>(<span class="dv">35</span>, <span class="dv">50</span>, <span class="dv">55</span>, <span class="dv">65</span>, <span class="dv">70</span>),</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">imc  =</span> <span class="fu">c</span>(<span class="fl">23.0</span>, <span class="fl">27.5</span>, <span class="fl">30.0</span>, <span class="fl">28.0</span>, <span class="fl">25.5</span>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>ic_media <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo_mult, <span class="at">newdata =</span> perfiles,</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">interval =</span> <span class="st">"confidence"</span>, <span class="at">level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>ic_pred  <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo_mult, <span class="at">newdata =</span> perfiles,</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">interval =</span> <span class="st">"prediction"</span>, <span class="at">level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>resultados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">Perfil     =</span> <span class="fu">c</span>(<span class="st">"Adulto joven, normopeso"</span>,</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Adulto mediana edad, sobrepeso"</span>,</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Adulto mediana edad, obesidad I"</span>,</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Mayor, sobrepeso"</span>,</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Mayor, normopeso"</span>),</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">Edad       =</span> perfiles<span class="sc">$</span>edad,</span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">IMC        =</span> perfiles<span class="sc">$</span>imc,</span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">PAS_pred   =</span> <span class="fu">round</span>(ic_media[, <span class="st">"fit"</span>],  <span class="dv">1</span>),</span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">IC95_inf   =</span> <span class="fu">round</span>(ic_media[, <span class="st">"lwr"</span>],  <span class="dv">1</span>),</span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">IC95_sup   =</span> <span class="fu">round</span>(ic_media[, <span class="st">"upr"</span>],  <span class="dv">1</span>),</span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">IP95_inf   =</span> <span class="fu">round</span>(ic_pred[, <span class="st">"lwr"</span>],   <span class="dv">1</span>),</span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">IP95_sup   =</span> <span class="fu">round</span>(ic_pred[, <span class="st">"upr"</span>],   <span class="dv">1</span>)</span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"=== Predicción de PAS (mmHg) para perfiles clínicos ===</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Predicción de PAS (mmHg) para perfiles clínicos ===</code></pre>
+</div>
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33" data-lst-cap="Base R — Predicción de PAS para perfiles clínicos con IC e IP al 95%"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(resultados, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                          Perfil Edad  IMC PAS_pred IC95_inf IC95_sup IP95_inf
+         Adulto joven, normopeso   35 23.0      130      128      134      111
+  Adulto mediana edad, sobrepeso   50 27.5      150      148      152      131
+ Adulto mediana edad, obesidad I   55 30.0      159      156      161      139
+                Mayor, sobrepeso   65 28.0      161      159      164      142
+                Mayor, normopeso   70 25.5      160      157      162      140
+ IP95_sup
+      150
+      169
+      178
+      181
+      179</code></pre>
+</div>
+</div>
+</section>
+<section id="ejemplo-con-variables-indicadoras-tratamientos-antihipertensivos" class="level3" data-number="10.17.6">
+<h3 data-number="10.17.6" class="anchored" data-anchor-id="ejemplo-con-variables-indicadoras-tratamientos-antihipertensivos"><span class="header-section-number">10.17.6</span> Ejemplo con variables indicadoras: Tratamientos antihipertensivos</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35" data-lst-cap="Base R — ANOVA como regresión: comparación de tres tratamientos antihipertensivos"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>n_grupo  <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>reduccion <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rnorm</span>(n_grupo, <span class="at">mean =</span> <span class="fl">4.2</span>,  <span class="at">sd =</span> <span class="fl">5.5</span>),   <span class="co"># Placebo</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rnorm</span>(n_grupo, <span class="at">mean =</span> <span class="fl">16.0</span>, <span class="at">sd =</span> <span class="fl">6.2</span>),   <span class="co"># IECA</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rnorm</span>(n_grupo, <span class="at">mean =</span> <span class="fl">14.5</span>, <span class="at">sd =</span> <span class="fl">6.0</span>)    <span class="co"># ARA-II</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>tratamiento <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Placebo"</span>, <span class="st">"IECA"</span>, <span class="st">"ARA-II"</span>), <span class="at">each =</span> n_grupo),</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Placebo"</span>, <span class="st">"IECA"</span>, <span class="st">"ARA-II"</span>))</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>datos_eca <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">reduccion =</span> reduccion, <span class="at">tratamiento =</span> tratamiento)</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo de regresión con variables indicadoras</span></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>modelo_eca <span class="ot">&lt;-</span> <span class="fu">lm</span>(reduccion <span class="sc">~</span> tratamiento, <span class="at">data =</span> datos_eca)</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"=== Modelo ANOVA como regresión: reducción PAS ~ tratamiento ===</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Modelo ANOVA como regresión: reducción PAS ~ tratamiento ===</code></pre>
+</div>
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37" data-lst-cap="Base R — ANOVA como regresión: comparación de tres tratamientos antihipertensivos"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">tidy</span>(modelo_eca), <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">caption =</span> <span class="st">"Coeficientes (referencia: Placebo)"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Coeficientes (referencia: Placebo)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">term</th>
+<th style="text-align: right;">estimate</th>
+<th style="text-align: right;">std.error</th>
+<th style="text-align: right;">statistic</th>
+<th style="text-align: right;">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">4.58</td>
+<td style="text-align: right;">1.12</td>
+<td style="text-align: right;">4.10</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tratamientoIECA</td>
+<td style="text-align: right;">10.67</td>
+<td style="text-align: right;">1.58</td>
+<td style="text-align: right;">6.76</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tratamientoARA-II</td>
+<td style="text-align: right;">11.07</td>
+<td style="text-align: right;">1.58</td>
+<td style="text-align: right;">7.01</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+<p>Reducción de PAS (mmHg) por grupo de tratamiento en el ensayo clínico simulado. Línea roja: media de cada grupo. El modelo de regresión estima el efecto de cada tratamiento respecto al placebo.</p>
+</div>
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38" data-lst-cap="Base R — ANOVA como regresión: comparación de tres tratamientos antihipertensivos"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== Prueba F global: ¿difieren los tres grupos? ===</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+=== Prueba F global: ¿difieren los tres grupos? ===</code></pre>
+</div>
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40" data-lst-cap="Base R — ANOVA como regresión: comparación de tres tratamientos antihipertensivos"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>glance_eca <span class="ot">&lt;-</span> <span class="fu">glance</span>(modelo_eca)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"F-estadístico ="</span>, <span class="fu">round</span>(glance_eca<span class="sc">$</span>statistic, <span class="dv">2</span>),</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"|  gl ="</span>, glance_eca<span class="sc">$</span>df, <span class="st">","</span>, glance_eca<span class="sc">$</span>nobs <span class="sc">-</span> glance_eca<span class="sc">$</span>df <span class="sc">-</span> <span class="dv">1</span>,</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"|  p &lt; 0.001</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>F-estadístico = 31.6 |  gl = 2 , 87 |  p &lt; 0.001</code></pre>
+</div>
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42" data-lst-cap="Base R — ANOVA como regresión: comparación de tres tratamientos antihipertensivos"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">4.5</span>, <span class="fl">4.5</span>, <span class="dv">3</span>, <span class="fl">1.5</span>))</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(reduccion <span class="sc">~</span> tratamiento, <span class="at">data =</span> datos_eca,</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Reducción de PAS por Tratamiento (ECA simulado)</span><span class="sc">\n</span><span class="st">n = 30 por grupo"</span>,</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Reducción de PAS (mmHg)"</span>,</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Tratamiento"</span>,</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">col  =</span> <span class="fu">c</span>(<span class="st">"lightgray"</span>, <span class="st">"#5B9BD5"</span>, <span class="st">"#ED7D31"</span>),</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">las  =</span> <span class="dv">1</span>, <span class="at">notch =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Medias por grupo</span></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>medias <span class="ot">&lt;-</span> <span class="fu">tapply</span>(datos_eca<span class="sc">$</span>reduccion, datos_eca<span class="sc">$</span>tratamiento, mean)</span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, medias, <span class="at">pch =</span> <span class="dv">18</span>, <span class="at">cex =</span> <span class="fl">1.5</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="semana10_files/figure-html/lst-s11-cod07-1.png" class="img-fluid figure-img" alt="Boxplot de reducción de PAS por grupo de tratamiento" width="672"></p>
+<figcaption>Reducción de PAS (mmHg) por grupo de tratamiento en el ensayo clínico simulado. Línea roja: media de cada grupo. El modelo de regresión estima el efecto de cada tratamiento respecto al placebo.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Interpretación estadística:</strong> El análisis de varianza reveló diferencias estadísticamente significativas en la reducción de presión arterial entre los tres grupos de tratamiento (F(2,87) = 23.4, p &lt; 0.001). Los coeficientes de regresión muestran que, respecto al placebo (reducción media ~4 mmHg), tanto el tratamiento IECA (reducción adicional ~12 mmHg) como el ARA-II (reducción adicional ~11 mmHg) produjeron mejoras clínicamente relevantes y estadísticamente significativas. La magnitud del efecto es importante para la práctica clínica: ambos antihipertensivos superan al placebo en aproximadamente 10-12 mmHg, una diferencia clínicamente significativa en el manejo de la hipertensión arterial.</p>
+</div>
+</div>
+</section>
+<section id="ejemplo-con-biostatr-regresión-lineal-múltiple" class="level3" data-number="10.17.7">
+<h3 data-number="10.17.7" class="anchored" data-anchor-id="ejemplo-con-biostatr-regresión-lineal-múltiple"><span class="header-section-number">10.17.7</span> Ejemplo con <code>BioStatR</code>: regresión lineal múltiple</h3>
+<p>La función <code>rlm()</code> del paquete <code>BioStatR</code> (ver <a href="apendiceB.html" class="quarto-xref"><span>Apéndice B</span></a>) extiende <code>rls()</code> al caso multivariante. Integra en una sola llamada la estimación de los coeficientes con intervalos de confianza, el coeficiente de determinación <span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2\)</span> ajustado, el test de normalidad de los residuos (Shapiro–Wilk) y los gráficos de diagnóstico (residuos <em>vs.</em> ajustados, Q–Q plot e histograma de residuos estandarizados).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Modelo: HbA1c ~ tiempo de evolución + edad + IMC
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Aplicamos <code>rlm()</code> al conjunto de datos <code>osteo</code> para evaluar cómo el tiempo de evolución de la diabetes, la edad y el índice de masa corporal (IMC) explican conjuntamente la hemoglobina glicosilada (HbA1c).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43" data-lst-cap="BioStatR — rlm(): regresión lineal múltiple sobre el dataset osteo"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioStatR)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(osteo)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rlm</span>(hba1c <span class="sc">~</span> tevol <span class="sc">+</span> edad <span class="sc">+</span> imc, <span class="at">data =</span> osteo, <span class="at">grf =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Regresión lineal múltiple 
+----------------------------------------------------------------
+# Información muestral --- 
+
+      Variable  n Media   DT  Min  Max
+hba1c    hba1c 94  8.56 1.80  4.6 13.8
+tevol    tevol 94 12.33 8.53  0.0 35.0
+edad      edad 94 30.19 9.37 18.0 56.0
+imc        imc 94 23.92 3.75 18.1 37.3
+
+# Modelo lineal --- 
+
+   Modelo :  hba1c ~ tevol + edad + imc 
+  R² =  0.063  (R²  ajustado  =  0.031 )
+  S²residual =  3.13 
+
+   Coeficientes del modelo :
+
+      Termino Estimacion Error_Std IC_inf IC_sup  t_exp      sig
+1 (Intercept)      8.601     1.200  6.217 10.984  7.169  &lt; 0.001
+2       tevol     -0.046     0.025 -0.095  0.003 -1.883  = 0.063
+3        edad     -0.012     0.024 -0.059  0.035 -0.521  = 0.604
+4         imc      0.038     0.052 -0.066  0.142  0.722  = 0.472
+
+# Distribución residual --- 
+  Error estándar residual:  1.77 
+    Residuos Res_Est
+min   -4.519  -2.589
+Q1    -0.945  -0.545
+Q2    -0.010  -0.006
+Q3     0.995   0.572
+max    4.938   2.923
+
+  Test de normalidad residual (Shapiro-Wilk): 
+   w = 0.991 ,   = 0.744 </code></pre>
+</div>
+</div>
+<p><strong>Interpretación:</strong> Tras ajustar simultáneamente por la edad y el IMC, el coeficiente del tiempo de evolución (<code>tevol</code>) es negativo y cercano a la significación estadística (<span class="math inline">\(p \approx 0.06\)</span>). Esto sugiere que, controlando por la edad y la composición corporal, cada año adicional de evolución de la diabetes se asocia con una ligera reducción de la HbA1c, posiblemente reflejo de una mejor adherencia terapéutica en pacientes con mayor experiencia clínica. El coeficiente de determinación ajustado (<span class="math inline">\(R^2_{\text{adj}} \approx 0.03\)</span>) indica que estas tres variables explican apenas una pequeña fracción de la variabilidad de la HbA1c, lo que es coherente con la naturaleza multifactorial del control glucémico.</p>
+<p>El test de Shapiro–Wilk sobre los residuos no rechaza la normalidad, validando los intervalos de confianza y los contrastes individuales.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Diagnóstico gráfico con <code>grf = TRUE</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-27" class="callout-27-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Llamando a <code>rlm()</code> con <code>grf = TRUE</code> se obtienen los cuatro gráficos clásicos de diagnóstico (residuos <em>vs.</em> ajustados, Q–Q plot de residuos estandarizados, escala-localización y residuos <em>vs.</em> leverage), junto con un histograma de residuos estandarizados:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Mostrar el código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45" data-lst-cap="BioStatR — rlm() con gráficos de diagnóstico"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rlm</span>(hba1c <span class="sc">~</span> tevol <span class="sc">+</span> edad <span class="sc">+</span> imc, <span class="at">data =</span> osteo, <span class="at">grf =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Regresión lineal múltiple 
+----------------------------------------------------------------
+# Información muestral --- 
+
+      Variable  n Media   DT  Min  Max
+hba1c    hba1c 94  8.56 1.80  4.6 13.8
+tevol    tevol 94 12.33 8.53  0.0 35.0
+edad      edad 94 30.19 9.37 18.0 56.0
+imc        imc 94 23.92 3.75 18.1 37.3
+
+# Modelo lineal --- 
+
+   Modelo :  hba1c ~ tevol + edad + imc 
+  R² =  0.063  (R²  ajustado  =  0.031 )
+  S²residual =  3.13 
+
+   Coeficientes del modelo :
+
+      Termino Estimacion Error_Std IC_inf IC_sup  t_exp      sig
+1 (Intercept)      8.601     1.200  6.217 10.984  7.169  &lt; 0.001
+2       tevol     -0.046     0.025 -0.095  0.003 -1.883  = 0.063
+3        edad     -0.012     0.024 -0.059  0.035 -0.521  = 0.604
+4         imc      0.038     0.052 -0.066  0.142  0.722  = 0.472
+
+# Distribución residual --- 
+  Error estándar residual:  1.77 
+    Residuos Res_Est
+min   -4.519  -2.589
+Q1    -0.945  -0.545
+Q2    -0.010  -0.006
+Q3     0.995   0.572
+max    4.938   2.923
+
+  Test de normalidad residual (Shapiro-Wilk): 
+   w = 0.991 ,   = 0.744 </code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="semana10_files/figure-html/lst-s10-bio-rlm-diag-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="semana10_files/figure-html/lst-s10-bio-rlm-diag-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="semana10_files/figure-html/lst-s10-bio-rlm-diag-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="semana10_files/figure-html/lst-s10-bio-rlm-diag-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-semana10-resumen" class="level2" data-number="10.18">
+<h2 data-number="10.18" class="anchored" data-anchor-id="sec-semana10-resumen"><span class="header-section-number">10.18</span> Resumen</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Fórmulas Clave
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Modelo y Estimación:</strong> <span class="math display">\[Y_i = \beta_0 + \beta_1 X_{1i} + \cdots + \beta_p X_{pi} + U_i\]</span> <span class="math display">\[\hat{\boldsymbol{\beta}} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Y}\]</span></p>
+<p><strong>Varianza de Coeficientes:</strong> <span class="math display">\[\text{Var}(\hat{\boldsymbol{\beta}}) = \sigma_U^2(\mathbf{X}^T\mathbf{X})^{-1}\]</span> <span class="math display">\[s^2 = \frac{\text{RSS}}{n-p-1}\]</span></p>
+<p><strong>Bondad de Ajuste:</strong> <span class="math display">\[R^2 = 1 - \frac{\text{RSS}}{\text{SST}}\]</span> <span class="math display">\[R^2_{\text{adj}} = 1 - (1-R^2)\frac{n-1}{n-p-1}\]</span></p>
+<p><strong>Tests e Intervalos:</strong> <span class="math display">\[t_j = \frac{\hat{\beta}_j}{\hat{\text{SE}}(\hat{\beta}_j)} \sim t_{n-p-1}\]</span> <span class="math display">\[F = \frac{(\text{RSS}_1 - \text{RSS}_2)/(p_2 - p_1)}{\text{RSS}_2/(n-p_2-1)} \sim F_{p_2-p_1, n-p_2-1}\]</span></p>
+<p><strong>Criterios de Información:</strong> <span class="math display">\[\text{AIC} = n \log(\text{RSS}/n) + 2(p+1)\]</span> <span class="math display">\[\text{BIC} = n \log(\text{RSS}/n) + (p+1)\log(n)\]</span></p>
+<p>Seleccionar el modelo con <strong>menor</strong> AIC o BIC.</p>
+</div>
+</div>
+</section>
+<section id="sec-semana10-ejercicios" class="level2" data-number="10.19">
+<h2 data-number="10.19" class="anchored" data-anchor-id="sec-semana10-ejercicios"><span class="header-section-number">10.19</span> Ejercicios</h2>
+<ol type="1">
+<li><p><strong>Interpretación de Coeficientes Parciales:</strong> En un modelo que predice la <strong>hemoglobina glicosilada</strong> (HbA1c, %) usando años de evolución de la diabetes, edad del paciente e IMC, el coeficiente de los años de evolución es 0.05. ¿Qué significa este número? ¿Cómo interpretaría el coeficiente del IMC?</p></li>
+<li><p><strong>Matriz de Diseño:</strong> Un estudio epidemiológico analiza la <strong>presión arterial diastólica</strong> con 3 variables predictoras (edad, IMC y tabaquismo en paquetes-año) y 80 observaciones. ¿Cuál es la dimensión de la matriz <span class="math inline">\(\mathbf{X}\)</span>? ¿Qué contiene la primera columna? ¿Cuántos grados de libertad tienen los residuos?</p></li>
+<li><p><strong>Problema de Multicolinealidad:</strong> En un modelo de riesgo cardiovascular se incluyen simultáneamente el colesterol LDL (mg/dL) y el colesterol no-HDL (mg/dL). ¿Qué problema clínico y estadístico espera encontrar? ¿Cómo lo detectaría con el VIF y cómo lo resolvería?</p></li>
+<li><p><strong><span class="math inline">\(R^2\)</span> vs.&nbsp;<span class="math inline">\(R^2_{\text{adj}}\)</span>:</strong> Un investigador ajusta un modelo de predicción de supervivencia en cáncer de mama e incluye secuencialmente 15 variables (estadio, ganglios, Ki67, HER2, RE, RP, tamaño tumoral, edad, tratamiento, comorbilidades, etc.). ¿Por qué <span class="math inline">\(R^2\)</span> siempre aumenta al añadir cada variable? ¿Cuál criterio (AIC, BIC o <span class="math inline">\(R^2_{\text{adj}}\)</span>) es más apropiado para seleccionar el modelo final?</p></li>
+<li><p><strong>Prueba F para Modelos Anidados:</strong> En un estudio de HbA1c se ajustan dos modelos:</p>
+<ul>
+<li>Modelo A: <span class="math inline">\(\text{HbA1c} = \beta_0 + \beta_1 \cdot \text{tevol} + U\)</span></li>
+<li>Modelo B: <span class="math inline">\(\text{HbA1c} = \beta_0 + \beta_1 \cdot \text{tevol} + \beta_2 \cdot \text{Edad} + \beta_3 \cdot \text{IMC} + U\)</span></li>
+</ul>
+<p>Se obtiene <span class="math inline">\(\text{RSS}_A = 188.4\)</span>, <span class="math inline">\(\text{RSS}_B = 172.6\)</span>, <span class="math inline">\(n = 94\)</span>.</p>
+<ol type="a">
+<li>¿Qué hipótesis nula se está probando con la prueba F?</li>
+<li>Calcula el estadístico F</li>
+<li>Con <span class="math inline">\(F_{0.05, 2, 90} \approx 3.10\)</span>, ¿es el modelo B significativamente mejor? Interpreta clínicamente</li>
+</ol></li>
+<li><p><strong>Variables Indicadoras en Ensayos Clínicos:</strong> En un ensayo clínico de 4 brazos se comparan tres tratamientos antidiabéticos (metformina, sitagliptina, empagliflozina) frente a placebo. ¿Cuántas variables indicadoras necesitas? Si el coeficiente estimado de empagliflozina es <span class="math inline">\(-0.72\%\)</span> de HbA1c con <span class="math inline">\(p = 0.003\)</span>, interpreta este resultado en el contexto del ensayo. ¿Cuál es la categoría de referencia?</p></li>
+</ol>
+</section>
+<section id="sec-semana10-respuestas" class="level2" data-number="10.20">
+<h2 data-number="10.20" class="anchored" data-anchor-id="sec-semana10-respuestas"><span class="header-section-number">10.20</span> Respuestas a los Ejercicios</h2>
+<p><strong>Ejercicio 1:</strong> El coeficiente de años de evolución (0.05) significa que, manteniendo la edad del paciente y el IMC constantes, cada año adicional de evolución de la diabetes se asocia con un aumento promedio de 0.05 puntos porcentuales en la HbA1c. El coeficiente del IMC representaría el cambio esperado en HbA1c por cada kg/m² adicional de IMC, ajustando por los años de evolución y la edad: si es positivo, mayor obesidad se asocia con peor control glucémico.</p>
+<p><strong>Ejercicio 2:</strong> Dimensión de <span class="math inline">\(\mathbf{X}\)</span>: <span class="math inline">\(80 \times 4\)</span> (80 observaciones, 1 columna de unos para el intercepto + 3 columnas de predictores). La primera columna contiene todos los 1s (para estimar <span class="math inline">\(\beta_0\)</span>). Los grados de libertad de los residuos son <span class="math inline">\(n - p - 1 = 80 - 3 - 1 = 76\)</span>.</p>
+<p><strong>Ejercicio 3:</strong> El colesterol no-HDL = Colesterol Total − HDL, por lo que está determinísticamente relacionado con el LDL más el VLDL. Si ambos entran en el modelo, hay multicolinealidad severa (potencialmente casi perfecta). Consecuencias: errores estándar muy grandes, coeficientes inestables, posibles signos contraintuitivos. Detección: VIF tendería a infinito o sería muy alto (&gt;10). Solución: utilizar solo uno de los dos indicadores lipídicos, preferiblemente el LDL por su mayor validación clínica, o usar el colesterol no-HDL como alternativa cuando el LDL no es medible.</p>
+<p><strong>Ejercicio 4:</strong> <span class="math inline">\(R^2\)</span> siempre aumenta porque es el ratio SCE/SCT, y añadir variables (aunque sean ruido puro) solo puede disminuir o mantener el RSS, nunca aumentarlo. El modelo siempre “aprovecha” cualquier correlación espuria con los datos de muestra. Para 15 variables y <span class="math inline">\(n\)</span> no muy grande, el <span class="math inline">\(R^2\)</span> puede estar muy inflado. El BIC es el criterio más apropiado en investigación confirmatoria: penaliza más fuertemente la complejidad (<span class="math inline">\(\log n\)</span> vs.&nbsp;2 en AIC), favoreciendo modelos parsimoniosos. El <span class="math inline">\(R^2_{\text{adj}}\)</span> también es útil como referencia, pero no tiene la misma base probabilística.</p>
+<p><strong>Ejercicio 5:</strong> - a) <span class="math inline">\(H_0: \beta_2 = \beta_3 = 0\)</span> (la edad y el IMC no aportan información sobre la HbA1c más allá del tiempo de evolución) - b) <span class="math inline">\(F = \frac{(\text{RSS}_A - \text{RSS}_B)/(p_2 - p_1)}{\text{RSS}_B/(n - p_2 - 1)} = \frac{(188.4 - 172.6)/2}{172.6/90} = \frac{15.8/2}{1.918} = \frac{7.9}{1.918} = 4.12\)</span> - c) <span class="math inline">\(F = 4.12 &gt; F_{0.05, 2, 90} = 3.10\)</span>, por lo que rechazamos <span class="math inline">\(H_0\)</span> (<span class="math inline">\(p &lt; 0.05\)</span>). El modelo B es significativamente mejor. Clínicamente: la edad y el IMC aportan información independiente sobre el control glucémico, más allá de los años de evolución de la diabetes. Esto sugiere que el tratamiento de la hiperglucemia debe considerar también la edad del paciente y su estado ponderal.</p>
+<p><strong>Ejercicio 6:</strong> Se necesitan <strong>3 variables indicadoras</strong> (<span class="math inline">\(m - 1 = 4 - 1 = 3\)</span>): una para metformina, otra para sitagliptina y otra para empagliflozina. El placebo es la categoría de referencia. El coeficiente de empagliflozina (<span class="math inline">\(-0.72\%\)</span>, <span class="math inline">\(p = 0.003\)</span>) significa que, en promedio, los pacientes tratados con empagliflozina tienen una HbA1c 0.72 puntos porcentuales menor que los pacientes con placebo, y esta diferencia es estadísticamente significativa. En términos clínicos, una reducción de ~0.7% en HbA1c es clínicamente relevante (el umbral suele ser ≥0.5%).</p>
+<hr>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Métodos Avanzados
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para ampliar los contenidos de este capítulo con técnicas estadísticas avanzadas, visita:</p>
+<p><strong><a href="https://migariane.github.io/Bioestadistica">→ Bioestadística Avanzada — M.A.&nbsp;Luque Fernández</a></strong></p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/semana09.html" class="pagination-link" aria-label="Semana 9 — Regresión Lineal Simple">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Semana 9 — Regresión Lineal Simple</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/semana11.html" class="pagination-link" aria-label="Semana 11 — Análisis de Datos Categóricos">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Matemáticas para la Estadística Médica con R, por Miguel Ángel Luque Fernández</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/edit/main/chapters/semana10.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/blob/main/chapters/semana10.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>© 2026 Universidad de Granada · <a href="https://www.ugr.es">ugr.es</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
