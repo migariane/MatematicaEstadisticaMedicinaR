@@ -1,0 +1,4512 @@
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2024.2.3)  30 MAY 2026 10:36
+ restricted system commands enabled.
+**index.tex
+(./index.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+Lua module: luaotfload 2023-08-31 3.26 Lua based OpenType font support
+Lua module: lualibs 2023-07-13 2.76 ConTeXt Lua standard libraries.
+Lua module: lualibs-extended 2023-07-13 2.76 ConTeXt Lua libraries -- extended c
+ollection.
+luaotfload | conf : Root cache directory is "/Users/MALF/Library/texlive/2023/te
+xmf-var/luatex-cache/generic/names".
+luaotfload | init : Loading fontloader "fontloader-2023-08-19.lua" from kpse-res
+olved path "/usr/local/texlive/2023/texmf-dist/tex/luatex/luaotfload/fontloader-
+2023-08-19.lua".
+Lua-only attribute luaotfload@noligature = 1
+luaotfload | init : Context OpenType loader version 3.133
+Inserting `luaotfload.node_processor' in `pre_linebreak_filter'.
+Inserting `luaotfload.node_processor' in `hpack_filter'.
+Inserting `luaotfload.glyph_stream' in `glyph_stream_provider'.
+Inserting `luaotfload.define_font' in `define_font'.
+Lua-only attribute luaotfload_color_attribute = 2
+luaotfload | conf : Root cache directory is "/Users/MALF/Library/texlive/2023/te
+xmf-var/luatex-cache/generic/names".
+Inserting `luaotfload.harf.strip_prefix' in `find_opentype_file'.
+Inserting `luaotfload.harf.strip_prefix' in `find_truetype_file'.
+Removing  `luaotfload.glyph_stream' from `glyph_stream_provider'.
+Inserting `luaotfload.harf.glyphstream' in `glyph_stream_provider'.
+Inserting `luaotfload.harf.finalize_vlist' in `post_linebreak_filter'.
+Inserting `luaotfload.harf.finalize_hlist' in `hpack_filter'.
+Inserting `luaotfload.cleanup_files' in `wrapup_run'.
+Inserting `luaotfload.harf.finalize_unicode' in `finish_pdffile'.
+Inserting `luaotfload.glyphinfo' in `glyph_info'.
+Lua-only attribute luaotfload.letterspace_done = 3
+Inserting `luaotfload.aux.set_sscale_dimens' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_font_index' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.patch_cambria_domh' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.fixup_fontdata' in `luaotfload.patch_font_unsafe'.
+Inserting `luaotfload.aux.set_capheight' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_xheight' in `luaotfload.patch_font'.
+Inserting `luaotfload.rewrite_fontname' in `luaotfload.patch_font'.
+Inserting `tracingstacklevels' in `input_level_string'. (/usr/local/texlive/202
+3/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/bk11.clo
+File: bk11.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
+luaotfload | db : Font names database loaded from /Users/MALF/Library/texlive/20
+23/texmf-var/luatex-cache/generic/names/luaotfload-names.luc.gz)
+\c@part=\count185
+\c@chapter=\count186
+\c@section=\count187
+\c@subsection=\count188
+\c@subsubsection=\count189
+\c@paragraph=\count190
+\c@subparagraph=\count191
+\c@figure=\count192
+\c@table=\count193
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\bibindent=\dimen139
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2023/11/15 v3.01 LaTeX color extensions (UK)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: luatex.def on input line 274.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics-def/luatex.def
+File: luatex.def 2022/09/22 v1.2d Graphics/color driver for luatex
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1350.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1354.
+Package xcolor Info: Model `RGB' extended on input line 1366.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1368.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1371.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1372.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/xcolor/svgnam.def
+File: svgnam.def 2023/11/15 v3.01 Predefined colors according to SVG 1.1 (UK)
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/xcolor/x11nam.def
+File: x11nam.def 2023/11/15 v3.01 Predefined colors according to Unix/X11 (UK)
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+) (/usr/local/texlive/2023/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+(/usr/local/texlive/2023/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
+))
+\Gm@cnth=\count194
+\Gm@cntv=\count195
+\c@Gm@tempcnt=\count196
+\Gm@bindingoffset=\dimen140
+\Gm@wd@mp=\dimen141
+\Gm@odd@mp=\dimen142
+\Gm@even@mp=\dimen143
+\Gm@layoutwidth=\dimen144
+\Gm@layoutheight=\dimen145
+\Gm@layouthoffset=\dimen146
+\Gm@layoutvoffset=\dimen147
+\Gm@dimlist=\toks18
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2023/05/13 v2.17o AMS math features
+\@mathmargin=\skip50
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2021/08/26 v2.01 AMS text
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks19
+\ex@=\dimen148
+)) (/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen149
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count197
+LaTeX Info: Redefining \frac on input line 236.
+\uproot@=\count198
+\leftroot@=\count199
+LaTeX Info: Redefining \overline on input line 399.
+LaTeX Info: Redefining \colon on input line 410.
+\classnum@=\count266
+\DOTSCASE@=\count267
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box51
+\strutbox@=\box52
+LaTeX Info: Redefining \big on input line 722.
+LaTeX Info: Redefining \Big on input line 723.
+LaTeX Info: Redefining \bigg on input line 724.
+LaTeX Info: Redefining \Bigg on input line 725.
+\big@size=\dimen150
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count268
+LaTeX Info: Redefining \bmod on input line 905.
+LaTeX Info: Redefining \pmod on input line 910.
+LaTeX Info: Redefining \smash on input line 940.
+LaTeX Info: Redefining \relbar on input line 970.
+LaTeX Info: Redefining \Relbar on input line 971.
+\c@MaxMatrixCols=\count269
+\dotsspace@=\muskip16
+\c@parentequation=\count270
+\dspbrk@lvl=\count271
+\tag@help=\toks20
+\row@=\count272
+\column@=\count273
+\maxfields@=\count274
+\andhelp@=\toks21
+\eqnshift@=\dimen151
+\alignsep@=\dimen152
+\tagshift@=\dimen153
+\tagwidth@=\dimen154
+\totwidth@=\dimen155
+\lineht@=\dimen156
+\@envbody=\toks22
+\multlinegap=\skip51
+\multlinetaggap=\skip52
+\mathdisplay@stack=\toks23
+LaTeX Info: Redefining \[ on input line 2953.
+LaTeX Info: Redefining \] on input line 2954.
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (/usr/local/texlive/2023/texmf-dist/tex/latex/unicode-math/unicode-math.sty 
+(/usr/local/texlive/2023/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2024-01-22 L3 programming layer (loader) 
+(/usr/local/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-luatex.def
+File: l3backend-luatex.def 2024-01-04 L3 backend support: PDF output (LuaTeX)
+\l__color_backend_stack_int=\count275
+Inserting `l3color' in `luaotfload.parse_color'.
+\l__pdf_internal_box=\box53
+))
+Package: unicode-math 2023/08/13 v0.8r Unicode maths in XeLaTeX and LuaLaTeX
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/unicode-math/unicode-math-luatex.
+sty
+Package: unicode-math-luatex 2023/08/13 v0.8r Unicode maths in XeLaTeX and LuaL
+aTeX
+(/usr/local/texlive/2023/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2023-10-10 L3 Experimental document command parser
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.st
+y
+Package: l3keys2e 2023-10-10 LaTeX2e option processing using LaTeX3 keys
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/fontspec/fontspec.sty
+Package: fontspec 2022/01/15 v2.8a Font selection for XeLaTeX and LuaLaTeX
+Lua module: fontspec 2022/01/15 2.8a Font selection for XeLaTeX and LuaLaTeX (/
+usr/local/texlive/2023/texmf-dist/tex/latex/fontspec/fontspec-luatex.sty
+Package: fontspec-luatex 2022/01/15 v2.8a Font selection for XeLaTeX and LuaLaT
+eX
+\l__fontspec_script_int=\count276
+\l__fontspec_language_int=\count277
+\l__fontspec_strnum_int=\count278
+\l__fontspec_tmp_int=\count279
+\l__fontspec_tmpa_int=\count280
+\l__fontspec_tmpb_int=\count281
+\l__fontspec_tmpc_int=\count282
+\l__fontspec_em_int=\count283
+\l__fontspec_emdef_int=\count284
+\l__fontspec_strong_int=\count285
+\l__fontspec_strongdef_int=\count286
+\l__fontspec_tmpa_dim=\dimen157
+\l__fontspec_tmpb_dim=\dimen158
+\l__fontspec_tmpc_dim=\dimen159
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/fontspec/fontspec.cfg))) (/usr/
+local/texlive/2023/texmf-dist/tex/latex/base/fix-cm.sty
+Package: fix-cm 2020/11/24 v1.1t fixes to LaTeX
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding TS1 on input line 47.
+))
+(/usr/local/texlive/2023/texmf-dist/tex/lualatex/lualatex-math/lualatex-math.st
+y
+Package: lualatex-math 2022/01/01 v1.12 Patches for mathematics typesetting wit
+h LuaLaTeX
+(/usr/local/texlive/2023/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count287
+)
+Lua module: lualatex-math 2013/08/03 1.3 Patches for mathematics typesetting wit
+h LuaLaTeX)
+\g__um_fam_int=\count288
+\g__um_fonts_used_int=\count289
+\l__um_primecount_int=\count290
+\g__um_primekern_muskip=\muskip17
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/unicode-math/unicode-math-table.t
+ex))) (/usr/local/texlive/2023/texmf-dist/tex/latex/lm/lmodern.sty
+Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lmm/m/it on input line 23.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lmsy/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 25.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 26.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/lmm/b/it on input line 27.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/lmsy/b/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 29.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 32.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/lmr/m/it on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 36.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/upquote/upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
+tim
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+)) (/usr/local/texlive/2023/texmf-dist/tex/latex/microtype/microtype.sty
+Package: microtype 2023/03/13 v3.1a Micro-typographical refinements (RS)
+\MT@toks=\toks24
+\MT@tempbox=\box54
+\MT@count=\count291
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1059.
+LaTeX Info: Redefining \leftprotrusion on input line 1060.
+\MT@prot@toks=\toks25
+LaTeX Info: Redefining \rightprotrusion on input line 1078.
+LaTeX Info: Redefining \textls on input line 1368.
+\MT@outer@kern=\dimen160
+LaTeX Info: Redefining \textmicrotypecontext on input line 1988.
+\MT@listname@count=\count292
+(/usr/local/texlive/2023/texmf-dist/tex/latex/microtype/microtype-luatex.def
+File: microtype-luatex.def 2023/03/13 v3.1a Definitions specific to luatex (RS)
+
+Lua module: microtype 2023/03/13 3.1a microtype module.
+Module microtype Info: overwriting function `keepligature' on input line 63
+LaTeX Info: Redefining \lsstyle on input line 688.
+LaTeX Info: Redefining \lslig on input line 688.
+\MT@outer@space=\skip53
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/microtype/microtype.cfg
+File: microtype.cfg 2023/03/13 v3.1a microtype main configuration file (RS)
+)) (/usr/local/texlive/2023/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2022/12/04 v6.7b set line spacing
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/parskip/parskip.sty
+Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
+(/usr/local/texlive/2023/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+))) (/usr/local/texlive/2023/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2024/01/20 4.5c verbatim text (tvz,hv)
+\FV@CodeLineNo=\count293
+\FV@InFile=\read2
+\FV@TabBox=\box55
+\c@FancyVerbLine=\count294
+\FV@StepNumber=\count295
+\FV@OutFile=\write3
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip54
+\fb@frw=\dimen161
+\fb@frh=\dimen162
+\FrameRule=\dimen163
+\FrameSep=\dimen164
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2023-11-01 v4.19 Multi-page Table package (DPC)
+\LTleft=\skip55
+\LTright=\skip56
+\LTpre=\skip57
+\LTpost=\skip58
+\LTchunksize=\count296
+\LTcapwidth=\dimen165
+\LT@head=\box56
+\LT@firsthead=\box57
+\LT@foot=\box58
+\LT@lastfoot=\box59
+\LT@gbox=\box60
+\LT@cols=\count297
+\LT@rows=\count298
+\c@LT@tables=\count299
+\c@LT@chunks=\count300
+\LT@p@ftn=\toks26
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen166
+\lightrulewidth=\dimen167
+\cmidrulewidth=\dimen168
+\belowrulesep=\dimen169
+\belowbottomsep=\dimen170
+\aboverulesep=\dimen171
+\abovetopsep=\dimen172
+\cmidrulesep=\dimen173
+\cmidrulekern=\dimen174
+\defaultaddspace=\dimen175
+\@cmidla=\count301
+\@cmidlb=\count302
+\@aboverulesep=\dimen176
+\@belowrulesep=\dimen177
+\@thisruleclass=\count303
+\@lastruleclass=\count304
+\@thisrulewidth=\dimen178
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/tools/array.sty
+Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
+\col@sep=\dimen179
+\ar@mcellbox=\box61
+\extrarowheight=\dimen180
+\NC@list=\toks27
+\extratabsurround=\skip59
+\backup@length=\skip60
+\ar@cellbox=\box62
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count305
+\calc@Bcount=\count306
+\calc@Adimen=\dimen181
+\calc@Bdimen=\dimen182
+\calc@Askip=\skip61
+\calc@Bskip=\skip62
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count307
+\calc@Cskip=\skip63
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/footnotehyper/footnotehyper.sty
+Package: footnotehyper 2021/08/13 v1.1e hyperref aware footnote.sty (JFB)
+\FNH@notes=\box63
+\FNH@width=\dimen183
+\FNH@toks=\toks28
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: luatex.def on input line 107.
+)
+\Gin@req@height=\dimen184
+\Gin@req@width=\dimen185
+)
+\pandoc@box=\box64
+(/usr/local/texlive/2023/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2024/01/07 v24.1 The Babel package
+(/usr/local/texlive/2023/texmf-dist/tex/generic/babel/luababel.def
+\bbl@readstream=\read3
+\l@dumylang=\language2
+Package babel Info: Non-standard hyphenation setup on input line 118.
+\l@nohyphenation=\language3
+\l@german-x-2023-03-06=\language4
+\l@ngerman-x-2023-03-06=\language5
+\l@afrikaans=\language6
+\l@ancientgreek=\language7
+\l@ibycus=\language8
+\l@arabic=\language9
+\l@armenian=\language10
+\l@basque=\language11
+\l@belarusian=\language12
+\l@bulgarian=\language13
+\l@catalan=\language14
+\l@pinyin=\language15
+\l@churchslavonic=\language16
+\l@coptic=\language17
+\l@croatian=\language18
+\l@czech=\language19
+\l@danish=\language20
+\l@dutch=\language21
+\l@ukenglish=\language22
+\l@usenglishmax=\language23
+\l@esperanto=\language24
+\l@estonian=\language25
+\l@ethiopic=\language26
+\l@farsi=\language27
+\l@finnish=\language28
+\l@schoolfinnish=\language29
+\l@french=\language30
+\l@friulan=\language31
+\l@galician=\language32
+\l@georgian=\language33
+\l@german=\language34
+\l@ngerman=\language35
+\l@swissgerman=\language36
+\l@greek=\language37
+\l@monogreek=\language38
+\l@hungarian=\language39
+\l@icelandic=\language40
+\l@assamese=\language41
+\l@bengali=\language42
+\l@gujarati=\language43
+\l@hindi=\language44
+\l@kannada=\language45
+\l@malayalam=\language46
+\l@marathi=\language47
+\l@oriya=\language48
+\l@pali=\language49
+\l@panjabi=\language50
+\l@tamil=\language51
+\l@telugu=\language52
+\l@indonesian=\language53
+\l@interlingua=\language54
+\l@irish=\language55
+\l@italian=\language56
+\l@kurmanji=\language57
+\l@classiclatin=\language58
+\l@latin=\language59
+\l@liturgicallatin=\language60
+\l@latvian=\language61
+\l@lithuanian=\language62
+\l@macedonian=\language63
+\l@mongolian=\language64
+\l@mongolianlmc=\language65
+\l@bokmal=\language66
+\l@nynorsk=\language67
+\l@occitan=\language68
+\l@piedmontese=\language69
+\l@polish=\language70
+\l@portuguese=\language71
+\l@romanian=\language72
+\l@romansh=\language73
+\l@russian=\language74
+\l@sanskrit=\language75
+\l@serbian=\language76
+\l@serbianc=\language77
+\l@slovak=\language78
+\l@slovenian=\language79
+\l@spanish=\language80
+\l@swedish=\language81
+\l@thai=\language82
+\l@turkish=\language83
+\l@turkmen=\language84
+\l@ukrainian=\language85
+\l@uppersorbian=\language86
+\l@welsh=\language87
+\babelcatcodetablenum=\catcodetable14
+\bbl@pattcodes=\catcodetable15
+)
+\babel@savecnt=\count308
+\U@D=\dimen186
+\l@unhyphenated=\language88
+(/usr/local/texlive/2023/texmf-dist/tex/generic/babel/luababel.def
+\bbl@attr@locale=\attribute4
+(/usr/local/texlive/2023/texmf-dist/tex/luatex/luatexbase/luatexbase.sty
+Package: luatexbase 2015/10/04 v1.3 luatexbase interface to LuaTeX 
+(/usr/local/texlive/2023/texmf-dist/tex/luatex/ctablestack/ctablestack.sty
+Package: ctablestack 2015/10/01 v1.0 Catcode table stable support
+\@catcodetablestackcnt=\count309
+)
+\CatcodeTableOther=\catcodetable16
+\CatcodeTableExpl=\catcodetable17
+)
+Removing  `luaotfload.node_processor' from `pre_linebreak_filter'.
+Inserting `Babel.pre_otfload_v' in `pre_linebreak_filter'.
+Inserting `luaotfload.node_processor' in `pre_linebreak_filter'.
+Removing  `luaotfload.node_processor' from `hpack_filter'.
+Removing  `luaotfload.harf.finalize_hlist' from `hpack_filter'.
+Inserting `Babel.pre_otfload_h' in `hpack_filter'.
+Inserting `luaotfload.node_processor' in `hpack_filter'.
+Inserting `luaotfload.harf.finalize_hlist' in `hpack_filter'.
+\bbl@attr@dir=\attribute5
+) (/usr/local/texlive/2023/texmf-dist/tex/generic/babel-spanish/spanish.ldf
+Language: spanish.ldf 2021/05/27 v5.0q Spanish support from the babel system
+\es@quottoks=\toks29
+\es@quotdepth=\count310
+Package babel Info: Making " an active character on input line 570.
+Package babel Info: Making . an active character on input line 675.
+Package babel Info: Making < an active character on input line 722.
+Package babel Info: Making > an active character on input line 722.
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-es.
+tex UTF-8 Spanish hyphenation patterns
+(/usr/local/texlive/2023/texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-es.
+tex))))
+(/usr/local/texlive/2023/texmf-dist/tex/generic/babel/locale/es/babel-spanish.t
+ex
+Package babel Info: Importing font and identification data for spanish
+(babel)             from babel-es.ini. Reported on input line 11.
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip64
+\bibsep=\skip65
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count311
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
+Package: tcolorbox 2024/01/10 version 6.2.0 text color boxes
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (/usr/loca
+l/texlive/2023/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
+x
+\pgfutil@everybye=\toks30
+\pgfutil@tempdima=\dimen187
+\pgfutil@tempdimb=\dimen188
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box65
+) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
+))
+Package: pgf 2023-01-15 v3.1.10 (3.1.10)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (/usr/
+local/texlive/2023/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks31
+\pgfkeys@temptoks=\toks32
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfil
+tered.code.tex
+\pgfkeys@tmptoks=\toks33
+))
+\pgf@x=\dimen189
+\pgf@y=\dimen190
+\pgf@xa=\dimen191
+\pgf@ya=\dimen192
+\pgf@xb=\dimen193
+\pgf@yb=\dimen194
+\pgf@xc=\dimen195
+\pgf@yc=\dimen196
+\pgf@xd=\dimen197
+\pgf@yd=\dimen198
+\w@pgf@writea=\write4
+\r@pgf@reada=\read4
+\c@pgf@counta=\count312
+\c@pgf@countb=\count313
+\c@pgf@countc=\count314
+\c@pgf@countd=\count315
+\t@pgf@toka=\toks34
+\t@pgf@tokb=\toks35
+\t@pgf@tokc=\toks36
+\pgf@sys@id@count=\count316
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
+)
+Driver file for pgf: pgfsys-luatex.def
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-luatex.d
+ef
+File: pgfsys-luatex.def 2023-01-15 v3.1.10 (3.1.10)
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
+df.def
+File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
+)))
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
+code.tex
+File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfsyssoftpath@smallbuffer@items=\count317
+\pgfsyssoftpath@bigbuffer@items=\count318
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
+code.tex
+File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (/usr
+/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen199
+\pgfmath@count=\count319
+\pgfmath@box=\box66
+\pgfmath@toks=\toks37
+\pgfmath@stack@operand=\toks38
+\pgfmath@stack@operation=\toks39
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
+tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
+.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
+nometric.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
+m.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
+rison.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
+code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
+.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
+code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
+erarithmetics.code.tex) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/mat
+h/pgfmathcalc.code.tex) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/mat
+h/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count320
+)) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
+de.tex
+File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@picminx=\dimen256
+\pgf@picmaxx=\dimen257
+\pgf@picminy=\dimen258
+\pgf@picmaxy=\dimen259
+\pgf@pathminx=\dimen260
+\pgf@pathmaxx=\dimen261
+\pgf@pathminy=\dimen262
+\pgf@pathmaxy=\dimen263
+\pgf@xx=\dimen264
+\pgf@xy=\dimen265
+\pgf@yx=\dimen266
+\pgf@yy=\dimen267
+\pgf@zx=\dimen268
+\pgf@zy=\dimen269
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
+ruct.code.tex
+File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@path@lastx=\dimen270
+\pgf@path@lasty=\dimen271
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
+.code.tex
+File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@shorten@end@additional=\dimen272
+\pgf@shorten@start@additional=\dimen273
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
+de.tex
+File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfpic=\box67
+\pgf@hbox=\box68
+\pgf@layerbox@main=\box69
+\pgf@picture@serial@count=\count321
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
+ate.code.tex
+File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgflinewidth=\dimen274
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
+ations.code.tex
+File: pgfcoretransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@pt@x=\dimen275
+\pgf@pt@y=\dimen276
+\pgf@pt@temp=\dimen277
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
+e.tex
+File: pgfcorequick.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.c
+ode.tex
+File: pgfcoreobjects.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathproce
+ssing.code.tex
+File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
+de.tex
+File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfarrowsep=\dimen278
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
+e.tex
+File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@max=\dimen279
+\pgf@sys@shading@range@num=\count322
+\pgf@shadingcount=\count323
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
+e.tex
+File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
+code.tex
+File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfexternal@startupbox=\box70
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
+de.tex
+File: pgfcorelayers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretranspare
+ncy.code.tex
+File: pgfcoretransparency.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.
+code.tex
+File: pgfcorepatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.
+tex
+File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)))
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
+e.tex
+File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfnodeparttextbox=\box71
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
+tex
+File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-0-65.sty
+Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
+\pgf@nodesepstart=\dimen280
+\pgf@nodesepend=\dimen281
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-1-18.sty
+Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
+)) (/usr/local/texlive/2023/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2023-11-06 v1.5v LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks40
+\verbatim@line=\toks41
+\verbatim@in@stream=\read5
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/environ/environ.sty
+Package: environ 2014/05/04 v0.3 A new way to define environments
+(/usr/local/texlive/2023/texmf-dist/tex/latex/trimspaces/trimspaces.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+))
+\tcb@titlebox=\box72
+\tcb@upperbox=\box73
+\tcb@lowerbox=\box74
+\tcb@phantombox=\box75
+\c@tcbbreakpart=\count324
+\c@tcblayer=\count325
+\c@tcolorbox@number=\count326
+\l__tcobox_tmpa_box=\box76
+\l__tcobox_tmpa_dim=\dimen282
+\tcb@temp=\box77
+\tcb@temp=\box78
+\tcb@temp=\box79
+\tcb@temp=\box80
+(/usr/local/texlive/2023/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
+Library (tcolorbox): 'tcbskins.code.tex' version '6.2.0'
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/usr/
+local/texlive/2023/texmf-dist/tex/latex/pgf/utilities/pgffor.sty (/usr/local/te
+xlive/2023/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty (/usr/local/texlive/2
+023/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)) (/usr/local/texlive
+/2023/texmf-dist/tex/latex/pgf/math/pgfmath.sty (/usr/local/texlive/2023/texmf-
+dist/tex/generic/pgf/math/pgfmath.code.tex)) (/usr/local/texlive/2023/texmf-dis
+t/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
+\pgffor@iter=\dimen283
+\pgffor@skip=\dimen284
+\pgffor@stack=\toks42
+\pgffor@toks=\toks43
+))
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
+e.tex
+Package: tikz 2023-01-15 v3.1.10 (3.1.10)
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
+dlers.code.tex
+File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@plot@mark@count=\count327
+\pgfplotmarksize=\dimen285
+)
+\tikz@lastx=\dimen286
+\tikz@lasty=\dimen287
+\tikz@lastxsaved=\dimen288
+\tikz@lastysaved=\dimen289
+\tikz@lastmovetox=\dimen290
+\tikz@lastmovetoy=\dimen291
+\tikzleveldistance=\dimen292
+\tikzsiblingdistance=\dimen293
+\tikz@figbox=\box81
+\tikz@figbox@bg=\box82
+\tikz@tempbox=\box83
+\tikz@tempbox@bg=\box84
+\tikztreelevel=\count328
+\tikznumberofchildren=\count329
+\tikznumberofcurrentchild=\count330
+\tikz@fig@count=\count331
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
+e.tex
+File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfmatrixcurrentrow=\count332
+\pgfmatrixcurrentcolumn=\count333
+\pgf@matrix@numberofcolumns=\count334
+)
+\tikz@expandcount=\count335
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))) (/usr/local/texlive/2023/texmf-dist/tex/latex/tikzfill/tikzfill.image.sty
+Package: tikzfill.image 2023/08/08 v1.0.1 Image filling library for TikZ
+(/usr/local/texlive/2023/texmf-dist/tex/latex/tikzfill/tikzfill-common.sty
+Package: tikzfill-common 2023/08/08 v1.0.1 Auxiliary code for tikzfill
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/tikzfill/tikzlibraryfill.image.co
+de.tex
+File: tikzlibraryfill.image.code.tex 2023/08/08 v1.0.1 Image filling library
+\l__tikzfill_img_box=\box85
+))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/tcolorbox/tcbskinsjigsaw.code.tex
+Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.2.0'
+)) (/usr/local/texlive/2023/texmf-dist/tex/latex/tcolorbox/tcbbreakable.code.te
+x
+Library (tcolorbox): 'tcbbreakable.code.tex' version '6.2.0'
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pdfcol/pdfcol.sty
+Package: pdfcol 2022-09-21 v1.7 Handle new color stacks for pdfTeX (HO)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+))
+Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
+\tcb@testbox=\box86
+\tcb@totalupperbox=\box87
+\tcb@totallowerbox=\box88
+(/usr/local/texlive/2023/texmf-dist/tex/generic/iftex/ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+))) (/usr/local/texlive/2023/texmf-dist/tex/latex/fontawesome5/fontawesome5.sty
+Package: fontawesome5 2022/05/02 v5.15.4 Font Awesome 5
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/fontawesome5/fontawesome5-utex-he
+lper.sty
+Package: fontawesome5-utex-helper 2022/05/02 v5.15.4 uTeX helper for fontawesom
+e5
+LaTeX Font Info:    Trying to load font information for TU+fontawesomefree on i
+nput line 69.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/fontawesome5/tufontawesomefree.fd
+)
+LaTeX Font Info:    Trying to load font information for TU+fontawesomebrands on
+ input line 70.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/fontawesome5/tufontawesomebrands.
+fd))) (/usr/local/texlive/2023/texmf-dist/tex/latex/bookmark/bookmark.sty
+Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2024-01-20 v7.01h Hypertext links for LaTeX
+(/usr/local/texlive/2023/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+) (/usr/local/texlive/2023/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+\pdftexcmds@toks=\toks44
+)) (/usr/local/texlive/2023/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2023-11-26 v2.56 Cross-referencing by name of section
+(/usr/local/texlive/2023/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/gettitlestring/gettitlestring.s
+ty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count336
+)
+\@linkdim=\dimen294
+\Hy@linkcounter=\count337
+\Hy@pagecounter=\count338
+(/usr/local/texlive/2023/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2024-01-20 v7.01h Hyperref: PDFDocEncoding definition (HO)
+) (/usr/local/texlive/2023/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count339
+(/usr/local/texlive/2023/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2024-01-20 v7.01h Hyperref: PDF Unicode definition (HO)
+)
+Package hyperref Info: Option `unicode' set `true' on input line 4062.
+Package hyperref Info: Hyper figures OFF on input line 4179.
+Package hyperref Info: Link nesting OFF on input line 4184.
+Package hyperref Info: Hyper index ON on input line 4187.
+Package hyperref Info: Plain pages OFF on input line 4194.
+Package hyperref Info: Backreferencing OFF on input line 4199.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4446.
+\c@Hy@tempcnt=\count340
+(/usr/local/texlive/2023/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip18
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4784.
+\XeTeXLinkMargin=\dimen295
+(/usr/local/texlive/2023/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count341
+\Field@Width=\dimen296
+\Fld@charsize=\dimen297
+Package hyperref Info: Hyper figures OFF on input line 6063.
+Package hyperref Info: Link nesting OFF on input line 6068.
+Package hyperref Info: Hyper index ON on input line 6071.
+Package hyperref Info: backreferencing OFF on input line 6078.
+Package hyperref Info: Link coloring OFF on input line 6083.
+Package hyperref Info: Link coloring with OCG OFF on input line 6088.
+Package hyperref Info: PDF/A mode OFF on input line 6093.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+)
+\Hy@abspage=\count342
+\c@Item=\count343
+\c@Hfootnote=\count344
+)
+Package hyperref Info: Driver (autodetected): hluatex.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/hyperref/hluatex.def
+File: hluatex.def 2024-01-20 v7.01h Hyperref driver for luaTeX
+(/usr/local/texlive/2023/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/base/atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
+kage
+with kernel methods
+)
+\Fld@listcount=\count345
+\c@bookmark@seq@number=\count346
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+85.
+)
+\Hy@SectionHShift=\skip66
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
+File: bkm-pdftex.def 2023-12-10 v1.31 bookmark driver for pdfTeX and luaTeX (HO
+)
+\BKM@id=\count347
+)) (/usr/local/texlive/2023/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen298
+\captionmargin=\dimen299
+\caption@leftmargin=\dimen300
+\caption@rightmargin=\dimen301
+\caption@width=\dimen302
+\caption@indent=\dimen303
+\caption@parindent=\dimen304
+\caption@hangindent=\dimen305
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count348
+\c@continuedfloat=\count349
+Package caption Info: hyperref package is loaded.
+Package caption Info: longtable package is loaded.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
+)) (/usr/local/texlive/2023/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count350
+\float@exts=\toks45
+\float@box=\box89
+\@float@everytoks=\toks46
+\@floatcapt=\box90
+)
+\@float@every@codelisting=\toks47
+\c@codelisting=\count351
+(/usr/local/texlive/2023/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
+Package caption Info: New subtype `subfigure' on input line 238.
+\c@subfigure=\count352
+Package caption Info: New subtype `subtable' on input line 238.
+\c@subtable=\count353
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/xurl/xurl.sty
+Package: xurl 2022/01/09 v 0.10 modify URL breaks
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 235.
+No file index.aux.
+
+\openout1 = index.aux
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 248.
+LaTeX Font Info:    ... okay on input line 248.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 248.
+LaTeX Font Info:    ... okay on input line 248.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 248.
+LaTeX Font Info:    ... okay on input line 248.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 248.
+LaTeX Font Info:    ... okay on input line 248.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 248.
+LaTeX Font Info:    ... okay on input line 248.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 248.
+LaTeX Font Info:    ... okay on input line 248.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 248.
+LaTeX Font Info:    ... okay on input line 248.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 248.
+LaTeX Font Info:    ... okay on input line 248.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 248.
+LaTeX Font Info:    ... okay on input line 248.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 248.
+LaTeX Font Info:    ... okay on input line 248.
+(/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count354
+\scratchdimen=\dimen306
+\scratchbox=\box91
+\nofMPsegments=\count355
+\nofMParguments=\count356
+\everyMPshowfont=\toks48
+\MPscratchCnt=\count357
+\MPscratchDim=\dimen307
+\MPnumerator=\count358
+\makeMPintoPDFobject=\count359
+\everyMPtoPDFconversion=\toks49
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+*geometry* driver: auto-detecting
+*geometry* detected driver: luatex
+*geometry* verbose mode - [ preamble ] result:
+* driver: luatex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=469.75502pt
+* \textheight=650.43001pt
+* \oddsidemargin=0.0pt
+* \evensidemargin=0.0pt
+* \topmargin=-31.8738pt
+* \headheight=12.0pt
+* \headsep=19.8738pt
+* \topskip=11.0pt
+* \footskip=27.46295pt
+* \marginparwidth=62.0pt
+* \marginparsep=7.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
+(Font)                  OT1/lmr/m/n --> TU/lmr/m/n on input line 248.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/lmr/m/it --> TU/lmr/m/it on input line 248.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/lmr/bx/n --> TU/lmr/bx/n on input line 248.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 248.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/lmss/bx/n --> TU/lmss/bx/n on input line 248.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 248.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/bx/n on input line 248.
+
+Package fontspec Info: latinmodern-math scale = 0.9999967668407183.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999967668407183.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999967668407183.
+
+
+Package fontspec Info: Font family 'latinmodern-math.otf(0)' created for font
+(fontspec)             'latinmodern-math.otf' with options
+(fontspec)             [Scale=MatchLowercase,Renderer=Basic,BoldItalicFont={},I
+talicFont={},SmallCapsFont={},Script=Math,RawFeature={mathfontdimen=xetex},Bold
+Font={latinmodern-math.otf}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->s*[0.9999967668407183]"[latinmodern-math.otf]:mode=ba
+se;script=math;language=dflt;mathfontdimen=xetex;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[0.9999967668407183]"[latinmodern-math.otf]:mode=ba
+se;script=math;language=dflt;mathfontdimen=xetex;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
+
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(0)/m/n' will be
+(Font)              scaled to size 10.95pt on input line 248.
+
+Package fontspec Info: latinmodern-math scale = 0.9999967668407183.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999967668407183.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999967668407183.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999967668407183.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999967668407183.
+
+
+Package fontspec Info: Font family 'latinmodern-math.otf(1)' created for font
+(fontspec)             'latinmodern-math.otf' with options
+(fontspec)             [Scale=MatchLowercase,Renderer=Basic,BoldItalicFont={},I
+talicFont={},SmallCapsFont={},Script=Math,SizeFeatures={{Size=9.3075-},{Size=6.
+57-9.3075,Font=latinmodern-math.otf,Style=MathScript},{Size=-6.57,Font=latinmod
+ern-math.otf,Style=MathScriptScript}},RawFeature={mathfontdimen=xetex},BoldFont
+={latinmodern-math.otf}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <9.3075->s*[0.9999967668407183]"[latinmodern-math.otf]:m
+ode=base;script=math;language=dflt;mathfontdimen=xetex;"<6.57-9.3075>s*[0.99999
+67668407183]"[latinmodern-math.otf]:mode=base;script=math;language=dflt;mathfon
+tdimen=xetex;+ssty=0;"<-6.57>s*[0.9999967668407183]"[latinmodern-math.otf]:mode
+=base;script=math;language=dflt;mathfontdimen=xetex;+ssty=1;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[0.9999967668407183]"[latinmodern-math.otf]:mode=ba
+se;script=math;language=dflt;mathfontdimen=xetex;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
+
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 10.95pt on input line 248.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `normal' on input line 248.
+
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input
+ line 248.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `bold' on input line 248.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on inpu
+t line 248.
+
+Package fontspec Info: latinmodern-math scale = 0.9999967668407183.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999967668407183.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999967668407183.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999967668407183.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999967668407183.
+
+
+Package fontspec Info: Font family 'latinmodern-math.otf(2)' created for font
+(fontspec)             'latinmodern-math.otf' with options
+(fontspec)             [Scale=MatchLowercase,Renderer=Basic,BoldItalicFont={},I
+talicFont={},SmallCapsFont={},Script=Math,SizeFeatures={{Size=9.3075-},{Size=6.
+57-9.3075,Font=latinmodern-math.otf,Style=MathScript},{Size=-6.57,Font=latinmod
+ern-math.otf,Style=MathScriptScript}},RawFeature={mathfontdimen=xetex},BoldFont
+={latinmodern-math.otf},RawFeature={mathfontdimen=tex2}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <9.3075->s*[0.9999967668407183]"[latinmodern-math.otf]:m
+ode=base;script=math;language=dflt;mathfontdimen=xetex;mathfontdimen=tex2;"<6.5
+7-9.3075>s*[0.9999967668407183]"[latinmodern-math.otf]:mode=base;script=math;la
+nguage=dflt;mathfontdimen=xetex;mathfontdimen=tex2;+ssty=0;"<-6.57>s*[0.9999967
+668407183]"[latinmodern-math.otf]:mode=base;script=math;language=dflt;mathfontd
+imen=xetex;mathfontdimen=tex2;+ssty=1;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[0.9999967668407183]"[latinmodern-math.otf]:mode=ba
+se;script=math;language=dflt;mathfontdimen=xetex;mathfontdimen=tex2;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
+
+LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
+(Font)              `symbols' in the math version `normal' on input line 248.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on inpu
+t line 248.
+LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
+(Font)              `symbols' in the math version `bold' on input line 248.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on inpu
+t line 248.
+
+Package fontspec Info: latinmodern-math scale = 0.9999967668407183.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999967668407183.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999967668407183.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999967668407183.
+
+
+Package fontspec Info: latinmodern-math scale = 0.9999967668407183.
+
+
+Package fontspec Info: Font family 'latinmodern-math.otf(3)' created for font
+(fontspec)             'latinmodern-math.otf' with options
+(fontspec)             [Scale=MatchLowercase,Renderer=Basic,BoldItalicFont={},I
+talicFont={},SmallCapsFont={},Script=Math,SizeFeatures={{Size=9.3075-},{Size=6.
+57-9.3075,Font=latinmodern-math.otf,Style=MathScript},{Size=-6.57,Font=latinmod
+ern-math.otf,Style=MathScriptScript}},RawFeature={mathfontdimen=xetex},BoldFont
+={latinmodern-math.otf},RawFeature={mathfontdimen=tex3}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <9.3075->s*[0.9999967668407183]"[latinmodern-math.otf]:m
+ode=base;script=math;language=dflt;mathfontdimen=xetex;mathfontdimen=tex3;"<6.5
+7-9.3075>s*[0.9999967668407183]"[latinmodern-math.otf]:mode=base;script=math;la
+nguage=dflt;mathfontdimen=xetex;mathfontdimen=tex3;+ssty=0;"<-6.57>s*[0.9999967
+668407183]"[latinmodern-math.otf]:mode=base;script=math;language=dflt;mathfontd
+imen=xetex;mathfontdimen=tex3;+ssty=1;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[0.9999967668407183]"[latinmodern-math.otf]:mode=ba
+se;script=math;language=dflt;mathfontdimen=xetex;mathfontdimen=tex3;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
+
+LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
+(Font)              `largesymbols' in the math version `normal' on input line 2
+48.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on inpu
+t line 248.
+LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
+(Font)              `largesymbols' in the math version `bold' on input line 248
+.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on inpu
+t line 248.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 7.665pt on input line 248.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 5.475pt on input line 248.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
+48.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 10.95pt on input line 248.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 7.665pt on input line 248.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 5.475pt on input line 248.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 10.95pt on input line 248.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 7.665pt on input line 248.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 5.475pt on input line 248.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 248
+.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 248
+.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Info: Redefining \microtypecontext on input line 248.
+Package microtype Info: Applying patch `item' on input line 248.
+Package microtype Info: Applying patch `toc' on input line 248.
+Package microtype Info: Applying patch `eqnum' on input line 248.
+Package microtype Info: Applying patch `footnote' on input line 248.
+Package microtype Info: Applying patch `verbatim' on input line 248.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using protrusion set `basicmath'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+LaTeX Info: Redefining \showhyphens on input line 248.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of spacing.
+Package microtype Info: No adjustment of kerning.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/microtype/mt-LatinModernRoman.cfg
+File: mt-LatinModernRoman.cfg 2021/02/21 v1.1 microtype config. file: Latin Mod
+ern Roman (RS)
+)
+LaTeX Info: Redefining \. on input line 248.
+LaTeX Info: Redefining \% on input line 248.
+Removing  `Babel.pre_otfload_h' from `hpack_filter'.
+Removing  `luaotfload.node_processor' from `hpack_filter'.
+Removing  `luaotfload.harf.finalize_hlist' from `hpack_filter'.
+Inserting `Babel.math_box_dir' in `hpack_filter'.
+Inserting `Babel.pre_otfload_h' in `hpack_filter'.
+Inserting `luaotfload.node_processor' in `hpack_filter'.
+Inserting `luaotfload.harf.finalize_hlist' in `hpack_filter'.
+Package hyperref Info: Link coloring ON on input line 248.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 12.0pt on input line 251.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 8.0pt on input line 251.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 6.0pt on input line 251.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 12.0pt on input line 251.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 8.0pt on input line 251.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 6.0pt on input line 251.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 12.0pt on input line 251.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 8.0pt on input line 251.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 6.0pt on input line 251.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+) [1
+
+
+
+{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+No file index.toc.
+\tf@toc=\write5
+
+\openout5 = index.toc
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.I'
+[1
+
+] [1
+
+
+]
+LaTeX Info: Redefining \. on input line 398.
+LaTeX Info: Redefining \% on input line 398.
+[2]
+LaTeX Info: Redefining \. on input line 483.
+LaTeX Info: Redefining \% on input line 483.
+[3
+Missing character: There is no ≥ (U+2265) in font [lmroman10-regular]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 494.
+LaTeX Info: Redefining \% on input line 494.
+[4] [5
+
+]
+Capítulo 1.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/microtype/mt-TU-empty.cfg
+File: mt-TU-empty.cfg 2021/06/22 v1.1 microtype config. file: fonts with nonsta
+ndard glyph set (RS)
+) [6
+
+]
+LaTeX Info: Redefining \. on input line 633.
+LaTeX Info: Redefining \% on input line 633.
+[7]
+LaTeX Info: Redefining \. on input line 714.
+LaTeX Info: Redefining \% on input line 714.
+[8]
+LaTeX Info: Redefining \. on input line 772.
+LaTeX Info: Redefining \% on input line 772.
+[9]
+LaTeX Info: Redefining \. on input line 841.
+LaTeX Info: Redefining \% on input line 841.
+[10]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 1.3 on input line 866.
+
+Package hyperref Info: bookmark level for unknown codelisting defaults to 0 on 
+input line 874.
+LaTeX Info: Redefining \. on input line 919.
+LaTeX Info: Redefining \% on input line 919.
+[11]
+
+LaTeX Warning: Reference `sec-bio-descriptivo' on page 12 undefined on input li
+ne 925.
+
+LaTeX Info: Redefining \. on input line 968.
+LaTeX Info: Redefining \% on input line 968.
+[12]
+<chapters/semana01_files/figure-pdf/fig-semana01-ecdf-step-1.pdf, id=132, 364.3
+6125pt x 213.79875pt>
+File: chapters/semana01_files/figure-pdf/fig-semana01-ecdf-step-1.pdf Graphic f
+ile (type pdf)
+<use chapters/semana01_files/figure-pdf/fig-semana01-ecdf-step-1.pdf>
+Package luatex.def Info: chapters/semana01_files/figure-pdf/fig-semana01-ecdf-s
+tep-1.pdf  used on input line 1002.
+(luatex.def)             Requested size: 364.36035pt x 213.79822pt.
+LaTeX Info: Redefining \. on input line 1011.
+LaTeX Info: Redefining \% on input line 1011.
+[13]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 1.4 on input line 1041.
+
+<chapters/semana01_files/figure-pdf/fig-semana01-ecdf-interp-1.pdf, id=140, 365
+.365pt x 212.795pt>
+File: chapters/semana01_files/figure-pdf/fig-semana01-ecdf-interp-1.pdf Graphic
+ file (type pdf)
+<use chapters/semana01_files/figure-pdf/fig-semana01-ecdf-interp-1.pdf>
+Package luatex.def Info: chapters/semana01_files/figure-pdf/fig-semana01-ecdf-i
+nterp-1.pdf  used on input line 1079.
+(luatex.def)             Requested size: 365.3641pt x 212.79446pt.
+LaTeX Info: Redefining \. on input line 1088.
+LaTeX Info: Redefining \% on input line 1088.
+[14<./chapters/semana01_files/figure-pdf/fig-semana01-ecdf-step-1.pdf>]
+LaTeX Info: Redefining \. on input line 1098.
+LaTeX Info: Redefining \% on input line 1098.
+[15<./chapters/semana01_files/figure-pdf/fig-semana01-ecdf-interp-1.pdf>]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 1.5 on input line 1149.
+
+<chapters/semana01_files/figure-pdf/unnamed-chunk-3-1.pdf, id=167, 358.33875pt 
+x 215.80624pt>
+File: chapters/semana01_files/figure-pdf/unnamed-chunk-3-1.pdf Graphic file (ty
+pe pdf)
+<use chapters/semana01_files/figure-pdf/unnamed-chunk-3-1.pdf>
+Package luatex.def Info: chapters/semana01_files/figure-pdf/unnamed-chunk-3-1.p
+df  used on input line 1182.
+(luatex.def)             Requested size: 358.33788pt x 215.80571pt.
+LaTeX Info: Redefining \. on input line 1184.
+LaTeX Info: Redefining \% on input line 1184.
+[16]
+<chapters/semana01_files/figure-pdf/unnamed-chunk-4-1.pdf, id=175, 379.4175pt x
+ 213.79875pt>
+File: chapters/semana01_files/figure-pdf/unnamed-chunk-4-1.pdf Graphic file (ty
+pe pdf)
+<use chapters/semana01_files/figure-pdf/unnamed-chunk-4-1.pdf>
+Package luatex.def Info: chapters/semana01_files/figure-pdf/unnamed-chunk-4-1.p
+df  used on input line 1229.
+(luatex.def)             Requested size: 379.41656pt x 213.79822pt.
+LaTeX Info: Redefining \. on input line 1248.
+LaTeX Info: Redefining \% on input line 1248.
+[17<./chapters/semana01_files/figure-pdf/unnamed-chunk-3-1.pdf>]
+
+Package tcolorbox Warning: Using nobreak failed. Try to enlarge `lines before b
+reak' or set page breaks manually on input line 1248.
+
+LaTeX Info: Redefining \. on input line 1248.
+LaTeX Info: Redefining \% on input line 1248.
+[18<./chapters/semana01_files/figure-pdf/unnamed-chunk-4-1.pdf>]
+LaTeX Info: Redefining \. on input line 1336.
+LaTeX Info: Redefining \% on input line 1336.
+[19]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 1.6 on input line 1391.
+
+LaTeX Info: Redefining \. on input line 1423.
+LaTeX Info: Redefining \% on input line 1423.
+[20]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 1.7 on input line 1457.
+
+LaTeX Info: Redefining \. on input line 1467.
+LaTeX Info: Redefining \% on input line 1467.
+[21]
+<chapters/semana01_files/figure-pdf/fig-semana01-skewness-1.pdf, id=226, 373.39
+5pt x 229.85875pt>
+File: chapters/semana01_files/figure-pdf/fig-semana01-skewness-1.pdf Graphic fi
+le (type pdf)
+<use chapters/semana01_files/figure-pdf/fig-semana01-skewness-1.pdf>
+Package luatex.def Info: chapters/semana01_files/figure-pdf/fig-semana01-skewne
+ss-1.pdf  used on input line 1537.
+(luatex.def)             Requested size: 373.39409pt x 229.85817pt.
+LaTeX Info: Redefining \. on input line 1544.
+LaTeX Info: Redefining \% on input line 1544.
+[22]
+LaTeX Info: Redefining \. on input line 1574.
+LaTeX Info: Redefining \% on input line 1574.
+[23<./chapters/semana01_files/figure-pdf/fig-semana01-skewness-1.pdf>]
+LaTeX Info: Redefining \. on input line 1655.
+LaTeX Info: Redefining \% on input line 1655.
+[24]
+<chapters/semana01_files/figure-pdf/unnamed-chunk-9-1.pdf, id=260, 374.39874pt 
+x 240.9pt>
+File: chapters/semana01_files/figure-pdf/unnamed-chunk-9-1.pdf Graphic file (ty
+pe pdf)
+<use chapters/semana01_files/figure-pdf/unnamed-chunk-9-1.pdf>
+Package luatex.def Info: chapters/semana01_files/figure-pdf/unnamed-chunk-9-1.p
+df  used on input line 1781.
+(luatex.def)             Requested size: 374.39783pt x 240.8994pt.
+LaTeX Info: Redefining \. on input line 1783.
+LaTeX Info: Redefining \% on input line 1783.
+[25]
+LaTeX Info: Redefining \. on input line 1793.
+LaTeX Info: Redefining \% on input line 1793.
+[26<./chapters/semana01_files/figure-pdf/unnamed-chunk-9-1.pdf>]
+LaTeX Info: Redefining \. on input line 1881.
+LaTeX Info: Redefining \% on input line 1881.
+[27]
+LaTeX Info: Redefining \. on input line 1979.
+LaTeX Info: Redefining \% on input line 1979.
+[28]
+LaTeX Info: Redefining \. on input line 2093.
+LaTeX Info: Redefining \% on input line 2093.
+[29]
+LaTeX Info: Redefining \. on input line 2121.
+LaTeX Info: Redefining \% on input line 2121.
+[30]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 1.11 on input line 2146.
+
+LaTeX Info: Redefining \. on input line 2170.
+LaTeX Info: Redefining \% on input line 2170.
+[31
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₅ (U+2085) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₂ (U+2082) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₅ (U+2085) in font [lmroman10-regular]:+tlig;!
+]
+Capítulo 2.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<chapters/semana02_files/figure-pdf/unnamed-chunk-1-1.pdf, id=338, 381.425pt x 
+242.9075pt>
+File: chapters/semana02_files/figure-pdf/unnamed-chunk-1-1.pdf Graphic file (ty
+pe pdf)
+<use chapters/semana02_files/figure-pdf/unnamed-chunk-1-1.pdf>
+Package luatex.def Info: chapters/semana02_files/figure-pdf/unnamed-chunk-1-1.p
+df  used on input line 2237.
+(luatex.def)             Requested size: 381.42406pt x 242.90689pt.
+[32
+
+]
+LaTeX Info: Redefining \. on input line 2271.
+LaTeX Info: Redefining \% on input line 2271.
+[33<./chapters/semana02_files/figure-pdf/unnamed-chunk-1-1.pdf>]
+LaTeX Info: Redefining \. on input line 2331.
+LaTeX Info: Redefining \% on input line 2331.
+[34]
+
+LaTeX Warning: Reference `sec-bio-descriptivo' on page 35 undefined on input li
+ne 2348.
+
+LaTeX Info: Redefining \. on input line 2384.
+LaTeX Info: Redefining \% on input line 2384.
+[35]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+LaTeX Info: Redefining \. on input line 2499.
+LaTeX Info: Redefining \% on input line 2499.
+[36]
+LaTeX Info: Redefining \. on input line 2560.
+LaTeX Info: Redefining \% on input line 2560.
+[37]
+LaTeX Info: Redefining \. on input line 2618.
+LaTeX Info: Redefining \% on input line 2618.
+[38]
+LaTeX Info: Redefining \. on input line 2666.
+LaTeX Info: Redefining \% on input line 2666.
+[39]
+LaTeX Info: Redefining \. on input line 2668.
+LaTeX Info: Redefining \% on input line 2668.
+[40
+Missing character: There is no ≈ (U+2248) in font [lmmono10-regular]:!
+]
+Capítulo 3.
+[41
+
+]
+<chapters/semana02_files/figure-pdf/unnamed-chunk-6-1.pdf, id=412, 353.32pt x 2
+11.79124pt>
+File: chapters/semana02_files/figure-pdf/unnamed-chunk-6-1.pdf Graphic file (ty
+pe pdf)
+<use chapters/semana02_files/figure-pdf/unnamed-chunk-6-1.pdf>
+Package luatex.def Info: chapters/semana02_files/figure-pdf/unnamed-chunk-6-1.p
+df  used on input line 2794.
+(luatex.def)             Requested size: 353.31914pt x 211.79073pt.
+LaTeX Info: Redefining \. on input line 2796.
+LaTeX Info: Redefining \% on input line 2796.
+[42
+Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
+Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
+Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
+]
+LaTeX Info: Redefining \. on input line 2860.
+LaTeX Info: Redefining \% on input line 2860.
+[43<./chapters/semana02_files/figure-pdf/unnamed-chunk-6-1.pdf>]
+<chapters/semana02_files/figure-pdf/unnamed-chunk-7-1.pdf, id=445, 364.36125pt 
+x 185.69376pt>
+File: chapters/semana02_files/figure-pdf/unnamed-chunk-7-1.pdf Graphic file (ty
+pe pdf)
+<use chapters/semana02_files/figure-pdf/unnamed-chunk-7-1.pdf>
+Package luatex.def Info: chapters/semana02_files/figure-pdf/unnamed-chunk-7-1.p
+df  used on input line 2890.
+(luatex.def)             Requested size: 364.36035pt x 185.6933pt.
+LaTeX Info: Redefining \. on input line 2938.
+LaTeX Info: Redefining \% on input line 2938.
+[44<./chapters/semana02_files/figure-pdf/unnamed-chunk-7-1.pdf>]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 3.1 on input line 2989.
+
+LaTeX Info: Redefining \. on input line 3228.
+LaTeX Info: Redefining \% on input line 3228.
+[45]
+LaTeX Info: Redefining \. on input line 3228.
+LaTeX Info: Redefining \% on input line 3228.
+[46]
+LaTeX Info: Redefining \. on input line 3228.
+LaTeX Info: Redefining \% on input line 3228.
+[47]
+LaTeX Info: Redefining \. on input line 3228.
+LaTeX Info: Redefining \% on input line 3228.
+[48]
+LaTeX Info: Redefining \. on input line 3228.
+LaTeX Info: Redefining \% on input line 3228.
+[49]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 3.2 on input line 3245.
+
+LaTeX Info: Redefining \. on input line 3349.
+LaTeX Info: Redefining \% on input line 3349.
+[50]
+LaTeX Info: Redefining \. on input line 3358.
+LaTeX Info: Redefining \% on input line 3358.
+[51]
+<chapters/semana02_files/figure-pdf/unnamed-chunk-10-1.pdf, id=509, 364.36125pt
+ x 212.795pt>
+File: chapters/semana02_files/figure-pdf/unnamed-chunk-10-1.pdf Graphic file (t
+ype pdf)
+<use chapters/semana02_files/figure-pdf/unnamed-chunk-10-1.pdf>
+Package luatex.def Info: chapters/semana02_files/figure-pdf/unnamed-chunk-10-1.
+pdf  used on input line 3433.
+(luatex.def)             Requested size: 364.36035pt x 212.79446pt.
+LaTeX Info: Redefining \. on input line 3435.
+LaTeX Info: Redefining \% on input line 3435.
+[52]
+<chapters/semana02_files/figure-pdf/fig-semana02-cor-limit-1.pdf, id=519, 385.4
+4pt x 240.9pt>
+File: chapters/semana02_files/figure-pdf/fig-semana02-cor-limit-1.pdf Graphic f
+ile (type pdf)
+<use chapters/semana02_files/figure-pdf/fig-semana02-cor-limit-1.pdf>
+Package luatex.def Info: chapters/semana02_files/figure-pdf/fig-semana02-cor-li
+mit-1.pdf  used on input line 3449.
+(luatex.def)             Requested size: 385.43906pt x 240.8994pt.
+LaTeX Info: Redefining \. on input line 3462.
+LaTeX Info: Redefining \% on input line 3462.
+[53<./chapters/semana02_files/figure-pdf/unnamed-chunk-10-1.pdf><./chapters/sema
+na02_files/figure-pdf/fig-semana02-cor-limit-1.pdf>]
+<chapters/semana02_files/figure-pdf/unnamed-chunk-11-1.pdf, id=539, 364.36125pt
+ x 213.79875pt>
+File: chapters/semana02_files/figure-pdf/unnamed-chunk-11-1.pdf Graphic file (t
+ype pdf)
+<use chapters/semana02_files/figure-pdf/unnamed-chunk-11-1.pdf>
+Package luatex.def Info: chapters/semana02_files/figure-pdf/unnamed-chunk-11-1.
+pdf  used on input line 3512.
+(luatex.def)             Requested size: 364.36035pt x 213.79822pt.
+LaTeX Info: Redefining \. on input line 3514.
+LaTeX Info: Redefining \% on input line 3514.
+[54]
+<chapters/semana02_files/figure-pdf/unnamed-chunk-12-1.pdf, id=545, 347.2975pt 
+x 211.79124pt>
+File: chapters/semana02_files/figure-pdf/unnamed-chunk-12-1.pdf Graphic file (t
+ype pdf)
+<use chapters/semana02_files/figure-pdf/unnamed-chunk-12-1.pdf>
+Package luatex.def Info: chapters/semana02_files/figure-pdf/unnamed-chunk-12-1.
+pdf  used on input line 3570.
+(luatex.def)             Requested size: 347.29665pt x 211.79073pt.
+LaTeX Info: Redefining \. on input line 3597.
+LaTeX Info: Redefining \% on input line 3597.
+[55<./chapters/semana02_files/figure-pdf/unnamed-chunk-11-1.pdf>]
+LaTeX Info: Redefining \. on input line 3597.
+LaTeX Info: Redefining \% on input line 3597.
+[56<./chapters/semana02_files/figure-pdf/unnamed-chunk-12-1.pdf>]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<chapters/semana02_files/figure-pdf/unnamed-chunk-13-1.pdf, id=574, 364.36125pt
+ x 221.82875pt>
+File: chapters/semana02_files/figure-pdf/unnamed-chunk-13-1.pdf Graphic file (t
+ype pdf)
+<use chapters/semana02_files/figure-pdf/unnamed-chunk-13-1.pdf>
+Package luatex.def Info: chapters/semana02_files/figure-pdf/unnamed-chunk-13-1.
+pdf  used on input line 3675.
+(luatex.def)             Requested size: 364.36035pt x 221.82819pt.
+LaTeX Info: Redefining \. on input line 3677.
+LaTeX Info: Redefining \% on input line 3677.
+[57]
+LaTeX Info: Redefining \. on input line 3694.
+LaTeX Info: Redefining \% on input line 3694.
+[58
+Missing character: There is no ≤ (U+2264) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≤ (U+2264) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≤ (U+2264) in font [lmroman10-regular]:+tlig;!
+<./chapters/semana02_files/figure-pdf/unnamed-chunk-13-1.pdf>]
+LaTeX Info: Redefining \. on input line 3799.
+LaTeX Info: Redefining \% on input line 3799.
+[59]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 3.5 on input line 3837.
+
+LaTeX Info: Redefining \. on input line 3886.
+LaTeX Info: Redefining \% on input line 3886.
+[60
+Missing character: There is no ₂ (U+2082) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₂ (U+2082) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₂ (U+2082) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₂ (U+2082) in font [lmroman10-regular]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 3951.
+LaTeX Info: Redefining \% on input line 3951.
+[61
+Missing character: There is no ₃ (U+2083) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₃ (U+2083) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₂ (U+2082) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₂ (U+2082) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₂ (U+2082) in font [lmroman10-regular]:+tlig;!
+]
+Overfull \hbox (22.34007pt too wide) in paragraph at lines 3971--3981
+\TU/lmtt/m/n/10.95 sd(presion_sistolica) \TU/lmr/m/n/10.95 y \TU/lmtt/m/n/10.95
+ cov(edad, presion_sistolica)\TU/lmr/m/n/10.95 . b) Usa \TU/lmtt/m/n/10.95 cor(e
+dad, presion_sistolica)\TU/lmr/m/n/10.95 .
+ []
+
+
+Overfull \hbox (25.25652pt too wide) in paragraph at lines 3971--3981
+\TU/lmr/m/n/10.95 c) \TU/lmtt/m/n/10.95 plot(edad, presion_sistolica); abline(lm
+(presion_sistolica ~ edad))\TU/lmr/m/n/10.95 . d) \TU/lmtt/m/n/10.95 boxplot(eda
+d);
+ []
+
+
+Overfull \hbox (42.27654pt too wide) in paragraph at lines 3971--3981
+\TU/lmtt/m/n/10.95 boxplot(presion_sistolica)\TU/lmr/m/n/10.95 . e) \TU/lmtt/m/
+n/10.95 z_edad <- scale(edad); z_presion <- scale(presion_sistolica)\TU/lmr/m/n
+/10.95 .
+ []
+
+LaTeX Info: Redefining \. on input line 4001.
+LaTeX Info: Redefining \% on input line 4001.
+[62] [63
+
+]
+Capítulo 4.
+[64
+
+]
+LaTeX Info: Redefining \. on input line 4126.
+LaTeX Info: Redefining \% on input line 4126.
+[65]
+LaTeX Info: Redefining \. on input line 4196.
+LaTeX Info: Redefining \% on input line 4196.
+[66]
+LaTeX Info: Redefining \. on input line 4260.
+LaTeX Info: Redefining \% on input line 4260.
+[67]
+LaTeX Info: Redefining \. on input line 4375.
+LaTeX Info: Redefining \% on input line 4375.
+[68]
+LaTeX Info: Redefining \. on input line 4408.
+LaTeX Info: Redefining \% on input line 4408.
+[69
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 4468.
+LaTeX Info: Redefining \% on input line 4468.
+[70]
+LaTeX Info: Redefining \. on input line 4525.
+LaTeX Info: Redefining \% on input line 4525.
+[71]
+LaTeX Info: Redefining \. on input line 4578.
+LaTeX Info: Redefining \% on input line 4578.
+[72]
+LaTeX Info: Redefining \. on input line 4630.
+LaTeX Info: Redefining \% on input line 4630.
+[73]
+LaTeX Info: Redefining \. on input line 4682.
+LaTeX Info: Redefining \% on input line 4682.
+[74]
+LaTeX Info: Redefining \. on input line 4731.
+LaTeX Info: Redefining \% on input line 4731.
+[75]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+LaTeX Info: Redefining \. on input line 4894.
+LaTeX Info: Redefining \% on input line 4894.
+[76
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 4941.
+LaTeX Info: Redefining \% on input line 4941.
+[77]
+LaTeX Info: Redefining \. on input line 4982.
+LaTeX Info: Redefining \% on input line 4982.
+[78]
+LaTeX Info: Redefining \. on input line 5075.
+LaTeX Info: Redefining \% on input line 5075.
+[79
+Missing character: There is no ∪ (U+222A) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ∩ (U+2229) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 5118.
+LaTeX Info: Redefining \% on input line 5118.
+[80
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+]
+Capítulo 5.
+[81
+
+]
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 5185.
+LaTeX Info: Redefining \. on input line 5209.
+LaTeX Info: Redefining \% on input line 5209.
+
+Overfull \hbox (43.53702pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 82
+ []
+
+[82]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.1 on input line 5375.
+
+LaTeX Info: Redefining \. on input line 5377.
+LaTeX Info: Redefining \% on input line 5377.
+
+Overfull \hbox (43.53702pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 83
+ []
+
+[83]
+LaTeX Info: Redefining \. on input line 5402.
+LaTeX Info: Redefining \% on input line 5402.
+
+Overfull \hbox (43.53702pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 84
+ []
+
+[84]
+LaTeX Info: Redefining \. on input line 5463.
+LaTeX Info: Redefining \% on input line 5463.
+
+Overfull \hbox (43.53702pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 85
+ []
+
+[85]
+LaTeX Info: Redefining \. on input line 5489.
+LaTeX Info: Redefining \% on input line 5489.
+
+Overfull \hbox (43.53702pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 86
+ []
+
+[86]
+LaTeX Info: Redefining \. on input line 5539.
+LaTeX Info: Redefining \% on input line 5539.
+
+Overfull \hbox (43.53702pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 87
+ []
+
+[87]
+LaTeX Info: Redefining \. on input line 5611.
+LaTeX Info: Redefining \% on input line 5611.
+
+Overfull \hbox (43.53702pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 88
+ []
+
+[88]
+LaTeX Info: Redefining \. on input line 5661.
+LaTeX Info: Redefining \% on input line 5661.
+
+Overfull \hbox (43.53702pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 89
+ []
+
+[89]
+<chapters/semana04_files/figure-pdf/unnamed-chunk-3-1.pdf, id=864, 352.31625pt 
+x 210.7875pt>
+File: chapters/semana04_files/figure-pdf/unnamed-chunk-3-1.pdf Graphic file (ty
+pe pdf)
+<use chapters/semana04_files/figure-pdf/unnamed-chunk-3-1.pdf>
+Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-3-1.p
+df  used on input line 5734.
+(luatex.def)             Requested size: 352.31538pt x 210.78699pt.
+LaTeX Info: Redefining \. on input line 5736.
+LaTeX Info: Redefining \% on input line 5736.
+
+Overfull \hbox (43.53702pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 90
+ []
+
+[90]
+<chapters/semana04_files/figure-pdf/unnamed-chunk-4-1.pdf, id=873, 352.31625pt 
+x 210.7875pt>
+File: chapters/semana04_files/figure-pdf/unnamed-chunk-4-1.pdf Graphic file (ty
+pe pdf)
+<use chapters/semana04_files/figure-pdf/unnamed-chunk-4-1.pdf>
+Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-4-1.p
+df  used on input line 5837.
+(luatex.def)             Requested size: 352.31538pt x 210.78699pt.
+LaTeX Info: Redefining \. on input line 5839.
+LaTeX Info: Redefining \% on input line 5839.
+
+Overfull \hbox (43.53702pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 91
+ []
+
+[91
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+<./chapters/semana04_files/figure-pdf/unnamed-chunk-3-1.pdf>]
+LaTeX Info: Redefining \. on input line 5871.
+LaTeX Info: Redefining \% on input line 5871.
+
+Overfull \hbox (43.53702pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 92
+ []
+
+[92<./chapters/semana04_files/figure-pdf/unnamed-chunk-4-1.pdf>]
+<chapters/semana04_files/figure-pdf/unnamed-chunk-5-1.pdf, id=900, 364.36125pt 
+x 176.66pt>
+File: chapters/semana04_files/figure-pdf/unnamed-chunk-5-1.pdf Graphic file (ty
+pe pdf)
+<use chapters/semana04_files/figure-pdf/unnamed-chunk-5-1.pdf>
+Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-5-1.p
+df  used on input line 5904.
+(luatex.def)             Requested size: 364.36035pt x 176.65956pt.
+LaTeX Info: Redefining \. on input line 5927.
+LaTeX Info: Redefining \% on input line 5927.
+
+Overfull \hbox (43.53702pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 93
+ []
+
+[93]
+<chapters/semana04_files/figure-pdf/unnamed-chunk-6-1.pdf, id=908, 364.36125pt 
+x 176.66pt>
+File: chapters/semana04_files/figure-pdf/unnamed-chunk-6-1.pdf Graphic file (ty
+pe pdf)
+<use chapters/semana04_files/figure-pdf/unnamed-chunk-6-1.pdf>
+Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-6-1.p
+df  used on input line 5990.
+(luatex.def)             Requested size: 364.36035pt x 176.65956pt.
+LaTeX Info: Redefining \. on input line 6034.
+LaTeX Info: Redefining \% on input line 6034.
+
+Overfull \hbox (43.53702pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 94
+ []
+
+[94
+Missing character: There is no ≤ (U+2264) in font [lmmono10-regular]:!
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+<./chapters/semana04_files/figure-pdf/unnamed-chunk-5-1.pdf>]
+LaTeX Info: Redefining \. on input line 6058.
+LaTeX Info: Redefining \% on input line 6058.
+
+Overfull \hbox (43.53702pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 95
+ []
+
+[95<./chapters/semana04_files/figure-pdf/unnamed-chunk-6-1.pdf>]
+<chapters/semana04_files/figure-pdf/unnamed-chunk-7-1.pdf, id=934, 364.36125pt 
+x 212.795pt>
+File: chapters/semana04_files/figure-pdf/unnamed-chunk-7-1.pdf Graphic file (ty
+pe pdf)
+<use chapters/semana04_files/figure-pdf/unnamed-chunk-7-1.pdf>
+Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-7-1.p
+df  used on input line 6151.
+(luatex.def)             Requested size: 364.36035pt x 212.79446pt.
+LaTeX Info: Redefining \. on input line 6155.
+LaTeX Info: Redefining \% on input line 6155.
+
+Overfull \hbox (43.53702pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 96
+ []
+
+[96
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
+]
+
+Package natbib Warning: Citation `Saad2020' on page 97 undefined on input line 
+6195.
+
+LaTeX Info: Redefining \. on input line 6196.
+LaTeX Info: Redefining \% on input line 6196.
+
+Overfull \hbox (43.53702pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 97
+ []
+
+[97<./chapters/semana04_files/figure-pdf/unnamed-chunk-7-1.pdf>]
+<chapters/semana04_files/figure-pdf/unnamed-chunk-9-1.pdf, id=954, 466.74374pt 
+x 288.07625pt>
+File: chapters/semana04_files/figure-pdf/unnamed-chunk-9-1.pdf Graphic file (ty
+pe pdf)
+<use chapters/semana04_files/figure-pdf/unnamed-chunk-9-1.pdf>
+Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-9-1.p
+df  used on input line 6403.
+(luatex.def)             Requested size: 466.7426pt x 288.07553pt.
+LaTeX Info: Redefining \. on input line 6415.
+LaTeX Info: Redefining \% on input line 6415.
+
+Overfull \hbox (43.53702pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 98
+ []
+
+[98]
+LaTeX Info: Redefining \. on input line 6415.
+LaTeX Info: Redefining \% on input line 6415.
+
+Overfull \hbox (43.53702pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 99
+ []
+
+[99]
+LaTeX Info: Redefining \. on input line 6415.
+LaTeX Info: Redefining \% on input line 6415.
+
+Overfull \hbox (49.01202pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 100
+ []
+
+[100]
+LaTeX Info: Redefining \. on input line 6415.
+LaTeX Info: Redefining \% on input line 6415.
+
+Overfull \hbox (49.01202pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 101
+ []
+
+[101]
+LaTeX Info: Redefining \. on input line 6415.
+LaTeX Info: Redefining \% on input line 6415.
+
+Overfull \hbox (49.01202pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 102
+ []
+
+[102]
+<chapters/semana04_files/figure-pdf/unnamed-chunk-10-1.pdf, id=983, 492.84125pt
+ x 316.18124pt>
+File: chapters/semana04_files/figure-pdf/unnamed-chunk-10-1.pdf Graphic file (t
+ype pdf)
+<use chapters/semana04_files/figure-pdf/unnamed-chunk-10-1.pdf>
+Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-10-1.
+pdf  used on input line 6494.
+(luatex.def)             Requested size: 492.84003pt x 316.18047pt.
+LaTeX Info: Redefining \. on input line 6506.
+LaTeX Info: Redefining \% on input line 6506.
+
+Overfull \hbox (49.01202pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 103
+ []
+
+[103<./chapters/semana04_files/figure-pdf/unnamed-chunk-9-1.pdf>]
+LaTeX Info: Redefining \. on input line 6506.
+LaTeX Info: Redefining \% on input line 6506.
+
+Overfull \hbox (49.01202pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 104
+ []
+
+[104]
+<chapters/semana04_files/figure-pdf/unnamed-chunk-11-1.pdf, id=1003, 478.78876p
+t x 290.08376pt>
+File: chapters/semana04_files/figure-pdf/unnamed-chunk-11-1.pdf Graphic file (t
+ype pdf)
+<use chapters/semana04_files/figure-pdf/unnamed-chunk-11-1.pdf>
+Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-11-1.
+pdf  used on input line 6581.
+(luatex.def)             Requested size: 478.78758pt x 290.08304pt.
+LaTeX Info: Redefining \. on input line 6593.
+LaTeX Info: Redefining \% on input line 6593.
+
+Overfull \hbox (49.01202pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 105
+ []
+
+[105<./chapters/semana04_files/figure-pdf/unnamed-chunk-10-1.pdf>]
+LaTeX Info: Redefining \. on input line 6593.
+LaTeX Info: Redefining \% on input line 6593.
+
+Overfull \hbox (49.01202pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 106
+ []
+
+[106]
+<chapters/semana04_files/figure-pdf/unnamed-chunk-12-1.pdf, id=1026, 364.36125p
+t x 210.7875pt>
+File: chapters/semana04_files/figure-pdf/unnamed-chunk-12-1.pdf Graphic file (t
+ype pdf)
+<use chapters/semana04_files/figure-pdf/unnamed-chunk-12-1.pdf>
+Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-12-1.
+pdf  used on input line 6624.
+(luatex.def)             Requested size: 364.36035pt x 210.78699pt.
+LaTeX Info: Redefining \. on input line 6626.
+LaTeX Info: Redefining \% on input line 6626.
+
+Overfull \hbox (49.01202pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 107
+ []
+
+[107<./chapters/semana04_files/figure-pdf/unnamed-chunk-11-1.pdf>]
+<chapters/semana04_files/figure-pdf/unnamed-chunk-13-1.pdf, id=1040, 478.78876p
+t x 290.08376pt>
+File: chapters/semana04_files/figure-pdf/unnamed-chunk-13-1.pdf Graphic file (t
+ype pdf)
+<use chapters/semana04_files/figure-pdf/unnamed-chunk-13-1.pdf>
+Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-13-1.
+pdf  used on input line 6696.
+(luatex.def)             Requested size: 478.78758pt x 290.08304pt.
+LaTeX Info: Redefining \. on input line 6708.
+LaTeX Info: Redefining \% on input line 6708.
+
+Overfull \hbox (49.01202pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 108
+ []
+
+[108<./chapters/semana04_files/figure-pdf/unnamed-chunk-12-1.pdf>]
+LaTeX Info: Redefining \. on input line 6708.
+LaTeX Info: Redefining \% on input line 6708.
+
+Overfull \hbox (49.01202pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 109
+ []
+
+[109]
+LaTeX Info: Redefining \. on input line 6737.
+LaTeX Info: Redefining \% on input line 6737.
+
+Overfull \hbox (49.01202pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 110
+ []
+
+[110<./chapters/semana04_files/figure-pdf/unnamed-chunk-13-1.pdf>]
+<chapters/semana04_files/figure-pdf/unnamed-chunk-14-1.pdf, id=1073, 373.395pt 
+x 210.7875pt>
+File: chapters/semana04_files/figure-pdf/unnamed-chunk-14-1.pdf Graphic file (t
+ype pdf)
+<use chapters/semana04_files/figure-pdf/unnamed-chunk-14-1.pdf>
+Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-14-1.
+pdf  used on input line 6779.
+(luatex.def)             Requested size: 373.39409pt x 210.78699pt.
+LaTeX Info: Redefining \. on input line 6784.
+LaTeX Info: Redefining \% on input line 6784.
+
+Overfull \hbox (49.01202pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 111
+ []
+
+[111]
+<chapters/semana04_files/figure-pdf/unnamed-chunk-15-1.pdf, id=1081, 551.05875p
+t x 398.48875pt>
+File: chapters/semana04_files/figure-pdf/unnamed-chunk-15-1.pdf Graphic file (t
+ype pdf)
+<use chapters/semana04_files/figure-pdf/unnamed-chunk-15-1.pdf>
+Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-15-1.
+pdf  used on input line 6885.
+(luatex.def)             Requested size: 551.05739pt x 398.48778pt.
+
+LaTeX Warning: Float too large for page by 71.52391pt on input line 6917.
+
+LaTeX Info: Redefining \. on input line 6927.
+LaTeX Info: Redefining \% on input line 6927.
+
+Overfull \hbox (49.01202pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 112
+ []
+
+[112<./chapters/semana04_files/figure-pdf/unnamed-chunk-14-1.pdf>]
+LaTeX Info: Redefining \. on input line 6927.
+LaTeX Info: Redefining \% on input line 6927.
+
+Overfull \hbox (49.01202pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 113
+ []
+
+[113
+warning  (pdf backend): ignoring duplicate destination with the name 'figure.cap
+tion.16'
+
+warning  (pdf backend): ignoring duplicate destination with the name 'figure.cap
+tion.16'
+<./chapters/semana04_files/figure-pdf/unnamed-chunk-15-1.pdf>]
+<chapters/semana04_files/figure-pdf/unnamed-chunk-16-1.pdf, id=1109, 551.05875p
+t x 398.48875pt>
+File: chapters/semana04_files/figure-pdf/unnamed-chunk-16-1.pdf Graphic file (t
+ype pdf)
+<use chapters/semana04_files/figure-pdf/unnamed-chunk-16-1.pdf>
+Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-16-1.
+pdf  used on input line 7021.
+(luatex.def)             Requested size: 551.05739pt x 398.48778pt.
+
+LaTeX Warning: Float too large for page by 166.6473pt on input line 7054.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<chapters/semana04_files/figure-pdf/unnamed-chunk-17-1.pdf, id=1110, 545.03625p
+t x 423.5825pt>
+File: chapters/semana04_files/figure-pdf/unnamed-chunk-17-1.pdf Graphic file (t
+ype pdf)
+<use chapters/semana04_files/figure-pdf/unnamed-chunk-17-1.pdf>
+Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-17-1.
+pdf  used on input line 7165.
+(luatex.def)             Requested size: 545.03493pt x 423.58147pt.
+LaTeX Info: Redefining \. on input line 7175.
+LaTeX Info: Redefining \% on input line 7175.
+
+Overfull \hbox (49.01202pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 114
+ []
+
+[114
+Missing character: There is no ↔ (U+2194) in font [lmroman12-bold]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 7175.
+LaTeX Info: Redefining \% on input line 7175.
+
+Overfull \hbox (49.01202pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 115
+ []
+
+[115
+warning  (pdf backend): ignoring duplicate destination with the name 'figure.cap
+tion.18'
+
+warning  (pdf backend): ignoring duplicate destination with the name 'figure.cap
+tion.18'
+<./chapters/semana04_files/figure-pdf/unnamed-chunk-16-1.pdf>]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (1.88152pt too wide) in paragraph at lines 7220--7221
+[]|\TU/lmtt/m/n/10.95 dbinom(,size=1)|  
+ []
+
+LaTeX Info: Redefining \. on input line 7235.
+LaTeX Info: Redefining \% on input line 7235.
+
+Overfull \hbox (49.01202pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 116
+ []
+
+[116<./chapters/semana04_files/figure-pdf/unnamed-chunk-17-1.pdf>]
+LaTeX Info: Redefining \. on input line 7316.
+LaTeX Info: Redefining \% on input line 7316.
+
+Overfull \hbox (49.01202pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 117
+ []
+
+[117]
+LaTeX Info: Redefining \. on input line 7387.
+LaTeX Info: Redefining \% on input line 7387.
+
+Overfull \hbox (49.01202pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 118
+ []
+
+[118
+Missing character: There is no ⁵ (U+2075) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ⁵ (U+2075) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≥ (U+2265) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₉ (U+2089) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no λ (U+03BB) in font [lmroman10-bold]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≤ (U+2264) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no λ (U+03BB) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≥ (U+2265) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ⟹ (U+27F9) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ⟹ (U+27F9) in font [lmroman10-regular]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 7419.
+LaTeX Info: Redefining \% on input line 7419.
+
+Overfull \hbox (49.01202pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 119
+ []
+
+[119]
+LaTeX Info: Redefining \. on input line 7419.
+LaTeX Info: Redefining \% on input line 7419.
+
+Overfull \hbox (49.01202pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 120
+ []
+
+[120]
+Capítulo 6.
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 6.1 on input line 7466.
+
+[121
+
+]
+LaTeX Info: Redefining \. on input line 7551.
+LaTeX Info: Redefining \% on input line 7551.
+[122]
+LaTeX Info: Redefining \. on input line 7609.
+LaTeX Info: Redefining \% on input line 7609.
+[123]
+LaTeX Info: Redefining \. on input line 7686.
+LaTeX Info: Redefining \% on input line 7686.
+[124
+Missing character: There is no μ (U+03BC) in font [lmroman10-bold]:+tlig;!
+Missing character: There is no μ (U+03BC) in font [lmroman10-bold]:+tlig;!
+Missing character: There is no μ (U+03BC) in font [lmroman10-bold]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 7728.
+LaTeX Info: Redefining \% on input line 7728.
+[125]
+LaTeX Info: Redefining \. on input line 7792.
+LaTeX Info: Redefining \% on input line 7792.
+[126]
+LaTeX Info: Redefining \. on input line 7846.
+LaTeX Info: Redefining \% on input line 7846.
+[127
+Missing character: There is no μ (U+03BC) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no μ (U+03BC) in font [lmroman10-regular]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 7893.
+LaTeX Info: Redefining \% on input line 7893.
+[128]
+<chapters/semana05_files/figure-pdf/unnamed-chunk-1-1.pdf, id=1261, 395.4775pt 
+x 225.84375pt>
+File: chapters/semana05_files/figure-pdf/unnamed-chunk-1-1.pdf Graphic file (ty
+pe pdf)
+<use chapters/semana05_files/figure-pdf/unnamed-chunk-1-1.pdf>
+Package luatex.def Info: chapters/semana05_files/figure-pdf/unnamed-chunk-1-1.p
+df  used on input line 7951.
+(luatex.def)             Requested size: 395.47653pt x 225.84319pt.
+LaTeX Info: Redefining \. on input line 7969.
+LaTeX Info: Redefining \% on input line 7969.
+[129]
+<chapters/semana05_files/figure-pdf/unnamed-chunk-2-1.pdf, id=1271, 378.41376pt
+ x 211.79124pt>
+File: chapters/semana05_files/figure-pdf/unnamed-chunk-2-1.pdf Graphic file (ty
+pe pdf)
+<use chapters/semana05_files/figure-pdf/unnamed-chunk-2-1.pdf>
+Package luatex.def Info: chapters/semana05_files/figure-pdf/unnamed-chunk-2-1.p
+df  used on input line 7975.
+(luatex.def)             Requested size: 378.41283pt x 211.79073pt.
+LaTeX Info: Redefining \. on input line 7990.
+LaTeX Info: Redefining \% on input line 7990.
+[130<./chapters/semana05_files/figure-pdf/unnamed-chunk-1-1.pdf>]
+Overfull \hbox (4.42824pt too wide) in paragraph at lines 8024--8025
+ []|$\TU/latinmodern-math.otf(1)/m/n/10.95 𝑁(𝜇, 𝜎[]/𝑛)$| 
+ []
+
+
+Overfull \hbox (4.42824pt too wide) in paragraph at lines 8028--8029
+ []|$\TU/latinmodern-math.otf(1)/m/n/10.95 𝑁(𝜇, 𝜎[]/𝑛)$| 
+ []
+
+
+Overfull \hbox (9.79565pt too wide) in paragraph at lines 8032--8033
+ []|$\TU/latinmodern-math.otf(1)/m/n/10.95 𝑁(𝜋, [])$| 
+ []
+
+LaTeX Info: Redefining \. on input line 8036.
+LaTeX Info: Redefining \% on input line 8036.
+[131
+Missing character: There is no σ (U+03C3) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+<./chapters/semana05_files/figure-pdf/unnamed-chunk-2-1.pdf>]
+LaTeX Info: Redefining \. on input line 8107.
+LaTeX Info: Redefining \% on input line 8107.
+[132]
+LaTeX Info: Redefining \. on input line 8179.
+LaTeX Info: Redefining \% on input line 8179.
+[133]
+LaTeX Info: Redefining \. on input line 8243.
+LaTeX Info: Redefining \% on input line 8243.
+[134]
+LaTeX Info: Redefining \. on input line 8250.
+LaTeX Info: Redefining \% on input line 8250.
+[135] [136
+
+]
+Capítulo 7.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
+(Font)              scaled to size 10.95pt on input line 8272.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
+(Font)              scaled to size 7.665pt on input line 8272.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
+(Font)              scaled to size 5.475pt on input line 8272.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
+(Font)              scaled to size 10.95pt on input line 8272.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
+(Font)              scaled to size 7.665pt on input line 8272.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
+(Font)              scaled to size 5.475pt on input line 8272.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
+(Font)              scaled to size 10.95pt on input line 8272.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
+(Font)              scaled to size 7.665pt on input line 8272.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
+(Font)              scaled to size 5.475pt on input line 8272.
+[137
+
+]
+LaTeX Info: Redefining \. on input line 8368.
+LaTeX Info: Redefining \% on input line 8368.
+[138]
+Overfull \hbox (1.78499pt too wide) in paragraph at lines 8454--8454
+[]|$[]$|  
+ []
+
+LaTeX Info: Redefining \. on input line 8456.
+LaTeX Info: Redefining \% on input line 8456.
+[139]
+LaTeX Info: Redefining \. on input line 8503.
+LaTeX Info: Redefining \% on input line 8503.
+[140]
+LaTeX Info: Redefining \. on input line 8675.
+LaTeX Info: Redefining \% on input line 8675.
+[141
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+]
+LaTeX Info: Redefining \. on input line 8701.
+LaTeX Info: Redefining \% on input line 8701.
+[142
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
+Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
+Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no μ (U+03BC) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no σ (U+03C3) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no σ (U+03C3) in font [lmroman10-regular]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 8757.
+LaTeX Info: Redefining \% on input line 8757.
+[143]
+LaTeX Info: Redefining \. on input line 8799.
+LaTeX Info: Redefining \% on input line 8799.
+[144]
+LaTeX Info: Redefining \. on input line 8851.
+LaTeX Info: Redefining \% on input line 8851.
+[145]
+LaTeX Info: Redefining \. on input line 9033.
+LaTeX Info: Redefining \% on input line 9033.
+[146]
+LaTeX Info: Redefining \. on input line 9033.
+LaTeX Info: Redefining \% on input line 9033.
+[147
+Missing character: There is no α (U+03B1) in font [lmmono10-regular]:!
+Missing character: There is no β (U+03B2) in font [lmmono10-regular]:!
+Missing character: There is no α (U+03B1) in font [lmmono10-regular]:!
+Missing character: There is no β (U+03B2) in font [lmmono10-regular]:!
+Missing character: There is no α (U+03B1) in font [lmmono10-regular]:!
+Missing character: There is no β (U+03B2) in font [lmmono10-regular]:!
+Missing character: There is no β (U+03B2) in font [lmmono10-regular]:!
+Missing character: There is no α (U+03B1) in font [lmmono10-regular]:!
+Missing character: There is no α (U+03B1) in font [lmmono10-regular]:!
+Missing character: There is no α (U+03B1) in font [lmmono10-regular]:!
+Missing character: There is no β (U+03B2) in font [lmmono10-regular]:!
+Missing character: There is no α (U+03B1) in font [lmmono10-regular]:!
+Missing character: There is no α (U+03B1) in font [lmmono10-regular]:!
+Missing character: There is no β (U+03B2) in font [lmmono10-regular]:!
+]
+LaTeX Info: Redefining \. on input line 9058.
+LaTeX Info: Redefining \% on input line 9058.
+[148
+Missing character: There is no β (U+03B2) in font [lmmono10-regular]:!
+Missing character: There is no α (U+03B1) in font [lmmono10-regular]:!
+Missing character: There is no β (U+03B2) in font [lmmono10-regular]:!
+Missing character: There is no α (U+03B1) in font [lmmono10-regular]:!
+Missing character: There is no β (U+03B2) in font [lmmono10-regular]:!
+Missing character: There is no α (U+03B1) in font [lmmono10-regular]:!
+Missing character: There is no β (U+03B2) in font [lmmono10-regular]:!
+Missing character: There is no α (U+03B1) in font [lmmono10-regular]:!
+Missing character: There is no β (U+03B2) in font [lmmono10-regular]:!
+Missing character: There is no α (U+03B1) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no β (U+03B2) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 9107.
+LaTeX Info: Redefining \% on input line 9107.
+[149]
+LaTeX Info: Redefining \. on input line 9243.
+LaTeX Info: Redefining \% on input line 9243.
+[150
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ≈ (U+2248) in font [lmmono10-regular]:!
+Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
+]
+LaTeX Info: Redefining \. on input line 9384.
+LaTeX Info: Redefining \% on input line 9384.
+[151
+Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
+Missing character: There is no α (U+03B1) in font [lmmono10-regular]:!
+Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
+Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
+]
+LaTeX Info: Redefining \. on input line 9384.
+LaTeX Info: Redefining \% on input line 9384.
+[152]
+LaTeX Info: Redefining \. on input line 9736.
+LaTeX Info: Redefining \% on input line 9736.
+[153]
+
+Package tcolorbox Warning: Using nobreak failed. Try to enlarge `lines before b
+reak' or set page breaks manually on input line 9736.
+
+LaTeX Info: Redefining \. on input line 9736.
+LaTeX Info: Redefining \% on input line 9736.
+[154]
+LaTeX Info: Redefining \. on input line 9736.
+LaTeX Info: Redefining \% on input line 9736.
+[155
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
+Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
+]
+LaTeX Info: Redefining \. on input line 9892.
+LaTeX Info: Redefining \% on input line 9892.
+[156
+Missing character: There is no λ (U+03BB) in font [lmroman10-regular]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 9892.
+LaTeX Info: Redefining \% on input line 9892.
+[157
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+]
+LaTeX Info: Redefining \. on input line 9943.
+LaTeX Info: Redefining \% on input line 9943.
+[158
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+]
+
+LaTeX Warning: Reference `sec-bio-ic' on page 159 undefined on input line 9947.
+
+
+LaTeX Info: Redefining \. on input line 10035.
+LaTeX Info: Redefining \% on input line 10035.
+[159
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+]
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <14.4> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 10038.
+
+
+LaTeX Warning: Reference `sec-bio-n' on page 160 undefined on input line 10044.
+
+
+
+Overfull \hbox (44.21149pt too wide) in paragraph at lines 10103--10103
+[]\TU/lmtt/m/n/10.95 # Tamaño de muestra para la estimación de la media de una
+ VA normal o su aproximación[] 
+ []
+
+
+Overfull \hbox (44.21149pt too wide) in paragraph at lines 10104--10104
+[]\TU/lmtt/m/n/10.95 # ---------------------------------------------------------
+--------------------------[] 
+ []
+
+
+Overfull \hbox (124.69397pt too wide) in paragraph at lines 10150--10150
+[]  \TU/lmtt/m/n/10.95 No se distinguen casos con y sin información (la muestra
+ actual es compatible con p =0.5): n= 385[] 
+ []
+
+LaTeX Info: Redefining \. on input line 10173.
+LaTeX Info: Redefining \% on input line 10173.
+[160
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+]
+LaTeX Info: Redefining \. on input line 10173.
+LaTeX Info: Redefining \% on input line 10173.
+[161
+Missing character: There is no δ (U+03B4) in font [lmmono10-regular]:!
+Missing character: There is no ≥ (U+2265) in font [lmmono10-regular]:!
+]
+LaTeX Info: Redefining \. on input line 10221.
+LaTeX Info: Redefining \% on input line 10221.
+[162
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no δ (U+03B4) in font [lmmono10-regular]:!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-bold]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-bold]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 10284.
+LaTeX Info: Redefining \% on input line 10284.
+[163
+Missing character: There is no θ (U+03B8) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₙ (U+2099) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no θ (U+03B8) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no θ (U+03B8) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no θ (U+03B8) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no λ (U+03BB) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no λ (U+03BB) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ⁿ (U+207F) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no λ (U+03BB) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ∏ (U+220F) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ᵢ (U+1D62) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ∏ (U+220F) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ᵢ (U+1D62) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no λ (U+03BB) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₂ (U+2082) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₅ (U+2085) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₃ (U+2083) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₅ (U+2085) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₅ (U+2085) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₃ (U+2083) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₅ (U+2085) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ∈ (U+2208) in font [lmmono10-regular]:!
+]
+Capítulo 8.
+[164
+
+]
+LaTeX Info: Redefining \. on input line 10425.
+LaTeX Info: Redefining \% on input line 10425.
+[165]
+LaTeX Info: Redefining \. on input line 10495.
+LaTeX Info: Redefining \% on input line 10495.
+[166
+Missing character: There is no ✓ (U+2713) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ✓ (U+2713) in font [lmroman10-regular]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 10563.
+LaTeX Info: Redefining \% on input line 10563.
+[167]
+LaTeX Info: Redefining \. on input line 10649.
+LaTeX Info: Redefining \% on input line 10649.
+[168]
+LaTeX Info: Redefining \. on input line 10711.
+LaTeX Info: Redefining \% on input line 10711.
+[169]
+LaTeX Info: Redefining \. on input line 10779.
+LaTeX Info: Redefining \% on input line 10779.
+[170]
+LaTeX Info: Redefining \. on input line 11002.
+LaTeX Info: Redefining \% on input line 11002.
+[171]
+LaTeX Info: Redefining \. on input line 11002.
+LaTeX Info: Redefining \% on input line 11002.
+[172]
+
+LaTeX Warning: Reference `sec-bio-contrastes' on page 173 undefined on input li
+ne 11007.
+
+LaTeX Info: Redefining \. on input line 11101.
+LaTeX Info: Redefining \% on input line 11101.
+[173]
+LaTeX Info: Redefining \. on input line 11101.
+LaTeX Info: Redefining \% on input line 11101.
+[174
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ≠ (U+2260) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+]
+LaTeX Info: Redefining \. on input line 11133.
+LaTeX Info: Redefining \% on input line 11133.
+[175
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ≠ (U+2260) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 8.7 on input line 11172.
+
+LaTeX Info: Redefining \. on input line 11290.
+LaTeX Info: Redefining \% on input line 11290.
+[176]
+LaTeX Info: Redefining \. on input line 11290.
+LaTeX Info: Redefining \% on input line 11290.
+[177]
+LaTeX Info: Redefining \. on input line 11346.
+LaTeX Info: Redefining \% on input line 11346.
+[178]
+Overfull \hbox (5.32841pt too wide) in paragraph at lines 11391--11392
+\TU/latinmodern-math.otf(1)/b/n/10.95 𝑡[]$|  
+ []
+
+
+Overfull \hbox (4.72911pt too wide) in paragraph at lines 11398--11398
+[]$|  
+ []
+
+LaTeX Info: Redefining \. on input line 11420.
+LaTeX Info: Redefining \% on input line 11420.
+[179
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 11658.
+LaTeX Info: Redefining \% on input line 11658.
+[180]
+LaTeX Info: Redefining \. on input line 11658.
+LaTeX Info: Redefining \% on input line 11658.
+[181]
+LaTeX Info: Redefining \. on input line 11680.
+LaTeX Info: Redefining \% on input line 11680.
+[182]
+LaTeX Info: Redefining \. on input line 11771.
+LaTeX Info: Redefining \% on input line 11771.
+[183]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+LaTeX Info: Redefining \. on input line 11850.
+LaTeX Info: Redefining \% on input line 11850.
+[184]
+LaTeX Info: Redefining \. on input line 11924.
+LaTeX Info: Redefining \% on input line 11924.
+[185]
+LaTeX Info: Redefining \. on input line 11987.
+LaTeX Info: Redefining \% on input line 11987.
+[186
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no μ (U+03BC) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no μ (U+03BC) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no μ (U+03BC) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no μ (U+03BC) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≠ (U+2260) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₂ (U+2082) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₅ (U+2085) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no α (U+03B1) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≠ (U+2260) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no α (U+03B1) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+]
+Capítulo 9.
+[187
+
+]
+LaTeX Info: Redefining \. on input line 12087.
+LaTeX Info: Redefining \% on input line 12087.
+[188]
+
+LaTeX Warning: Reference `sec-bio-contrastes' on page 189 undefined on input li
+ne 12111.
+
+LaTeX Info: Redefining \. on input line 12255.
+LaTeX Info: Redefining \% on input line 12255.
+[189]
+LaTeX Info: Redefining \. on input line 12255.
+LaTeX Info: Redefining \% on input line 12255.
+[190
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ≠ (U+2260) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ≠ (U+2260) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+]
+LaTeX Info: Redefining \. on input line 12267.
+LaTeX Info: Redefining \% on input line 12267.
+[191]
+LaTeX Info: Redefining \. on input line 12328.
+LaTeX Info: Redefining \% on input line 12328.
+[192]
+LaTeX Info: Redefining \. on input line 12395.
+LaTeX Info: Redefining \% on input line 12395.
+[193]
+LaTeX Info: Redefining \. on input line 12461.
+LaTeX Info: Redefining \% on input line 12461.
+[194]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 9.2 on input line 12525.
+
+LaTeX Info: Redefining \. on input line 12559.
+LaTeX Info: Redefining \% on input line 12559.
+[195]
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 12584.
+
+
+LaTeX Warning: Reference `sec-bio-contrastes' on page 196 undefined on input li
+ne 12587.
+
+LaTeX Info: Redefining \. on input line 12626.
+LaTeX Info: Redefining \% on input line 12626.
+[196]
+LaTeX Info: Redefining \. on input line 12775.
+LaTeX Info: Redefining \% on input line 12775.
+[197
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+]
+LaTeX Info: Redefining \. on input line 12775.
+LaTeX Info: Redefining \% on input line 12775.
+[198
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ≠ (U+2260) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ≠ (U+2260) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+]
+LaTeX Info: Redefining \. on input line 12801.
+LaTeX Info: Redefining \% on input line 12801.
+[199
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no δ (U+03B4) in font [lmmono10-regular]:!
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no δ (U+03B4) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ≠ (U+2260) in font [lmmono10-regular]:!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-bold]:+tlig;!
+]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<chapters/semana08_files/figure-pdf/unnamed-chunk-3-1.pdf, id=1871, 387.4475pt 
+x 242.9075pt>
+File: chapters/semana08_files/figure-pdf/unnamed-chunk-3-1.pdf Graphic file (ty
+pe pdf)
+<use chapters/semana08_files/figure-pdf/unnamed-chunk-3-1.pdf>
+Package luatex.def Info: chapters/semana08_files/figure-pdf/unnamed-chunk-3-1.p
+df  used on input line 12928.
+(luatex.def)             Requested size: 387.44655pt x 242.90689pt.
+LaTeX Info: Redefining \. on input line 12930.
+LaTeX Info: Redefining \% on input line 12930.
+[200]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+LaTeX Info: Redefining \. on input line 12962.
+LaTeX Info: Redefining \% on input line 12962.
+[201<./chapters/semana08_files/figure-pdf/unnamed-chunk-3-1.pdf>]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+LaTeX Info: Redefining \. on input line 13020.
+LaTeX Info: Redefining \% on input line 13020.
+[202]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+LaTeX Info: Redefining \. on input line 13125.
+LaTeX Info: Redefining \% on input line 13125.
+[203]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+LaTeX Info: Redefining \. on input line 13197.
+LaTeX Info: Redefining \% on input line 13197.
+[204]
+LaTeX Info: Redefining \. on input line 13274.
+LaTeX Info: Redefining \% on input line 13274.
+[205]
+
+Package natbib Warning: Citation `Shapiro1965' on page 206 undefined on input l
+ine 13289.
+
+<chapters/semana08_files/figure-pdf/unnamed-chunk-8-1.pdf, id=1930, 358.33875pt
+ x 210.7875pt>
+File: chapters/semana08_files/figure-pdf/unnamed-chunk-8-1.pdf Graphic file (ty
+pe pdf)
+<use chapters/semana08_files/figure-pdf/unnamed-chunk-8-1.pdf>
+Package luatex.def Info: chapters/semana08_files/figure-pdf/unnamed-chunk-8-1.p
+df  used on input line 13341.
+(luatex.def)             Requested size: 358.33788pt x 210.78699pt.
+LaTeX Info: Redefining \. on input line 13379.
+LaTeX Info: Redefining \% on input line 13379.
+[206]
+LaTeX Info: Redefining \. on input line 13411.
+LaTeX Info: Redefining \% on input line 13411.
+[207<./chapters/semana08_files/figure-pdf/unnamed-chunk-8-1.pdf>]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 9.5 on input line 13462.
+
+
+Package natbib Warning: Citation `Casella2002' on page 208 undefined on input l
+ine 13465.
+
+LaTeX Info: Redefining \. on input line 13468.
+LaTeX Info: Redefining \% on input line 13468.
+[208]
+
+Package natbib Warning: Citation `Chihara2019' on page 209 undefined on input l
+ine 13480.
+
+LaTeX Info: Redefining \. on input line 13544.
+LaTeX Info: Redefining \% on input line 13544.
+[209]
+
+Package natbib Warning: Citation `Chihara2019' on page 210 undefined on input l
+ine 13551.
+
+LaTeX Info: Redefining \. on input line 13779.
+LaTeX Info: Redefining \% on input line 13779.
+[210]
+LaTeX Info: Redefining \. on input line 13779.
+LaTeX Info: Redefining \% on input line 13779.
+[211]
+LaTeX Info: Redefining \. on input line 13874.
+LaTeX Info: Redefining \% on input line 13874.
+[212
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≥ (U+2265) in font [lmroman10-regular]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 13874.
+LaTeX Info: Redefining \% on input line 13874.
+[213]
+Overfull \hbox (19.42126pt too wide) in paragraph at lines 13904--13905
+[]|\TU/lmtt/m/n/10.95 t.test(var.equal=FALSE)|  
+ []
+
+
+Package natbib Warning: Citation `Chihara2019' on page 214 undefined on input l
+ine 13907.
+
+LaTeX Info: Redefining \. on input line 13941.
+LaTeX Info: Redefining \% on input line 13941.
+[214]
+Overfull \hbox (9.719pt too wide) in paragraph at lines 13976--13976
+[]                            \TU/lmtt/m/n/10.95 Muestra  n    min     Q1     Q2
+     Q3    max   RIQ[] 
+ []
+
+
+Overfull \hbox (9.719pt too wide) in paragraph at lines 13977--13977
+[]\TU/lmtt/m/n/10.95 1 osteo$imc[osteo$sexo == "Hombre"] 45 18.327 21.436 23.055
+ 24.259 32.323 2.823[] 
+ []
+
+
+Overfull \hbox (9.719pt too wide) in paragraph at lines 13978--13978
+[]\TU/lmtt/m/n/10.95 2  osteo$imc[osteo$sexo == "Mujer"] 49 18.070 21.155 23.338
+ 26.298 37.333 5.143[] 
+ []
+
+LaTeX Info: Redefining \. on input line 14003.
+LaTeX Info: Redefining \% on input line 14003.
+[215]
+Underfull \hbox (badness 10000) in paragraph at lines 14086--14086
+[]  \TU/lmtt/m/n/10.95 Diferencia de localización:  (pseudo)mediana = -0.200  
+  95%-IC = (-
+ []
+
+LaTeX Info: Redefining \. on input line 14094.
+LaTeX Info: Redefining \% on input line 14094.
+[216]
+LaTeX Info: Redefining \. on input line 14144.
+LaTeX Info: Redefining \% on input line 14144.
+[217]
+LaTeX Info: Redefining \. on input line 14199.
+LaTeX Info: Redefining \% on input line 14199.
+[218
+Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₂ (U+2082) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no α (U+03B1) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no α (U+03B1) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₂ (U+2082) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₂ (U+2082) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no α (U+03B1) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no σ (U+03C3) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no α (U+03B1) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no α (U+03B1) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₂ (U+2082) in font [lmroman10-regular]:+tlig;!
+]
+Underfull \hbox (badness 4765) in paragraph at lines 14237--14241
+[]\TU/lmr/bx/n/10.95 Soft-wa-re R: \TU/lmr/m/n/10.95 Fun-cio-nes \TU/lmtt/m/n/1
+0.95 t.test()\TU/lmr/m/n/10.95 , \TU/lmtt/m/n/10.95 var.test()\TU/lmr/m/n/10.95
+ , \TU/lmtt/m/n/10.95 power.t.test()\TU/lmr/m/n/10.95 , \TU/lmtt/m/n/10.95 wilco
+x.test()\TU/lmr/m/n/10.95 ,
+ []
+
+LaTeX Info: Redefining \. on input line 14249.
+LaTeX Info: Redefining \% on input line 14249.
+[219
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₂ (U+2082) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ⁵ (U+2075) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+] [220
+
+]
+Capítulo 10.
+[221
+
+]
+LaTeX Info: Redefining \. on input line 14414.
+LaTeX Info: Redefining \% on input line 14414.
+[222]
+
+LaTeX Warning: Reference `sec-bio-rls' on page 223 undefined on input line 1444
+4.
+
+LaTeX Info: Redefining \. on input line 14485.
+LaTeX Info: Redefining \% on input line 14485.
+[223]
+LaTeX Info: Redefining \. on input line 14543.
+LaTeX Info: Redefining \% on input line 14543.
+[224]
+LaTeX Info: Redefining \. on input line 14620.
+LaTeX Info: Redefining \% on input line 14620.
+[225]
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 14.4pt on input line 14623.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 10.0pt on input line 14623.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 7.0pt on input line 14623.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 14.4pt on input line 14623.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 10.0pt on input line 14623.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 7.0pt on input line 14623.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 14.4pt on input line 14623.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 10.0pt on input line 14623.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 7.0pt on input line 14623.
+LaTeX Info: Redefining \. on input line 14676.
+LaTeX Info: Redefining \% on input line 14676.
+[226]
+LaTeX Info: Redefining \. on input line 14717.
+LaTeX Info: Redefining \% on input line 14717.
+[227]
+LaTeX Info: Redefining \. on input line 14773.
+LaTeX Info: Redefining \% on input line 14773.
+[228]
+LaTeX Info: Redefining \. on input line 14823.
+LaTeX Info: Redefining \% on input line 14823.
+[229]
+LaTeX Info: Redefining \. on input line 14929.
+LaTeX Info: Redefining \% on input line 14929.
+[230]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 10.1 on input line 14965.
+
+LaTeX Info: Redefining \. on input line 14984.
+LaTeX Info: Redefining \% on input line 14984.
+[231]
+LaTeX Info: Redefining \. on input line 15041.
+LaTeX Info: Redefining \% on input line 15041.
+[232
+Missing character: There is no ⁻ (U+207B) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ⁻ (U+207B) in font [lmroman10-regular]:+tlig;!
+]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 10.2 on input line 15095.
+
+<chapters/semana09_files/figure-pdf/lst-s10-cod02-1.pdf, id=2146, 367.3725pt x 
+238.8925pt>
+File: chapters/semana09_files/figure-pdf/lst-s10-cod02-1.pdf Graphic file (type
+ pdf)
+<use chapters/semana09_files/figure-pdf/lst-s10-cod02-1.pdf>
+Package luatex.def Info: chapters/semana09_files/figure-pdf/lst-s10-cod02-1.pdf
+  used on input line 15132.
+(luatex.def)             Requested size: 367.37158pt x 238.8919pt.
+LaTeX Info: Redefining \. on input line 15141.
+LaTeX Info: Redefining \% on input line 15141.
+[233
+Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:+tlig;!
+]
+<chapters/semana09_files/figure-pdf/lst-s10-cod03-1.pdf, id=2152, 386.44376pt x
+ 246.9225pt>
+File: chapters/semana09_files/figure-pdf/lst-s10-cod03-1.pdf Graphic file (type
+ pdf)
+<use chapters/semana09_files/figure-pdf/lst-s10-cod03-1.pdf>
+Package luatex.def Info: chapters/semana09_files/figure-pdf/lst-s10-cod03-1.pdf
+  used on input line 15147.
+(luatex.def)             Requested size: 386.44281pt x 246.92188pt.
+LaTeX Info: Redefining \. on input line 15158.
+LaTeX Info: Redefining \% on input line 15158.
+[234<./chapters/semana09_files/figure-pdf/lst-s10-cod02-1.pdf>]
+LaTeX Info: Redefining \. on input line 15183.
+LaTeX Info: Redefining \% on input line 15183.
+[235<./chapters/semana09_files/figure-pdf/lst-s10-cod03-1.pdf>]
+LaTeX Info: Redefining \. on input line 15299.
+LaTeX Info: Redefining \% on input line 15299.
+[236]
+LaTeX Info: Redefining \. on input line 15409.
+LaTeX Info: Redefining \% on input line 15409.
+[237]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 10.3 on input line 15409.
+
+<chapters/semana09_files/figure-pdf/lst-s10-cod06-1.pdf, id=2193, 367.3725pt x 
+235.88126pt>
+File: chapters/semana09_files/figure-pdf/lst-s10-cod06-1.pdf Graphic file (type
+ pdf)
+<use chapters/semana09_files/figure-pdf/lst-s10-cod06-1.pdf>
+Package luatex.def Info: chapters/semana09_files/figure-pdf/lst-s10-cod06-1.pdf
+  used on input line 15453.
+(luatex.def)             Requested size: 367.37158pt x 235.88068pt.
+LaTeX Info: Redefining \. on input line 15463.
+LaTeX Info: Redefining \% on input line 15463.
+[238
+Missing character: There is no ≥ (U+2265) in font [lmmono10-regular]:!
+]
+LaTeX Info: Redefining \. on input line 15507.
+LaTeX Info: Redefining \% on input line 15507.
+[239
+Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:+tlig;!
+<./chapters/semana09_files/figure-pdf/lst-s10-cod06-1.pdf>]
+LaTeX Info: Redefining \. on input line 15555.
+LaTeX Info: Redefining \% on input line 15555.
+[240
+Missing character: There is no ≥ (U+2265) in font [lmroman10-regular]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 15654.
+LaTeX Info: Redefining \% on input line 15654.
+[241]
+LaTeX Info: Redefining \. on input line 15718.
+LaTeX Info: Redefining \% on input line 15718.
+[242
+Missing character: There is no ≥ (U+2265) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≥ (U+2265) in font [lmroman10-regular]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 15743.
+LaTeX Info: Redefining \% on input line 15743.
+[243]
+Capítulo 11.
+[244
+
+]
+LaTeX Info: Redefining \. on input line 15859.
+LaTeX Info: Redefining \% on input line 15859.
+[245]
+LaTeX Info: Redefining \. on input line 15904.
+LaTeX Info: Redefining \% on input line 15904.
+[246]
+LaTeX Info: Redefining \. on input line 15978.
+LaTeX Info: Redefining \% on input line 15978.
+[247]
+LaTeX Info: Redefining \. on input line 16042.
+LaTeX Info: Redefining \% on input line 16042.
+[248]
+LaTeX Info: Redefining \. on input line 16129.
+LaTeX Info: Redefining \% on input line 16129.
+[249]
+LaTeX Info: Redefining \. on input line 16194.
+LaTeX Info: Redefining \% on input line 16194.
+[250]
+LaTeX Info: Redefining \. on input line 16295.
+LaTeX Info: Redefining \% on input line 16295.
+[251]
+LaTeX Info: Redefining \. on input line 16389.
+LaTeX Info: Redefining \% on input line 16389.
+[252]
+LaTeX Info: Redefining \. on input line 16428.
+LaTeX Info: Redefining \% on input line 16428.
+[253]
+LaTeX Info: Redefining \. on input line 16516.
+LaTeX Info: Redefining \% on input line 16516.
+[254]
+LaTeX Info: Redefining \. on input line 16589.
+LaTeX Info: Redefining \% on input line 16589.
+[255]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 11.1 on input line 16616.
+
+LaTeX Info: Redefining \. on input line 16647.
+LaTeX Info: Redefining \% on input line 16647.
+[256]
+Overfull \vbox (1.19345pt too high) detected at line 16732
+ []
+
+LaTeX Info: Redefining \. on input line 16732.
+LaTeX Info: Redefining \% on input line 16732.
+[257]
+<chapters/semana10_files/figure-pdf/lst-s11-cod04-1.pdf, id=2357, 386.44376pt x
+ 246.9225pt>
+File: chapters/semana10_files/figure-pdf/lst-s11-cod04-1.pdf Graphic file (type
+ pdf)
+<use chapters/semana10_files/figure-pdf/lst-s11-cod04-1.pdf>
+Package luatex.def Info: chapters/semana10_files/figure-pdf/lst-s11-cod04-1.pdf
+  used on input line 16794.
+(luatex.def)             Requested size: 386.44281pt x 246.92188pt.
+LaTeX Info: Redefining \. on input line 16803.
+LaTeX Info: Redefining \% on input line 16803.
+[258]
+LaTeX Info: Redefining \. on input line 16858.
+LaTeX Info: Redefining \% on input line 16858.
+[259<./chapters/semana10_files/figure-pdf/lst-s11-cod04-1.pdf>]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 11.2 on input line 16858.
+
+LaTeX Info: Redefining \. on input line 16907.
+LaTeX Info: Redefining \% on input line 16907.
+[260]
+LaTeX Info: Redefining \. on input line 16982.
+LaTeX Info: Redefining \% on input line 16982.
+[261]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 11.3 on input line 16982.
+
+<chapters/semana10_files/figure-pdf/lst-s11-cod07-1.pdf, id=2387, 382.42876pt x
+ 236.885pt>
+File: chapters/semana10_files/figure-pdf/lst-s11-cod07-1.pdf Graphic file (type
+ pdf)
+<use chapters/semana10_files/figure-pdf/lst-s11-cod07-1.pdf>
+Package luatex.def Info: chapters/semana10_files/figure-pdf/lst-s11-cod07-1.pdf
+  used on input line 17032.
+(luatex.def)             Requested size: 382.42781pt x 236.88441pt.
+LaTeX Info: Redefining \. on input line 17041.
+LaTeX Info: Redefining \% on input line 17041.
+[262]
+
+LaTeX Warning: Reference `sec-apendiceB' on page 263 undefined on input line 17
+064.
+
+LaTeX Info: Redefining \. on input line 17142.
+LaTeX Info: Redefining \% on input line 17142.
+[263<./chapters/semana10_files/figure-pdf/lst-s11-cod07-1.pdf>]
+LaTeX Info: Redefining \. on input line 17142.
+LaTeX Info: Redefining \% on input line 17142.
+[264]
+<chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-1.pdf, id=2410, 493.84
+5pt x 315.1775pt>
+File: chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-1.pdf Graphic fil
+e (type pdf)
+<use chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-1.pdf>
+Package luatex.def Info: chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-dia
+g-1.pdf  used on input line 17197.
+(luatex.def)             Requested size: 493.84378pt x 315.17673pt.
+<chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-2.pdf, id=2411, 495.85
+25pt x 351.3125pt>
+File: chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-2.pdf Graphic fil
+e (type pdf)
+<use chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-2.pdf>
+Package luatex.def Info: chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-dia
+g-2.pdf  used on input line 17199.
+(luatex.def)             Requested size: 495.85129pt x 351.31163pt.
+<chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-3.pdf, id=2412, 495.85
+25pt x 349.305pt>
+File: chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-3.pdf Graphic fil
+e (type pdf)
+<use chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-3.pdf>
+Package luatex.def Info: chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-dia
+g-3.pdf  used on input line 17201.
+(luatex.def)             Requested size: 495.85129pt x 349.30414pt.
+<chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-4.pdf, id=2413, 495.85
+25pt x 349.305pt>
+File: chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-4.pdf Graphic fil
+e (type pdf)
+<use chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-4.pdf>
+Package luatex.def Info: chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-dia
+g-4.pdf  used on input line 17203.
+(luatex.def)             Requested size: 495.85129pt x 349.30414pt.
+LaTeX Info: Redefining \. on input line 17205.
+LaTeX Info: Redefining \% on input line 17205.
+[265]
+LaTeX Info: Redefining \. on input line 17205.
+LaTeX Info: Redefining \% on input line 17205.
+[266<./chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-1.pdf>]
+LaTeX Info: Redefining \. on input line 17205.
+LaTeX Info: Redefining \% on input line 17205.
+[267<./chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-2.pdf><./chapters
+/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-3.pdf>]
+LaTeX Info: Redefining \. on input line 17232.
+LaTeX Info: Redefining \% on input line 17232.
+[268<./chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-4.pdf>]
+LaTeX Info: Redefining \. on input line 17299.
+LaTeX Info: Redefining \% on input line 17299.
+[269]
+LaTeX Info: Redefining \. on input line 17359.
+LaTeX Info: Redefining \% on input line 17359.
+[270]
+LaTeX Info: Redefining \. on input line 17371.
+LaTeX Info: Redefining \% on input line 17371.
+[271
+Missing character: There is no ≥ (U+2265) in font [lmroman10-regular]:+tlig;!
+] [272
+
+]
+Capítulo 12.
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 12.1 on input line 17410.
+
+[273
+
+]
+
+LaTeX Warning: Reference `sec-bio-tablas' on page 274 undefined on input line 1
+7471.
+
+LaTeX Info: Redefining \. on input line 17524.
+LaTeX Info: Redefining \% on input line 17524.
+[274
+Missing character: There is no χ (U+03C7) in font [lmroman12-bold]:+tlig;!
+Missing character: There is no χ (U+03C7) in font [lmroman10-regular]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 17524.
+LaTeX Info: Redefining \% on input line 17524.
+[275
+Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
+Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
+Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
+Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
+Missing character: There is no ✓ (U+2713) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no χ (U+03C7) in font [lmroman10-regular]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 17606.
+LaTeX Info: Redefining \% on input line 17606.
+[276
+Missing character: There is no χ (U+03C7) in font [lmroman12-bold]:+tlig;!
+]
+
+Package natbib Warning: Citation `MartinAndresLuna2004' on page 277 undefined o
+n input line 17623.
+
+
+Package natbib Warning: Citation `MartinAndres1994' on page 277 undefined on in
+put line 17624.
+
+
+Package natbib Warning: Citation `MartinAndresLuna2004' on page 277 undefined o
+n input line 17638.
+
+
+Package natbib Warning: Citation `MartinAndres1994' on page 277 undefined on in
+put line 17638.
+
+
+Package natbib Warning: Citation `MartinAndresLuna2004' on page 277 undefined o
+n input line 17638.
+
+
+Package natbib Warning: Citation `MartinAndres1994' on page 277 undefined on in
+put line 17638.
+
+LaTeX Info: Redefining \. on input line 17678.
+LaTeX Info: Redefining \% on input line 17678.
+[277
+Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
+Missing character: There is no χ (U+03C7) in font [lmroman10-regular]:+tlig;!
+]
+
+Package natbib Warning: Citation `MartinAndresLuna2004' on page 278 undefined o
+n input line 17712.
+
+LaTeX Info: Redefining \. on input line 17782.
+LaTeX Info: Redefining \% on input line 17782.
+[278]
+<chapters/semana11_files/figure-pdf/lst-s12-fig01-1.pdf, id=2530, 472.76625pt x
+ 287.0725pt>
+File: chapters/semana11_files/figure-pdf/lst-s12-fig01-1.pdf Graphic file (type
+ pdf)
+<use chapters/semana11_files/figure-pdf/lst-s12-fig01-1.pdf>
+Package luatex.def Info: chapters/semana11_files/figure-pdf/lst-s12-fig01-1.pdf
+  used on input line 17790.
+(luatex.def)             Requested size: 472.76509pt x 287.0718pt.
+LaTeX Info: Redefining \. on input line 17801.
+LaTeX Info: Redefining \% on input line 17801.
+[279
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no χ (U+03C7) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no χ (U+03C7) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ᵢ (U+1D62) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ⱼ (U+2C7C) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ∈ (U+2208) in font [lmroman10-regular]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 17847.
+LaTeX Info: Redefining \% on input line 17847.
+[280
+Missing character: There is no χ (U+03C7) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no χ (U+03C7) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no χ (U+03C7) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+<./chapters/semana11_files/figure-pdf/lst-s12-fig01-1.pdf>]
+Overfull \hbox (12.69196pt too wide) in paragraph at lines 17906--17906
+[]|\TU/lmr/bx/n/10.95 Con- 
+ []
+
+
+Overfull \hbox (1.02737pt too wide) in paragraph at lines 17906--17906
+\TU/lmr/bx/n/10.95 di- 
+ []
+
+
+Overfull \hbox (8.57126pt too wide) in paragraph at lines 17906--17906
+\TU/lmr/bx/n/10.95 ción 
+ []
+
+
+Overfull \hbox (4.99455pt too wide) in paragraph at lines 17906--17906
+\TU/lmr/bx/n/10.95 Po- 
+ []
+
+
+Overfull \hbox (12.69196pt too wide) in paragraph at lines 17908--17908
+[]|\TU/lmr/bx/n/10.95 Con- 
+ []
+
+
+Overfull \hbox (1.02737pt too wide) in paragraph at lines 17908--17908
+\TU/lmr/bx/n/10.95 di- 
+ []
+
+
+Overfull \hbox (8.57126pt too wide) in paragraph at lines 17908--17908
+\TU/lmr/bx/n/10.95 ción 
+ []
+
+
+Overfull \hbox (6.0602pt too wide) in paragraph at lines 17908--17908
+\TU/lmr/bx/n/10.95 Ne- 
+ []
+
+
+Overfull \hbox (2.91602pt too wide) in paragraph at lines 17908--17908
+\TU/lmr/bx/n/10.95 ga- 
+ []
+
+
+Overfull \hbox (4.42996pt too wide) in paragraph at lines 17910--17910
+[]|\TU/lmr/bx/n/10.95 To- 
+ []
+
+
+Overfull \hbox (0.85567pt too wide) in paragraph at lines 17910--17910
+\TU/lmr/bx/n/10.95 tal|  
+ []
+
+LaTeX Info: Redefining \. on input line 17911.
+LaTeX Info: Redefining \% on input line 17911.
+[281
+Missing character: There is no χ (U+03C7) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 17946.
+LaTeX Info: Redefining \% on input line 17946.
+[282]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 12.5 on input line 17972.
+
+
+Overfull \hbox (22.36621pt too wide) in paragraph at lines 18054--18054
+[]  \TU/lmtt/m/n/10.95 * Aquí se alude a la probabilidad total de la discordanc
+ia, es decir que π󰀀₁󰀀₂󰀀+π󰀀₂󰀀₁󰀀=1[] 
+ []
+
+
+Overfull \hbox (102.8487pt too wide) in paragraph at lines 18056--18056
+[]\TU/lmtt/m/n/10.95 # Estimación de las proporciones individuales de discordan
+cias π󰀀₁󰀀₂󰀀 y π󰀀₂󰀀₁󰀀 (método de Wald ajustado)[] 
+ []
+
+LaTeX Info: Redefining \. on input line 18073.
+LaTeX Info: Redefining \% on input line 18073.
+[283]
+LaTeX Info: Redefining \. on input line 18073.
+LaTeX Info: Redefining \% on input line 18073.
+[284
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ≠ (U+2260) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ≠ (U+2260) in font [lmmono10-regular]:!
+]
+LaTeX Info: Redefining \. on input line 18122.
+LaTeX Info: Redefining \% on input line 18122.
+[285
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
+Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
+]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 12.6 on input line 18136.
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 12.7 on input line 18174.
+
+LaTeX Info: Redefining \. on input line 18227.
+LaTeX Info: Redefining \% on input line 18227.
+[286]
+LaTeX Info: Redefining \. on input line 18259.
+LaTeX Info: Redefining \% on input line 18259.
+[287]
+LaTeX Info: Redefining \. on input line 18335.
+LaTeX Info: Redefining \% on input line 18335.
+[288]
+Overfull \hbox (8.55026pt too wide) in paragraph at lines 18393--18395
+[]|\TU/lmtt/m/n/10.95 mcnemar.test()\TU/lmr/m/n/10.95 , 
+ []
+
+
+Overfull \hbox (53.07909pt too wide) in paragraph at lines 18393--18395
+\TU/lmtt/m/n/10.95 tabla2x2(estudio="AP")|  
+ []
+
+LaTeX Info: Redefining \. on input line 18395.
+LaTeX Info: Redefining \% on input line 18395.
+[289
+Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
+Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
+Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
+Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
+]
+<chapters/semana11_files/figure-pdf/lst-s12-bio05-1.pdf, id=2610, 363.3575pt x 
+210.7875pt>
+File: chapters/semana11_files/figure-pdf/lst-s12-bio05-1.pdf Graphic file (type
+ pdf)
+<use chapters/semana11_files/figure-pdf/lst-s12-bio05-1.pdf>
+Package luatex.def Info: chapters/semana11_files/figure-pdf/lst-s12-bio05-1.pdf
+  used on input line 18422.
+(luatex.def)             Requested size: 363.3566pt x 210.78699pt.
+LaTeX Info: Redefining \. on input line 18427.
+LaTeX Info: Redefining \% on input line 18427.
+[290
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+<./chapters/semana11_files/figure-pdf/lst-s12-bio05-1.pdf>]
+LaTeX Info: Redefining \. on input line 18485.
+LaTeX Info: Redefining \% on input line 18485.
+[291
+Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
+Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
+Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
+Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+]
+LaTeX Info: Redefining \. on input line 18558.
+LaTeX Info: Redefining \% on input line 18558.
+[292]
+LaTeX Info: Redefining \. on input line 18627.
+LaTeX Info: Redefining \% on input line 18627.
+[293]
+LaTeX Info: Redefining \. on input line 18683.
+LaTeX Info: Redefining \% on input line 18683.
+[294
+Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
+]
+<chapters/semana11_files/figure-pdf/lst-s12-bio07-1.pdf, id=2644, 363.3575pt x 
+210.7875pt>
+File: chapters/semana11_files/figure-pdf/lst-s12-bio07-1.pdf Graphic file (type
+ pdf)
+<use chapters/semana11_files/figure-pdf/lst-s12-bio07-1.pdf>
+Package luatex.def Info: chapters/semana11_files/figure-pdf/lst-s12-bio07-1.pdf
+  used on input line 18705.
+(luatex.def)             Requested size: 363.3566pt x 210.78699pt.
+LaTeX Info: Redefining \. on input line 18794.
+LaTeX Info: Redefining \% on input line 18794.
+[295<./chapters/semana11_files/figure-pdf/lst-s12-bio07-1.pdf>]
+LaTeX Info: Redefining \. on input line 18794.
+LaTeX Info: Redefining \% on input line 18794.
+[296
+Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
+Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
+Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
+Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+]
+LaTeX Info: Redefining \. on input line 18843.
+LaTeX Info: Redefining \% on input line 18843.
+[297
+Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
+]
+LaTeX Info: Redefining \. on input line 18916.
+LaTeX Info: Redefining \% on input line 18916.
+[298]
+LaTeX Info: Redefining \. on input line 18997.
+LaTeX Info: Redefining \% on input line 18997.
+[299]
+
+LaTeX Warning: Reference `sec-apendiceB' on page 300 undefined on input line 19
+016.
+
+<chapters/semana11_files/figure-pdf/lst-s11-rlogitm-1.pdf, id=2677, 424.58624pt
+ x 351.3125pt>
+File: chapters/semana11_files/figure-pdf/lst-s11-rlogitm-1.pdf Graphic file (ty
+pe pdf)
+<use chapters/semana11_files/figure-pdf/lst-s11-rlogitm-1.pdf>
+Package luatex.def Info: chapters/semana11_files/figure-pdf/lst-s11-rlogitm-1.p
+df  used on input line 19093.
+(luatex.def)             Requested size: 424.5852pt x 351.31163pt.
+LaTeX Info: Redefining \. on input line 19148.
+LaTeX Info: Redefining \% on input line 19148.
+[300]
+LaTeX Info: Redefining \. on input line 19148.
+LaTeX Info: Redefining \% on input line 19148.
+[301]
+LaTeX Info: Redefining \. on input line 19148.
+LaTeX Info: Redefining \% on input line 19148.
+[302<./chapters/semana11_files/figure-pdf/lst-s11-rlogitm-1.pdf>]
+LaTeX Info: Redefining \. on input line 19203.
+LaTeX Info: Redefining \% on input line 19203.
+[303]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 12.11 on input line 19203.
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 12.13 on input line 19253.
+
+LaTeX Info: Redefining \. on input line 19284.
+LaTeX Info: Redefining \% on input line 19284.
+[304]
+Underfull \hbox (badness 5431) in paragraph at lines 19342--19350
+[]\TU/lmr/bx/n/10.95 Ejer-ci-cio 11.6: \TU/lmr/m/n/10.95 a) Ta-bla: hi-per-ten-s
+os $\TU/latinmodern-math.otf(1)/b/n/10.95 (120, 80, 200)$\TU/lmr/m/n/10.95 ; nor
+-mo-ten-sos $\TU/latinmodern-math.otf(1)/b/n/10.95 (80, 120, 200)$\TU/lmr/m/n/1
+0.95 ; to-ta-
+ []
+
+LaTeX Info: Redefining \. on input line 19350.
+LaTeX Info: Redefining \% on input line 19350.
+[305]
+
+Package natbib Warning: Citation `Agresti2013' on page 306 undefined on input l
+ine 19402.
+
+
+Package natbib Warning: Citation `McNemar1947' on page 306 undefined on input l
+ine 19404.
+
+
+Package natbib Warning: Citation `Fleiss2003' on page 306 undefined on input li
+ne 19406.
+
+
+Package natbib Warning: Citation `Altman1991' on page 306 undefined on input li
+ne 19408.
+
+
+Package natbib Warning: Citation `Rothman2008' on page 306 undefined on input l
+ine 19410.
+
+
+Package natbib Warning: Citation `Robins1987' on page 306 undefined on input li
+ne 19412.
+
+
+Package natbib Warning: Citation `Smith2020' on page 306 undefined on input lin
+e 19414.
+
+
+Package natbib Warning: Citation `Szklo2007' on page 306 undefined on input lin
+e 19416.
+
+
+Package natbib Warning: Citation `OpenIntro2019' on page 306 undefined on input
+ line 19418.
+
+LaTeX Info: Redefining \. on input line 19420.
+LaTeX Info: Redefining \% on input line 19420.
+[306
+Missing character: There is no χ (U+03C7) in font [lmroman10-regular]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 19424.
+LaTeX Info: Redefining \% on input line 19424.
+[307]
+
+Package natbib Warning: Citation `Casella2002' on page 308 undefined on input l
+ine 19451.
+
+
+Package natbib Warning: Citation `Rice2007' on page 308 undefined on input line
+ 19454.
+
+
+Package natbib Warning: Citation `Wackerly2008' on page 308 undefined on input 
+line 19457.
+
+
+Package natbib Warning: Citation `Wasserman2006' on page 308 undefined on input
+ line 19460.
+
+
+Package natbib Warning: Citation `Wood2015' on page 308 undefined on input line
+ 19463.
+
+
+Package natbib Warning: Citation `Tukey1961' on page 308 undefined on input lin
+e 19478.
+
+
+Package natbib Warning: Citation `Wickham2016' on page 308 undefined on input l
+ine 19481.
+
+
+Package natbib Warning: Citation `Rice2007' on page 308 undefined on input line
+ 19496.
+
+
+Package natbib Warning: Citation `Ross2014' on page 308 undefined on input line
+ 19499.
+
+
+Package natbib Warning: Citation `Devore2020' on page 308 undefined on input li
+ne 19501.
+
+[308
+
+]
+
+Package natbib Warning: Citation `Casella2002' on page 309 undefined on input l
+ine 19517.
+
+
+Package natbib Warning: Citation `Agresti2018' on page 309 undefined on input l
+ine 19520.
+
+
+Package natbib Warning: Citation `FDR2001' on page 309 undefined on input line 
+19523.
+
+
+Package natbib Warning: Citation `James2013' on page 309 undefined on input lin
+e 19537.
+
+
+Package natbib Warning: Citation `Freedman2007' on page 309 undefined on input 
+line 19540.
+
+
+Package natbib Warning: Citation `Wooldridge2020' on page 309 undefined on inpu
+t line 19543.
+
+
+Package natbib Warning: Citation `Greene2018' on page 309 undefined on input li
+ne 19546.
+
+
+Package natbib Warning: Citation `Angrist2008' on page 309 undefined on input l
+ine 19548.
+
+
+Package natbib Warning: Citation `Agresti2013' on page 309 undefined on input l
+ine 19564.
+
+
+Package natbib Warning: Citation `Fleiss2003' on page 309 undefined on input li
+ne 19568.
+
+
+Package natbib Warning: Citation `McNemar1947' on page 309 undefined on input l
+ine 19572.
+
+
+Package natbib Warning: Citation `Altman1991' on page 309 undefined on input li
+ne 19575.
+
+
+Package natbib Warning: Citation `Rothman2008' on page 309 undefined on input l
+ine 19578.
+
+
+Package natbib Warning: Citation `Szklo2007' on page 309 undefined on input lin
+e 19581.
+
+
+Package natbib Warning: Citation `BioestadisticaR2' on page 309 undefined on in
+put line 19584.
+
+
+Package natbib Warning: Citation `OpenIntro2019' on page 309 undefined on input
+ line 19589.
+
+
+Package natbib Warning: Citation `RCoreTeam2024' on page 309 undefined on input
+ line 19604.
+
+
+Package natbib Warning: Citation `Wickham2016' on page 309 undefined on input l
+ine 19606.
+
+
+Package natbib Warning: Citation `Kabacoff2015' on page 309 undefined on input 
+line 19608.
+
+LaTeX Info: Redefining \. on input line 19622.
+LaTeX Info: Redefining \% on input line 19622.
+[309]
+
+Package natbib Warning: Citation `Koop2011' on page 310 undefined on input line
+ 19622.
+
+
+Package natbib Warning: Citation `Gelman2013' on page 310 undefined on input li
+ne 19624.
+
+
+Package natbib Warning: Citation `McElreath2020' on page 310 undefined on input
+ line 19627.
+
+
+Package natbib Warning: Citation `Peng2015' on page 310 undefined on input line
+ 19630.
+
+
+Package natbib Warning: Citation `James2013' on page 310 undefined on input lin
+e 19644.
+
+
+Package natbib Warning: Citation `Efron2016' on page 310 undefined on input lin
+e 19647.
+
+
+Package natbib Warning: Citation `Hyndman2018' on page 310 undefined on input l
+ine 19650.
+
+
+Package natbib Warning: Citation `Pearl2009' on page 310 undefined on input lin
+e 19652.
+
+
+Package natbib Warning: Citation `Varian2014' on page 310 undefined on input li
+ne 19654.
+
+
+Package natbib Warning: Citation `Montgomery2020' on page 310 undefined on inpu
+t line 19657.
+
+
+Package natbib Warning: Citation `OpenIntro2019' on page 310 undefined on input
+ line 19659.
+
+
+Package natbib Warning: Citation `Dodge2006' on page 310 undefined on input lin
+e 19672.
+
+No file index.bbl.
+LaTeX Info: Redefining \. on input line 19708.
+LaTeX Info: Redefining \% on input line 19708.
+[310]
+Apéndice A.
+[311
+
+
+]
+<chapters/apendiceA_files/figure-pdf/unnamed-chunk-1-1.pdf, id=2771, 364.36125p
+t x 211.79124pt>
+File: chapters/apendiceA_files/figure-pdf/unnamed-chunk-1-1.pdf Graphic file (t
+ype pdf)
+<use chapters/apendiceA_files/figure-pdf/unnamed-chunk-1-1.pdf>
+Package luatex.def Info: chapters/apendiceA_files/figure-pdf/unnamed-chunk-1-1.
+pdf  used on input line 19796.
+(luatex.def)             Requested size: 364.36035pt x 211.79073pt.
+LaTeX Info: Redefining \. on input line 19846.
+LaTeX Info: Redefining \% on input line 19846.
+[312<./chapters/apendiceA_files/figure-pdf/unnamed-chunk-1-1.pdf>]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+LaTeX Info: Redefining \. on input line 20072.
+LaTeX Info: Redefining \% on input line 20072.
+[313]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+LaTeX Info: Redefining \. on input line 20293.
+LaTeX Info: Redefining \% on input line 20293.
+[314]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+LaTeX Info: Redefining \. on input line 20387.
+LaTeX Info: Redefining \% on input line 20387.
+[315]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+LaTeX Info: Redefining \. on input line 20507.
+LaTeX Info: Redefining \% on input line 20507.
+[316]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+LaTeX Info: Redefining \. on input line 20748.
+LaTeX Info: Redefining \% on input line 20748.
+[317]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+LaTeX Info: Redefining \. on input line 20902.
+LaTeX Info: Redefining \% on input line 20902.
+[318]
+LaTeX Info: Redefining \. on input line 20902.
+LaTeX Info: Redefining \% on input line 20902.
+[319]
+LaTeX Info: Redefining \. on input line 20902.
+LaTeX Info: Redefining \% on input line 20902.
+[320]
+LaTeX Info: Redefining \. on input line 20902.
+LaTeX Info: Redefining \% on input line 20902.
+[321]
+Apéndice B.
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <24.88> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 20904.
+
+[322
+
+]
+
+Package tcolorbox Warning: Using nobreak failed. Try to enlarge `lines before b
+reak' or set page breaks manually on input line 20970.
+
+
+Overfull \hbox (32.71399pt too wide) in paragraph at lines 21008--21008
+[] \TU/lmtt/m/n/10.95 $ alcohol   : Factor w/ 3 levels "Excesivo","Moderado",..:
+ 2 2 2 2 2 2 2 2 2 2 ...[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21022--21022
+[] \TU/lmtt/m/n/10.95 $ sztri     : num  0.55 -1.62 -1.28 -1.11 -1.68 2.05 -0.75
+ -1.11 -0.98 -
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21023--21023
+[] \TU/lmtt/m/n/10.95 $ szcue     : num  1.44 -0.93 -0.07 -2.07 -3.1 0.35 0.08 
+-1.62 -2.25 -
+ []
+
+LaTeX Info: Redefining \. on input line 21033.
+LaTeX Info: Redefining \% on input line 21033.
+[323]
+LaTeX Info: Redefining \. on input line 21136.
+LaTeX Info: Redefining \% on input line 21136.
+[324]
+LaTeX Info: Redefining \. on input line 21222.
+LaTeX Info: Redefining \% on input line 21222.
+[325]
+LaTeX Info: Redefining \. on input line 21271.
+LaTeX Info: Redefining \% on input line 21271.
+[326
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
+]
+LaTeX Info: Redefining \. on input line 21390.
+LaTeX Info: Redefining \% on input line 21390.
+[327]
+LaTeX Info: Redefining \. on input line 21415.
+LaTeX Info: Redefining \% on input line 21415.
+[328
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
+]
+Overfull \hbox (44.21149pt too wide) in paragraph at lines 21466--21466
+[]\TU/lmtt/m/n/10.95 # Tamaño de muestra para la estimación de la media de una
+ VA normal o su aproximación[] 
+ []
+
+
+Overfull \hbox (44.21149pt too wide) in paragraph at lines 21467--21467
+[]\TU/lmtt/m/n/10.95 # ---------------------------------------------------------
+--------------------------[] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+LaTeX Info: Redefining \. on input line 21528.
+LaTeX Info: Redefining \% on input line 21528.
+[329
+Missing character: There is no δ (U+03B4) in font [lmmono10-regular]:!
+Missing character: There is no ≥ (U+2265) in font [lmmono10-regular]:!
+]
+
+LaTeX Warning: File `chapters/apendiceB_files/figure-pdf/unnamed-chunk-21-1.pdf
+' not found on input line 21574.
+
+
+! Package luatex.def Error: File `chapters/apendiceB_files/figure-pdf/unnamed-c
+hunk-21-1.pdf' not found: using draft setting.
+
+See the luatex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.21574 ...files/figure-pdf/unnamed-chunk-21-1.pdf}}
+                                                  
+
+Here is how much of LuaTeX's memory you used:
+ 44596 strings out of 476553
+ 156364,1977958 words of node,token memory allocated
+ 15971 words of node memory still in use:
+   64 hlist, 17 vlist, 25 rule, 79 disc, 13 local_par, 3 dir, 2 math, 265 glue, 
+57 kern, 87 penalty, 8 margin_kern, 678 glyph, 2181 attribute, 73 glue_spec, 729
+ attribute_list, 2 temp, 7 if_stack, 10 write, 5 pdf_dest, 5 pdf_action, 122 pdf
+_colorstack nodes
+   avail lists: 1:9,2:6581,3:1650,4:1925,5:756,6:155,7:10043,8:94,9:1254,10:36,1
+1:998
+ 64163 multiletter control sequences out of 65536+600000
+ 114 fonts using 34579103 bytes
+ 90i,13n,120p,1001b,1089s stack positions out of 10000i,1000n,20000p,200000b,200000s
+!  ==> Fatal error occurred, no output PDF file produced!

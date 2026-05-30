@@ -1,6 +1,6 @@
 # Apéndice B: El Paquete `BioStatR` — Guía de Referencia {#sec-apendiceB}
 
-El paquete **`BioStatR`** (versión 1.0.0, 2026) ha sido desarrollado en la Unidad Docente de Bioestadística del Departamento de Estadística e Investigación Operativa de la Universidad de Granada por **Pedro Femia Marzo** y **Miguel Ángel Luque Fernández**. Proporciona 22 funciones de alto nivel que integran descripción, inferencia, modelización (lineal y logística) y visualización en una sola llamada, diseñadas específicamente para la docencia de bioestadística en ciencias de la salud.
+El paquete **`BioStatR`** (versión 1.0.0, 2026) ha sido desarrollado en la Unidad Docente de Bioestadística del Departamento de Estadística e Investigación Operativa de la Universidad de Granada por **Pedro Femia Marzo** y **Miguel Ángel Luque Fernández**. Proporciona un conjunto de funciones de alto nivel que integran descripción, inferencia, modelización (lineal y logística) y visualización en una sola llamada, diseñadas específicamente para la docencia de bioestadística en ciencias de la salud.
 
 - **Sitio web del paquete:** <https://migariane.github.io/BioStatR/>
 - **Repositorio GitHub:** <https://github.com/migariane/BioStatR>
@@ -57,7 +57,7 @@ Las 27 variables cubren factores de riesgo (tabaco, alcohol, actividad física),
 
 ---
 
-## B.2 Análisis descriptivo: `freq()`, `grps()` y `grpsggp()` {#sec-bio-descriptivo}
+## B.2 Análisis descriptivo: `freq()` y `grps()` {#sec-bio-descriptivo}
 
 ### B.2.1 Tablas de frecuencias: `freq()`
 
@@ -123,17 +123,6 @@ grps(osteo$imc, osteo$sexo, ic = TRUE, grf = FALSE)
 ```
 :::
 
-### B.2.3 Diagramas por grupos: `grpsggp()`
-
-```{r}
-#| lst-label: lst-apendiceB-grpsggp-sig
-#| lst-cap: "Signatura de grpsggp()"
-#| eval: false
-grpsggp(x, f = NULL, ggid = 1, lbls = NULL, bins = NULL, hnmin = 50)
-```
-
-Complementa a `grps()` proporcionando representaciones gráficas segmentadas por un factor de agrupación: histogramas por grupo, *boxplots*, diagramas de puntos, diagramas de violín y diagramas de medias con barras de error.
-
 ---
 
 ## B.3 Intervalos de confianza: `icm()`, `icp()`, `icl()` {#sec-bio-ic}
@@ -197,6 +186,22 @@ icl(x = 0, n = 0, conf = 0.95, decs = 4)
 
 IC para la tasa $\lambda$ de una distribución de Poisson basado en el método exacto (gamma–Poisson). Útil en vigilancia epidemiológica para tasas de incidencia por persona-año.
 
+::: {.callout-tip}
+## Ejemplo B.5: Tasa de incidencia de complicaciones diabéticas
+
+En un registro hospitalario se observan 12 nuevos casos de retinopatía diabética en 1000 personas-año de seguimiento. Estimamos la tasa $\lambda$ con un IC al 95 %:
+
+```{r}
+#| lst-label: lst-apendiceB-icl-retin
+#| lst-cap: "icl() — IC exacto para una tasa de incidencia"
+#| warning: false
+#| message: false
+icl(x = 12, n = 1000)
+```
+
+**Interpretación:** la tasa estimada es de 12 casos por cada 1000 personas-año (IC 95 %: aproximadamente 6.2 – 21.0 por 1000 p-año). El método exacto (gamma–Poisson) es preferible al de la aproximación normal cuando el número de eventos es pequeño.
+:::
+
 ---
 
 ## B.4 Tamaño muestral: `nm()`, `np()` y `nl()` {#sec-bio-n}
@@ -213,7 +218,7 @@ nm(d, n, m, s, alfa = 0.05)
 Calcula el tamaño muestral necesario para estimar una media con precisión $d$ (semiamplitud del IC) dada una desviación típica esperada $s$.
 
 ::: {.callout-tip}
-## Ejemplo B.5: ¿Cuántos pacientes para estimar HbA1c con mayor precisión?
+## Ejemplo B.6: ¿Cuántos pacientes para estimar HbA1c con mayor precisión?
 
 ```{r}
 #| lst-label: lst-apendiceB-nm-hba1c
@@ -246,6 +251,32 @@ nl(x, n = 0, d, lmax = 0, conf = 0.95, alfa = 0.05)
 
 Tamaño muestral para estimar el parámetro $\lambda$ de una distribución de Poisson con la precisión deseada. Se puede informar a partir de observaciones piloto o del valor máximo esperado del parámetro (`lmax`).
 
+::: {.callout-tip}
+## Ejemplo B.7: Diseño de un estudio de vigilancia epidemiológica
+
+Se planea un estudio para estimar la tasa de incidencia de una infección hospitalaria con una **precisión de $\pm 1$ caso por persona-año**. Un estudio piloto previo observó 3 casos en una sola unidad de seguimiento ($n = 1$, media observada $\bar x = 3$).
+
+```{r}
+#| lst-label: lst-apendiceB-nl-pilot
+#| lst-cap: "nl() — tamaño muestral a partir de observación piloto"
+#| warning: false
+#| message: false
+nl(x = 3, d = 1)
+```
+
+**Interpretación:** se requieren al menos $n \approx 31$ unidades de seguimiento (con corrección por continuidad) para conseguir la precisión deseada al 95 % de confianza.
+
+Si en lugar de datos piloto se dispone de una **cota superior esperada** del parámetro (p. ej. $\lambda \leq 4.5$), se utiliza el argumento `lmax`:
+
+```{r}
+#| lst-label: lst-apendiceB-nl-lmax
+#| lst-cap: "nl() — tamaño muestral a partir de un valor máximo esperado"
+#| warning: false
+#| message: false
+nl(lmax = 4.5, d = 1)
+```
+:::
+
 ---
 
 ## B.5 Contrastes de hipótesis {#sec-bio-contrastes}
@@ -262,7 +293,7 @@ testnormal(x, obs = TRUE, mod = TRUE, dens = TRUE, sw = TRUE, decs = 3, grf = TR
 Contraste de Shapiro–Wilk con visualización integrada (histograma + densidad teórica + Q–Q plot).
 
 ::: {.callout-tip}
-## Ejemplo B.6: ¿Es normal la HbA1c?
+## Ejemplo B.8: ¿Es normal la HbA1c?
 
 ```{r}
 #| lst-label: lst-apendiceB-testnormal-hba1c
@@ -287,7 +318,7 @@ testt(m, s, n, m0, delta, potencia)
 Integra en una sola función: verificación de normalidad (Shapiro–Wilk), t-test de una o dos muestras (pareadas o independientes), test de homogeneidad de varianzas (Welch automático) e IC.
 
 ::: {.callout-tip}
-## Ejemplo B.7a: Contraste de una muestra — ¿HbA1c > 7.5 %?
+## Ejemplo B.9a: Contraste de una muestra — ¿HbA1c > 7.5 %?
 
 ```{r}
 #| lst-label: lst-apendiceB-testt-1m
@@ -302,7 +333,7 @@ Rechazamos $H_0$: la media de HbA1c supera significativamente el umbral clínico
 :::
 
 ::: {.callout-tip}
-## Ejemplo B.7b: Contraste de dos muestras — HbA1c entre hombres y mujeres
+## Ejemplo B.9b: Contraste de dos muestras — HbA1c entre hombres y mujeres
 
 ```{r}
 #| lst-label: lst-apendiceB-testt-2m
@@ -325,7 +356,7 @@ testf(s1, n1, s2, n2)
 Contraste $H_0: \sigma_1^2 = \sigma_2^2$ usando el estadístico $F = s_1^2 / s_2^2 \sim F_{n_1-1,\, n_2-1}$.
 
 ::: {.callout-tip}
-## Ejemplo B.8: ¿Misma variabilidad del IMC en hombres y mujeres?
+## Ejemplo B.10: ¿Misma variabilidad del IMC en hombres y mujeres?
 
 ```{r}
 #| lst-label: lst-apendiceB-testf-imc
@@ -351,7 +382,7 @@ testp(x, n, p0, delta = 0.05, potencia = 0.9)
 Contraste para una proporción (contra un valor hipotético $\pi_0$) o para comparar dos proporciones independientes o pareadas.
 
 ::: {.callout-tip}
-## Ejemplo B.9: ¿La prevalencia de tabaquismo supera el 35 %?
+## Ejemplo B.11: ¿La prevalencia de tabaquismo supera el 35 %?
 
 ```{r}
 #| lst-label: lst-apendiceB-testp-tabaco
@@ -374,7 +405,7 @@ testwx(m1, m2, par = FALSE)
 Test de Wilcoxon–Mann–Whitney para dos muestras independientes (`par = FALSE`) o test de los rangos con signo de Wilcoxon para datos pareados (`par = TRUE`). Devuelve el tamaño del efecto $r$ y la probabilidad de superioridad.
 
 ::: {.callout-tip}
-## Ejemplo B.10: IMC en diabéticos jóvenes vs. mayores
+## Ejemplo B.12: IMC en diabéticos jóvenes vs. mayores
 
 ```{r}
 #| lst-label: lst-apendiceB-testwx-imc
@@ -400,7 +431,7 @@ testmcnemar(n11, n12, n21, n22, delta = 0.05, alfa = 0.05, beta = 0.15)
 Para comparar dos proporciones en muestras apareadas (antes/después, o dos pruebas diagnósticas en los mismos sujetos). El contraste se basa en las celdas discordantes $n_{12}$ y $n_{21}$.
 
 ::: {.callout-tip}
-## Ejemplo B.11: Cambio en actividad física tras una intervención
+## Ejemplo B.13: Cambio en actividad física tras una intervención
 
 ```{r}
 #| lst-label: lst-apendiceB-testmcnemar
@@ -431,7 +462,7 @@ rls(f, data, pred = NULL, grf = TRUE, alfa = 0.05, decs = 3)
 Ajusta el modelo $Y = \beta_0 + \beta_1 X + \varepsilon$ e informa de: correlación de Pearson con IC, coeficientes con IC, $R^2$, diagnóstico de residuos y (opcionalmente) predicciones puntuales con IC.
 
 ::: {.callout-tip}
-## Ejemplo B.12: ¿La evolución de la diabetes predice la HbA1c?
+## Ejemplo B.14: ¿La evolución de la diabetes predice la HbA1c?
 
 ```{r}
 #| lst-label: lst-apendiceB-rls-hba1c
@@ -454,7 +485,7 @@ rlm(f, data, pred = NULL, grf = TRUE, dfout = FALSE, alfa = 0.05, decs = 3)
 Extiende `rls()` al caso multivariante: $Y = \beta_0 + \beta_1 X_1 + \dots + \beta_p X_p + \varepsilon$. Devuelve la tabla de coeficientes con IC, $R^2$ y $R^2$ ajustado, distribución de los residuos con su test de normalidad y, si `grf = TRUE`, los cuatro gráficos clásicos de diagnóstico más histograma de residuos estandarizados.
 
 ::: {.callout-tip}
-## Ejemplo B.13: HbA1c \~ tevol + edad + IMC
+## Ejemplo B.15: HbA1c \~ tevol + edad + IMC
 
 ```{r}
 #| lst-label: lst-apendiceB-rlm-hba1c
@@ -498,7 +529,7 @@ rlogits(f, data, grf = FALSE, alfa = 0.05, decs = 3)
 Ajusta un modelo logístico binario simple $\mathrm{logit}\, \pi = \beta_0 + \beta_1 X$ y devuelve coeficientes, odds ratio con IC, devianzas, AIC, pseudo-$R^2$ de Nagelkerke, test de Hosmer–Lemeshow y AUC.
 
 ::: {.callout-tip}
-## Ejemplo B.14: ¿El IMC predice la osteoporosis del cuello femoral?
+## Ejemplo B.16: ¿El IMC predice la osteoporosis del cuello femoral?
 
 ```{r}
 #| lst-label: lst-apendiceB-rlogits-osteo
@@ -521,7 +552,7 @@ rlogitm(f, data, pred = NULL, grf = FALSE, alfa = 0.05, decs = 3)
 Extiende `rlogits()` al caso multivariante. Devuelve la tabla de coeficientes con OR ajustados e IC, devianzas, AIC, pseudo-$R^2$ de Nagelkerke, test de Hosmer–Lemeshow, AUC y, opcionalmente, la curva ROC (con `grf = TRUE`).
 
 ::: {.callout-tip}
-## Ejemplo B.15: Osteoporosis ajustada por tabaco + edad + IMC + tevol
+## Ejemplo B.17: Osteoporosis ajustada por tabaco + edad + IMC + tevol
 
 ```{r}
 #| lst-label: lst-apendiceB-rlogitm-osteo
@@ -554,7 +585,7 @@ tabla2x2(o, estudio = "T", fcat, ccat, tablas = c("F", "E", "S"))
 Calcula: frecuencias observadas y esperadas, $\chi^2$ de Pearson (con y sin corrección de Yates), test exacto de Fisher y medidas de asociación (OR, RR, RD) con sus IC al 95 %, adaptadas al tipo de estudio (`estudio = "T"` transversal, `"C"` cohorte, `"CC"` caso-control, `"AP"` apareado).
 
 ::: {.callout-tip}
-## Ejemplo B.16: Tabaquismo y osteoporosis del cuello femoral
+## Ejemplo B.18: Tabaquismo y osteoporosis del cuello femoral
 
 ```{r}
 #| lst-label: lst-apendiceB-tabla2x2-osteo
@@ -577,7 +608,7 @@ tablarxc(frecs, tablas = c("E", "F", "S"), fcat, ccat)
 ```
 
 ::: {.callout-tip}
-## Ejemplo B.17: Osteoporosis por grupo de edad (tabla 3×2)
+## Ejemplo B.19: Osteoporosis por grupo de edad (tabla 3×2)
 
 ```{r}
 #| lst-label: lst-apendiceB-tablarxc-osteo
@@ -599,7 +630,6 @@ tablarxc(frecs = tab,
 |---------|----------|-----------|----------------|
 | `freq()` | 1, 2 | Tablas de frecuencias (absolutas, relativas, acumuladas) | `freq(osteo$edad, grf=FALSE)` |
 | `grps()` | 2 | Estadísticas descriptivas por grupos | `grps(osteo$imc, osteo$sexo)` |
-| `grpsggp()` | 2 | Diagramas (boxplot, dotplot, violín) por grupos | `grpsggp(osteo$imc, osteo$sexo)` |
 | `icm()` | 7 | IC bilateral para la media | `icm(m=8.5, s=1.8, n=94)` |
 | `icp()` | 7 | IC para proporción (4 métodos) | `icp(x=41, n=94)` |
 | `icl()` | 7 | IC para tasa Poisson (exacto) | `icl(x=12, n=1000)` |
