@@ -88,7 +88,7 @@ format:
     number-sections: true
     number-depth: 3
     html-math-method: mathjax
-    code-fold: true
+    code-fold: show
     code-summary: "Mostrar el código"
     code-tools:
       source: false

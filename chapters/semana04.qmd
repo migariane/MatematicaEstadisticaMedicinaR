@@ -98,11 +98,13 @@ print(paste("P(X <= 5) =", pbinom(5, 10, 0.5)))
 print(paste("P(X < 5) =", pbinom(4, 10, 0.5)))
 
 # Continua: Normal(mu=0, sd=1)
-# P(X = 0) es cero
-print(paste("P(X = 0) =", dnorm(0))) 
+# Atención: en continuas P(X = 0) = 0 por definición.
+# dnorm(0) NO es probabilidad: es la densidad f(0) en el punto 0.
+print("P(X = 0) = 0  (por definición de variable continua)")
+print(paste("f(0) (densidad) =", dnorm(0)))
 # P(X <= 0) es 0.5
 print(paste("P(X <= 0) =", pnorm(0)))
-# P(X < 0) también es 0.5
+# En continuas P(X < 0) = P(X <= 0) porque P(X = 0) = 0; por eso usamos pnorm(0). Lo anterior también es 0.5
 print(paste("P(X < 0) =", pnorm(0)))
 ```
 ::: {.callout-note}
@@ -149,10 +151,12 @@ Tiene las mismas unidades que la variable original.
 
 1. **Transformación lineal:** Si $Y = a + bX$:
    $$\text{Var}(Y) = b^2 \cdot \text{Var}(X)$$
+
    (nota: la constante aditiva no afecta la varianza)
 
 2. **Suma de variables independientes:** Si $X$ e $Y$ son independientes:
    $$\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y)$$
+
    $$\text{Var}(X - Y) = \text{Var}(X) + \text{Var}(Y)$$
 :::
 
@@ -197,9 +201,11 @@ $$P(X = x_i | Y = y_j) = \frac{f(x_i, y_j)}{f(y_j)}$$
 ## Independencia
 
 Dos variables aleatorias $X$ e $Y$ son **independientes** si:
+
 $$f(x_i, y_j) = f(x_i) \cdot f(y_j) \quad \text{para todo } x_i, y_j$$
 
 **Importante:** La independencia implica que la distribución condicional iguala la marginal:
+
 $$P(X = x_i | Y = y_j) = P(X = x_i)$$
 :::
 
@@ -576,6 +582,7 @@ La **distribución normal estándar** tiene $\mu = 0$ y $\sigma = 1$:
 $$\varphi(z) = \frac{1}{\sqrt{2\pi}} e^{-z^2/2}$$
 
 **Transformación Z (Estandarización):**
+
 $$Z = \frac{X - \mu}{\sigma}$$
 
 Si $X \sim N(\mu, \sigma^2)$, entonces $Z \sim N(0, 1)$
@@ -657,6 +664,7 @@ La **corrección de continuidad** mejora la aproximación al ajustar $\pm 0.5$
 ## Condición de Aplicación
 
 La aproximación normal a la binomial es válida cuando:
+
 $$np \geq 5 \quad \text{y} \quad n(1-p) \geq 5$$
 
 Para $p$ cercano a 0 o 1 con $n$ pequeño, usar la binomial exacta (`pbinom()`).
@@ -671,11 +679,11 @@ Un fármaco es efectivo en el 40% de los pacientes. En un ensayo con $n = 20$ p
 
 |  | Cálculo | Resultado |
 |--|---------|-----------|
-| **Exacto (binomial)** | `pbinom(10, 20, 0.4)` | **0.8724** |
-| Normal sin corrección | $\Phi\!\left(\frac{10 - 8}{2.19}\right) = \Phi(0.913)$ | 0.8186 |
-| **Normal con corrección** | $\Phi\!\left(\frac{10.5 - 8}{2.19}\right) = \Phi(1.142)$ | **0.8729** |
+| **Exacto (binomial)** | `pbinom(10, 20, 0.4)` | **0.8725** |
+| Normal sin corrección | $\Phi\!\left(\frac{10 - 8}{2.19}\right) = \Phi(0.913)$ | 0.8193 |
+| **Normal con corrección** | $\Phi\!\left(\frac{10.5 - 8}{2.19}\right) = \Phi(1.142)$ | **0.8731** |
 
-La corrección reduce el error de 5.4 pp a 0.05 pp.
+La corrección reduce el error de aproximadamente 5.3 pp a 0.06 pp.
 
 ```{r}
 #| lst-label: lst-semana04-8

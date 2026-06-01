@@ -189,17 +189,19 @@ IC para la tasa $\lambda$ de una distribución de Poisson basado en el método e
 ::: {.callout-tip}
 ## Ejemplo B.5: Tasa de incidencia de complicaciones diabéticas
 
-En un registro hospitalario se observan 12 nuevos casos de retinopatía diabética en 1000 personas-año de seguimiento. Estimamos la tasa $\lambda$ con un IC al 95 %:
+En un registro hospitalario se observan 12 nuevos casos de retinopatía diabética en 1000 personas-año de seguimiento. Estimamos la tasa $\lambda$ con un IC al 95 % pasando el **recuento de eventos** como un único valor observado (`n` se deja en su valor por defecto, $n=1$, que indica que los 12 eventos provienen de una única unidad de seguimiento):
 
 ```{r}
 #| lst-label: lst-apendiceB-icl-retin
 #| lst-cap: "icl() — IC exacto para una tasa de incidencia"
 #| warning: false
 #| message: false
-icl(x = 12, n = 1000)
+icl(x = 12)
 ```
 
-**Interpretación:** la tasa estimada es de 12 casos por cada 1000 personas-año (IC 95 %: aproximadamente 6.2 – 21.0 por 1000 p-año). El método exacto (gamma–Poisson) es preferible al de la aproximación normal cuando el número de eventos es pequeño.
+**Interpretación:** la tasa estimada es de 12 casos por 1000 personas-año (IC 95 %: aproximadamente 6.2 – 21.0 por 1000 p-año, método exacto gamma–Poisson). El método exacto es preferible al de la aproximación normal cuando el número de eventos es pequeño.
+
+> **Nota sobre los argumentos:** si se llama `icl(x = 12, n = 1000)` la función interpreta `x` como la **media muestral observada en `n` unidades** ($\sum x_i = n \cdot x = 12\,000$ eventos en 1000 unidades), no como "12 eventos en 1000 personas-año". La salida en ese caso sería un IC muy estrecho alrededor de 12 ($\approx [11.79,\,12.22]$).
 :::
 
 ---
@@ -615,6 +617,10 @@ tablarxc(frecs, tablas = c("E", "F", "S"), fcat, ccat)
 #| lst-cap: "tablarxc() — osteoporosis del cuello femoral por grupo de edad"
 #| warning: false
 #| message: false
+# Reordenamos el factor cronológicamente para que las filas de la
+# tabla coincidan con el orden de fcat.
+osteo$grupo_edad <- factor(osteo$grupo_edad,
+                           levels = c("< 25", "25-33", "> 33"))
 tab <- table(osteo$grupo_edad, osteo$osteo_cue)
 tablarxc(frecs = tab,
          fcat  = c("< 25", "25-33", "> 33"),

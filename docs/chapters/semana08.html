@@ -649,7 +649,7 @@ window.Quarto = {
 Cuadro&nbsp;8.1: Código R
 </figcaption>
 <div aria-describedby="lst-semana09-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -703,7 +703,7 @@ Cuadro&nbsp;8.1: Código R
 Cuadro&nbsp;8.2: Código R
 </figcaption>
 <div aria-describedby="lst-semana09-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test F de varianzas del IMC por sexo</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">testf</span>(<span class="at">s1 =</span> <span class="fu">sd</span>(osteo<span class="sc">$</span>imc[osteo<span class="sc">$</span>sexo <span class="sc">==</span> <span class="st">"Hombre"</span>]),</span>
@@ -733,7 +733,7 @@ Cuadro&nbsp;8.2: Código R
 Cuadro&nbsp;8.3: Código R
 </figcaption>
 <div aria-describedby="lst-semana09-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wilcoxon-Mann-Whitney: IMC &lt; 25 años vs &gt; 33 años (no normales)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">testwx</span>(<span class="at">m1 =</span> osteo<span class="sc">$</span>imc[osteo<span class="sc">$</span>grupo_edad <span class="sc">==</span> <span class="st">"&lt; 25"</span>],</span>
@@ -1197,7 +1197,7 @@ Test de Wilcoxon/Mann-Whithney para dos muestras independientes
 Cuadro&nbsp;8.4: Código R
 </figcaption>
 <div aria-describedby="lst-semana09-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1244,7 +1244,7 @@ Cuadro&nbsp;8.4: Código R
 Cuadro&nbsp;8.5: Código R
 </figcaption>
 <div aria-describedby="lst-semana09-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- 2. testp(): potencia y n para una proporcion ---</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># H0: pi_tabaco = 0.35  ;  delta = 0.05 (5 puntos porcentuales)</span></span>
@@ -1298,7 +1298,7 @@ Cuadro&nbsp;8.5: Código R
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Los argumentos <code>delta</code> y <code>potencia</code> transforman un contraste de hipótesis estático (sólo p-valor) en un <strong>análisis prospectivo de diseño</strong>: cuantifican la sensibilidad del estudio para detectar efectos clínicamente relevantes. Para la HbA1c, detectar una desviación de medio punto porcentual respecto al umbral clínico (7.5%) con potencia del 90% requiere aproximadamente <strong>n 138 pacientes</strong> —superior a los 94 actuales—, lo que indica que el estudio piloto está <strong>infrapotenciado</strong> para detectar efectos pequeños pero clínicamente significativos (0.5% de HbA1c corresponde a ~10–15 mg/dL de glucemia media, magnitud relevante para decisiones terapéuticas). Para la prevalencia de tabaquismo, alcanzar potencia del 90% para detectar una desviación de 5 puntos porcentuales respecto al 35% hipotético exige cerca de <strong>n ≈ 900 pacientes</strong>, casi diez veces el tamaño piloto. Esta asimetría refleja una propiedad clave: detectar diferencias en proporciones cercanas a 0.5 (varianza máxima <span class="math inline">\(p(1-p) = 0.25\)</span>) consume más muestra que detectar diferencias en variables continuas con buen contraste señal/ruido. En el diseno de protocolos clínicos, este análisis previo evita el error de planificar estudios incapaces de detectar el efecto buscado (estudios negativos por falta de potencia, no por ausencia real de efecto), y constituye argumento obligado ante comités éticos y agencias financiadoras.</p>
+<p>Los argumentos <code>delta</code> y <code>potencia</code> transforman un contraste de hipótesis estático (sólo p-valor) en un <strong>análisis prospectivo de diseño</strong>: cuantifican la sensibilidad del estudio para detectar efectos clínicamente relevantes. Para la <strong>HbA1c</strong>, el contraste resulta altamente significativo (<span class="math inline">\(t_{obs} = 5.74\)</span>, gl = 93, <span class="math inline">\(p &lt; 0.001\)</span>) por lo que <code>testt()</code> omite el análisis de potencia (la sensibilidad ya se confirma de facto sobre los <span class="math inline">\(n = 94\)</span> pacientes actuales). Una desviación de medio punto porcentual respecto al umbral clínico (7.5%) corresponde a ~10–15 mg/dL de glucemia media, magnitud clínicamente relevante para decisiones terapéuticas. Para la <strong>prevalencia de tabaquismo</strong>, alcanzar potencia del 90% para detectar una desviación de 5 puntos porcentuales respecto al 35% hipotético exige <strong>n ≈ 977 pacientes</strong> (bilateral, ~997 con corrección por continuidad) o ≈ 753 (unilateral), aproximadamente diez veces el tamaño piloto. Esta asimetría refleja una propiedad clave: detectar diferencias en proporciones cercanas a 0.5 (varianza máxima <span class="math inline">\(p(1-p) = 0.25\)</span>) consume más muestra que detectar diferencias en variables continuas con buen contraste señal/ruido. En el diseño de protocolos clínicos, este análisis previo evita el error de planificar estudios incapaces de detectar el efecto buscado (estudios negativos por falta de potencia, no por ausencia real de efecto), y constituye argumento obligado ante comités éticos y agencias financiadoras.</p>
 </div>
 </div>
 </div>
@@ -1367,7 +1367,7 @@ Cuadro&nbsp;8.5: Código R
 Cuadro&nbsp;8.6: Código R
 </figcaption>
 <div aria-describedby="lst-semana09-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de datos</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear datos directamente en R (Tipo de mosquito y vida en días)</span></span>
@@ -1398,7 +1398,7 @@ Cuadro&nbsp;8.6: Código R
 Cuadro&nbsp;8.7: Código R
 </figcaption>
 <div aria-describedby="lst-semana09-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Transgenic: n ="</span>, n2, <span class="st">", media ="</span>, <span class="fu">mean</span>(transgenic), <span class="st">", sd ="</span>, <span class="fu">sd</span>(transgenic), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -1414,7 +1414,7 @@ Cuadro&nbsp;8.7: Código R
 Cuadro&nbsp;8.8: Código R
 </figcaption>
 <div aria-describedby="lst-semana09-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de violín con ggplot2</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
@@ -1453,7 +1453,7 @@ Cuadro&nbsp;8.8: Código R
 Cuadro&nbsp;8.9: Código R
 </figcaption>
 <div aria-describedby="lst-semana09-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>) <span class="co"># Evitar notación científica)</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Test t con varianzas iguales</span></span>
@@ -1486,7 +1486,7 @@ mean of x mean of y
 Cuadro&nbsp;8.10: Código R
 </figcaption>
 <div aria-describedby="lst-semana09-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Interpretación:</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Si p-value &lt; 0.05, rechazamos H_0 (las medias son significativamente diferentes)</span></span>
@@ -1507,7 +1507,7 @@ Cuadro&nbsp;8.10: Código R
 Cuadro&nbsp;8.11: Código R
 </figcaption>
 <div aria-describedby="lst-semana09-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test t con varianzas desiguales (Welch)</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>tt_welch <span class="ot">&lt;-</span> <span class="fu">t.test</span>(wildtype, transgenic,</span>
@@ -1545,7 +1545,7 @@ mean of x mean of y
 Cuadro&nbsp;8.12: Código R
 </figcaption>
 <div aria-describedby="lst-semana09-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test F para igualdad de varianzas</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>f_test <span class="ot">&lt;-</span> <span class="fu">var.test</span>(wildtype, transgenic, <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span>
@@ -1574,7 +1574,7 @@ ratio of variances
 Cuadro&nbsp;8.13: Código R
 </figcaption>
 <div aria-describedby="lst-semana09-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Interpretación:</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Si p-value &lt; 0.05, hay evidencia de que las varianzas son desiguales</span></span>
@@ -1597,7 +1597,7 @@ Cuadro&nbsp;8.13: Código R
 Cuadro&nbsp;8.14: Código R
 </figcaption>
 <div aria-describedby="lst-semana09-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stats)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1628,7 +1628,7 @@ Cuadro&nbsp;8.14: Código R
 Cuadro&nbsp;8.15: Código R
 </figcaption>
 <div aria-describedby="lst-semana09-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># También podemos calcular la potencia de nuestro estudio actual</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>power_actual <span class="ot">&lt;-</span> <span class="fu">power.t.test</span>(</span>
@@ -1798,7 +1798,7 @@ Cuadro&nbsp;8.15: Código R
 Cuadro&nbsp;8.16: Código R
 </figcaption>
 <div aria-describedby="lst-semana09-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1827,7 +1827,7 @@ Cuadro&nbsp;8.16: Código R
 Cuadro&nbsp;8.17: Código R
 </figcaption>
 <div aria-describedby="lst-semana09-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test de Shapiro-Wilk con R base</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(osteo<span class="sc">$</span>edad)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1885,7 +1885,7 @@ W = 0.9, p-value = 0.000005</code></pre>
 Cuadro&nbsp;8.18: Código R
 </figcaption>
 <div aria-describedby="lst-semana09-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2017,7 +2017,7 @@ Bartlett's K-squared = 11, df = 2, p-value = 0.004</code></pre>
 Cuadro&nbsp;8.19: Codigo R
 </figcaption>
 <div aria-describedby="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(boot)</span>
@@ -2046,7 +2046,7 @@ W = 0.9, p-value = 0.006</code></pre>
 Cuadro&nbsp;8.20: Codigo R
 </figcaption>
 <div aria-describedby="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- 1. BOOTSTRAP MANUAL CON BUCLE FOR (algoritmo paso a paso) ---</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">10000</span>                          <span class="co"># número de réplicas bootstrap</span></span>
@@ -2076,7 +2076,7 @@ Cuadro&nbsp;8.20: Codigo R
 Cuadro&nbsp;8.21: Codigo R
 </figcaption>
 <div aria-describedby="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Réplicas bootstrap (B):"</span>, B, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -2092,7 +2092,7 @@ Cuadro&nbsp;8.21: Codigo R
 Cuadro&nbsp;8.22: Codigo R
 </figcaption>
 <div aria-describedby="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Media bootstrap promedio:"</span>, <span class="fu">round</span>(<span class="fu">mean</span>(boot_means), <span class="dv">3</span>), <span class="st">"kg/m²</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -2108,7 +2108,7 @@ Cuadro&nbsp;8.22: Codigo R
 Cuadro&nbsp;8.23: Codigo R
 </figcaption>
 <div aria-describedby="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Error estándar bootstrap:"</span>, <span class="fu">round</span>(<span class="fu">sd</span>(boot_means), <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -2124,7 +2124,7 @@ Cuadro&nbsp;8.23: Codigo R
 Cuadro&nbsp;8.24: Codigo R
 </figcaption>
 <div aria-describedby="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"IC 95% (percentiles, bucle manual): ["</span>,</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(IC_perc[<span class="dv">1</span>], <span class="dv">3</span>), <span class="st">", "</span>, <span class="fu">round</span>(IC_perc[<span class="dv">2</span>], <span class="dv">3</span>), <span class="st">"] kg/m²</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2141,7 +2141,7 @@ Cuadro&nbsp;8.24: Codigo R
 Cuadro&nbsp;8.25: Codigo R
 </figcaption>
 <div aria-describedby="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- 2. BOOTSTRAP BCa con el paquete boot (recomendado en n pequeñas) ---</span></span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>boot_fn  <span class="ot">&lt;-</span> <span class="cf">function</span>(data, i) <span class="fu">mean</span>(data[i])</span>
@@ -2169,7 +2169,7 @@ Calculations and Intervals on Original Scale</code></pre>
 Cuadro&nbsp;8.26: Codigo R
 </figcaption>
 <div aria-describedby="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- 3. IC clásico t para comparación ---</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x)<span class="sc">$</span>conf.int</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2216,7 +2216,7 @@ attr(,"conf.level")
 Cuadro&nbsp;8.27: Código R
 </figcaption>
 <div aria-describedby="lst-semana09-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2024</span>)</span>
@@ -2252,7 +2252,7 @@ Cuadro&nbsp;8.27: Código R
 Cuadro&nbsp;8.28: Código R
 </figcaption>
 <div aria-describedby="lst-semana09-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"p-valor permutacion: "</span>, <span class="fu">round</span>(p_perm, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -2268,7 +2268,7 @@ Cuadro&nbsp;8.28: Código R
 Cuadro&nbsp;8.29: Código R
 </figcaption>
 <div aria-describedby="lst-semana09-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparación con t-test clásico</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(g1, g2)<span class="sc">$</span>p.value</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2381,7 +2381,7 @@ Cuadro&nbsp;8.29: Código R
 Cuadro&nbsp;8.30: Código R
 </figcaption>
 <div aria-describedby="lst-semana09-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2464,7 +2464,7 @@ Test de Wilcoxon/Mann-Whithney para dos muestras independientes
 Cuadro&nbsp;8.31: Código R
 </figcaption>
 <div aria-describedby="lst-semana09-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcio inicial y final (simulados)</span></span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>ca_pre  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">9.2</span>, <span class="fl">8.4</span>, <span class="fl">8.8</span>, <span class="fl">9.1</span>, <span class="fl">9.5</span>, <span class="fl">9.0</span>, <span class="fl">8.9</span>, <span class="fl">9.3</span>, <span class="fl">8.5</span>, <span class="fl">8.7</span>)</span>
@@ -2549,7 +2549,7 @@ Test de Wilcoxon  para dos muestras apareadas
 Cuadro&nbsp;8.32: Código R
 </figcaption>
 <div aria-describedby="lst-semana09-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Contrastar si el IMC difiere entre los 3 grupos de edad</span></span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(imc <span class="sc">~</span> grupo_edad, <span class="at">data =</span> osteo)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>

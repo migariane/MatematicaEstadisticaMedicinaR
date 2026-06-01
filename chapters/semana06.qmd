@@ -186,7 +186,7 @@ $$\hat{\sigma}^2_{\text{MoM}} = \frac{1}{n}\sum_{i=1}^n X_i^2 - \bar{X}^2 = \fra
 ## Ejemplo: Estimación por Momentos en R
 
 ```{r}
-#| lst-label: lst-semana07-1
+#| lst-label: lst-semana06-1
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
@@ -216,19 +216,19 @@ cat("σ²       =", 144, "\n")
 
 ::: {.callout-note}
 ## Interpretación
-El método de momentos recupera estimaciones muy próximas a los parámetros poblacionales verdaderos de la glucosa basal (μ̂ ≈ 95 mg/dL vs μ = 95; σ̂² ≈ 144 vs σ² = 144), evidenciando que el procedimiento de igualar momentos muestrales con poblacionales proporciona estimadores consistentes. Esta propiedad es fundamental en estudios epidemiológicos sobre control glucémico, donde se busca estimar parámetros poblacionales de biomarcadores (glucemia, HbA1c, insulina) a partir de cohortes muestrales. La proximidad de las estimaciones al valor verdadero con n = 100 pacientes valida el MoM como método práctico y computacionalmente eficiente para caracterizar distribuciones de variables clínicas continuas.
+El método de momentos recupera una estimación de la media próxima al verdadero μ = 95 mg/dL (μ̂ ≈ 96.1 mg/dL) y una estimación de la varianza algo inferior al verdadero σ² = 144 (σ̂² ≈ 119) — esta discrepancia refleja principalmente la **variabilidad muestral** del estimador (con $n = 100$, el error estándar de $S'^2$ es ≈ 20); el sesgo teórico ($-\sigma^2/n \approx -1.44$) contribuye solo marginalmente. Asintóticamente, ambas estimaciones convergen a los parámetros poblacionales, evidenciando que el procedimiento de igualar momentos muestrales con poblacionales proporciona estimadores consistentes. Esta propiedad es fundamental en estudios epidemiológicos sobre control glucémico, donde se busca estimar parámetros poblacionales de biomarcadores (glucemia, HbA1c, insulina) a partir de cohortes muestrales. El MoM es un método práctico y computacionalmente eficiente para caracterizar distribuciones de variables clínicas continuas.
 :::
 
 :::
 
-### Ejemplo 6.5.3: Distribución de Poisson
+### Ejemplo 6.5.2: Distribución de Poisson
 
 Para una distribución de Poisson $\text{Poisson}(\lambda)$:
 
 - Momento poblacional: $E(X) = \lambda$
 - Estimador MoM: $\hat{\lambda}_{\text{MoM}} = \bar{X}$
 
-### Ejemplo 6.5.4: Distribución Gamma
+### Ejemplo 6.5.3: Distribución Gamma
 
 Para una distribución Gamma con parámetros $\alpha$ (forma) y $\beta$ (tasa):
 
@@ -288,6 +288,7 @@ Las funciones $L(\theta)$ y $\ell(\theta)$ tienen el mismo máximo porque el log
 $$\max_\theta L(\theta) \Leftrightarrow \max_\theta \ell(\theta)$$
 
 Por lo tanto:
+
 $$\frac{\partial \ell(\theta)}{\partial \theta}\bigg|_{\theta=\hat{\theta}} = 0 \quad \Leftrightarrow \quad \frac{\partial L(\theta)}{\partial \theta}\bigg|_{\theta=\hat{\theta}} = 0$$
 
 Usar log-verosimilitud es computacionalmente más conveniente porque:
@@ -334,7 +335,7 @@ $$\hat{\mu}_{\text{MLE}} = \bar{X} = \frac{1}{n}\sum_{i=1}^n X_i$$
 
 $$\hat{\sigma}^2_{\text{MLE}} = \frac{1}{n}\sum_{i=1}^n (X_i - \bar{X})^2 = S'^2$$
 
-**Nota:** Para la media, el EMV coincide con el estimador MoM. Para la varianza, el EMV es $S'^2$ (con divisor $n$), que es sesgado, mientras que el EMV del MoM es también $S'^2$.
+**Nota:** Para la media, el EMV coincide con el estimador MoM. Para la varianza, el EMV es $S'^2$ (con divisor $n$), que es sesgado, mientras que el estimador por el **método de momentos** es también $S'^2$ (ambos métodos coinciden en este caso, aunque son procedimientos distintos: MoM no es un EMV en general).
 
 ### Propiedades del EMV
 
@@ -349,6 +350,7 @@ Bajo condiciones de regularidad (que suelen cumplirse en la práctica):
 
 3. **Distribución Asintótica:** Para tamaños de muestra grandes,
 $$\hat{\theta}_{\text{MLE}} \approx N\left(\theta_0, \frac{1}{nI(\theta_0)}\right)$$
+
 donde $I(\theta)$ es la información de Fisher.
 
 4. **Invariancia:** Si $\hat{\theta}$ es el EMV de $\theta$, entonces $g(\hat{\theta})$ es el EMV de $g(\theta)$ para cualquier función $g$.
@@ -364,7 +366,7 @@ En muchos casos, no es posible encontrar una solución analítica para el EMV. E
 Modelamos el **tiempo (en días) hasta la primera hipoglucemia** en 100 pacientes con diabetes tipo 1 mediante una distribución Gamma. Los parámetros `shape` y `rate` no tienen forma analítica cerrada en su EMV conjunto, por lo que recurrimos a optimización numérica.
 
 ```{r}
-#| lst-label: lst-semana07-2
+#| lst-label: lst-semana06-2
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
@@ -409,7 +411,7 @@ cat("Shape (α) = 2 ; Rate (β) = 0.5 ; E[T] = 4 días\n")
 
 ::: {.callout-note}
 ## Interpretación
-La optimización numérica recupera estimadores MLE de los parámetros de forma (α̂ ≈ 2.00) y tasa (β̂ ≈ 0.50) indistinguibles de los parámetros poblacionales verdaderos, con tiempo medio estimado hasta hipoglucemia próximo a 4 días. El algoritmo de Nelder-Mead converge adecuadamente sin necesidad de derivadas analíticas, lo cual es fundamental en aplicaciones biomédicas de análisis de supervivencia (tiempo hasta evento clínico) donde la verosimilitud carece de forma cerrada. La penalización con `Inf` para parámetros no admisibles y el uso de log-densidades garantizan estabilidad numérica. En diabetes tipo 1, conocer la distribución del tiempo hasta hipoglucemia permite diseñar pautas de monitorización glucémica y educación al paciente basadas en cuantiles poblacionales.
+La optimización numérica recupera estimadores MLE de los parámetros de forma (α̂ ≈ 2.10) y tasa (β̂ ≈ 0.55) próximos a los parámetros poblacionales verdaderos (α = 2, β = 0.5), con tiempo medio estimado hasta hipoglucemia E[T] = α̂/β̂ ≈ 3.81 días (frente al valor poblacional 4 días). La pequeña discrepancia es consistente con la variabilidad muestral esperable para $n = 100$. El algoritmo de Nelder-Mead converge adecuadamente sin necesidad de derivadas analíticas, lo cual es fundamental en aplicaciones biomédicas de análisis de supervivencia (tiempo hasta evento clínico) donde la verosimilitud carece de forma cerrada. La penalización con `Inf` para parámetros no admisibles y el uso de log-densidades garantizan estabilidad numérica. En diabetes tipo 1, conocer la distribución del tiempo hasta hipoglucemia permite diseñar pautas de monitorización glucémica y educación al paciente basadas en cuantiles poblacionales.
 :::
 
 :::
@@ -480,7 +482,7 @@ donde $t_{1-\alpha/2, n-1}$ es el cuantil $(1-\alpha/2)$ de la distribución $t$
 ## Ejemplo: IC para la Media en R
 
 ```{r}
-#| lst-label: lst-semana07-3
+#| lst-label: lst-semana06-3
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
@@ -534,7 +536,7 @@ $$\text{IC}_{1-\alpha}(\pi) = \left[\hat{\pi} - z_{1-\alpha/2}\sqrt{\frac{\hat{\
 ## Ejemplo: IC para una Proporción en R
 
 ```{r}
-#| lst-label: lst-semana07-4
+#| lst-label: lst-semana06-4
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
@@ -594,7 +596,7 @@ Esto es incorrecto porque después de observar los datos, el intervalo es fijo y
 ## Ejemplo: Análisis Completo de Datos de HbA1c (Diabetes Tipo 2)
 
 ```{r}
-#| lst-label: lst-semana07-5
+#| lst-label: lst-semana06-5
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
@@ -643,7 +645,7 @@ cat("IC 95% = [", round(test_result$conf.int[1], 2), "%, ",
     round(test_result$conf.int[2], 2), "%]\n")
 ```
 
-**Interpretación:** Con el 95% de confianza, el nivel medio de HbA1c poblacional en pacientes diabéticos está entre 7.54% y 8.62%. Este intervalo incluye el objetivo clínico de HbA1c < 7%, sugiriendo que la cohorte presenta control glucémico moderado. El margen de error (~0.54%) refleja la variabilidad en control metabólico entre pacientes, lo que en práctica clínica orienta decisiones de intensificación terapéutica.
+**Interpretación:** Con el 95% de confianza, el nivel medio de HbA1c poblacional en pacientes diabéticos está entre 7.58% y 8.78% (media muestral = 8.18%, $s = 1.28\%$, $n = 20$). El IC no incluye el objetivo clínico de HbA1c < 7%, indicando que esta cohorte presenta un control glucémico subóptimo (por encima del objetivo terapéutico recomendado). El margen de error (~0.60%) refleja la variabilidad en control metabólico entre pacientes, lo que en práctica clínica orienta decisiones de intensificación terapéutica.
 :::
 
 ::: {.callout-tip}
@@ -652,7 +654,7 @@ cat("IC 95% = [", round(test_result$conf.int[1], 2), "%, ",
 Modelamos el **tiempo (en años) entre eventos cardiovasculares mayores** en una cohorte de 50 pacientes con cardiopatía isquémica como una distribución Exponencial con tasa λ. La media poblacional es $1/\lambda$ años entre eventos.
 
 ```{r}
-#| lst-label: lst-semana07-6
+#| lst-label: lst-semana06-6
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
@@ -726,7 +728,7 @@ $$\text{IC}_{1-\alpha}(\pi) = \left[\hat{\pi} \pm z_{1-\alpha/2} \sqrt{\frac{\ha
 Documentación completa de ambas funciones en @sec-bio-ic.
 
 ```{r}
-#| lst-label: lst-semana07-7
+#| lst-label: lst-semana06-7
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
@@ -741,7 +743,7 @@ icp(x = sum(osteo$tabaco == "Sí"), n = nrow(osteo))
 ```
 
 
-`icp()` calcula cuatro métodos simultáneamente. Para muestras pequeñas se recomienda Clopper-Pearson (exacto); para muestras grandes los cuatro coinciden.
+`icp()` calcula cuatro métodos simultáneamente. Para muestras pequeñas se recomienda Clopper-Pearson (exacto); para muestras grandes los cuatro métodos **convergen** (las diferencias entre ellos disminuyen al aumentar $n$).
 :::
 
 ## Cálculo del Tamaño Muestral: `nm()` y `np()` {#sec-semana06-tamano}
@@ -767,7 +769,7 @@ Partiendo del estudio piloto `osteo` (94 pacientes diabéticos, Fac. Medicina UG
 - **Tabaquismo**: 41/94 fumadores ($\hat{p} \approx 0.436$). ¿Cuántos pacientes para alcanzar precisión $d = 0.05$ al 95% de confianza?
 
 ```{r}
-#| lst-label: lst-semana07-9
+#| lst-label: lst-semana06-9
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
@@ -787,7 +789,7 @@ np(x = sum(osteo$tabaco == "Sí"), n = nrow(osteo),
 
 ::: {.callout-note}
 ## Interpretación
-El cálculo del tamaño muestral cuantifica el coste estadístico de incrementar la precisión. Para estimar la HbA1c media con una semiamplitud del IC $\leq 0.3\%$ (frente a los $\approx 0.37\%$ obtenidos con $n = 94$), se necesitarían aproximadamente **n ≈ 138 pacientes diabéticos** — un incremento del 47%. Análogamente, para estimar la prevalencia de tabaquismo con precisión $\pm 5\%$ (IC 95%) se requerirían cerca de **n ≈ 380 pacientes**, cuatro veces el tamaño del estudio piloto. En la fase de diseño de un protocolo clínico, estos cálculos orientan el balance entre **precisión científica** (estimaciones más estrechas guían mejor las decisiones terapéuticas) y **viabilidad logística-financiera** (reclutamiento, seguimiento, presupuesto). La dependencia cuadrática $n \propto 1/d^2$ explica por qué ganar un factor 2 en precisión cuadruplica el coste muestral — un argumento decisivo al justificar el tamaño muestral ante comités éticos y agencias financiadoras.
+El cálculo del tamaño muestral cuantifica el coste estadístico de incrementar la precisión. Para estimar la HbA1c media con una semiamplitud del IC $\leq 0.3\%$ (frente a los $\approx 0.37\%$ obtenidos con $n = 94$), se necesitarían **n ≥ 142 pacientes diabéticos** — un incremento del 51%. Análogamente, para estimar la prevalencia de tabaquismo con precisión $\pm 5\%$ (IC 95%) se requerirían **n ≥ 383 pacientes** (usando la información de la muestra piloto), aproximadamente cuatro veces el tamaño del estudio piloto. En la fase de diseño de un protocolo clínico, estos cálculos orientan el balance entre **precisión científica** (estimaciones más estrechas guían mejor las decisiones terapéuticas) y **viabilidad logística-financiera** (reclutamiento, seguimiento, presupuesto). La dependencia cuadrática $n \propto 1/d^2$ explica por qué ganar un factor 2 en precisión cuadruplica el coste muestral — un argumento decisivo al justificar el tamaño muestral ante comités éticos y agencias financiadoras.
 :::
 :::
 
@@ -832,7 +834,7 @@ El cálculo del tamaño muestral cuantifica el coste estadístico de incrementar
 
 **Ejercicio 6:** n=36, X̄=50, s=12, t₀.₀₂₅,₃₅ ≈ 2.03
 IC95% = [50 ± 2.03×(12/6)] = [50 ± 4.06] = [45.94, 54.06]
-IC99%: más amplio ≈ [44.35, 55.65] (usa t₀.₀₀₅,₃₅ ≈ 2.72)
+IC99%: más amplio ≈ [44.55, 55.45] (usa t₀.₉₉₅,₃₅ ≈ 2.72; margen 2.72×2 = 5.45)
 
 **Ejercicio 7:** p̂ = 325/500 = 0.65, SE = √(0.65×0.35/500) ≈ 0.0214
 IC95% = [0.65 ± 1.96×0.0214] ≈ [0.608, 0.692]

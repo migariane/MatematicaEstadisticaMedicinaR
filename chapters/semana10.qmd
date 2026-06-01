@@ -90,6 +90,7 @@ $$\frac{\partial \text{RSS}}{\partial \boldsymbol{\beta}} = -2\mathbf{X}^T(\math
 ## Resultado Importante: Ecuaciones Normales y Estimador OLS
 
 Las **ecuaciones normales** son:
+
 $$\mathbf{X}^T\mathbf{X}\hat{\boldsymbol{\beta}} = \mathbf{X}^T\mathbf{Y}$$
 
 Si la matriz $\mathbf{X}^T\mathbf{X}$ es invertible (no singular), el **estimador OLS** es:
@@ -209,7 +210,7 @@ Propiedades:
 - $R^2_{\text{adj}}$ **puede disminuir** si añadimos una variable que no mejora el modelo
 - Es más útil que $R^2$ para comparar modelos con diferente número de predictores
 
-**Ejemplo médico**: Modelo 1 (PAS ~ Edad): $R^2 = 0.504$, $R^2_{\text{adj}} = 0.499$. Modelo 2 (PAS ~ Edad + IMC): $R^2 = 0.561$, $R^2_{\text{adj}} = 0.553$. El $R^2_{\text{adj}}$ aumenta al añadir el IMC, lo que indica que esta variable aporta información real más allá de la edad.
+**Ejemplo médico** (datos simulados de este capítulo, ver salida de R más adelante): Modelo 1 (PAS ~ Edad): $R^2 = 0.414$, $R^2_{\text{adj}} = 0.409$. Modelo 2 (PAS ~ Edad + IMC): $R^2 = 0.705$, $R^2_{\text{adj}} = 0.700$. El $R^2_{\text{adj}}$ aumenta sustancialmente al añadir el IMC, lo que indica que esta variable aporta información real más allá de la edad.
 :::
 
 ## Criterios de Información para Selección de Modelos {#sec-semana10-s7}
@@ -220,15 +221,19 @@ Además de $R^2_{\text{adj}}$, existen criterios de información que penalizan l
 ## Definición: AIC y BIC
 
 **Criterio de Información de Akaike (AIC):**
+
 $$\text{AIC} = -2 \log L + 2(p+1)$$
 
 **Criterio de Información Bayesiano (BIC):**
+
 $$\text{BIC} = -2 \log L + (p+1)\log(n)$$
 
 donde $L$ es la función de verosimilitud maximizada y $p+1$ es el número de parámetros (incluyendo $\sigma_U^2$).
 
 Para modelos normales:
+
 $$\text{AIC} = n \log(\text{RSS}/n) + 2(p+1)$$
+
 $$\text{BIC} = n \log(\text{RSS}/n) + (p+1)\log(n)$$
 
 **Regla de decisión:** Seleccionar el modelo con **menor** AIC o BIC.
@@ -299,7 +304,9 @@ Claramente, $\text{RSS}_2 \leq \text{RSS}_1$ (el modelo más complejo siempre ti
 ## Resultado Importante: Prueba F para Modelos Anidados
 
 Para probar:
+
 $$H_0: \beta_{p_1+1} = \beta_{p_1+2} = \cdots = \beta_{p_2} = 0$$
+
 $$H_1: \text{Al menos uno de estos coeficientes es diferente de cero}$$
 
 El estadístico F es:
@@ -342,7 +349,7 @@ donde:
 
 Probar $H_0: \mu_{\text{placebo}} = \mu_{\text{IECA}} = \mu_{\text{ARA-II}}$ equivale a probar $H_0: \beta_1 = \beta_2 = 0$, que se realiza con la prueba F para modelos anidados.
 
-Si el modelo ajustado da $\hat{\beta}_0 = 4.2$ mmHg, $\hat{\beta}_1 = 11.8$ mmHg ($p < 0.001$), $\hat{\beta}_2 = 10.3$ mmHg ($p < 0.001$): tanto el IECA como el ARA-II reducen significativamente más la PAS que el placebo. La prueba F global indicaría si existe al menos una diferencia entre los tres grupos.
+Los valores **poblacionales** generadores de la simulación son $\mu_{\text{placebo}} = 4.2$, $\mu_{\text{IECA}} = 16.0$ y $\mu_{\text{ARA-II}} = 14.5$ mmHg, lo que implica efectos teóricos $\beta_1 \approx 11.8$ y $\beta_2 \approx 10.3$. La salida muestral del chunk siguiente arrojará estimaciones próximas pero sujetas a variabilidad por azar: con `set.seed(42)` el ARA-II termina ligeramente por encima del IECA ($\hat{\beta}_1 = 10.67$ vs. $\hat{\beta}_2 = 11.07$). Tanto IECA como ARA-II reducen significativamente más la PAS que el placebo, y la prueba F global indicará si existe al menos una diferencia entre los tres grupos.
 :::
 
 ## Gráficos de Diagnóstico {#sec-semana10-s11}
@@ -531,10 +538,12 @@ cat("\nR² =", round(glance_mult$r.squared, 3),
     "|  R² ajustado =", round(glance_mult$adj.r.squared, 3),
     "|  F-estadístico =", round(glance_mult$statistic, 2),
     "(p < 0.001)\n")
+# Nota: usamos round(..., 3) para que el R² ajustado mostrado (0.700)
+# coincida con el reportado en la tabla comparativa AIC/BIC más abajo.
 ```
 
 ::: callout-tip
-**Interpretación estadística:** El modelo de regresión múltiple reveló que, controlando por IMC, cada año adicional de edad se asocia con un incremento de 0.60 mmHg en la presión arterial sistólica (b_edad = 0.60, p < 0.001), mientras que cada unidad adicional de IMC se asocia con 1.80 mmHg (b_IMC = 1.80, p < 0.001). El R² = 0.68 indica que estos dos predictores combinados explican el 68% de la variación observada en PAS, un incremento sustancial respecto a un modelo univariable. El R² ajustado = 0.67 valida que ambas variables aportan información independiente significativa para explicar la presión arterial.
+**Interpretación estadística:** El modelo de regresión múltiple reveló que, controlando por IMC, cada año adicional de edad se asocia con un incremento de 0.687 mmHg en la presión arterial sistólica ($\hat{\beta}_{\text{edad}} = 0.687$, $p < 0.001$), mientras que cada unidad adicional de IMC (kg/m²) se asocia con un incremento de 2.05 mmHg ($\hat{\beta}_{\text{IMC}} = 2.049$, $p < 0.001$). El $R^2 = 0.705$ indica que estos dos predictores combinados explican el 70.5% de la variación observada en PAS, un incremento sustancial respecto a un modelo univariable. El $R^2$ ajustado $\approx 0.700$ (la salida muestra `0.699` por redondeo a 3 decimales) confirma que ambas variables aportan información independiente significativa para explicar la presión arterial.
 :::
 
 ```{r}
@@ -730,7 +739,7 @@ points(1:3, medias, pch = 18, cex = 1.5, col = "red")
 ```
 
 ::: callout-tip
-**Interpretación estadística:** El análisis de varianza reveló diferencias estadísticamente significativas en la reducción de presión arterial entre los tres grupos de tratamiento (F(2,87) = 23.4, p < 0.001). Los coeficientes de regresión muestran que, respecto al placebo (reducción media ~4 mmHg), tanto el tratamiento IECA (reducción adicional ~12 mmHg) como el ARA-II (reducción adicional ~11 mmHg) produjeron mejoras clínicamente relevantes y estadísticamente significativas. La magnitud del efecto es importante para la práctica clínica: ambos antihipertensivos superan al placebo en aproximadamente 10-12 mmHg, una diferencia clínicamente significativa en el manejo de la hipertensión arterial.
+**Interpretación estadística:** El análisis de varianza reveló diferencias estadísticamente significativas en la reducción de presión arterial entre los tres grupos de tratamiento ($F_{2,87} = 31.6$, $p < 0.001$). Los coeficientes de regresión muestran que, respecto al placebo (reducción media ≈ 4.58 mmHg), el tratamiento IECA aporta una reducción adicional de 10.67 mmHg y el ARA-II una reducción adicional de 11.07 mmHg, ambos con $p < 0.001$. La magnitud del efecto es relevante para la práctica clínica: ambos antihipertensivos superan al placebo en aproximadamente 10–11 mmHg, una diferencia clínicamente significativa en el manejo de la hipertensión arterial.
 :::
 
 ### Ejemplo con `BioEstatR`: regresión lineal múltiple

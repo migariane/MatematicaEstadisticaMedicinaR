@@ -113,7 +113,7 @@ Este test es más conservador que asumir varianzas iguales.
 Documentacion completa de las tres funciones en @sec-bio-contrastes.
 
 ```{r}
-#| lst-label: lst-semana09-1
+#| lst-label: lst-semana08-1
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
@@ -168,6 +168,7 @@ $$H_0: \mu_D = \mu_1 - \mu_2 = \omega_0 \quad \text{vs.} \quad H_1: \mu_D \neq \
 $$T = \frac{\bar{D} - \omega_0}{S_D / \sqrt{n}} \sim t_{n-1}$$
 
 donde:
+
 $$\bar{D} = \frac{1}{n} \sum_{i=1}^n D_i, \quad S_D^2 = \frac{1}{n-1} \sum_{i=1}^n (D_i - \bar{D})^2$$
 
 **Nota importante:** La varianza de las diferencias es típicamente **menor** que la suma de varianzas, lo que da mayor potencia al test pareado cuando los datos están realmente correlacionados.
@@ -366,7 +367,9 @@ donde:
 - $\sigma^2$ es la varianza (asumida igual en ambas muestras)
 
 **Ejemplo:** Si $\delta = 10$, $\sigma = 15$, $\alpha = 0.05$, $1-\beta = 0.80$:
+
 $$z_{1-0.025} = 1.96, \quad z_{0.80} = 0.84$$
+
 $$n = \frac{2 \times 225 \times (1.96 + 0.84)^2}{100} = \frac{450 \times 6.4}{100} \approx 28.8 \approx 29 \text{ por grupo}$$
 :::
 
@@ -397,7 +400,7 @@ Dos escenarios reales del estudio piloto `osteo` (94 pacientes diabéticos):
 - **Contraste de proporciones** (`testp`): ¿Y para detectar una desviación de $\delta = 0.05$ frente a una prevalencia hipotética de tabaquismo del 35% con potencia del 90%?
 
 ```{r}
-#| lst-label: lst-semana09-power
+#| lst-label: lst-semana08-power
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
@@ -418,7 +421,7 @@ testp(x = 41, n = 94,
 
 ::: {.callout-note}
 ## Interpretación
-Los argumentos `delta` y `potencia` transforman un contraste de hipótesis estático (sólo p-valor) en un **análisis prospectivo de diseño**: cuantifican la sensibilidad del estudio para detectar efectos clínicamente relevantes. Para la HbA1c, detectar una desviación de medio punto porcentual respecto al umbral clínico (7.5%) con potencia del 90% requiere aproximadamente **n  138 pacientes** —superior a los 94 actuales—, lo que indica que el estudio piloto está **infrapotenciado** para detectar efectos pequeños pero clínicamente significativos (0.5% de HbA1c corresponde a ~10–15 mg/dL de glucemia media, magnitud relevante para decisiones terapéuticas). Para la prevalencia de tabaquismo, alcanzar potencia del 90% para detectar una desviación de 5 puntos porcentuales respecto al 35% hipotético exige cerca de **n ≈ 900 pacientes**, casi diez veces el tamaño piloto. Esta asimetría refleja una propiedad clave: detectar diferencias en proporciones cercanas a 0.5 (varianza máxima $p(1-p) = 0.25$) consume más muestra que detectar diferencias en variables continuas con buen contraste señal/ruido. En el diseno de protocolos clínicos, este análisis previo evita el error de planificar estudios incapaces de detectar el efecto buscado (estudios negativos por falta de potencia, no por ausencia real de efecto), y constituye argumento obligado ante comités éticos y agencias financiadoras.
+Los argumentos `delta` y `potencia` transforman un contraste de hipótesis estático (sólo p-valor) en un **análisis prospectivo de diseño**: cuantifican la sensibilidad del estudio para detectar efectos clínicamente relevantes. Para la **HbA1c**, el contraste resulta altamente significativo ($t_{obs} = 5.74$, gl = 93, $p < 0.001$) por lo que `testt()` omite el análisis de potencia (la sensibilidad ya se confirma de facto sobre los $n = 94$ pacientes actuales). Una desviación de medio punto porcentual respecto al umbral clínico (7.5%) corresponde a ~10–15 mg/dL de glucemia media, magnitud clínicamente relevante para decisiones terapéuticas. Para la **prevalencia de tabaquismo**, alcanzar potencia del 90% para detectar una desviación de 5 puntos porcentuales respecto al 35% hipotético exige **n ≈ 977 pacientes** (bilateral, ~997 con corrección por continuidad) o ≈ 753 (unilateral), aproximadamente diez veces el tamaño piloto. Esta asimetría refleja una propiedad clave: detectar diferencias en proporciones cercanas a 0.5 (varianza máxima $p(1-p) = 0.25$) consume más muestra que detectar diferencias en variables continuas con buen contraste señal/ruido. En el diseño de protocolos clínicos, este análisis previo evita el error de planificar estudios incapaces de detectar el efecto buscado (estudios negativos por falta de potencia, no por ausencia real de efecto), y constituye argumento obligado ante comités éticos y agencias financiadoras.
 :::
 :::
 
@@ -438,6 +441,7 @@ Si efectuamos $k$ pruebas, la probabilidad de al menos un Error Tipo I es:
 $$P(\text{al menos un Error Tipo I}) = 1 - (1 - \alpha)^k$$
 
 **Ejemplo:** Con $k = 10$ pruebas y $\alpha = 0.05$:
+
 $$P(\text{al menos un Error Tipo I}) = 1 - (0.95)^{10} \approx 0.401 = 40.1\%$$
 
 En lugar del nivel de significancia global deseado del 5%, obtenemos una tasa de Error Tipo I del 40%!
@@ -478,7 +482,7 @@ Según la Organización Mundial de la Salud, los mosquitos Aedes pueden transm
 ### Datos y Exploración
 
 ```{r}
-#| lst-label: lst-semana09-4
+#| lst-label: lst-semana08-4
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
@@ -522,7 +526,7 @@ ggplot(df, aes(x = Group, y = Lifespan)) +
 Primero suponemos varianzas iguales:
 
 ```{r}
-#| lst-label: lst-semana09-5
+#| lst-label: lst-semana08-5
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
@@ -545,7 +549,7 @@ print(tt_equal)
 Si observamos varianzas muy diferentes, usamos la prueba de Welch:
 
 ```{r}
-#| lst-label: lst-semana09-6
+#| lst-label: lst-semana08-6
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
@@ -564,7 +568,7 @@ print(tt_welch)
 Podemos probar formalmente si las varianzas son iguales:
 
 ```{r}
-#| lst-label: lst-semana09-7
+#| lst-label: lst-semana08-7
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
@@ -586,7 +590,7 @@ print(f_test)
 Si el estudio fuera diseñado ahora, ¿qué tamaño muestral necesitaríamos?
 
 ```{r}
-#| lst-label: lst-semana09-8
+#| lst-label: lst-semana08-8
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
@@ -706,7 +710,7 @@ donde $x_{(i)}$ son los estadísticos de orden y $a_i$ son coeficientes tabulad
 Usando el conjunto de datos `osteo` de `BioEstatR`, que contiene 94 pacientes diabéticos de la Facultad de Medicina de la UGR, comprobamos la normalidad de la variable edad:
 
 ```{r}
-#| lst-label: lst-semana09-9
+#| lst-label: lst-semana08-9
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
@@ -750,7 +754,7 @@ Bajo $H_0$: $\chi^2_B \sim \chi^2_{k-1}$ (asintóticamente). Sensible a no norm
 ## Ejemplo: Homogeneidad del IMC por grupo de edad
 
 ```{r}
-#| lst-label: lst-semana09-10
+#| lst-label: lst-semana08-10
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
@@ -762,7 +766,7 @@ bartlett.test(imc ~ grupo_edad, data = osteo)
 ```
 
 
-**Interpretación:** $\chi^2_B = 2.18$, $gl = 2$, $p = 0.335 > 0.05$: no se rechaza igualdad de varianzas. El supuesto de homocedasticidad se cumple; procede usar t-test o ANOVA clásico.
+**Interpretación:** $\chi^2_B \approx 10.96$, $gl = 2$, $p = 0.004 < 0.05$: **se rechaza** la igualdad de varianzas. El supuesto de homocedasticidad **no se cumple**; conviene usar el test de Welch (`oneway.test(..., var.equal = FALSE)`) o, si los datos no son normales, el test de Levene (`car::leveneTest()`) y comparaciones no paramétricas como Kruskal-Wallis. Evitar t-test o ANOVA clásico.
 :::
 
 ::: {.callout-warning}
@@ -822,7 +826,7 @@ No requiere normalidad ni homocedasticidad. Válido para cualquier tamano muest
 El IMC de los pacientes masculinos del dataset `osteo` **no sigue una distribución normal** (Shapiro-Wilk: $W = 0.924$, $p = 0.006$). Implementamos el bootstrap **manualmente con un bucle `for`** (estilo @Chihara2019), siguiendo paso a paso el algoritmo de Efron. Después comparamos con el método BCa (paquete `boot`) y con el IC clásico $t$.
 
 ```{r}
-#| lst-label: lst-semana09-11
+#| lst-label: lst-semana08-11
 #| lst-cap: "Codigo R"
 #| warning: false
 #| message: false
@@ -870,7 +874,7 @@ t.test(x)$conf.int
 
 ::: {.callout-note}
 ## Interpretación
-El bootstrap manual con bucle `for` reproduce paso a paso el algoritmo de Efron (1979): en cada una de las B = 10.000 iteraciones se construye una pseudomuestra extrayendo n = 45 pacientes con reemplazo del IMC observado, se calcula su media, y al final se ordenan las 10.000 medias para extraer los percentiles 2.5% y 97.5%. El IC 95% resultante (≈ [27.2, 29.1] kg/m²) se interpreta clínicamente como el rango plausible del IMC poblacional medio de varones diabéticos —situado en el umbral entre sobrepeso (25–29.9) y obesidad (≥ 30) según criterios OMS. Comparado con el IC $t$ clásico, el bootstrap proporciona inferencia válida sin requerir normalidad, lo cual es relevante en cohortes pequenas con asimetría en la distribución del IMC (común en diabetes tipo 2). El método BCa corrige por sesgo y asimetría y se recomienda como referencia cuando $n < 30$; con $n = 45$ los tres intervalos convergen porque el TCL ya comienza a actuar. Esta convergencia se romperá si reducimos n por debajo de 20 o si analizamos variables muy asimétricas (p. ej., triglicéridos o carga viral).
+El bootstrap manual con bucle `for` reproduce paso a paso el algoritmo de Efron (1979): en cada una de las B = 10.000 iteraciones se construye una pseudomuestra extrayendo n = 45 pacientes con reemplazo del IMC observado, se calcula su media, y al final se ordenan las 10.000 medias para extraer los percentiles 2.5% y 97.5%. El IC 95% resultante (≈ [22.7, 24.4] kg/m²) se interpreta clínicamente como el rango plausible del IMC poblacional medio de varones diabéticos —dentro del rango **normopeso** (18.5–24.9 kg/m²) próximo al umbral del sobrepeso según criterios OMS. Comparado con el IC $t$ clásico, el bootstrap proporciona inferencia válida sin requerir normalidad, lo cual es relevante en cohortes pequenas con asimetría en la distribución del IMC (común en diabetes tipo 2). El método BCa corrige por sesgo y asimetría y se recomienda como referencia cuando $n < 30$; con $n = 45$ los tres intervalos convergen porque el TCL ya comienza a actuar. Esta convergencia se romperá si reducimos n por debajo de 20 o si analizamos variables muy asimétricas (p. ej., triglicéridos o carga viral).
 :::
 :::
 
@@ -880,7 +884,7 @@ El bootstrap manual con bucle `for` reproduce paso a paso el algoritmo de Efron 
 Shapiro-Wilk rechaza normalidad tanto en hombres ($p = 0.006$) como en mujeres ($p = 0.001$). Usamos un test de permutación en lugar del t-test clásico.
 
 ```{r}
-#| lst-label: lst-semana09-12
+#| lst-label: lst-semana08-12
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
@@ -957,7 +961,7 @@ Dadas dos muestras independientes de tamaños $n_1$ y $n_2$:
 Contrastamos si el Índice de Masa Corporal (IMC) difiere entre hombres y mujeres usando la alternativa no paramétrica, dado que el IMC frecuentemente presenta asimetría.
 
 ```{r}
-#| lst-label: lst-semana09-13
+#| lst-label: lst-semana08-13
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
@@ -971,7 +975,7 @@ testwx(m1 = osteo$imc[osteo$sexo == "Hombre"],
 ```
 
 
-**Interpretación:** No se observan diferencias significativas en las distribuciones de IMC entre sexos ($p = 0.523$). La probabilidad de que un hombre tenga un IMC mayor que una mujer elegida al azar es del 46.1%.
+**Interpretación:** No se observan diferencias significativas en las distribuciones de IMC entre sexos ($p = 0.751$). La probabilidad de que un hombre elegido al azar tenga un IMC mayor que una mujer elegida al azar es del **48.1%** (calculada como $1 - PS = 1 - 0.519$, ya que la salida de `testwx()` reporta $PS$ como probabilidad de que un valor de $M_1$ sea **menor** que uno de $M_2$).
 :::
 
 ### Prueba de Wilcoxon de los Rangos con Signo (Muestras Pareadas) {#sec-semana08-wilcoxon-paired}
@@ -993,7 +997,7 @@ Es la alternativa no paramétrica al t-test pareado. Se utiliza para comparar d
 Supongamos que evaluamos el calcio sérico (`ca`) antes y después de un tratamiento en 10 pacientes (datos simulados para ilustración).
 
 ```{r}
-#| lst-label: lst-semana09-14
+#| lst-label: lst-semana08-14
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
@@ -1007,7 +1011,7 @@ testwx(m1 = ca_pre, m2 = ca_post, par = TRUE, grf = FALSE)
 ```
 
 
-**Interpretacion:** Existe un aumento significativo en los niveles de calcio tras el tratamiento ($p = 0.005$). El tamaño del efecto es muy fuerte ($r = 0.89$).
+**Interpretacion:** Existe un aumento significativo en los niveles de calcio tras el tratamiento ($p = 0.005$). El tamaño del efecto es grande ($r = 0.627$, criterio convencional: $r > 0.5$ grande).
 :::
 
 ### Prueba de Kruskal-Wallis (K Muestras Independientes) {#sec-semana08-kruskal}
@@ -1028,7 +1032,7 @@ donde $n = \sum n_j$. Bajo $H_0$, $H \sim \chi^2_{k-1}$ asintóticamente.
 ## Ejemplo: IMC por grupo de edad (> 2 grupos)
 
 ```{r}
-#| lst-label: lst-semana09-15
+#| lst-label: lst-semana08-15
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
@@ -1038,54 +1042,54 @@ kruskal.test(imc ~ grupo_edad, data = osteo)
 ```
 
 
-**Interpretación:** Como $p = 0.017 < 0.05$, rechazamos la hipótesis de igualdad. Al menos un grupo de edad tiene una distribución de IMC significativamente distinta.
+**Interpretación:** Como $p \approx 0.0002 < 0.05$, rechazamos la hipótesis de igualdad. Al menos un grupo de edad tiene una distribución de IMC significativamente distinta.
 :::
 
 ---
 
 ## Ejercicios {#sec-semana08-ejercicios}
 
-**Ejercicio 9.1:** Se comparan dos métodos de enseñanza en estadística. El Método A (n₁ = 30) tiene media 75 y desviación estándar 8. El Método B (n₂ = 35) tiene media 78 y desviación estándar 7. ¿Hay diferencia significativa entre los métodos a nivel α = 0.05? (Suponga varianzas iguales)
+**Ejercicio 8.1:** Se comparan dos métodos de enseñanza en estadística. El Método A (n₁ = 30) tiene media 75 y desviación estándar 8. El Método B (n₂ = 35) tiene media 78 y desviación estándar 7. ¿Hay diferencia significativa entre los métodos a nivel α = 0.05? (Suponga varianzas iguales)
 
-**Ejercicio 9.2:** Un investigador mide presión arterial en 10 pacientes antes y después de tomar un medicamento. Las diferencias promedio son -5 mmHg con desviación estándar 8 mmHg. ¿Es el medicamento efectivo en reducir presión (prueba unilateral, α = 0.05)?
+**Ejercicio 8.2:** Un investigador mide presión arterial en 10 pacientes antes y después de tomar un medicamento. Las diferencias promedio son -5 mmHg con desviación estándar 8 mmHg. ¿Es el medicamento efectivo en reducir presión (prueba unilateral, α = 0.05)?
 
-**Ejercicio 9.3:** Se comparan dos proveedores de materia prima. Proveedor 1: S₁² = 15, n = 20. Proveedor 2: S₂² = 8, n₂ = 18. ¿Hay diferencia significativa en variabilidad (α = 0.05, bilateral)?
+**Ejercicio 8.3:** Se comparan dos proveedores de materia prima. Proveedor 1: S₁² = 15, n = 20. Proveedor 2: S₂² = 8, n₂ = 18. ¿Hay diferencia significativa en variabilidad (α = 0.05, bilateral)?
 
-**Ejercicio 9.4:** Se diseña un estudio para detectar una diferencia de 12 puntos en una escala (σ = 10) con potencia 0.90 y α = 0.05. ¿Cuántos sujetos se necesitan por grupo?
+**Ejercicio 8.4:** Se diseña un estudio para detectar una diferencia de 12 puntos en una escala (σ = 10) con potencia 0.90 y α = 0.05. ¿Cuántos sujetos se necesitan por grupo?
 
-**Ejercicio 9.5:** Un investigador realiza 15 pruebas independientes con α = 0.05 sin corrección. ¿Cuál es la probabilidad aproximada de cometer al menos un Error Tipo I?
+**Ejercicio 8.5:** Un investigador realiza 15 pruebas independientes con α = 0.05 sin corrección. ¿Cuál es la probabilidad aproximada de cometer al menos un Error Tipo I?
 
-**Ejercicio 9.6:** Interprete este resultado de R: `t.test(x, y, var.equal=FALSE)` da t = 2.34, df = 45.2, p-value = 0.024. ¿Qué conclusión saca?
+**Ejercicio 8.6:** Interprete este resultado de R: `t.test(x, y, var.equal=FALSE)` da t = 2.34, df = 45.2, p-value = 0.024. ¿Qué conclusión saca?
 
-**Ejercicio 9.7:** Un estudio observa media₁ = 100, media₂ = 105, pero el intervalo de confianza al 95% para la diferencia incluye cero. ¿Qué significa esto respecto a la significancia estadística y práctica?
+**Ejercicio 8.7:** Un estudio observa media₁ = 100, media₂ = 105, pero el intervalo de confianza al 95% para la diferencia incluye cero. ¿Qué significa esto respecto a la significancia estadística y práctica?
 
-**Ejercicio 9.8:** Si el test de Shapiro-Wilk rechaza la normalidad en una muestra pequeña ($n=15$), ¿qué prueba utilizaría para comparar dos grupos independientes?
+**Ejercicio 8.8:** Si el test de Shapiro-Wilk rechaza la normalidad en una muestra pequeña ($n=15$), ¿qué prueba utilizaría para comparar dos grupos independientes?
 
-**Ejercicio 9.9:** ¿Cuál es la principal ventaja de la prueba de Kruskal-Wallis sobre el ANOVA de un factor?
+**Ejercicio 8.9:** ¿Cuál es la principal ventaja de la prueba de Kruskal-Wallis sobre el ANOVA de un factor?
 
-**Ejercicio 9.10:** En una muestra de 35 valores de presión arterial sistólica, el test de Shapiro-Wilk produce $W = 0.94$ con $p = 0.089$. ¿Es válido aplicar un test t de una muestra con $\alpha = 0.05$? ¿Cambiaría su decisión si $n = 75$?
+**Ejercicio 8.10:** En una muestra de 35 valores de presión arterial sistólica, el test de Shapiro-Wilk produce $W = 0.94$ con $p = 0.089$. ¿Es válido aplicar un test t de una muestra con $\alpha = 0.05$? ¿Cambiaría su decisión si $n = 75$?
 
 ## Respuestas a los Ejercicios {#sec-semana08-respuestas}
 
-**Ejercicio 9.1:** t = (75-78)/√((29×64 + 34×49)/(63) × (1/30 + 1/35)) ≈ -1.81; df ≈ 63; p > 0.05. No hay diferencia significativa.
+**Ejercicio 8.1:** t = (75-78)/√((29×64 + 34×49)/(63) × (1/30 + 1/35)) ≈ -1.81; df ≈ 63; p > 0.05. No hay diferencia significativa.
 
-**Ejercicio 9.2:** t = -5/(8/√10) ≈ -1.98; df = 9; p ≈ 0.038 < 0.05. El medicamento es efectivo en reducir presión.
+**Ejercicio 8.2:** t = -5/(8/√10) ≈ -1.98; df = 9; p ≈ 0.038 < 0.05. El medicamento es efectivo en reducir presión.
 
-**Ejercicio 9.3:** F = 15/8 = 1.875; df₁ = 19, df₂ = 17. F crítico ≈ 2.74. No rechaza H₀; no hay diferencia significativa en variabilidad.
+**Ejercicio 8.3:** F = 15/8 = 1.875; df₁ = 19, df₂ = 17. F crítico ≈ 2.74. No rechaza H₀; no hay diferencia significativa en variabilidad.
 
-**Ejercicio 9.4:** Usando fórmula de potencia: n ≈ 2×(10)²×(1.96 + 1.28)²/(12)² ≈ 29-30 sujetos por grupo.
+**Ejercicio 8.4:** Usando fórmula de potencia: n ≈ 2×(10)²×(1.96 + 1.28)²/(12)² ≈ 29-30 sujetos por grupo.
 
-**Ejercicio 9.5:** P(al menos 1 error) = 1 - (1-0.05)¹⁵ ≈ 1 - 0.463 = 0.537 (53.7%). El problema de multiplicidad es importante.
+**Ejercicio 8.5:** P(al menos 1 error) = 1 - (1-0.05)¹⁵ ≈ 1 - 0.463 = 0.537 (53.7%). El problema de multiplicidad es importante.
 
-**Ejercicio 9.6:** t = 2.34, df = 45.2, p = 0.024 < 0.05. Se rechaza H₀. Hay diferencia significativa entre x e y (usando Welch's t-test por varianzas desiguales).
+**Ejercicio 8.6:** t = 2.34, df = 45.2, p = 0.024 < 0.05. Se rechaza H₀. Hay diferencia significativa entre x e y (usando Welch's t-test por varianzas desiguales).
 
-**Ejercicio 9.7:** Si el IC 95% incluye cero, la diferencia no es estadísticamente significativa (p > 0.05), aunque hay diferencia práctica de 5 unidades. Sin significancia estadística, no podemos afirmar que la diferencia poblacional es real.
+**Ejercicio 8.7:** Si el IC 95% incluye cero, la diferencia no es estadísticamente significativa (p > 0.05), aunque hay diferencia práctica de 5 unidades. Sin significancia estadística, no podemos afirmar que la diferencia poblacional es real.
 
-**Ejercicio 9.8:** Utilizaría la prueba de Wilcoxon-Mann-Whitney (o un test de permutación).
+**Ejercicio 8.8:** Utilizaría la prueba de Wilcoxon-Mann-Whitney (o un test de permutación).
 
-**Ejercicio 9.9:** No requiere el supuesto de normalidad en los datos, siendo más robusta cuando hay outliers o distribuciones muy asimétricas.
+**Ejercicio 8.9:** No requiere el supuesto de normalidad en los datos, siendo más robusta cuando hay outliers o distribuciones muy asimétricas.
 
-**Ejercicio 9.10:** Con $p = 0.089 > 0.05$, **no rechazamos** $H_0$ de normalidad → el test t es válido. Con $n = 75$, el TCL garantiza normalidad asintótica de la media, por lo que el test t es válido independientemente del resultado de Shapiro-Wilk.
+**Ejercicio 8.10:** Con $p = 0.089 > 0.05$, **no rechazamos** $H_0$ de normalidad → el test t es válido. Con $n = 75$, el TCL garantiza normalidad asintótica de la media, por lo que el test t es válido independientemente del resultado de Shapiro-Wilk.
 
 ## Recursos Adicionales {#sec-semana08-resources}
 

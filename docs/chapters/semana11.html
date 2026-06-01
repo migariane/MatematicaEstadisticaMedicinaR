@@ -736,7 +736,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>El estadístico χ² = 13.38 con 2 grados de libertad produce p &lt; 0.001, rechazando la hipótesis nula de homogeneidad entre grupos. La distribución de curación no es homogénea entre los 3 grupos de tratamiento (Control: 40%, Dosis baja: 58%, Dosis alta: 75%). Los resultados demuestran que la dosis alta de tratamiento se asocia significativamente con tasas de curación más altas comparado con control y dosis baja. Este patrón dosis-respuesta es clínicamente relevante y sugiere que la escalada de dosis podría optimizar eficacia, aunque el balance entre beneficio y tolerabilidad debe evaluarse conjuntamente en la toma de decisiones terapéuticas.</p>
+<p>El estadístico χ² = 13.802 con 2 grados de libertad produce p &lt; 0.001, rechazando la hipótesis nula de homogeneidad entre grupos. La distribución de curación no es homogénea entre los 3 grupos de tratamiento (Control: 40%, Dosis baja: 58%, Dosis alta: 75%). Los resultados demuestran que la dosis alta de tratamiento se asocia significativamente con tasas de curación más altas comparado con control y dosis baja. Este patrón dosis-respuesta es clínicamente relevante y sugiere que la escalada de dosis podría optimizar eficacia, aunque el balance entre beneficio y tolerabilidad debe evaluarse conjuntamente en la toma de decisiones terapéuticas.</p>
 </div>
 </div>
 </div>
@@ -1118,7 +1118,7 @@ odds ratio
 <div class="callout-body-container callout-body">
 <p>Para datos apareados (donde las observaciones son dependientes), utilizamos la función <code>testmcnemar()</code> del paquete <code>BioEstatR</code>.</p>
 <div class="cell">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" data-lst-cap="BioEstatR: Test de McNemar para datos apareados"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1285,7 +1285,7 @@ odds ratio
 </tbody>
 </table>
 <div class="cell">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" data-lst-cap="Base R — Cálculo manual de RR e IC 95%: tabaquismo y cardiopatía"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo de RR e IC</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">80</span>; b <span class="ot">&lt;-</span> <span class="dv">420</span>; c_ <span class="ot">&lt;-</span> <span class="dv">30</span>; d <span class="ot">&lt;-</span> <span class="dv">470</span></span>
@@ -1298,21 +1298,21 @@ odds ratio
 <div class="cell-output cell-output-stdout">
 <pre><code>p1 (riesgo fumadores)     = 0.16 </code></pre>
 </div>
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" data-lst-cap="Base R — Cálculo manual de RR e IC 95%: tabaquismo y cardiopatía"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"p2 (riesgo no fumadores)  ="</span>, <span class="fu">round</span>(p2, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>p2 (riesgo no fumadores)  = 0.06 </code></pre>
 </div>
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14" data-lst-cap="Base R — Cálculo manual de RR e IC 95%: tabaquismo y cardiopatía"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"RR ="</span>, <span class="fu">round</span>(RR, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>RR = 2.67 </code></pre>
 </div>
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16" data-lst-cap="Base R — Cálculo manual de RR e IC 95%: tabaquismo y cardiopatía"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"IC 95%: ["</span>, <span class="fu">round</span>(IC_RR[<span class="dv">1</span>], <span class="dv">3</span>), <span class="st">","</span>, <span class="fu">round</span>(IC_RR[<span class="dv">2</span>], <span class="dv">3</span>), <span class="st">"]</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -1379,7 +1379,7 @@ odds ratio
 </div>
 <div class="callout-body-container callout-body">
 <div class="cell">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18" data-lst-cap="BioEstatR — tabla2x2(): caso-control, OR con IC"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1524,7 +1524,7 @@ odds ratio
 <section id="normalidad-con-testnormal-y-shapiro.test" class="level3" data-number="11.8.1">
 <h3 data-number="11.8.1" class="anchored" data-anchor-id="normalidad-con-testnormal-y-shapiro.test"><span class="header-section-number">11.8.1</span> Normalidad con testnormal() y shapiro.test()</h3>
 <div class="cell">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20" data-lst-cap="BioEstatR — testnormal() y Base R — shapiro.test()"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1544,7 +1544,7 @@ odds ratio
  ------------------------------------- 
    n = 94,  W = 0.906,  p &lt; 0.001 </code></pre>
 </div>
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22" data-lst-cap="BioEstatR — testnormal() y Base R — shapiro.test()"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Con R base</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(osteo<span class="sc">$</span>imc)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1561,7 +1561,7 @@ W = 0.9, p-value = 0.000005</code></pre>
 <section id="chi-cuadrado-con-tabla2x2-y-chisq.test" class="level3" data-number="11.8.2">
 <h3 data-number="11.8.2" class="anchored" data-anchor-id="chi-cuadrado-con-tabla2x2-y-chisq.test"><span class="header-section-number">11.8.2</span> Chi-cuadrado con tabla2x2() y chisq.test()</h3>
 <div class="cell">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24" data-lst-cap="Comparación BioEstatR vs. Base R — Chi-cuadrado en tabla 2×2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Con BioEstatR (tabla 2x2, Chi-cuadrado + OR + Fisher integrado)</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tabla2x2</span>(<span class="at">o11 =</span> <span class="dv">44</span>, <span class="at">o12 =</span> <span class="dv">9</span>, <span class="at">o21 =</span> <span class="dv">26</span>, <span class="at">o22 =</span> <span class="dv">15</span>,</span>
@@ -1612,7 +1612,7 @@ W = 0.9, p-value = 0.000005</code></pre>
   Razón del producto cruzado (odds ratio):
   OR=2.821; 95%-IC(OR)= (1.070, 7.013) </code></pre>
 </div>
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26" data-lst-cap="Comparación BioEstatR vs. Base R — Chi-cuadrado en tabla 2×2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Con R base (independiente y Fisher por separado)</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">44</span>, <span class="dv">26</span>, <span class="dv">9</span>, <span class="dv">15</span>), <span class="at">nrow =</span> <span class="dv">2</span>,</span>
@@ -1624,7 +1624,7 @@ W = 0.9, p-value = 0.000005</code></pre>
 <pre><code>
 --- chisq.test() de R base ---</code></pre>
 </div>
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28" data-lst-cap="Comparación BioEstatR vs. Base R — Chi-cuadrado en tabla 2×2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(m)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -1635,7 +1635,7 @@ W = 0.9, p-value = 0.000005</code></pre>
 data:  m
 X-squared = 4, df = 1, p-value = 0.05</code></pre>
 </div>
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30" data-lst-cap="Comparación BioEstatR vs. Base R — Chi-cuadrado en tabla 2×2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">--- fisher.test() de R base ---</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -1643,7 +1643,7 @@ X-squared = 4, df = 1, p-value = 0.05</code></pre>
 <pre><code>
 --- fisher.test() de R base ---</code></pre>
 </div>
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32" data-lst-cap="Comparación BioEstatR vs. Base R — Chi-cuadrado en tabla 2×2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(m)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -1665,7 +1665,7 @@ odds ratio
 <section id="mcnemar-con-tabla2x2-y-mcnemar.test" class="level3" data-number="11.8.3">
 <h3 data-number="11.8.3" class="anchored" data-anchor-id="mcnemar-con-tabla2x2-y-mcnemar.test"><span class="header-section-number">11.8.3</span> McNemar con tabla2x2() y mcnemar.test()</h3>
 <div class="cell">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34" data-lst-cap="Comparación BioEstatR vs. Base R — Test de McNemar"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Base R: mcnemar.test() — control de PA antes y después del programa</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>m_paired <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">42</span>, <span class="dv">28</span>, <span class="dv">8</span>, <span class="dv">22</span>), <span class="at">nrow =</span> <span class="dv">2</span>,</span>
@@ -1678,7 +1678,7 @@ odds ratio
 <div class="cell-output cell-output-stdout">
 <pre><code>=== mcnemar.test() — Base R ===</code></pre>
 </div>
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36" data-lst-cap="Comparación BioEstatR vs. Base R — Test de McNemar"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mcnemar.test</span>(m_paired, <span class="at">correct =</span> <span class="cn">FALSE</span>)  <span class="co"># Sin corrección (b+c=36 &gt;= 25)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -1689,7 +1689,7 @@ odds ratio
 data:  m_paired
 McNemar's chi-squared = 11, df = 1, p-value = 0.0009</code></pre>
 </div>
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38" data-lst-cap="Comparación BioEstatR vs. Base R — Test de McNemar"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># BioEstatR: tabla2x2(..., estudio = "AP")</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (ver sección 12.5.5 para la salida completa; requiere BioEstatR)</span></span>
@@ -1703,7 +1703,7 @@ McNemar's chi-squared = 11, df = 1, p-value = 0.0009</code></pre>
 <section id="tablas-rc-con-tablarxc" class="level3" data-number="11.8.4">
 <h3 data-number="11.8.4" class="anchored" data-anchor-id="tablas-rc-con-tablarxc"><span class="header-section-number">11.8.4</span> Tablas r×c con tablarxc()</h3>
 <div class="cell">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39" data-lst-cap="BioEstatR — tablarxc(): grupos de edad y tabaquismo"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla 3x2: tabaco y grupos de edad</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tablarxc</span>(<span class="at">fvar =</span> osteo<span class="sc">$</span>grupo_edad, <span class="at">cvar =</span> osteo<span class="sc">$</span>tabaco)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1731,7 +1731,7 @@ C       18 14    32
 <section id="cálculo-manual-de-rr-rd-y-or" class="level3" data-number="11.8.5">
 <h3 data-number="11.8.5" class="anchored" data-anchor-id="cálculo-manual-de-rr-rd-y-or"><span class="header-section-number">11.8.5</span> Cálculo Manual de RR, RD y OR</h3>
 <div class="cell">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41" data-lst-cap="Base R — Función completa para RR, OR, RD e IC 95%"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para RR, RD, OR con IC (diseños no apareados)</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>calcular_medidas <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b, c, d, <span class="at">conf =</span> <span class="fl">0.95</span>) {</span>
@@ -1763,7 +1763,7 @@ C       18 14    32
 <div class="cell-output cell-output-stdout">
 <pre><code>=== Cohorte: tabaquismo y cardiopatía ===</code></pre>
 </div>
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43" data-lst-cap="Base R — Función completa para RR, OR, RD e IC 95%"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calcular_medidas</span>(<span class="at">a=</span><span class="dv">80</span>, <span class="at">b=</span><span class="dv">420</span>, <span class="at">c=</span><span class="dv">30</span>, <span class="at">d=</span><span class="dv">470</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -1789,7 +1789,7 @@ NNT/NNH = 10.0</code></pre>
 <div class="callout-body-container callout-body">
 <p>El dataset <code>osteo</code> contiene datos de 94 pacientes diabéticos atendidos en la Facultad de Medicina de la UGR (Pedro Femia et al.). Realizamos un análisis completo de la asociación entre tabaquismo y osteoporosis.</p>
 <div class="cell">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45" data-lst-cap="BioEstatR — Análisis completo: osteo dataset UGR"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1809,7 +1809,7 @@ NNT/NNH = 10.0</code></pre>
  ------------------------------------- 
    n = 94,  W = 0.906,  p &lt; 0.001 </code></pre>
 </div>
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47" data-lst-cap="BioEstatR — Análisis completo: osteo dataset UGR"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Tabla de contingencia y prueba Chi-cuadrado: tabaquismo × osteoporosis</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tabla2x2</span>(<span class="at">fvar =</span> osteo<span class="sc">$</span>tabaco, <span class="at">cvar =</span> osteo<span class="sc">$</span>osteo_cue,</span>
@@ -1860,7 +1860,7 @@ NNT/NNH = 10.0</code></pre>
   Razón del producto cruzado (odds ratio):
   OR=2.821; 95%-IC(OR)= (1.070, 7.013) </code></pre>
 </div>
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49" data-lst-cap="BioEstatR — Análisis completo: osteo dataset UGR"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Tabla de 3 grupos: grupo_edad × tabaco</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tablarxc</span>(<span class="at">fvar =</span> osteo<span class="sc">$</span>grupo_edad, <span class="at">cvar =</span> osteo<span class="sc">$</span>tabaco)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1902,7 +1902,7 @@ C       18 14    32
 <h3 data-number="11.9.2" class="anchored" data-anchor-id="ejemplo-numérico-en-r-evaluación-de-confounding"><span class="header-section-number">11.9.2</span> Ejemplo Numérico en R: Evaluación de Confounding</h3>
 <p>Supongamos un estudio sobre el efecto de un nuevo fármaco (Fármaco A) en la recuperación de una enfermedad respiratoria, estratificado por la gravedad del paciente (Leve vs.&nbsp;Grave).</p>
 <div class="cell">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51" data-lst-cap="Cálculo del OR de Mantel-Haenszel en R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epitools)</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1920,7 +1920,7 @@ C       18 14    32
 [1,]   40   10
 [2,]   10   40</code></pre>
 </div>
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54" data-lst-cap="Cálculo del OR de Mantel-Haenszel en R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>or1 <span class="ot">&lt;-</span> (a1 <span class="sc">*</span> d1) <span class="sc">/</span> (b1 <span class="sc">*</span> c1)  <span class="co"># OR estrato </span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sprintf</span>(<span class="st">"OR estrato 1 (Leve) = %.3f"</span>, or1))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1928,7 +1928,7 @@ C       18 14    32
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "OR estrato 1 (Leve) = 16.000"</code></pre>
 </div>
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56" data-lst-cap="Cálculo del OR de Mantel-Haenszel en R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estrato 2: Grave</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>a2 <span class="ot">&lt;-</span> <span class="dv">10</span>; b2 <span class="ot">&lt;-</span> <span class="dv">40</span>; c2 <span class="ot">&lt;-</span> <span class="dv">5</span>; d2 <span class="ot">&lt;-</span> <span class="dv">45</span></span>
@@ -1945,14 +1945,14 @@ Tabla estrato 2 (Grave):</code></pre>
 [1,]   10   40
 [2,]    5   45</code></pre>
 </div>
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59" data-lst-cap="Cálculo del OR de Mantel-Haenszel en R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sprintf</span>(<span class="st">"OR estrato 2 (Grave) = %.3f"</span>, or2))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "OR estrato 2 (Grave) = 2.250"</code></pre>
 </div>
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61" data-lst-cap="Cálculo del OR de Mantel-Haenszel en R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Array de tablas (estratificación)</span></span>
 <span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>tables <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="fu">c</span>(a1, b1, c1, d1, a2, b2, c2, d2), <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>))</span>
@@ -1971,7 +1971,7 @@ Tabla estrato 2 (Grave):</code></pre>
 [1,]   50   50
 [2,]   15   85</code></pre>
 </div>
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64" data-lst-cap="Cálculo del OR de Mantel-Haenszel en R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. OR Ajustado por Mantel-Haenszel</span></span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>mh <span class="ot">&lt;-</span> <span class="fu">mantelhaen.test</span>(tables, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span>
@@ -1982,14 +1982,14 @@ Tabla estrato 2 (Grave):</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>OR Crudo: 5.667</code></pre>
 </div>
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66" data-lst-cap="Cálculo del OR de Mantel-Haenszel en R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"OR Mantel-Haenszel: %.3f</span><span class="sc">\n</span><span class="st">"</span>, or_mh))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>OR Mantel-Haenszel: 6.833</code></pre>
 </div>
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68" data-lst-cap="Cálculo del OR de Mantel-Haenszel en R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Aplicación de la regla del 10%</span></span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>diff_pct <span class="ot">&lt;-</span> <span class="fu">abs</span>(or_crudo <span class="sc">-</span> or_mh) <span class="sc">/</span> or_crudo <span class="sc">*</span> <span class="dv">100</span></span>
@@ -2031,7 +2031,7 @@ Tabla estrato 2 (Grave):</code></pre>
 <div class="callout-body-container callout-body">
 <p>Volvamos al estudio observacional de la sección de tablas de contingencia, donde habíamos detectado una asociación entre tabaquismo y osteoporosis del cuello femoral (<code>osteo_cue</code>) en 94 pacientes diabéticos. La pregunta clínica relevante es: <strong>¿persiste la asociación tras controlar simultáneamente por edad, índice de masa corporal y tiempo de evolución de la diabetes?</strong></p>
 <div class="cell">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70" data-lst-cap="BioEstatR — rlogitm(): regresión logística múltiple sobre el dataset osteo"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(osteo)</span>

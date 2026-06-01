@@ -865,7 +865,7 @@ window.Quarto = {
 Cuadro&nbsp;3.1: Código R
 </figcaption>
 <div aria-describedby="lst-semana03-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -886,7 +886,7 @@ Cuadro&nbsp;3.1: Código R
 Cuadro&nbsp;3.2: Código R
 </figcaption>
 <div aria-describedby="lst-semana03-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>asignacion <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> <span class="fl">0.5</span>)</span>
@@ -905,7 +905,7 @@ Cuadro&nbsp;3.2: Código R
 Cuadro&nbsp;3.3: Código R
 </figcaption>
 <div aria-describedby="lst-semana03-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>asignacion <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> <span class="fl">0.5</span>)</span>
@@ -929,7 +929,7 @@ Cuadro&nbsp;3.3: Código R
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>La simulación ilustra la <strong>Ley de los Grandes Números</strong>: conforme incrementamos el tamaño muestral de 10 a 1,000 pacientes, la proporción observada de asignados al tratamiento converge hacia la probabilidad teórica de 0.5. Con apenas 10 pacientes observamos fluctuaciones (prop_10 = 0.50), pero con 1,000 pacientes la proporción se estabiliza cercana al valor esperado (prop_1000 ≈ 0.486). Esto demuestra empíricamente por qué los estudios clínicos requieren tamaños muestrales adecuados: garantizan que la frecuencia relativa refleje la probabilidad verdadera subyacente en la aleatorización.</p>
+<p>La simulación ilustra la <strong>Ley de los Grandes Números</strong>: conforme incrementamos el tamaño muestral de 10 a 1,000 pacientes, la proporción observada de asignados al tratamiento converge hacia la probabilidad teórica de 0.5. Con apenas 10 pacientes observamos fluctuaciones notables (prop_10 = 0.60), con 100 ya se acerca al valor esperado (prop_100 = 0.46), y con 1,000 pacientes la proporción se estabiliza muy cerca de 0.5 (prop_1000 = 0.497). Esto demuestra empíricamente por qué los estudios clínicos requieren tamaños muestrales adecuados: garantizan que la frecuencia relativa refleje la probabilidad verdadera subyacente en la aleatorización.</p>
 </div>
 </div>
 <p>A medida que <span class="math inline">\(n\)</span> aumenta, la proporción de pacientes en el grupo de tratamiento se acerca a 0.5.</p>
@@ -1289,7 +1289,7 @@ Cuadro&nbsp;3.3: Código R
 Cuadro&nbsp;3.4: Código R
 </figcaption>
 <div aria-describedby="lst-semana03-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>prev <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sens <span class="ot">&lt;-</span> <span class="fl">0.95</span></span>
@@ -1313,7 +1313,7 @@ Cuadro&nbsp;3.4: Código R
 Cuadro&nbsp;3.5: Código R
 </figcaption>
 <div aria-describedby="lst-semana03-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Sensibilidad:"</span>, sens, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -1329,7 +1329,7 @@ Cuadro&nbsp;3.5: Código R
 Cuadro&nbsp;3.6: Código R
 </figcaption>
 <div aria-describedby="lst-semana03-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Especificidad:"</span>, spec, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -1345,7 +1345,7 @@ Cuadro&nbsp;3.6: Código R
 Cuadro&nbsp;3.7: Código R
 </figcaption>
 <div aria-describedby="lst-semana03-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"P(+):"</span>, p_positivo, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -1361,7 +1361,7 @@ Cuadro&nbsp;3.7: Código R
 Cuadro&nbsp;3.8: Código R
 </figcaption>
 <div aria-describedby="lst-semana03-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Valor Predictivo Positivo (VPP):"</span>, <span class="fu">round</span>(vpp, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
