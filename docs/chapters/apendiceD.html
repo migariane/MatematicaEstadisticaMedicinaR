@@ -346,7 +346,7 @@ MathJax = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/apendiceB.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Apéndice B: El Paquete <code>BioStatR</code> — Guía de Referencia</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Apéndice B: El Paquete <code>BioEstatR</code> — Guía de Referencia</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -896,12 +896,12 @@ data/raw/*.xlsx</code></pre>
 <li>En RStudio: <strong>File → New Project → New Directory → Quarto Project</strong> (Book/Website/Document).</li>
 <li>Marcar <strong>Create a git repository</strong>.</li>
 </ul>
-<p><strong>2. Configurar Git e instalar BioStatR:</strong></p>
+<p><strong>2. Configurar Git e instalar BioEstatR:</strong></p>
 <div class="cell">
 <details class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_git_config</span>(<span class="at">user.name =</span> <span class="st">"Tu Nombre"</span>, <span class="at">user.email =</span> <span class="st">"tu@ugr.es"</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"migariane/BioStatR"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"migariane/BioEstatR"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p><strong>3. Crear un análisis con Quarto:</strong></p>
@@ -914,7 +914,7 @@ format: html
 ---
 
 ```{r}
-library(BioStatR)
+library(BioEstatR)
 data(osteo)
 freq(osteo$tabaco)
 grps(osteo$imc, osteo$sexo)
@@ -951,10 +951,10 @@ git commit -m "Primer análisis exploratorio del dataset osteo"</code></pre>
 <div class="callout-body-container callout-body">
 <ul>
 <li>El repositorio aparece en su perfil de GitHub con el archivo <code>analisis.qmd</code> y el commit inicial.</li>
-<li>Existe un <code>README.md</code> que describe el propósito del repositorio y cita el paquete <code>BioStatR</code>.</li>
+<li>Existe un <code>README.md</code> que describe el propósito del repositorio y cita el paquete <code>BioEstatR</code>.</li>
 <li>El archivo <code>.gitignore</code> excluye <code>*_files/</code>, <code>.Rhistory</code>, <code>.Rproj.user/</code>.</li>
 <li>La página renderizada es accesible desde la URL de GitHub Pages.</li>
-<li>Cualquier persona puede clonar el repositorio (<code>git clone …</code>) y reproducir el análisis ejecutando <code>quarto render analisis.qmd</code> tras <code>remotes::install_github("migariane/BioStatR")</code>.</li>
+<li>Cualquier persona puede clonar el repositorio (<code>git clone …</code>) y reproducir el análisis ejecutando <code>quarto render analisis.qmd</code> tras <code>remotes::install_github("migariane/BioEstatR")</code>.</li>
 </ul>
 </div>
 </div>

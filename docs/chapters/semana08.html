@@ -395,7 +395,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/apendiceB.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Apéndice B: El Paquete <code>BioStatR</code> — Guía de Referencia</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Apéndice B: El Paquete <code>BioEstatR</code> — Guía de Referencia</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -463,7 +463,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#principio-general" id="toc-principio-general" class="nav-link" data-scroll-target="#principio-general"><span class="header-section-number">8.7.1</span> Principio General</a></li>
   <li><a href="#formula-para-prueba-t-de-dos-muestras-varianzas-iguales" id="toc-formula-para-prueba-t-de-dos-muestras-varianzas-iguales" class="nav-link" data-scroll-target="#formula-para-prueba-t-de-dos-muestras-varianzas-iguales"><span class="header-section-number">8.7.2</span> Fórmula para Prueba t de Dos Muestras (Varianzas Iguales)</a></li>
-  <li><a href="#sec-semana08-bio-power" id="toc-sec-semana08-bio-power" class="nav-link" data-scroll-target="#sec-semana08-bio-power"><span class="header-section-number">8.7.3</span> Cálculo con BioStatR: <code>testt()</code> y <code>testp()</code></a></li>
+  <li><a href="#sec-semana08-bio-power" id="toc-sec-semana08-bio-power" class="nav-link" data-scroll-target="#sec-semana08-bio-power"><span class="header-section-number">8.7.3</span> Cálculo con BioEstatR: <code>testt()</code> y <code>testp()</code></a></li>
   </ul></li>
   <li><a href="#sec-semana08-multiple-testing" id="toc-sec-semana08-multiple-testing" class="nav-link" data-scroll-target="#sec-semana08-multiple-testing"><span class="header-section-number">8.8</span> Comparación Múltiple y Corrección de Bonferroni</a>
   <ul class="collapse">
@@ -637,7 +637,7 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Ejemplo con BioStatR: testt(), testf() y testwx()
+<span class="screen-reader-only">Tip</span>Ejemplo con BioEstatR: testt(), testf() y testwx()
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -651,7 +651,7 @@ Cuadro&nbsp;8.1: Código R
 <div aria-describedby="lst-semana09-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details class="code-fold">
 <summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioStatR)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># t-test dos muestras independientes: HbA1c por sexo</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">testt</span>(<span class="at">grupos =</span> osteo<span class="sc">$</span>sexo, <span class="at">m =</span> osteo<span class="sc">$</span>hba1c, <span class="at">grf =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1119,8 +1119,8 @@ Test de Wilcoxon/Mann-Whithney para dos muestras independientes
 </div>
 </section>
 <section id="sec-semana08-bio-power" class="level3" data-number="8.7.3">
-<h3 data-number="8.7.3" class="anchored" data-anchor-id="sec-semana08-bio-power"><span class="header-section-number">8.7.3</span> Cálculo con BioStatR: <code>testt()</code> y <code>testp()</code></h3>
-<p>Las funciones <code>testt()</code> y <code>testp()</code> del paquete <code>BioStatR</code> (ver <a href="apendiceB.html#sec-bio-contrastes" class="quarto-xref"><span>Sección B.5</span></a>) calculan <strong>simultáneamente</strong> el contraste de hipótesis, la <strong>potencia</strong> y el <strong>tamaño muestral</strong> necesario para detectar una diferencia mínima relevante <span class="math inline">\(\delta\)</span> (effect size en unidades de la variable).</p>
+<h3 data-number="8.7.3" class="anchored" data-anchor-id="sec-semana08-bio-power"><span class="header-section-number">8.7.3</span> Cálculo con BioEstatR: <code>testt()</code> y <code>testp()</code></h3>
+<p>Las funciones <code>testt()</code> y <code>testp()</code> del paquete <code>BioEstatR</code> (ver <a href="apendiceB.html#sec-bio-contrastes" class="quarto-xref"><span>Sección B.5</span></a>) calculan <strong>simultáneamente</strong> el contraste de hipótesis, la <strong>potencia</strong> y el <strong>tamaño muestral</strong> necesario para detectar una diferencia mínima relevante <span class="math inline">\(\delta\)</span> (effect size en unidades de la variable).</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1199,7 +1199,7 @@ Cuadro&nbsp;8.4: Código R
 <div aria-describedby="lst-semana09-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details class="code-fold">
 <summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioStatR)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --- 1. testt(): potencia y n para una media ---</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># H0: µ_HbA1c = 7.5  ;  delta clinicamente relevante = 0.5%</span></span>
@@ -1790,7 +1790,7 @@ Cuadro&nbsp;8.15: Código R
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Usando el conjunto de datos <code>osteo</code> de <code>BioStatR</code>, que contiene 94 pacientes diabéticos de la Facultad de Medicina de la UGR, comprobamos la normalidad de la variable edad:</p>
+<p>Usando el conjunto de datos <code>osteo</code> de <code>BioEstatR</code>, que contiene 94 pacientes diabéticos de la Facultad de Medicina de la UGR, comprobamos la normalidad de la variable edad:</p>
 <div class="cell">
 <div id="lst-semana09-9" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
@@ -1800,9 +1800,9 @@ Cuadro&nbsp;8.16: Código R
 <div aria-describedby="lst-semana09-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details class="code-fold">
 <summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioStatR)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Test de Shapiro-Wilk con BioStatR</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Test de Shapiro-Wilk con BioEstatR</span></span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">testnormal</span>(osteo<span class="sc">$</span>edad)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
@@ -1887,7 +1887,7 @@ Cuadro&nbsp;8.18: Código R
 <div aria-describedby="lst-semana09-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details class="code-fold">
 <summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioStatR)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Test de Bartlett: IMC igual en los 3 grupos de edad?</span></span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(imc <span class="sc">~</span> grupo_edad, <span class="at">data =</span> osteo)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2019,7 +2019,7 @@ Cuadro&nbsp;8.19: Codigo R
 <div aria-describedby="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details class="code-fold">
 <summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioStatR)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(boot)</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2024</span>)</span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -2218,7 +2218,7 @@ Cuadro&nbsp;8.27: Código R
 <div aria-describedby="lst-semana09-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details class="code-fold">
 <summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioStatR)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2024</span>)</span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
 <span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -2383,9 +2383,9 @@ Cuadro&nbsp;8.30: Código R
 <div aria-describedby="lst-semana09-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details class="code-fold">
 <summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioStatR)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Wilcoxon-Mann-Whitney con BioStatR</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Wilcoxon-Mann-Whitney con BioEstatR</span></span>
 <span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="fu">testwx</span>(<span class="at">m1 =</span> osteo<span class="sc">$</span>imc[osteo<span class="sc">$</span>sexo <span class="sc">==</span> <span class="st">"Hombre"</span>],</span>
 <span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">m2 =</span> osteo<span class="sc">$</span>imc[osteo<span class="sc">$</span>sexo <span class="sc">==</span> <span class="st">"Mujer"</span>],</span>
 <span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">grf =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2452,7 +2452,7 @@ Test de Wilcoxon/Mann-Whithney para dos muestras independientes
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Ejemplo: Prueba pareada con BioStatR
+<span class="screen-reader-only">Tip</span>Ejemplo: Prueba pareada con BioEstatR
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -2470,7 +2470,7 @@ Cuadro&nbsp;8.31: Código R
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>ca_pre  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">9.2</span>, <span class="fl">8.4</span>, <span class="fl">8.8</span>, <span class="fl">9.1</span>, <span class="fl">9.5</span>, <span class="fl">9.0</span>, <span class="fl">8.9</span>, <span class="fl">9.3</span>, <span class="fl">8.5</span>, <span class="fl">8.7</span>)</span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>ca_post <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">9.5</span>, <span class="fl">8.7</span>, <span class="fl">9.0</span>, <span class="fl">9.4</span>, <span class="fl">9.6</span>, <span class="fl">9.1</span>, <span class="fl">9.0</span>, <span class="fl">9.6</span>, <span class="fl">8.9</span>, <span class="fl">8.8</span>)</span>
 <span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Wilcoxon pareado con BioStatR (par = TRUE)</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Wilcoxon pareado con BioEstatR (par = TRUE)</span></span>
 <span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="fu">testwx</span>(<span class="at">m1 =</span> ca_pre, <span class="at">m2 =</span> ca_post, <span class="at">par =</span> <span class="cn">TRUE</span>, <span class="at">grf =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>

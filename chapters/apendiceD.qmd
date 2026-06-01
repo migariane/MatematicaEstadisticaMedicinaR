@@ -340,12 +340,12 @@ Crear un repositorio público con un análisis del dataset `osteo` que se publiq
 - En RStudio: **File → New Project → New Directory → Quarto Project** (Book/Website/Document).
 - Marcar **Create a git repository**.
 
-**2. Configurar Git e instalar BioStatR:**
+**2. Configurar Git e instalar BioEstatR:**
 
 ```{r}
 #| eval: false
 usethis::use_git_config(user.name = "Tu Nombre", user.email = "tu@ugr.es")
-remotes::install_github("migariane/BioStatR")
+remotes::install_github("migariane/BioEstatR")
 ```
 
 **3. Crear un análisis con Quarto:**
@@ -361,7 +361,7 @@ format: html
 ---
 
 `r ''````{r}
-library(BioStatR)
+library(BioEstatR)
 data(osteo)
 freq(osteo$tabaco)
 grps(osteo$imc, osteo$sexo)
@@ -395,10 +395,10 @@ usethis::use_github(private = FALSE)
 ## Criterios de éxito
 
 - El repositorio aparece en su perfil de GitHub con el archivo `analisis.qmd` y el commit inicial.
-- Existe un `README.md` que describe el propósito del repositorio y cita el paquete `BioStatR`.
+- Existe un `README.md` que describe el propósito del repositorio y cita el paquete `BioEstatR`.
 - El archivo `.gitignore` excluye `*_files/`, `.Rhistory`, `.Rproj.user/`.
 - La página renderizada es accesible desde la URL de GitHub Pages.
-- Cualquier persona puede clonar el repositorio (`git clone …`) y reproducir el análisis ejecutando `quarto render analisis.qmd` tras `remotes::install_github("migariane/BioStatR")`.
+- Cualquier persona puede clonar el repositorio (`git clone …`) y reproducir el análisis ejecutando `quarto render analisis.qmd` tras `remotes::install_github("migariane/BioEstatR")`.
 :::
 
 ---

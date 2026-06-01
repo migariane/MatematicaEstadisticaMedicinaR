@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2024.2.3)  30 MAY 2026 10:50
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2024.2.3)  30 MAY 2026 11:29
  restricted system commands enabled.
 **index.tex
 (./index.tex
@@ -1151,6 +1151,9 @@ LaTeX Warning: Label `lst-semana04-2' multiply defined.
 LaTeX Warning: Label `lst-semana04-2' multiply defined.
 
 
+LaTeX Warning: Label `lst-semana04-2' multiply defined.
+
+
 LaTeX Warning: Label `lst-semana04-3' multiply defined.
 
 
@@ -1946,11 +1949,11 @@ warning  (pdf backend): ignoring duplicate destination with the name 'page.I'
 [1
 
 ]
-LaTeX Info: Redefining \. on input line 81.
-LaTeX Info: Redefining \% on input line 81.
+LaTeX Info: Redefining \. on input line 82.
+LaTeX Info: Redefining \% on input line 82.
 [2]
-LaTeX Info: Redefining \. on input line 129.
-LaTeX Info: Redefining \% on input line 129.
+LaTeX Info: Redefining \. on input line 130.
+LaTeX Info: Redefining \% on input line 130.
 [3]
 LaTeX Info: Redefining \. on input line 176.
 LaTeX Info: Redefining \% on input line 176.
@@ -1969,240 +1972,105 @@ LaTeX Info: Redefining \% on input line 315.
 LaTeX Info: Redefining \. on input line 360.
 LaTeX Info: Redefining \% on input line 360.
 [8]
-Overfull \hbox (2.8032pt too wide) detected at line 363
-\TU/lmr/m/n/10.95 10.10. 
- []
-
-
-Overfull \hbox (1.46738pt too wide) detected at line 364
-\TU/lmr/m/n/10.95 10.10.1. 
- []
-
-
-Overfull \hbox (1.46738pt too wide) detected at line 365
-\TU/lmr/m/n/10.95 10.10.2. 
- []
-
-
-Overfull \hbox (1.46738pt too wide) detected at line 366
-\TU/lmr/m/n/10.95 10.10.3. 
- []
-
-
-Overfull \hbox (1.46738pt too wide) detected at line 367
-\TU/lmr/m/n/10.95 10.10.4. 
- []
-
-
-Overfull \hbox (2.8032pt too wide) detected at line 368
-\TU/lmr/m/n/10.95 10.11. 
- []
-
-
-Overfull \hbox (1.46738pt too wide) detected at line 369
-\TU/lmr/m/n/10.95 10.11.1. 
- []
-
-
-Overfull \hbox (1.46738pt too wide) detected at line 370
-\TU/lmr/m/n/10.95 10.11.2. 
- []
-
-
-Overfull \hbox (1.46738pt too wide) detected at line 371
-\TU/lmr/m/n/10.95 10.11.3. 
- []
-
-
-Overfull \hbox (1.46738pt too wide) detected at line 372
-\TU/lmr/m/n/10.95 10.11.4. 
- []
-
-
-Overfull \hbox (2.8032pt too wide) detected at line 373
-\TU/lmr/m/n/10.95 10.12. 
- []
-
-
-Overfull \hbox (1.46738pt too wide) detected at line 374
-\TU/lmr/m/n/10.95 10.12.1. 
- []
-
-
-Overfull \hbox (1.46738pt too wide) detected at line 375
-\TU/lmr/m/n/10.95 10.12.2. 
- []
-
-
-Overfull \hbox (1.46738pt too wide) detected at line 376
-\TU/lmr/m/n/10.95 10.12.3. 
- []
-
-
-Overfull \hbox (1.46738pt too wide) detected at line 377
-\TU/lmr/m/n/10.95 10.12.4. 
- []
-
-
-Overfull \hbox (1.46738pt too wide) detected at line 378
-\TU/lmr/m/n/10.95 10.12.5. 
- []
-
-
-Overfull \hbox (1.46738pt too wide) detected at line 379
-\TU/lmr/m/n/10.95 10.12.6. 
- []
-
-
-Overfull \hbox (2.8032pt too wide) detected at line 380
-\TU/lmr/m/n/10.95 10.13. 
- []
-
-
-Overfull \hbox (1.46738pt too wide) detected at line 381
-\TU/lmr/m/n/10.95 10.13.1. 
- []
-
-
-Overfull \hbox (1.46738pt too wide) detected at line 382
-\TU/lmr/m/n/10.95 10.13.2. 
- []
-
-
-Overfull \hbox (1.46738pt too wide) detected at line 383
-\TU/lmr/m/n/10.95 10.13.3. 
- []
-
-
-Overfull \hbox (1.46738pt too wide) detected at line 384
-\TU/lmr/m/n/10.95 10.13.4. 
- []
-
-
-Overfull \hbox (1.46738pt too wide) detected at line 385
-\TU/lmr/m/n/10.95 10.13.5. 
- []
-
-
-Overfull \hbox (1.46738pt too wide) detected at line 386
-\TU/lmr/m/n/10.95 10.13.6. 
- []
-
-
-Overfull \hbox (2.8032pt too wide) detected at line 387
-\TU/lmr/m/n/10.95 10.14. 
- []
-
-
-Overfull \hbox (2.8032pt too wide) detected at line 388
-\TU/lmr/m/n/10.95 10.15. 
- []
-
-
-Overfull \hbox (2.8032pt too wide) detected at line 389
-\TU/lmr/m/n/10.95 10.16. 
- []
-
-
 Overfull \hbox (2.8032pt too wide) detected at line 406
-\TU/lmr/m/n/10.95 11.10. 
+\TU/lmr/m/n/10.95 10.10. 
  []
 
 LaTeX Info: Redefining \. on input line 407.
 LaTeX Info: Redefining \% on input line 407.
 [9]
 Overfull \hbox (2.8032pt too wide) detected at line 407
-\TU/lmr/m/n/10.95 11.11. 
+\TU/lmr/m/n/10.95 10.11. 
  []
 
 
 Overfull \hbox (2.8032pt too wide) detected at line 408
-\TU/lmr/m/n/10.95 11.12. 
+\TU/lmr/m/n/10.95 10.12. 
  []
 
 
 Overfull \hbox (2.8032pt too wide) detected at line 409
-\TU/lmr/m/n/10.95 11.13. 
+\TU/lmr/m/n/10.95 10.13. 
  []
 
 
 Overfull \hbox (2.8032pt too wide) detected at line 410
-\TU/lmr/m/n/10.95 11.14. 
+\TU/lmr/m/n/10.95 10.14. 
  []
 
 
 Overfull \hbox (1.46738pt too wide) detected at line 411
-\TU/lmr/m/n/10.95 11.14.1. 
+\TU/lmr/m/n/10.95 10.14.1. 
  []
 
 
 Overfull \hbox (1.46738pt too wide) detected at line 412
-\TU/lmr/m/n/10.95 11.14.2. 
+\TU/lmr/m/n/10.95 10.14.2. 
  []
 
 
 Overfull \hbox (2.8032pt too wide) detected at line 413
-\TU/lmr/m/n/10.95 11.15. 
+\TU/lmr/m/n/10.95 10.15. 
  []
 
 
 Overfull \hbox (2.8032pt too wide) detected at line 414
-\TU/lmr/m/n/10.95 11.16. 
+\TU/lmr/m/n/10.95 10.16. 
  []
 
 
 Overfull \hbox (2.8032pt too wide) detected at line 415
-\TU/lmr/m/n/10.95 11.17. 
+\TU/lmr/m/n/10.95 10.17. 
  []
 
 
 Overfull \hbox (1.46738pt too wide) detected at line 416
-\TU/lmr/m/n/10.95 11.17.1. 
+\TU/lmr/m/n/10.95 10.17.1. 
  []
 
 
 Overfull \hbox (1.46738pt too wide) detected at line 417
-\TU/lmr/m/n/10.95 11.17.2. 
+\TU/lmr/m/n/10.95 10.17.2. 
  []
 
 
 Overfull \hbox (1.46738pt too wide) detected at line 418
-\TU/lmr/m/n/10.95 11.17.3. 
+\TU/lmr/m/n/10.95 10.17.3. 
  []
 
 
 Overfull \hbox (1.46738pt too wide) detected at line 419
-\TU/lmr/m/n/10.95 11.17.4. 
+\TU/lmr/m/n/10.95 10.17.4. 
  []
 
 
 Overfull \hbox (1.46738pt too wide) detected at line 420
-\TU/lmr/m/n/10.95 11.17.5. 
+\TU/lmr/m/n/10.95 10.17.5. 
  []
 
 
 Overfull \hbox (1.46738pt too wide) detected at line 421
-\TU/lmr/m/n/10.95 11.17.6. 
+\TU/lmr/m/n/10.95 10.17.6. 
  []
 
 
 Overfull \hbox (1.46738pt too wide) detected at line 422
-\TU/lmr/m/n/10.95 11.17.7. 
+\TU/lmr/m/n/10.95 10.17.7. 
  []
 
 
 Overfull \hbox (2.8032pt too wide) detected at line 423
-\TU/lmr/m/n/10.95 11.18. 
+\TU/lmr/m/n/10.95 10.18. 
  []
 
 
 Overfull \hbox (2.8032pt too wide) detected at line 424
-\TU/lmr/m/n/10.95 11.19. 
+\TU/lmr/m/n/10.95 10.19. 
  []
 
 
 Overfull \hbox (2.8032pt too wide) detected at line 425
-\TU/lmr/m/n/10.95 11.20. 
+\TU/lmr/m/n/10.95 10.20. 
  []
 
 LaTeX Info: Redefining \. on input line 452.
@@ -2212,22 +2080,22 @@ Missing character: There is no χ (U+03C7) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no χ (U+03C7) in font [lmroman10-regular]:+tlig;!
 ]
 Overfull \hbox (2.8032pt too wide) detected at line 468
-\TU/lmr/m/n/10.95 12.10. 
+\TU/lmr/m/n/10.95 11.10. 
  []
 
 
 Overfull \hbox (2.8032pt too wide) detected at line 469
-\TU/lmr/m/n/10.95 12.11. 
+\TU/lmr/m/n/10.95 11.11. 
  []
 
 
 Overfull \hbox (2.8032pt too wide) detected at line 470
-\TU/lmr/m/n/10.95 12.12. 
+\TU/lmr/m/n/10.95 11.12. 
  []
 
 
 Overfull \hbox (2.8032pt too wide) detected at line 471
-\TU/lmr/m/n/10.95 12.13. 
+\TU/lmr/m/n/10.95 11.13. 
  []
 
 LaTeX Info: Redefining \. on input line 496.
@@ -2290,7 +2158,7 @@ LaTeX Info: Redefining \% on input line 919.
 LaTeX Info: Redefining \. on input line 968.
 LaTeX Info: Redefining \% on input line 968.
 [12]
-<chapters/semana01_files/figure-pdf/fig-semana01-ecdf-step-1.pdf, id=1378, 364.
+<chapters/semana01_files/figure-pdf/fig-semana01-ecdf-step-1.pdf, id=1379, 364.
 36125pt x 213.79875pt>
 File: chapters/semana01_files/figure-pdf/fig-semana01-ecdf-step-1.pdf Graphic f
 ile (type pdf)
@@ -2301,7 +2169,7 @@ tep-1.pdf  used on input line 1002.
 LaTeX Info: Redefining \. on input line 1011.
 LaTeX Info: Redefining \% on input line 1011.
 [13]
-<chapters/semana01_files/figure-pdf/fig-semana01-ecdf-interp-1.pdf, id=1384, 36
+<chapters/semana01_files/figure-pdf/fig-semana01-ecdf-interp-1.pdf, id=1385, 36
 5.365pt x 212.795pt>
 File: chapters/semana01_files/figure-pdf/fig-semana01-ecdf-interp-1.pdf Graphic
  file (type pdf)
@@ -2315,7 +2183,7 @@ LaTeX Info: Redefining \% on input line 1088.
 LaTeX Info: Redefining \. on input line 1098.
 LaTeX Info: Redefining \% on input line 1098.
 [15<./chapters/semana01_files/figure-pdf/fig-semana01-ecdf-interp-1.pdf>]
-<chapters/semana01_files/figure-pdf/unnamed-chunk-3-1.pdf, id=1410, 358.33875pt
+<chapters/semana01_files/figure-pdf/unnamed-chunk-3-1.pdf, id=1411, 358.33875pt
  x 215.80624pt>
 File: chapters/semana01_files/figure-pdf/unnamed-chunk-3-1.pdf Graphic file (ty
 pe pdf)
@@ -2326,7 +2194,7 @@ df  used on input line 1182.
 LaTeX Info: Redefining \. on input line 1184.
 LaTeX Info: Redefining \% on input line 1184.
 [16]
-<chapters/semana01_files/figure-pdf/unnamed-chunk-4-1.pdf, id=1417, 379.4175pt 
+<chapters/semana01_files/figure-pdf/unnamed-chunk-4-1.pdf, id=1418, 379.4175pt 
 x 213.79875pt>
 File: chapters/semana01_files/figure-pdf/unnamed-chunk-4-1.pdf Graphic file (ty
 pe pdf)
@@ -2353,7 +2221,7 @@ LaTeX Info: Redefining \% on input line 1423.
 LaTeX Info: Redefining \. on input line 1467.
 LaTeX Info: Redefining \% on input line 1467.
 [21]
-<chapters/semana01_files/figure-pdf/fig-semana01-skewness-1.pdf, id=1462, 373.3
+<chapters/semana01_files/figure-pdf/fig-semana01-skewness-1.pdf, id=1463, 373.3
 95pt x 229.85875pt>
 File: chapters/semana01_files/figure-pdf/fig-semana01-skewness-1.pdf Graphic fi
 le (type pdf)
@@ -2370,7 +2238,7 @@ LaTeX Info: Redefining \% on input line 1574.
 LaTeX Info: Redefining \. on input line 1655.
 LaTeX Info: Redefining \% on input line 1655.
 [24]
-<chapters/semana01_files/figure-pdf/unnamed-chunk-9-1.pdf, id=1490, 374.39874pt
+<chapters/semana01_files/figure-pdf/unnamed-chunk-9-1.pdf, id=1491, 374.39874pt
  x 240.9pt>
 File: chapters/semana01_files/figure-pdf/unnamed-chunk-9-1.pdf Graphic file (ty
 pe pdf)
@@ -2411,182 +2279,180 @@ Capítulo 2.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<chapters/semana02_files/figure-pdf/unnamed-chunk-1-1.pdf, id=1562, 381.425pt x
- 242.9075pt>
+<chapters/semana02_files/figure-pdf/unnamed-chunk-1-1.pdf, id=1563, 387.4475pt 
+x 241.90375pt>
 File: chapters/semana02_files/figure-pdf/unnamed-chunk-1-1.pdf Graphic file (ty
 pe pdf)
 <use chapters/semana02_files/figure-pdf/unnamed-chunk-1-1.pdf>
 Package luatex.def Info: chapters/semana02_files/figure-pdf/unnamed-chunk-1-1.p
-df  used on input line 2237.
-(luatex.def)             Requested size: 381.42406pt x 242.90689pt.
+df  used on input line 2242.
+(luatex.def)             Requested size: 387.44655pt x 241.90315pt.
 [32
 
 ]
-LaTeX Info: Redefining \. on input line 2271.
-LaTeX Info: Redefining \% on input line 2271.
+LaTeX Info: Redefining \. on input line 2244.
+LaTeX Info: Redefining \% on input line 2244.
 [33<./chapters/semana02_files/figure-pdf/unnamed-chunk-1-1.pdf>]
-LaTeX Info: Redefining \. on input line 2331.
-LaTeX Info: Redefining \% on input line 2331.
+LaTeX Info: Redefining \. on input line 2336.
+LaTeX Info: Redefining \% on input line 2336.
 [34]
-LaTeX Info: Redefining \. on input line 2384.
-LaTeX Info: Redefining \% on input line 2384.
+LaTeX Info: Redefining \. on input line 2389.
+LaTeX Info: Redefining \% on input line 2389.
 [35]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-LaTeX Info: Redefining \. on input line 2499.
-LaTeX Info: Redefining \% on input line 2499.
+LaTeX Info: Redefining \. on input line 2504.
+LaTeX Info: Redefining \% on input line 2504.
 [36]
-LaTeX Info: Redefining \. on input line 2560.
-LaTeX Info: Redefining \% on input line 2560.
+LaTeX Info: Redefining \. on input line 2565.
+LaTeX Info: Redefining \% on input line 2565.
 [37]
-LaTeX Info: Redefining \. on input line 2618.
-LaTeX Info: Redefining \% on input line 2618.
+LaTeX Info: Redefining \. on input line 2623.
+LaTeX Info: Redefining \% on input line 2623.
 [38]
-LaTeX Info: Redefining \. on input line 2666.
-LaTeX Info: Redefining \% on input line 2666.
+LaTeX Info: Redefining \. on input line 2671.
+LaTeX Info: Redefining \% on input line 2671.
 [39]
-LaTeX Info: Redefining \. on input line 2668.
-LaTeX Info: Redefining \% on input line 2668.
+LaTeX Info: Redefining \. on input line 2757.
+LaTeX Info: Redefining \% on input line 2757.
 [40
 Missing character: There is no ≈ (U+2248) in font [lmmono10-regular]:!
 ]
-Capítulo 3.
-[41
-
-]
-<chapters/semana02_files/figure-pdf/unnamed-chunk-6-1.pdf, id=1623, 353.32pt x 
+<chapters/semana02_files/figure-pdf/unnamed-chunk-6-1.pdf, id=1620, 353.32pt x 
 211.79124pt>
 File: chapters/semana02_files/figure-pdf/unnamed-chunk-6-1.pdf Graphic file (ty
 pe pdf)
 <use chapters/semana02_files/figure-pdf/unnamed-chunk-6-1.pdf>
 Package luatex.def Info: chapters/semana02_files/figure-pdf/unnamed-chunk-6-1.p
-df  used on input line 2794.
+df  used on input line 2803.
 (luatex.def)             Requested size: 353.31914pt x 211.79073pt.
-LaTeX Info: Redefining \. on input line 2796.
-LaTeX Info: Redefining \% on input line 2796.
-[42
+LaTeX Info: Redefining \. on input line 2805.
+LaTeX Info: Redefining \% on input line 2805.
+[41
 Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
 Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
 Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
 ]
-LaTeX Info: Redefining \. on input line 2860.
-LaTeX Info: Redefining \% on input line 2860.
-[43<./chapters/semana02_files/figure-pdf/unnamed-chunk-6-1.pdf>]
-<chapters/semana02_files/figure-pdf/unnamed-chunk-7-1.pdf, id=1653, 364.36125pt
+LaTeX Info: Redefining \. on input line 2869.
+LaTeX Info: Redefining \% on input line 2869.
+[42<./chapters/semana02_files/figure-pdf/unnamed-chunk-6-1.pdf>]
+<chapters/semana02_files/figure-pdf/unnamed-chunk-7-1.pdf, id=1649, 364.36125pt
  x 185.69376pt>
 File: chapters/semana02_files/figure-pdf/unnamed-chunk-7-1.pdf Graphic file (ty
 pe pdf)
 <use chapters/semana02_files/figure-pdf/unnamed-chunk-7-1.pdf>
 Package luatex.def Info: chapters/semana02_files/figure-pdf/unnamed-chunk-7-1.p
-df  used on input line 2890.
+df  used on input line 2903.
 (luatex.def)             Requested size: 364.36035pt x 185.6933pt.
-LaTeX Info: Redefining \. on input line 2938.
-LaTeX Info: Redefining \% on input line 2938.
-[44<./chapters/semana02_files/figure-pdf/unnamed-chunk-7-1.pdf>]
-LaTeX Info: Redefining \. on input line 3228.
-LaTeX Info: Redefining \% on input line 3228.
+LaTeX Info: Redefining \. on input line 2921.
+LaTeX Info: Redefining \% on input line 2921.
+[43<./chapters/semana02_files/figure-pdf/unnamed-chunk-7-1.pdf>]
+LaTeX Info: Redefining \. on input line 2986.
+LaTeX Info: Redefining \% on input line 2986.
+[44]
+LaTeX Info: Redefining \. on input line 3241.
+LaTeX Info: Redefining \% on input line 3241.
 [45]
-LaTeX Info: Redefining \. on input line 3228.
-LaTeX Info: Redefining \% on input line 3228.
+LaTeX Info: Redefining \. on input line 3241.
+LaTeX Info: Redefining \% on input line 3241.
 [46]
-LaTeX Info: Redefining \. on input line 3228.
-LaTeX Info: Redefining \% on input line 3228.
+LaTeX Info: Redefining \. on input line 3241.
+LaTeX Info: Redefining \% on input line 3241.
 [47]
-LaTeX Info: Redefining \. on input line 3228.
-LaTeX Info: Redefining \% on input line 3228.
+LaTeX Info: Redefining \. on input line 3362.
+LaTeX Info: Redefining \% on input line 3362.
 [48]
-LaTeX Info: Redefining \. on input line 3228.
-LaTeX Info: Redefining \% on input line 3228.
+LaTeX Info: Redefining \. on input line 3371.
+LaTeX Info: Redefining \% on input line 3371.
 [49]
-LaTeX Info: Redefining \. on input line 3349.
-LaTeX Info: Redefining \% on input line 3349.
-[50]
-LaTeX Info: Redefining \. on input line 3358.
-LaTeX Info: Redefining \% on input line 3358.
-[51]
-<chapters/semana02_files/figure-pdf/unnamed-chunk-10-1.pdf, id=1712, 364.36125p
-t x 212.795pt>
+<chapters/semana02_files/figure-pdf/unnamed-chunk-10-1.pdf, id=1705, 472.76625p
+t x 322.20375pt>
 File: chapters/semana02_files/figure-pdf/unnamed-chunk-10-1.pdf Graphic file (t
 ype pdf)
 <use chapters/semana02_files/figure-pdf/unnamed-chunk-10-1.pdf>
 Package luatex.def Info: chapters/semana02_files/figure-pdf/unnamed-chunk-10-1.
-pdf  used on input line 3433.
-(luatex.def)             Requested size: 364.36035pt x 212.79446pt.
-LaTeX Info: Redefining \. on input line 3435.
-LaTeX Info: Redefining \% on input line 3435.
-[52]
-<chapters/semana02_files/figure-pdf/fig-semana02-cor-limit-1.pdf, id=1721, 385.
-44pt x 240.9pt>
+pdf  used on input line 3475.
+(luatex.def)             Requested size: 472.76509pt x 322.20296pt.
+LaTeX Info: Redefining \. on input line 3516.
+LaTeX Info: Redefining \% on input line 3516.
+[50]
+LaTeX Info: Redefining \. on input line 3516.
+LaTeX Info: Redefining \% on input line 3516.
+[51]
+<chapters/semana02_files/figure-pdf/fig-semana02-cor-limit-1.pdf, id=1718, 389.
+455pt x 239.89626pt>
 File: chapters/semana02_files/figure-pdf/fig-semana02-cor-limit-1.pdf Graphic f
 ile (type pdf)
 <use chapters/semana02_files/figure-pdf/fig-semana02-cor-limit-1.pdf>
 Package luatex.def Info: chapters/semana02_files/figure-pdf/fig-semana02-cor-li
-mit-1.pdf  used on input line 3449.
-(luatex.def)             Requested size: 385.43906pt x 240.8994pt.
-LaTeX Info: Redefining \. on input line 3462.
-LaTeX Info: Redefining \% on input line 3462.
-[53<./chapters/semana02_files/figure-pdf/unnamed-chunk-10-1.pdf><./chapters/sema
-na02_files/figure-pdf/fig-semana02-cor-limit-1.pdf>]
-<chapters/semana02_files/figure-pdf/unnamed-chunk-11-1.pdf, id=1740, 364.36125p
+mit-1.pdf  used on input line 3530.
+(luatex.def)             Requested size: 389.45404pt x 239.89566pt.
+LaTeX Info: Redefining \. on input line 3543.
+LaTeX Info: Redefining \% on input line 3543.
+[52<./chapters/semana02_files/figure-pdf/unnamed-chunk-10-1.pdf>]
+<chapters/semana02_files/figure-pdf/unnamed-chunk-11-1.pdf, id=1730, 364.36125p
 t x 213.79875pt>
 File: chapters/semana02_files/figure-pdf/unnamed-chunk-11-1.pdf Graphic file (t
 ype pdf)
 <use chapters/semana02_files/figure-pdf/unnamed-chunk-11-1.pdf>
 Package luatex.def Info: chapters/semana02_files/figure-pdf/unnamed-chunk-11-1.
-pdf  used on input line 3512.
+pdf  used on input line 3609.
 (luatex.def)             Requested size: 364.36035pt x 213.79822pt.
-LaTeX Info: Redefining \. on input line 3514.
-LaTeX Info: Redefining \% on input line 3514.
+LaTeX Info: Redefining \. on input line 3611.
+LaTeX Info: Redefining \% on input line 3611.
+[53<./chapters/semana02_files/figure-pdf/fig-semana02-cor-limit-1.pdf>]
+LaTeX Info: Redefining \. on input line 3611.
+LaTeX Info: Redefining \% on input line 3611.
 [54]
-<chapters/semana02_files/figure-pdf/unnamed-chunk-12-1.pdf, id=1746, 347.2975pt
+<chapters/semana02_files/figure-pdf/unnamed-chunk-12-1.pdf, id=1752, 347.2975pt
  x 211.79124pt>
 File: chapters/semana02_files/figure-pdf/unnamed-chunk-12-1.pdf Graphic file (t
 ype pdf)
 <use chapters/semana02_files/figure-pdf/unnamed-chunk-12-1.pdf>
 Package luatex.def Info: chapters/semana02_files/figure-pdf/unnamed-chunk-12-1.
-pdf  used on input line 3570.
+pdf  used on input line 3669.
 (luatex.def)             Requested size: 347.29665pt x 211.79073pt.
-LaTeX Info: Redefining \. on input line 3597.
-LaTeX Info: Redefining \% on input line 3597.
+LaTeX Info: Redefining \. on input line 3696.
+LaTeX Info: Redefining \% on input line 3696.
 [55<./chapters/semana02_files/figure-pdf/unnamed-chunk-11-1.pdf>]
-LaTeX Info: Redefining \. on input line 3597.
-LaTeX Info: Redefining \% on input line 3597.
+LaTeX Info: Redefining \. on input line 3696.
+LaTeX Info: Redefining \% on input line 3696.
 [56<./chapters/semana02_files/figure-pdf/unnamed-chunk-12-1.pdf>]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<chapters/semana02_files/figure-pdf/unnamed-chunk-13-1.pdf, id=1775, 364.36125p
+<chapters/semana02_files/figure-pdf/unnamed-chunk-13-1.pdf, id=1786, 368.37625p
 t x 221.82875pt>
 File: chapters/semana02_files/figure-pdf/unnamed-chunk-13-1.pdf Graphic file (t
 ype pdf)
 <use chapters/semana02_files/figure-pdf/unnamed-chunk-13-1.pdf>
 Package luatex.def Info: chapters/semana02_files/figure-pdf/unnamed-chunk-13-1.
-pdf  used on input line 3675.
-(luatex.def)             Requested size: 364.36035pt x 221.82819pt.
-LaTeX Info: Redefining \. on input line 3677.
-LaTeX Info: Redefining \% on input line 3677.
+pdf  used on input line 3775.
+(luatex.def)             Requested size: 368.37534pt x 221.82819pt.
+LaTeX Info: Redefining \. on input line 3777.
+LaTeX Info: Redefining \% on input line 3777.
 [57]
-LaTeX Info: Redefining \. on input line 3694.
-LaTeX Info: Redefining \% on input line 3694.
+LaTeX Info: Redefining \. on input line 3794.
+LaTeX Info: Redefining \% on input line 3794.
 [58
 Missing character: There is no ≤ (U+2264) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ≤ (U+2264) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ≤ (U+2264) in font [lmroman10-regular]:+tlig;!
 <./chapters/semana02_files/figure-pdf/unnamed-chunk-13-1.pdf>]
-LaTeX Info: Redefining \. on input line 3799.
-LaTeX Info: Redefining \% on input line 3799.
+LaTeX Info: Redefining \. on input line 3899.
+LaTeX Info: Redefining \% on input line 3899.
 [59]
-LaTeX Info: Redefining \. on input line 3886.
-LaTeX Info: Redefining \% on input line 3886.
+LaTeX Info: Redefining \. on input line 3986.
+LaTeX Info: Redefining \% on input line 3986.
 [60
 Missing character: There is no ₂ (U+2082) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ₂ (U+2082) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ₂ (U+2082) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ₂ (U+2082) in font [lmroman10-regular]:+tlig;!
 ]
-LaTeX Info: Redefining \. on input line 3951.
-LaTeX Info: Redefining \% on input line 3951.
+LaTeX Info: Redefining \. on input line 4051.
+LaTeX Info: Redefining \% on input line 4051.
 [61
 Missing character: There is no ₃ (U+2083) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:+tlig;!
@@ -2599,69 +2465,69 @@ Missing character: There is no ₂ (U+2082) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ₂ (U+2082) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ₂ (U+2082) in font [lmroman10-regular]:+tlig;!
 ]
-Overfull \hbox (22.34007pt too wide) in paragraph at lines 3971--3981
+Overfull \hbox (22.34007pt too wide) in paragraph at lines 4071--4081
 \TU/lmtt/m/n/10.95 sd(presion_sistolica) \TU/lmr/m/n/10.95 y \TU/lmtt/m/n/10.95
  cov(edad, presion_sistolica)\TU/lmr/m/n/10.95 . b) Usa \TU/lmtt/m/n/10.95 cor(e
 dad, presion_sistolica)\TU/lmr/m/n/10.95 .
  []
 
 
-Overfull \hbox (25.25652pt too wide) in paragraph at lines 3971--3981
+Overfull \hbox (25.25652pt too wide) in paragraph at lines 4071--4081
 \TU/lmr/m/n/10.95 c) \TU/lmtt/m/n/10.95 plot(edad, presion_sistolica); abline(lm
 (presion_sistolica ~ edad))\TU/lmr/m/n/10.95 . d) \TU/lmtt/m/n/10.95 boxplot(eda
 d);
  []
 
 
-Overfull \hbox (42.27654pt too wide) in paragraph at lines 3971--3981
+Overfull \hbox (42.27654pt too wide) in paragraph at lines 4071--4081
 \TU/lmtt/m/n/10.95 boxplot(presion_sistolica)\TU/lmr/m/n/10.95 . e) \TU/lmtt/m/
 n/10.95 z_edad <- scale(edad); z_presion <- scale(presion_sistolica)\TU/lmr/m/n
 /10.95 .
  []
 
-LaTeX Info: Redefining \. on input line 4001.
-LaTeX Info: Redefining \% on input line 4001.
+LaTeX Info: Redefining \. on input line 4101.
+LaTeX Info: Redefining \% on input line 4101.
 [62] [63
 
 ]
-Capítulo 4.
+Capítulo 3.
 [64
 
 ]
-LaTeX Info: Redefining \. on input line 4126.
-LaTeX Info: Redefining \% on input line 4126.
+LaTeX Info: Redefining \. on input line 4226.
+LaTeX Info: Redefining \% on input line 4226.
 [65]
-LaTeX Info: Redefining \. on input line 4196.
-LaTeX Info: Redefining \% on input line 4196.
+LaTeX Info: Redefining \. on input line 4296.
+LaTeX Info: Redefining \% on input line 4296.
 [66]
-LaTeX Info: Redefining \. on input line 4260.
-LaTeX Info: Redefining \% on input line 4260.
+LaTeX Info: Redefining \. on input line 4360.
+LaTeX Info: Redefining \% on input line 4360.
 [67]
-LaTeX Info: Redefining \. on input line 4375.
-LaTeX Info: Redefining \% on input line 4375.
+LaTeX Info: Redefining \. on input line 4475.
+LaTeX Info: Redefining \% on input line 4475.
 [68]
-LaTeX Info: Redefining \. on input line 4408.
-LaTeX Info: Redefining \% on input line 4408.
+LaTeX Info: Redefining \. on input line 4508.
+LaTeX Info: Redefining \% on input line 4508.
 [69
 Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
 ]
-LaTeX Info: Redefining \. on input line 4468.
-LaTeX Info: Redefining \% on input line 4468.
+LaTeX Info: Redefining \. on input line 4568.
+LaTeX Info: Redefining \% on input line 4568.
 [70]
-LaTeX Info: Redefining \. on input line 4525.
-LaTeX Info: Redefining \% on input line 4525.
+LaTeX Info: Redefining \. on input line 4625.
+LaTeX Info: Redefining \% on input line 4625.
 [71]
-LaTeX Info: Redefining \. on input line 4578.
-LaTeX Info: Redefining \% on input line 4578.
+LaTeX Info: Redefining \. on input line 4678.
+LaTeX Info: Redefining \% on input line 4678.
 [72]
-LaTeX Info: Redefining \. on input line 4630.
-LaTeX Info: Redefining \% on input line 4630.
+LaTeX Info: Redefining \. on input line 4730.
+LaTeX Info: Redefining \% on input line 4730.
 [73]
-LaTeX Info: Redefining \. on input line 4682.
-LaTeX Info: Redefining \% on input line 4682.
+LaTeX Info: Redefining \. on input line 4782.
+LaTeX Info: Redefining \% on input line 4782.
 [74]
-LaTeX Info: Redefining \. on input line 4731.
-LaTeX Info: Redefining \% on input line 4731.
+LaTeX Info: Redefining \. on input line 4831.
+LaTeX Info: Redefining \% on input line 4831.
 [75]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -2669,26 +2535,26 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-LaTeX Info: Redefining \. on input line 4894.
-LaTeX Info: Redefining \% on input line 4894.
+LaTeX Info: Redefining \. on input line 4994.
+LaTeX Info: Redefining \% on input line 4994.
 [76
 Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
 ]
-LaTeX Info: Redefining \. on input line 4941.
-LaTeX Info: Redefining \% on input line 4941.
+LaTeX Info: Redefining \. on input line 5041.
+LaTeX Info: Redefining \% on input line 5041.
 [77]
-LaTeX Info: Redefining \. on input line 4982.
-LaTeX Info: Redefining \% on input line 4982.
+LaTeX Info: Redefining \. on input line 5082.
+LaTeX Info: Redefining \% on input line 5082.
 [78]
-LaTeX Info: Redefining \. on input line 5075.
-LaTeX Info: Redefining \% on input line 5075.
+LaTeX Info: Redefining \. on input line 5175.
+LaTeX Info: Redefining \% on input line 5175.
 [79
 Missing character: There is no ∪ (U+222A) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ∩ (U+2229) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
 ]
-LaTeX Info: Redefining \. on input line 5118.
-LaTeX Info: Redefining \% on input line 5118.
+LaTeX Info: Redefining \. on input line 5218.
+LaTeX Info: Redefining \% on input line 5218.
 [80
 Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
@@ -2697,15 +2563,15 @@ Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
 ]
-Capítulo 5.
+Capítulo 4.
 [81
 
 ]
-LaTeX Info: Redefining \. on input line 5209.
-LaTeX Info: Redefining \% on input line 5209.
+LaTeX Info: Redefining \. on input line 5309.
+LaTeX Info: Redefining \% on input line 5309.
 
 Overfull \hbox (43.53702pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 82
  []
 
@@ -2719,177 +2585,172 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-LaTeX Info: Redefining \. on input line 5377.
-LaTeX Info: Redefining \% on input line 5377.
+LaTeX Info: Redefining \. on input line 5477.
+LaTeX Info: Redefining \% on input line 5477.
 
 Overfull \hbox (43.53702pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 83
  []
 
 [83]
-LaTeX Info: Redefining \. on input line 5402.
-LaTeX Info: Redefining \% on input line 5402.
+LaTeX Info: Redefining \. on input line 5502.
+LaTeX Info: Redefining \% on input line 5502.
 
 Overfull \hbox (43.53702pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 84
  []
 
 [84]
-LaTeX Info: Redefining \. on input line 5463.
-LaTeX Info: Redefining \% on input line 5463.
+LaTeX Info: Redefining \. on input line 5563.
+LaTeX Info: Redefining \% on input line 5563.
 
 Overfull \hbox (43.53702pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 85
  []
 
 [85]
-LaTeX Info: Redefining \. on input line 5489.
-LaTeX Info: Redefining \% on input line 5489.
+LaTeX Info: Redefining \. on input line 5589.
+LaTeX Info: Redefining \% on input line 5589.
 
 Overfull \hbox (43.53702pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 86
  []
 
 [86]
-LaTeX Info: Redefining \. on input line 5539.
-LaTeX Info: Redefining \% on input line 5539.
+LaTeX Info: Redefining \. on input line 5639.
+LaTeX Info: Redefining \% on input line 5639.
 
 Overfull \hbox (43.53702pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 87
  []
 
 [87]
-LaTeX Info: Redefining \. on input line 5611.
-LaTeX Info: Redefining \% on input line 5611.
+LaTeX Info: Redefining \. on input line 5770.
+LaTeX Info: Redefining \% on input line 5770.
 
 Overfull \hbox (43.53702pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 88
  []
 
 [88]
-LaTeX Info: Redefining \. on input line 5661.
-LaTeX Info: Redefining \% on input line 5661.
+LaTeX Info: Redefining \. on input line 5770.
+LaTeX Info: Redefining \% on input line 5770.
 
 Overfull \hbox (43.53702pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 89
  []
 
 [89]
-<chapters/semana04_files/figure-pdf/unnamed-chunk-3-1.pdf, id=2004, 352.31625pt
+<chapters/semana04_files/figure-pdf/unnamed-chunk-3-1.pdf, id=2016, 352.31625pt
  x 210.7875pt>
 File: chapters/semana04_files/figure-pdf/unnamed-chunk-3-1.pdf Graphic file (ty
 pe pdf)
 <use chapters/semana04_files/figure-pdf/unnamed-chunk-3-1.pdf>
 Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-3-1.p
-df  used on input line 5734.
+df  used on input line 5893.
 (luatex.def)             Requested size: 352.31538pt x 210.78699pt.
-LaTeX Info: Redefining \. on input line 5736.
-LaTeX Info: Redefining \% on input line 5736.
+LaTeX Info: Redefining \. on input line 5895.
+LaTeX Info: Redefining \% on input line 5895.
 
 Overfull \hbox (43.53702pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 90
  []
 
-[90]
-<chapters/semana04_files/figure-pdf/unnamed-chunk-4-1.pdf, id=2012, 352.31625pt
+[90
+
+]
+LaTeX Info: Redefining \. on input line 5922.
+LaTeX Info: Redefining \% on input line 5922.
+
+Overfull \hbox (43.53702pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 91
+ []
+
+[91<./chapters/semana04_files/figure-pdf/unnamed-chunk-3-1.pdf>]
+<chapters/semana04_files/figure-pdf/unnamed-chunk-4-1.pdf, id=2035, 352.31625pt
  x 210.7875pt>
 File: chapters/semana04_files/figure-pdf/unnamed-chunk-4-1.pdf Graphic file (ty
 pe pdf)
 <use chapters/semana04_files/figure-pdf/unnamed-chunk-4-1.pdf>
 Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-4-1.p
-df  used on input line 5837.
+df  used on input line 5996.
 (luatex.def)             Requested size: 352.31538pt x 210.78699pt.
-LaTeX Info: Redefining \. on input line 5839.
-LaTeX Info: Redefining \% on input line 5839.
+LaTeX Info: Redefining \. on input line 5998.
+LaTeX Info: Redefining \% on input line 5998.
 
 Overfull \hbox (43.53702pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
-S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 91
- []
-
-[91
-Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
-Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
-Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
-<./chapters/semana04_files/figure-pdf/unnamed-chunk-3-1.pdf>]
-LaTeX Info: Redefining \. on input line 5871.
-LaTeX Info: Redefining \% on input line 5871.
-
-Overfull \hbox (43.53702pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 92
  []
 
-[92<./chapters/semana04_files/figure-pdf/unnamed-chunk-4-1.pdf>]
-<chapters/semana04_files/figure-pdf/unnamed-chunk-5-1.pdf, id=2038, 364.36125pt
+[92
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+]
+LaTeX Info: Redefining \. on input line 6030.
+LaTeX Info: Redefining \% on input line 6030.
+
+Overfull \hbox (43.53702pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 93
+ []
+
+[93<./chapters/semana04_files/figure-pdf/unnamed-chunk-4-1.pdf>]
+<chapters/semana04_files/figure-pdf/unnamed-chunk-5-1.pdf, id=2054, 364.36125pt
  x 176.66pt>
 File: chapters/semana04_files/figure-pdf/unnamed-chunk-5-1.pdf Graphic file (ty
 pe pdf)
 <use chapters/semana04_files/figure-pdf/unnamed-chunk-5-1.pdf>
 Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-5-1.p
-df  used on input line 5904.
+df  used on input line 6063.
 (luatex.def)             Requested size: 364.36035pt x 176.65956pt.
-LaTeX Info: Redefining \. on input line 5927.
-LaTeX Info: Redefining \% on input line 5927.
+LaTeX Info: Redefining \. on input line 6086.
+LaTeX Info: Redefining \% on input line 6086.
 
 Overfull \hbox (43.53702pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
-S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 93
- []
-
-[93]
-<chapters/semana04_files/figure-pdf/unnamed-chunk-6-1.pdf, id=2044, 364.36125pt
- x 176.66pt>
-File: chapters/semana04_files/figure-pdf/unnamed-chunk-6-1.pdf Graphic file (ty
-pe pdf)
-<use chapters/semana04_files/figure-pdf/unnamed-chunk-6-1.pdf>
-Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-6-1.p
-df  used on input line 5990.
-(luatex.def)             Requested size: 364.36035pt x 176.65956pt.
-LaTeX Info: Redefining \. on input line 6034.
-LaTeX Info: Redefining \% on input line 6034.
-
-Overfull \hbox (43.53702pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 94
  []
 
 [94
 Missing character: There is no ≤ (U+2264) in font [lmmono10-regular]:!
-Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
-Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
-Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
 <./chapters/semana04_files/figure-pdf/unnamed-chunk-5-1.pdf>]
-LaTeX Info: Redefining \. on input line 6058.
-LaTeX Info: Redefining \% on input line 6058.
+<chapters/semana04_files/figure-pdf/unnamed-chunk-6-1.pdf, id=2067, 364.36125pt
+ x 176.66pt>
+File: chapters/semana04_files/figure-pdf/unnamed-chunk-6-1.pdf Graphic file (ty
+pe pdf)
+<use chapters/semana04_files/figure-pdf/unnamed-chunk-6-1.pdf>
+Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-6-1.p
+df  used on input line 6149.
+(luatex.def)             Requested size: 364.36035pt x 176.65956pt.
+LaTeX Info: Redefining \. on input line 6193.
+LaTeX Info: Redefining \% on input line 6193.
 
 Overfull \hbox (43.53702pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 95
  []
 
-[95<./chapters/semana04_files/figure-pdf/unnamed-chunk-6-1.pdf>]
-<chapters/semana04_files/figure-pdf/unnamed-chunk-7-1.pdf, id=2069, 364.36125pt
- x 212.795pt>
-File: chapters/semana04_files/figure-pdf/unnamed-chunk-7-1.pdf Graphic file (ty
-pe pdf)
-<use chapters/semana04_files/figure-pdf/unnamed-chunk-7-1.pdf>
-Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-7-1.p
-df  used on input line 6151.
-(luatex.def)             Requested size: 364.36035pt x 212.79446pt.
-LaTeX Info: Redefining \. on input line 6155.
-LaTeX Info: Redefining \% on input line 6155.
+[95
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+]
+LaTeX Info: Redefining \. on input line 6235.
+LaTeX Info: Redefining \% on input line 6235.
 
 Overfull \hbox (43.53702pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 96
  []
 
@@ -2900,219 +2761,223 @@ Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
 Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
 Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
 Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
-]
-
-Package natbib Warning: Citation `Saad2020' on page 97 undefined on input line 
-6195.
-
-LaTeX Info: Redefining \. on input line 6196.
-LaTeX Info: Redefining \% on input line 6196.
+<./chapters/semana04_files/figure-pdf/unnamed-chunk-6-1.pdf>]
+<chapters/semana04_files/figure-pdf/unnamed-chunk-7-1.pdf, id=2087, 364.36125pt
+ x 212.795pt>
+File: chapters/semana04_files/figure-pdf/unnamed-chunk-7-1.pdf Graphic file (ty
+pe pdf)
+<use chapters/semana04_files/figure-pdf/unnamed-chunk-7-1.pdf>
+Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-7-1.p
+df  used on input line 6310.
+(luatex.def)             Requested size: 364.36035pt x 212.79446pt.
+LaTeX Info: Redefining \. on input line 6314.
+LaTeX Info: Redefining \% on input line 6314.
 
 Overfull \hbox (43.53702pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 97
  []
 
-[97<./chapters/semana04_files/figure-pdf/unnamed-chunk-7-1.pdf>]
-<chapters/semana04_files/figure-pdf/unnamed-chunk-9-1.pdf, id=2090, 466.74374pt
+[97]
+LaTeX Info: Redefining \. on input line 6396.
+LaTeX Info: Redefining \% on input line 6396.
+
+Overfull \hbox (43.53702pt too wide) has occurred while \output is active
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 98
+ []
+
+[98<./chapters/semana04_files/figure-pdf/unnamed-chunk-7-1.pdf>]
+<chapters/semana04_files/figure-pdf/unnamed-chunk-9-1.pdf, id=2110, 466.74374pt
  x 288.07625pt>
 File: chapters/semana04_files/figure-pdf/unnamed-chunk-9-1.pdf Graphic file (ty
 pe pdf)
 <use chapters/semana04_files/figure-pdf/unnamed-chunk-9-1.pdf>
 Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-9-1.p
-df  used on input line 6403.
+df  used on input line 6562.
 (luatex.def)             Requested size: 466.7426pt x 288.07553pt.
-LaTeX Info: Redefining \. on input line 6415.
-LaTeX Info: Redefining \% on input line 6415.
+LaTeX Info: Redefining \. on input line 6574.
+LaTeX Info: Redefining \% on input line 6574.
 
 Overfull \hbox (43.53702pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
-S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 98
- []
-
-[98]
-LaTeX Info: Redefining \. on input line 6415.
-LaTeX Info: Redefining \% on input line 6415.
-
-Overfull \hbox (43.53702pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 99
  []
 
 [99]
-LaTeX Info: Redefining \. on input line 6415.
-LaTeX Info: Redefining \% on input line 6415.
+LaTeX Info: Redefining \. on input line 6574.
+LaTeX Info: Redefining \% on input line 6574.
 
 Overfull \hbox (49.01202pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 100
  []
 
 [100]
-LaTeX Info: Redefining \. on input line 6415.
-LaTeX Info: Redefining \% on input line 6415.
+LaTeX Info: Redefining \. on input line 6574.
+LaTeX Info: Redefining \% on input line 6574.
 
 Overfull \hbox (49.01202pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 101
  []
 
 [101]
-LaTeX Info: Redefining \. on input line 6415.
-LaTeX Info: Redefining \% on input line 6415.
+LaTeX Info: Redefining \. on input line 6574.
+LaTeX Info: Redefining \% on input line 6574.
 
 Overfull \hbox (49.01202pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 102
  []
 
 [102]
-<chapters/semana04_files/figure-pdf/unnamed-chunk-10-1.pdf, id=2117, 492.84125p
+<chapters/semana04_files/figure-pdf/unnamed-chunk-10-1.pdf, id=2133, 492.84125p
 t x 316.18124pt>
 File: chapters/semana04_files/figure-pdf/unnamed-chunk-10-1.pdf Graphic file (t
 ype pdf)
 <use chapters/semana04_files/figure-pdf/unnamed-chunk-10-1.pdf>
 Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-10-1.
-pdf  used on input line 6494.
+pdf  used on input line 6653.
 (luatex.def)             Requested size: 492.84003pt x 316.18047pt.
-LaTeX Info: Redefining \. on input line 6506.
-LaTeX Info: Redefining \% on input line 6506.
+LaTeX Info: Redefining \. on input line 6665.
+LaTeX Info: Redefining \% on input line 6665.
 
 Overfull \hbox (49.01202pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 103
  []
 
 [103<./chapters/semana04_files/figure-pdf/unnamed-chunk-9-1.pdf>]
-LaTeX Info: Redefining \. on input line 6506.
-LaTeX Info: Redefining \% on input line 6506.
+LaTeX Info: Redefining \. on input line 6665.
+LaTeX Info: Redefining \% on input line 6665.
 
 Overfull \hbox (49.01202pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 104
  []
 
 [104]
-<chapters/semana04_files/figure-pdf/unnamed-chunk-11-1.pdf, id=2135, 478.78876p
+<chapters/semana04_files/figure-pdf/unnamed-chunk-11-1.pdf, id=2151, 478.78876p
 t x 290.08376pt>
 File: chapters/semana04_files/figure-pdf/unnamed-chunk-11-1.pdf Graphic file (t
 ype pdf)
 <use chapters/semana04_files/figure-pdf/unnamed-chunk-11-1.pdf>
 Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-11-1.
-pdf  used on input line 6581.
+pdf  used on input line 6740.
 (luatex.def)             Requested size: 478.78758pt x 290.08304pt.
-LaTeX Info: Redefining \. on input line 6593.
-LaTeX Info: Redefining \% on input line 6593.
+LaTeX Info: Redefining \. on input line 6752.
+LaTeX Info: Redefining \% on input line 6752.
 
 Overfull \hbox (49.01202pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 105
  []
 
 [105<./chapters/semana04_files/figure-pdf/unnamed-chunk-10-1.pdf>]
-LaTeX Info: Redefining \. on input line 6593.
-LaTeX Info: Redefining \% on input line 6593.
+LaTeX Info: Redefining \. on input line 6752.
+LaTeX Info: Redefining \% on input line 6752.
 
 Overfull \hbox (49.01202pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 106
  []
 
 [106]
-<chapters/semana04_files/figure-pdf/unnamed-chunk-12-1.pdf, id=2157, 364.36125p
+<chapters/semana04_files/figure-pdf/unnamed-chunk-12-1.pdf, id=2173, 364.36125p
 t x 210.7875pt>
 File: chapters/semana04_files/figure-pdf/unnamed-chunk-12-1.pdf Graphic file (t
 ype pdf)
 <use chapters/semana04_files/figure-pdf/unnamed-chunk-12-1.pdf>
 Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-12-1.
-pdf  used on input line 6624.
+pdf  used on input line 6783.
 (luatex.def)             Requested size: 364.36035pt x 210.78699pt.
-LaTeX Info: Redefining \. on input line 6626.
-LaTeX Info: Redefining \% on input line 6626.
+LaTeX Info: Redefining \. on input line 6785.
+LaTeX Info: Redefining \% on input line 6785.
 
 Overfull \hbox (49.01202pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 107
  []
 
 [107<./chapters/semana04_files/figure-pdf/unnamed-chunk-11-1.pdf>]
-<chapters/semana04_files/figure-pdf/unnamed-chunk-13-1.pdf, id=2171, 478.78876p
+<chapters/semana04_files/figure-pdf/unnamed-chunk-13-1.pdf, id=2187, 478.78876p
 t x 290.08376pt>
 File: chapters/semana04_files/figure-pdf/unnamed-chunk-13-1.pdf Graphic file (t
 ype pdf)
 <use chapters/semana04_files/figure-pdf/unnamed-chunk-13-1.pdf>
 Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-13-1.
-pdf  used on input line 6696.
+pdf  used on input line 6855.
 (luatex.def)             Requested size: 478.78758pt x 290.08304pt.
-LaTeX Info: Redefining \. on input line 6708.
-LaTeX Info: Redefining \% on input line 6708.
+LaTeX Info: Redefining \. on input line 6867.
+LaTeX Info: Redefining \% on input line 6867.
 
 Overfull \hbox (49.01202pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 108
  []
 
 [108<./chapters/semana04_files/figure-pdf/unnamed-chunk-12-1.pdf>]
-LaTeX Info: Redefining \. on input line 6708.
-LaTeX Info: Redefining \% on input line 6708.
+LaTeX Info: Redefining \. on input line 6867.
+LaTeX Info: Redefining \% on input line 6867.
 
 Overfull \hbox (49.01202pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 109
  []
 
 [109]
-LaTeX Info: Redefining \. on input line 6737.
-LaTeX Info: Redefining \% on input line 6737.
+LaTeX Info: Redefining \. on input line 6896.
+LaTeX Info: Redefining \% on input line 6896.
 
 Overfull \hbox (49.01202pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 110
  []
 
 [110<./chapters/semana04_files/figure-pdf/unnamed-chunk-13-1.pdf>]
-<chapters/semana04_files/figure-pdf/unnamed-chunk-14-1.pdf, id=2202, 373.395pt 
+<chapters/semana04_files/figure-pdf/unnamed-chunk-14-1.pdf, id=2218, 373.395pt 
 x 210.7875pt>
 File: chapters/semana04_files/figure-pdf/unnamed-chunk-14-1.pdf Graphic file (t
 ype pdf)
 <use chapters/semana04_files/figure-pdf/unnamed-chunk-14-1.pdf>
 Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-14-1.
-pdf  used on input line 6779.
+pdf  used on input line 6938.
 (luatex.def)             Requested size: 373.39409pt x 210.78699pt.
-LaTeX Info: Redefining \. on input line 6784.
-LaTeX Info: Redefining \% on input line 6784.
+LaTeX Info: Redefining \. on input line 6943.
+LaTeX Info: Redefining \% on input line 6943.
 
 Overfull \hbox (49.01202pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 111
  []
 
 [111]
-<chapters/semana04_files/figure-pdf/unnamed-chunk-15-1.pdf, id=2210, 551.05875p
+<chapters/semana04_files/figure-pdf/unnamed-chunk-15-1.pdf, id=2226, 551.05875p
 t x 398.48875pt>
 File: chapters/semana04_files/figure-pdf/unnamed-chunk-15-1.pdf Graphic file (t
 ype pdf)
 <use chapters/semana04_files/figure-pdf/unnamed-chunk-15-1.pdf>
 Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-15-1.
-pdf  used on input line 6885.
+pdf  used on input line 7044.
 (luatex.def)             Requested size: 551.05739pt x 398.48778pt.
 
-LaTeX Warning: Float too large for page by 71.52391pt on input line 6917.
+LaTeX Warning: Float too large for page by 71.52391pt on input line 7076.
 
-LaTeX Info: Redefining \. on input line 6927.
-LaTeX Info: Redefining \% on input line 6927.
+LaTeX Info: Redefining \. on input line 7086.
+LaTeX Info: Redefining \% on input line 7086.
 
 Overfull \hbox (49.01202pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 112
  []
 
 [112<./chapters/semana04_files/figure-pdf/unnamed-chunk-14-1.pdf>]
-LaTeX Info: Redefining \. on input line 6927.
-LaTeX Info: Redefining \% on input line 6927.
+LaTeX Info: Redefining \. on input line 7086.
+LaTeX Info: Redefining \% on input line 7086.
 
 Overfull \hbox (49.01202pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 113
  []
 
@@ -3123,44 +2988,44 @@ tion.16'
 warning  (pdf backend): ignoring duplicate destination with the name 'figure.cap
 tion.16'
 <./chapters/semana04_files/figure-pdf/unnamed-chunk-15-1.pdf>]
-<chapters/semana04_files/figure-pdf/unnamed-chunk-16-1.pdf, id=2235, 551.05875p
+<chapters/semana04_files/figure-pdf/unnamed-chunk-16-1.pdf, id=2251, 551.05875p
 t x 398.48875pt>
 File: chapters/semana04_files/figure-pdf/unnamed-chunk-16-1.pdf Graphic file (t
 ype pdf)
 <use chapters/semana04_files/figure-pdf/unnamed-chunk-16-1.pdf>
 Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-16-1.
-pdf  used on input line 7021.
+pdf  used on input line 7180.
 (luatex.def)             Requested size: 551.05739pt x 398.48778pt.
 
-LaTeX Warning: Float too large for page by 166.6473pt on input line 7054.
+LaTeX Warning: Float too large for page by 166.6473pt on input line 7213.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<chapters/semana04_files/figure-pdf/unnamed-chunk-17-1.pdf, id=2236, 545.03625p
+<chapters/semana04_files/figure-pdf/unnamed-chunk-17-1.pdf, id=2252, 545.03625p
 t x 423.5825pt>
 File: chapters/semana04_files/figure-pdf/unnamed-chunk-17-1.pdf Graphic file (t
 ype pdf)
 <use chapters/semana04_files/figure-pdf/unnamed-chunk-17-1.pdf>
 Package luatex.def Info: chapters/semana04_files/figure-pdf/unnamed-chunk-17-1.
-pdf  used on input line 7165.
+pdf  used on input line 7324.
 (luatex.def)             Requested size: 545.03493pt x 423.58147pt.
-LaTeX Info: Redefining \. on input line 7175.
-LaTeX Info: Redefining \% on input line 7175.
+LaTeX Info: Redefining \. on input line 7334.
+LaTeX Info: Redefining \% on input line 7334.
 
 Overfull \hbox (49.01202pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 114
  []
 
 [114
 Missing character: There is no ↔ (U+2194) in font [lmroman12-bold]:+tlig;!
 ]
-LaTeX Info: Redefining \. on input line 7175.
-LaTeX Info: Redefining \% on input line 7175.
+LaTeX Info: Redefining \. on input line 7334.
+LaTeX Info: Redefining \% on input line 7334.
 
 Overfull \hbox (49.01202pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 115
  []
 
@@ -3175,33 +3040,33 @@ tion.18'
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Overfull \hbox (1.88152pt too wide) in paragraph at lines 7220--7221
+Overfull \hbox (1.88152pt too wide) in paragraph at lines 7379--7380
 []|\TU/lmtt/m/n/10.95 dbinom(,size=1)|  
  []
 
-LaTeX Info: Redefining \. on input line 7235.
-LaTeX Info: Redefining \% on input line 7235.
+LaTeX Info: Redefining \. on input line 7394.
+LaTeX Info: Redefining \% on input line 7394.
 
 Overfull \hbox (49.01202pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 116
  []
 
 [116<./chapters/semana04_files/figure-pdf/unnamed-chunk-17-1.pdf>]
-LaTeX Info: Redefining \. on input line 7316.
-LaTeX Info: Redefining \% on input line 7316.
+LaTeX Info: Redefining \. on input line 7475.
+LaTeX Info: Redefining \% on input line 7475.
 
 Overfull \hbox (49.01202pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 117
  []
 
 [117]
-LaTeX Info: Redefining \. on input line 7387.
-LaTeX Info: Redefining \% on input line 7387.
+LaTeX Info: Redefining \. on input line 7546.
+LaTeX Info: Redefining \% on input line 7546.
 
 Overfull \hbox (49.01202pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 118
  []
 
@@ -3226,156 +3091,165 @@ Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ⟹ (U+27F9) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ⟹ (U+27F9) in font [lmroman10-regular]:+tlig;!
 ]
-LaTeX Info: Redefining \. on input line 7419.
-LaTeX Info: Redefining \% on input line 7419.
+LaTeX Info: Redefining \. on input line 7578.
+LaTeX Info: Redefining \% on input line 7578.
 
 Overfull \hbox (49.01202pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 119
  []
 
 [119]
-LaTeX Info: Redefining \. on input line 7419.
-LaTeX Info: Redefining \% on input line 7419.
+LaTeX Info: Redefining \. on input line 7578.
+LaTeX Info: Redefining \% on input line 7578.
 
 Overfull \hbox (49.01202pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 5.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
+\TU/lmr/m/sl/10.95 CA-PÍ-TU-LO 4.  SE-MA-NA 4 --- VA-RIA-BLES ALEA-TO-RIAS Y DI
 S-TRI-BU-CIO-NES DE PRO-BA-BI-LI-DAD \TU/lmr/m/n/10.95 120
  []
 
 [120]
-Capítulo 6.
+Capítulo 5.
 [121
 
 ]
-LaTeX Info: Redefining \. on input line 7551.
-LaTeX Info: Redefining \% on input line 7551.
-[122]
-LaTeX Info: Redefining \. on input line 7609.
-LaTeX Info: Redefining \% on input line 7609.
-[123]
-LaTeX Info: Redefining \. on input line 7686.
-LaTeX Info: Redefining \% on input line 7686.
-[124
+LaTeX Info: Redefining \. on input line 7747.
+LaTeX Info: Redefining \% on input line 7747.
+[122
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-bold]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 7776.
+LaTeX Info: Redefining \% on input line 7776.
+[123
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 7839.
+LaTeX Info: Redefining \% on input line 7839.
+[124]
+LaTeX Info: Redefining \. on input line 7904.
+LaTeX Info: Redefining \% on input line 7904.
+[125
 Missing character: There is no μ (U+03BC) in font [lmroman10-bold]:+tlig;!
 Missing character: There is no μ (U+03BC) in font [lmroman10-bold]:+tlig;!
 Missing character: There is no μ (U+03BC) in font [lmroman10-bold]:+tlig;!
 ]
-LaTeX Info: Redefining \. on input line 7728.
-LaTeX Info: Redefining \% on input line 7728.
-[125]
-LaTeX Info: Redefining \. on input line 7792.
-LaTeX Info: Redefining \% on input line 7792.
+LaTeX Info: Redefining \. on input line 7962.
+LaTeX Info: Redefining \% on input line 7962.
 [126]
-LaTeX Info: Redefining \. on input line 7846.
-LaTeX Info: Redefining \% on input line 7846.
+LaTeX Info: Redefining \. on input line 8004.
+LaTeX Info: Redefining \% on input line 8004.
 [127
 Missing character: There is no μ (U+03BC) in font [lmroman10-regular]:+tlig;!
+]
+LaTeX Info: Redefining \. on input line 8058.
+LaTeX Info: Redefining \% on input line 8058.
+[128
 Missing character: There is no μ (U+03BC) in font [lmroman10-regular]:+tlig;!
 ]
-LaTeX Info: Redefining \. on input line 7893.
-LaTeX Info: Redefining \% on input line 7893.
-[128]
-<chapters/semana05_files/figure-pdf/unnamed-chunk-1-1.pdf, id=2349, 395.4775pt 
+LaTeX Info: Redefining \. on input line 8118.
+LaTeX Info: Redefining \% on input line 8118.
+[129]
+<chapters/semana05_files/figure-pdf/unnamed-chunk-1-1.pdf, id=2370, 395.4775pt 
 x 225.84375pt>
 File: chapters/semana05_files/figure-pdf/unnamed-chunk-1-1.pdf Graphic file (ty
 pe pdf)
 <use chapters/semana05_files/figure-pdf/unnamed-chunk-1-1.pdf>
 Package luatex.def Info: chapters/semana05_files/figure-pdf/unnamed-chunk-1-1.p
-df  used on input line 7951.
+df  used on input line 8163.
 (luatex.def)             Requested size: 395.47653pt x 225.84319pt.
-LaTeX Info: Redefining \. on input line 7969.
-LaTeX Info: Redefining \% on input line 7969.
-[129]
-<chapters/semana05_files/figure-pdf/unnamed-chunk-2-1.pdf, id=2355, 378.41376pt
+LaTeX Info: Redefining \. on input line 8181.
+LaTeX Info: Redefining \% on input line 8181.
+[130<./chapters/semana05_files/figure-pdf/unnamed-chunk-1-1.pdf>]
+<chapters/semana05_files/figure-pdf/unnamed-chunk-2-1.pdf, id=2383, 378.41376pt
  x 211.79124pt>
 File: chapters/semana05_files/figure-pdf/unnamed-chunk-2-1.pdf Graphic file (ty
 pe pdf)
 <use chapters/semana05_files/figure-pdf/unnamed-chunk-2-1.pdf>
 Package luatex.def Info: chapters/semana05_files/figure-pdf/unnamed-chunk-2-1.p
-df  used on input line 7975.
+df  used on input line 8187.
 (luatex.def)             Requested size: 378.41283pt x 211.79073pt.
-LaTeX Info: Redefining \. on input line 7990.
-LaTeX Info: Redefining \% on input line 7990.
-[130<./chapters/semana05_files/figure-pdf/unnamed-chunk-1-1.pdf>]
-Overfull \hbox (4.42824pt too wide) in paragraph at lines 8024--8025
+
+Overfull \hbox (4.42824pt too wide) in paragraph at lines 8236--8237
  []|$\TU/latinmodern-math.otf(1)/m/n/10.95 𝑁(𝜇, 𝜎[]/𝑛)$| 
  []
 
 
-Overfull \hbox (4.42824pt too wide) in paragraph at lines 8028--8029
+Overfull \hbox (4.42824pt too wide) in paragraph at lines 8240--8241
  []|$\TU/latinmodern-math.otf(1)/m/n/10.95 𝑁(𝜇, 𝜎[]/𝑛)$| 
  []
 
 
-Overfull \hbox (9.79565pt too wide) in paragraph at lines 8032--8033
+Overfull \hbox (9.79565pt too wide) in paragraph at lines 8244--8245
  []|$\TU/latinmodern-math.otf(1)/m/n/10.95 𝑁(𝜋, [])$| 
  []
 
-LaTeX Info: Redefining \. on input line 8036.
-LaTeX Info: Redefining \% on input line 8036.
+LaTeX Info: Redefining \. on input line 8248.
+LaTeX Info: Redefining \% on input line 8248.
 [131
 Missing character: There is no σ (U+03C3) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
 <./chapters/semana05_files/figure-pdf/unnamed-chunk-2-1.pdf>]
-LaTeX Info: Redefining \. on input line 8107.
-LaTeX Info: Redefining \% on input line 8107.
+LaTeX Info: Redefining \. on input line 8296.
+LaTeX Info: Redefining \% on input line 8296.
 [132]
-LaTeX Info: Redefining \. on input line 8179.
-LaTeX Info: Redefining \% on input line 8179.
+LaTeX Info: Redefining \. on input line 8367.
+LaTeX Info: Redefining \% on input line 8367.
 [133]
-LaTeX Info: Redefining \. on input line 8243.
-LaTeX Info: Redefining \% on input line 8243.
+LaTeX Info: Redefining \. on input line 8443.
+LaTeX Info: Redefining \% on input line 8443.
 [134]
-LaTeX Info: Redefining \. on input line 8250.
-LaTeX Info: Redefining \% on input line 8250.
+LaTeX Info: Redefining \. on input line 8462.
+LaTeX Info: Redefining \% on input line 8462.
 [135] [136
 
 ]
-Capítulo 7.
+Capítulo 6.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 10.95pt on input line 8272.
+(Font)              scaled to size 10.95pt on input line 8484.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 7.665pt on input line 8272.
+(Font)              scaled to size 7.665pt on input line 8484.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 5.475pt on input line 8272.
+(Font)              scaled to size 5.475pt on input line 8484.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 10.95pt on input line 8272.
+(Font)              scaled to size 10.95pt on input line 8484.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 7.665pt on input line 8272.
+(Font)              scaled to size 7.665pt on input line 8484.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 5.475pt on input line 8272.
+(Font)              scaled to size 5.475pt on input line 8484.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 10.95pt on input line 8272.
+(Font)              scaled to size 10.95pt on input line 8484.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 7.665pt on input line 8272.
+(Font)              scaled to size 7.665pt on input line 8484.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 5.475pt on input line 8272.
+(Font)              scaled to size 5.475pt on input line 8484.
 [137
 
 ]
-LaTeX Info: Redefining \. on input line 8368.
-LaTeX Info: Redefining \% on input line 8368.
+LaTeX Info: Redefining \. on input line 8580.
+LaTeX Info: Redefining \% on input line 8580.
 [138]
-Overfull \hbox (1.78499pt too wide) in paragraph at lines 8454--8454
+Overfull \hbox (1.78499pt too wide) in paragraph at lines 8666--8666
 []|$[]$|  
  []
 
-LaTeX Info: Redefining \. on input line 8456.
-LaTeX Info: Redefining \% on input line 8456.
+LaTeX Info: Redefining \. on input line 8668.
+LaTeX Info: Redefining \% on input line 8668.
 [139]
-LaTeX Info: Redefining \. on input line 8503.
-LaTeX Info: Redefining \% on input line 8503.
+LaTeX Info: Redefining \. on input line 8715.
+LaTeX Info: Redefining \% on input line 8715.
 [140]
-LaTeX Info: Redefining \. on input line 8675.
-LaTeX Info: Redefining \% on input line 8675.
+LaTeX Info: Redefining \. on input line 8887.
+LaTeX Info: Redefining \% on input line 8887.
 [141
 Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
 Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
 Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
 ]
-LaTeX Info: Redefining \. on input line 8701.
-LaTeX Info: Redefining \% on input line 8701.
+LaTeX Info: Redefining \. on input line 8913.
+LaTeX Info: Redefining \% on input line 8913.
 [142
 Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
 Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
@@ -3391,20 +3265,20 @@ Missing character: There is no σ (U+03C3) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no σ (U+03C3) in font [lmroman10-regular]:+tlig;!
 ]
-LaTeX Info: Redefining \. on input line 8757.
-LaTeX Info: Redefining \% on input line 8757.
+LaTeX Info: Redefining \. on input line 8969.
+LaTeX Info: Redefining \% on input line 8969.
 [143]
-LaTeX Info: Redefining \. on input line 8799.
-LaTeX Info: Redefining \% on input line 8799.
+LaTeX Info: Redefining \. on input line 9011.
+LaTeX Info: Redefining \% on input line 9011.
 [144]
-LaTeX Info: Redefining \. on input line 8851.
-LaTeX Info: Redefining \% on input line 8851.
+LaTeX Info: Redefining \. on input line 9063.
+LaTeX Info: Redefining \% on input line 9063.
 [145]
-LaTeX Info: Redefining \. on input line 9033.
-LaTeX Info: Redefining \% on input line 9033.
+LaTeX Info: Redefining \. on input line 9245.
+LaTeX Info: Redefining \% on input line 9245.
 [146]
-LaTeX Info: Redefining \. on input line 9033.
-LaTeX Info: Redefining \% on input line 9033.
+LaTeX Info: Redefining \. on input line 9245.
+LaTeX Info: Redefining \% on input line 9245.
 [147
 Missing character: There is no α (U+03B1) in font [lmmono10-regular]:!
 Missing character: There is no β (U+03B2) in font [lmmono10-regular]:!
@@ -3421,8 +3295,8 @@ Missing character: There is no α (U+03B1) in font [lmmono10-regular]:!
 Missing character: There is no α (U+03B1) in font [lmmono10-regular]:!
 Missing character: There is no β (U+03B2) in font [lmmono10-regular]:!
 ]
-LaTeX Info: Redefining \. on input line 9058.
-LaTeX Info: Redefining \% on input line 9058.
+LaTeX Info: Redefining \. on input line 9270.
+LaTeX Info: Redefining \% on input line 9270.
 [148
 Missing character: There is no β (U+03B2) in font [lmmono10-regular]:!
 Missing character: There is no α (U+03B1) in font [lmmono10-regular]:!
@@ -3438,52 +3312,52 @@ Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no β (U+03B2) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
 ]
-LaTeX Info: Redefining \. on input line 9107.
-LaTeX Info: Redefining \% on input line 9107.
+LaTeX Info: Redefining \. on input line 9319.
+LaTeX Info: Redefining \% on input line 9319.
 [149]
-LaTeX Info: Redefining \. on input line 9243.
-LaTeX Info: Redefining \% on input line 9243.
+LaTeX Info: Redefining \. on input line 9455.
+LaTeX Info: Redefining \% on input line 9455.
 [150
 Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
 Missing character: There is no ≈ (U+2248) in font [lmmono10-regular]:!
 Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
 ]
-LaTeX Info: Redefining \. on input line 9384.
-LaTeX Info: Redefining \% on input line 9384.
+LaTeX Info: Redefining \. on input line 9596.
+LaTeX Info: Redefining \% on input line 9596.
 [151
 Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
 Missing character: There is no α (U+03B1) in font [lmmono10-regular]:!
 Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
 Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
 ]
-LaTeX Info: Redefining \. on input line 9384.
-LaTeX Info: Redefining \% on input line 9384.
+LaTeX Info: Redefining \. on input line 9596.
+LaTeX Info: Redefining \% on input line 9596.
 [152]
-LaTeX Info: Redefining \. on input line 9736.
-LaTeX Info: Redefining \% on input line 9736.
+LaTeX Info: Redefining \. on input line 9948.
+LaTeX Info: Redefining \% on input line 9948.
 [153]
 
 Package tcolorbox Warning: Using nobreak failed. Try to enlarge `lines before b
-reak' or set page breaks manually on input line 9736.
+reak' or set page breaks manually on input line 9948.
 
-LaTeX Info: Redefining \. on input line 9736.
-LaTeX Info: Redefining \% on input line 9736.
+LaTeX Info: Redefining \. on input line 9948.
+LaTeX Info: Redefining \% on input line 9948.
 [154]
-LaTeX Info: Redefining \. on input line 9736.
-LaTeX Info: Redefining \% on input line 9736.
+LaTeX Info: Redefining \. on input line 9948.
+LaTeX Info: Redefining \% on input line 9948.
 [155
 Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
 Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
 Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
 Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
 ]
-LaTeX Info: Redefining \. on input line 9892.
-LaTeX Info: Redefining \% on input line 9892.
+LaTeX Info: Redefining \. on input line 10104.
+LaTeX Info: Redefining \% on input line 10104.
 [156
 Missing character: There is no λ (U+03BB) in font [lmroman10-regular]:+tlig;!
 ]
-LaTeX Info: Redefining \. on input line 9892.
-LaTeX Info: Redefining \% on input line 9892.
+LaTeX Info: Redefining \. on input line 10104.
+LaTeX Info: Redefining \% on input line 10104.
 [157
 Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
 Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
@@ -3493,62 +3367,62 @@ Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
 Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
 Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
 ]
-LaTeX Info: Redefining \. on input line 9943.
-LaTeX Info: Redefining \% on input line 9943.
+LaTeX Info: Redefining \. on input line 10155.
+LaTeX Info: Redefining \% on input line 10155.
 [158
 Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
 Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
 Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
 ]
-LaTeX Info: Redefining \. on input line 10035.
-LaTeX Info: Redefining \% on input line 10035.
+LaTeX Info: Redefining \. on input line 10247.
+LaTeX Info: Redefining \% on input line 10247.
 [159
 Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
 ]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 10038.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 10250.
 
 
-Overfull \hbox (44.21149pt too wide) in paragraph at lines 10103--10103
+Overfull \hbox (44.21149pt too wide) in paragraph at lines 10315--10315
 []\TU/lmtt/m/n/10.95 # Tamaño de muestra para la estimación de la media de una
  VA normal o su aproximación[] 
  []
 
 
-Overfull \hbox (44.21149pt too wide) in paragraph at lines 10104--10104
+Overfull \hbox (44.21149pt too wide) in paragraph at lines 10316--10316
 []\TU/lmtt/m/n/10.95 # ---------------------------------------------------------
 --------------------------[] 
  []
 
 
-Overfull \hbox (124.69397pt too wide) in paragraph at lines 10150--10150
+Overfull \hbox (124.69397pt too wide) in paragraph at lines 10362--10362
 []  \TU/lmtt/m/n/10.95 No se distinguen casos con y sin información (la muestra
  actual es compatible con p =0.5): n= 385[] 
  []
 
-LaTeX Info: Redefining \. on input line 10173.
-LaTeX Info: Redefining \% on input line 10173.
+LaTeX Info: Redefining \. on input line 10385.
+LaTeX Info: Redefining \% on input line 10385.
 [160
 Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
 Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
 Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
 ]
-LaTeX Info: Redefining \. on input line 10173.
-LaTeX Info: Redefining \% on input line 10173.
+LaTeX Info: Redefining \. on input line 10385.
+LaTeX Info: Redefining \% on input line 10385.
 [161
 Missing character: There is no δ (U+03B4) in font [lmmono10-regular]:!
 Missing character: There is no ≥ (U+2265) in font [lmmono10-regular]:!
 ]
-LaTeX Info: Redefining \. on input line 10221.
-LaTeX Info: Redefining \% on input line 10221.
+LaTeX Info: Redefining \. on input line 10433.
+LaTeX Info: Redefining \% on input line 10433.
 [162
 Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
 Missing character: There is no δ (U+03B4) in font [lmmono10-regular]:!
 Missing character: There is no ≈ (U+2248) in font [lmroman10-bold]:+tlig;!
 Missing character: There is no ≈ (U+2248) in font [lmroman10-bold]:+tlig;!
 ]
-LaTeX Info: Redefining \. on input line 10284.
-LaTeX Info: Redefining \% on input line 10284.
+LaTeX Info: Redefining \. on input line 10496.
+LaTeX Info: Redefining \% on input line 10496.
 [163
 Missing character: There is no θ (U+03B8) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:+tlig;!
@@ -3584,42 +3458,42 @@ Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ∈ (U+2208) in font [lmmono10-regular]:!
 ]
-Capítulo 8.
+Capítulo 7.
 [164
 
 ]
-LaTeX Info: Redefining \. on input line 10425.
-LaTeX Info: Redefining \% on input line 10425.
+LaTeX Info: Redefining \. on input line 10637.
+LaTeX Info: Redefining \% on input line 10637.
 [165]
-LaTeX Info: Redefining \. on input line 10495.
-LaTeX Info: Redefining \% on input line 10495.
+LaTeX Info: Redefining \. on input line 10707.
+LaTeX Info: Redefining \% on input line 10707.
 [166
 Missing character: There is no ✓ (U+2713) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ✓ (U+2713) in font [lmroman10-regular]:+tlig;!
 ]
-LaTeX Info: Redefining \. on input line 10563.
-LaTeX Info: Redefining \% on input line 10563.
+LaTeX Info: Redefining \. on input line 10775.
+LaTeX Info: Redefining \% on input line 10775.
 [167]
-LaTeX Info: Redefining \. on input line 10649.
-LaTeX Info: Redefining \% on input line 10649.
+LaTeX Info: Redefining \. on input line 10861.
+LaTeX Info: Redefining \% on input line 10861.
 [168]
-LaTeX Info: Redefining \. on input line 10711.
-LaTeX Info: Redefining \% on input line 10711.
+LaTeX Info: Redefining \. on input line 10923.
+LaTeX Info: Redefining \% on input line 10923.
 [169]
-LaTeX Info: Redefining \. on input line 10779.
-LaTeX Info: Redefining \% on input line 10779.
+LaTeX Info: Redefining \. on input line 10991.
+LaTeX Info: Redefining \% on input line 10991.
 [170]
-LaTeX Info: Redefining \. on input line 11002.
-LaTeX Info: Redefining \% on input line 11002.
+LaTeX Info: Redefining \. on input line 11214.
+LaTeX Info: Redefining \% on input line 11214.
 [171]
-LaTeX Info: Redefining \. on input line 11002.
-LaTeX Info: Redefining \% on input line 11002.
+LaTeX Info: Redefining \. on input line 11214.
+LaTeX Info: Redefining \% on input line 11214.
 [172]
-LaTeX Info: Redefining \. on input line 11101.
-LaTeX Info: Redefining \% on input line 11101.
+LaTeX Info: Redefining \. on input line 11313.
+LaTeX Info: Redefining \% on input line 11313.
 [173]
-LaTeX Info: Redefining \. on input line 11101.
-LaTeX Info: Redefining \% on input line 11101.
+LaTeX Info: Redefining \. on input line 11313.
+LaTeX Info: Redefining \% on input line 11313.
 [174
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
 Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
@@ -3645,8 +3519,8 @@ Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
 Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
 ]
-LaTeX Info: Redefining \. on input line 11133.
-LaTeX Info: Redefining \% on input line 11133.
+LaTeX Info: Redefining \. on input line 11345.
+LaTeX Info: Redefining \% on input line 11345.
 [175
 Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
 Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
@@ -3659,52 +3533,52 @@ Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
 Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
 ]
-LaTeX Info: Redefining \. on input line 11290.
-LaTeX Info: Redefining \% on input line 11290.
+LaTeX Info: Redefining \. on input line 11502.
+LaTeX Info: Redefining \% on input line 11502.
 [176]
-LaTeX Info: Redefining \. on input line 11290.
-LaTeX Info: Redefining \% on input line 11290.
+LaTeX Info: Redefining \. on input line 11502.
+LaTeX Info: Redefining \% on input line 11502.
 [177]
-LaTeX Info: Redefining \. on input line 11346.
-LaTeX Info: Redefining \% on input line 11346.
+LaTeX Info: Redefining \. on input line 11558.
+LaTeX Info: Redefining \% on input line 11558.
 [178]
-Overfull \hbox (5.32841pt too wide) in paragraph at lines 11391--11392
+Overfull \hbox (5.32841pt too wide) in paragraph at lines 11603--11604
 \TU/latinmodern-math.otf(1)/b/n/10.95 𝑡[]$|  
  []
 
 
-Overfull \hbox (4.72911pt too wide) in paragraph at lines 11398--11398
+Overfull \hbox (4.72911pt too wide) in paragraph at lines 11610--11610
 []$|  
  []
 
-LaTeX Info: Redefining \. on input line 11420.
-LaTeX Info: Redefining \% on input line 11420.
+LaTeX Info: Redefining \. on input line 11632.
+LaTeX Info: Redefining \% on input line 11632.
 [179
 Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
 ]
-LaTeX Info: Redefining \. on input line 11658.
-LaTeX Info: Redefining \% on input line 11658.
+LaTeX Info: Redefining \. on input line 11870.
+LaTeX Info: Redefining \% on input line 11870.
 [180]
-LaTeX Info: Redefining \. on input line 11658.
-LaTeX Info: Redefining \% on input line 11658.
+LaTeX Info: Redefining \. on input line 11870.
+LaTeX Info: Redefining \% on input line 11870.
 [181]
-LaTeX Info: Redefining \. on input line 11680.
-LaTeX Info: Redefining \% on input line 11680.
+LaTeX Info: Redefining \. on input line 11892.
+LaTeX Info: Redefining \% on input line 11892.
 [182]
-LaTeX Info: Redefining \. on input line 11771.
-LaTeX Info: Redefining \% on input line 11771.
+LaTeX Info: Redefining \. on input line 11983.
+LaTeX Info: Redefining \% on input line 11983.
 [183]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-LaTeX Info: Redefining \. on input line 11850.
-LaTeX Info: Redefining \% on input line 11850.
+LaTeX Info: Redefining \. on input line 12062.
+LaTeX Info: Redefining \% on input line 12062.
 [184]
-LaTeX Info: Redefining \. on input line 11924.
-LaTeX Info: Redefining \% on input line 11924.
+LaTeX Info: Redefining \. on input line 12136.
+LaTeX Info: Redefining \% on input line 12136.
 [185]
-LaTeX Info: Redefining \. on input line 11987.
-LaTeX Info: Redefining \% on input line 11987.
+LaTeX Info: Redefining \. on input line 12199.
+LaTeX Info: Redefining \% on input line 12199.
 [186
 Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no μ (U+03BC) in font [lmroman10-regular]:+tlig;!
@@ -3743,18 +3617,18 @@ Missing character: There is no α (U+03B1) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
 ]
-Capítulo 9.
+Capítulo 8.
 [187
 
 ]
-LaTeX Info: Redefining \. on input line 12087.
-LaTeX Info: Redefining \% on input line 12087.
+LaTeX Info: Redefining \. on input line 12299.
+LaTeX Info: Redefining \% on input line 12299.
 [188]
-LaTeX Info: Redefining \. on input line 12255.
-LaTeX Info: Redefining \% on input line 12255.
+LaTeX Info: Redefining \. on input line 12467.
+LaTeX Info: Redefining \% on input line 12467.
 [189]
-LaTeX Info: Redefining \. on input line 12255.
-LaTeX Info: Redefining \% on input line 12255.
+LaTeX Info: Redefining \. on input line 12467.
+LaTeX Info: Redefining \% on input line 12467.
 [190
 Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
 Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
@@ -3804,35 +3678,35 @@ Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
 Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
 Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
 ]
-LaTeX Info: Redefining \. on input line 12267.
-LaTeX Info: Redefining \% on input line 12267.
+LaTeX Info: Redefining \. on input line 12479.
+LaTeX Info: Redefining \% on input line 12479.
 [191]
-LaTeX Info: Redefining \. on input line 12328.
-LaTeX Info: Redefining \% on input line 12328.
+LaTeX Info: Redefining \. on input line 12540.
+LaTeX Info: Redefining \% on input line 12540.
 [192]
-LaTeX Info: Redefining \. on input line 12395.
-LaTeX Info: Redefining \% on input line 12395.
+LaTeX Info: Redefining \. on input line 12607.
+LaTeX Info: Redefining \% on input line 12607.
 [193]
-LaTeX Info: Redefining \. on input line 12461.
-LaTeX Info: Redefining \% on input line 12461.
+LaTeX Info: Redefining \. on input line 12673.
+LaTeX Info: Redefining \% on input line 12673.
 [194]
-LaTeX Info: Redefining \. on input line 12559.
-LaTeX Info: Redefining \% on input line 12559.
+LaTeX Info: Redefining \. on input line 12771.
+LaTeX Info: Redefining \% on input line 12771.
 [195]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 12584.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 12796.
 
-LaTeX Info: Redefining \. on input line 12626.
-LaTeX Info: Redefining \% on input line 12626.
+LaTeX Info: Redefining \. on input line 12838.
+LaTeX Info: Redefining \% on input line 12838.
 [196]
-LaTeX Info: Redefining \. on input line 12775.
-LaTeX Info: Redefining \% on input line 12775.
+LaTeX Info: Redefining \. on input line 12987.
+LaTeX Info: Redefining \% on input line 12987.
 [197
 Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
 Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
 ]
-LaTeX Info: Redefining \. on input line 12775.
-LaTeX Info: Redefining \% on input line 12775.
+LaTeX Info: Redefining \. on input line 12987.
+LaTeX Info: Redefining \% on input line 12987.
 [198
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
 Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
@@ -3863,8 +3737,8 @@ Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
 Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
 ]
-LaTeX Info: Redefining \. on input line 12801.
-LaTeX Info: Redefining \% on input line 12801.
+LaTeX Info: Redefining \. on input line 13013.
+LaTeX Info: Redefining \% on input line 13013.
 [199
 Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
@@ -3886,28 +3760,28 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<chapters/semana08_files/figure-pdf/unnamed-chunk-3-1.pdf, id=2843, 387.4475pt 
+<chapters/semana08_files/figure-pdf/unnamed-chunk-3-1.pdf, id=2861, 387.4475pt 
 x 242.9075pt>
 File: chapters/semana08_files/figure-pdf/unnamed-chunk-3-1.pdf Graphic file (ty
 pe pdf)
 <use chapters/semana08_files/figure-pdf/unnamed-chunk-3-1.pdf>
 Package luatex.def Info: chapters/semana08_files/figure-pdf/unnamed-chunk-3-1.p
-df  used on input line 12928.
+df  used on input line 13140.
 (luatex.def)             Requested size: 387.44655pt x 242.90689pt.
-LaTeX Info: Redefining \. on input line 12930.
-LaTeX Info: Redefining \% on input line 12930.
+LaTeX Info: Redefining \. on input line 13142.
+LaTeX Info: Redefining \% on input line 13142.
 [200]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-LaTeX Info: Redefining \. on input line 12962.
-LaTeX Info: Redefining \% on input line 12962.
+LaTeX Info: Redefining \. on input line 13174.
+LaTeX Info: Redefining \% on input line 13174.
 [201<./chapters/semana08_files/figure-pdf/unnamed-chunk-3-1.pdf>]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-LaTeX Info: Redefining \. on input line 13020.
-LaTeX Info: Redefining \% on input line 13020.
+LaTeX Info: Redefining \. on input line 13232.
+LaTeX Info: Redefining \% on input line 13232.
 [202]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -3915,113 +3789,93 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-LaTeX Info: Redefining \. on input line 13125.
-LaTeX Info: Redefining \% on input line 13125.
+LaTeX Info: Redefining \. on input line 13337.
+LaTeX Info: Redefining \% on input line 13337.
 [203]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-LaTeX Info: Redefining \. on input line 13197.
-LaTeX Info: Redefining \% on input line 13197.
+LaTeX Info: Redefining \. on input line 13409.
+LaTeX Info: Redefining \% on input line 13409.
 [204]
-LaTeX Info: Redefining \. on input line 13274.
-LaTeX Info: Redefining \% on input line 13274.
+LaTeX Info: Redefining \. on input line 13486.
+LaTeX Info: Redefining \% on input line 13486.
 [205]
-
-Package natbib Warning: Citation `Shapiro1965' on page 206 undefined on input l
-ine 13289.
-
-<chapters/semana08_files/figure-pdf/unnamed-chunk-8-1.pdf, id=2889, 358.33875pt
+<chapters/semana08_files/figure-pdf/unnamed-chunk-8-1.pdf, id=2908, 358.33875pt
  x 210.7875pt>
 File: chapters/semana08_files/figure-pdf/unnamed-chunk-8-1.pdf Graphic file (ty
 pe pdf)
 <use chapters/semana08_files/figure-pdf/unnamed-chunk-8-1.pdf>
 Package luatex.def Info: chapters/semana08_files/figure-pdf/unnamed-chunk-8-1.p
-df  used on input line 13341.
+df  used on input line 13553.
 (luatex.def)             Requested size: 358.33788pt x 210.78699pt.
-LaTeX Info: Redefining \. on input line 13379.
-LaTeX Info: Redefining \% on input line 13379.
+LaTeX Info: Redefining \. on input line 13591.
+LaTeX Info: Redefining \% on input line 13591.
 [206]
-LaTeX Info: Redefining \. on input line 13411.
-LaTeX Info: Redefining \% on input line 13411.
+LaTeX Info: Redefining \. on input line 13623.
+LaTeX Info: Redefining \% on input line 13623.
 [207<./chapters/semana08_files/figure-pdf/unnamed-chunk-8-1.pdf>]
-
-Package natbib Warning: Citation `Casella2002' on page 208 undefined on input l
-ine 13465.
-
-LaTeX Info: Redefining \. on input line 13468.
-LaTeX Info: Redefining \% on input line 13468.
+LaTeX Info: Redefining \. on input line 13680.
+LaTeX Info: Redefining \% on input line 13680.
 [208]
-
-Package natbib Warning: Citation `Chihara2019' on page 209 undefined on input l
-ine 13480.
-
-LaTeX Info: Redefining \. on input line 13544.
-LaTeX Info: Redefining \% on input line 13544.
+LaTeX Info: Redefining \. on input line 13756.
+LaTeX Info: Redefining \% on input line 13756.
 [209]
-
-Package natbib Warning: Citation `Chihara2019' on page 210 undefined on input l
-ine 13551.
-
-LaTeX Info: Redefining \. on input line 13779.
-LaTeX Info: Redefining \% on input line 13779.
+LaTeX Info: Redefining \. on input line 13991.
+LaTeX Info: Redefining \% on input line 13991.
 [210]
-LaTeX Info: Redefining \. on input line 13779.
-LaTeX Info: Redefining \% on input line 13779.
+LaTeX Info: Redefining \. on input line 13991.
+LaTeX Info: Redefining \% on input line 13991.
 [211]
-LaTeX Info: Redefining \. on input line 13874.
-LaTeX Info: Redefining \% on input line 13874.
+LaTeX Info: Redefining \. on input line 14086.
+LaTeX Info: Redefining \% on input line 14086.
 [212
 Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ≥ (U+2265) in font [lmroman10-regular]:+tlig;!
 ]
-LaTeX Info: Redefining \. on input line 13874.
-LaTeX Info: Redefining \% on input line 13874.
+LaTeX Info: Redefining \. on input line 14086.
+LaTeX Info: Redefining \% on input line 14086.
 [213]
-Overfull \hbox (19.42126pt too wide) in paragraph at lines 13904--13905
+Overfull \hbox (19.42126pt too wide) in paragraph at lines 14116--14117
 []|\TU/lmtt/m/n/10.95 t.test(var.equal=FALSE)|  
  []
 
-
-Package natbib Warning: Citation `Chihara2019' on page 214 undefined on input l
-ine 13907.
-
-LaTeX Info: Redefining \. on input line 13941.
-LaTeX Info: Redefining \% on input line 13941.
+LaTeX Info: Redefining \. on input line 14153.
+LaTeX Info: Redefining \% on input line 14153.
 [214]
-Overfull \hbox (9.719pt too wide) in paragraph at lines 13976--13976
+Overfull \hbox (9.719pt too wide) in paragraph at lines 14188--14188
 []                            \TU/lmtt/m/n/10.95 Muestra  n    min     Q1     Q2
      Q3    max   RIQ[] 
  []
 
 
-Overfull \hbox (9.719pt too wide) in paragraph at lines 13977--13977
+Overfull \hbox (9.719pt too wide) in paragraph at lines 14189--14189
 []\TU/lmtt/m/n/10.95 1 osteo$imc[osteo$sexo == "Hombre"] 45 18.327 21.436 23.055
  24.259 32.323 2.823[] 
  []
 
 
-Overfull \hbox (9.719pt too wide) in paragraph at lines 13978--13978
+Overfull \hbox (9.719pt too wide) in paragraph at lines 14190--14190
 []\TU/lmtt/m/n/10.95 2  osteo$imc[osteo$sexo == "Mujer"] 49 18.070 21.155 23.338
  26.298 37.333 5.143[] 
  []
 
-LaTeX Info: Redefining \. on input line 14003.
-LaTeX Info: Redefining \% on input line 14003.
+LaTeX Info: Redefining \. on input line 14215.
+LaTeX Info: Redefining \% on input line 14215.
 [215]
-Underfull \hbox (badness 10000) in paragraph at lines 14086--14086
+Underfull \hbox (badness 10000) in paragraph at lines 14298--14298
 []  \TU/lmtt/m/n/10.95 Diferencia de localización:  (pseudo)mediana = -0.200  
   95%-IC = (-
  []
 
-LaTeX Info: Redefining \. on input line 14094.
-LaTeX Info: Redefining \% on input line 14094.
+LaTeX Info: Redefining \. on input line 14306.
+LaTeX Info: Redefining \% on input line 14306.
 [216]
-LaTeX Info: Redefining \. on input line 14144.
-LaTeX Info: Redefining \% on input line 14144.
+LaTeX Info: Redefining \. on input line 14356.
+LaTeX Info: Redefining \% on input line 14356.
 [217]
-LaTeX Info: Redefining \. on input line 14199.
-LaTeX Info: Redefining \% on input line 14199.
+LaTeX Info: Redefining \. on input line 14411.
+LaTeX Info: Redefining \% on input line 14411.
 [218
 Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ₂ (U+2082) in font [lmroman10-regular]:+tlig;!
@@ -4037,15 +3891,15 @@ Missing character: There is no α (U+03B1) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ₂ (U+2082) in font [lmroman10-regular]:+tlig;!
 ]
-Underfull \hbox (badness 4765) in paragraph at lines 14237--14241
+Underfull \hbox (badness 4765) in paragraph at lines 14449--14453
 []\TU/lmr/bx/n/10.95 Soft-wa-re R: \TU/lmr/m/n/10.95 Fun-cio-nes \TU/lmtt/m/n/1
 0.95 t.test()\TU/lmr/m/n/10.95 , \TU/lmtt/m/n/10.95 var.test()\TU/lmr/m/n/10.95
  , \TU/lmtt/m/n/10.95 power.t.test()\TU/lmr/m/n/10.95 , \TU/lmtt/m/n/10.95 wilco
 x.test()\TU/lmr/m/n/10.95 ,
  []
 
-LaTeX Info: Redefining \. on input line 14249.
-LaTeX Info: Redefining \% on input line 14249.
+LaTeX Info: Redefining \. on input line 14461.
+LaTeX Info: Redefining \% on input line 14461.
 [219
 Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
@@ -4063,285 +3917,285 @@ Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
 ] [220
 
 ]
-Capítulo 10.
+Capítulo 9.
 [221
 
 ]
-LaTeX Info: Redefining \. on input line 14414.
-LaTeX Info: Redefining \% on input line 14414.
+LaTeX Info: Redefining \. on input line 14626.
+LaTeX Info: Redefining \% on input line 14626.
 [222]
-LaTeX Info: Redefining \. on input line 14485.
-LaTeX Info: Redefining \% on input line 14485.
+LaTeX Info: Redefining \. on input line 14697.
+LaTeX Info: Redefining \% on input line 14697.
 [223]
-LaTeX Info: Redefining \. on input line 14543.
-LaTeX Info: Redefining \% on input line 14543.
+LaTeX Info: Redefining \. on input line 14755.
+LaTeX Info: Redefining \% on input line 14755.
 [224]
-LaTeX Info: Redefining \. on input line 14620.
-LaTeX Info: Redefining \% on input line 14620.
+LaTeX Info: Redefining \. on input line 14832.
+LaTeX Info: Redefining \% on input line 14832.
 [225]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 14.4pt on input line 14623.
+(Font)              scaled to size 14.4pt on input line 14835.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 14623.
+(Font)              scaled to size 10.0pt on input line 14835.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 14623.
+(Font)              scaled to size 7.0pt on input line 14835.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 14.4pt on input line 14623.
+(Font)              scaled to size 14.4pt on input line 14835.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 14623.
+(Font)              scaled to size 10.0pt on input line 14835.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 14623.
+(Font)              scaled to size 7.0pt on input line 14835.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 14.4pt on input line 14623.
+(Font)              scaled to size 14.4pt on input line 14835.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 14623.
+(Font)              scaled to size 10.0pt on input line 14835.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 14623.
-LaTeX Info: Redefining \. on input line 14676.
-LaTeX Info: Redefining \% on input line 14676.
+(Font)              scaled to size 7.0pt on input line 14835.
+LaTeX Info: Redefining \. on input line 14888.
+LaTeX Info: Redefining \% on input line 14888.
 [226]
-LaTeX Info: Redefining \. on input line 14717.
-LaTeX Info: Redefining \% on input line 14717.
-[227]
-LaTeX Info: Redefining \. on input line 14773.
-LaTeX Info: Redefining \% on input line 14773.
-[228]
-LaTeX Info: Redefining \. on input line 14823.
-LaTeX Info: Redefining \% on input line 14823.
-[229]
 LaTeX Info: Redefining \. on input line 14929.
 LaTeX Info: Redefining \% on input line 14929.
+[227]
+LaTeX Info: Redefining \. on input line 14985.
+LaTeX Info: Redefining \% on input line 14985.
+[228]
+LaTeX Info: Redefining \. on input line 15035.
+LaTeX Info: Redefining \% on input line 15035.
+[229]
+LaTeX Info: Redefining \. on input line 15141.
+LaTeX Info: Redefining \% on input line 15141.
 [230]
-LaTeX Info: Redefining \. on input line 14984.
-LaTeX Info: Redefining \% on input line 14984.
+LaTeX Info: Redefining \. on input line 15196.
+LaTeX Info: Redefining \% on input line 15196.
 [231]
-LaTeX Info: Redefining \. on input line 15041.
-LaTeX Info: Redefining \% on input line 15041.
+LaTeX Info: Redefining \. on input line 15253.
+LaTeX Info: Redefining \% on input line 15253.
 [232
 Missing character: There is no ⁻ (U+207B) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ⁻ (U+207B) in font [lmroman10-regular]:+tlig;!
 ]
-<chapters/semana09_files/figure-pdf/lst-s10-cod02-1.pdf, id=3049, 367.3725pt x 
+<chapters/semana09_files/figure-pdf/lst-s10-cod02-1.pdf, id=3083, 367.3725pt x 
 238.8925pt>
 File: chapters/semana09_files/figure-pdf/lst-s10-cod02-1.pdf Graphic file (type
  pdf)
 <use chapters/semana09_files/figure-pdf/lst-s10-cod02-1.pdf>
 Package luatex.def Info: chapters/semana09_files/figure-pdf/lst-s10-cod02-1.pdf
-  used on input line 15132.
+  used on input line 15344.
 (luatex.def)             Requested size: 367.37158pt x 238.8919pt.
-LaTeX Info: Redefining \. on input line 15141.
-LaTeX Info: Redefining \% on input line 15141.
+LaTeX Info: Redefining \. on input line 15353.
+LaTeX Info: Redefining \% on input line 15353.
 [233
 Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:+tlig;!
 ]
-<chapters/semana09_files/figure-pdf/lst-s10-cod03-1.pdf, id=3055, 386.44376pt x
+<chapters/semana09_files/figure-pdf/lst-s10-cod03-1.pdf, id=3089, 386.44376pt x
  246.9225pt>
 File: chapters/semana09_files/figure-pdf/lst-s10-cod03-1.pdf Graphic file (type
  pdf)
 <use chapters/semana09_files/figure-pdf/lst-s10-cod03-1.pdf>
 Package luatex.def Info: chapters/semana09_files/figure-pdf/lst-s10-cod03-1.pdf
-  used on input line 15147.
+  used on input line 15359.
 (luatex.def)             Requested size: 386.44281pt x 246.92188pt.
-LaTeX Info: Redefining \. on input line 15158.
-LaTeX Info: Redefining \% on input line 15158.
+LaTeX Info: Redefining \. on input line 15370.
+LaTeX Info: Redefining \% on input line 15370.
 [234<./chapters/semana09_files/figure-pdf/lst-s10-cod02-1.pdf>]
-LaTeX Info: Redefining \. on input line 15183.
-LaTeX Info: Redefining \% on input line 15183.
+LaTeX Info: Redefining \. on input line 15395.
+LaTeX Info: Redefining \% on input line 15395.
 [235<./chapters/semana09_files/figure-pdf/lst-s10-cod03-1.pdf>]
-LaTeX Info: Redefining \. on input line 15299.
-LaTeX Info: Redefining \% on input line 15299.
+LaTeX Info: Redefining \. on input line 15511.
+LaTeX Info: Redefining \% on input line 15511.
 [236]
-LaTeX Info: Redefining \. on input line 15409.
-LaTeX Info: Redefining \% on input line 15409.
+LaTeX Info: Redefining \. on input line 15621.
+LaTeX Info: Redefining \% on input line 15621.
 [237]
-<chapters/semana09_files/figure-pdf/lst-s10-cod06-1.pdf, id=3092, 367.3725pt x 
+<chapters/semana09_files/figure-pdf/lst-s10-cod06-1.pdf, id=3126, 367.3725pt x 
 235.88126pt>
 File: chapters/semana09_files/figure-pdf/lst-s10-cod06-1.pdf Graphic file (type
  pdf)
 <use chapters/semana09_files/figure-pdf/lst-s10-cod06-1.pdf>
 Package luatex.def Info: chapters/semana09_files/figure-pdf/lst-s10-cod06-1.pdf
-  used on input line 15453.
+  used on input line 15665.
 (luatex.def)             Requested size: 367.37158pt x 235.88068pt.
-LaTeX Info: Redefining \. on input line 15463.
-LaTeX Info: Redefining \% on input line 15463.
+LaTeX Info: Redefining \. on input line 15675.
+LaTeX Info: Redefining \% on input line 15675.
 [238
 Missing character: There is no ≥ (U+2265) in font [lmmono10-regular]:!
 ]
-LaTeX Info: Redefining \. on input line 15507.
-LaTeX Info: Redefining \% on input line 15507.
+LaTeX Info: Redefining \. on input line 15719.
+LaTeX Info: Redefining \% on input line 15719.
 [239
 Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:+tlig;!
 <./chapters/semana09_files/figure-pdf/lst-s10-cod06-1.pdf>]
-LaTeX Info: Redefining \. on input line 15555.
-LaTeX Info: Redefining \% on input line 15555.
+LaTeX Info: Redefining \. on input line 15767.
+LaTeX Info: Redefining \% on input line 15767.
 [240
 Missing character: There is no ≥ (U+2265) in font [lmroman10-regular]:+tlig;!
 ]
-LaTeX Info: Redefining \. on input line 15654.
-LaTeX Info: Redefining \% on input line 15654.
+LaTeX Info: Redefining \. on input line 15866.
+LaTeX Info: Redefining \% on input line 15866.
 [241]
-LaTeX Info: Redefining \. on input line 15718.
-LaTeX Info: Redefining \% on input line 15718.
+LaTeX Info: Redefining \. on input line 15930.
+LaTeX Info: Redefining \% on input line 15930.
 [242
 Missing character: There is no ≥ (U+2265) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ≥ (U+2265) in font [lmroman10-regular]:+tlig;!
 ]
-LaTeX Info: Redefining \. on input line 15743.
-LaTeX Info: Redefining \% on input line 15743.
+LaTeX Info: Redefining \. on input line 15955.
+LaTeX Info: Redefining \% on input line 15955.
 [243]
-Capítulo 11.
+Capítulo 10.
 [244
 
 ]
-LaTeX Info: Redefining \. on input line 15859.
-LaTeX Info: Redefining \% on input line 15859.
+LaTeX Info: Redefining \. on input line 16071.
+LaTeX Info: Redefining \% on input line 16071.
 [245]
-LaTeX Info: Redefining \. on input line 15904.
-LaTeX Info: Redefining \% on input line 15904.
+LaTeX Info: Redefining \. on input line 16116.
+LaTeX Info: Redefining \% on input line 16116.
 [246]
-LaTeX Info: Redefining \. on input line 15978.
-LaTeX Info: Redefining \% on input line 15978.
+LaTeX Info: Redefining \. on input line 16190.
+LaTeX Info: Redefining \% on input line 16190.
 [247]
-LaTeX Info: Redefining \. on input line 16042.
-LaTeX Info: Redefining \% on input line 16042.
+LaTeX Info: Redefining \. on input line 16254.
+LaTeX Info: Redefining \% on input line 16254.
 [248]
-LaTeX Info: Redefining \. on input line 16129.
-LaTeX Info: Redefining \% on input line 16129.
+LaTeX Info: Redefining \. on input line 16341.
+LaTeX Info: Redefining \% on input line 16341.
 [249]
-LaTeX Info: Redefining \. on input line 16194.
-LaTeX Info: Redefining \% on input line 16194.
+LaTeX Info: Redefining \. on input line 16406.
+LaTeX Info: Redefining \% on input line 16406.
 [250]
-LaTeX Info: Redefining \. on input line 16295.
-LaTeX Info: Redefining \% on input line 16295.
+LaTeX Info: Redefining \. on input line 16507.
+LaTeX Info: Redefining \% on input line 16507.
 [251]
-LaTeX Info: Redefining \. on input line 16389.
-LaTeX Info: Redefining \% on input line 16389.
+LaTeX Info: Redefining \. on input line 16601.
+LaTeX Info: Redefining \% on input line 16601.
 [252]
-LaTeX Info: Redefining \. on input line 16428.
-LaTeX Info: Redefining \% on input line 16428.
+LaTeX Info: Redefining \. on input line 16640.
+LaTeX Info: Redefining \% on input line 16640.
 [253]
-LaTeX Info: Redefining \. on input line 16516.
-LaTeX Info: Redefining \% on input line 16516.
+LaTeX Info: Redefining \. on input line 16728.
+LaTeX Info: Redefining \% on input line 16728.
 [254]
-LaTeX Info: Redefining \. on input line 16589.
-LaTeX Info: Redefining \% on input line 16589.
+LaTeX Info: Redefining \. on input line 16801.
+LaTeX Info: Redefining \% on input line 16801.
 [255]
-LaTeX Info: Redefining \. on input line 16647.
-LaTeX Info: Redefining \% on input line 16647.
+LaTeX Info: Redefining \. on input line 16859.
+LaTeX Info: Redefining \% on input line 16859.
 [256]
-Overfull \vbox (1.19345pt too high) detected at line 16732
+Overfull \vbox (1.19345pt too high) detected at line 16944
  []
 
-LaTeX Info: Redefining \. on input line 16732.
-LaTeX Info: Redefining \% on input line 16732.
+LaTeX Info: Redefining \. on input line 16944.
+LaTeX Info: Redefining \% on input line 16944.
 [257]
-<chapters/semana10_files/figure-pdf/lst-s11-cod04-1.pdf, id=3224, 386.44376pt x
+<chapters/semana10_files/figure-pdf/lst-s11-cod04-1.pdf, id=3259, 386.44376pt x
  246.9225pt>
 File: chapters/semana10_files/figure-pdf/lst-s11-cod04-1.pdf Graphic file (type
  pdf)
 <use chapters/semana10_files/figure-pdf/lst-s11-cod04-1.pdf>
 Package luatex.def Info: chapters/semana10_files/figure-pdf/lst-s11-cod04-1.pdf
-  used on input line 16794.
+  used on input line 17006.
 (luatex.def)             Requested size: 386.44281pt x 246.92188pt.
-LaTeX Info: Redefining \. on input line 16803.
-LaTeX Info: Redefining \% on input line 16803.
+LaTeX Info: Redefining \. on input line 17015.
+LaTeX Info: Redefining \% on input line 17015.
 [258]
-LaTeX Info: Redefining \. on input line 16858.
-LaTeX Info: Redefining \% on input line 16858.
+LaTeX Info: Redefining \. on input line 17070.
+LaTeX Info: Redefining \% on input line 17070.
 [259<./chapters/semana10_files/figure-pdf/lst-s11-cod04-1.pdf>]
-LaTeX Info: Redefining \. on input line 16907.
-LaTeX Info: Redefining \% on input line 16907.
+LaTeX Info: Redefining \. on input line 17119.
+LaTeX Info: Redefining \% on input line 17119.
 [260]
-LaTeX Info: Redefining \. on input line 16982.
-LaTeX Info: Redefining \% on input line 16982.
+LaTeX Info: Redefining \. on input line 17194.
+LaTeX Info: Redefining \% on input line 17194.
 [261]
-<chapters/semana10_files/figure-pdf/lst-s11-cod07-1.pdf, id=3250, 382.42876pt x
+<chapters/semana10_files/figure-pdf/lst-s11-cod07-1.pdf, id=3284, 382.42876pt x
  236.885pt>
 File: chapters/semana10_files/figure-pdf/lst-s11-cod07-1.pdf Graphic file (type
  pdf)
 <use chapters/semana10_files/figure-pdf/lst-s11-cod07-1.pdf>
 Package luatex.def Info: chapters/semana10_files/figure-pdf/lst-s11-cod07-1.pdf
-  used on input line 17032.
+  used on input line 17244.
 (luatex.def)             Requested size: 382.42781pt x 236.88441pt.
-LaTeX Info: Redefining \. on input line 17041.
-LaTeX Info: Redefining \% on input line 17041.
+LaTeX Info: Redefining \. on input line 17253.
+LaTeX Info: Redefining \% on input line 17253.
 [262]
-LaTeX Info: Redefining \. on input line 17142.
-LaTeX Info: Redefining \% on input line 17142.
+LaTeX Info: Redefining \. on input line 17354.
+LaTeX Info: Redefining \% on input line 17354.
 [263<./chapters/semana10_files/figure-pdf/lst-s11-cod07-1.pdf>]
-LaTeX Info: Redefining \. on input line 17142.
-LaTeX Info: Redefining \% on input line 17142.
+LaTeX Info: Redefining \. on input line 17354.
+LaTeX Info: Redefining \% on input line 17354.
 [264]
-<chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-1.pdf, id=3274, 493.84
+<chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-1.pdf, id=3308, 493.84
 5pt x 315.1775pt>
 File: chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-1.pdf Graphic fil
 e (type pdf)
 <use chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-1.pdf>
 Package luatex.def Info: chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-dia
-g-1.pdf  used on input line 17197.
+g-1.pdf  used on input line 17409.
 (luatex.def)             Requested size: 493.84378pt x 315.17673pt.
-<chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-2.pdf, id=3275, 495.85
+<chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-2.pdf, id=3309, 495.85
 25pt x 351.3125pt>
 File: chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-2.pdf Graphic fil
 e (type pdf)
 <use chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-2.pdf>
 Package luatex.def Info: chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-dia
-g-2.pdf  used on input line 17199.
+g-2.pdf  used on input line 17411.
 (luatex.def)             Requested size: 495.85129pt x 351.31163pt.
-<chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-3.pdf, id=3276, 495.85
+<chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-3.pdf, id=3310, 495.85
 25pt x 349.305pt>
 File: chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-3.pdf Graphic fil
 e (type pdf)
 <use chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-3.pdf>
 Package luatex.def Info: chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-dia
-g-3.pdf  used on input line 17201.
+g-3.pdf  used on input line 17413.
 (luatex.def)             Requested size: 495.85129pt x 349.30414pt.
-<chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-4.pdf, id=3277, 495.85
+<chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-4.pdf, id=3311, 495.85
 25pt x 349.305pt>
 File: chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-4.pdf Graphic fil
 e (type pdf)
 <use chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-4.pdf>
 Package luatex.def Info: chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-dia
-g-4.pdf  used on input line 17203.
+g-4.pdf  used on input line 17415.
 (luatex.def)             Requested size: 495.85129pt x 349.30414pt.
-LaTeX Info: Redefining \. on input line 17205.
-LaTeX Info: Redefining \% on input line 17205.
+LaTeX Info: Redefining \. on input line 17417.
+LaTeX Info: Redefining \% on input line 17417.
 [265]
-LaTeX Info: Redefining \. on input line 17205.
-LaTeX Info: Redefining \% on input line 17205.
+LaTeX Info: Redefining \. on input line 17417.
+LaTeX Info: Redefining \% on input line 17417.
 [266<./chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-1.pdf>]
-LaTeX Info: Redefining \. on input line 17205.
-LaTeX Info: Redefining \% on input line 17205.
+LaTeX Info: Redefining \. on input line 17417.
+LaTeX Info: Redefining \% on input line 17417.
 [267<./chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-2.pdf><./chapters
 /semana10_files/figure-pdf/lst-s10-bio-rlm-diag-3.pdf>]
-LaTeX Info: Redefining \. on input line 17232.
-LaTeX Info: Redefining \% on input line 17232.
+LaTeX Info: Redefining \. on input line 17444.
+LaTeX Info: Redefining \% on input line 17444.
 [268<./chapters/semana10_files/figure-pdf/lst-s10-bio-rlm-diag-4.pdf>]
-LaTeX Info: Redefining \. on input line 17299.
-LaTeX Info: Redefining \% on input line 17299.
+LaTeX Info: Redefining \. on input line 17511.
+LaTeX Info: Redefining \% on input line 17511.
 [269]
-LaTeX Info: Redefining \. on input line 17359.
-LaTeX Info: Redefining \% on input line 17359.
+LaTeX Info: Redefining \. on input line 17571.
+LaTeX Info: Redefining \% on input line 17571.
 [270]
-LaTeX Info: Redefining \. on input line 17371.
-LaTeX Info: Redefining \% on input line 17371.
+LaTeX Info: Redefining \. on input line 17583.
+LaTeX Info: Redefining \% on input line 17583.
 [271
 Missing character: There is no ≥ (U+2265) in font [lmroman10-regular]:+tlig;!
 ] [272
 
 ]
-Capítulo 12.
+Capítulo 11.
 [273
 
 ]
-LaTeX Info: Redefining \. on input line 17524.
-LaTeX Info: Redefining \% on input line 17524.
+LaTeX Info: Redefining \. on input line 17736.
+LaTeX Info: Redefining \% on input line 17736.
 [274
 Missing character: There is no χ (U+03C7) in font [lmroman12-bold]:+tlig;!
 Missing character: There is no χ (U+03C7) in font [lmroman10-regular]:+tlig;!
 ]
-LaTeX Info: Redefining \. on input line 17524.
-LaTeX Info: Redefining \% on input line 17524.
+LaTeX Info: Redefining \. on input line 17736.
+LaTeX Info: Redefining \% on input line 17736.
 [275
 Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
 Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
@@ -4350,58 +4204,30 @@ Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
 Missing character: There is no ✓ (U+2713) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no χ (U+03C7) in font [lmroman10-regular]:+tlig;!
 ]
-LaTeX Info: Redefining \. on input line 17606.
-LaTeX Info: Redefining \% on input line 17606.
+LaTeX Info: Redefining \. on input line 17818.
+LaTeX Info: Redefining \% on input line 17818.
 [276
 Missing character: There is no χ (U+03C7) in font [lmroman12-bold]:+tlig;!
 ]
-
-Package natbib Warning: Citation `MartinAndresLuna2004' on page 277 undefined o
-n input line 17623.
-
-
-Package natbib Warning: Citation `MartinAndres1994' on page 277 undefined on in
-put line 17624.
-
-
-Package natbib Warning: Citation `MartinAndresLuna2004' on page 277 undefined o
-n input line 17638.
-
-
-Package natbib Warning: Citation `MartinAndres1994' on page 277 undefined on in
-put line 17638.
-
-
-Package natbib Warning: Citation `MartinAndresLuna2004' on page 277 undefined o
-n input line 17638.
-
-
-Package natbib Warning: Citation `MartinAndres1994' on page 277 undefined on in
-put line 17638.
-
-LaTeX Info: Redefining \. on input line 17678.
-LaTeX Info: Redefining \% on input line 17678.
+LaTeX Info: Redefining \. on input line 17890.
+LaTeX Info: Redefining \% on input line 17890.
 [277
 Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
 Missing character: There is no χ (U+03C7) in font [lmroman10-regular]:+tlig;!
 ]
-
-Package natbib Warning: Citation `MartinAndresLuna2004' on page 278 undefined o
-n input line 17712.
-
-LaTeX Info: Redefining \. on input line 17782.
-LaTeX Info: Redefining \% on input line 17782.
+LaTeX Info: Redefining \. on input line 17954.
+LaTeX Info: Redefining \% on input line 17954.
 [278]
-<chapters/semana11_files/figure-pdf/lst-s12-fig01-1.pdf, id=3378, 472.76625pt x
+<chapters/semana11_files/figure-pdf/lst-s12-fig01-1.pdf, id=3431, 472.76625pt x
  287.0725pt>
 File: chapters/semana11_files/figure-pdf/lst-s12-fig01-1.pdf Graphic file (type
  pdf)
 <use chapters/semana11_files/figure-pdf/lst-s12-fig01-1.pdf>
 Package luatex.def Info: chapters/semana11_files/figure-pdf/lst-s12-fig01-1.pdf
-  used on input line 17790.
+  used on input line 18002.
 (luatex.def)             Requested size: 472.76509pt x 287.0718pt.
-LaTeX Info: Redefining \. on input line 17801.
-LaTeX Info: Redefining \% on input line 17801.
+LaTeX Info: Redefining \. on input line 18013.
+LaTeX Info: Redefining \% on input line 18013.
 [279
 Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no χ (U+03C7) in font [lmroman10-regular]:+tlig;!
@@ -4410,93 +4236,93 @@ Missing character: There is no ᵢ (U+1D62) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ⱼ (U+2C7C) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ∈ (U+2208) in font [lmroman10-regular]:+tlig;!
 ]
-LaTeX Info: Redefining \. on input line 17847.
-LaTeX Info: Redefining \% on input line 17847.
+LaTeX Info: Redefining \. on input line 18059.
+LaTeX Info: Redefining \% on input line 18059.
 [280
 Missing character: There is no χ (U+03C7) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no χ (U+03C7) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no χ (U+03C7) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
 <./chapters/semana11_files/figure-pdf/lst-s12-fig01-1.pdf>]
-Overfull \hbox (12.69196pt too wide) in paragraph at lines 17906--17906
+Overfull \hbox (12.69196pt too wide) in paragraph at lines 18118--18118
 []|\TU/lmr/bx/n/10.95 Con- 
  []
 
 
-Overfull \hbox (1.02737pt too wide) in paragraph at lines 17906--17906
+Overfull \hbox (1.02737pt too wide) in paragraph at lines 18118--18118
 \TU/lmr/bx/n/10.95 di- 
  []
 
 
-Overfull \hbox (8.57126pt too wide) in paragraph at lines 17906--17906
+Overfull \hbox (8.57126pt too wide) in paragraph at lines 18118--18118
 \TU/lmr/bx/n/10.95 ción 
  []
 
 
-Overfull \hbox (4.99455pt too wide) in paragraph at lines 17906--17906
+Overfull \hbox (4.99455pt too wide) in paragraph at lines 18118--18118
 \TU/lmr/bx/n/10.95 Po- 
  []
 
 
-Overfull \hbox (12.69196pt too wide) in paragraph at lines 17908--17908
+Overfull \hbox (12.69196pt too wide) in paragraph at lines 18120--18120
 []|\TU/lmr/bx/n/10.95 Con- 
  []
 
 
-Overfull \hbox (1.02737pt too wide) in paragraph at lines 17908--17908
+Overfull \hbox (1.02737pt too wide) in paragraph at lines 18120--18120
 \TU/lmr/bx/n/10.95 di- 
  []
 
 
-Overfull \hbox (8.57126pt too wide) in paragraph at lines 17908--17908
+Overfull \hbox (8.57126pt too wide) in paragraph at lines 18120--18120
 \TU/lmr/bx/n/10.95 ción 
  []
 
 
-Overfull \hbox (6.0602pt too wide) in paragraph at lines 17908--17908
+Overfull \hbox (6.0602pt too wide) in paragraph at lines 18120--18120
 \TU/lmr/bx/n/10.95 Ne- 
  []
 
 
-Overfull \hbox (2.91602pt too wide) in paragraph at lines 17908--17908
+Overfull \hbox (2.91602pt too wide) in paragraph at lines 18120--18120
 \TU/lmr/bx/n/10.95 ga- 
  []
 
 
-Overfull \hbox (4.42996pt too wide) in paragraph at lines 17910--17910
+Overfull \hbox (4.42996pt too wide) in paragraph at lines 18122--18122
 []|\TU/lmr/bx/n/10.95 To- 
  []
 
 
-Overfull \hbox (0.85567pt too wide) in paragraph at lines 17910--17910
+Overfull \hbox (0.85567pt too wide) in paragraph at lines 18122--18122
 \TU/lmr/bx/n/10.95 tal|  
  []
 
-LaTeX Info: Redefining \. on input line 17911.
-LaTeX Info: Redefining \% on input line 17911.
+LaTeX Info: Redefining \. on input line 18123.
+LaTeX Info: Redefining \% on input line 18123.
 [281
 Missing character: There is no χ (U+03C7) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:+tlig;!
 ]
-LaTeX Info: Redefining \. on input line 17946.
-LaTeX Info: Redefining \% on input line 17946.
+LaTeX Info: Redefining \. on input line 18158.
+LaTeX Info: Redefining \% on input line 18158.
 [282]
-Overfull \hbox (22.36621pt too wide) in paragraph at lines 18054--18054
+Overfull \hbox (22.36621pt too wide) in paragraph at lines 18266--18266
 []  \TU/lmtt/m/n/10.95 * Aquí se alude a la probabilidad total de la discordanc
 ia, es decir que π󰀀₁󰀀₂󰀀+π󰀀₂󰀀₁󰀀=1[] 
  []
 
 
-Overfull \hbox (102.8487pt too wide) in paragraph at lines 18056--18056
+Overfull \hbox (102.8487pt too wide) in paragraph at lines 18268--18268
 []\TU/lmtt/m/n/10.95 # Estimación de las proporciones individuales de discordan
 cias π󰀀₁󰀀₂󰀀 y π󰀀₂󰀀₁󰀀 (método de Wald ajustado)[] 
  []
 
-LaTeX Info: Redefining \. on input line 18073.
-LaTeX Info: Redefining \% on input line 18073.
+LaTeX Info: Redefining \. on input line 18285.
+LaTeX Info: Redefining \% on input line 18285.
 [283]
-LaTeX Info: Redefining \. on input line 18073.
-LaTeX Info: Redefining \% on input line 18073.
+LaTeX Info: Redefining \. on input line 18285.
+LaTeX Info: Redefining \% on input line 18285.
 [284
 Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
 Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
@@ -4543,8 +4369,8 @@ Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
 Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
 Missing character: There is no ≠ (U+2260) in font [lmmono10-regular]:!
 ]
-LaTeX Info: Redefining \. on input line 18122.
-LaTeX Info: Redefining \% on input line 18122.
+LaTeX Info: Redefining \. on input line 18334.
+LaTeX Info: Redefining \% on input line 18334.
 [285
 Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
 Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
@@ -4601,1377 +4427,22 @@ Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
 Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
 Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
 ]
-LaTeX Info: Redefining \. on input line 18227.
-LaTeX Info: Redefining \% on input line 18227.
+LaTeX Info: Redefining \. on input line 18439.
+LaTeX Info: Redefining \% on input line 18439.
 [286]
-LaTeX Info: Redefining \. on input line 18259.
-LaTeX Info: Redefining \% on input line 18259.
+LaTeX Info: Redefining \. on input line 18471.
+LaTeX Info: Redefining \% on input line 18471.
 [287]
-LaTeX Info: Redefining \. on input line 18335.
-LaTeX Info: Redefining \% on input line 18335.
+LaTeX Info: Redefining \. on input line 18547.
+LaTeX Info: Redefining \% on input line 18547.
 [288]
-Overfull \hbox (8.55026pt too wide) in paragraph at lines 18393--18395
+Overfull \hbox (8.55026pt too wide) in paragraph at lines 18605--18607
 []|\TU/lmtt/m/n/10.95 mcnemar.test()\TU/lmr/m/n/10.95 , 
  []
 
 
-Overfull \hbox (53.07909pt too wide) in paragraph at lines 18393--18395
+Overfull \hbox (53.07909pt too wide) in paragraph at lines 18605--18607
 \TU/lmtt/m/n/10.95 tabla2x2(estudio="AP")|  
  []
 
-LaTeX Info: Redefining \. on input line 18395.
-LaTeX Info: Redefining \% on input line 18395.
-[289
-Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
-Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
-Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
-Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
-]
-<chapters/semana11_files/figure-pdf/lst-s12-bio05-1.pdf, id=3441, 363.3575pt x 
-210.7875pt>
-File: chapters/semana11_files/figure-pdf/lst-s12-bio05-1.pdf Graphic file (type
- pdf)
-<use chapters/semana11_files/figure-pdf/lst-s12-bio05-1.pdf>
-Package luatex.def Info: chapters/semana11_files/figure-pdf/lst-s12-bio05-1.pdf
-  used on input line 18422.
-(luatex.def)             Requested size: 363.3566pt x 210.78699pt.
-LaTeX Info: Redefining \. on input line 18427.
-LaTeX Info: Redefining \% on input line 18427.
-[290
-Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
-<./chapters/semana11_files/figure-pdf/lst-s12-bio05-1.pdf>]
-LaTeX Info: Redefining \. on input line 18485.
-LaTeX Info: Redefining \% on input line 18485.
-[291
-Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
-Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
-Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
-Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-]
-LaTeX Info: Redefining \. on input line 18558.
-LaTeX Info: Redefining \% on input line 18558.
-[292]
-LaTeX Info: Redefining \. on input line 18627.
-LaTeX Info: Redefining \% on input line 18627.
-[293]
-LaTeX Info: Redefining \. on input line 18683.
-LaTeX Info: Redefining \% on input line 18683.
-[294
-Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
-]
-<chapters/semana11_files/figure-pdf/lst-s12-bio07-1.pdf, id=3470, 363.3575pt x 
-210.7875pt>
-File: chapters/semana11_files/figure-pdf/lst-s12-bio07-1.pdf Graphic file (type
- pdf)
-<use chapters/semana11_files/figure-pdf/lst-s12-bio07-1.pdf>
-Package luatex.def Info: chapters/semana11_files/figure-pdf/lst-s12-bio07-1.pdf
-  used on input line 18705.
-(luatex.def)             Requested size: 363.3566pt x 210.78699pt.
-LaTeX Info: Redefining \. on input line 18794.
-LaTeX Info: Redefining \% on input line 18794.
-[295<./chapters/semana11_files/figure-pdf/lst-s12-bio07-1.pdf>]
-LaTeX Info: Redefining \. on input line 18794.
-LaTeX Info: Redefining \% on input line 18794.
-[296
-Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
-Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
-Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
-Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-]
-LaTeX Info: Redefining \. on input line 18843.
-LaTeX Info: Redefining \% on input line 18843.
-[297
-Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
-]
-LaTeX Info: Redefining \. on input line 18916.
-LaTeX Info: Redefining \% on input line 18916.
-[298]
-LaTeX Info: Redefining \. on input line 18997.
-LaTeX Info: Redefining \% on input line 18997.
-[299]
-<chapters/semana11_files/figure-pdf/lst-s11-rlogitm-1.pdf, id=3500, 424.58624pt
- x 351.3125pt>
-File: chapters/semana11_files/figure-pdf/lst-s11-rlogitm-1.pdf Graphic file (ty
-pe pdf)
-<use chapters/semana11_files/figure-pdf/lst-s11-rlogitm-1.pdf>
-Package luatex.def Info: chapters/semana11_files/figure-pdf/lst-s11-rlogitm-1.p
-df  used on input line 19093.
-(luatex.def)             Requested size: 424.5852pt x 351.31163pt.
-LaTeX Info: Redefining \. on input line 19148.
-LaTeX Info: Redefining \% on input line 19148.
-[300]
-LaTeX Info: Redefining \. on input line 19148.
-LaTeX Info: Redefining \% on input line 19148.
-[301]
-LaTeX Info: Redefining \. on input line 19148.
-LaTeX Info: Redefining \% on input line 19148.
-[302<./chapters/semana11_files/figure-pdf/lst-s11-rlogitm-1.pdf>]
-LaTeX Info: Redefining \. on input line 19203.
-LaTeX Info: Redefining \% on input line 19203.
-[303]
-LaTeX Info: Redefining \. on input line 19284.
-LaTeX Info: Redefining \% on input line 19284.
-[304]
-Underfull \hbox (badness 5431) in paragraph at lines 19342--19350
-[]\TU/lmr/bx/n/10.95 Ejer-ci-cio 11.6: \TU/lmr/m/n/10.95 a) Ta-bla: hi-per-ten-s
-os $\TU/latinmodern-math.otf(1)/b/n/10.95 (120, 80, 200)$\TU/lmr/m/n/10.95 ; nor
--mo-ten-sos $\TU/latinmodern-math.otf(1)/b/n/10.95 (80, 120, 200)$\TU/lmr/m/n/1
-0.95 ; to-ta-
- []
-
-LaTeX Info: Redefining \. on input line 19350.
-LaTeX Info: Redefining \% on input line 19350.
-[305]
-
-Package natbib Warning: Citation `Agresti2013' on page 306 undefined on input l
-ine 19402.
-
-
-Package natbib Warning: Citation `McNemar1947' on page 306 undefined on input l
-ine 19404.
-
-
-Package natbib Warning: Citation `Fleiss2003' on page 306 undefined on input li
-ne 19406.
-
-
-Package natbib Warning: Citation `Altman1991' on page 306 undefined on input li
-ne 19408.
-
-
-Package natbib Warning: Citation `Rothman2008' on page 306 undefined on input l
-ine 19410.
-
-
-Package natbib Warning: Citation `Robins1987' on page 306 undefined on input li
-ne 19412.
-
-
-Package natbib Warning: Citation `Smith2020' on page 306 undefined on input lin
-e 19414.
-
-
-Package natbib Warning: Citation `Szklo2007' on page 306 undefined on input lin
-e 19416.
-
-
-Package natbib Warning: Citation `OpenIntro2019' on page 306 undefined on input
- line 19418.
-
-LaTeX Info: Redefining \. on input line 19420.
-LaTeX Info: Redefining \% on input line 19420.
-[306
-Missing character: There is no χ (U+03C7) in font [lmroman10-regular]:+tlig;!
-]
-LaTeX Info: Redefining \. on input line 19424.
-LaTeX Info: Redefining \% on input line 19424.
-[307]
-
-Package natbib Warning: Citation `Casella2002' on page 308 undefined on input l
-ine 19451.
-
-
-Package natbib Warning: Citation `Rice2007' on page 308 undefined on input line
- 19454.
-
-
-Package natbib Warning: Citation `Wackerly2008' on page 308 undefined on input 
-line 19457.
-
-
-Package natbib Warning: Citation `Wasserman2006' on page 308 undefined on input
- line 19460.
-
-
-Package natbib Warning: Citation `Wood2015' on page 308 undefined on input line
- 19463.
-
-
-Package natbib Warning: Citation `Tukey1961' on page 308 undefined on input lin
-e 19478.
-
-
-Package natbib Warning: Citation `Wickham2016' on page 308 undefined on input l
-ine 19481.
-
-
-Package natbib Warning: Citation `Rice2007' on page 308 undefined on input line
- 19496.
-
-
-Package natbib Warning: Citation `Ross2014' on page 308 undefined on input line
- 19499.
-
-
-Package natbib Warning: Citation `Devore2020' on page 308 undefined on input li
-ne 19501.
-
-[308
-
-]
-
-Package natbib Warning: Citation `Casella2002' on page 309 undefined on input l
-ine 19517.
-
-
-Package natbib Warning: Citation `Agresti2018' on page 309 undefined on input l
-ine 19520.
-
-
-Package natbib Warning: Citation `FDR2001' on page 309 undefined on input line 
-19523.
-
-
-Package natbib Warning: Citation `James2013' on page 309 undefined on input lin
-e 19537.
-
-
-Package natbib Warning: Citation `Freedman2007' on page 309 undefined on input 
-line 19540.
-
-
-Package natbib Warning: Citation `Wooldridge2020' on page 309 undefined on inpu
-t line 19543.
-
-
-Package natbib Warning: Citation `Greene2018' on page 309 undefined on input li
-ne 19546.
-
-
-Package natbib Warning: Citation `Angrist2008' on page 309 undefined on input l
-ine 19548.
-
-
-Package natbib Warning: Citation `Agresti2013' on page 309 undefined on input l
-ine 19564.
-
-
-Package natbib Warning: Citation `Fleiss2003' on page 309 undefined on input li
-ne 19568.
-
-
-Package natbib Warning: Citation `McNemar1947' on page 309 undefined on input l
-ine 19572.
-
-
-Package natbib Warning: Citation `Altman1991' on page 309 undefined on input li
-ne 19575.
-
-
-Package natbib Warning: Citation `Rothman2008' on page 309 undefined on input l
-ine 19578.
-
-
-Package natbib Warning: Citation `Szklo2007' on page 309 undefined on input lin
-e 19581.
-
-
-Package natbib Warning: Citation `BioestadisticaR2' on page 309 undefined on in
-put line 19584.
-
-
-Package natbib Warning: Citation `OpenIntro2019' on page 309 undefined on input
- line 19589.
-
-
-Package natbib Warning: Citation `RCoreTeam2024' on page 309 undefined on input
- line 19604.
-
-
-Package natbib Warning: Citation `Wickham2016' on page 309 undefined on input l
-ine 19606.
-
-
-Package natbib Warning: Citation `Kabacoff2015' on page 309 undefined on input 
-line 19608.
-
-LaTeX Info: Redefining \. on input line 19622.
-LaTeX Info: Redefining \% on input line 19622.
-[309]
-
-Package natbib Warning: Citation `Koop2011' on page 310 undefined on input line
- 19622.
-
-
-Package natbib Warning: Citation `Gelman2013' on page 310 undefined on input li
-ne 19624.
-
-
-Package natbib Warning: Citation `McElreath2020' on page 310 undefined on input
- line 19627.
-
-
-Package natbib Warning: Citation `Peng2015' on page 310 undefined on input line
- 19630.
-
-
-Package natbib Warning: Citation `James2013' on page 310 undefined on input lin
-e 19644.
-
-
-Package natbib Warning: Citation `Efron2016' on page 310 undefined on input lin
-e 19647.
-
-
-Package natbib Warning: Citation `Hyndman2018' on page 310 undefined on input l
-ine 19650.
-
-
-Package natbib Warning: Citation `Pearl2009' on page 310 undefined on input lin
-e 19652.
-
-
-Package natbib Warning: Citation `Varian2014' on page 310 undefined on input li
-ne 19654.
-
-
-Package natbib Warning: Citation `Montgomery2020' on page 310 undefined on inpu
-t line 19657.
-
-
-Package natbib Warning: Citation `OpenIntro2019' on page 310 undefined on input
- line 19659.
-
-
-Package natbib Warning: Citation `Dodge2006' on page 310 undefined on input lin
-e 19672.
-
-(./index.bbl
-LaTeX Info: Redefining \. on input line 27.
-LaTeX Info: Redefining \% on input line 27.
-[310]
-LaTeX Info: Redefining \. on input line 124.
-LaTeX Info: Redefining \% on input line 124.
-[311]
-LaTeX Info: Redefining \. on input line 220.
-LaTeX Info: Redefining \% on input line 220.
-[312])
-LaTeX Info: Redefining \. on input line 19708.
-LaTeX Info: Redefining \% on input line 19708.
-[313]
-Apéndice A.
-[314
-
-
-]
-<chapters/apendiceA_files/figure-pdf/unnamed-chunk-1-1.pdf, id=3637, 364.36125p
-t x 211.79124pt>
-File: chapters/apendiceA_files/figure-pdf/unnamed-chunk-1-1.pdf Graphic file (t
-ype pdf)
-<use chapters/apendiceA_files/figure-pdf/unnamed-chunk-1-1.pdf>
-Package luatex.def Info: chapters/apendiceA_files/figure-pdf/unnamed-chunk-1-1.
-pdf  used on input line 19796.
-(luatex.def)             Requested size: 364.36035pt x 211.79073pt.
-LaTeX Info: Redefining \. on input line 19846.
-LaTeX Info: Redefining \% on input line 19846.
-[315<./chapters/apendiceA_files/figure-pdf/unnamed-chunk-1-1.pdf>]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-LaTeX Info: Redefining \. on input line 20072.
-LaTeX Info: Redefining \% on input line 20072.
-[316]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-LaTeX Info: Redefining \. on input line 20293.
-LaTeX Info: Redefining \% on input line 20293.
-[317]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-LaTeX Info: Redefining \. on input line 20387.
-LaTeX Info: Redefining \% on input line 20387.
-[318]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-LaTeX Info: Redefining \. on input line 20507.
-LaTeX Info: Redefining \% on input line 20507.
-[319]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-LaTeX Info: Redefining \. on input line 20748.
-LaTeX Info: Redefining \% on input line 20748.
-[320]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-LaTeX Info: Redefining \. on input line 20902.
-LaTeX Info: Redefining \% on input line 20902.
-[321]
-LaTeX Info: Redefining \. on input line 20902.
-LaTeX Info: Redefining \% on input line 20902.
-[322]
-LaTeX Info: Redefining \. on input line 20902.
-LaTeX Info: Redefining \% on input line 20902.
-[323]
-LaTeX Info: Redefining \. on input line 20902.
-LaTeX Info: Redefining \% on input line 20902.
-[324]
-Apéndice B.
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <24.88> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 20904.
-
-[325
-
-]
-
-Package tcolorbox Warning: Using nobreak failed. Try to enlarge `lines before b
-reak' or set page breaks manually on input line 20970.
-
-
-Overfull \hbox (32.71399pt too wide) in paragraph at lines 21008--21008
-[] \TU/lmtt/m/n/10.95 $ alcohol   : Factor w/ 3 levels "Excesivo","Moderado",..:
- 2 2 2 2 2 2 2 2 2 2 ...[] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21022--21022
-[] \TU/lmtt/m/n/10.95 $ sztri     : num  0.55 -1.62 -1.28 -1.11 -1.68 2.05 -0.75
- -1.11 -0.98 -
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21023--21023
-[] \TU/lmtt/m/n/10.95 $ szcue     : num  1.44 -0.93 -0.07 -2.07 -3.1 0.35 0.08 
--1.62 -2.25 -
- []
-
-LaTeX Info: Redefining \. on input line 21033.
-LaTeX Info: Redefining \% on input line 21033.
-[326]
-LaTeX Info: Redefining \. on input line 21135.
-LaTeX Info: Redefining \% on input line 21135.
-[327]
-LaTeX Info: Redefining \. on input line 21221.
-LaTeX Info: Redefining \% on input line 21221.
-[328]
-LaTeX Info: Redefining \. on input line 21291.
-LaTeX Info: Redefining \% on input line 21291.
-[329
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-]
-LaTeX Info: Redefining \. on input line 21365.
-LaTeX Info: Redefining \% on input line 21365.
-[330]
-Overfull \hbox (76.02122pt too wide) in paragraph at lines 21415--21415
-[]\TU/lmtt/m/n/10.95 Intervalo de confianza bilateral para el parámetro  λ
-󰀀 de una VA con distribución de Poisson[] 
- []
-
-
-Overfull \hbox (95.95023pt too wide) in paragraph at lines 21416--21416
-[]\TU/lmtt/m/n/10.95 -----------------------------------------------------------
------------------------------------[] 
- []
-
-LaTeX Info: Redefining \. on input line 21438.
-LaTeX Info: Redefining \% on input line 21438.
-[331
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
-]
-Overfull \hbox (44.21149pt too wide) in paragraph at lines 21491--21491
-[]\TU/lmtt/m/n/10.95 # Tamaño de muestra para la estimación de la media de una
- VA normal o su aproximación[] 
- []
-
-
-Overfull \hbox (44.21149pt too wide) in paragraph at lines 21492--21492
-[]\TU/lmtt/m/n/10.95 # ---------------------------------------------------------
---------------------------[] 
- []
-
-LaTeX Info: Redefining \. on input line 21506.
-LaTeX Info: Redefining \% on input line 21506.
-[332
-Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
-Missing character: There is no ⩾ (U+2A7E) in font [lmmono10-regular]:!
-Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
-]
-LaTeX Info: Redefining \. on input line 21632.
-LaTeX Info: Redefining \% on input line 21632.
-[333
-Missing character: There is no δ (U+03B4) in font [lmmono10-regular]:!
-Missing character: There is no ≥ (U+2265) in font [lmmono10-regular]:!
-Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
-Missing character: There is no δ (U+03B4) in font [lmmono10-regular]:!
-Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
-]
-<chapters/apendiceB_files/figure-pdf/unnamed-chunk-23-1.pdf, id=3793, 361.35pt 
-x 210.7875pt>
-File: chapters/apendiceB_files/figure-pdf/unnamed-chunk-23-1.pdf Graphic file (
-type pdf)
-<use chapters/apendiceB_files/figure-pdf/unnamed-chunk-23-1.pdf>
-Package luatex.def Info: chapters/apendiceB_files/figure-pdf/unnamed-chunk-23-1
-.pdf  used on input line 21679.
-(luatex.def)             Requested size: 361.34912pt x 210.78699pt.
-LaTeX Info: Redefining \. on input line 21692.
-LaTeX Info: Redefining \% on input line 21692.
-[334
-Missing character: There is no δ (U+03B4) in font [lmmono10-regular]:!
-Missing character: There is no ⩾ (U+2A7E) in font [lmmono10-regular]:!
-Missing character: There is no ⩾ (U+2A7E) in font [lmmono10-regular]:!
-Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
-Missing character: There is no δ (U+03B4) in font [lmmono10-regular]:!
-Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
-Missing character: There is no δ (U+03B4) in font [lmmono10-regular]:!
-Missing character: There is no ⩾ (U+2A7E) in font [lmmono10-regular]:!
-Missing character: There is no ⩾ (U+2A7E) in font [lmmono10-regular]:!
-]
-LaTeX Info: Redefining \. on input line 21766.
-LaTeX Info: Redefining \% on input line 21766.
-[335<./chapters/apendiceB_files/figure-pdf/unnamed-chunk-23-1.pdf>]
-LaTeX Info: Redefining \. on input line 21827.
-LaTeX Info: Redefining \% on input line 21827.
-[336
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ≠ (U+2260) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-]
-LaTeX Info: Redefining \. on input line 21887.
-LaTeX Info: Redefining \% on input line 21887.
-[337
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ≠ (U+2260) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ≠ (U+2260) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no μ (U+03BC) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-]
-LaTeX Info: Redefining \. on input line 21954.
-LaTeX Info: Redefining \% on input line 21954.
-[338
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ≠ (U+2260) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
-]
-LaTeX Info: Redefining \. on input line 22033.
-LaTeX Info: Redefining \% on input line 22033.
-[339
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-]
-Overfull \hbox (22.36621pt too wide) in paragraph at lines 22115--22115
-[]  \TU/lmtt/m/n/10.95 * Aquí se alude a la probabilidad total de la discordanc
-ia, es decir que π󰀀₁󰀀₂󰀀+π󰀀₂󰀀₁󰀀=1[] 
- []
-
-
-Overfull \hbox (102.8487pt too wide) in paragraph at lines 22117--22117
-[]\TU/lmtt/m/n/10.95 # Estimación de las proporciones individuales de discordan
-cias π󰀀₁󰀀₂󰀀 y π󰀀₂󰀀₁󰀀 (método de Wald ajustado)[] 
- []
-
-LaTeX Info: Redefining \. on input line 22134.
-LaTeX Info: Redefining \% on input line 22134.
-[340]
-LaTeX Info: Redefining \. on input line 22163.
-LaTeX Info: Redefining \% on input line 22163.
-[341
-Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ≠ (U+2260) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₀ (U+2080) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ≠ (U+2260) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no ₂ (U+2082) in font [lmmono10-regular]:!
-Missing character: There is no ₁ (U+2081) in font [lmmono10-regular]:!
-]
-LaTeX Info: Redefining \. on input line 22224.
-LaTeX Info: Redefining \% on input line 22224.
-[342]
-LaTeX Info: Redefining \. on input line 22316.
-LaTeX Info: Redefining \% on input line 22316.
-[343]
-LaTeX Info: Redefining \. on input line 22389.
-LaTeX Info: Redefining \% on input line 22389.
-[344]
-LaTeX Info: Redefining \. on input line 22475.
-LaTeX Info: Redefining \% on input line 22475.
-[345]
-LaTeX Info: Redefining \. on input line 22494.
-LaTeX Info: Redefining \% on input line 22494.
-[346]
-<chapters/apendiceB_files/figure-pdf/unnamed-chunk-43-1.pdf, id=3879, 424.58624
-pt x 351.3125pt>
-File: chapters/apendiceB_files/figure-pdf/unnamed-chunk-43-1.pdf Graphic file (
-type pdf)
-<use chapters/apendiceB_files/figure-pdf/unnamed-chunk-43-1.pdf>
-Package luatex.def Info: chapters/apendiceB_files/figure-pdf/unnamed-chunk-43-1
-.pdf  used on input line 22561.
-(luatex.def)             Requested size: 424.5852pt x 351.31163pt.
-LaTeX Info: Redefining \. on input line 22569.
-LaTeX Info: Redefining \% on input line 22569.
-[347]
-LaTeX Info: Redefining \. on input line 22594.
-LaTeX Info: Redefining \% on input line 22594.
-[348<./chapters/apendiceB_files/figure-pdf/unnamed-chunk-43-1.pdf>]
-LaTeX Info: Redefining \. on input line 22672.
-LaTeX Info: Redefining \% on input line 22672.
-[349
-Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
-Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
-Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
-Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-Missing character: There is no π (U+03C0) in font [lmmono10-regular]:!
-]
-LaTeX Info: Redefining \. on input line 22734.
-LaTeX Info: Redefining \% on input line 22734.
-[350]
-Overfull \hbox (33.10275pt too wide) in paragraph at lines 22799--22800
-[]|\TU/lmtt/m/n/10.95 tablarxc(frecs=table(grupo_edad, 
- []
-
-LaTeX Info: Redefining \. on input line 22800.
-LaTeX Info: Redefining \% on input line 22800.
-[351
-Missing character: There is no χ (U+03C7) in font [lmmono10-regular]:!
-]
-LaTeX Info: Redefining \. on input line 22840.
-LaTeX Info: Redefining \% on input line 22840.
-[352
-Missing character: There is no χ (U+03C7) in font [lmroman10-regular]:+tlig;!
-Missing character: There is no χ (U+03C7) in font [lmroman10-regular]:+tlig;!
-]
-LaTeX Info: Redefining \. on input line 22842.
-LaTeX Info: Redefining \% on input line 22842.
-[353]
-Apéndice C.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[354
-
-]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-LaTeX Info: Redefining \. on input line 23185.
-LaTeX Info: Redefining \% on input line 23185.
-[355]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-LaTeX Info: Redefining \. on input line 23368.
-LaTeX Info: Redefining \% on input line 23368.
-[356]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-LaTeX Info: Redefining \. on input line 23503.
-LaTeX Info: Redefining \% on input line 23503.
-[357]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Overfull \vbox (116.13034pt too high) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 23744.
-LaTeX Info: Redefining \% on input line 23744.
-[358]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<chapters/apendiceC_files/figure-pdf/unnamed-chunk-17-1.pdf, id=3963, 423.5825p
-t x 279.0425pt>
-File: chapters/apendiceC_files/figure-pdf/unnamed-chunk-17-1.pdf Graphic file (
-type pdf)
-<use chapters/apendiceC_files/figure-pdf/unnamed-chunk-17-1.pdf>
-Package luatex.def Info: chapters/apendiceC_files/figure-pdf/unnamed-chunk-17-1
-.pdf  used on input line 23900.
-(luatex.def)             Requested size: 423.58147pt x 279.04181pt.
-LaTeX Info: Redefining \. on input line 23923.
-LaTeX Info: Redefining \% on input line 23923.
-[359]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<chapters/apendiceC_files/figure-pdf/unnamed-chunk-18-1.pdf, id=3971, 423.5825p
-t x 277.035pt>
-File: chapters/apendiceC_files/figure-pdf/unnamed-chunk-18-1.pdf Graphic file (
-type pdf)
-<use chapters/apendiceC_files/figure-pdf/unnamed-chunk-18-1.pdf>
-Package luatex.def Info: chapters/apendiceC_files/figure-pdf/unnamed-chunk-18-1
-.pdf  used on input line 23925.
-(luatex.def)             Requested size: 423.58147pt x 277.03432pt.
-LaTeX Info: Redefining \. on input line 23947.
-LaTeX Info: Redefining \% on input line 23947.
-[360<./chapters/apendiceC_files/figure-pdf/unnamed-chunk-17-1.pdf>]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<chapters/apendiceC_files/figure-pdf/unnamed-chunk-19-1.pdf, id=3984, 423.5825p
-t x 279.0425pt>
-File: chapters/apendiceC_files/figure-pdf/unnamed-chunk-19-1.pdf Graphic file (
-type pdf)
-<use chapters/apendiceC_files/figure-pdf/unnamed-chunk-19-1.pdf>
-Package luatex.def Info: chapters/apendiceC_files/figure-pdf/unnamed-chunk-19-1
-.pdf  used on input line 23949.
-(luatex.def)             Requested size: 423.58147pt x 279.04181pt.
-LaTeX Info: Redefining \. on input line 23951.
-LaTeX Info: Redefining \% on input line 23951.
-[361<./chapters/apendiceC_files/figure-pdf/unnamed-chunk-18-1.pdf>]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Overfull \hbox (179.85359pt too wide) in paragraph at lines 24009--24009
-[]\TU/lmtt/m/n/10.95 alternative hypothesis: true difference in means between gr
-oup No diabético and group Diabético is not equal to 0[] 
- []
-
-
-Overfull \vbox (78.86684pt too high) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 24010.
-LaTeX Info: Redefining \% on input line 24010.
-[362<./chapters/apendiceC_files/figure-pdf/unnamed-chunk-19-1.pdf>]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-LaTeX Info: Redefining \. on input line 24084.
-LaTeX Info: Redefining \% on input line 24084.
-[363]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-LaTeX Info: Redefining \. on input line 24255.
-LaTeX Info: Redefining \% on input line 24255.
-[364]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-LaTeX Info: Redefining \. on input line 24307.
-LaTeX Info: Redefining \% on input line 24307.
-[365]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-LaTeX Info: Redefining \. on input line 24348.
-LaTeX Info: Redefining \% on input line 24348.
-[366]
-LaTeX Info: Redefining \. on input line 24348.
-LaTeX Info: Redefining \% on input line 24348.
-[367
-Missing character: There is no ≥ (U+2265) in font [lmmono10-regular]:!
-]
-LaTeX Info: Redefining \. on input line 24348.
-LaTeX Info: Redefining \% on input line 24348.
-[368]
-LaTeX Info: Redefining \. on input line 24348.
-LaTeX Info: Redefining \% on input line 24348.
-[369]
-LaTeX Info: Redefining \. on input line 24348.
-LaTeX Info: Redefining \% on input line 24348.
-[370]
-LaTeX Info: Redefining \. on input line 24348.
-LaTeX Info: Redefining \% on input line 24348.
-[371]
-LaTeX Info: Redefining \. on input line 24348.
-LaTeX Info: Redefining \% on input line 24348.
-[372]
-LaTeX Info: Redefining \. on input line 24348.
-LaTeX Info: Redefining \% on input line 24348.
-[373]
-Apéndice D.
-[374
-
-]
-LaTeX Info: Redefining \. on input line 24482.
-LaTeX Info: Redefining \% on input line 24482.
-
-Overfull \hbox (46.95712pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 APÉN-DI-CE D.  APÉN-DI-CE D: IN-VES-TI-GA-CIÓN RE-PRO-DU-C
-I-BLE CON GIT, GITHUB Y RS-TU-DIO \TU/lmr/m/n/10.95 375
- []
-
-[375]
-LaTeX Info: Redefining \. on input line 24537.
-LaTeX Info: Redefining \% on input line 24537.
-
-Overfull \hbox (46.95712pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 APÉN-DI-CE D.  APÉN-DI-CE D: IN-VES-TI-GA-CIÓN RE-PRO-DU-C
-I-BLE CON GIT, GITHUB Y RS-TU-DIO \TU/lmr/m/n/10.95 376
- []
-
-[376]
-LaTeX Info: Redefining \. on input line 24622.
-LaTeX Info: Redefining \% on input line 24622.
-
-Overfull \hbox (46.95712pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 APÉN-DI-CE D.  APÉN-DI-CE D: IN-VES-TI-GA-CIÓN RE-PRO-DU-C
-I-BLE CON GIT, GITHUB Y RS-TU-DIO \TU/lmr/m/n/10.95 377
- []
-
-[377
-Missing character: There is no ✅ (U+2705) in font [lmroman10-regular]:+tlig;!
-Missing character: There is no ✅ (U+2705) in font [lmroman10-regular]:+tlig;!
-Missing character: There is no ❌ (U+274C) in font [lmroman10-regular]:+tlig;!
-Missing character: There is no ❌ (U+274C) in font [lmroman10-regular]:+tlig;!
-]
-LaTeX Info: Redefining \. on input line 24702.
-LaTeX Info: Redefining \% on input line 24702.
-
-Overfull \hbox (46.95712pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 APÉN-DI-CE D.  APÉN-DI-CE D: IN-VES-TI-GA-CIÓN RE-PRO-DU-C
-I-BLE CON GIT, GITHUB Y RS-TU-DIO \TU/lmr/m/n/10.95 378
- []
-
-[378]
-LaTeX Info: Redefining \. on input line 24792.
-LaTeX Info: Redefining \% on input line 24792.
-
-Overfull \hbox (46.95712pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 APÉN-DI-CE D.  APÉN-DI-CE D: IN-VES-TI-GA-CIÓN RE-PRO-DU-C
-I-BLE CON GIT, GITHUB Y RS-TU-DIO \TU/lmr/m/n/10.95 379
- []
-
-[379]
-Overfull \hbox (2.40886pt too wide) in paragraph at lines 24841--24841
-[]\TU/lmtt/m/n/10.95 │󰀀   ├󰀀─󰀀─󰀀 raw/               # Datos originales (a menudo gitignored si son sensibles)[] 
- []
-
-LaTeX Info: Redefining \. on input line 24855.
-LaTeX Info: Redefining \% on input line 24855.
-
-Overfull \hbox (46.95712pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 APÉN-DI-CE D.  APÉN-DI-CE D: IN-VES-TI-GA-CIÓN RE-PRO-DU-C
-I-BLE CON GIT, GITHUB Y RS-TU-DIO \TU/lmr/m/n/10.95 380
- []
-
-[380
-Missing character: There is no ├ (U+251C) in font [lmmono10-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono10-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono10-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono10-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono10-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono10-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono10-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono10-regular]:!
-Missing character: There is no └ (U+2514) in font [lmmono10-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono10-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono10-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono10-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono10-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
-Missing character: There is no └ (U+2514) in font [lmmono10-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
-]
-LaTeX Info: Redefining \. on input line 24917.
-LaTeX Info: Redefining \% on input line 24917.
-
-Overfull \hbox (46.95712pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 APÉN-DI-CE D.  APÉN-DI-CE D: IN-VES-TI-GA-CIÓN RE-PRO-DU-C
-I-BLE CON GIT, GITHUB Y RS-TU-DIO \TU/lmr/m/n/10.95 381
- []
-
-[381]
-Overfull \hbox (32.71399pt too wide) in paragraph at lines 24993--24993
-[]\TU/lmtt/m/n/10.95 **4. Renderizar localmente:** `quarto render analisis.qmd` produce `analisis.html`.[] 
- []
-
-LaTeX Info: Redefining \. on input line 25017.
-LaTeX Info: Redefining \% on input line 25017.
-
-Overfull \hbox (46.95712pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 APÉN-DI-CE D.  APÉN-DI-CE D: IN-VES-TI-GA-CIÓN RE-PRO-DU-C
-I-BLE CON GIT, GITHUB Y RS-TU-DIO \TU/lmr/m/n/10.95 382
- []
-
-[382]
-Underfull \hbox (badness 10000) in paragraph at lines 25035--25039
-[]\TU/lmr/m/n/10.95 Cual-quier per-so-na pue-de clo-nar el re-po-si-to-rio (\TU
-/lmtt/m/n/10.95 git clone …\TU/lmr/m/n/10.95 ) y re-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 25035--25039
-\TU/lmr/m/n/10.95 pro-du-cir el aná-li-sis eje-cu-tan-do \TU/lmtt/m/n/10.95 qua
-rto render analisis.qmd \TU/lmr/m/n/10.95 tras
- []
-
-LaTeX Info: Redefining \. on input line 25102.
-LaTeX Info: Redefining \% on input line 25102.
-
-Overfull \hbox (46.95712pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 APÉN-DI-CE D.  APÉN-DI-CE D: IN-VES-TI-GA-CIÓN RE-PRO-DU-C
-I-BLE CON GIT, GITHUB Y RS-TU-DIO \TU/lmr/m/n/10.95 383
- []
-
-[383]
-LaTeX Info: Redefining \. on input line 25133.
-LaTeX Info: Redefining \% on input line 25133.
-
-Overfull \hbox (46.95712pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10.95 APÉN-DI-CE D.  APÉN-DI-CE D: IN-VES-TI-GA-CIÓN RE-PRO-DU-C
-I-BLE CON GIT, GITHUB Y RS-TU-DIO \TU/lmr/m/n/10.95 384
- []
-
-[384]
-Apéndice E.
-[385
-
-]
-LaTeX Info: Redefining \. on input line 25250.
-LaTeX Info: Redefining \% on input line 25250.
-[386
-Missing character: There is no ≈ (U+2248) in font [lmroman10-bold]:+tlig;!
-Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
-]
-LaTeX Info: Redefining \. on input line 25301.
-LaTeX Info: Redefining \% on input line 25301.
-[387
-Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:+tlig;!
-Missing character: There is no ≥ (U+2265) in font [lmroman10-bold]:+tlig;!
-]
-LaTeX Info: Redefining \. on input line 25354.
-LaTeX Info: Redefining \% on input line 25354.
-[388]
-LaTeX Info: Redefining \. on input line 25419.
-LaTeX Info: Redefining \% on input line 25419.
-[389
-Missing character: There is no ≥ (U+2265) in font [lmroman10-regular]:+tlig;!
-Missing character: There is no α (U+03B1) in font [lmroman10-regular]:+tlig;!
-]
-LaTeX Info: Redefining \. on input line 25487.
-LaTeX Info: Redefining \% on input line 25487.
-[390
-Missing character: There is no α (U+03B1) in font [lmroman10-regular]:+tlig;!
-]
-LaTeX Info: Redefining \. on input line 25554.
-LaTeX Info: Redefining \% on input line 25554.
-[391]
-LaTeX Info: Redefining \. on input line 25614.
-LaTeX Info: Redefining \% on input line 25614.
-[392
-Missing character: There is no χ (U+03C7) in font [lmroman10-bold]:+tlig;!
-Missing character: There is no ✓ (U+2713) in font [lmroman10-regular]:+tlig;!
-Missing character: There is no ≥ (U+2265) in font [lmroman10-regular]:+tlig;!
-]
-LaTeX Info: Redefining \. on input line 25655.
-LaTeX Info: Redefining \% on input line 25655.
-[393]
-
-Package natbib Warning: There were undefined citations.
-
-(./index.aux
-LaTeX Info: Redefining \. on input line 13.
-LaTeX Info: Redefining \% on input line 13.
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
-)
- ***********
-LaTeX2e <2023-11-01> patch level 1
-L3 programming layer <2024-01-22>
- ***********
-
-LaTeX Warning: There were multiply-defined labels.
-
-)
-
-Here is how much of LuaTeX's memory you used:
- 46013 strings out of 476553
- 195460,2373549 words of node,token memory allocated
- 4956 words of node memory still in use:
-   15 hlist, 2 vlist, 3 rule, 1 local_par, 8 glue, 5 kern, 1 penalty, 3 glyph, 1
-566 attribute, 66 glue_spec, 524 attribute_list, 3 write, 12 pdf_action, 2 pdf_c
-olorstack nodes
-   avail lists: 1:9,2:16390,3:1745,4:2180,5:1165,6:174,7:14109,8:94,9:1517,10:36
-,11:1077
- 65195 multiletter control sequences out of 65536+600000
- 114 fonts using 34579239 bytes
- 90i,13n,120p,1146b,1089s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmmonoslant10-regul
-ar.otf></usr/local/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman8-bol
-d.otf></usr/local/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman5-regu
-lar.otf></usr/local/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman8-re
-gular.otf></usr/local/texlive/2023/texmf-dist/fonts/opentype/public/fontawesome5
-/FontAwesome5Free-Solid-900.otf></usr/local/texlive/2023/texmf-dist/fonts/openty
-pe/public/lm/lmroman10-italic.otf></usr/local/texlive/2023/texmf-dist/fonts/open
-type/public/lm/lmmonolt10-bold.otf></usr/local/texlive/2023/texmf-dist/fonts/ope
-ntype/public/lm/lmmono10-regular.otf></usr/local/texlive/2023/texmf-dist/fonts/o
-pentype/public/lm-math/latinmodern-math.otf></usr/local/texlive/2023/texmf-dist/
-fonts/opentype/public/lm-math/latinmodern-math.otf></usr/local/texlive/2023/texm
-f-dist/fonts/opentype/public/lm-math/latinmodern-math.otf></usr/local/texlive/20
-23/texmf-dist/fonts/opentype/public/lm/lmromanslant10-regular.otf></usr/local/te
-xlive/2023/texmf-dist/fonts/opentype/public/lm/lmromancaps10-regular.otf></usr/l
-ocal/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf></us
-r/local/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf></us
-r/local/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman12-bold.otf></us
-r/local/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman12-regular.otf><
-/usr/local/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman17-regular.ot
-f>
-Output written on index.pdf (408 pages, 2054159 bytes).
-
-PDF statistics: 6246 PDF objects out of 7423 (max. 8388607)
- 5573 compressed objects within 56 object streams
- 1794 named destinations out of 2073 (max. 131072)
- 4768 words of extra memory for PDF output out of 10000 (max. 100000000)
-
+LaTeX Info: Redefining \. on input line 186

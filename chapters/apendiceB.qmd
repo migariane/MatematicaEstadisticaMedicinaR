@@ -1,10 +1,10 @@
-# Apéndice B: El Paquete `BioStatR` — Guía de Referencia {#sec-apendiceB}
+# Apéndice B: El Paquete `BioEstatR` — Guía de Referencia {#sec-apendiceB}
 
-El paquete **`BioStatR`** (versión 1.0.0, 2026) ha sido desarrollado en la Unidad Docente de Bioestadística del Departamento de Estadística e Investigación Operativa de la Universidad de Granada por **Pedro Femia Marzo** y **Miguel Ángel Luque Fernández**. Proporciona un conjunto de funciones de alto nivel que integran descripción, inferencia, modelización (lineal y logística) y visualización en una sola llamada, diseñadas específicamente para la docencia de bioestadística en ciencias de la salud.
+El paquete **`BioEstatR`** (versión 1.0.0, 2026) ha sido desarrollado en la Unidad Docente de Bioestadística del Departamento de Estadística e Investigación Operativa de la Universidad de Granada por **Pedro Femia Marzo** y **Miguel Ángel Luque Fernández**. Proporciona un conjunto de funciones de alto nivel que integran descripción, inferencia, modelización (lineal y logística) y visualización en una sola llamada, diseñadas específicamente para la docencia de bioestadística en ciencias de la salud.
 
-- **Sitio web del paquete:** <https://migariane.github.io/BioStatR/>
-- **Repositorio GitHub:** <https://github.com/migariane/BioStatR>
-- **Viñeta introductoria:** <https://migariane.github.io/BioStatR/articles/BioStatR-overview.html>
+- **Sitio web del paquete:** <https://migariane.github.io/BioEstatR/>
+- **Repositorio GitHub:** <https://github.com/migariane/BioEstatR>
+- **Viñeta introductoria:** <https://migariane.github.io/BioEstatR/articles/BioEstatR-overview.html>
 - **Contacto:** `pfemia@ugr.es`
 
 ---
@@ -16,16 +16,16 @@ El paquete **`BioStatR`** (versión 1.0.0, 2026) ha sido desarrollado en la Unid
 
 ```{r}
 #| lst-label: lst-apendiceB-install
-#| lst-cap: "Instalación de BioStatR desde GitHub"
+#| lst-cap: "Instalación de BioEstatR desde GitHub"
 #| eval: false
 # 1. Instalar el paquete remotes si no lo tienes
 install.packages("remotes")
 
-# 2. Instalar BioStatR directamente desde GitHub (compila para tu sistema)
-remotes::install_github("migariane/BioStatR")
+# 2. Instalar BioEstatR directamente desde GitHub (compila para tu sistema)
+remotes::install_github("migariane/BioEstatR")
 
 # 3. Cargar el paquete y el conjunto de datos osteo
-library(BioStatR)
+library(BioEstatR)
 data(osteo)
 ```
 
@@ -33,7 +33,7 @@ Para obtener la referencia bibliográfica del paquete:
 
 ```{r}
 #| eval: false
-citation("BioStatR")
+citation("BioEstatR")
 ```
 :::
 
@@ -47,7 +47,7 @@ El paquete incluye el dataset `osteo`, con datos reales de **94 pacientes diabé
 #| lst-cap: "Estructura del dataset osteo"
 #| warning: false
 #| message: false
-library(BioStatR)
+library(BioEstatR)
 data(osteo)
 str(osteo)
 ```
@@ -652,12 +652,12 @@ tablarxc(frecs = tab,
 ::: {.callout-note}
 ## Recursos del paquete
 
-- **Sitio web:** <https://migariane.github.io/BioStatR/>
-- **Repositorio GitHub:** <https://github.com/migariane/BioStatR>
-- **Viñeta introductoria:** <https://migariane.github.io/BioStatR/articles/BioStatR-overview.html>
+- **Sitio web:** <https://migariane.github.io/BioEstatR/>
+- **Repositorio GitHub:** <https://github.com/migariane/BioEstatR>
+- **Viñeta introductoria:** <https://migariane.github.io/BioEstatR/articles/BioEstatR-overview.html>
 - **Contacto:** `pfemia@ugr.es` (Pedro Femia Marzo)
-- **Instalación:** `remotes::install_github("migariane/BioStatR")`
-- **Cita:** `citation("BioStatR")`
+- **Instalación:** `remotes::install_github("migariane/BioEstatR")`
+- **Cita:** `citation("BioEstatR")`
 - **Dataset `osteo`:** 94 pacientes diabéticos, 27 variables, Unidad de Diabetes, Facultad de Medicina, UGR.
 :::
 
@@ -668,8 +668,8 @@ El paquete soporta también salida en inglés mediante:
 
 ```{r}
 #| eval: false
-options(BioStatR.lang = "en")
+options(BioEstatR.lang = "en")
 rlm(hba1c ~ tevol + edad + imc, data = osteo, grf = FALSE)
-options(BioStatR.lang = "es")  # vuelve al castellano (valor por defecto)
+options(BioEstatR.lang = "es")  # vuelve al castellano (valor por defecto)
 ```
 :::

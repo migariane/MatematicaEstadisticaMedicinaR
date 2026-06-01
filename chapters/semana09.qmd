@@ -102,15 +102,15 @@ El modelo sería: $\text{PAS}_i = \beta_0 + \beta_1 \times \text{Edad}_i + U_i$
 Si estimamos $\beta_1 = 0.80$ mmHg/año, significa que por cada año adicional de edad, la PAS aumenta en promedio 0.80 mmHg. Si $\beta_0 = 85.2$ mmHg, es el nivel basal estimado (extrapolación para edad = 0, sin interpretación directa).
 
 ::: {.callout-tip}
-## Ejemplo con BioStatR: rls()
+## Ejemplo con BioEstatR: rls()
 
 Documentación completa en @sec-bio-rls.
 
 ```{r}
 #| label: lst-s10-bio01
-#| lst-cap: "BioStatR — Regresión lineal simple: HbA1c ~ Tiempo de evolución de la diabetes"
+#| lst-cap: "BioEstatR — Regresión lineal simple: HbA1c ~ Tiempo de evolución de la diabetes"
 #| eval: false
-library(BioStatR)
+library(BioEstatR)
 
 # ¿Los años de evolución de la diabetes predicen la HbA1c?
 # Dataset: 94 pacientes diabéticos, Fac. Medicina UGR

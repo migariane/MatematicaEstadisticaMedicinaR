@@ -4,7 +4,7 @@ Este libro contiene el material docente del curso **Matemáticas para la Estadí
 
 ## Objetivos del Curso {.unnumbered}
 
-El objetivo principal de este curso y material docente es proporcionar al estudiante de ciencias de la salud los fundamentos matemáticos y estadísticos necesarios para el análisis cuantitativo de datos médicos con un alto grado de rigor académico y con ejemplos contextualizados en la práctica clínica. El libro se sustenta de la filosofía de ciencia reproducible, abierta y computacionalmente aplicada usando el software libre R. Al final del libro se presentan cuatro apéndices reforzando a los alumnos que quieran repasar sobre: i) los contenidos matemáticos básicos necesarios para el buen aprovechamiento del curso, ii) una introducción básica a la programación con R, iii) una introducción al paquete **BioStatR** producido para la docencia específica de este curso cuyo interés radica en la rica interpretación de los resultados de las funciones del paquete y iv) una introducción a la **investigación reproducible** mediante el control de versiones con Git, GitHub y RStudio. El curso no se limita al uso del paquete `BioStatR`, ya que se complementa con el uso de las funciones clásicas de R base para todos los ejemplos presentados. Además, se invita al estudiante a explorar y utilizar JAMOVI, una plataforma de estadística gratuita y de código abierto diseñada para ser fácil de usar. Al finalizar el curso, el estudiante será capaz de:
+El objetivo principal de este curso y material docente es proporcionar al estudiante de ciencias de la salud los fundamentos matemáticos y estadísticos necesarios para el análisis cuantitativo de datos médicos con un alto grado de rigor académico y con ejemplos contextualizados en la práctica clínica. El libro se sustenta de la filosofía de ciencia reproducible, abierta y computacionalmente aplicada usando el software libre R. Al final del libro se presentan cuatro apéndices reforzando a los alumnos que quieran repasar sobre: i) los contenidos matemáticos básicos necesarios para el buen aprovechamiento del curso, ii) una introducción básica a la programación con R, iii) una introducción al paquete **BioEstatR** producido para la docencia específica de este curso cuyo interés radica en la rica interpretación de los resultados de las funciones del paquete y iv) una introducción a la **investigación reproducible** mediante el control de versiones con Git, GitHub y RStudio. El curso no se limita al uso del paquete `BioEstatR`, ya que se complementa con el uso de las funciones clásicas de R base para todos los ejemplos presentados. Además, se invita al estudiante a explorar y utilizar JAMOVI, una plataforma de estadística gratuita y de código abierto diseñada para ser fácil de usar. Al finalizar el curso, el estudiante será capaz de:
 
 1.  **Describir y visualizar** conjuntos de datos mediante técnicas de Análisis Exploratorio de Datos.
 2.  **Comprender los fundamentos** de la teoría de la probabilidad como base del razonamiento estadístico.
@@ -47,10 +47,10 @@ install.packages(c("ggplot2", "dplyr", "tidyr", "knitr", "kableExtra", "MASS"))
 
 Además, para facilitar el aprendizaje y la aplicación práctica, contamos con:
 
-*   **BioStatR:** Paquete de R desarrollado en la Unidad de Bioestadística de la Facultad de Medicina de la Universidad de Granada por **Pedro Femia Marzo** y **Miguel Ángel Luque Fernández**. Proporciona funciones de alto nivel que integran descripción, inferencia, modelización (lineal y logística) y visualización en una sola llamada, diseñadas específicamente para la docencia de bioestadística en ciencias de la salud. El paquete incluye también el conjunto de datos `osteo` (94 pacientes diabéticos, 27 variables), utilizado como hilo conductor de los ejemplos del libro.
+*   **BioEstatR:** Paquete de R desarrollado en la Unidad de Bioestadística de la Facultad de Medicina de la Universidad de Granada por **Pedro Femia Marzo** y **Miguel Ángel Luque Fernández**. Proporciona funciones de alto nivel que integran descripción, inferencia, modelización (lineal y logística) y visualización en una sola llamada, diseñadas específicamente para la docencia de bioestadística en ciencias de la salud. El paquete incluye también el conjunto de datos `osteo` (94 pacientes diabéticos, 27 variables), utilizado como hilo conductor de los ejemplos del libro.
 
-    - **Sitio web del paquete:** <https://migariane.github.io/BioStatR/>
-    - **Repositorio GitHub:** <https://github.com/migariane/BioStatR>
+    - **Sitio web del paquete:** <https://migariane.github.io/BioEstatR/>
+    - **Repositorio GitHub:** <https://github.com/migariane/BioEstatR>
     - **Documentación del Apéndice B** del libro: guía de referencia completa de las 22 funciones del paquete.
 
 Para instalarlo basta con ejecutar (requiere el paquete `remotes`):
@@ -60,11 +60,11 @@ Para instalarlo basta con ejecutar (requiere el paquete `remotes`):
 # Instala el paquete remotes si no lo tienes
 install.packages("remotes")
 
-# Instala BioStatR directamente desde GitHub (compila para tu sistema)
-remotes::install_github("migariane/BioStatR")
+# Instala BioEstatR directamente desde GitHub (compila para tu sistema)
+remotes::install_github("migariane/BioEstatR")
 
 # Cargar el paquete y el conjunto de datos osteo
-library(BioStatR)
+library(BioEstatR)
 data(osteo)
 ```
 
@@ -72,7 +72,7 @@ Para obtener la referencia bibliográfica del paquete:
 
 ```{r}
 #| eval: false
-citation("BioStatR")
+citation("BioEstatR")
 ```
 
 *   **[jamovi](https://www.jamovi.org):** Una plataforma de estadística gratuita y de código abierto diseñada para ser fácil de usar. [jamovi](https://www.jamovi.org) proporciona una interfaz intuitiva basada en el motor estadístico de R, ideal para quienes desean realizar análisis complejos sin necesidad de escribir código directamente, facilitando la reproducibilidad de los resultados.

@@ -375,7 +375,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/apendiceB.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Apéndice B: El Paquete <code>BioStatR</code> — Guía de Referencia</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Apéndice B: El Paquete <code>BioEstatR</code> — Guía de Referencia</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -450,7 +450,7 @@ window.Quarto = {
   <li><a href="#selección-de-variables-por-aic-stepwise" id="toc-selección-de-variables-por-aic-stepwise" class="nav-link" data-scroll-target="#selección-de-variables-por-aic-stepwise"><span class="header-section-number">10.17.4</span> Selección de variables por AIC (stepwise)</a></li>
   <li><a href="#predicción-para-perfiles-clínicos-específicos" id="toc-predicción-para-perfiles-clínicos-específicos" class="nav-link" data-scroll-target="#predicción-para-perfiles-clínicos-específicos"><span class="header-section-number">10.17.5</span> Predicción para perfiles clínicos específicos</a></li>
   <li><a href="#ejemplo-con-variables-indicadoras-tratamientos-antihipertensivos" id="toc-ejemplo-con-variables-indicadoras-tratamientos-antihipertensivos" class="nav-link" data-scroll-target="#ejemplo-con-variables-indicadoras-tratamientos-antihipertensivos"><span class="header-section-number">10.17.6</span> Ejemplo con variables indicadoras: Tratamientos antihipertensivos</a></li>
-  <li><a href="#ejemplo-con-biostatr-regresión-lineal-múltiple" id="toc-ejemplo-con-biostatr-regresión-lineal-múltiple" class="nav-link" data-scroll-target="#ejemplo-con-biostatr-regresión-lineal-múltiple"><span class="header-section-number">10.17.7</span> Ejemplo con <code>BioStatR</code>: regresión lineal múltiple</a></li>
+  <li><a href="#ejemplo-con-bioestatr-regresión-lineal-múltiple" id="toc-ejemplo-con-bioestatr-regresión-lineal-múltiple" class="nav-link" data-scroll-target="#ejemplo-con-bioestatr-regresión-lineal-múltiple"><span class="header-section-number">10.17.7</span> Ejemplo con <code>BioEstatR</code>: regresión lineal múltiple</a></li>
   </ul></li>
   <li><a href="#sec-semana10-resumen" id="toc-sec-semana10-resumen" class="nav-link" data-scroll-target="#sec-semana10-resumen"><span class="header-section-number">10.18</span> Resumen</a></li>
   <li><a href="#sec-semana10-ejercicios" id="toc-sec-semana10-ejercicios" class="nav-link" data-scroll-target="#sec-semana10-ejercicios"><span class="header-section-number">10.19</span> Ejercicios</a></li>
@@ -1553,9 +1553,9 @@ Tip
 </div>
 </div>
 </section>
-<section id="ejemplo-con-biostatr-regresión-lineal-múltiple" class="level3" data-number="10.17.7">
-<h3 data-number="10.17.7" class="anchored" data-anchor-id="ejemplo-con-biostatr-regresión-lineal-múltiple"><span class="header-section-number">10.17.7</span> Ejemplo con <code>BioStatR</code>: regresión lineal múltiple</h3>
-<p>La función <code>rlm()</code> del paquete <code>BioStatR</code> (ver <a href="apendiceB.html" class="quarto-xref"><span>Apéndice B</span></a>) extiende <code>rls()</code> al caso multivariante. Integra en una sola llamada la estimación de los coeficientes con intervalos de confianza, el coeficiente de determinación <span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2\)</span> ajustado, el test de normalidad de los residuos (Shapiro–Wilk) y los gráficos de diagnóstico (residuos <em>vs.</em> ajustados, Q–Q plot e histograma de residuos estandarizados).</p>
+<section id="ejemplo-con-bioestatr-regresión-lineal-múltiple" class="level3" data-number="10.17.7">
+<h3 data-number="10.17.7" class="anchored" data-anchor-id="ejemplo-con-bioestatr-regresión-lineal-múltiple"><span class="header-section-number">10.17.7</span> Ejemplo con <code>BioEstatR</code>: regresión lineal múltiple</h3>
+<p>La función <code>rlm()</code> del paquete <code>BioEstatR</code> (ver <a href="apendiceB.html" class="quarto-xref"><span>Apéndice B</span></a>) extiende <code>rls()</code> al caso multivariante. Integra en una sola llamada la estimación de los coeficientes con intervalos de confianza, el coeficiente de determinación <span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2\)</span> ajustado, el test de normalidad de los residuos (Shapiro–Wilk) y los gráficos de diagnóstico (residuos <em>vs.</em> ajustados, Q–Q plot e histograma de residuos estandarizados).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1570,7 +1570,7 @@ Tip
 <div class="cell">
 <details class="code-fold">
 <summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43" data-lst-cap="BioStatR — rlm(): regresión lineal múltiple sobre el dataset osteo"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioStatR)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43" data-lst-cap="BioEstatR — rlm(): regresión lineal múltiple sobre el dataset osteo"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(osteo)</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rlm</span>(hba1c <span class="sc">~</span> tevol <span class="sc">+</span> edad <span class="sc">+</span> imc, <span class="at">data =</span> osteo, <span class="at">grf =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1634,7 +1634,7 @@ max    4.938   2.923
 <div class="cell">
 <details class="code-fold">
 <summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45" data-lst-cap="BioStatR — rlm() con gráficos de diagnóstico"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rlm</span>(hba1c <span class="sc">~</span> tevol <span class="sc">+</span> edad <span class="sc">+</span> imc, <span class="at">data =</span> osteo, <span class="at">grf =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45" data-lst-cap="BioEstatR — rlm() con gráficos de diagnóstico"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rlm</span>(hba1c <span class="sc">~</span> tevol <span class="sc">+</span> edad <span class="sc">+</span> imc, <span class="at">data =</span> osteo, <span class="at">grf =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>

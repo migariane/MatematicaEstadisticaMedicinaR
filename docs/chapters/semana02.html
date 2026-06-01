@@ -375,7 +375,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/apendiceB.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Apéndice B: El Paquete <code>BioStatR</code> — Guía de Referencia</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Apéndice B: El Paquete <code>BioEstatR</code> — Guía de Referencia</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -645,7 +645,7 @@ Cuadro&nbsp;2.1: Distribuciones con igual media pero distinta varianza
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Ejemplo 2.1: BioStatR grps()
+<span class="screen-reader-only">Tip</span>Ejemplo 2.1: BioEstatR grps()
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -659,7 +659,7 @@ Cuadro&nbsp;2.2: Código R
 <div aria-describedby="lst-semana02-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details class="code-fold">
 <summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioStatR)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># IMC según sexo — pacientes diabéticos UGR (n = 94)</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">grps</span>(osteo<span class="sc">$</span>imc, osteo<span class="sc">$</span>sexo, <span class="at">grf =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -684,7 +684,7 @@ Cuadro&nbsp;2.2: Código R
 </section>
 <section id="sec-semana02-s1-base-r" class="level3" data-number="2.1.5">
 <h3 data-number="2.1.5" class="anchored" data-anchor-id="sec-semana02-s1-base-r"><span class="header-section-number">2.1.5</span> Cálculo de Estadísticos con R Base</h3>
-<p>Aunque paquetes como <code>BioStatR</code> son potentes, es fundamental saber usar las funciones básicas de R para un análisis rápido.</p>
+<p>Aunque paquetes como <code>BioEstatR</code> son potentes, es fundamental saber usar las funciones básicas de R para un análisis rápido.</p>
 <div class="cell">
 <div id="lst-semana02-2" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-summary="Cálculos con Base R">
 <figure class="quarto-float quarto-float-lst figure">
@@ -1643,7 +1643,7 @@ Cuadro&nbsp;2.24: Covarianza y correlación entre peso e IMC en osteo
 <div aria-describedby="lst-semana02-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details class="code-fold">
 <summary>Covarianza y correlación con R base</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioStatR)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(osteo)</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminar valores perdidos en peso e IMC</span></span>
