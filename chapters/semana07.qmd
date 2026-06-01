@@ -354,7 +354,7 @@ t.test(datos, mu = 1000, alternative = "less")
 :::
 
 ::: {.callout-tip}
-## Ejemplo con BioStatR: testt() y testp()
+## Ejemplo con BioEstatR: testt() y testp()
 
 Documentación completa de ambas funciones en @sec-bio-contrastes.
 
@@ -364,7 +364,7 @@ Documentación completa de ambas funciones en @sec-bio-contrastes.
 #| warning: false
 #| message: false
 
-library(BioStatR)
+library(BioEstatR)
 
 # H₀: µ_HbA1c = 7.5%  (umbral clínico de control glucémico)
 # Dataset osteo: 94 pacientes diabéticos, Fac. Medicina UGR

@@ -57,7 +57,7 @@ Para la Semana 12 (tablas de contingencia, Chi-cuadrado, McNemar, medidas de aso
 - @Altman1991 — Estadística médica aplicada: medidas de asociación (RR, OR, RD), tablas 2×2 y pruebas para datos apareados.
 - @Rothman2008 — Epidemiología moderna: diseños de cohorte, caso-control y transversal; estimación e interpretación de RR y OR.
 - @Szklo2007 — Presentación accesible de epidemiología analítica con énfasis en medidas de efecto.
-- @BioestadisticaR2 — Paquete R del grupo de Bioestadística de la UGR (Pedro Femia et al.): funciones `tabla2x2()`, `tablarxc()` y `testnormal()` con el dataset `osteo`.
+- @BioEstatR — Paquete R del grupo de Bioestadística de la UGR (Pedro Femia et al.): funciones `tabla2x2()`, `tablarxc()` y `testnormal()` con el dataset `osteo`.
 - @OpenIntro2019 — Introducción accesible a la inferencia sobre proporciones y tablas de contingencia.
 
 ## Recursos en R

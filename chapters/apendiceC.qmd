@@ -1,6 +1,6 @@
 # Apéndice C: Guía de R para Estadística Médica {#sec-apendiceC}
 
-Esta guía cubre los fundamentos de R orientados a la práctica de la bioestadística y la investigación médica: importación de datos clínicos, manejo de variables categóricas (exposición, enfermedad, grupo), descripción de cohortes, contraste de hipótesis y visualización. Complementa al @sec-apendiceB (paquete `BioStatR`) y al @sec-apendiceA (repaso matemático).
+Esta guía cubre los fundamentos de R orientados a la práctica de la bioestadística y la investigación médica: importación de datos clínicos, manejo de variables categóricas (exposición, enfermedad, grupo), descripción de cohortes, contraste de hipótesis y visualización. Complementa al @sec-apendiceB (paquete `BioEstatR`) y al @sec-apendiceA (repaso matemático).
 
 ::: {.callout-tip}
 ## Cómo usar este apéndice

@@ -2,11 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(grep -v \":0$\")",
-      "Bash(Rscript -e 'suppressPackageStartupMessages\\(library\\(BioStatR\\)\\); data\\(osteo\\); cat\\(\"Package version:\", as.character\\(packageVersion\\(\"BioStatR\"\\)\\), \"\\\\n\"\\); cat\\(\"osteo dim:\", dim\\(osteo\\), \"\\\\n\"\\); cat\\(\"osteo columns:\\\\n\"\\); print\\(colnames\\(osteo\\)\\); cat\\(\"\\\\nFirst 3 rows:\\\\n\"\\); print\\(head\\(osteo, 3\\)\\)')",
-      "Bash(Rscript -e 'suppressPackageStartupMessages\\(library\\(BioStatR\\)\\); data\\(osteo\\); cat\\(\"--- rlm smoke test ---\\\\n\"\\); rlm\\(hba1c ~ tevol + edad + imc, data = osteo, grf = FALSE\\); cat\\(\"\\\\n--- rlogitm smoke test ---\\\\n\"\\); rlogitm\\(osteo_cue ~ tabaco + edad + imc + tevol, data = osteo, grf = FALSE\\)')",
+      "Bash(Rscript -e 'suppressPackageStartupMessages\\(library\\(BioEstatR\\)\\); data\\(osteo\\); cat\\(\"Package version:\", as.character\\(packageVersion\\(\"BioEstatR\"\\)\\), \"\\\\n\"\\); cat\\(\"osteo dim:\", dim\\(osteo\\), \"\\\\n\"\\); cat\\(\"osteo columns:\\\\n\"\\); print\\(colnames\\(osteo\\)\\); cat\\(\"\\\\nFirst 3 rows:\\\\n\"\\); print\\(head\\(osteo, 3\\)\\)')",
+      "Bash(Rscript -e 'suppressPackageStartupMessages\\(library\\(BioEstatR\\)\\); data\\(osteo\\); cat\\(\"--- rlm smoke test ---\\\\n\"\\); rlm\\(hba1c ~ tevol + edad + imc, data = osteo, grf = FALSE\\); cat\\(\"\\\\n--- rlogitm smoke test ---\\\\n\"\\); rlogitm\\(osteo_cue ~ tabaco + edad + imc + tevol, data = osteo, grf = FALSE\\)')",
       "Bash(quarto --version)",
       "Bash(quarto render *)",
-      "Bash(Rscript -e 'suppressPackageStartupMessages\\(library\\(BioStatR\\)\\); cat\\(\"--- Is grpsggp exported? ---\\\\n\"\\); cat\\(\"grpsggp\" %in% getNamespaceExports\\(\"BioStatR\"\\), \"\\\\n\"\\); cat\\(\"\\\\n--- icl example ---\\\\n\"\\); icl\\(x = 12, n = 1000\\); cat\\(\"\\\\n--- nl example ---\\\\n\"\\); nl\\(x = 3, d = 1\\)')"
+      "Bash(Rscript -e 'suppressPackageStartupMessages\\(library\\(BioEstatR\\)\\); cat\\(\"--- Is grpsggp exported? ---\\\\n\"\\); cat\\(\"grpsggp\" %in% getNamespaceExports\\(\"BioEstatR\"\\), \"\\\\n\"\\); cat\\(\"\\\\n--- icl example ---\\\\n\"\\); icl\\(x = 12, n = 1000\\); cat\\(\"\\\\n--- nl example ---\\\\n\"\\); nl\\(x = 3, d = 1\\)')"
     ]
   }
 }

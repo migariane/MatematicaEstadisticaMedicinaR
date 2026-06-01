@@ -375,7 +375,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/apendiceB.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Apéndice B: El Paquete <code>BioStatR</code> — Guía de Referencia</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Apéndice B: El Paquete <code>BioEstatR</code> — Guía de Referencia</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1946,7 +1946,7 @@ Cuadro&nbsp;6.42: Código R
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Ejemplo con BioStatR: icm() e icp()
+<span class="screen-reader-only">Tip</span>Ejemplo con BioEstatR: icm() e icp()
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1960,7 +1960,7 @@ Cuadro&nbsp;6.43: Código R
 <div aria-describedby="lst-semana07-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details class="code-fold">
 <summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioStatR)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="co"># IC para la media de HbA1c — 94 pacientes diabéticos, Fac. Medicina UGR</span></span>
 <span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a><span class="fu">icm</span>(<span class="at">m =</span> <span class="fu">mean</span>(osteo<span class="sc">$</span>hba1c), <span class="at">s =</span> <span class="fu">sd</span>(osteo<span class="sc">$</span>hba1c), <span class="at">n =</span> <span class="fu">nrow</span>(osteo))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2034,7 +2034,7 @@ Información muestral:
 </section>
 <section id="sec-semana06-tamano" class="level2" data-number="6.12">
 <h2 data-number="6.12" class="anchored" data-anchor-id="sec-semana06-tamano"><span class="header-section-number">6.12</span> Cálculo del Tamaño Muestral: <code>nm()</code> y <code>np()</code></h2>
-<p>Antes de iniciar un estudio clínico es esencial determinar el <strong>tamaño muestral</strong> necesario para alcanzar una precisión deseada en los intervalos de confianza. Las funciones <code>nm()</code> y <code>np()</code> del paquete <code>BioStatR</code> (ver <a href="apendiceB.html#sec-bio-n" class="quarto-xref"><span>Sección B.4</span></a>) calculan el tamaño muestral requerido para una <strong>media</strong> o una <strong>proporción</strong>, respectivamente, dada una semiamplitud objetivo <span class="math inline">\(d\)</span> del IC.</p>
+<p>Antes de iniciar un estudio clínico es esencial determinar el <strong>tamaño muestral</strong> necesario para alcanzar una precisión deseada en los intervalos de confianza. Las funciones <code>nm()</code> y <code>np()</code> del paquete <code>BioEstatR</code> (ver <a href="apendiceB.html#sec-bio-n" class="quarto-xref"><span>Sección B.4</span></a>) calculan el tamaño muestral requerido para una <strong>media</strong> o una <strong>proporción</strong>, respectivamente, dada una semiamplitud objetivo <span class="math inline">\(d\)</span> del IC.</p>
 <section id="fórmulas-del-tamaño-muestral" class="level3" data-number="6.12.1">
 <h3 data-number="6.12.1" class="anchored" data-anchor-id="fórmulas-del-tamaño-muestral"><span class="header-section-number">6.12.1</span> Fórmulas del Tamaño Muestral</h3>
 <p><strong>Para la media</strong> (con estimación piloto <span class="math inline">\(s\)</span> de la desviación típica): <span class="math display">\[n = \left(\frac{z_{1-\alpha/2}\, s}{d}\right)^2\]</span></p>
@@ -2064,7 +2064,7 @@ Cuadro&nbsp;6.45: Código R
 <div aria-describedby="lst-semana07-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details class="code-fold">
 <summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioStatR)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="co"># nm(): tamaño muestral para la media de HbA1c</span></span>
 <span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a><span class="co"># d = 0.3% (semiamplitud deseada), datos piloto del estudio osteo</span></span>

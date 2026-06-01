@@ -290,7 +290,7 @@ print(result)
 :::
 
 ::: {.callout-tip}
-## Ejemplo 1.4: BioStatR: freq()
+## Ejemplo 1.4: BioEstatR: freq()
 
 La función `freq()` genera automáticamente la tabla de frecuencias con proporciones y acumuladas (documentación completa en @sec-bio-descriptivo):
 
@@ -298,7 +298,7 @@ La función `freq()` genera automáticamente la tabla de frecuencias con proporc
 #| lst-label: lst-semana01-2
 #| lst-cap: "Código R"
 
-library(BioStatR)
+library(BioEstatR)
 
 # Tabla de frecuencias de la edad — pacientes diabéticos, UGR
 freq(osteo$edad, grf = FALSE)

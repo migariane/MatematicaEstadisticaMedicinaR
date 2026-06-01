@@ -81,12 +81,12 @@ Analizamos la asociación entre tabaquismo (`tabaco`) y osteoporosis de cúbito 
 
 ```{r}
 #| label: lst-s12-bio01
-#| lst-cap: "BioStatR — tabla2x2(): tabaquismo y osteoporosis"
+#| lst-cap: "BioEstatR — tabla2x2(): tabaquismo y osteoporosis"
 #| warning: false
 #| message: false
 #| echo: false
 
-library(BioStatR)
+library(BioEstatR)
 
 # Frecuencias extraídas de osteo: tabaco vs osteo_cue
 # No fumadores (n=53): 44 sin osteoporosis, 9 con osteoporosis
@@ -134,12 +134,12 @@ Ensayo clínico con 3 grupos de tratamiento (Control, Dosis baja, Dosis alta) y 
 
 ```{r}
 #| label: lst-s12-bio02
-#| lst-cap: "BioStatR — tablarxc(): homogeneidad entre 3 grupos de tratamiento"
+#| lst-cap: "BioEstatR — tablarxc(): homogeneidad entre 3 grupos de tratamiento"
 #| warning: false
 #| message: false
 #| echo: false
 
-library(BioStatR)
+library(BioEstatR)
 
 # Construir tabla de datos
 # Control: 20 curados, 30 no curados
@@ -411,19 +411,19 @@ Como $11.11 > 3.84$ ($p < 0.001$), rechazamos $H_0$. La intervención mejora sig
 Si se hubiera aplicado incorrectamente un $\chi^2$ de independencia (ignorando el apareamiento), la prueba sería errónea porque las observaciones no son independientes.
 :::
 
-### Implementación: BioStatR vs. Base R
+### Implementación: BioEstatR vs. Base R
 
 ::: {.callout-tip}
-## BioStatR — testmcnemar(): Datos apareados
+## BioEstatR — testmcnemar(): Datos apareados
 
-Para datos apareados (donde las observaciones son dependientes), utilizamos la función `testmcnemar()` del paquete `BioStatR`.
+Para datos apareados (donde las observaciones son dependientes), utilizamos la función `testmcnemar()` del paquete `BioEstatR`.
 
 ```{r}
 #| label: lst-s12-bio03
-#| lst-cap: "BioStatR: Test de McNemar para datos apareados"
+#| lst-cap: "BioEstatR: Test de McNemar para datos apareados"
 #| eval: true
 
-library(BioStatR)
+library(BioEstatR)
 
 # Tabla 2×2 apareada: testmcnemar()
 testmcnemar(n11 = 42, n12 = 8, n21 = 28, n22 = 22,
@@ -550,7 +550,7 @@ $$IC_{95\%}(OR) = \exp\!\left[\ln\widehat{OR} \pm 1.96\sqrt{\frac{1}{a} + \frac{
 - $OR = 1$: sin asociación
 - $OR > 1$: exposición asociada con mayor odds de resultado
 - $OR \approx RR$ cuando la enfermedad es **rara** (prevalencia < 10%)
-- `tabla2x2()` de BioStatR calcula OR e IC directamente
+- `tabla2x2()` de BioEstatR calcula OR e IC directamente
 :::
 
 ::: {.callout-tip}
@@ -558,11 +558,11 @@ $$IC_{95\%}(OR) = \exp\!\left[\ln\widehat{OR} \pm 1.96\sqrt{\frac{1}{a} + \frac{
 
 ```{r}
 #| label: lst-s12-bio04
-#| lst-cap: "BioStatR — tabla2x2(): caso-control, OR con IC"
+#| lst-cap: "BioEstatR — tabla2x2(): caso-control, OR con IC"
 #| warning: false
 #| message: false
 
-library(BioStatR)
+library(BioEstatR)
 
 # 200 casos de cirrosis y 200 controles
 # Consumo excesivo de alcohol: 120 casos, 60 controles
@@ -609,13 +609,13 @@ El OR sobreestima al RR cuando la prevalencia/incidencia del resultado es alta (
 
 ```{r}
 #| label: lst-s12-bio05
-#| lst-cap: "BioStatR — testnormal() y Base R — shapiro.test()"
+#| lst-cap: "BioEstatR — testnormal() y Base R — shapiro.test()"
 #| warning: false
 #| message: false
 
-library(BioStatR)
+library(BioEstatR)
 
-# Con BioStatR (reporte completo con histograma)
+# Con BioEstatR (reporte completo con histograma)
 testnormal(osteo$imc)
 
 # Con R base
@@ -626,11 +626,11 @@ shapiro.test(osteo$imc)
 
 ```{r}
 #| label: lst-s12-r05
-#| lst-cap: "Comparación BioStatR vs. Base R — Chi-cuadrado en tabla 2×2"
+#| lst-cap: "Comparación BioEstatR vs. Base R — Chi-cuadrado en tabla 2×2"
 #| warning: false
 #| message: false
 
-# Con BioStatR (tabla 2x2, Chi-cuadrado + OR + Fisher integrado)
+# Con BioEstatR (tabla 2x2, Chi-cuadrado + OR + Fisher integrado)
 tabla2x2(o11 = 44, o12 = 9, o21 = 26, o22 = 15,
          fcat = c("No fumador", "Fumador"),
          ccat = c("Sin osteoporosis", "Con osteoporosis"))
@@ -649,7 +649,7 @@ fisher.test(m)
 
 ```{r}
 #| label: lst-s12-r06
-#| lst-cap: "Comparación BioStatR vs. Base R — Test de McNemar"
+#| lst-cap: "Comparación BioEstatR vs. Base R — Test de McNemar"
 #| eval: true
 #| warning: false
 #| message: false
@@ -663,8 +663,8 @@ m_paired <- matrix(c(42, 28, 8, 22), nrow = 2,
 cat("=== mcnemar.test() — Base R ===\n")
 mcnemar.test(m_paired, correct = FALSE)  # Sin corrección (b+c=36 >= 25)
 
-# BioStatR: tabla2x2(..., estudio = "AP")
-# (ver sección 12.5.5 para la salida completa; requiere BioStatR)
+# BioEstatR: tabla2x2(..., estudio = "AP")
+# (ver sección 12.5.5 para la salida completa; requiere BioEstatR)
 # tabla2x2(o11=42, o12=8, o21=28, o22=22,
 #          fcat = c("Pre: Controlada","Pre: No controlada"),
 #          ccat = c("Post: Controlada","Post: No controlada"),
@@ -675,7 +675,7 @@ mcnemar.test(m_paired, correct = FALSE)  # Sin corrección (b+c=36 >= 25)
 
 ```{r}
 #| label: lst-s12-bio06
-#| lst-cap: "BioStatR — tablarxc(): grupos de edad y tabaquismo"
+#| lst-cap: "BioEstatR — tablarxc(): grupos de edad y tabaquismo"
 #| warning: false
 #| message: false
 
@@ -729,11 +729,11 @@ El dataset `osteo` contiene datos de 94 pacientes diabéticos atendidos en la Fa
 
 ```{r}
 #| label: lst-s12-bio07
-#| lst-cap: "BioStatR — Análisis completo: osteo dataset UGR"
+#| lst-cap: "BioEstatR — Análisis completo: osteo dataset UGR"
 #| warning: false
 #| message: false
 
-library(BioStatR)
+library(BioEstatR)
 
 # 1. Normalidad del IMC
 testnormal(osteo$imc)
@@ -831,7 +831,7 @@ El estimador de Mantel–Haenszel es elegante y didácticamente potente, pero pr
 1. **Sólo permite controlar por una variable de confusión categórica** (la que define los estratos). Si necesitamos ajustar simultáneamente por edad, IMC, tabaquismo y tiempo de evolución, la estratificación produce demasiados estratos con frecuencias muy pequeñas en cada uno.
 2. **Asume homogeneidad del OR a través de los estratos**. Cuando esa hipótesis se rompe (interacción, como en el ejemplo previo), el OR de M–H promedia efectos heterogéneos y oculta la modificación del efecto.
 
-La **regresión logística múltiple** generaliza el ajuste por confusión: permite incluir un número arbitrario de covariables (continuas o categóricas) simultáneamente, estima un OR ajustado para cada predictor manteniendo constantes las demás, y proporciona una medida global de capacidad discriminante mediante el **área bajo la curva ROC** (AUC). El paquete `BioStatR` integra todo este flujo en la función `rlogitm()` (ver @sec-apendiceB), que devuelve:
+La **regresión logística múltiple** generaliza el ajuste por confusión: permite incluir un número arbitrario de covariables (continuas o categóricas) simultáneamente, estima un OR ajustado para cada predictor manteniendo constantes las demás, y proporciona una medida global de capacidad discriminante mediante el **área bajo la curva ROC** (AUC). El paquete `BioEstatR` integra todo este flujo en la función `rlogitm()` (ver @sec-apendiceB), que devuelve:
 
 - Estimación de los coeficientes con sus odds ratios e intervalos de confianza.
 - Bondad de ajuste mediante el **test de Hosmer–Lemeshow**.
@@ -846,12 +846,12 @@ Volvamos al estudio observacional de la sección de tablas de contingencia, dond
 
 ```{r}
 #| label: lst-s11-rlogitm
-#| lst-cap: "BioStatR — rlogitm(): regresión logística múltiple sobre el dataset osteo"
+#| lst-cap: "BioEstatR — rlogitm(): regresión logística múltiple sobre el dataset osteo"
 #| warning: false
 #| message: false
 #| fig-width: 6
 #| fig-height: 5
-library(BioStatR)
+library(BioEstatR)
 data(osteo)
 
 # Modelo: osteoporosis del cuello femoral ajustada por tabaco + edad + IMC + tevol
