@@ -417,7 +417,7 @@ window.Quarto = {
   <li><a href="#propiedades-de-la-distribución-t" id="toc-propiedades-de-la-distribución-t" class="nav-link" data-scroll-target="#propiedades-de-la-distribución-t"><span class="header-section-number">5.8.1</span> Propiedades de la Distribución t</a></li>
   <li><a href="#cuándo-usar-cada-distribución" id="toc-cuándo-usar-cada-distribución" class="nav-link" data-scroll-target="#cuándo-usar-cada-distribución"><span class="header-section-number">5.8.2</span> Cuándo Usar Cada Distribución</a></li>
   </ul></li>
-  <li><a href="#sec-semana05-s9" id="toc-sec-semana05-s9" class="nav-link" data-scroll-target="#sec-semana05-s9"><span class="header-section-number">5.9</span> Ejemplo 5.1: Simulando el Teorema Central del Límite</a></li>
+  <li><a href="#sec-semana05-s9" id="toc-sec-semana05-s9" class="nav-link" data-scroll-target="#sec-semana05-s9"><span class="header-section-number">5.9</span> Simulaciones del Teorema Central del Límite</a></li>
   <li><a href="#sec-semana05-resumen" id="toc-sec-semana05-resumen" class="nav-link" data-scroll-target="#sec-semana05-resumen"><span class="header-section-number">5.10</span> Resumen de Distribuciones Muestrales</a></li>
   <li><a href="#sec-semana05-cpf" id="toc-sec-semana05-cpf" class="nav-link" data-scroll-target="#sec-semana05-cpf"><span class="header-section-number">5.11</span> Corrección por Población Finita</a></li>
   <li><a href="#sec-semana05-ejercicios" id="toc-sec-semana05-ejercicios" class="nav-link" data-scroll-target="#sec-semana05-ejercicios"><span class="header-section-number">5.12</span> Ejercicios</a></li>
@@ -771,7 +771,8 @@ window.Quarto = {
 <div class="callout-body-container callout-body">
 <p>Si <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> son i.i.d. <span class="math inline">\(N(\mu, \sigma^2)\)</span>, entonces:</p>
 <p><span class="math display">\[\bar{X} \sim N\left(\mu, \frac{\sigma^2}{n}\right)\]</span></p>
-<p>Estandarizando: <span class="math display">\[Z = \frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim N(0, 1)\]</span></p>
+<p>Estandarizando:</p>
+<p><span class="math display">\[Z = \frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim N(0, 1)\]</span></p>
 <p>Este estadístico <span class="math inline">\(Z\)</span> sigue una <strong>distribución normal estándar</strong>.</p>
 </div>
 </div>
@@ -967,14 +968,14 @@ Advertencia
 </section>
 </section>
 <section id="sec-semana05-s9" class="level2" data-number="5.9">
-<h2 data-number="5.9" class="anchored" data-anchor-id="sec-semana05-s9"><span class="header-section-number">5.9</span> Ejemplo 5.1: Simulando el Teorema Central del Límite</h2>
+<h2 data-number="5.9" class="anchored" data-anchor-id="sec-semana05-s9"><span class="header-section-number">5.9</span> Simulaciones del Teorema Central del Límite</h2>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Ejemplo 5.2: TCL con Variables Exponenciales
+<span class="screen-reader-only">Tip</span>Ejemplo 5.1: TCL con Variables Exponenciales
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1009,7 +1010,7 @@ Advertencia
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Ejemplo: Distribuciones Muestrales de la Media
+<span class="screen-reader-only">Tip</span>Ejemplo 5.2: Distribuciones Muestrales de la Media
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1263,7 +1264,7 @@ Advertencia
 <p><strong>Ejercicio 5.2:</strong><br>
 - (a) <span class="math inline">\(f = 320/8000 = 0.04\)</span> (justo al borde)<br>
 - (b) Como <span class="math inline">\(f = 0.04 &lt; 0.05\)</span>, la corrección es pequeña pero aplicable<br>
-- (c) Sin CPF: <span class="math inline">\(\text{Var} = 45^2/320 = 6.33\)</span>; Con CPF: <span class="math inline">\(\text{Var} \approx 6.19\)</span> (diferencia 2%)</p>
+- (c) Sin CPF: <span class="math inline">\(\text{Var} = 45^2/320 \approx 6.33\)</span>; Con CPF: <span class="math inline">\(\text{Var} = 6.33 \times \dfrac{8000-320}{8000-1} \approx 6.08\)</span> (diferencia ≈ 4%)</p>
 <p><strong>Ejercicio 5.3:</strong><br>
 - (a) <span class="math inline">\(\hat{\pi} = 324/600 = 0.54\)</span><br>
 - (b) <span class="math inline">\(\sigma(\hat{\pi}) = \sqrt{0.5 \times 0.5 / 600} \approx 0.0204\)</span><br>
@@ -1281,8 +1282,7 @@ Advertencia
 <p><strong>Ejercicio 5.6:</strong><br>
 - (a) <span class="math inline">\(\chi^2 = (24 \times 1.44) / 1.0 = 34.56\)</span><br>
 - (b) <span class="math inline">\(\chi^2_{24}\)</span><br>
-- (c) <span class="math inline">\(P(\chi^2_{24} \geq 34.56) \approx 0.055\)</span> (cola superior 5%)<br>
-- (d) El valor es inusualmente alto pero no rechazable al nivel 5%</p>
+- (c) <span class="math inline">\(P(\chi^2_{24} \geq 34.56) \approx 0.075\)</span> (<code>1 - pchisq(34.56, 24)</code>) - (d) El valor es algo alto pero no rechazable al nivel 5% (el valor crítico es <span class="math inline">\(\chi^2_{24,\,0.95} \approx 36.42\)</span>, mayor que 34.56)</p>
 
 
 </section>

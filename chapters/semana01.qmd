@@ -76,6 +76,7 @@ Las variables se clasifican en cuatro tipos según la escala en que se miden:
 Una **variable categórica** es aquella que puede tomar uno de un conjunto limitado de valores posibles, asignando cada unidad a una categoría particular basada en una propiedad cualitativa.
 
 **Ejemplos**:
+
 - Grupo sanguíneo: A, B, AB, O
 - Estado civil: soltero, casado, divorciado, viudo
 - Género: masculino, femenino
@@ -84,6 +85,7 @@ Una **variable categórica** es aquella que puede tomar uno de un conjunto limit
 Los valores de una variable categórica se llaman **niveles**.
 
 Las variables categóricas pueden ser:
+
 - **Binarias (dicotómicas)**: solo dos niveles (ej. éxito/fracaso, enfermo/sano)
 - **Politómicas**: más de dos niveles (ej. grupo sanguíneo)
 :::
@@ -98,6 +100,7 @@ Una **variable ordinal** es una variable categórica en la que los niveles tiene
 Relaciones válidas: "mayor que" y "menor que" (o "mejor que" y "peor que").
 
 **Ejemplos**:
+
 - Estadio de un tumor: I, II, III, IV
 - Grado de dependencia: leve, moderada, severa, total
 - Escala de dolor: nada, poco, moderado, intenso, insoportable
@@ -111,6 +114,7 @@ Relaciones válidas: "mayor que" y "menor que" (o "mejor que" y "peor que").
 Una **variable discreta** es una variable numérica que solo puede tomar un número finito o contablemente infinito de valores. Cada valor tiene vecinos claramente identificables.
 
 **Ejemplos**:
+
 - Número de nacimientos en un mes
 - Número de episodios de hipoglucemia
 - Número de dientes extraídos
@@ -123,6 +127,7 @@ Una **variable discreta** es una variable numérica que solo puede tomar un núm
 Una **variable continua** es una variable numérica que puede tomar infinitos valores no contables. Entre dos valores cualesquiera siempre existen otros valores posibles.
 
 **Ejemplos**:
+
 - Presión arterial sistólica (en mmHg)
 - Peso corporal (en kg)
 - Altura (en cm)
@@ -149,6 +154,7 @@ Para cada intervalo o clase $j$ definimos:
 - **Amplitud de la clase**: $\Delta x_j = x_j^u - x_j^l$
 
 **Propiedades importantes**:
+
 - Los intervalos son no superpuestos (disjuntos) y adyacentes
 - $x_j^u = x_{j+1}^l$ (el límite superior de una clase es el límite inferior de la siguiente)
 - Convencionalmente: $x_j^l < X \leq x_j^u$ (incluimos el límite superior, excluimos el inferior)
@@ -158,6 +164,7 @@ Para cada intervalo o clase $j$ definimos:
 ## Ejemplo 1.2: Niveles de Colesterol Total
 
 En un estudio sobre salud cardiovascular tenemos:
+
 - **Unidad estadística**: paciente
 - **Variable**: nivel de colesterol total (en mg/dL)
 
@@ -236,6 +243,7 @@ $$H(x_j) = \sum_{i=1}^{j} h(x_i), \quad j = 1, \ldots, k$$
 $$F(x_j) = \frac{H(x_j)}{n} = \sum_{i=1}^{j} f(x_i), \quad j = 1, \ldots, k$$
 
 **Propiedades**:
+
 - $H(x_1) = h(x_1)$ y $F(x_1) = f(x_1)$
 - $H(x_k) = n$ y $F(x_k) = 1$
 - Las frecuencias acumuladas son secuencias no decrecientes
@@ -376,6 +384,7 @@ La fórmula general de interpolación para un valor $x$ dentro de la clase $j = 
 $$F(x) = F(x_j^l) + \frac{x - x_j^l}{x_j^u - x_j^l} \cdot f(x_j)$$
 
 Donde:
+
 - $x_j^l$ y $x_j^u$ son los límites inferior y superior de la clase.
 - $F(x_j^l)$ es la frecuencia relativa acumulada hasta la clase anterior.
 - $f(x_j)$ es la frecuencia relativa de la clase actual.
@@ -660,6 +669,7 @@ Usando la tabla de supervivencia del Ejemplo 1.6:
 La **mediana** $x_{0.5}$ es el valor que divide los datos ordenados en dos partes de igual tamaño: 50% de las observaciones están por debajo y 50% están por encima.
 
 **Para datos no agrupados**:
+
 - Si $n$ es **impar**:
   $$x_{0.5} = x_{\left(\frac{n+1}{2}\right)}$$
 
@@ -770,6 +780,7 @@ $$g_1 = \frac{\frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^3}{s^3}$$
 donde $s$ es la desviación típica.
 
 **Interpretación**:
+
 - **$g_1 = 0$**: La distribución es **simétrica**.
 - **$g_1 > 0$**: **Asimetría positiva** (sesgo a la derecha). La cola derecha es más larga.
 - **$g_1 < 0$**: **Asimetría negativa** (sesgo a la izquierda). La cola izquierda es más larga.
@@ -783,6 +794,7 @@ $$g_2 = \frac{\frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^4}{s^4}$$
 En muchos paquetes estadísticos (incluido R) se utiliza también la **curtosis en exceso** o **curtosis de Fisher**, $g_2 - 3$, que centra la referencia en cero para la distribución normal.
 
 **Interpretación (Curtosis en exceso)**:
+
 - **$g_2 - 3 = 0$**: **Mesocúrtica**. El apuntamiento es similar al de una distribución normal.
 - **$g_2 - 3 > 0$**: **Leptocúrtica**. La distribución es más apuntada y tiene colas más gruesas ("pesadas") que la normal.
 - **$g_2 - 3 < 0$**: **Platicúrtica**. La distribución es más plana y tiene colas más delgadas que la normal.
@@ -821,6 +833,7 @@ El **cuantil $x_p$** es el valor que divide los datos ordenados en la proporció
 - Arriba del cuantil $x_p$ se encuentran aproximadamente $(1-p) \times 100\%$ de los datos
 
 **Cuantiles especiales**:
+
 - **Cuartiles**: $p = 0.25, 0.50, 0.75$ (dividen en 4 partes)
   - $x_{0.25}$ = primer cuartil (Q1)
   - $x_{0.50}$ = mediana
@@ -837,6 +850,7 @@ El **cuantil $x_p$** es el valor que divide los datos ordenados en la proporció
 Con la **distribución agrupada** de supervivencia del Ejemplo 1.6, podemos aproximar los cuartiles usando interpolación en la ECDF. *Nota:* el chunk de R a continuación simula datos **inspirados** en esa distribución (no idénticos), por lo que los valores observados son cercanos pero no exactamente iguales a los obtenidos por la fórmula analítica.
 
 Para el primer cuartil ($p = 0.25$):
+
 - $F(x_j^l) = 0.01$ (límite inferior de clase 100--500)
 - $f(x_j) = 0.24$ (frecuencia relativa de clase 100--500)
 - Fórmula: $x_{0.25} = x_j^l + \frac{p - F(x_j^l)}{f(x_j)} \cdot \Delta x_j$
@@ -900,6 +914,7 @@ ggplot(df, aes(y = supervivencia)) +
 ::: {.callout-tip}
 ## Lectura del Boxplot
 Un boxplot divide los datos en:  
+
 - **Caja**: Contiene el 50% central (IQR: de $Q_1$ a $Q_3$).  
 - **Línea central**: Mediana.  
 - **Bigotes**: Extienden hasta 1.5 veces el IQR.  
@@ -914,11 +929,13 @@ Un boxplot divide los datos en:
 ## Robustez de las Medidas de Tendencia Central
 
 La **media** es muy sensible a valores extremos (outliers):
+
 - Fácil de calcular algebraicamente
 - Propiedad de suma útil para combinación de datos
 - Se ve afectada por datos atípicos
 
 La **mediana** es robusta:
+
 - Insensible a outliers
 - Más representativa en distribuciones asimétricas
 - Requiere ordenar los datos

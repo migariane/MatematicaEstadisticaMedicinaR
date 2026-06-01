@@ -1454,7 +1454,8 @@ Cuadro&nbsp;1.5: Comparación de gráficos
 </div>
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li><p><strong>Propiedad de desviación nula</strong>: <span class="math display">\[\sum_{i=1}^{n}(x_i - \bar{x}) = 0\]</span> Las desviaciones positivas y negativas de la media se cancelan.</p></li>
+<li><p><strong>Propiedad de desviación nula</strong>: <span class="math display">\[\sum_{i=1}^{n}(x_i - \bar{x}) = 0\]</span></p>
+<p>Las desviaciones positivas y negativas de la media se cancelan.</p></li>
 <li><p><strong>Propiedad de suma</strong>: Si <span class="math inline">\(z_i = x_i + y_i\)</span>, entonces: <span class="math display">\[\bar{z} = \bar{x} + \bar{y}\]</span></p></li>
 </ol>
 </div>
@@ -1472,10 +1473,10 @@ Cuadro&nbsp;1.5: Comparación de gráficos
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Cuando solo disponemos de datos agrupados en clases, aproximamos la media usando la marca de clase:</p>
-<p><span class="math display">\[\bar{x} = \frac{1}{n}\sum_{j=1}^{k} x_j \cdot n_j\]</span></p>
+<p>Cuando solo disponemos de datos agrupados en clases, aproximamos la media usando la marca de clase. Equivalentemente, en términos de frecuencias absolutas <span class="math inline">\(n_j\)</span> o relativas <span class="math inline">\(f_j = n_j/n\)</span>:</p>
+<p><span class="math display">\[\bar{x} = \frac{1}{n}\sum_{j=1}^{k} x_j \cdot n_j \;=\; \sum_{j=1}^{k} x_j \cdot f_j\]</span></p>
 <p>donde <span class="math inline">\(x_j\)</span> es la <strong>marca de clase</strong> (punto medio del intervalo <span class="math inline">\(j\)</span>): <span class="math display">\[x_j = \frac{x_j^l + x_j^u}{2}\]</span></p>
-<p>y <span class="math inline">\(n_j\)</span> es el número de observaciones en la clase <span class="math inline">\(j\)</span>.</p>
+<p>y <span class="math inline">\(n_j\)</span> es el número de observaciones en la clase <span class="math inline">\(j\)</span> (<span class="math inline">\(f_j\)</span> la frecuencia relativa correspondiente). El Ejemplo 1.9 utiliza la versión con frecuencias relativas.</p>
 <p><strong>Nota</strong>: Esta es una aproximación porque asumimos que todas las observaciones en una clase están concentradas en su punto medio.</p>
 </div>
 </div>
@@ -1654,7 +1655,7 @@ Cuadro&nbsp;1.6: Cálculo de estancia media en R
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Conjunto 1</strong> (n impar): 115, 118, 120, 122, 124, 125, 128, 129, 130, 135</p>
+<p><strong>Conjunto</strong> (n par): 115, 118, 120, 122, 124, 125, 128, 129, 130, 135</p>
 <p>Datos ya ordenados. Con <span class="math inline">\(n = 10\)</span> (par): <span class="math display">\[x_{0.5} = \frac{1}{2}(x_{(5)} + x_{(6)}) = \frac{1}{2}(124 + 125) = 124.5 \text{ mmHg}\]</span></p>
 <div class="cell">
 <div id="lst-semana01-7" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-summary="Cálculo de mediana en R">
@@ -1710,9 +1711,9 @@ Figura&nbsp;1.3: Relación entre media, mediana y moda según el sesgo
 </section>
 <section id="curtosis-o-apuntamiento" class="level4">
 <h4 class="anchored" data-anchor-id="curtosis-o-apuntamiento">Curtosis o Apuntamiento</h4>
-<p>Mide el grado de concentración de los valores alrededor de la zona central de la distribución y el “peso” de las colas. Se calcula mediante el coeficiente de curtosis de Fisher:</p>
+<p>Mide el grado de concentración de los valores alrededor de la zona central de la distribución y el “peso” de las colas. La <strong>curtosis de Pearson</strong> se define como:</p>
 <p><span class="math display">\[g_2 = \frac{\frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^4}{s^4}\]</span></p>
-<p>En muchos paquetes estadísticos (incluido R), se utiliza la <strong>curtosis en exceso</strong> (<span class="math inline">\(g_2 - 3\)</span>) para comparar con la distribución normal.</p>
+<p>En muchos paquetes estadísticos (incluido R) se utiliza también la <strong>curtosis en exceso</strong> o <strong>curtosis de Fisher</strong>, <span class="math inline">\(g_2 - 3\)</span>, que centra la referencia en cero para la distribución normal.</p>
 <p><strong>Interpretación (Curtosis en exceso)</strong>: - <strong><span class="math inline">\(g_2 - 3 = 0\)</span></strong>: <strong>Mesocúrtica</strong>. El apuntamiento es similar al de una distribución normal. - <strong><span class="math inline">\(g_2 - 3 &gt; 0\)</span></strong>: <strong>Leptocúrtica</strong>. La distribución es más apuntada y tiene colas más gruesas (“pesadas”) que la normal. - <strong><span class="math inline">\(g_2 - 3 &lt; 0\)</span></strong>: <strong>Platicúrtica</strong>. La distribución es más plana y tiene colas más delgadas que la normal.</p>
 </section>
 <section id="sec-semana01-r-stats" class="level3" data-number="1.9.1">
@@ -1785,7 +1786,7 @@ Cuadro&nbsp;1.8: Cálculo de estadísticos básicos
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Con los datos de supervivencia de pacientes (Ejemplo 1.6), podemos aproximar los cuartiles usando interpolación en la ECDF:</p>
+<p>Con la <strong>distribución agrupada</strong> de supervivencia del Ejemplo 1.6, podemos aproximar los cuartiles usando interpolación en la ECDF. <em>Nota:</em> el chunk de R a continuación simula datos <strong>inspirados</strong> en esa distribución (no idénticos), por lo que los valores observados son cercanos pero no exactamente iguales a los obtenidos por la fórmula analítica.</p>
 <p>Para el primer cuartil (<span class="math inline">\(p = 0.25\)</span>): - <span class="math inline">\(F(x_j^l) = 0.01\)</span> (límite inferior de clase 100–500) - <span class="math inline">\(f(x_j) = 0.24\)</span> (frecuencia relativa de clase 100–500) - Fórmula: <span class="math inline">\(x_{0.25} = x_j^l + \frac{p - F(x_j^l)}{f(x_j)} \cdot \Delta x_j\)</span></p>
 <p><span class="math display">\[x_{0.25} = 100 + \frac{0.25 - 0.01}{0.24} \times 400 = 100 + 400 = 500 \text{ días}\]</span></p>
 </div>
@@ -2266,7 +2267,7 @@ Cuadro&nbsp;1.16: Solución en R
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Considera el histograma de IMC del Ejemplo 1.5.1:</p>
+<p>Considera el histograma de IMC del Ejemplo 1.7:</p>
 <ol type="a">
 <li>¿Qué clase tiene la mayor densidad de pacientes?</li>
 <li>¿Qué porcentaje de pacientes tienen un IMC inferior a 25 (Normal o bajo peso)?</li>
@@ -2340,7 +2341,7 @@ Cuadro&nbsp;1.16: Solución en R
 <li>Moda = 2 admisiones (<span class="math inline">\(h_j=6\)</span>). c) Proporción = <span class="math inline">\(F_3 = 0.55\)</span> (55%).</li>
 </ol>
 <p><strong>Ejercicio 1.5: Glucemia</strong> a) Media ≈ 100.99 mg/dL (cálculo: <span class="math inline">\((80{\cdot}15 + 95{\cdot}32 + 105{\cdot}35 + 118{\cdot}15 + 138{\cdot}3)/100\)</span>). b) Clase modal: 100-110 mg/dL (<span class="math inline">\(h_j = 35\)</span>). c) P₅₀ ≈ 100 + (0.50 - 0.47)/0.35 · 10 ≈ 100.86 mg/dL (la mediana cae en la clase 100-110, donde <span class="math inline">\(F\)</span> pasa de 0.47 a 0.82).</p>
-<p><strong>Ejercicio 1.6: IMC (Ejemplo 1.5.1)</strong> a) Sobrepeso (25-30) con densidad 0.0672. b) <span class="math inline">\(F(25) = 0.055 + 0.339 = 0.394\)</span> (39.4%). c) En el rango de 0 a 25 (específicamente, el P₂₅ está en la clase “Normal”).</p>
+<p><strong>Ejercicio 1.6: IMC (Ejemplo 1.7)</strong> a) Sobrepeso (25-30) con densidad 0.0672. b) <span class="math inline">\(F(25) = 0.055 + 0.339 = 0.394\)</span> (39.4%). c) En el rango de 0 a 25 (específicamente, el P₂₅ está en la clase “Normal”).</p>
 <p><strong>Fin de Semana 1</strong></p>
 <p>Para referencias avanzadas sobre análisis exploratorio de datos y estimación robusta, consulta: <a href="https://rpubs.com/FJRubio/MM">Robust Estimation of Location</a></p>
 

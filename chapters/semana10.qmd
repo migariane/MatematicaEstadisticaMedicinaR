@@ -334,6 +334,7 @@ En un ensayo clínico aleatorizado (ECA), 90 pacientes hipertensos son asignados
 La variable respuesta es la **reducción de PAS** (mmHg) al final del ensayo.
 
 Define variables indicadoras:
+
 - $X_1 = 1$ si se aplica IECA, 0 en caso contrario
 - $X_2 = 1$ si se aplica ARA-II, 0 en caso contrario
 - El placebo es la categoría de referencia (cuando $X_1 = X_2 = 0$)
@@ -822,6 +823,7 @@ Seleccionar el modelo con **menor** AIC o BIC.
 4. **$R^2$ vs. $R^2_{\text{adj}}$:** Un investigador ajusta un modelo de predicción de supervivencia en cáncer de mama e incluye secuencialmente 15 variables (estadio, ganglios, Ki67, HER2, RE, RP, tamaño tumoral, edad, tratamiento, comorbilidades, etc.). ¿Por qué $R^2$ siempre aumenta al añadir cada variable? ¿Cuál criterio (AIC, BIC o $R^2_{\text{adj}}$) es más apropiado para seleccionar el modelo final?
 
 5. **Prueba F para Modelos Anidados:** En un estudio de HbA1c se ajustan dos modelos:
+
    - Modelo A: $\text{HbA1c} = \beta_0 + \beta_1 \cdot \text{tevol} + U$
    - Modelo B: $\text{HbA1c} = \beta_0 + \beta_1 \cdot \text{tevol} + \beta_2 \cdot \text{Edad} + \beta_3 \cdot \text{IMC} + U$
 

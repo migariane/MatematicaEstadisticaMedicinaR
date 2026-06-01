@@ -235,6 +235,7 @@ En estudios epidemiológicos es común analizar la comorbilidad de tres condic
 ```
 
 **Problema:** En una muestra de 100 pacientes:
+
 - 40 tienen Hipertensión (A)
 - 30 tienen Diabetes (B)
 - 20 tienen Obesidad (C)
@@ -298,6 +299,7 @@ La **probabilidad frecuentista** de $A$ se define como el límite de la frecuen
 $$\mathbb{P}(A) = \lim_{n \to \infty} \frac{f_n(A)}{n}$$
 
 Esta definición requiere:
+
 - Una secuencia de muestras independientes
 - Bajo condiciones idénticas
 - Repetibles arbitrariamente
@@ -596,6 +598,7 @@ $$\mathbb{P}(B) = \sum_{i=1}^{n} \mathbb{P}(B|A_i) \cdot \mathbb{P}(A_i)$$
 ## Ejemplo 3.10: Diagnóstico de una enfermedad (Ley de Probabilidad Total)
 
 **Escenario:** Una enfermedad se distribuye en una población según tres grupos de riesgo:
+
 - Grupo 1 (Bajo riesgo): 60% de la población, tasa de enfermedad = 2%
 - Grupo 2 (Riesgo moderado): 30% de la población, tasa de enfermedad = 10%
 - Grupo 3 (Alto riesgo): 10% de la población, tasa de enfermedad = 25%
@@ -681,6 +684,7 @@ para cada $j = 1, 2, \ldots, n$.
 ## Ejemplo 3.11: Prueba diagnóstica médica
 
 **Escenario:** Un test de diagnóstico para una enfermedad con:
+
 - Prevalencia de la enfermedad: $\mathbb{P}(E) = 0.05$ (5% de la población)
 - Sensibilidad: $\mathbb{P}(+|E) = 0.95$ (95% de enfermos dan positivo)
 - Especificidad: $\mathbb{P}(-|\overline{E}) = 0.90$ (90% de sanos dan negativo)
@@ -825,6 +829,7 @@ a) ¿Cuál es la probabilidad de que no ingrese ningún paciente?
 b) ¿Cuál es la probabilidad de que exactamente ingrese uno?
 
 **Ejercicio 3.4:** Se sabe que:
+
 - El 60% de los pacientes de una consulta son mujeres
 - El 40% de las mujeres tinen menos de 30 años
 - El 30% de los hombres tienen menos de 30 años
@@ -835,6 +840,7 @@ a) ¿Cuál es la probabilidad de que un paciente tenga menos de 30 años?
 b) Si un paciente tiene 30 años, ¿cuál es la probabilidad de que sea mujer?
 
 **Ejercicio 3.5:** Un test para detectar una enfermedad rara tiene:
+
 - 98% de sensibilidad (detecta la enfermedad cuando está presente)
 - 95% de especificidad (identifica correctamente a personas sanas)
 - La enfermedad afecta al 0.5% de la población
@@ -843,6 +849,7 @@ a) Si una persona da positivo en el test, ¿cuál es la probabilidad de que rea
 b) Interprete el resultado. ¿Por qué la probabilidad no es más alta?
 
 **Ejercicio 3.6:** Una empresa privada vende ecografos a tres hospitales en tres ciudades distintas: Madrid (40% de ventas), Barcelona (35%) y Valencia (25%). La probabilidad de cumplir la cuota de ventas es:
+
 - Madrid: 0.8
 - Barcelona: 0.85
 - Valencia: 0.7

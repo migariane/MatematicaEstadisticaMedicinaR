@@ -589,7 +589,7 @@ MathJax = {
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> init.defaultBranch main</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Equivalente desde R (recomendado para los lectores de este libro):</p>
 <div class="cell">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("usethis")</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_git_config</span>(</span>
@@ -675,7 +675,7 @@ MathJax = {
 <li><strong>HTTPS + Personal Access Token (PAT):</strong> sencillo para usuarios noveles. Crear en <em>Settings → Developer settings → Personal access tokens</em>. R lo facilita:</li>
 </ul>
 <div class="cell">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("gitcreds", "usethis"))</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">create_github_token</span>()  <span class="co"># Abre la página de GitHub con permisos preseleccionados</span></span>
@@ -726,7 +726,7 @@ MathJax = {
 <h3 data-number="D.4.2" class="anchored" data-anchor-id="d.4.2-conectar-un-proyecto-existente-a-git"><span class="header-section-number">D.4.2</span> D.4.2 Conectar un proyecto existente a Git</h3>
 <p>Para un proyecto RStudio sin Git:</p>
 <div class="cell">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("usethis")</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_git</span>()           <span class="co"># Inicializa Git y hace el primer commit</span></span>
@@ -853,7 +853,7 @@ data/raw/*.xlsx</code></pre>
 <h3 data-number="D.5.3" class="anchored" data-anchor-id="d.5.3-entornos-reproducibles-con-renv"><span class="header-section-number">D.5.3</span> D.5.3 Entornos reproducibles con <code>renv</code></h3>
 <p>Para garantizar que el análisis se ejecuta dentro de cinco años con las mismas versiones de los paquetes:</p>
 <div class="cell">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("renv")</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()      <span class="co"># Crea un entorno local + renv.lock</span></span>
@@ -898,7 +898,7 @@ data/raw/*.xlsx</code></pre>
 </ul>
 <p><strong>2. Configurar Git e instalar BioEstatR:</strong></p>
 <div class="cell">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_git_config</span>(<span class="at">user.name =</span> <span class="st">"Tu Nombre"</span>, <span class="at">user.email =</span> <span class="st">"tu@ugr.es"</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"migariane/BioEstatR"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -930,7 +930,7 @@ git add .
 git commit -m "Primer análisis exploratorio del dataset osteo"</code></pre>
 <p><strong>6. Crear el repositorio en GitHub y conectarlo:</strong></p>
 <div class="cell">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_github</span>(<span class="at">private =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>

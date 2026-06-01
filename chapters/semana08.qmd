@@ -14,6 +14,7 @@ En esta semana continuamos con contrastes de hipótesis, enfocándonos en prue
 ### Preparación: Distribución de la Diferencia de Medias
 
 Supongamos que tenemos dos poblaciones independientes:
+
 - Población 1: $X_1 \sim N(\mu_1, \sigma_1^2)$ con $\sigma_1^2$ **conocida**
 - Población 2: $X_2 \sim N(\mu_2, \sigma_2^2)$ con $\sigma_2^2$ **conocida**
 
@@ -34,6 +35,7 @@ $$\omega = \mu_1 - \mu_2, \quad \sigma_D^2 = \frac{\sigma_1^2}{n_1} + \frac{\sig
 ## Definición: Prueba Z para Dos Muestras
 
 Consideramos las hipótesis:
+
 - **Bilateral:** $H_0: \mu_1 - \mu_2 = \omega_0$ vs. $H_1: \mu_1 - \mu_2 \neq \omega_0$
 - **Unilateral derecha:** $H_0: \mu_1 - \mu_2 \leq \omega_0$ vs. $H_1: \mu_1 - \mu_2 > \omega_0$
 - **Unilateral izquierda:** $H_0: \mu_1 - \mu_2 \geq \omega_0$ vs. $H_1: \mu_1 - \mu_2 < \omega_0$
@@ -144,6 +146,7 @@ testwx(m1 = osteo$imc[osteo$grupo_edad == "< 25"],
 ### Motivación y Formulación
 
 En muchos estudios, las observaciones de dos muestras están **apareadas** (matched):
+
 - Medidas antes y después en los mismos sujetos
 - Observaciones de hermanos gemelos
 - Medidas en ambos ojos del mismo paciente
@@ -186,6 +189,7 @@ En algunos análisis necesitamos probar si **dos varianzas poblacionales son ig
 ## Definición: Prueba F de Fisher
 
 Consideramos:
+
 - **Bilateral:** $H_0: \sigma_1^2 = \sigma_2^2$ vs. $H_1: \sigma_1^2 \neq \sigma_2^2$
 - **Unilateral derecha:** $H_0: \sigma_1^2 \leq \sigma_2^2$ vs. $H_1: \sigma_1^2 > \sigma_2^2$
 - **Unilateral izquierda:** $H_0: \sigma_1^2 \geq \sigma_2^2$ vs. $H_1: \sigma_1^2 < \sigma_2^2$
@@ -362,6 +366,7 @@ Para detectar una diferencia $\delta = \mu_1 - \mu_2$ entre dos muestras de igua
 $$n = \frac{2\sigma^2 (z_{1-\alpha/2} + z_{1-\beta})^2}{\delta^2}$$
 
 donde:
+
 - $z_{1-\alpha/2}$ es el quantil normal para nivel de significancia $\alpha$
 - $z_{1-\beta}$ es el quantil normal para potencia $1-\beta$
 - $\sigma^2$ es la varianza (asumida igual en ambas muestras)
@@ -797,6 +802,7 @@ El bootstrap simula la distribución muestral de un estadístico $\hat{\theta}
 
 1. Sea $\mathbf{x} = (x_1, \ldots, x_n)$ la muestra original.
 2. Para $b = 1, \ldots, B$ (con $B = 10000$ recomendado):
+
    - Generar muestra bootstrap $\mathbf{x}^{(b)}$: extraer $n$ valores con reemplazo de $\mathbf{x}$
    - Calcular $\hat{\theta}^{(b)} = T(\mathbf{x}^{(b)})$
 3. El IC al $(1-\alpha)$% por percentiles es:
@@ -949,6 +955,7 @@ Es la alternativa no paramétrica al t-test de dos muestras independientes. Con
 ## Definición: Estadístico U de Mann-Whitney
 
 Dadas dos muestras independientes de tamaños $n_1$ y $n_2$:
+
 1. Se combinan ambas muestras y se asignan rangos (de 1 a $n_1+n_2$).
 2. Se calcula la suma de rangos para cada grupo ($R_1$ y $R_2$).
 3. El estadístico $U$ es el mínimo de:

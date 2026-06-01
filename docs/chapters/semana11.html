@@ -604,7 +604,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Analizamos la asociación entre tabaquismo (<code>tabaco</code>) y osteoporosis de cúbito (<code>osteo_cue</code>) en 94 pacientes diabéticos. Documentación completa en <a href="apendiceB.html#sec-bio-tablas" class="quarto-xref"><span>Sección B.8</span></a>.</p>
+<p>Analizamos la asociación entre tabaquismo (<code>tabaco</code>) y osteoporosis del cuello femoral (<code>osteo_cue</code>) en 94 pacientes diabéticos. Documentación completa en <a href="apendiceB.html#sec-bio-tablas" class="quarto-xref"><span>Sección B.8</span></a>.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -647,7 +647,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>El estadístico χ² = 4.65 con 1 grado de libertad produce p = 0.031 &lt; 0.05, rechazando la hipótesis nula de independencia. Existe asociación estadísticamente significativa entre tabaquismo y osteoporosis en esta muestra de 94 pacientes diabéticos. Los fumadores presentan una odds ratio de 2.82 (IC 95%: 1.07–7.01), indicando aproximadamente 2.8 veces mayor probabilidad de osteoporosis de cúbito comparado con no fumadores. En el contexto clínico, esta asociación es relevante para estratificar riesgo en pacientes diabéticos, sugiriendo que el cese del tabaquismo podría ser una intervención preventiva importante en esta población de alto riesgo metabólico.</p>
+<p>El estadístico χ² = 4.65 con 1 grado de libertad produce p = 0.031 &lt; 0.05, rechazando la hipótesis nula de independencia. Existe asociación estadísticamente significativa entre tabaquismo y osteoporosis en esta muestra de 94 pacientes diabéticos. Los fumadores presentan una odds ratio de 2.82 (IC 95%: 1.07–7.01), indicando aproximadamente 2.8 veces mayor probabilidad de osteoporosis del cuello femoral comparado con no fumadores. En el contexto clínico, esta asociación es relevante para estratificar riesgo en pacientes diabéticos, sugiriendo que el cese del tabaquismo podría ser una intervención preventiva importante en esta población de alto riesgo metabólico.</p>
 </div>
 </div>
 </div>
@@ -1098,7 +1098,7 @@ odds ratio
 <p><strong>Interpretación de la tabla:</strong> - 42 pacientes ya tenían la PA controlada y mantuvieron el control tras la intervención - 22 pacientes no la controlaron ni antes ni después - <strong><span class="math inline">\(b = 8\)</span></strong>: 8 pacientes que tenían la PA controlada la “perdieron” tras el programa - <strong><span class="math inline">\(c = 28\)</span></strong>: 28 pacientes que no la tenían controlada <strong>la consiguieron</strong> con la intervención</p>
 <p><strong>Pares discordantes:</strong> <span class="math inline">\(b + c = 8 + 28 = 36 \geq 25\)</span> → no es necesaria la corrección de Yates.</p>
 <p><strong>Cálculo manual:</strong> <span class="math display">\[\chi^2_{\text{McNemar}} = \frac{(b - c)^2}{b + c} = \frac{(8 - 28)^2}{36} = \frac{400}{36} = 11.11\]</span></p>
-<p>Como <span class="math inline">\(11.11 &gt; 3.84\)</span> (<span class="math inline">\(p &lt; 0.001\)</span>), rechazamos <span class="math inline">\(H_0\)</span>. La intervención mejora significativamente el control de la PA: 28 pacientes mejoraron frente a solo 8 que empeoraron.</p>
+<p>Como <span class="math inline">\(11.11 &gt; 3.84\)</span> (<span class="math inline">\(p \approx 0.001\)</span>), rechazamos <span class="math inline">\(H_0\)</span>. La intervención mejora significativamente el control de la PA: 28 pacientes mejoraron frente a solo 8 que empeoraron.</p>
 <p><strong>Nota sobre las proporciones marginales:</strong> - Antes: 50/100 = 50% con PA controlada - Después: 70/100 = 70% con PA controlada - Diferencia: +20 puntos porcentuales (<span class="math inline">\(p &lt; 0.001\)</span> por McNemar)</p>
 <p>Si se hubiera aplicado incorrectamente un <span class="math inline">\(\chi^2\)</span> de independencia (ignorando el apareamiento), la prueba sería errónea porque las observaciones no son independientes.</p>
 </div>
@@ -1320,7 +1320,7 @@ odds ratio
 <pre><code>IC 95%: [ 1.79 , 3.98 ]</code></pre>
 </div>
 </div>
-<p><strong>Interpretación:</strong> Los fumadores tienen <strong>2.67 veces más riesgo</strong> de cardiopatía isquémica que los no fumadores (<span class="math inline">\(RR = 2.67\)</span>; <span class="math inline">\(IC_{95\%}\)</span>: 1.79–3.97). El intervalo no contiene el 1, confirmando asociación estadísticamente significativa.</p>
+<p><strong>Interpretación:</strong> Los fumadores tienen <strong>2.67 veces más riesgo</strong> de cardiopatía isquémica que los no fumadores (<span class="math inline">\(RR = 2.67\)</span>; <span class="math inline">\(IC_{95\%}\)</span>: 1.79–3.98). El intervalo no contiene el 1, confirmando asociación estadísticamente significativa.</p>
 </div>
 </div>
 </section>
@@ -1419,7 +1419,7 @@ odds ratio
   OR=3.500; 95%-IC(OR)= (2.300, 5.253) </code></pre>
 </div>
 </div>
-<p><strong>Interpretación:</strong> <span class="math inline">\(OR = 3.50\)</span> (<span class="math inline">\(IC_{95\%}\)</span>: 2.28–5.37). Las personas con consumo excesivo de alcohol tienen <strong>3.5 veces más odds</strong> de cirrosis que las de consumo no excesivo. El resultado es altamente significativo (<span class="math inline">\(p &lt; 0.001\)</span>).</p>
+<p><strong>Interpretación:</strong> <span class="math inline">\(OR = 3.50\)</span> (<span class="math inline">\(IC_{95\%}\)</span>: 2.30–5.25). Las personas con consumo excesivo de alcohol tienen <strong>3.5 veces más odds</strong> de cirrosis que las de consumo no excesivo. El resultado es altamente significativo (<span class="math inline">\(p &lt; 0.001\)</span>).</p>
 </div>
 </div>
 </section>
@@ -1692,7 +1692,7 @@ McNemar's chi-squared = 11, df = 1, p-value = 0.0009</code></pre>
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38" data-lst-cap="Comparación BioEstatR vs. Base R — Test de McNemar"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># BioEstatR: tabla2x2(..., estudio = "AP")</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (ver sección 12.5.5 para la salida completa; requiere BioEstatR)</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (ver @sec-semana11-mcnemar para la salida completa; requiere BioEstatR)</span></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># tabla2x2(o11=42, o12=8, o21=28, o22=22,</span></span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co">#          fcat = c("Pre: Controlada","Pre: No controlada"),</span></span>
 <span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="co">#          ccat = c("Post: Controlada","Post: No controlada"),</span></span>
@@ -2000,7 +2000,7 @@ Tabla estrato 2 (Grave):</code></pre>
 </div>
 </div>
 <p><strong>Interpretación Epidemiológica:</strong> En este estudio, el OR crudo (total) es 5.67, mientras que el OR ajustado (MH) es 6.83. La diferencia relativa es de 20.6%. Al ser mayor del 10%, existe un efecto de confusión sustancial provocado por la “gravedad”.</p>
-<p>La gravedad actúa como un factor de confusión ya que está asociada tanto a la probabilidad de recibir el Fármaco A (sesgo de indicación) como a la probabilidad de recuperación (pronóstico). El OR crudo subestima (o sobreestima) el efecto real al mezclar el impacto del fármaco con la mayor o menor gravedad basal de los pacientes. Al ajustar por MH, eliminamos esta confusión.</p>
+<p>La gravedad actúa como un factor de confusión ya que está asociada tanto a la probabilidad de recibir el Fármaco A (sesgo de indicación) como a la probabilidad de recuperación (pronóstico). En este caso concreto, el OR crudo <strong>subestima</strong> el efecto real (5.67 &lt; 6.83) al mezclar el impacto del fármaco con la mayor o menor gravedad basal de los pacientes; en otros contextos la confusión puede ir en dirección contraria y sobreestimar el efecto. Al ajustar por MH, eliminamos esta confusión.</p>
 <p>Sin embargo, es crucial notar que existe una <strong>interacción</strong> (modificación del efecto): el fármaco parece ser más eficaz en pacientes leves que en pacientes graves. En presencia de una interacción tan marcada, la mejor recomendación epidemiológica es presentar los <strong>resultados estratificados</strong>, ya que un único OR ajustado (MH) ocultaría esta heterogeneidad clínicamente relevante.</p>
 <p>Por último, para superar las limitaciones de los métodos tradicionales, la generalización de la estandarización mediante la <strong>g-formula</strong> (Robins, 1987) representa hoy en día una alternativa avanzada y robusta para ajustar el efecto del fármaco. Para aquellos interesados en introducirse en la inferencia causal desde una perspectiva tanto histórica como computacional, se recomienda como punto de partida el tutorial <em>Computational Causal Inference</em> (Smith &amp; Luque-Fernandez, 2020, publicado en <em>Statistics in Medicine</em>), el cual ofrece una excelente guía con ejemplos prácticos implementados en <strong>R, Python y Stata</strong>.</p>
 </section>

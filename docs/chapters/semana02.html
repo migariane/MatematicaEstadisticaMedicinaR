@@ -668,14 +668,9 @@ Cuadro&nbsp;2.2: Código R
 </figure>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-# Descriptiva de osteo$imc por osteo$sexo
-# ---------------------------------------
- osteo$sexo 
-         n  media    dt
- Hombre 45 23.514 2.890
- Mujer  49 24.294 4.389
- Total  94 23.921 3.748</code></pre>
+<pre><code>        n  media    dt
+Hombre 45 23.514 2.890
+Mujer  49 24.294 4.389</code></pre>
 </div>
 </div>
 <p>Las mujeres presentan mayor IMC medio y mayor variabilidad (dt = 4.39 vs 2.89 en hombres). Con <code>ic = TRUE</code> añade intervalos de confianza individuales por grupo.</p>
@@ -796,11 +791,16 @@ Cuadro&nbsp;2.6: Cálculos con Base R
 </div>
 <div class="callout-body-container callout-body">
 <p>Si definimos una transformación lineal <span class="math inline">\(y_i = a + b x_i\)</span> donde <span class="math inline">\(b \neq 0\)</span>, entonces:</p>
-<p><strong>Para la media:</strong> <span class="math display">\[\bar{y} = a + b\bar{x}\]</span></p>
-<p><strong>Para la varianza:</strong> <span class="math display">\[s_y^2 = b^2 s_x^2\]</span></p>
-<p><strong>Para la desviación estándar:</strong> <span class="math display">\[s_y = |b| s_x\]</span></p>
-<p><strong>Para el rango:</strong> <span class="math display">\[R_Y = |b|R_X\]</span></p>
-<p><strong>Para el rango intercuartílico:</strong> <span class="math display">\[\text{IQR}_Y = |b| \text{IQR}_X\]</span></p>
+<p><strong>Para la media:</strong></p>
+<p><span class="math display">\[\bar{y} = a + b\bar{x}\]</span></p>
+<p><strong>Para la varianza:</strong></p>
+<p><span class="math display">\[s_y^2 = b^2 s_x^2\]</span></p>
+<p><strong>Para la desviación estándar:</strong></p>
+<p><span class="math display">\[s_y = |b| s_x\]</span></p>
+<p><strong>Para el rango:</strong></p>
+<p><span class="math display">\[R_Y = |b|R_X\]</span></p>
+<p><strong>Para el rango intercuartílico:</strong></p>
+<p><span class="math display">\[\text{IQR}_Y = |b| \text{IQR}_X\]</span></p>
 </div>
 </div>
 </section>
@@ -1544,14 +1544,14 @@ Cuadro&nbsp;2.20: Probabilidad condicional en R
 <span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tabla_hiv) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Infectado"</span>, <span class="st">"No infectado"</span>)</span>
 <span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tabla_hiv) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Test +"</span>, <span class="st">"Test -"</span>)</span>
 <span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Porcentajes por FILA (P(Resultado | Infección))</span></span>
-<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"P(Test | Infección) - Porcentajes por FILA:"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Porcentajes por FILA (P(Infección | Test) — Valor Predictivo)</span></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"P(Infección | Test) - Porcentajes por FILA:"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </figure>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "P(Test | Infección) - Porcentajes por FILA:"</code></pre>
+<pre><code>[1] "P(Infección | Test) - Porcentajes por FILA:"</code></pre>
 </div>
 <div id="lst-semana02-7" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-summary="Probabilidad condicional en R">
 <figure class="quarto-float quarto-float-lst figure">
@@ -1579,14 +1579,14 @@ Cuadro&nbsp;2.22: Probabilidad condicional en R
 <div aria-describedby="lst-semana02-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Probabilidad condicional en R</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Porcentajes por COLUMNA (Valor Predictivo: P(Infección | Test))</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"P(Infección | Test) - Porcentajes por COLUMNA:"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Porcentajes por COLUMNA (Sensibilidad/Especificidad: P(Test | Infección))</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"P(Test | Infección) - Porcentajes por COLUMNA:"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </figure>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "P(Infección | Test) - Porcentajes por COLUMNA:"</code></pre>
+<pre><code>[1] "P(Test | Infección) - Porcentajes por COLUMNA:"</code></pre>
 </div>
 <div id="lst-semana02-7" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-summary="Probabilidad condicional en R">
 <figure class="quarto-float quarto-float-lst figure">
@@ -1607,7 +1607,7 @@ Test +     0.995        0.005
 Test -     0.005        0.995</code></pre>
 </div>
 </div>
-<p><strong>Interpretación Clínica:</strong> - <strong>Por filas</strong>: ( | ) qué tan bueno es el test para identificar la presencia o ausencia de enfermedad. - <strong>Por columnas</strong>: ( | ) a la pregunta clínica crucial: “Dado que el paciente tiene este resultado de test, ¿cuál es la probabilidad real de que esté infectado?”.</p>
+<p><strong>Interpretación Clínica:</strong> - <strong>Por filas</strong> (<span class="math inline">\(P(\text{Infección} \mid \text{Test})\)</span>): <strong>Valor Predictivo</strong> — responde a la pregunta clínica crucial: “Dado que el paciente tiene este resultado de test, ¿cuál es la probabilidad real de que esté infectado?”. - <strong>Por columnas</strong> (<span class="math inline">\(P(\text{Test} \mid \text{Infección})\)</span>): <strong>Sensibilidad y Especificidad</strong> — qué tan bueno es el test para identificar la presencia o ausencia de enfermedad.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -1788,7 +1788,8 @@ Figura&nbsp;2.1: Limitaciones de la correlación de Pearson
 </div>
 <div class="callout-body-container callout-body">
 <p>La <strong>Paradoja de Simpson</strong> es un fenómeno donde una tendencia observada en varios grupos desaparece o se invierte al combinarlos.</p>
-<p><strong>Relación con el ejemplo clínico:</strong> En la figura a continuación (Ejemplo 2.11), vemos dos subgrupos (leves y graves). Si calculáramos la correlación total de todos los pacientes sin distinguir estos grupos, el resultado sería engañoso. La variable “gravedad” actúa aquí como un <strong>factor de confusión</strong>. Este ejemplo clínico ilustra perfectamente por qué la <strong>“correlación no implica causalidad”</strong> y subraya la importancia crítica de la estratificación y visualización de datos en medicina.</p>
+<p><strong>Relación con el ejemplo clínico:</strong></p>
+<p>En la figura a continuación (Ejemplo 2.11), vemos dos subgrupos (leves y graves). Si calculáramos la correlación total de todos los pacientes sin distinguir estos grupos, el resultado sería engañoso. La variable “gravedad” actúa aquí como un <strong>factor de confusión</strong>. Este ejemplo clínico ilustra perfectamente por qué la <strong>“correlación no implica causalidad”</strong> y subraya la importancia crítica de la estratificación y visualización de datos en medicina.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -2284,9 +2285,9 @@ Cuadro&nbsp;2.31: Código R: Simulación Clínica
 <h2 data-number="2.10" class="anchored" data-anchor-id="sec-semana02-respuestas"><span class="header-section-number">2.10</span> Respuestas a los Ejercicios</h2>
 <p><strong>Ejercicio 2.1: Estadísticos de Dispersión</strong></p>
 <ol type="a">
-<li><p>Rango: 320 - 240 = 80 ms IQR: Q₃ - Q₁ ≈ 290 - 255 = 35 ms</p></li>
-<li><p>Media: ≈ 278.3 ms Desviación estándar: ≈ 26.9 ms</p></li>
-<li><p>Outliers (&gt; Q₃ + 1.5×IQR = 290 + 52.5 = 342.5): Ninguno detectado Outliers (&lt; Q₁ - 1.5×IQR = 255 - 52.5 = 202.5): Ninguno</p></li>
+<li><p>Rango: 320 - 240 = 80 ms IQR: Q₃ - Q₁ = 292.5 - 258.75 = 33.75 ms (<code>quantile()</code> por defecto, type 7)</p></li>
+<li><p>Media: 276.25 ms Desviación estándar: ≈ 24.69 ms Mediana: 272.5 ms</p></li>
+<li><p>Outliers (&gt; Q₃ + 1.5×IQR = 292.5 + 50.625 = 343.125): Ninguno detectado Outliers (&lt; Q₁ - 1.5×IQR = 258.75 - 50.625 = 208.125): Ninguno</p></li>
 <li><p>El boxplot muestra distribución simétrica alrededor de 275-280 ms sin outliers.</p></li>
 </ol>
 <p><strong>Ejercicio 2.2: Transformaciones Lineales (Conversión)</strong></p>
@@ -2312,8 +2313,8 @@ Cuadro&nbsp;2.31: Código R: Simulación Clínica
 <p>Para resolver este ejercicio en R: a) Usa <code>mean(edad)</code>, <code>sd(edad)</code>, <code>mean(presion_sistolica)</code>, <code>sd(presion_sistolica)</code> y <code>cov(edad, presion_sistolica)</code>. b) Usa <code>cor(edad, presion_sistolica)</code>. c) <code>plot(edad, presion_sistolica); abline(lm(presion_sistolica ~ edad))</code>. d) <code>boxplot(edad); boxplot(presion_sistolica)</code>. e) <code>z_edad &lt;- scale(edad); z_presion &lt;- scale(presion_sistolica)</code>. f) <code>mean(z_edad); sd(z_edad)</code> (el resultado será prácticamente 0 y 1).</p>
 <p><strong>Ejercicio 2.6: Distribuciones Conjuntas</strong></p>
 <ol type="a">
-<li><p>Correlación (<span class="math inline">\(r\)</span>) = <span class="math inline">\(\frac{\text{Cov}(X,Y)}{s_x \cdot s_y} = \frac{180}{15 \times 10} = \frac{180}{150} = 1.2\)</span>. <em>Nota: Este valor indica un error en los datos de entrada, ya que la correlación no puede ser &gt; 1.</em></p></li>
-<li><p>Si <span class="math inline">\(r=0.12\)</span> (ajustando a un valor coherente), la correlación sería muy débil; apenas existe relación lineal entre la presión sistólica y diastólica en esta muestra.</p></li>
+<li><p>Correlación (<span class="math inline">\(r\)</span>) = <span class="math inline">\(\frac{\text{Cov}(X,Y)}{s_x \cdot s_y} = \frac{180}{15 \times 10} = \frac{180}{150} = 1.2\)</span>. <em>Nota:</em> Este valor es <strong>imposible</strong> porque <span class="math inline">\(|r| \le 1\)</span> siempre. La inconsistencia revela que los valores propuestos para <span class="math inline">\(\text{Cov}\)</span>, <span class="math inline">\(s_x\)</span> y <span class="math inline">\(s_y\)</span> violan la <strong>desigualdad de Cauchy–Schwarz</strong> <span class="math inline">\(|s_{xy}| \le s_x \cdot s_y\)</span> (aquí <span class="math inline">\(|180| &gt; 15 \times 10 = 150\)</span>). En la práctica, ante un resultado así habría que revisar los datos de partida.</p></li>
+<li><p>Si los datos fuesen coherentes —por ejemplo, <span class="math inline">\(\text{Cov}(X,Y) = 120\)</span> con los mismos <span class="math inline">\(s_x = 15\)</span> y <span class="math inline">\(s_y = 10\)</span>— se obtendría <span class="math inline">\(r = 120/150 = 0.8\)</span>, lo cual indicaría una correlación lineal positiva fuerte entre la presión sistólica y diastólica en esta muestra.</p></li>
 <li><p>No son independientes (<span class="math inline">\(\text{Cov} \neq 0\)</span>), pero la relación lineal es despreciable. Independencia estadística requiere <span class="math inline">\(\text{Cov} = 0\)</span> y más condiciones.</p></li>
 </ol>
 

@@ -32,6 +32,7 @@ Para variables **discretas**, la **Función de Masa de Probabilidad (PMF)** es:
 $$P(X = x_i) = f(x_i)$$
 
 con propiedades:
+
 - $f(x_i) \geq 0$ para todo $i$
 - $\sum_i f(x_i) = 1$
 
@@ -43,6 +44,7 @@ La **Función de Distribución Acumulada (CDF)** es:
 $$F(x) = P(X \leq x)$$
 
 con propiedades:
+
 - $0 \leq F(x) \leq 1$
 - $F$ es no decreciente
 - $\lim_{x \to -\infty} F(x) = 0$ y $\lim_{x \to +\infty} F(x) = 1$
@@ -170,6 +172,7 @@ La **estandarización** o **normalización** transforma una variable aleatoria
 $$Z = \frac{X - E(X)}{\sqrt{\text{Var}(X)}} = \frac{X - \mu_X}{\sigma_X}$$
 
 Propiedades de $Z$:  
+
 - $E(Z) = 0$  
 - $\text{Var}(Z) = 1$  
 - $Z$ es adimensional (sin unidades)  
@@ -186,6 +189,7 @@ La **función de probabilidad conjunta** es:
 $$P(X = x_i, Y = y_j) = f(x_i, y_j)$$
 
 con propiedades:
+
 - $f(x_i, y_j) \geq 0$
 - $\sum_i \sum_j f(x_i, y_j) = 1$
 
@@ -238,6 +242,7 @@ Fórmula computacional:
 $$\text{Cov}(X, Y) = E(XY) - E(X) \cdot E(Y)$$
 
 Propiedades:
+
 - $\text{Cov}(X, X) = \text{Var}(X)$
 - Si $X$ e $Y$ son independientes: $\text{Cov}(X, Y) = 0$
 - **Nota importante:** $\text{Cov}(X, Y) = 0$ NO implica independencia
@@ -250,6 +255,7 @@ El **coeficiente de correlación** (o coeficiente de correlación de Pearson) 
 $$\rho(X, Y) = \text{Corr}(X, Y) = \frac{\text{Cov}(X, Y)}{\sigma_X \cdot \sigma_Y}$$
 
 Propiedades:
+
 - $-1 \leq \rho(X, Y) \leq 1$
 - $\rho = 1$: correlación positiva perfecta
 - $\rho = 0$: no hay correlación lineal
@@ -588,6 +594,7 @@ $$Z = \frac{X - \mu}{\sigma}$$
 Si $X \sim N(\mu, \sigma^2)$, entonces $Z \sim N(0, 1)$
 
 Esta transformación es fundamental porque:
+
 - Permite usar tablas únicas de probabilidades
 - Valores de $Z$ son directamente comparables entre variables diferentes
 :::
@@ -1022,6 +1029,7 @@ Ya la vimos anteriormente. Sin embargo, ahora la podemos ver como una de las apl
 
 **Condiciones para la aproximación:**    
 La aproximación es generalmente considerada adecuada si se cumplen las siguientes condiciones:    
+
 - $np \geq 5$ (o $np \geq 10$ para una mejor aproximación)   
 - $n(1-p) \geq 5$ (o $n(1-p) \geq 10$ para una mejor aproximación)    
 
@@ -1095,6 +1103,7 @@ Similar a la Binomial, la distribución de Poisson también puede ser aproxima
 
 **Condiciones para la aproximación:**
 La aproximación es generalmente aceptable si:
+
 *   $\lambda \geq 10$ (o $\lambda \geq 5$ en algunos contextos, pero $\lambda \geq 10$ es más seguro para una buena aproximación).
 
 Bajo esta condición, si $X \sim \text{Po}(\lambda)$, entonces $X$ puede ser aproximada por $Y \sim N(\mu = \lambda, \sigma^2 = \lambda)$.
@@ -1174,6 +1183,7 @@ La relación entre las distribuciones Exponencial y de Poisson es una de las du
 
 **Conceptualización de la dualidad:**
 - Si el número de eventos en un intervalo de tiempo $t$ sigue una distribución de Poisson con tasa $\lambda$, es decir, $N(t) \sim \text{Po}(\lambda t)$, entonces:  
+
 - El tiempo hasta que ocurre el primer evento (o el tiempo entre dos eventos consecutivos) sigue una distribución Exponencial con parámetro de tasa $\lambda$.  
 
 Esta dualidad es crucial para modelar fenómenos como el tiempo de espera hasta el próximo cliente en una cola, el tiempo de vida de componentes electrónicos, o el tiempo entre mutaciones genéticas.  

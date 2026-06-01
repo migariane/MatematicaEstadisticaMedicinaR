@@ -139,6 +139,7 @@ donde $R$ es la región de rechazo y $P_\theta$ significa "probabilidad cuando e
 - Cuando $\theta \in \Theta_1$ (bajo $H_1$ verdadera): $\beta(\theta) = 1 - P(\text{Error Tipo II})$ es la **potencia**
 
 Un buen contraste tiene:
+
 - Potencia cercana a 0 para $\theta \in \Theta_0$ (pocos falsos positivos)
 - Potencia cercana a 1 para $\theta \in \Theta_1$ (muchos verdaderos positivos)
 :::
@@ -273,6 +274,7 @@ Empezamos con:
 $$T = \frac{\bar{X} - \mu_0}{S/\sqrt{n}} = \frac{\frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}}}{\frac{S}{\sigma}} = \frac{Z}{\sqrt{\frac{C}{n-1}}}$$
 
 donde:
+
 - $Z = \frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}} \sim N(0,1)$ (normal estándar)
 - $C = \frac{(n-1)S^2}{\sigma^2} \sim \chi^2_{n-1}$ (chi-cuadrado con $n-1$ gl)
 
@@ -438,6 +440,7 @@ Se pueden usar los valores críticos normales en lugar de los binomiales exactos
 | 10 | 1.0000 | 0.0010 | Rechazo |
 
 Con $\alpha = 0.05$:
+
 - Región de rechazo bilateral: $\{0, 1\} \cup \{9, 10\}$
 - Como $x = 9$ está en la región de rechazo, rechazamos $H_0$
 - p-valor: $P(X \leq 1) + P(X \geq 9) = 0.0107 + (1 - 0.9893) = 0.0214$
@@ -483,6 +486,7 @@ El **valor-p** (o **p-value**) es la probabilidad, calculada asumiendo que $H_0$
 $$\text{valor-p} = P(T \text{ sea tan o más extremo que } t_{obs} | H_0)$$
 
 donde "más extremo" depende del tipo de contraste:
+
 - **Bilateral:** $P(|T| \geq |t_{obs}|)$
 - **Unilateral derecha:** $P(T \geq t_{obs})$
 - **Unilateral izquierda:** $P(T \leq t_{obs})$
@@ -491,11 +495,13 @@ donde "más extremo" depende del tipo de contraste:
 ### Interpretación
 
 El valor-p **no es**:
+
 - La probabilidad de que $H_0$ sea verdadera
 - La probabilidad de que $H_1$ sea verdadera
 - La probabilidad de haber cometido un error
 
 El valor-p **es**:
+
 - Una medida de compatibilidad entre los datos y $H_0$
 - Un p-valor pequeño indica que los datos observados serían muy improbables si $H_0$ fuera verdadera
 
@@ -667,11 +673,13 @@ La dirección del contraste (bilateral vs. unilateral) debe determinarse **antes
 La elección afecta a $\alpha$ y $\beta$:
 
 En contraste **bilateral** con $\alpha = 0.05$:
+
 - Dividimos $\alpha$ en ambas colas: $\alpha/2 = 0.025$ en cada cola
 - Valor crítico es más grande ($z_{0.975} = 1.96$)
 - Mayor $\beta$ (menos poder)
 
 En contraste **unilateral** con $\alpha = 0.05$:
+
 - Toda $\alpha = 0.05$ va en una cola
 - Valor crítico es más pequeño ($z_{0.95} = 1.645$)
 - Menor $\beta$ (más poder)
@@ -834,6 +842,7 @@ d) ¿Por qué no es correcto decir "se acepta $H_0$"?
 **Fin de Semana 8: Contrastes de Hipótesis (Parte I)**
 
 En las próximas semanas estudiaremos:
+
 - Contrastes para diferencia de medias (dos muestras)
 - Contrastes para varianzas
 - ANOVA (análisis de varianza)

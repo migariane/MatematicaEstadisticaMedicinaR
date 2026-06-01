@@ -27,6 +27,7 @@ La tabla 2×2 es el caso más frecuente en epidemiología y ensayos clínicos:
 | **Total** | $a+c$ | $b+d$ | $n$ |
 
 Donde:
+
 - $a$ = expuestos con resultado positivo (casos expuestos)
 - $b$ = expuestos sin resultado
 - $c$ = no expuestos con resultado positivo
@@ -346,6 +347,7 @@ La tabla de datos apareados tiene una estructura especial:
 | **Total** | $a+c$ | $b+d$ | $n$ |
 
 Donde:
+
 - $a$: pares concordantes positivos (ambos positivos)
 - $d$: pares concordantes negativos (ambos negativos)
 - $b$: discordantes — positivo en A, negativo en B
@@ -761,6 +763,7 @@ El estimador de Mantel-Haenszel es una técnica clásica para combinar los odds 
 $$OR_{MH} = \frac{\sum_{i=1}^{k} \frac{a_i d_i}{n_i}}{\sum_{i=1}^{k} \frac{b_i c_i}{n_i}}$$
 
 Donde para el estrato $i$:
+
 - $a_i, b_i, c_i, d_i$: celdas de la tabla 2×2.
 - $n_i$: total de individuos en el estrato.
 
@@ -955,6 +958,7 @@ c) Con $n = 30$ y celdas $(3, 12, 8, 7)$: $OR = 3 \times 7/(12 \times 8) = 0.22$
 a) Las dos pruebas se aplican al mismo paciente, por lo que las observaciones son dependientes entre sí. El test $\chi^2$ de independencia requiere que todas las observaciones sean independientes; violarlo inflaría artificialmente el tamaño de muestra efectivo.
 b) Pares discordantes: $b = 12$ (TAU+/SERO−) y $c = 5$ (TAU−/SERO+). Total: $b + c = 17$.
 c) Como $b + c = 17 < 25$, se recomienda la corrección de Yates:
+
    - Sin corrección: $\chi^2 = (12-5)^2/17 = 49/17 = 2.88$
    - Con corrección (Yates): $\chi^2 = (|12-5|-1)^2/17 = 36/17 = 2.12$
 d) Sin corrección: $\chi^2 = 2.88$, $p \approx 0.090$. Con corrección de Yates: $\chi^2 = 2.12$, $p \approx 0.145$. Con $\alpha = 0.05$, **no rechazamos** $H_0$ en ningún caso: no hay evidencia suficiente de que las dos pruebas difieran significativamente en su tasa de positividad. No obstante, el TAU detecta más positivos que la serología ($b = 12 > c = 5$), lo que sugiere una tendencia a mayor sensibilidad del TAU, aunque no alcanza significancia estadística con esta muestra.

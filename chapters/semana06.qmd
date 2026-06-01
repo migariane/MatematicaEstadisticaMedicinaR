@@ -21,6 +21,7 @@ Un **modelo estadístico paramétrico** es una colección de distribuciones de p
 $$\{f(x; \boldsymbol{\theta}) : \boldsymbol{\theta} \in \Theta\}$$
 
 donde:
+
 - $f(x; \boldsymbol{\theta})$ es la función de densidad o de probabilidad
 - $\boldsymbol{\theta} = (\theta_1, \ldots, \theta_p)$ es el vector de parámetros desconocidos
 - $\Theta$ es el **espacio de parámetros**, el conjunto de todos los valores posibles que $\boldsymbol{\theta}$ puede tomar
@@ -45,6 +46,7 @@ $$\hat{\theta} = g(x_1, x_2, \ldots, x_n)$$
 :::
 
 **Observación clave:** Es importante distinguir entre:
+
 - El **estimador** (antes de ver los datos): variable aleatoria
 - El **valor estimado** (después de ver los datos): número concreto
 
@@ -170,10 +172,12 @@ El procedimiento consiste en tres pasos:
 Supongamos que tenemos una muestra de una distribución Normal $N(\mu, \sigma^2)$ con ambos parámetros desconocidos.
 
 **Paso 1:** Momentos poblacionales:
+
 - Primer momento: $E(X) = \mu$
 - Segundo momento: $E(X^2) = \mu^2 + \sigma^2$
 
 **Paso 2:** Inversión:
+
 - $\mu = E(X)$
 - $\sigma^2 = E(X^2) - [E(X)]^2$
 
@@ -292,6 +296,7 @@ Por lo tanto:
 $$\frac{\partial \ell(\theta)}{\partial \theta}\bigg|_{\theta=\hat{\theta}} = 0 \quad \Leftrightarrow \quad \frac{\partial L(\theta)}{\partial \theta}\bigg|_{\theta=\hat{\theta}} = 0$$
 
 Usar log-verosimilitud es computacionalmente más conveniente porque:
+
 - Convierte productos en sumas
 - Es numéricamente más estable
 - Es más fácil de derivar
@@ -802,10 +807,12 @@ El cálculo del tamaño muestral cuantifica el coste estadístico de incrementar
 3. **Error Cuadrático Medio:** Explica por qué a veces puede ser preferible un estimador sesgado con baja varianza sobre uno insesgado con alta varianza. Proporciona un ejemplo numérico simple.
 
 4. **Método de Momentos:** Para una muestra de una distribución Uniform$[0, \theta]$:
+
    - Encuentra el estimador por método de momentos de $\theta$
    - ¿Es insesgado?
 
 5. **Máxima Verosimilitud:** Para una muestra de $n$ observaciones de una distribución Poisson$(\lambda)$:
+
    - Escribe la función de verosimilitud
    - Encuentra el EMV de $\lambda$
    - ¿Coincide con el estimador MoM?
@@ -815,6 +822,7 @@ El cálculo del tamaño muestral cuantifica el coste estadístico de incrementar
 7. **Intervalo de Confianza para Proporción:** En una encuesta de 500 personas, 325 responden afirmativamente a una pregunta. Construye un IC 95% para la proporción poblacional e interpreta el resultado.
 
 8. **Programación en R:** Escribe un script en R que:
+
    - Genere una muestra de una distribución Normal$(\mu=100, \sigma=15)$ de tamaño $n=50$
    - Calcule estimadores puntuales para $\mu$ y $\sigma^2$
    - Construya un IC 95% para $\mu$
