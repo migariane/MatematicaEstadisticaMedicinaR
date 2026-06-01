@@ -974,17 +974,26 @@ Cuadro&nbsp;3.3: Código R
 </div>
 <div class="callout-body-container callout-body">
 <p>Sea <span class="math inline">\(A, B, A_1, A_2, \ldots\)</span> eventos en un espacio de probabilidad. Entonces:</p>
-<p><strong>Propiedad 1: Probabilidad del complemento</strong> <span class="math display">\[\mathbb{P}(\overline{A}) = 1 - \mathbb{P}(A)\]</span></p>
-<p><em>Prueba:</em> Note que <span class="math inline">\(A \cup \overline{A} = \Omega\)</span> y <span class="math inline">\(A \cap \overline{A} = \emptyset\)</span>. Por el Axioma 3: <span class="math display">\[\mathbb{P}(\Omega) = \mathbb{P}(A) + \mathbb{P}(\overline{A}) = 1\]</span></p>
-<p><strong>Propiedad 2: Probabilidad del conjunto vacío</strong> <span class="math display">\[\mathbb{P}(\emptyset) = 0\]</span></p>
+<p><strong>Propiedad 1: Probabilidad del complemento</strong></p>
+<p><span class="math display">\[\mathbb{P}(\overline{A}) = 1 - \mathbb{P}(A)\]</span></p>
+<p><em>Prueba:</em> Note que <span class="math inline">\(A \cup \overline{A} = \Omega\)</span> y <span class="math inline">\(A \cap \overline{A} = \emptyset\)</span>. Por el Axioma 3:</p>
+<p><span class="math display">\[\mathbb{P}(\Omega) = \mathbb{P}(A) + \mathbb{P}(\overline{A}) = 1\]</span></p>
+<p><strong>Propiedad 2: Probabilidad del conjunto vacío</strong></p>
+<p><span class="math display">\[\mathbb{P}(\emptyset) = 0\]</span></p>
 <p><em>Prueba:</em> <span class="math inline">\(\emptyset = \overline{\Omega}\)</span>, así que <span class="math inline">\(\mathbb{P}(\emptyset) = 1 - \mathbb{P}(\Omega) = 1 - 1 = 0\)</span>.</p>
-<p><strong>Propiedad 3: Monotonía</strong> Si <span class="math inline">\(A \subseteq B\)</span>, entonces <span class="math inline">\(\mathbb{P}(A) \leq \mathbb{P}(B)\)</span></p>
-<p><em>Prueba:</em> Si <span class="math inline">\(A \subseteq B\)</span>, entonces <span class="math inline">\(B = A \cup (B - A)\)</span> donde <span class="math inline">\(A\)</span> y <span class="math inline">\(B - A\)</span> son disjuntos. Por el Axioma 3: <span class="math display">\[\mathbb{P}(B) = \mathbb{P}(A) + \mathbb{P}(B - A) \geq \mathbb{P}(A)\]</span></p>
-<p><strong>Propiedad 4: Acotamiento</strong> <span class="math display">\[0 \leq \mathbb{P}(A) \leq 1\]</span></p>
+<p><strong>Propiedad 3: Monotonía</strong></p>
+<p>Si <span class="math inline">\(A \subseteq B\)</span>, entonces <span class="math inline">\(\mathbb{P}(A) \leq \mathbb{P}(B)\)</span></p>
+<p><em>Prueba:</em> Si <span class="math inline">\(A \subseteq B\)</span>, entonces <span class="math inline">\(B = A \cup (B - A)\)</span> donde <span class="math inline">\(A\)</span> y <span class="math inline">\(B - A\)</span> son disjuntos. Por el Axioma 3:</p>
+<p><span class="math display">\[\mathbb{P}(B) = \mathbb{P}(A) + \mathbb{P}(B - A) \geq \mathbb{P}(A)\]</span></p>
+<p><strong>Propiedad 4: Acotamiento</strong></p>
+<p><span class="math display">\[0 \leq \mathbb{P}(A) \leq 1\]</span></p>
 <p>Se sigue de los Axiomas 1 y 2.</p>
-<p><strong>Propiedad 5: Regla de la suma (Inclusión-Exclusión)</strong> <span class="math display">\[\mathbb{P}(A \cup B) = \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A \cap B)\]</span></p>
+<p><strong>Propiedad 5: Regla de la suma (Inclusión-Exclusión)</strong></p>
+<p><span class="math display">\[\mathbb{P}(A \cup B) = \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A \cap B)\]</span></p>
 <p><em>Prueba:</em> Observe que <span class="math inline">\(A \cup B = A \cup (B - A)\)</span> donde estos son disjuntos, y <span class="math inline">\(B = (A \cap B) \cup (B - A)\)</span>.</p>
-<p><strong>Propiedad 6: Aditividad para eventos disjuntos</strong> Si <span class="math inline">\(A \cap B = \emptyset\)</span>, entonces: <span class="math display">\[\mathbb{P}(A \cup B) = \mathbb{P}(A) + \mathbb{P}(B)\]</span></p>
+<p><strong>Propiedad 6: Aditividad para eventos disjuntos</strong></p>
+<p>Si <span class="math inline">\(A \cap B = \emptyset\)</span>, entonces:</p>
+<p><span class="math display">\[\mathbb{P}(A \cup B) = \mathbb{P}(A) + \mathbb{P}(B)\]</span></p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -1019,7 +1028,9 @@ Cuadro&nbsp;3.3: Código R
 <p>Para dos eventos arbitrarios <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span>:</p>
 <p><span class="math display">\[\mathbb{P}(A \cup B) = \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A \cap B)\]</span></p>
 <p>Para tres eventos <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, y <span class="math inline">\(C\)</span>:</p>
-<p><span class="math display">\[\mathbb{P}(A \cup B \cup C) = \mathbb{P}(A) + \mathbb{P}(B) + \mathbb{P}(C)\]</span> <span class="math display">\[- \mathbb{P}(A \cap B) - \mathbb{P}(A \cap C) - \mathbb{P}(B \cap C)\]</span> <span class="math display">\[+ \mathbb{P}(A \cap B \cap C)\]</span></p>
+<p><span class="math display">\[\mathbb{P}(A \cup B \cup C) = \mathbb{P}(A) + \mathbb{P}(B) + \mathbb{P}(C)\]</span></p>
+<p><span class="math display">\[- \mathbb{P}(A \cap B) - \mathbb{P}(A \cap C) - \mathbb{P}(B \cap C)\]</span></p>
+<p><span class="math display">\[+ \mathbb{P}(A \cap B \cap C)\]</span></p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -1085,9 +1096,12 @@ Cuadro&nbsp;3.3: Código R
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Para dos eventos <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span>: <span class="math display">\[\mathbb{P}(A \cap B) = \mathbb{P}(A) \cdot \mathbb{P}(B|A) = \mathbb{P}(B) \cdot \mathbb{P}(A|B)\]</span></p>
-<p>Para tres eventos <span class="math inline">\(A_1, A_2, A_3\)</span>: <span class="math display">\[\mathbb{P}(A_1 \cap A_2 \cap A_3) = \mathbb{P}(A_1) \cdot \mathbb{P}(A_2|A_1) \cdot \mathbb{P}(A_3|A_1 \cap A_2)\]</span></p>
-<p>Para <span class="math inline">\(n\)</span> eventos: <span class="math display">\[\mathbb{P}(A_1 \cap \ldots \cap A_n) = \mathbb{P}(A_1) \cdot \mathbb{P}(A_2|A_1) \cdot \mathbb{P}(A_3|A_1 \cap A_2) \cdots \mathbb{P}(A_n|A_1 \cap \ldots \cap A_{n-1})\]</span></p>
+<p>Para dos eventos <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span>:</p>
+<p><span class="math display">\[\mathbb{P}(A \cap B) = \mathbb{P}(A) \cdot \mathbb{P}(B|A) = \mathbb{P}(B) \cdot \mathbb{P}(A|B)\]</span></p>
+<p>Para tres eventos <span class="math inline">\(A_1, A_2, A_3\)</span>:</p>
+<p><span class="math display">\[\mathbb{P}(A_1 \cap A_2 \cap A_3) = \mathbb{P}(A_1) \cdot \mathbb{P}(A_2|A_1) \cdot \mathbb{P}(A_3|A_1 \cap A_2)\]</span></p>
+<p>Para <span class="math inline">\(n\)</span> eventos:</p>
+<p><span class="math display">\[\mathbb{P}(A_1 \cap \ldots \cap A_n) = \mathbb{P}(A_1) \cdot \mathbb{P}(A_2|A_1) \cdot \mathbb{P}(A_3|A_1 \cap A_2) \cdots \mathbb{P}(A_n|A_1 \cap \ldots \cap A_{n-1})\]</span></p>
 </div>
 </div>
 <hr>

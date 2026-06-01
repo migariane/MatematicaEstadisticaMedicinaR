@@ -11,6 +11,7 @@ Mientras que las medidas de tendencia central (como la media y la mediana) descr
 Es fundamental comprender que la media por sí sola no describe una distribución. Dos conjuntos de datos pueden compartir la misma media pero tener estructuras de dispersión radicalmente diferentes.
 
 Consideremos un ejemplo clínico: dos grupos de pacientes con niveles de glucosa en sangre (mg/dL) con la misma media (170 mg/dL):
+
 1. **Grupo A**: Niveles muy homogéneos (todos cercanos a la media).
 2. **Grupo B**: Niveles muy diversos (gran dispersión).
 
@@ -76,6 +77,7 @@ donde $x_{(1)}, \ldots, x_{(n)}$ son las observaciones ordenadas.
 ::: {.callout-warning}
 ## Limitaciones del Rango
 El rango es fácil de calcular, pero tiene importantes limitaciones:
+
 - Es muy sensible a valores atípicos (outliers)
 - Su valor aumenta con el tamaño de la muestra
 - No proporciona información sobre cómo se distribuyen los datos entre los extremos
@@ -169,6 +171,7 @@ El **Coeficiente de Variación (CV)** es una medida de dispersión **adimensiona
 $$CV = \left( \frac{s}{\bar{x}} \right) \times 100$$
 
 En medicina, es crucial:
+
 - **Interpretación**: Un CV bajo indica alta precisión o consistencia en la medición.
 - **Comparación**: Por ejemplo, si comparamos la variabilidad de la glucosa en sangre (mg/dL) con la variabilidad de la frecuencia cardíaca (latidos/min), el CV nos permite saber cuál medida es más "relativamente" dispersa, ignorando las unidades de medida.
 :::
@@ -218,6 +221,7 @@ El parámetro $a$ representa un **desplazamiento** de los datos (shift), mientra
 Supongamos que tenemos temperaturas en grados Celsius con media $\bar{x} = 25$ y desviación estándar $s_x = 3$. Queremos convertirlas a Fahrenheit usando $y = 32 + 1.8x$.
 
 Entonces:
+
 - $\bar{y} = 32 + 1.8 \times 25 = 77°\text{F}$
 - $s_y = |1.8| \times 3 = 5.4°\text{F}$
 
@@ -449,6 +453,7 @@ x_m & h_{m1} & \cdots & h_{mj} & \cdots & h_{mr} & h_{m\bullet} \\
 $$
 
 donde:
+
 - $h_{ij}$ es la **frecuencia absoluta** (número de casos con características $x_i$ e $y_j$)
 - $h_{i\bullet} = \sum_j h_{ij}$ es la distribución marginal de $X$
 - $h_{\bullet j} = \sum_i h_{ij}$ es la distribución marginal de $Y$
@@ -897,6 +902,7 @@ c) Si el IQR original es de 4 mmHg, ¿cuál será el IQR en cmH₂O?
 ::: {.callout-tip}
 ## Ejercicio 2.3: Z-Scores y Estandarización Clínica
 En un estudio de cribado, se utilizan dos escalas distintas para medir el deterioro cognitivo. Un paciente obtiene las siguientes puntuaciones:
+
 - Escala A: 85 puntos (media = 75, desviación estándar = 10)
 - Escala B: 90 puntos (media = 80, desviación estándar = 15)
 

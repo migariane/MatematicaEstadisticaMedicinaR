@@ -22,7 +22,8 @@
       "Bash(cd *)",
       "Bash(sed -n '147,162p' /Users/MALF/Library/CloudStorage/Dropbox/UGR/CLAUDE/my-project/MyWebsite/MatematicaEstadisticaMedicinaR/chapters/semana04.qmd)",
       "Bash(sed -n '180,205p' /Users/MALF/Library/CloudStorage/Dropbox/UGR/CLAUDE/my-project/MyWebsite/MatematicaEstadisticaMedicinaR/chapters/semana02.qmd)",
-      "Bash(git diff *)"
+      "Bash(git diff *)",
+      "Bash(python3 *)"
     ]
   }
 }

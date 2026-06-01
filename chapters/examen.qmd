@@ -253,6 +253,7 @@ d) Prediga el precio para una vivienda de 105 m²
 **a) Estimación del modelo:**
 
 Primero calculamos estadísticos:
+
 - $\bar{x} = 102.5$, $\bar{y} = 186.25$
 - $S_{xx} = \sum(x_i - \bar{x})^2 = 1512.5$
 - $S_{xy} = \sum(x_i - \bar{x})(y_i - \bar{y}) = 3057.5$

@@ -76,6 +76,7 @@ Bajo los supuestos anteriores, especificamos una relación **lineal** entre $Y$ 
 $$Y_i = \beta_0 + \beta_1 X_i + U_i, \quad i = 1, \ldots, n$$
 
 donde:
+
 - $\beta_0$ es la **ordenada en el origen** (intercept): el valor esperado de $Y$ cuando $X = 0$
 - $\beta_1$ es la **pendiente**: el cambio en el valor esperado de $Y$ cuando $X$ aumenta en una unidad
 - $U_i$ es el **término de error**: captura factores no observados y variación aleatoria
@@ -155,6 +156,7 @@ Los estimadores MCO minimizan:
 $$Q(b_0, b_1) = \sum_{i=1}^n (y_i - b_0 - b_1 x_i)^2$$
 
 Donde:
+
 - $y_i$ son los valores observados (PAS del paciente $i$)
 - $\hat{y}_i = b_0 + b_1 x_i$ son los valores predichos por el modelo
 - El residuo estimado es $\hat{u}_i = y_i - \hat{y}_i$
@@ -188,6 +190,7 @@ $$b_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \
 $$b_0 = \bar{y} - b_1 \bar{x}$$
 
 donde:
+
 - $\bar{x} = \frac{1}{n}\sum x_i$ y $\bar{y} = \frac{1}{n}\sum y_i$ son los promedios
 - $s_{xy}$ es la covarianza muestral de $X$ e $Y$
 - $s_x^2$ es la varianza muestral de $X$
@@ -210,6 +213,7 @@ $$b_1 = r_{xy} \frac{s_y}{s_x}$$
 donde $r_{xy} = \frac{s_{xy}}{s_x s_y}$ es el coeficiente de correlación de Pearson.
 
 **Interpretación**:
+
 - El coeficiente de regresión escala la correlación por el ratio de desviaciones estándar
 - Si $s_x = s_y$, entonces $b_1 = r_{xy}$
 - Regresión de $X$ sobre $Y$ es **diferente** de regresión de $Y$ sobre $X$
@@ -256,6 +260,7 @@ $$R^2 = r_{xy}^2$$
 donde $r_{xy}$ es el coeficiente de correlación de Pearson.
 
 **Propiedades**:
+
 - $0 \leq R^2 \leq 1$
 - $R^2 = 1$: ajuste perfecto (todos los puntos en la línea)
 - $R^2 = 0$: no hay relación lineal
@@ -330,6 +335,7 @@ donde $\widehat{\text{ee}}(b_1) = \hat{\sigma}_{B_1}$ es el **error estándar** 
 ### Regla de decisión
 
 A nivel de significancia $\alpha$:
+
 - **Rechazamos** $H_0$ si $|t| > t_{1-\alpha/2, n-2}$ (test bilateral)
 - **Valor p** = probabilidad de observar un valor tan extremo (o más) bajo $H_0$
 
@@ -379,6 +385,7 @@ A menudo queremos construir un intervalo para la PAS promedio esperada en pacien
 $$\left[\hat{y}_{x_0} \pm t_{1-\alpha/2, n-2} \cdot s_u \sqrt{\frac{1}{n} + \frac{(x_0 - \bar{x})^2}{\sum_{i=1}^n (x_i - \bar{x})^2}}\right]$$
 
 donde:
+
 - $\hat{y}_{x_0} = b_0 + b_1 x_0$ es la PAS media predicha para edad $x_0$
 - Este intervalo es más estrecho cerca de $\bar{x}$ (mayor precisión) y más ancho en edades extremas
 :::
@@ -406,6 +413,7 @@ $$\hat{u}_i = y_i - \hat{y}_i = y_i - b_0 - b_1 x_i$$
 **En contexto clínico**: $\hat{u}_i$ es la diferencia entre la PAS observada del paciente $i$ y la que el modelo predice dado su edad. Un residuo grande positivo indica que el paciente tiene una PAS más elevada de lo esperado para su edad (posiblemente por otros factores de riesgo no incluidos).
 
 Propiedades:
+
 - Siempre tienen media cero: $\bar{\hat{u}} = 0$
 - Representan la parte de $Y$ NO explicada por $X$
 :::
@@ -421,14 +429,17 @@ Propiedades:
   - Indica homocedasticidad y linealidad
 
 - **Patrón "embudo" (varianza aumenta con la PAS predicha)**:
+
   - Indica heteroscedasticidad (varianza no constante)
   - Frecuente en estudios con datos de presión arterial en rangos muy amplios
 
 - **Patrón curvo o no lineal**:
+
   - Sugiere que la relación edad-PAS no es estrictamente lineal
   - Podría requerir una transformación o la inclusión de $X^2$
 
 - **Puntos muy alejados (outliers)**:
+
   - Pacientes con PAS muy inusual para su edad (investigar: error de medida, enfermedad secundaria, fármaco no declarado)
 :::
 
@@ -440,13 +451,16 @@ Este gráfico verifica la **normalidad** de los residuos:
 ## Interpretación: Gráfico Q-Q
 
 - **Puntos en línea recta diagonal**:
+
   - Los residuos son aproximadamente normales
 
 - **Puntos en las colas no siguen la línea**:
+
   - Hay colas más pesadas o más ligeras que lo esperado
   - Sugiere violación de normalidad
 
 - **Forma de S o zigzag**:
+
   - Distribución muy diferente de la normal
 :::
 
@@ -490,6 +504,7 @@ $$b_0 = \bar{y} - b_1 \bar{x} = 214.0 - 5.00 \times 27.2 = 214.0 - 136.0 = 78.0 
 $$\widehat{\text{Colesterol}}_i = 78.0 + 5.00 \times \text{IMC}_i$$
 
 **Interpretación clínica**:
+
 - Por cada unidad adicional de IMC (1 kg/m²), el colesterol total aumenta en promedio **5 mg/dL**
 - Para un IMC de 30 kg/m² (obesidad tipo I): $\widehat{\text{Colesterol}} = 78.0 + 5.00 \times 30 = 228$ mg/dL
 

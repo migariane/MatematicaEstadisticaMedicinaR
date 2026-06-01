@@ -643,12 +643,12 @@ window.Quarto = {
 <div class="callout-body-container callout-body">
 <p>Documentacion completa de las tres funciones en <a href="apendiceB.html#sec-bio-contrastes" class="quarto-xref"><span>Sección B.5</span></a>.</p>
 <div class="cell">
-<div id="lst-semana09-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.1: Código R
 </figcaption>
-<div aria-describedby="lst-semana09-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
@@ -697,12 +697,12 @@ Cuadro&nbsp;8.1: Código R
     p = 0.476 para la alternativa unilateral H₁:μ₁&lt;μ₂ 
   95%-IC(μ₂-μ₁) = (-0.717, 0.762) </code></pre>
 </div>
-<div id="lst-semana09-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.2: Código R
 </figcaption>
-<div aria-describedby="lst-semana09-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test F de varianzas del IMC por sexo</span></span>
@@ -727,12 +727,12 @@ Cuadro&nbsp;8.2: Código R
 [[4]]
 [1] 0.00585</code></pre>
 </div>
-<div id="lst-semana09-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.3: Código R
 </figcaption>
-<div aria-describedby="lst-semana09-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wilcoxon-Mann-Whitney: IMC &lt; 25 años vs &gt; 33 años (no normales)</span></span>
@@ -812,7 +812,8 @@ Test de Wilcoxon/Mann-Whithney para dos muestras independientes
 </div>
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[T = \frac{\bar{D} - \omega_0}{S_D / \sqrt{n}} \sim t_{n-1}\]</span></p>
-<p>donde: <span class="math display">\[\bar{D} = \frac{1}{n} \sum_{i=1}^n D_i, \quad S_D^2 = \frac{1}{n-1} \sum_{i=1}^n (D_i - \bar{D})^2\]</span></p>
+<p>donde:</p>
+<p><span class="math display">\[\bar{D} = \frac{1}{n} \sum_{i=1}^n D_i, \quad S_D^2 = \frac{1}{n-1} \sum_{i=1}^n (D_i - \bar{D})^2\]</span></p>
 <p><strong>Nota importante:</strong> La varianza de las diferencias es típicamente <strong>menor</strong> que la suma de varianzas, lo que da mayor potencia al test pareado cuando los datos están realmente correlacionados.</p>
 </div>
 </div>
@@ -1114,7 +1115,9 @@ Test de Wilcoxon/Mann-Whithney para dos muestras independientes
 <p>Para detectar una diferencia <span class="math inline">\(\delta = \mu_1 - \mu_2\)</span> entre dos muestras de igual tamaño:</p>
 <p><span class="math display">\[n = \frac{2\sigma^2 (z_{1-\alpha/2} + z_{1-\beta})^2}{\delta^2}\]</span></p>
 <p>donde: - <span class="math inline">\(z_{1-\alpha/2}\)</span> es el quantil normal para nivel de significancia <span class="math inline">\(\alpha\)</span> - <span class="math inline">\(z_{1-\beta}\)</span> es el quantil normal para potencia <span class="math inline">\(1-\beta\)</span> - <span class="math inline">\(\sigma^2\)</span> es la varianza (asumida igual en ambas muestras)</p>
-<p><strong>Ejemplo:</strong> Si <span class="math inline">\(\delta = 10\)</span>, <span class="math inline">\(\sigma = 15\)</span>, <span class="math inline">\(\alpha = 0.05\)</span>, <span class="math inline">\(1-\beta = 0.80\)</span>: <span class="math display">\[z_{1-0.025} = 1.96, \quad z_{0.80} = 0.84\]</span> <span class="math display">\[n = \frac{2 \times 225 \times (1.96 + 0.84)^2}{100} = \frac{450 \times 6.4}{100} \approx 28.8 \approx 29 \text{ por grupo}\]</span></p>
+<p><strong>Ejemplo:</strong> Si <span class="math inline">\(\delta = 10\)</span>, <span class="math inline">\(\sigma = 15\)</span>, <span class="math inline">\(\alpha = 0.05\)</span>, <span class="math inline">\(1-\beta = 0.80\)</span>:</p>
+<p><span class="math display">\[z_{1-0.025} = 1.96, \quad z_{0.80} = 0.84\]</span></p>
+<p><span class="math display">\[n = \frac{2 \times 225 \times (1.96 + 0.84)^2}{100} = \frac{450 \times 6.4}{100} \approx 28.8 \approx 29 \text{ por grupo}\]</span></p>
 </div>
 </div>
 </section>
@@ -1191,12 +1194,12 @@ Test de Wilcoxon/Mann-Whithney para dos muestras independientes
 <li><strong>Contraste de proporciones</strong> (<code>testp</code>): ¿Y para detectar una desviación de <span class="math inline">\(\delta = 0.05\)</span> frente a una prevalencia hipotética de tabaquismo del 35% con potencia del 90%?</li>
 </ul>
 <div class="cell">
-<div id="lst-semana09-power" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-power" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.4: Código R
 </figcaption>
-<div aria-describedby="lst-semana09-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
@@ -1238,12 +1241,12 @@ Cuadro&nbsp;8.4: Código R
 # Estudio de la potencia:
   El test es significativo, se omite el análisis de la potencia. </code></pre>
 </div>
-<div id="lst-semana09-power" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-power" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.5: Código R
 </figcaption>
-<div aria-describedby="lst-semana09-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- 2. testp(): potencia y n para una proporcion ---</span></span>
@@ -1323,7 +1326,8 @@ Cuadro&nbsp;8.5: Código R
 <p>Cuando realizamos <strong>múltiples pruebas de hipótesis independientes</strong> con nivel <span class="math inline">\(\alpha\)</span>:</p>
 <p>Si efectuamos <span class="math inline">\(k\)</span> pruebas, la probabilidad de al menos un Error Tipo I es:</p>
 <p><span class="math display">\[P(\text{al menos un Error Tipo I}) = 1 - (1 - \alpha)^k\]</span></p>
-<p><strong>Ejemplo:</strong> Con <span class="math inline">\(k = 10\)</span> pruebas y <span class="math inline">\(\alpha = 0.05\)</span>: <span class="math display">\[P(\text{al menos un Error Tipo I}) = 1 - (0.95)^{10} \approx 0.401 = 40.1\%\]</span></p>
+<p><strong>Ejemplo:</strong> Con <span class="math inline">\(k = 10\)</span> pruebas y <span class="math inline">\(\alpha = 0.05\)</span>:</p>
+<p><span class="math display">\[P(\text{al menos un Error Tipo I}) = 1 - (0.95)^{10} \approx 0.401 = 40.1\%\]</span></p>
 <p>En lugar del nivel de significancia global deseado del 5%, obtenemos una tasa de Error Tipo I del 40%!</p>
 </div>
 </div>
@@ -1361,12 +1365,12 @@ Cuadro&nbsp;8.5: Código R
 <section id="datos-y-exploracion" class="level3" data-number="8.9.2">
 <h3 data-number="8.9.2" class="anchored" data-anchor-id="datos-y-exploracion"><span class="header-section-number">8.9.2</span> Datos y Exploración</h3>
 <div class="cell">
-<div id="lst-semana09-4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.6: Código R
 </figcaption>
-<div aria-describedby="lst-semana09-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de datos</span></span>
@@ -1392,12 +1396,12 @@ Cuadro&nbsp;8.6: Código R
 <div class="cell-output cell-output-stdout">
 <pre><code>Wildtype: n = 20 , media = 29.4 , sd = 2.68 </code></pre>
 </div>
-<div id="lst-semana09-4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.7: Código R
 </figcaption>
-<div aria-describedby="lst-semana09-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Transgenic: n ="</span>, n2, <span class="st">", media ="</span>, <span class="fu">mean</span>(transgenic), <span class="st">", sd ="</span>, <span class="fu">sd</span>(transgenic), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1408,12 +1412,12 @@ Cuadro&nbsp;8.7: Código R
 <div class="cell-output cell-output-stdout">
 <pre><code>Transgenic: n = 20 , media = 40.1 , sd = 3.19 </code></pre>
 </div>
-<div id="lst-semana09-4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.8: Código R
 </figcaption>
-<div aria-describedby="lst-semana09-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de violín con ggplot2</span></span>
@@ -1447,12 +1451,12 @@ Cuadro&nbsp;8.8: Código R
 <h3 data-number="8.9.3" class="anchored" data-anchor-id="test-t-varianzas-homogeneas"><span class="header-section-number">8.9.3</span> Test t: Varianzas Homogéneas</h3>
 <p>Primero suponemos varianzas iguales:</p>
 <div class="cell">
-<div id="lst-semana09-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.9: Código R
 </figcaption>
-<div aria-describedby="lst-semana09-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>) <span class="co"># Evitar notación científica)</span></span>
@@ -1480,12 +1484,12 @@ sample estimates:
 mean of x mean of y 
      29.4      40.1 </code></pre>
 </div>
-<div id="lst-semana09-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.10: Código R
 </figcaption>
-<div aria-describedby="lst-semana09-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Interpretación:</span></span>
@@ -1501,12 +1505,12 @@ Cuadro&nbsp;8.10: Código R
 <h3 data-number="8.9.4" class="anchored" data-anchor-id="test-t-varianzas-heterogeneas-welch"><span class="header-section-number">8.9.4</span> Test t: Varianzas Heterogéneas (Welch)</h3>
 <p>Si observamos varianzas muy diferentes, usamos la prueba de Welch:</p>
 <div class="cell">
-<div id="lst-semana09-6" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-6" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.11: Código R
 </figcaption>
-<div aria-describedby="lst-semana09-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test t con varianzas desiguales (Welch)</span></span>
@@ -1539,12 +1543,12 @@ mean of x mean of y
 <h3 data-number="8.9.5" class="anchored" data-anchor-id="test-f-igualdad-de-varianzas"><span class="header-section-number">8.9.5</span> Test F: Igualdad de Varianzas</h3>
 <p>Podemos probar formalmente si las varianzas son iguales:</p>
 <div class="cell">
-<div id="lst-semana09-7" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-7" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.12: Código R
 </figcaption>
-<div aria-describedby="lst-semana09-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test F para igualdad de varianzas</span></span>
@@ -1568,12 +1572,12 @@ sample estimates:
 ratio of variances 
              0.707 </code></pre>
 </div>
-<div id="lst-semana09-7" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-7" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.13: Código R
 </figcaption>
-<div aria-describedby="lst-semana09-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Interpretación:</span></span>
@@ -1591,12 +1595,12 @@ Cuadro&nbsp;8.13: Código R
 <h3 data-number="8.9.6" class="anchored" data-anchor-id="calculo-de-potencia"><span class="header-section-number">8.9.6</span> Cálculo de Potencia</h3>
 <p>Si el estudio fuera diseñado ahora, ¿qué tamaño muestral necesitaríamos?</p>
 <div class="cell">
-<div id="lst-semana09-8" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-8" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.14: Código R
 </figcaption>
-<div aria-describedby="lst-semana09-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stats)</span>
@@ -1622,12 +1626,12 @@ Cuadro&nbsp;8.14: Código R
 <div class="cell-output cell-output-stdout">
 <pre><code>Tamaño muestral requerido por grupo: 64 </code></pre>
 </div>
-<div id="lst-semana09-8" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-8" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.15: Código R
 </figcaption>
-<div aria-describedby="lst-semana09-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># También podemos calcular la potencia de nuestro estudio actual</span></span>
@@ -1792,12 +1796,12 @@ Cuadro&nbsp;8.15: Código R
 <div class="callout-body-container callout-body">
 <p>Usando el conjunto de datos <code>osteo</code> de <code>BioEstatR</code>, que contiene 94 pacientes diabéticos de la Facultad de Medicina de la UGR, comprobamos la normalidad de la variable edad:</p>
 <div class="cell">
-<div id="lst-semana09-9" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-9" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.16: Código R
 </figcaption>
-<div aria-describedby="lst-semana09-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
@@ -1821,12 +1825,12 @@ Cuadro&nbsp;8.16: Código R
  ------------------------------------- 
    n = 94,  W = 0.907,  p &lt; 0.001 </code></pre>
 </div>
-<div id="lst-semana09-9" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-9" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.17: Código R
 </figcaption>
-<div aria-describedby="lst-semana09-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test de Shapiro-Wilk con R base</span></span>
@@ -1879,12 +1883,12 @@ W = 0.9, p-value = 0.000005</code></pre>
 </div>
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div id="lst-semana09-10" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-10" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.18: Código R
 </figcaption>
-<div aria-describedby="lst-semana09-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
@@ -1903,7 +1907,7 @@ data:  imc by grupo_edad
 Bartlett's K-squared = 11, df = 2, p-value = 0.004</code></pre>
 </div>
 </div>
-<p><strong>Interpretación:</strong> <span class="math inline">\(\chi^2_B = 2.18\)</span>, <span class="math inline">\(gl = 2\)</span>, <span class="math inline">\(p = 0.335 &gt; 0.05\)</span>: no se rechaza igualdad de varianzas. El supuesto de homocedasticidad se cumple; procede usar t-test o ANOVA clásico.</p>
+<p><strong>Interpretación:</strong> <span class="math inline">\(\chi^2_B \approx 10.96\)</span>, <span class="math inline">\(gl = 2\)</span>, <span class="math inline">\(p = 0.004 &lt; 0.05\)</span>: <strong>se rechaza</strong> la igualdad de varianzas. El supuesto de homocedasticidad <strong>no se cumple</strong>; conviene usar el test de Welch (<code>oneway.test(..., var.equal = FALSE)</code>) o, si los datos no son normales, el test de Levene (<code>car::leveneTest()</code>) y comparaciones no paramétricas como Kruskal-Wallis. Evitar t-test o ANOVA clásico.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -2011,12 +2015,12 @@ Bartlett's K-squared = 11, df = 2, p-value = 0.004</code></pre>
 <div class="callout-body-container callout-body">
 <p>El IMC de los pacientes masculinos del dataset <code>osteo</code> <strong>no sigue una distribución normal</strong> (Shapiro-Wilk: <span class="math inline">\(W = 0.924\)</span>, <span class="math inline">\(p = 0.006\)</span>). Implementamos el bootstrap <strong>manualmente con un bucle <code>for</code></strong> (estilo <span class="citation" data-cites="Chihara2019">Chihara &amp; Hesterberg (<a href="../references.html#ref-Chihara2019" role="doc-biblioref">2019</a>)</span>), siguiendo paso a paso el algoritmo de Efron. Después comparamos con el método BCa (paquete <code>boot</code>) y con el IC clásico <span class="math inline">\(t\)</span>.</p>
 <div class="cell">
-<div id="lst-semana09-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.19: Codigo R
 </figcaption>
-<div aria-describedby="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
@@ -2040,12 +2044,12 @@ Cuadro&nbsp;8.19: Codigo R
 data:  x
 W = 0.9, p-value = 0.006</code></pre>
 </div>
-<div id="lst-semana09-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.20: Codigo R
 </figcaption>
-<div aria-describedby="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- 1. BOOTSTRAP MANUAL CON BUCLE FOR (algoritmo paso a paso) ---</span></span>
@@ -2070,12 +2074,12 @@ Cuadro&nbsp;8.20: Codigo R
 <div class="cell-output cell-output-stdout">
 <pre><code>Media muestral observada: 23.5 kg/m²</code></pre>
 </div>
-<div id="lst-semana09-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.21: Codigo R
 </figcaption>
-<div aria-describedby="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Réplicas bootstrap (B):"</span>, B, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2086,12 +2090,12 @@ Cuadro&nbsp;8.21: Codigo R
 <div class="cell-output cell-output-stdout">
 <pre><code>Réplicas bootstrap (B): 10000 </code></pre>
 </div>
-<div id="lst-semana09-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.22: Codigo R
 </figcaption>
-<div aria-describedby="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Media bootstrap promedio:"</span>, <span class="fu">round</span>(<span class="fu">mean</span>(boot_means), <span class="dv">3</span>), <span class="st">"kg/m²</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2102,12 +2106,12 @@ Cuadro&nbsp;8.22: Codigo R
 <div class="cell-output cell-output-stdout">
 <pre><code>Media bootstrap promedio: 23.5 kg/m²</code></pre>
 </div>
-<div id="lst-semana09-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.23: Codigo R
 </figcaption>
-<div aria-describedby="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Error estándar bootstrap:"</span>, <span class="fu">round</span>(<span class="fu">sd</span>(boot_means), <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2118,12 +2122,12 @@ Cuadro&nbsp;8.23: Codigo R
 <div class="cell-output cell-output-stdout">
 <pre><code>Error estándar bootstrap: 0.428 </code></pre>
 </div>
-<div id="lst-semana09-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.24: Codigo R
 </figcaption>
-<div aria-describedby="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"IC 95% (percentiles, bucle manual): ["</span>,</span>
@@ -2135,12 +2139,12 @@ Cuadro&nbsp;8.24: Codigo R
 <div class="cell-output cell-output-stdout">
 <pre><code>IC 95% (percentiles, bucle manual): [ 22.7 ,  24.4 ] kg/m²</code></pre>
 </div>
-<div id="lst-semana09-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.25: Codigo R
 </figcaption>
-<div aria-describedby="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- 2. BOOTSTRAP BCa con el paquete boot (recomendado en n pequeñas) ---</span></span>
@@ -2163,12 +2167,12 @@ Level       BCa
 95%   (22.8, 24.5 )  
 Calculations and Intervals on Original Scale</code></pre>
 </div>
-<div id="lst-semana09-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.26: Codigo R
 </figcaption>
-<div aria-describedby="lst-semana09-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- 3. IC clásico t para comparación ---</span></span>
@@ -2193,7 +2197,7 @@ attr(,"conf.level")
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>El bootstrap manual con bucle <code>for</code> reproduce paso a paso el algoritmo de Efron (1979): en cada una de las B = 10.000 iteraciones se construye una pseudomuestra extrayendo n = 45 pacientes con reemplazo del IMC observado, se calcula su media, y al final se ordenan las 10.000 medias para extraer los percentiles 2.5% y 97.5%. El IC 95% resultante (≈ [27.2, 29.1] kg/m²) se interpreta clínicamente como el rango plausible del IMC poblacional medio de varones diabéticos —situado en el umbral entre sobrepeso (25–29.9) y obesidad (≥ 30) según criterios OMS. Comparado con el IC <span class="math inline">\(t\)</span> clásico, el bootstrap proporciona inferencia válida sin requerir normalidad, lo cual es relevante en cohortes pequenas con asimetría en la distribución del IMC (común en diabetes tipo 2). El método BCa corrige por sesgo y asimetría y se recomienda como referencia cuando <span class="math inline">\(n &lt; 30\)</span>; con <span class="math inline">\(n = 45\)</span> los tres intervalos convergen porque el TCL ya comienza a actuar. Esta convergencia se romperá si reducimos n por debajo de 20 o si analizamos variables muy asimétricas (p.&nbsp;ej., triglicéridos o carga viral).</p>
+<p>El bootstrap manual con bucle <code>for</code> reproduce paso a paso el algoritmo de Efron (1979): en cada una de las B = 10.000 iteraciones se construye una pseudomuestra extrayendo n = 45 pacientes con reemplazo del IMC observado, se calcula su media, y al final se ordenan las 10.000 medias para extraer los percentiles 2.5% y 97.5%. El IC 95% resultante (≈ [22.7, 24.4] kg/m²) se interpreta clínicamente como el rango plausible del IMC poblacional medio de varones diabéticos —dentro del rango <strong>normopeso</strong> (18.5–24.9 kg/m²) próximo al umbral del sobrepeso según criterios OMS. Comparado con el IC <span class="math inline">\(t\)</span> clásico, el bootstrap proporciona inferencia válida sin requerir normalidad, lo cual es relevante en cohortes pequenas con asimetría en la distribución del IMC (común en diabetes tipo 2). El método BCa corrige por sesgo y asimetría y se recomienda como referencia cuando <span class="math inline">\(n &lt; 30\)</span>; con <span class="math inline">\(n = 45\)</span> los tres intervalos convergen porque el TCL ya comienza a actuar. Esta convergencia se romperá si reducimos n por debajo de 20 o si analizamos variables muy asimétricas (p.&nbsp;ej., triglicéridos o carga viral).</p>
 </div>
 </div>
 </div>
@@ -2210,12 +2214,12 @@ attr(,"conf.level")
 <div class="callout-body-container callout-body">
 <p>Shapiro-Wilk rechaza normalidad tanto en hombres (<span class="math inline">\(p = 0.006\)</span>) como en mujeres (<span class="math inline">\(p = 0.001\)</span>). Usamos un test de permutación en lugar del t-test clásico.</p>
 <div class="cell">
-<div id="lst-semana09-12" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-12" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.27: Código R
 </figcaption>
-<div aria-describedby="lst-semana09-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
@@ -2246,12 +2250,12 @@ Cuadro&nbsp;8.27: Código R
 <div class="cell-output cell-output-stdout">
 <pre><code>Diferencia observada: -0.78 </code></pre>
 </div>
-<div id="lst-semana09-12" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-12" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.28: Código R
 </figcaption>
-<div aria-describedby="lst-semana09-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"p-valor permutacion: "</span>, <span class="fu">round</span>(p_perm, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2262,12 +2266,12 @@ Cuadro&nbsp;8.28: Código R
 <div class="cell-output cell-output-stdout">
 <pre><code>p-valor permutacion:  0.312 </code></pre>
 </div>
-<div id="lst-semana09-12" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-12" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.29: Código R
 </figcaption>
-<div aria-describedby="lst-semana09-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparación con t-test clásico</span></span>
@@ -2375,12 +2379,12 @@ Cuadro&nbsp;8.29: Código R
 <div class="callout-body-container callout-body">
 <p>Contrastamos si el Índice de Masa Corporal (IMC) difiere entre hombres y mujeres usando la alternativa no paramétrica, dado que el IMC frecuentemente presenta asimetría.</p>
 <div class="cell">
-<div id="lst-semana09-13" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-13" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.30: Código R
 </figcaption>
-<div aria-describedby="lst-semana09-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
@@ -2421,7 +2425,7 @@ Test de Wilcoxon/Mann-Whithney para dos muestras independientes
   (probabilidad de que un valor al azar de M1 sea &lt; a un valor al azar de M2) </code></pre>
 </div>
 </div>
-<p><strong>Interpretación:</strong> No se observan diferencias significativas en las distribuciones de IMC entre sexos (<span class="math inline">\(p = 0.523\)</span>). La probabilidad de que un hombre tenga un IMC mayor que una mujer elegida al azar es del 46.1%.</p>
+<p><strong>Interpretación:</strong> No se observan diferencias significativas en las distribuciones de IMC entre sexos (<span class="math inline">\(p = 0.751\)</span>). La probabilidad de que un hombre elegido al azar tenga un IMC mayor que una mujer elegida al azar es del <strong>48.1%</strong> (calculada como <span class="math inline">\(1 - PS = 1 - 0.519\)</span>, ya que la salida de <code>testwx()</code> reporta <span class="math inline">\(PS\)</span> como probabilidad de que un valor de <span class="math inline">\(M_1\)</span> sea <strong>menor</strong> que uno de <span class="math inline">\(M_2\)</span>).</p>
 </div>
 </div>
 </section>
@@ -2458,12 +2462,12 @@ Test de Wilcoxon/Mann-Whithney para dos muestras independientes
 <div class="callout-body-container callout-body">
 <p>Supongamos que evaluamos el calcio sérico (<code>ca</code>) antes y después de un tratamiento en 10 pacientes (datos simulados para ilustración).</p>
 <div class="cell">
-<div id="lst-semana09-14" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-14" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.31: Código R
 </figcaption>
-<div aria-describedby="lst-semana09-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcio inicial y final (simulados)</span></span>
@@ -2510,7 +2514,7 @@ Test de Wilcoxon  para dos muestras apareadas
   r = 0.627; p = 0.006</code></pre>
 </div>
 </div>
-<p><strong>Interpretacion:</strong> Existe un aumento significativo en los niveles de calcio tras el tratamiento (<span class="math inline">\(p = 0.005\)</span>). El tamaño del efecto es muy fuerte (<span class="math inline">\(r = 0.89\)</span>).</p>
+<p><strong>Interpretacion:</strong> Existe un aumento significativo en los niveles de calcio tras el tratamiento (<span class="math inline">\(p = 0.005\)</span>). El tamaño del efecto es grande (<span class="math inline">\(r = 0.627\)</span>, criterio convencional: <span class="math inline">\(r &gt; 0.5\)</span> grande).</p>
 </div>
 </div>
 </section>
@@ -2543,12 +2547,12 @@ Test de Wilcoxon  para dos muestras apareadas
 </div>
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div id="lst-semana09-15" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana08-15" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana09-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;8.32: Código R
 </figcaption>
-<div aria-describedby="lst-semana09-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-semana08-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Contrastar si el IMC difiere entre los 3 grupos de edad</span></span>
@@ -2565,7 +2569,7 @@ data:  imc by grupo_edad
 Kruskal-Wallis chi-squared = 17, df = 2, p-value = 0.0002</code></pre>
 </div>
 </div>
-<p><strong>Interpretación:</strong> Como <span class="math inline">\(p = 0.017 &lt; 0.05\)</span>, rechazamos la hipótesis de igualdad. Al menos un grupo de edad tiene una distribución de IMC significativamente distinta.</p>
+<p><strong>Interpretación:</strong> Como <span class="math inline">\(p \approx 0.0002 &lt; 0.05\)</span>, rechazamos la hipótesis de igualdad. Al menos un grupo de edad tiene una distribución de IMC significativamente distinta.</p>
 </div>
 </div>
 <hr>
@@ -2573,29 +2577,29 @@ Kruskal-Wallis chi-squared = 17, df = 2, p-value = 0.0002</code></pre>
 </section>
 <section id="sec-semana08-ejercicios" class="level2" data-number="8.15">
 <h2 data-number="8.15" class="anchored" data-anchor-id="sec-semana08-ejercicios"><span class="header-section-number">8.15</span> Ejercicios</h2>
-<p><strong>Ejercicio 9.1:</strong> Se comparan dos métodos de enseñanza en estadística. El Método A (n₁ = 30) tiene media 75 y desviación estándar 8. El Método B (n₂ = 35) tiene media 78 y desviación estándar 7. ¿Hay diferencia significativa entre los métodos a nivel α = 0.05? (Suponga varianzas iguales)</p>
-<p><strong>Ejercicio 9.2:</strong> Un investigador mide presión arterial en 10 pacientes antes y después de tomar un medicamento. Las diferencias promedio son -5 mmHg con desviación estándar 8 mmHg. ¿Es el medicamento efectivo en reducir presión (prueba unilateral, α = 0.05)?</p>
-<p><strong>Ejercicio 9.3:</strong> Se comparan dos proveedores de materia prima. Proveedor 1: S₁² = 15, n = 20. Proveedor 2: S₂² = 8, n₂ = 18. ¿Hay diferencia significativa en variabilidad (α = 0.05, bilateral)?</p>
-<p><strong>Ejercicio 9.4:</strong> Se diseña un estudio para detectar una diferencia de 12 puntos en una escala (σ = 10) con potencia 0.90 y α = 0.05. ¿Cuántos sujetos se necesitan por grupo?</p>
-<p><strong>Ejercicio 9.5:</strong> Un investigador realiza 15 pruebas independientes con α = 0.05 sin corrección.&nbsp;¿Cuál es la probabilidad aproximada de cometer al menos un Error Tipo I?</p>
-<p><strong>Ejercicio 9.6:</strong> Interprete este resultado de R: <code>t.test(x, y, var.equal=FALSE)</code> da t = 2.34, df = 45.2, p-value = 0.024. ¿Qué conclusión saca?</p>
-<p><strong>Ejercicio 9.7:</strong> Un estudio observa media₁ = 100, media₂ = 105, pero el intervalo de confianza al 95% para la diferencia incluye cero. ¿Qué significa esto respecto a la significancia estadística y práctica?</p>
-<p><strong>Ejercicio 9.8:</strong> Si el test de Shapiro-Wilk rechaza la normalidad en una muestra pequeña (<span class="math inline">\(n=15\)</span>), ¿qué prueba utilizaría para comparar dos grupos independientes?</p>
-<p><strong>Ejercicio 9.9:</strong> ¿Cuál es la principal ventaja de la prueba de Kruskal-Wallis sobre el ANOVA de un factor?</p>
-<p><strong>Ejercicio 9.10:</strong> En una muestra de 35 valores de presión arterial sistólica, el test de Shapiro-Wilk produce <span class="math inline">\(W = 0.94\)</span> con <span class="math inline">\(p = 0.089\)</span>. ¿Es válido aplicar un test t de una muestra con <span class="math inline">\(\alpha = 0.05\)</span>? ¿Cambiaría su decisión si <span class="math inline">\(n = 75\)</span>?</p>
+<p><strong>Ejercicio 8.1:</strong> Se comparan dos métodos de enseñanza en estadística. El Método A (n₁ = 30) tiene media 75 y desviación estándar 8. El Método B (n₂ = 35) tiene media 78 y desviación estándar 7. ¿Hay diferencia significativa entre los métodos a nivel α = 0.05? (Suponga varianzas iguales)</p>
+<p><strong>Ejercicio 8.2:</strong> Un investigador mide presión arterial en 10 pacientes antes y después de tomar un medicamento. Las diferencias promedio son -5 mmHg con desviación estándar 8 mmHg. ¿Es el medicamento efectivo en reducir presión (prueba unilateral, α = 0.05)?</p>
+<p><strong>Ejercicio 8.3:</strong> Se comparan dos proveedores de materia prima. Proveedor 1: S₁² = 15, n = 20. Proveedor 2: S₂² = 8, n₂ = 18. ¿Hay diferencia significativa en variabilidad (α = 0.05, bilateral)?</p>
+<p><strong>Ejercicio 8.4:</strong> Se diseña un estudio para detectar una diferencia de 12 puntos en una escala (σ = 10) con potencia 0.90 y α = 0.05. ¿Cuántos sujetos se necesitan por grupo?</p>
+<p><strong>Ejercicio 8.5:</strong> Un investigador realiza 15 pruebas independientes con α = 0.05 sin corrección.&nbsp;¿Cuál es la probabilidad aproximada de cometer al menos un Error Tipo I?</p>
+<p><strong>Ejercicio 8.6:</strong> Interprete este resultado de R: <code>t.test(x, y, var.equal=FALSE)</code> da t = 2.34, df = 45.2, p-value = 0.024. ¿Qué conclusión saca?</p>
+<p><strong>Ejercicio 8.7:</strong> Un estudio observa media₁ = 100, media₂ = 105, pero el intervalo de confianza al 95% para la diferencia incluye cero. ¿Qué significa esto respecto a la significancia estadística y práctica?</p>
+<p><strong>Ejercicio 8.8:</strong> Si el test de Shapiro-Wilk rechaza la normalidad en una muestra pequeña (<span class="math inline">\(n=15\)</span>), ¿qué prueba utilizaría para comparar dos grupos independientes?</p>
+<p><strong>Ejercicio 8.9:</strong> ¿Cuál es la principal ventaja de la prueba de Kruskal-Wallis sobre el ANOVA de un factor?</p>
+<p><strong>Ejercicio 8.10:</strong> En una muestra de 35 valores de presión arterial sistólica, el test de Shapiro-Wilk produce <span class="math inline">\(W = 0.94\)</span> con <span class="math inline">\(p = 0.089\)</span>. ¿Es válido aplicar un test t de una muestra con <span class="math inline">\(\alpha = 0.05\)</span>? ¿Cambiaría su decisión si <span class="math inline">\(n = 75\)</span>?</p>
 </section>
 <section id="sec-semana08-respuestas" class="level2" data-number="8.16">
 <h2 data-number="8.16" class="anchored" data-anchor-id="sec-semana08-respuestas"><span class="header-section-number">8.16</span> Respuestas a los Ejercicios</h2>
-<p><strong>Ejercicio 9.1:</strong> t = (75-78)/√((29×64 + 34×49)/(63) × (1/30 + 1/35)) ≈ -1.81; df ≈ 63; p &gt; 0.05. No hay diferencia significativa.</p>
-<p><strong>Ejercicio 9.2:</strong> t = -5/(8/√10) ≈ -1.98; df = 9; p ≈ 0.038 &lt; 0.05. El medicamento es efectivo en reducir presión.</p>
-<p><strong>Ejercicio 9.3:</strong> F = 15/8 = 1.875; df₁ = 19, df₂ = 17. F crítico ≈ 2.74. No rechaza H₀; no hay diferencia significativa en variabilidad.</p>
-<p><strong>Ejercicio 9.4:</strong> Usando fórmula de potencia: n ≈ 2×(10)²×(1.96 + 1.28)²/(12)² ≈ 29-30 sujetos por grupo.</p>
-<p><strong>Ejercicio 9.5:</strong> P(al menos 1 error) = 1 - (1-0.05)¹⁵ ≈ 1 - 0.463 = 0.537 (53.7%). El problema de multiplicidad es importante.</p>
-<p><strong>Ejercicio 9.6:</strong> t = 2.34, df = 45.2, p = 0.024 &lt; 0.05. Se rechaza H₀. Hay diferencia significativa entre x e y (usando Welch’s t-test por varianzas desiguales).</p>
-<p><strong>Ejercicio 9.7:</strong> Si el IC 95% incluye cero, la diferencia no es estadísticamente significativa (p &gt; 0.05), aunque hay diferencia práctica de 5 unidades. Sin significancia estadística, no podemos afirmar que la diferencia poblacional es real.</p>
-<p><strong>Ejercicio 9.8:</strong> Utilizaría la prueba de Wilcoxon-Mann-Whitney (o un test de permutación).</p>
-<p><strong>Ejercicio 9.9:</strong> No requiere el supuesto de normalidad en los datos, siendo más robusta cuando hay outliers o distribuciones muy asimétricas.</p>
-<p><strong>Ejercicio 9.10:</strong> Con <span class="math inline">\(p = 0.089 &gt; 0.05\)</span>, <strong>no rechazamos</strong> <span class="math inline">\(H_0\)</span> de normalidad → el test t es válido. Con <span class="math inline">\(n = 75\)</span>, el TCL garantiza normalidad asintótica de la media, por lo que el test t es válido independientemente del resultado de Shapiro-Wilk.</p>
+<p><strong>Ejercicio 8.1:</strong> t = (75-78)/√((29×64 + 34×49)/(63) × (1/30 + 1/35)) ≈ -1.81; df ≈ 63; p &gt; 0.05. No hay diferencia significativa.</p>
+<p><strong>Ejercicio 8.2:</strong> t = -5/(8/√10) ≈ -1.98; df = 9; p ≈ 0.038 &lt; 0.05. El medicamento es efectivo en reducir presión.</p>
+<p><strong>Ejercicio 8.3:</strong> F = 15/8 = 1.875; df₁ = 19, df₂ = 17. F crítico ≈ 2.74. No rechaza H₀; no hay diferencia significativa en variabilidad.</p>
+<p><strong>Ejercicio 8.4:</strong> Usando fórmula de potencia: n ≈ 2×(10)²×(1.96 + 1.28)²/(12)² ≈ 29-30 sujetos por grupo.</p>
+<p><strong>Ejercicio 8.5:</strong> P(al menos 1 error) = 1 - (1-0.05)¹⁵ ≈ 1 - 0.463 = 0.537 (53.7%). El problema de multiplicidad es importante.</p>
+<p><strong>Ejercicio 8.6:</strong> t = 2.34, df = 45.2, p = 0.024 &lt; 0.05. Se rechaza H₀. Hay diferencia significativa entre x e y (usando Welch’s t-test por varianzas desiguales).</p>
+<p><strong>Ejercicio 8.7:</strong> Si el IC 95% incluye cero, la diferencia no es estadísticamente significativa (p &gt; 0.05), aunque hay diferencia práctica de 5 unidades. Sin significancia estadística, no podemos afirmar que la diferencia poblacional es real.</p>
+<p><strong>Ejercicio 8.8:</strong> Utilizaría la prueba de Wilcoxon-Mann-Whitney (o un test de permutación).</p>
+<p><strong>Ejercicio 8.9:</strong> No requiere el supuesto de normalidad en los datos, siendo más robusta cuando hay outliers o distribuciones muy asimétricas.</p>
+<p><strong>Ejercicio 8.10:</strong> Con <span class="math inline">\(p = 0.089 &gt; 0.05\)</span>, <strong>no rechazamos</strong> <span class="math inline">\(H_0\)</span> de normalidad → el test t es válido. Con <span class="math inline">\(n = 75\)</span>, el TCL garantiza normalidad asintótica de la media, por lo que el test t es válido independientemente del resultado de Shapiro-Wilk.</p>
 </section>
 <section id="sec-semana08-resources" class="level2" data-number="8.17">
 <h2 data-number="8.17" class="anchored" data-anchor-id="sec-semana08-resources"><span class="header-section-number">8.17</span> Recursos Adicionales</h2>

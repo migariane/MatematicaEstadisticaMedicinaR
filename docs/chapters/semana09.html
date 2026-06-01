@@ -448,14 +448,14 @@ window.Quarto = {
   <li><a href="#hipótesis" id="toc-hipótesis" class="nav-link" data-scroll-target="#hipótesis"><span class="header-section-number">9.9.1</span> Hipótesis</a></li>
   <li><a href="#estadístico-de-prueba" id="toc-estadístico-de-prueba" class="nav-link" data-scroll-target="#estadístico-de-prueba"><span class="header-section-number">9.9.2</span> Estadístico de prueba</a></li>
   <li><a href="#regla-de-decisión" id="toc-regla-de-decisión" class="nav-link" data-scroll-target="#regla-de-decisión"><span class="header-section-number">9.9.3</span> Regla de decisión</a></li>
-  <li><a href="#ejemplo-pas-vs.-edad" id="toc-ejemplo-pas-vs.-edad" class="nav-link" data-scroll-target="#ejemplo-pas-vs.-edad"><span class="header-section-number">9.9.4</span> Ejemplo: PAS vs.&nbsp;Edad</a></li>
+  <li><a href="#ejemplo-ilustrativo-pas-vs.-edad" id="toc-ejemplo-ilustrativo-pas-vs.-edad" class="nav-link" data-scroll-target="#ejemplo-ilustrativo-pas-vs.-edad"><span class="header-section-number">9.9.4</span> Ejemplo ilustrativo: PAS vs.&nbsp;Edad</a></li>
   </ul></li>
   <li><a href="#sec-semana09-s10" id="toc-sec-semana09-s10" class="nav-link" data-scroll-target="#sec-semana09-s10"><span class="header-section-number">9.10</span> Intervalos de Confianza</a>
   <ul class="collapse">
   <li><a href="#para-beta_1" id="toc-para-beta_1" class="nav-link" data-scroll-target="#para-beta_1"><span class="header-section-number">9.10.1</span> Para <span class="math inline">\(\beta_1\)</span></a></li>
   <li><a href="#para-beta_0" id="toc-para-beta_0" class="nav-link" data-scroll-target="#para-beta_0"><span class="header-section-number">9.10.2</span> Para <span class="math inline">\(\beta_0\)</span></a></li>
   <li><a href="#para-el-valor-predicho-eyx-x_0" id="toc-para-el-valor-predicho-eyx-x_0" class="nav-link" data-scroll-target="#para-el-valor-predicho-eyx-x_0"><span class="header-section-number">9.10.3</span> Para el valor predicho <span class="math inline">\(E(Y|X = x_0)\)</span></a></li>
-  <li><a href="#ejemplo-pas-vs.-edad-1" id="toc-ejemplo-pas-vs.-edad-1" class="nav-link" data-scroll-target="#ejemplo-pas-vs.-edad-1"><span class="header-section-number">9.10.4</span> Ejemplo: PAS vs.&nbsp;Edad</a></li>
+  <li><a href="#ejemplo-ilustrativo-pas-vs.-edad-1" id="toc-ejemplo-ilustrativo-pas-vs.-edad-1" class="nav-link" data-scroll-target="#ejemplo-ilustrativo-pas-vs.-edad-1"><span class="header-section-number">9.10.4</span> Ejemplo ilustrativo: PAS vs.&nbsp;Edad</a></li>
   </ul></li>
   <li><a href="#sec-semana09-s11" id="toc-sec-semana09-s11" class="nav-link" data-scroll-target="#sec-semana09-s11"><span class="header-section-number">9.11</span> Diagnóstico de Residuos</a>
   <ul class="collapse">
@@ -689,7 +689,8 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Los estimadores MCO minimizan: <span class="math display">\[Q(b_0, b_1) = \sum_{i=1}^n (y_i - b_0 - b_1 x_i)^2\]</span></p>
+<p>Los estimadores MCO minimizan:</p>
+<p><span class="math display">\[Q(b_0, b_1) = \sum_{i=1}^n (y_i - b_0 - b_1 x_i)^2\]</span></p>
 <p>Donde: - <span class="math inline">\(y_i\)</span> son los valores observados (PAS del paciente <span class="math inline">\(i\)</span>) - <span class="math inline">\(\hat{y}_i = b_0 + b_1 x_i\)</span> son los valores predichos por el modelo - El residuo estimado es <span class="math inline">\(\hat{u}_i = y_i - \hat{y}_i\)</span></p>
 <p>Así buscamos la línea que <strong>mejor ajusta</strong> los datos, minimizando las distancias verticales.</p>
 </div>
@@ -797,7 +798,8 @@ window.Quarto = {
 </div>
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[R^2 = \frac{\text{SCE}}{\text{SCT}} = 1 - \frac{\text{SCR}}{\text{SCT}} = \frac{\sum_{i=1}^n (\hat{y}_i - \bar{y})^2}{\sum_{i=1}^n (y_i - \bar{y})^2}\]</span></p>
-<p>Para regresión lineal simple: <span class="math display">\[R^2 = r_{xy}^2\]</span></p>
+<p>Para regresión lineal simple:</p>
+<p><span class="math display">\[R^2 = r_{xy}^2\]</span></p>
 <p>donde <span class="math inline">\(r_{xy}\)</span> es el coeficiente de correlación de Pearson.</p>
 <p><strong>Propiedades</strong>: - <span class="math inline">\(0 \leq R^2 \leq 1\)</span> - <span class="math inline">\(R^2 = 1\)</span>: ajuste perfecto (todos los puntos en la línea) - <span class="math inline">\(R^2 = 0\)</span>: no hay relación lineal - <span class="math inline">\(R^2 = 0.50\)</span>: el 50% de la variabilidad en <span class="math inline">\(Y\)</span> es explicada por <span class="math inline">\(X\)</span></p>
 </div>
@@ -871,9 +873,9 @@ window.Quarto = {
 <p>A nivel de significancia <span class="math inline">\(\alpha\)</span>: - <strong>Rechazamos</strong> <span class="math inline">\(H_0\)</span> si <span class="math inline">\(|t| &gt; t_{1-\alpha/2, n-2}\)</span> (test bilateral) - <strong>Valor p</strong> = probabilidad de observar un valor tan extremo (o más) bajo <span class="math inline">\(H_0\)</span></p>
 <p>Si <span class="math inline">\(n &gt; 30\)</span>, usamos la aproximación normal: <span class="math inline">\(t_{1-\alpha/2, n-2} \approx z_{1-\alpha/2}\)</span></p>
 </section>
-<section id="ejemplo-pas-vs.-edad" class="level3" data-number="9.9.4">
-<h3 data-number="9.9.4" class="anchored" data-anchor-id="ejemplo-pas-vs.-edad"><span class="header-section-number">9.9.4</span> Ejemplo: PAS vs.&nbsp;Edad</h3>
-<p>En el estudio de hipertensión:</p>
+<section id="ejemplo-ilustrativo-pas-vs.-edad" class="level3" data-number="9.9.4">
+<h3 data-number="9.9.4" class="anchored" data-anchor-id="ejemplo-ilustrativo-pas-vs.-edad"><span class="header-section-number">9.9.4</span> Ejemplo ilustrativo: PAS vs.&nbsp;Edad</h3>
+<p>A modo de ilustración (valores <strong>hipotéticos</strong> para repasar la mecánica del contraste; la simulación R de la sección 9.12 producirá cifras distintas):</p>
 <ul>
 <li>Estimación: <span class="math inline">\(\hat{\beta}_1 = 0.80\)</span> mmHg/año</li>
 <li>Error estándar: <span class="math inline">\(\widehat{\text{ee}}(b_1) = 0.09\)</span> mmHg/año</li>
@@ -938,9 +940,9 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="ejemplo-pas-vs.-edad-1" class="level3" data-number="9.10.4">
-<h3 data-number="9.10.4" class="anchored" data-anchor-id="ejemplo-pas-vs.-edad-1"><span class="header-section-number">9.10.4</span> Ejemplo: PAS vs.&nbsp;Edad</h3>
-<p>Para <span class="math inline">\(n = 120\)</span>, <span class="math inline">\(\hat{\beta}_1 = 0.80\)</span> mmHg/año, <span class="math inline">\(\widehat{\text{ee}}(b_1) = 0.09\)</span>:</p>
+<section id="ejemplo-ilustrativo-pas-vs.-edad-1" class="level3" data-number="9.10.4">
+<h3 data-number="9.10.4" class="anchored" data-anchor-id="ejemplo-ilustrativo-pas-vs.-edad-1"><span class="header-section-number">9.10.4</span> Ejemplo ilustrativo: PAS vs.&nbsp;Edad</h3>
+<p>Reutilizando los <strong>mismos valores hipotéticos</strong> del apartado anterior — <span class="math inline">\(n = 120\)</span>, <span class="math inline">\(\hat{\beta}_1 = 0.80\)</span> mmHg/año, <span class="math inline">\(\widehat{\text{ee}}(b_1) = 0.09\)</span>:</p>
 <p>Con <span class="math inline">\(\alpha = 0.05\)</span> (95% confianza), <span class="math inline">\(t_{0.975, 118} = 1.980\)</span>:</p>
 <p><span class="math display">\[\text{IC}_{95\%}(\beta_1) = [0.80 - 1.980 \times 0.09, \, 0.80 + 1.980 \times 0.09] = [0.62, \, 0.98] \text{ mmHg/año}\]</span></p>
 <p><strong>Interpretación clínica</strong>: Con 95% de confianza, por cada año adicional de edad la PAS media aumenta entre 0.62 y 0.98 mmHg en esta población.</p>
@@ -1222,7 +1224,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Interpretación estadística:</strong> El modelo de regresión lineal simple estimó un incremento de la presión arterial sistólica de aproximadamente 0.80 mmHg por cada año adicional de edad (b₁ = 0.80, EE = 0.10, t(118) = 8.0, p &lt; 0.001, IC 95%: [0.60, 1.00]). El coeficiente de determinación R² = 0.351 indica que la edad explica el 35% de la variabilidad observada en la PAS, lo que refleja una relación lineal moderada estadísticamente significativa. Este hallazgo es clínicamente relevante: un aumento de edad de 20 años se asociaría con un incremento esperado de ~16 mmHg en la PAS.</p>
+<p><strong>Interpretación estadística:</strong> El modelo de regresión lineal simple estimó un incremento de la presión arterial sistólica de aproximadamente 0.83 mmHg por cada año adicional de edad (b₁ = 0.83, EE = 0.063, t(118) = 13.2, p &lt; 0.001, IC 95%: [0.71, 0.96]). El coeficiente de determinación R² = 0.597 indica que la edad explica el 59.7% de la variabilidad observada en la PAS, lo que refleja una relación lineal fuerte y estadísticamente significativa. Este hallazgo es clínicamente relevante: un aumento de edad de 20 años se asociaría con un incremento esperado de ~17 mmHg en la PAS.</p>
 </div>
 </div>
 </section>
@@ -1232,7 +1234,7 @@ Tip
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="semana09_files/figure-html/lst-s10-cod02-1.png" class="img-fluid figure-img" alt="Diagrama de dispersión PAS vs edad con recta de regresión" width="672"></p>
+<p><img src="semana09_files/figure-html/lst-s09-cod02-1.png" class="img-fluid figure-img" alt="Diagrama de dispersión PAS vs edad con recta de regresión" width="672"></p>
 <figcaption>Regresión lineal: Presión Arterial Sistólica (PAS) en función de la Edad. Cada punto representa un paciente. La línea roja es la recta de mínimos cuadrados estimada.</figcaption>
 </figure>
 </div>
@@ -1245,7 +1247,7 @@ Tip
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="semana09_files/figure-html/lst-s10-cod03-1.png" class="img-fluid figure-img" alt="Cuatro gráficos de diagnóstico del modelo de regresión" width="672"></p>
+<p><img src="semana09_files/figure-html/lst-s09-cod03-1.png" class="img-fluid figure-img" alt="Cuatro gráficos de diagnóstico del modelo de regresión" width="672"></p>
 <figcaption>Gráficos de diagnóstico de supuestos del modelo de regresión. Arriba-izquierda: residuos vs.&nbsp;valores ajustados (verifica linealidad y homocedasticidad). Arriba-derecha: Q-Q plot (verifica normalidad). Abajo-izquierda: escala-localización. Abajo-derecha: residuos vs.&nbsp;leverage (detecta observaciones influyentes).</figcaption>
 </figure>
 </div>
@@ -1500,7 +1502,7 @@ R² = 0.357 |  R² ajustado = 0.354 |  F-estadístico = 137 (p &lt; 0.001)</code
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="semana09_files/figure-html/lst-s10-cod06-1.png" class="img-fluid figure-img" alt="Diagrama de dispersión colesterol vs IMC con recta de regresión" width="672"></p>
+<p><img src="semana09_files/figure-html/lst-s09-cod06-1.png" class="img-fluid figure-img" alt="Diagrama de dispersión colesterol vs IMC con recta de regresión" width="672"></p>
 <figcaption>Regresión lineal Colesterol Total ~ IMC. Los 250 puntos representan pacientes sin tratamiento hipolipemiante. La línea muestra la relación estimada: por cada kg/m² adicional de IMC, el colesterol aumenta en promedio ~5 mg/dL.</figcaption>
 </figure>
 </div>
@@ -1516,7 +1518,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Interpretación estadística:</strong> En una muestra de 250 pacientes sin hipolipemiantes, el modelo de regresión lineal mostró que por cada unidad adicional de IMC (kg/m²), el colesterol total aumenta en promedio 5.0 mg/dL (b₁ = 5.0, EE = 0.41, t(248) = 12.2, p &lt; 0.001, IC 95%: [4.19, 5.81]). El R² = 0.391 indica que el IMC explica el 39.1% de la variación en colesterol, estableciendo una relación lineal fuerte y estadísticamente significativa. Desde una perspectiva clínica de prevención cardiovascular, una reducción de 5 unidades en el IMC (ej. pasar de obesidad a sobrepeso) se asociaría con una reducción esperada de ~25 mg/dL en el colesterol total, lo que podría reducir el riesgo cardiovascular.</p>
+<p><strong>Interpretación estadística:</strong> En una muestra de 250 pacientes sin hipolipemiantes, el modelo de regresión lineal mostró que por cada unidad adicional de IMC (kg/m²), el colesterol total aumenta en promedio 4.81 mg/dL (b₁ = 4.81, EE = 0.41, t(248) = 11.72, p &lt; 0.001). El R² = 0.357 indica que el IMC explica el 35.7% de la variación en colesterol, estableciendo una relación lineal moderada y estadísticamente significativa. Desde una perspectiva clínica de prevención cardiovascular, una reducción de 5 unidades en el IMC (ej. pasar de obesidad a sobrepeso) se asociaría con una reducción esperada de ~24 mg/dL en el colesterol total, lo que podría reducir el riesgo cardiovascular.</p>
 </div>
 </div>
 </section>
@@ -1533,14 +1535,22 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Modelo</strong>: <span class="math display">\[Y_i = \beta_0 + \beta_1 X_i + U_i\]</span></p>
-<p><strong>Estimadores MCO</strong>: <span class="math display">\[b_1 = \frac{s_{xy}}{s_x^2}, \quad b_0 = \bar{y} - b_1 \bar{x}\]</span></p>
-<p><strong>Descomposición de varianza</strong>: <span class="math display">\[\text{SCT} = \text{SCE} + \text{SCR}\]</span></p>
-<p><strong>Coeficiente de determinación</strong>: <span class="math display">\[R^2 = 1 - \frac{\text{SCR}}{\text{SCT}} = r_{xy}^2\]</span></p>
-<p><strong>Varianza del error estimada</strong>: <span class="math display">\[s_u^2 = \frac{\sum_{i=1}^n \hat{u}_i^2}{n - 2}\]</span></p>
-<p><strong>Errores estándar</strong>: <span class="math display">\[\widehat{\text{ee}}(b_1) = \frac{s_u}{\sqrt{\sum (x_i - \bar{x})^2}}, \quad \widehat{\text{ee}}(b_0) = s_u\sqrt{\frac{1}{n} + \frac{\bar{x}^2}{\sum(x_i - \bar{x})^2}}\]</span></p>
-<p><strong>Test t</strong>: <span class="math display">\[t = \frac{b_j}{\widehat{\text{ee}}(b_j)} \sim t_{n-2}\]</span></p>
-<p><strong>Intervalo de confianza para <span class="math inline">\(\beta_j\)</span></strong>: <span class="math display">\[[b_j \pm t_{1-\alpha/2, n-2} \cdot \widehat{\text{ee}}(b_j)]\]</span></p>
+<p><strong>Modelo</strong>:</p>
+<p><span class="math display">\[Y_i = \beta_0 + \beta_1 X_i + U_i\]</span></p>
+<p><strong>Estimadores MCO</strong>:</p>
+<p><span class="math display">\[b_1 = \frac{s_{xy}}{s_x^2}, \quad b_0 = \bar{y} - b_1 \bar{x}\]</span></p>
+<p><strong>Descomposición de varianza</strong>:</p>
+<p><span class="math display">\[\text{SCT} = \text{SCE} + \text{SCR}\]</span></p>
+<p><strong>Coeficiente de determinación</strong>:</p>
+<p><span class="math display">\[R^2 = 1 - \frac{\text{SCR}}{\text{SCT}} = r_{xy}^2\]</span></p>
+<p><strong>Varianza del error estimada</strong>:</p>
+<p><span class="math display">\[s_u^2 = \frac{\sum_{i=1}^n \hat{u}_i^2}{n - 2}\]</span></p>
+<p><strong>Errores estándar</strong>:</p>
+<p><span class="math display">\[\widehat{\text{ee}}(b_1) = \frac{s_u}{\sqrt{\sum (x_i - \bar{x})^2}}, \quad \widehat{\text{ee}}(b_0) = s_u\sqrt{\frac{1}{n} + \frac{\bar{x}^2}{\sum(x_i - \bar{x})^2}}\]</span></p>
+<p><strong>Test t</strong>:</p>
+<p><span class="math display">\[t = \frac{b_j}{\widehat{\text{ee}}(b_j)} \sim t_{n-2}\]</span></p>
+<p><strong>Intervalo de confianza para <span class="math inline">\(\beta_j\)</span></strong>:</p>
+<p><span class="math display">\[[b_j \pm t_{1-\alpha/2, n-2} \cdot \widehat{\text{ee}}(b_j)]\]</span></p>
 </div>
 </div>
 </section>
@@ -1572,7 +1582,7 @@ Tip
 <li>¿Es razonable el signo negativo de <span class="math inline">\(\hat{\beta}_1\)</span>?</li>
 </ol>
 <hr>
-<p><strong>Ejercicio 3</strong>: Para los datos del estudio de colesterol e IMC (sección 10.12, <span class="math inline">\(n = 250\)</span>):</p>
+<p><strong>Ejercicio 3</strong>: Para los datos del estudio de colesterol e IMC (sección 9.12, <span class="math inline">\(n = 250\)</span>):</p>
 <ol type="a">
 <li>Calcula el intervalo de confianza al 95% para el colesterol medio en pacientes con IMC = 30 kg/m² (obesidad tipo I)</li>
 <li>¿Es estadísticamente significativo el efecto del IMC sobre el colesterol? Justifica usando el estadístico <span class="math inline">\(t\)</span></li>
