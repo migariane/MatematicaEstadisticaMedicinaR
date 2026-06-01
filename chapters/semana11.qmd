@@ -77,7 +77,7 @@ $$\chi^2 = \frac{n(ad - bc)^2}{(a+b)(c+d)(a+c)(b+d)}$$
 ::: {.callout-tip}
 ## Ejemplo: tabla2x2() — datos osteo (Fac. Medicina UGR)
 
-Analizamos la asociación entre tabaquismo (`tabaco`) y osteoporosis de cúbito (`osteo_cue`) en 94 pacientes diabéticos. Documentación completa en @sec-bio-tablas.
+Analizamos la asociación entre tabaquismo (`tabaco`) y osteoporosis del cuello femoral (`osteo_cue`) en 94 pacientes diabéticos. Documentación completa en @sec-bio-tablas.
 
 ```{r}
 #| label: lst-s12-bio01
@@ -105,7 +105,7 @@ Mínima frecuencia esperada: $E_{22} = 10.47 > 5$ ✓ (condición de validez cum
 
 ::: {.callout-note}
 ## Interpretación
-El estadístico χ² = 4.65 con 1 grado de libertad produce p = 0.031 < 0.05, rechazando la hipótesis nula de independencia. Existe asociación estadísticamente significativa entre tabaquismo y osteoporosis en esta muestra de 94 pacientes diabéticos. Los fumadores presentan una odds ratio de 2.82 (IC 95%: 1.07–7.01), indicando aproximadamente 2.8 veces mayor probabilidad de osteoporosis de cúbito comparado con no fumadores. En el contexto clínico, esta asociación es relevante para estratificar riesgo en pacientes diabéticos, sugiriendo que el cese del tabaquismo podría ser una intervención preventiva importante en esta población de alto riesgo metabólico.
+El estadístico χ² = 4.65 con 1 grado de libertad produce p = 0.031 < 0.05, rechazando la hipótesis nula de independencia. Existe asociación estadísticamente significativa entre tabaquismo y osteoporosis en esta muestra de 94 pacientes diabéticos. Los fumadores presentan una odds ratio de 2.82 (IC 95%: 1.07–7.01), indicando aproximadamente 2.8 veces mayor probabilidad de osteoporosis del cuello femoral comparado con no fumadores. En el contexto clínico, esta asociación es relevante para estratificar riesgo en pacientes diabéticos, sugiriendo que el cese del tabaquismo podría ser una intervención preventiva importante en esta población de alto riesgo metabólico.
 :::
 :::
 
@@ -156,7 +156,7 @@ tablarxc(frecs = m, fcat = rownames(m), ccat = colnames(m))
 
 ::: {.callout-note}
 ## Interpretación
-El estadístico χ² = 13.38 con 2 grados de libertad produce p < 0.001, rechazando la hipótesis nula de homogeneidad entre grupos. La distribución de curación no es homogénea entre los 3 grupos de tratamiento (Control: 40%, Dosis baja: 58%, Dosis alta: 75%). Los resultados demuestran que la dosis alta de tratamiento se asocia significativamente con tasas de curación más altas comparado con control y dosis baja. Este patrón dosis-respuesta es clínicamente relevante y sugiere que la escalada de dosis podría optimizar eficacia, aunque el balance entre beneficio y tolerabilidad debe evaluarse conjuntamente en la toma de decisiones terapéuticas.
+El estadístico χ² = 13.802 con 2 grados de libertad produce p < 0.001, rechazando la hipótesis nula de homogeneidad entre grupos. La distribución de curación no es homogénea entre los 3 grupos de tratamiento (Control: 40%, Dosis baja: 58%, Dosis alta: 75%). Los resultados demuestran que la dosis alta de tratamiento se asocia significativamente con tasas de curación más altas comparado con control y dosis baja. Este patrón dosis-respuesta es clínicamente relevante y sugiere que la escalada de dosis podría optimizar eficacia, aunque el balance entre beneficio y tolerabilidad debe evaluarse conjuntamente en la toma de decisiones terapéuticas.
 :::
 :::
 
@@ -401,7 +401,7 @@ En una consulta de medicina interna del Hospital Universitario de Granada, 100 p
 **Cálculo manual:**
 $$\chi^2_{\text{McNemar}} = \frac{(b - c)^2}{b + c} = \frac{(8 - 28)^2}{36} = \frac{400}{36} = 11.11$$
 
-Como $11.11 > 3.84$ ($p < 0.001$), rechazamos $H_0$. La intervención mejora significativamente el control de la PA: 28 pacientes mejoraron frente a solo 8 que empeoraron.
+Como $11.11 > 3.84$ ($p \approx 0.001$), rechazamos $H_0$. La intervención mejora significativamente el control de la PA: 28 pacientes mejoraron frente a solo 8 que empeoraron.
 
 **Nota sobre las proporciones marginales:**
 - Antes: 50/100 = 50% con PA controlada
@@ -505,7 +505,7 @@ cat("RR =", round(RR, 3), "\n")
 cat("IC 95%: [", round(IC_RR[1], 3), ",", round(IC_RR[2], 3), "]\n")
 ```
 
-**Interpretación:** Los fumadores tienen **2.67 veces más riesgo** de cardiopatía isquémica que los no fumadores ($RR = 2.67$; $IC_{95\%}$: 1.79–3.97). El intervalo no contiene el 1, confirmando asociación estadísticamente significativa.
+**Interpretación:** Los fumadores tienen **2.67 veces más riesgo** de cardiopatía isquémica que los no fumadores ($RR = 2.67$; $IC_{95\%}$: 1.79–3.98). El intervalo no contiene el 1, confirmando asociación estadísticamente significativa.
 :::
 
 ### Diferencia de Riesgos (RD) y NNT
@@ -572,7 +572,7 @@ tabla2x2(o11 = 120, o12 = 80, o21 = 60, o22 = 140,
          estudio = "CC")
 ```
 
-**Interpretación:** $OR = 3.50$ ($IC_{95\%}$: 2.28–5.37). Las personas con consumo excesivo de alcohol tienen **3.5 veces más odds** de cirrosis que las de consumo no excesivo. El resultado es altamente significativo ($p < 0.001$).
+**Interpretación:** $OR = 3.50$ ($IC_{95\%}$: 2.30–5.25). Las personas con consumo excesivo de alcohol tienen **3.5 veces más odds** de cirrosis que las de consumo no excesivo. El resultado es altamente significativo ($p < 0.001$).
 :::
 
 ### Resumen de Intervalos de Confianza
@@ -664,7 +664,7 @@ cat("=== mcnemar.test() — Base R ===\n")
 mcnemar.test(m_paired, correct = FALSE)  # Sin corrección (b+c=36 >= 25)
 
 # BioEstatR: tabla2x2(..., estudio = "AP")
-# (ver sección 12.5.5 para la salida completa; requiere BioEstatR)
+# (ver @sec-semana11-mcnemar para la salida completa; requiere BioEstatR)
 # tabla2x2(o11=42, o12=8, o21=28, o22=22,
 #          fcat = c("Pre: Controlada","Pre: No controlada"),
 #          ccat = c("Post: Controlada","Post: No controlada"),
@@ -818,7 +818,7 @@ cat(sprintf("Diferencia relativa: %.1f%%\n", diff_pct))
 **Interpretación Epidemiológica:**
 En este estudio, el OR crudo (total) es `r round(or_crudo, 2)`, mientras que el OR ajustado (MH) es `r round(or_mh, 2)`. La diferencia relativa es de `r round(diff_pct, 1)`%. Al ser mayor del 10%, existe un efecto de confusión sustancial provocado por la "gravedad". 
 
-La gravedad actúa como un factor de confusión ya que está asociada tanto a la probabilidad de recibir el Fármaco A (sesgo de indicación) como a la probabilidad de recuperación (pronóstico). El OR crudo subestima (o sobreestima) el efecto real al mezclar el impacto del fármaco con la mayor o menor gravedad basal de los pacientes. Al ajustar por MH, eliminamos esta confusión. 
+La gravedad actúa como un factor de confusión ya que está asociada tanto a la probabilidad de recibir el Fármaco A (sesgo de indicación) como a la probabilidad de recuperación (pronóstico). En este caso concreto, el OR crudo **subestima** el efecto real (5.67 < 6.83) al mezclar el impacto del fármaco con la mayor o menor gravedad basal de los pacientes; en otros contextos la confusión puede ir en dirección contraria y sobreestimar el efecto. Al ajustar por MH, eliminamos esta confusión. 
 
 Sin embargo, es crucial notar que existe una **interacción** (modificación del efecto): el fármaco parece ser más eficaz en pacientes leves que en pacientes graves. En presencia de una interacción tan marcada, la mejor recomendación epidemiológica es presentar los **resultados estratificados**, ya que un único OR ajustado (MH) ocultaría esta heterogeneidad clínicamente relevante. 
 

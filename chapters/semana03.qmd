@@ -332,7 +332,7 @@ cat("n =", n, ": proporción asignada a tratamiento =", prop_1000, "\n")
 
 ::: {.callout-note}
 ## Interpretación
-La simulación ilustra la **Ley de los Grandes Números**: conforme incrementamos el tamaño muestral de 10 a 1,000 pacientes, la proporción observada de asignados al tratamiento converge hacia la probabilidad teórica de 0.5. Con apenas 10 pacientes observamos fluctuaciones (prop_10 = 0.50), pero con 1,000 pacientes la proporción se estabiliza cercana al valor esperado (prop_1000 ≈ 0.486). Esto demuestra empíricamente por qué los estudios clínicos requieren tamaños muestrales adecuados: garantizan que la frecuencia relativa refleje la probabilidad verdadera subyacente en la aleatorización.
+La simulación ilustra la **Ley de los Grandes Números**: conforme incrementamos el tamaño muestral de 10 a 1,000 pacientes, la proporción observada de asignados al tratamiento converge hacia la probabilidad teórica de 0.5. Con apenas 10 pacientes observamos fluctuaciones notables (prop_10 = 0.60), con 100 ya se acerca al valor esperado (prop_100 = 0.46), y con 1,000 pacientes la proporción se estabiliza muy cerca de 0.5 (prop_1000 = 0.497). Esto demuestra empíricamente por qué los estudios clínicos requieren tamaños muestrales adecuados: garantizan que la frecuencia relativa refleje la probabilidad verdadera subyacente en la aleatorización.
 :::
 
 
@@ -377,34 +377,43 @@ De los axiomas de Kolmogorov se derivan varias propiedades útiles:
 Sea $A, B, A_1, A_2, \ldots$ eventos en un espacio de probabilidad. Entonces:
 
 **Propiedad 1: Probabilidad del complemento**
+
 $$\mathbb{P}(\overline{A}) = 1 - \mathbb{P}(A)$$
 
 *Prueba:* Note que $A \cup \overline{A} = \Omega$ y $A \cap \overline{A} = \emptyset$. Por el Axioma 3:
+
 $$\mathbb{P}(\Omega) = \mathbb{P}(A) + \mathbb{P}(\overline{A}) = 1$$
 
 **Propiedad 2: Probabilidad del conjunto vacío**
+
 $$\mathbb{P}(\emptyset) = 0$$
 
 *Prueba:* $\emptyset = \overline{\Omega}$, así que $\mathbb{P}(\emptyset) = 1 - \mathbb{P}(\Omega) = 1 - 1 = 0$.
 
 **Propiedad 3: Monotonía**
+
 Si $A \subseteq B$, entonces $\mathbb{P}(A) \leq \mathbb{P}(B)$
 
 *Prueba:* Si $A \subseteq B$, entonces $B = A \cup (B - A)$ donde $A$ y $B - A$ son disjuntos. Por el Axioma 3:
+
 $$\mathbb{P}(B) = \mathbb{P}(A) + \mathbb{P}(B - A) \geq \mathbb{P}(A)$$
 
 **Propiedad 4: Acotamiento**
+
 $$0 \leq \mathbb{P}(A) \leq 1$$
 
 Se sigue de los Axiomas 1 y 2.
 
 **Propiedad 5: Regla de la suma (Inclusión-Exclusión)**
+
 $$\mathbb{P}(A \cup B) = \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A \cap B)$$
 
 *Prueba:* Observe que $A \cup B = A \cup (B - A)$ donde estos son disjuntos, y $B = (A \cap B) \cup (B - A)$.
 
 **Propiedad 6: Aditividad para eventos disjuntos**
+
 Si $A \cap B = \emptyset$, entonces:
+
 $$\mathbb{P}(A \cup B) = \mathbb{P}(A) + \mathbb{P}(B)$$
 :::
 
@@ -433,7 +442,9 @@ $$\mathbb{P}(A \cup B) = \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A \cap B)$$
 Para tres eventos $A$, $B$, y $C$:
 
 $$\mathbb{P}(A \cup B \cup C) = \mathbb{P}(A) + \mathbb{P}(B) + \mathbb{P}(C)$$
+
 $$- \mathbb{P}(A \cap B) - \mathbb{P}(A \cap C) - \mathbb{P}(B \cap C)$$
+
 $$+ \mathbb{P}(A \cap B \cap C)$$
 :::
 
@@ -490,12 +501,15 @@ La probabilidad condicional $\mathbb{P}(T_2|T_1) = \mathbb{P}(T_2) = 0.5$ (por i
 ## Teorema: Regla de la Multiplicación
 
 Para dos eventos $A$ y $B$:
+
 $$\mathbb{P}(A \cap B) = \mathbb{P}(A) \cdot \mathbb{P}(B|A) = \mathbb{P}(B) \cdot \mathbb{P}(A|B)$$
 
 Para tres eventos $A_1, A_2, A_3$:
+
 $$\mathbb{P}(A_1 \cap A_2 \cap A_3) = \mathbb{P}(A_1) \cdot \mathbb{P}(A_2|A_1) \cdot \mathbb{P}(A_3|A_1 \cap A_2)$$
 
 Para $n$ eventos:
+
 $$\mathbb{P}(A_1 \cap \ldots \cap A_n) = \mathbb{P}(A_1) \cdot \mathbb{P}(A_2|A_1) \cdot \mathbb{P}(A_3|A_1 \cap A_2) \cdots \mathbb{P}(A_n|A_1 \cap \ldots \cap A_{n-1})$$
 :::
 

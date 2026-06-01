@@ -931,15 +931,15 @@ window.Quarto = {
 Cuadro&nbsp;1.1: Código R para tabla de frecuencias de PAS
 </figcaption>
 <div aria-describedby="lst-semana01-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Código R para tabla de frecuencias de PAS</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datos de presión arterial sistólica (PAS) en pacientes diabéticos</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pas_diabeticos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">120</span>, <span class="dv">125</span>, <span class="dv">118</span>, <span class="dv">130</span>, <span class="dv">122</span>, <span class="dv">128</span>, <span class="dv">115</span>, <span class="dv">135</span>, <span class="dv">124</span>, <span class="dv">129</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear tabla de frecuencias</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>tabla_freq <span class="ot">&lt;-</span> <span class="fu">table</span>(pas_diabeticos)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>freq_rel <span class="ot">&lt;-</span> tabla_freq <span class="sc">/</span> <span class="fu">length</span>(pas_diabeticos)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>freq_acum <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(tabla_freq)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>freq_rel <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(tabla_freq) <span class="sc">/</span> <span class="fu">length</span>(pas_diabeticos)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>freq_acum <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(<span class="fu">as.numeric</span>(tabla_freq))</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>freq_acum_rel <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(freq_rel)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear data frame</span></span>
@@ -950,23 +950,23 @@ Cuadro&nbsp;1.1: Código R para tabla de frecuencias de PAS
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">H =</span> freq_acum,</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">F =</span> <span class="fu">round</span>(freq_acum_rel, <span class="dv">2</span>)</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(result, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </figure>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    PAS h f.pas_diabeticos f.Freq  H   F
-115 115 1              115    0.1  1 0.1
-118 118 1              118    0.1  2 0.2
-120 120 1              120    0.1  3 0.3
-122 122 1              122    0.1  4 0.4
-124 124 1              124    0.1  5 0.5
-125 125 1              125    0.1  6 0.6
-128 128 1              128    0.1  7 0.7
-129 129 1              129    0.1  8 0.8
-130 130 1              130    0.1  9 0.9
-135 135 1              135    0.1 10 1.0</code></pre>
+<pre><code> PAS h   f  H   F
+ 115 1 0.1  1 0.1
+ 118 1 0.1  2 0.2
+ 120 1 0.1  3 0.3
+ 122 1 0.1  4 0.4
+ 124 1 0.1  5 0.5
+ 125 1 0.1  6 0.6
+ 128 1 0.1  7 0.7
+ 129 1 0.1  8 0.8
+ 130 1 0.1  9 0.9
+ 135 1 0.1 10 1.0</code></pre>
 </div>
 </div>
 </div>
@@ -989,7 +989,7 @@ Cuadro&nbsp;1.1: Código R para tabla de frecuencias de PAS
 Cuadro&nbsp;1.2: Código R
 </figcaption>
 <div aria-describedby="lst-semana01-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1017,7 +1017,7 @@ n = 94
 8 (53,58]    3 0.032     0.990</code></pre>
 </div>
 </div>
-<p>El 52.1% de los pacientes tiene menos de 28 años. Con <code>grf = TRUE</code> (por defecto) también genera el histograma. Con <code>cuts = 5</code> agrupa en 5 clases de igual amplitud.</p>
+<p>El 52.1% de los pacientes tiene 28 años o menos (la columna <code>Prop.Acum</code> del intervalo <code>(23,28]</code> muestra <code>0.521</code>). Con <code>grf = TRUE</code> (por defecto) también se genera el histograma. Con <code>cuts = 5</code> agrupa en 5 clases de igual amplitud.</p>
 </div>
 </div>
 </section>
@@ -1280,7 +1280,7 @@ Figura&nbsp;1.2: Polígono de frecuencias acumuladas (ECDF interpolada)
 Cuadro&nbsp;1.3: Código R para histograma de IMC
 </figcaption>
 <div aria-describedby="lst-semana01-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Código R para histograma de IMC</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simular datos de IMC basados en la tabla</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>imc <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">runif</span>(<span class="dv">15</span>, <span class="dv">15</span>, <span class="fl">18.5</span>), <span class="fu">runif</span>(<span class="dv">93</span>, <span class="fl">18.5</span>, <span class="dv">25</span>), <span class="fu">runif</span>(<span class="dv">92</span>, <span class="dv">25</span>, <span class="dv">30</span>),</span>
@@ -1329,7 +1329,7 @@ Cuadro&nbsp;1.3: Código R para histograma de IMC
 Cuadro&nbsp;1.4: Comparación de gráficos
 </figcaption>
 <div aria-describedby="lst-semana01-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Comparación de gráficos</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simular datos de Presión Arterial Diastólica (en mmHg)</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
@@ -1369,7 +1369,7 @@ Cuadro&nbsp;1.4: Comparación de gráficos
 Cuadro&nbsp;1.5: Comparación de gráficos
 </figcaption>
 <div aria-describedby="lst-semana01-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Comparación de gráficos</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Restaurar configuración</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1540,7 +1540,7 @@ Cuadro&nbsp;1.5: Comparación de gráficos
 Cuadro&nbsp;1.6: Cálculo de estancia media en R
 </figcaption>
 <div aria-describedby="lst-semana01-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Cálculo de estancia media en R</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datos</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>marca_clase <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="fl">10.5</span>, <span class="dv">22</span>, <span class="dv">45</span>)</span>
@@ -1663,7 +1663,7 @@ Cuadro&nbsp;1.6: Cálculo de estancia media en R
 Cuadro&nbsp;1.7: Cálculo de mediana en R
 </figcaption>
 <div aria-describedby="lst-semana01-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Cálculo de mediana en R</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">120</span>, <span class="dv">125</span>, <span class="dv">118</span>, <span class="dv">130</span>, <span class="dv">122</span>, <span class="dv">128</span>, <span class="dv">115</span>, <span class="dv">135</span>, <span class="dv">124</span>, <span class="dv">129</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mediana_pas <span class="ot">&lt;-</span> <span class="fu">median</span>(pas)</span>
@@ -1724,7 +1724,7 @@ Figura&nbsp;1.3: Relación entre media, mediana y moda según el sesgo
 Cuadro&nbsp;1.8: Cálculo de estadísticos básicos
 </figcaption>
 <div aria-describedby="lst-semana01-stats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(moments)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
@@ -1797,7 +1797,7 @@ Cuadro&nbsp;1.8: Cálculo de estadísticos básicos
 Cuadro&nbsp;1.9: Cálculo de cuantiles
 </figcaption>
 <div aria-describedby="lst-semana01-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Cálculo de cuantiles</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generamos los mismos datos que en el Ejemplo 1.4.2</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
@@ -1827,7 +1827,7 @@ Cuadro&nbsp;1.9: Cálculo de cuantiles
 Cuadro&nbsp;1.10: Cálculo de cuantiles
 </figcaption>
 <div aria-describedby="lst-semana01-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Cálculo de cuantiles</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Q2 (50%, mediana):"</span>, <span class="fu">round</span>(Q2, <span class="dv">2</span>)))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -1843,7 +1843,7 @@ Cuadro&nbsp;1.10: Cálculo de cuantiles
 Cuadro&nbsp;1.11: Cálculo de cuantiles
 </figcaption>
 <div aria-describedby="lst-semana01-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Cálculo de cuantiles</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Q3 (75%):"</span>, <span class="fu">round</span>(Q3, <span class="dv">2</span>)))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -1872,7 +1872,7 @@ Cuadro&nbsp;1.11: Cálculo de cuantiles
 Cuadro&nbsp;1.12: Boxplot mejorado con ggplot2
 </figcaption>
 <div aria-describedby="lst-semana01-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Boxplot con ggplot2</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2093,7 +2093,7 @@ Cuadro&nbsp;1.12: Boxplot mejorado con ggplot2
 Cuadro&nbsp;1.13: Solución en R
 </figcaption>
 <div aria-describedby="lst-semana01-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Solución en R</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>tiempos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">7</span>, <span class="dv">14</span>, <span class="dv">9</span>, <span class="dv">11</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="fu">mean</span>(tiempos)</span>
@@ -2112,7 +2112,7 @@ Cuadro&nbsp;1.13: Solución en R
 Cuadro&nbsp;1.14: Solución en R
 </figcaption>
 <div aria-describedby="lst-semana01-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Solución en R</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Mediana:"</span>, mediana, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -2208,7 +2208,7 @@ Tip
 Cuadro&nbsp;1.15: Solución en R
 </figcaption>
 <div aria-describedby="lst-semana01-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Solución en R</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datos</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>marca_clase <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">80</span>, <span class="dv">95</span>, <span class="dv">105</span>, <span class="dv">118</span>, <span class="dv">138</span>)</span>
@@ -2231,7 +2231,7 @@ Cuadro&nbsp;1.15: Solución en R
 Cuadro&nbsp;1.16: Solución en R
 </figcaption>
 <div aria-describedby="lst-semana01-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Solución en R</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Frecuencia relativa acumulada</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>freq_rel <span class="ot">&lt;-</span> frecuencia <span class="sc">/</span> n</span>
@@ -2339,7 +2339,7 @@ Cuadro&nbsp;1.16: Solución en R
 <ol start="2" type="a">
 <li>Moda = 2 admisiones (<span class="math inline">\(h_j=6\)</span>). c) Proporción = <span class="math inline">\(F_3 = 0.55\)</span> (55%).</li>
 </ol>
-<p><strong>Ejercicio 1.5: Glucemia</strong> a) Media ≈ 101.4 mg/dL. b) Clase modal: 100-110 mg/dL. c) P₅₀ ≈ 100 + (0.50 - 0.47)/0.35 * 10 ≈ 100.86 mg/dL.</p>
+<p><strong>Ejercicio 1.5: Glucemia</strong> a) Media ≈ 100.99 mg/dL (cálculo: <span class="math inline">\((80{\cdot}15 + 95{\cdot}32 + 105{\cdot}35 + 118{\cdot}15 + 138{\cdot}3)/100\)</span>). b) Clase modal: 100-110 mg/dL (<span class="math inline">\(h_j = 35\)</span>). c) P₅₀ ≈ 100 + (0.50 - 0.47)/0.35 · 10 ≈ 100.86 mg/dL (la mediana cae en la clase 100-110, donde <span class="math inline">\(F\)</span> pasa de 0.47 a 0.82).</p>
 <p><strong>Ejercicio 1.6: IMC (Ejemplo 1.5.1)</strong> a) Sobrepeso (25-30) con densidad 0.0672. b) <span class="math inline">\(F(25) = 0.055 + 0.339 = 0.394\)</span> (39.4%). c) En el rango de 0 a 25 (específicamente, el P₂₅ está en la clase “Normal”).</p>
 <p><strong>Fin de Semana 1</strong></p>
 <p>Para referencias avanzadas sobre análisis exploratorio de datos y estimación robusta, consulta: <a href="https://rpubs.com/FJRubio/MM">Robust Estimation of Location</a></p>

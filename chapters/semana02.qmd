@@ -184,18 +184,23 @@ Cuando transformamos los datos mediante una transformación lineal, también tra
 Si definimos una transformación lineal $y_i = a + b x_i$ donde $b \neq 0$, entonces:
 
 **Para la media:**
+
 $$\bar{y} = a + b\bar{x}$$
 
 **Para la varianza:**
+
 $$s_y^2 = b^2 s_x^2$$
 
 **Para la desviación estándar:**
+
 $$s_y = |b| s_x$$
 
 **Para el rango:**
+
 $$R_Y = |b|R_X$$
 
 **Para el rango intercuartílico:**
+
 $$\text{IQR}_Y = |b| \text{IQR}_X$$
 :::
 
@@ -287,7 +292,7 @@ Supongamos que la glucemia en adultos sanos sigue una distribución normal con $
 1. Para $x = 80$: $z_1 = \frac{80 - 90}{10} = -1.0$
 2. Para $x = 100$: $z_2 = \frac{100 - 90}{10} = +1.0$
 
-Buscamos $P(-1.0 < Z < 1.0)$. Esto es $P(Z < 1.0) - P(Z < -1.0) \approx 0.8413 - 0.1587 = 0.6826$ (68.26%). Esto significa que aproximadamente el 68.26% de las personas sanas tienen una glucemia entre 80 y 100 mg/dL. Antes los valores de z se buscan en la tabla de la distribución normal estándar, pero con R es mucho más sencillo usando `pnorm()`.
+Buscamos $P(-1.0 < Z < 1.0)$. Esto es $P(Z < 1.0) - P(Z < -1.0) \approx 0.8413 - 0.1587 = 0.6827$ (68.27%). Esto significa que aproximadamente el 68.27% de las personas sanas tienen una glucemia entre 80 y 100 mg/dL. Antes los valores de z se buscaban en la tabla de la distribución normal estándar, pero con R es mucho más sencillo usando `pnorm()`.
 
 **Verificación con R:**
 
@@ -544,17 +549,17 @@ tabla_hiv <- rbind(
 colnames(tabla_hiv) <- c("Infectado", "No infectado")
 rownames(tabla_hiv) <- c("Test +", "Test -")
 
-# 1. Porcentajes por FILA (P(Resultado | Infección))
-print("P(Test | Infección) - Porcentajes por FILA:")
+# 1. Porcentajes por FILA (P(Infección | Test) — Valor Predictivo)
+print("P(Infección | Test) - Porcentajes por FILA:")
 prop.table(tabla_hiv, 1)
 
-# 2. Porcentajes por COLUMNA (Valor Predictivo: P(Infección | Test))
-print("P(Infección | Test) - Porcentajes por COLUMNA:")
+# 2. Porcentajes por COLUMNA (Sensibilidad/Especificidad: P(Test | Infección))
+print("P(Test | Infección) - Porcentajes por COLUMNA:")
 prop.table(tabla_hiv, 2)
 ```
 **Interpretación Clínica:**
-- **Por filas**: (\text{Test} | \text{Infección}) qué tan bueno es el test para identificar la presencia o ausencia de enfermedad.
-- **Por columnas**: (\text{Infección} | \text{Test}) a la pregunta clínica crucial: "Dado que el paciente tiene este resultado de test, ¿cuál es la probabilidad real de que esté infectado?".
+- **Por filas** ($P(\text{Infección} \mid \text{Test})$): **Valor Predictivo** — responde a la pregunta clínica crucial: "Dado que el paciente tiene este resultado de test, ¿cuál es la probabilidad real de que esté infectado?".
+- **Por columnas** ($P(\text{Test} \mid \text{Infección})$): **Sensibilidad y Especificidad** — qué tan bueno es el test para identificar la presencia o ausencia de enfermedad.
 :::
 
 :::{.callout-note}
@@ -621,8 +626,8 @@ legend("topleft",
 
 **Interpretación:**
 
-- La **covarianza** es positiva ($\widehat{\text{Cov}}(\text{peso}, \text{IMC}) > 0$), lo que indica que peso e IMC tienden a crecer simultáneamente. Sin embargo, su magnitud depende de las unidades y no es directamente comparable entre estudios.
-- La **correlación de Pearson** $r \approx 0.7$ con $p < 0.001$ cuantifica la asociación de forma adimensional: existe una asociación lineal positiva fuerte. Esto es **esperable por construcción** ($\text{IMC} = \text{peso} / \text{talla}^2$), pero la dispersión visible en el gráfico refleja la heterogeneidad debida a la talla.
+- La **covarianza** muestral es $\widehat{\text{Cov}}(\text{peso}, \text{IMC}) \approx 35.48$ kg·(kg/m²) — positiva, lo que indica que peso e IMC tienden a crecer simultáneamente. Su magnitud depende de las unidades y no es directamente comparable entre estudios.
+- La **correlación de Pearson** $r \approx 0.80$ (IC 95%: 0.72 – 0.86; $p < 0.001$) cuantifica la asociación de forma adimensional: existe una asociación lineal positiva fuerte. Esto es **esperable por construcción** ($\text{IMC} = \text{peso} / \text{talla}^2$), pero la dispersión visible en el gráfico refleja la heterogeneidad debida a la talla.
 - Los puntos en **azul oscuro** (`#0072B2`, hombres) y **vermellón** (`#D55E00`, mujeres) permiten apreciar visualmente que las mujeres se sitúan mayoritariamente en rangos de peso menores con IMC ligeramente más variable, mientras que los hombres se concentran en pesos superiores.
 - La línea de regresión en **verde** (`#009E73`) muestra la mejor aproximación lineal de mínimos cuadrados.
 
@@ -693,6 +698,7 @@ En los dos primeros casos, existe una dependencia clara entre las variables, per
 La **Paradoja de Simpson** es un fenómeno donde una tendencia observada en varios grupos desaparece o se invierte al combinarlos.
 
 **Relación con el ejemplo clínico:**
+
 En la figura a continuación (Ejemplo 2.11), vemos dos subgrupos (leves y graves). Si calculáramos la correlación total de todos los pacientes sin distinguir estos grupos, el resultado sería engañoso. La variable "gravedad" actúa aquí como un **factor de confusión**. Este ejemplo clínico ilustra perfectamente por qué la **"correlación no implica causalidad"** y subraya la importancia crítica de la estratificación y visualización de datos en medicina.
 :::
 
@@ -951,13 +957,14 @@ c) ¿Son X e Y independientes?
 **Ejercicio 2.1: Estadísticos de Dispersión**
 
 a) Rango: 320 - 240 = 80 ms
-   IQR: Q₃ - Q₁ ≈ 290 - 255 = 35 ms
+   IQR: Q₃ - Q₁ = 292.5 - 258.75 = 33.75 ms (`quantile()` por defecto, type 7)
 
-b) Media: ≈ 278.3 ms
-   Desviación estándar: ≈ 26.9 ms
+b) Media: 276.25 ms
+   Desviación estándar: ≈ 24.69 ms
+   Mediana: 272.5 ms
 
-c) Outliers (> Q₃ + 1.5×IQR = 290 + 52.5 = 342.5): Ninguno detectado
-   Outliers (< Q₁ - 1.5×IQR = 255 - 52.5 = 202.5): Ninguno
+c) Outliers (> Q₃ + 1.5×IQR = 292.5 + 50.625 = 343.125): Ninguno detectado
+   Outliers (< Q₁ - 1.5×IQR = 258.75 - 50.625 = 208.125): Ninguno
 
 d) El boxplot muestra distribución simétrica alrededor de 275-280 ms sin outliers.
 
@@ -1003,9 +1010,9 @@ f) `mean(z_edad); sd(z_edad)` (el resultado será prácticamente 0 y 1).
 **Ejercicio 2.6: Distribuciones Conjuntas**
 
 a) Correlación ($r$) = $\frac{\text{Cov}(X,Y)}{s_x \cdot s_y} = \frac{180}{15 \times 10} = \frac{180}{150} = 1.2$.
-   *Nota: Este valor indica un error en los datos de entrada, ya que la correlación no puede ser > 1.* 
+   *Nota:* Este valor es **imposible** porque $|r| \le 1$ siempre. La inconsistencia revela que los valores propuestos para $\text{Cov}$, $s_x$ y $s_y$ violan la **desigualdad de Cauchy–Schwarz** $|s_{xy}| \le s_x \cdot s_y$ (aquí $|180| > 15 \times 10 = 150$). En la práctica, ante un resultado así habría que revisar los datos de partida.
 
-b) Si $r=0.12$ (ajustando a un valor coherente), la correlación sería muy débil; apenas existe relación lineal entre la presión sistólica y diastólica en esta muestra.
+b) Si los datos fuesen coherentes —por ejemplo, $\text{Cov}(X,Y) = 120$ con los mismos $s_x = 15$ y $s_y = 10$— se obtendría $r = 120/150 = 0.8$, lo cual indicaría una correlación lineal positiva fuerte entre la presión sistólica y diastólica en esta muestra.
 
 c) No son independientes ($\text{Cov} \neq 0$), pero la relación lineal es despreciable. Independencia estadística requiere $\text{Cov} = 0$ y más condiciones.
 
