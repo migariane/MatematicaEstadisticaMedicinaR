@@ -650,7 +650,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Documentacion completa de las tres funciones en <a href="#sec-bio-contrastes" class="quarto-xref"><span class="quarto-unresolved-ref">sec-bio-contrastes</span></a>.</p>
+<p>Documentacion completa de las tres funciones en <a href="apendiceB.html#sec-bio-contrastes" class="quarto-xref"><span>Sección B.5</span></a>.</p>
 <div class="cell">
 <div id="lst-semana08-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
@@ -1147,7 +1147,7 @@ Test de Wilcoxon/Mann-Whithney para dos muestras independientes
 </section>
 <section id="sec-semana08-bio-power" class="level3" data-number="8.7.3">
 <h3 data-number="8.7.3" class="anchored" data-anchor-id="sec-semana08-bio-power"><span class="header-section-number">8.7.3</span> Cálculo con BioEstatR: <code>testt()</code> y <code>testp()</code></h3>
-<p>Las funciones <code>testt()</code> y <code>testp()</code> del paquete <code>BioEstatR</code> (ver <a href="#sec-bio-contrastes" class="quarto-xref"><span class="quarto-unresolved-ref">sec-bio-contrastes</span></a>) calculan <strong>simultáneamente</strong> el contraste de hipótesis, la <strong>potencia</strong> y el <strong>tamaño muestral</strong> necesario para detectar una diferencia mínima relevante <span class="math inline">\(\delta\)</span> (effect size en unidades de la variable).</p>
+<p>Las funciones <code>testt()</code> y <code>testp()</code> del paquete <code>BioEstatR</code> (ver <a href="apendiceB.html#sec-bio-contrastes" class="quarto-xref"><span>Sección B.5</span></a>) calculan <strong>simultáneamente</strong> el contraste de hipótesis, la <strong>potencia</strong> y el <strong>tamaño muestral</strong> necesario para detectar una diferencia mínima relevante <span class="math inline">\(\delta\)</span> (effect size en unidades de la variable).</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1389,78 +1389,11 @@ Cuadro&nbsp;8.5: Código R
 <section id="datos-y-exploracion" class="level3" data-number="8.9.2">
 <h3 data-number="8.9.2" class="anchored" data-anchor-id="datos-y-exploracion"><span class="header-section-number">8.9.2</span> Datos y Exploración</h3>
 <div class="cell">
-<div id="lst-semana08-4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.6: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de datos</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear datos directamente en R (Tipo de mosquito y vida en días)</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>wildtype <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">32</span>, <span class="dv">25</span>, <span class="dv">31</span>, <span class="dv">29</span>, <span class="dv">26</span>, <span class="dv">33</span>, <span class="dv">30</span>, <span class="dv">27</span>, <span class="dv">34</span>, <span class="dv">28</span>, <span class="dv">31</span>, <span class="dv">29</span>, <span class="dv">32</span>, <span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">33</span>, <span class="dv">28</span>, <span class="dv">31</span>, <span class="dv">27</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>transgenic <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">35</span>, <span class="dv">38</span>, <span class="dv">42</span>, <span class="dv">39</span>, <span class="dv">41</span>, <span class="dv">37</span>, <span class="dv">44</span>, <span class="dv">36</span>, <span class="dv">40</span>, <span class="dv">43</span>, <span class="dv">38</span>, <span class="dv">45</span>, <span class="dv">39</span>, <span class="dv">42</span>, <span class="dv">35</span>, <span class="dv">41</span>, <span class="dv">46</span>, <span class="dv">40</span>, <span class="dv">38</span>, <span class="dv">43</span>)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Combina en un data.frame</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>mosquitoes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(wildtype, transgenic)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracción de muestras</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>wildtype <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(mosquitoes[, <span class="dv">1</span>])</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>transgenic <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(mosquitoes[, <span class="dv">2</span>])</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="fu">length</span>(wildtype)</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>n2 <span class="ot">&lt;-</span> <span class="fu">length</span>(transgenic)</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Wildtype: n ="</span>, n1, <span class="st">", media ="</span>, <span class="fu">mean</span>(wildtype), <span class="st">", sd ="</span>, <span class="fu">sd</span>(wildtype), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Wildtype: n = 20 , media = 29.4 , sd = 2.68 </code></pre>
 </div>
-<div id="lst-semana08-4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.7: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Transgenic: n ="</span>, n2, <span class="st">", media ="</span>, <span class="fu">mean</span>(transgenic), <span class="st">", sd ="</span>, <span class="fu">sd</span>(transgenic), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Transgenic: n = 20 , media = 40.1 , sd = 3.19 </code></pre>
-</div>
-<div id="lst-semana08-4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.8: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de violín con ggplot2</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">melt</span>(<span class="fu">data.frame</span>(<span class="at">Wildtype =</span> wildtype, <span class="at">Transgenic =</span> transgenic))</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Group"</span>, <span class="st">"Lifespan"</span>)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Lifespan)) <span class="sc">+</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.15</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Longevidad de Mosquitos: Wildtype vs. Transgenic"</span>,</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Tipo"</span>, <span class="at">y =</span> <span class="st">"Esperanza de Vida (días)"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output-display">
 <div>
@@ -1475,26 +1408,6 @@ Cuadro&nbsp;8.8: Código R
 <h3 data-number="8.9.3" class="anchored" data-anchor-id="test-t-varianzas-homogeneas"><span class="header-section-number">8.9.3</span> Test t: Varianzas Homogéneas</h3>
 <p>Primero suponemos varianzas iguales:</p>
 <div class="cell">
-<div id="lst-semana08-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.9: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>) <span class="co"># Evitar notación científica)</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Test t con varianzas iguales</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>tt_equal <span class="ot">&lt;-</span> <span class="fu">t.test</span>(wildtype, transgenic,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tt_equal)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Two Sample t-test
@@ -1508,46 +1421,12 @@ sample estimates:
 mean of x mean of y 
      29.4      40.1 </code></pre>
 </div>
-<div id="lst-semana08-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.10: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Interpretación:</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Si p-value &lt; 0.05, rechazamos H_0 (las medias son significativamente diferentes)</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Si p-value &gt;= 0.05, no hay evidencia de diferencia significativa</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 </div>
 </section>
 <section id="test-t-varianzas-heterogeneas-welch" class="level3" data-number="8.9.4">
 <h3 data-number="8.9.4" class="anchored" data-anchor-id="test-t-varianzas-heterogeneas-welch"><span class="header-section-number">8.9.4</span> Test t: Varianzas Heterogéneas (Welch)</h3>
 <p>Si observamos varianzas muy diferentes, usamos la prueba de Welch:</p>
 <div class="cell">
-<div id="lst-semana08-6" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.11: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test t con varianzas desiguales (Welch)</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>tt_welch <span class="ot">&lt;-</span> <span class="fu">t.test</span>(wildtype, transgenic,</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">var.equal =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tt_welch)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -1567,22 +1446,6 @@ mean of x mean of y
 <h3 data-number="8.9.5" class="anchored" data-anchor-id="test-f-igualdad-de-varianzas"><span class="header-section-number">8.9.5</span> Test F: Igualdad de Varianzas</h3>
 <p>Podemos probar formalmente si las varianzas son iguales:</p>
 <div class="cell">
-<div id="lst-semana08-7" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.12: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test F para igualdad de varianzas</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>f_test <span class="ot">&lt;-</span> <span class="fu">var.test</span>(wildtype, transgenic, <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(f_test)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     F test to compare two variances
@@ -1596,23 +1459,6 @@ sample estimates:
 ratio of variances 
              0.707 </code></pre>
 </div>
-<div id="lst-semana08-7" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.13: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Interpretación:</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Si p-value &lt; 0.05, hay evidencia de que las varianzas son desiguales</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   → Usar Welch test</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Si p-value &gt;= 0.05, no hay evidencia de desigualdad de varianzas</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   → Usar test t con varianzas iguales</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 </div>
 </section>
 <section id="calculo-de-potencia" class="level3" data-number="8.9.6">
@@ -1622,27 +1468,27 @@ Cuadro&nbsp;8.13: Código R
 <div id="lst-semana08-8" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.14: Código R
+Cuadro&nbsp;8.6: Código R
 </figcaption>
 <div aria-describedby="lst-semana08-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stats)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Supongamos que queremos detectar una diferencia de 5 días</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># con desviación estándar combinada de 10 días</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Potencia deseada = 0.80, significancia = 0.05</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>power_result <span class="ot">&lt;-</span> <span class="fu">power.t.test</span>(</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="cn">NULL</span>,           <span class="co"># Queremos calcular n</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">delta =</span> <span class="dv">5</span>,          <span class="co"># Diferencia a detectar</span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">sd =</span> <span class="dv">10</span>,            <span class="co"># Desviación estándar</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">sig.level =</span> <span class="fl">0.05</span>,   <span class="co"># Significancia bilateral</span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">power =</span> <span class="fl">0.80</span>,       <span class="co"># Potencia deseada</span></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">"two.sided"</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Tamaño muestral requerido por grupo:"</span>, <span class="fu">round</span>(power_result<span class="sc">$</span>n), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stats)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Supongamos que queremos detectar una diferencia de 5 días</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># con desviación estándar combinada de 10 días</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Potencia deseada = 0.80, significancia = 0.05</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>power_result <span class="ot">&lt;-</span> <span class="fu">power.t.test</span>(</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="cn">NULL</span>,           <span class="co"># Queremos calcular n</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">delta =</span> <span class="dv">5</span>,          <span class="co"># Diferencia a detectar</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">sd =</span> <span class="dv">10</span>,            <span class="co"># Desviación estándar</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">sig.level =</span> <span class="fl">0.05</span>,   <span class="co"># Significancia bilateral</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">power =</span> <span class="fl">0.80</span>,       <span class="co"># Potencia deseada</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">"two.sided"</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Tamaño muestral requerido por grupo:"</span>, <span class="fu">round</span>(power_result<span class="sc">$</span>n), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </figure>
@@ -1653,21 +1499,21 @@ Cuadro&nbsp;8.14: Código R
 <div id="lst-semana08-8" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.15: Código R
+Cuadro&nbsp;8.7: Código R
 </figcaption>
 <div aria-describedby="lst-semana08-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># También podemos calcular la potencia de nuestro estudio actual</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>power_actual <span class="ot">&lt;-</span> <span class="fu">power.t.test</span>(</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> n1,             <span class="co"># Tamaño muestral observado</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">delta =</span> <span class="fu">mean</span>(wildtype) <span class="sc">-</span> <span class="fu">mean</span>(transgenic),  <span class="co"># Diferencia observada</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">sd =</span> <span class="fu">sqrt</span>((<span class="fu">var</span>(wildtype) <span class="sc">+</span> <span class="fu">var</span>(transgenic)) <span class="sc">/</span> <span class="dv">2</span>),  <span class="co"># SD combinada</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">"two.sided"</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Potencia del estudio observado:"</span>, <span class="fu">round</span>(power_actual<span class="sc">$</span>power, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># También podemos calcular la potencia de nuestro estudio actual</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>power_actual <span class="ot">&lt;-</span> <span class="fu">power.t.test</span>(</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> n1,             <span class="co"># Tamaño muestral observado</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">delta =</span> <span class="fu">mean</span>(wildtype) <span class="sc">-</span> <span class="fu">mean</span>(transgenic),  <span class="co"># Diferencia observada</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">sd =</span> <span class="fu">sqrt</span>((<span class="fu">var</span>(wildtype) <span class="sc">+</span> <span class="fu">var</span>(transgenic)) <span class="sc">/</span> <span class="dv">2</span>),  <span class="co"># SD combinada</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">"two.sided"</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Potencia del estudio observado:"</span>, <span class="fu">round</span>(power_actual<span class="sc">$</span>power, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </figure>
@@ -1786,7 +1632,7 @@ Cuadro&nbsp;8.15: Código R
 <p>Los contrastes asintóticos basados en el Teorema Central del Límite —como el t-test y el F-test— requieren verificar dos condiciones: (1) normalidad de los datos o residuos, y (2) igualdad de varianzas entre grupos. Con <span class="math inline">\(n \geq 60\)</span> el TCL garantiza normalidad asintótica de la media, pero para muestras menores conviene comprobarlo formalmente.</p>
 <section id="test-de-shapiro-wilk-normalidad" class="level3" data-number="8.12.1">
 <h3 data-number="8.12.1" class="anchored" data-anchor-id="test-de-shapiro-wilk-normalidad"><span class="header-section-number">8.12.1</span> Test de Shapiro-Wilk: Normalidad</h3>
-<p>El test de Shapiro-Wilk <span class="citation" data-cites="Shapiro1965">(<a href="#ref-Shapiro1965" role="doc-biblioref">Shapiro &amp; Wilk, 1965</a>)</span> es la prueba de normalidad más potente para muestras pequeñas y moderadas (<span class="math inline">\(n \leq 5000\)</span>).</p>
+<p>El test de Shapiro-Wilk <span class="citation" data-cites="Shapiro1965">(<a href="../references.html#ref-Shapiro1965" role="doc-biblioref">Shapiro &amp; Wilk, 1965</a>)</span> es la prueba de normalidad más potente para muestras pequeñas y moderadas (<span class="math inline">\(n \leq 5000\)</span>).</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1823,15 +1669,15 @@ Cuadro&nbsp;8.15: Código R
 <div id="lst-semana08-9" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.16: Código R
+Cuadro&nbsp;8.8: Código R
 </figcaption>
 <div aria-describedby="lst-semana08-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Test de Shapiro-Wilk con BioEstatR</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">testnormal</span>(osteo<span class="sc">$</span>edad)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Test de Shapiro-Wilk con BioEstatR</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">testnormal</span>(osteo<span class="sc">$</span>edad)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </figure>
@@ -1852,13 +1698,13 @@ Cuadro&nbsp;8.16: Código R
 <div id="lst-semana08-9" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.17: Código R
+Cuadro&nbsp;8.9: Código R
 </figcaption>
 <div aria-describedby="lst-semana08-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test de Shapiro-Wilk con R base</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(osteo<span class="sc">$</span>edad)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test de Shapiro-Wilk con R base</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(osteo<span class="sc">$</span>edad)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </figure>
@@ -1871,7 +1717,7 @@ data:  osteo$edad
 W = 0.9, p-value = 0.000005</code></pre>
 </div>
 </div>
-<p><strong>Interpretación:</strong> Con <span class="math inline">\(W = 0.907\)</span> y <span class="math inline">\(p &lt; 0.001\)</span>, rechazamos normalidad (<span class="math inline">\(\alpha = 0.05\)</span>). Para alternativas cuando no hay normalidad y <span class="math inline">\(n &lt; 60\)</span>, ver <a href="#sec-semana12-bootstrap" class="quarto-xref"><span class="quarto-unresolved-ref">sec-semana12-bootstrap</span></a>.</p>
+<p><strong>Interpretación:</strong> Con <span class="math inline">\(W = 0.907\)</span> y <span class="math inline">\(p &lt; 0.001\)</span>, rechazamos normalidad (<span class="math inline">\(\alpha = 0.05\)</span>). Para alternativas cuando no hay normalidad y <span class="math inline">\(n &lt; 60\)</span>, ver <span class="quarto-unresolved-ref">?sec-semana12-bootstrap</span>.</p>
 </div>
 </div>
 </section>
@@ -1907,22 +1753,6 @@ W = 0.9, p-value = 0.000005</code></pre>
 </div>
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div id="lst-semana08-10" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.18: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Test de Bartlett: IMC igual en los 3 grupos de edad?</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(imc <span class="sc">~</span> grupo_edad, <span class="at">data =</span> osteo)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Bartlett test of homogeneity of variances
@@ -1974,7 +1804,7 @@ Bartlett's K-squared = 11, df = 2, p-value = 0.004</code></pre>
 </tr>
 </tbody>
 </table>
-<p><strong>TCL:</strong> Con <span class="math inline">\(n \geq 60\)</span>, el t-test es robusto a la no normalidad <span class="citation" data-cites="Casella2002">(<a href="#ref-Casella2002" role="doc-biblioref">Casella &amp; Berger, 2002</a>)</span>. Para <span class="math inline">\(n &lt; 60\)</span> y datos no normales, ver métodos bootstrap en <a href="#sec-semana12-bootstrap" class="quarto-xref"><span class="quarto-unresolved-ref">sec-semana12-bootstrap</span></a>.</p>
+<p><strong>TCL:</strong> Con <span class="math inline">\(n \geq 60\)</span>, el t-test es robusto a la no normalidad <span class="citation" data-cites="Casella2002">(<a href="../references.html#ref-Casella2002" role="doc-biblioref">Casella &amp; Berger, 2002</a>)</span>. Para <span class="math inline">\(n &lt; 60\)</span> y datos no normales, ver métodos bootstrap en <span class="quarto-unresolved-ref">?sec-semana12-bootstrap</span>.</p>
 </div>
 </div>
 <hr>
@@ -1982,7 +1812,7 @@ Bartlett's K-squared = 11, df = 2, p-value = 0.004</code></pre>
 </section>
 <section id="sec-semana9-bootstrap" class="level2" data-number="8.13">
 <h2 data-number="8.13" class="anchored" data-anchor-id="sec-semana9-bootstrap"><span class="header-section-number">8.13</span> Bootstrap y Métodos Robustos como Alternativas</h2>
-<p>Cuando el test de Shapiro-Wilk rechaza normalidad <strong>y</strong> el tamaño muestral es insuficiente para garantizar el TCL (<span class="math inline">\(n &lt; 60\)</span>), los métodos clásicos basados en la distribución <span class="math inline">\(t\)</span> o <span class="math inline">\(F\)</span> pueden producir inferencias incorrectas. El <strong>bootstrap</strong> y los <strong>tests de permutación</strong> son alternativas válidas que no requieren supuestos distribucionales <span class="citation" data-cites="Chihara2019">(<a href="#ref-Chihara2019" role="doc-biblioref">Chihara &amp; Hesterberg, 2019</a>)</span>.</p>
+<p>Cuando el test de Shapiro-Wilk rechaza normalidad <strong>y</strong> el tamaño muestral es insuficiente para garantizar el TCL (<span class="math inline">\(n &lt; 60\)</span>), los métodos clásicos basados en la distribución <span class="math inline">\(t\)</span> o <span class="math inline">\(F\)</span> pueden producir inferencias incorrectas. El <strong>bootstrap</strong> y los <strong>tests de permutación</strong> son alternativas válidas que no requieren supuestos distribucionales <span class="citation" data-cites="Chihara2019">(<a href="../references.html#ref-Chihara2019" role="doc-biblioref">Chihara &amp; Hesterberg, 2019</a>)</span>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2037,30 +1867,8 @@ Bartlett's K-squared = 11, df = 2, p-value = 0.004</code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>El IMC de los pacientes masculinos del dataset <code>osteo</code> <strong>no sigue una distribución normal</strong> (Shapiro-Wilk: <span class="math inline">\(W = 0.924\)</span>, <span class="math inline">\(p = 0.006\)</span>). Implementamos el bootstrap <strong>manualmente con un bucle <code>for</code></strong> (estilo <span class="citation" data-cites="Chihara2019">Chihara &amp; Hesterberg (<a href="#ref-Chihara2019" role="doc-biblioref">2019</a>)</span>), siguiendo paso a paso el algoritmo de Efron. Después comparamos con el método BCa (paquete <code>boot</code>) y con el IC clásico <span class="math inline">\(t\)</span>.</p>
+<p>El IMC de los pacientes masculinos del dataset <code>osteo</code> <strong>no sigue una distribución normal</strong> (Shapiro-Wilk: <span class="math inline">\(W = 0.924\)</span>, <span class="math inline">\(p = 0.006\)</span>). Implementamos el bootstrap <strong>manualmente con un bucle <code>for</code></strong> (estilo <span class="citation" data-cites="Chihara2019">Chihara &amp; Hesterberg (<a href="../references.html#ref-Chihara2019" role="doc-biblioref">2019</a>)</span>), siguiendo paso a paso el algoritmo de Efron. Después comparamos con el método BCa (paquete <code>boot</code>) y con el IC clásico <span class="math inline">\(t\)</span>.</p>
 <div class="cell">
-<div id="lst-semana08-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.19: Codigo R
-</figcaption>
-<div aria-describedby="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(boot)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2024</span>)</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Datos: IMC de hombres diabéticos (n = 45, no normal) ---</span></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> osteo<span class="sc">$</span>imc[osteo<span class="sc">$</span>sexo <span class="sc">==</span> <span class="st">"Hombre"</span>]</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>media_obs <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(x)   <span class="co"># Confirma no-normalidad</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Shapiro-Wilk normality test
@@ -2068,116 +1876,20 @@ Cuadro&nbsp;8.19: Codigo R
 data:  x
 W = 0.9, p-value = 0.006</code></pre>
 </div>
-<div id="lst-semana08-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.20: Codigo R
-</figcaption>
-<div aria-describedby="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- 1. BOOTSTRAP MANUAL CON BUCLE FOR (algoritmo paso a paso) ---</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">10000</span>                          <span class="co"># número de réplicas bootstrap</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>boot_means <span class="ot">&lt;-</span> <span class="fu">numeric</span>(B)            <span class="co"># vector para almacenar las medias bootstrap</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (b <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B) {</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># (i) Remuestrear con reemplazo: extraer n valores de la muestra original</span></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  muestra_boot <span class="ot">&lt;-</span> <span class="fu">sample</span>(x, <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># (ii) Calcular el estadístico de interés sobre la muestra bootstrap</span></span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>  boot_means[b] <span class="ot">&lt;-</span> <span class="fu">mean</span>(muestra_boot)</span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="co"># (iii) Intervalo de confianza por percentiles 2.5% y 97.5%</span></span>
-<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>IC_perc <span class="ot">&lt;-</span> <span class="fu">quantile</span>(boot_means, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
-<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Media muestral observada:"</span>, <span class="fu">round</span>(media_obs, <span class="dv">3</span>), <span class="st">"kg/m²</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Media muestral observada: 23.5 kg/m²</code></pre>
-</div>
-<div id="lst-semana08-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.21: Codigo R
-</figcaption>
-<div aria-describedby="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Réplicas bootstrap (B):"</span>, B, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Réplicas bootstrap (B): 10000 </code></pre>
 </div>
-<div id="lst-semana08-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.22: Codigo R
-</figcaption>
-<div aria-describedby="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Media bootstrap promedio:"</span>, <span class="fu">round</span>(<span class="fu">mean</span>(boot_means), <span class="dv">3</span>), <span class="st">"kg/m²</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Media bootstrap promedio: 23.5 kg/m²</code></pre>
-</div>
-<div id="lst-semana08-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.23: Codigo R
-</figcaption>
-<div aria-describedby="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Error estándar bootstrap:"</span>, <span class="fu">round</span>(<span class="fu">sd</span>(boot_means), <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Error estándar bootstrap: 0.428 </code></pre>
 </div>
-<div id="lst-semana08-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.24: Codigo R
-</figcaption>
-<div aria-describedby="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"IC 95% (percentiles, bucle manual): ["</span>,</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(IC_perc[<span class="dv">1</span>], <span class="dv">3</span>), <span class="st">", "</span>, <span class="fu">round</span>(IC_perc[<span class="dv">2</span>], <span class="dv">3</span>), <span class="st">"] kg/m²</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>IC 95% (percentiles, bucle manual): [ 22.7 ,  24.4 ] kg/m²</code></pre>
-</div>
-<div id="lst-semana08-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.25: Codigo R
-</figcaption>
-<div aria-describedby="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- 2. BOOTSTRAP BCa con el paquete boot (recomendado en n pequeñas) ---</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>boot_fn  <span class="ot">&lt;-</span> <span class="cf">function</span>(data, i) <span class="fu">mean</span>(data[i])</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>boot_obj <span class="ot">&lt;-</span> <span class="fu">boot</span>(x, <span class="at">statistic =</span> boot_fn, <span class="at">R =</span> B)</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="fu">boot.ci</span>(boot_obj, <span class="at">type =</span> <span class="st">"bca"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
@@ -2190,20 +1902,6 @@ Intervals :
 Level       BCa          
 95%   (22.8, 24.5 )  
 Calculations and Intervals on Original Scale</code></pre>
-</div>
-<div id="lst-semana08-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.26: Codigo R
-</figcaption>
-<div aria-describedby="lst-semana08-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- 3. IC clásico t para comparación ---</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x)<span class="sc">$</span>conf.int</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 22.6 24.4
@@ -2238,71 +1936,11 @@ attr(,"conf.level")
 <div class="callout-body-container callout-body">
 <p>Shapiro-Wilk rechaza normalidad tanto en hombres (<span class="math inline">\(p = 0.006\)</span>) como en mujeres (<span class="math inline">\(p = 0.001\)</span>). Usamos un test de permutación en lugar del t-test clásico.</p>
 <div class="cell">
-<div id="lst-semana08-12" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.27: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2024</span>)</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> osteo<span class="sc">$</span>imc[osteo<span class="sc">$</span>sexo <span class="sc">==</span> <span class="st">"Hombre"</span>]   <span class="co"># n = 45</span></span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> osteo<span class="sc">$</span>imc[osteo<span class="sc">$</span>sexo <span class="sc">==</span> <span class="st">"Mujer"</span>]    <span class="co"># n = 49</span></span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Diferencia observada</span></span>
-<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>D_obs <span class="ot">&lt;-</span> <span class="fu">mean</span>(g1) <span class="sc">-</span> <span class="fu">mean</span>(g2)</span>
-<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribución de permutación bajo H0</span></span>
-<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>combined <span class="ot">&lt;-</span> <span class="fu">c</span>(g1, g2)</span>
-<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="fu">length</span>(g1)</span>
-<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>perm_diffs <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, {</span>
-<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>  perm <span class="ot">&lt;-</span> <span class="fu">sample</span>(combined)</span>
-<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(perm[<span class="dv">1</span><span class="sc">:</span>n1]) <span class="sc">-</span> <span class="fu">mean</span>(perm[(n1<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="fu">length</span>(combined)])</span>
-<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a><span class="co"># p-valor bilateral</span></span>
-<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a>p_perm <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">abs</span>(perm_diffs) <span class="sc">&gt;=</span> <span class="fu">abs</span>(D_obs))</span>
-<span id="cb50-21"><a href="#cb50-21" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Diferencia observada:"</span>, <span class="fu">round</span>(D_obs, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Diferencia observada: -0.78 </code></pre>
 </div>
-<div id="lst-semana08-12" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.28: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"p-valor permutacion: "</span>, <span class="fu">round</span>(p_perm, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>p-valor permutacion:  0.312 </code></pre>
-</div>
-<div id="lst-semana08-12" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.29: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparación con t-test clásico</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(g1, g2)<span class="sc">$</span>p.value</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.308</code></pre>
@@ -2367,7 +2005,7 @@ Cuadro&nbsp;8.29: Código R
 </tr>
 </tbody>
 </table>
-<p><strong>Referencia:</strong> <span class="citation" data-cites="Chihara2019">Chihara &amp; Hesterberg (<a href="#ref-Chihara2019" role="doc-biblioref">2019</a>)</span> proporciona una tratamiento riguroso de bootstrap y permutaciones con implementación completa en R, incluyendo la justificación teórica de cada método.</p>
+<p><strong>Referencia:</strong> <span class="citation" data-cites="Chihara2019">Chihara &amp; Hesterberg (<a href="../references.html#ref-Chihara2019" role="doc-biblioref">2019</a>)</span> proporciona una tratamiento riguroso de bootstrap y permutaciones con implementación completa en R, incluyendo la justificación teórica de cada método.</p>
 </div>
 </div>
 <hr>
@@ -2408,24 +2046,6 @@ Cuadro&nbsp;8.29: Código R
 <div class="callout-body-container callout-body">
 <p>Contrastamos si el Índice de Masa Corporal (IMC) difiere entre hombres y mujeres usando la alternativa no paramétrica, dado que el IMC frecuentemente presenta asimetría.</p>
 <div class="cell">
-<div id="lst-semana08-13" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.30: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Wilcoxon-Mann-Whitney con BioEstatR</span></span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="fu">testwx</span>(<span class="at">m1 =</span> osteo<span class="sc">$</span>imc[osteo<span class="sc">$</span>sexo <span class="sc">==</span> <span class="st">"Hombre"</span>],</span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">m2 =</span> osteo<span class="sc">$</span>imc[osteo<span class="sc">$</span>sexo <span class="sc">==</span> <span class="st">"Mujer"</span>],</span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">grf =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Test de Wilcoxon/Mann-Whithney para dos muestras independientes 
@@ -2491,24 +2111,6 @@ Test de Wilcoxon/Mann-Whithney para dos muestras independientes
 <div class="callout-body-container callout-body">
 <p>Supongamos que evaluamos el calcio sérico (<code>ca</code>) antes y después de un tratamiento en 10 pacientes (datos simulados para ilustración).</p>
 <div class="cell">
-<div id="lst-semana08-14" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.31: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcio inicial y final (simulados)</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>ca_pre  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">9.2</span>, <span class="fl">8.4</span>, <span class="fl">8.8</span>, <span class="fl">9.1</span>, <span class="fl">9.5</span>, <span class="fl">9.0</span>, <span class="fl">8.9</span>, <span class="fl">9.3</span>, <span class="fl">8.5</span>, <span class="fl">8.7</span>)</span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>ca_post <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">9.5</span>, <span class="fl">8.7</span>, <span class="fl">9.0</span>, <span class="fl">9.4</span>, <span class="fl">9.6</span>, <span class="fl">9.1</span>, <span class="fl">9.0</span>, <span class="fl">9.6</span>, <span class="fl">8.9</span>, <span class="fl">8.8</span>)</span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Wilcoxon pareado con BioEstatR (par = TRUE)</span></span>
-<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="fu">testwx</span>(<span class="at">m1 =</span> ca_pre, <span class="at">m2 =</span> ca_post, <span class="at">par =</span> <span class="cn">TRUE</span>, <span class="at">grf =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Test de Wilcoxon  para dos muestras apareadas 
@@ -2576,20 +2178,6 @@ Test de Wilcoxon  para dos muestras apareadas
 </div>
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div id="lst-semana08-15" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;8.32: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Contrastar si el IMC difiere entre los 3 grupos de edad</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(imc <span class="sc">~</span> grupo_edad, <span class="at">data =</span> osteo)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Kruskal-Wallis rank sum test
@@ -2639,7 +2227,7 @@ Kruskal-Wallis chi-squared = 17, df = 2, p-value = 0.0002</code></pre>
 </ul>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-Casella2002" class="csl-entry" role="listitem">
 Casella, G., &amp; Berger, R. L. (2002). <em>Statistical Inference</em> (2nd ed.). Duxbury Press.
 </div>

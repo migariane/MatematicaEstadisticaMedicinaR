@@ -329,7 +329,8 @@ $$t_{obs} = \frac{1002 - 1000}{4.9/\sqrt{25}} = \frac{2}{0.98} = 2.04$$
 #| lst-label: lst-semana08-1
 #| lst-cap: "Código R"
 #| warning: false
-#| message: false#| echo: false
+#| message: false
+#| echo: false
 
 
 # Datos de pesos de paquetes de harina (en gramos)
@@ -366,7 +367,8 @@ Documentación completa de ambas funciones en @sec-bio-contrastes.
 #| lst-label: lst-semana08-2
 #| lst-cap: "Código R"
 #| warning: false
-#| message: false#| echo: false
+#| message: false
+#| echo: false
 
 
 library(BioEstatR)
@@ -457,7 +459,8 @@ Con $\alpha = 0.05$:
 #| lst-label: lst-semana08-4
 #| lst-cap: "Código R"
 #| warning: false
-#| message: false#| echo: false
+#| message: false
+#| echo: false
 
 
 # Contraste binomial exacto
@@ -620,7 +623,8 @@ Con $\alpha = 0.05$: valor crítico = $\pm 1.96$
 #| lst-label: lst-semana08-5
 #| lst-cap: "Código R"
 #| warning: false
-#| message: false#| echo: false
+#| message: false
+#| echo: false
 
 
 # Ejemplo 1: Contraste Z (conocida varianza)
@@ -763,7 +767,8 @@ d) Determine el p-valor
 #| lst-label: lst-semana08-6
 #| lst-cap: "Código R"
 #| warning: false
-#| message: false#| echo: false
+#| message: false
+#| echo: false
 
 
 datos <- c(0.42, 0.45, 0.38, 0.41, 0.39, 0.44, 0.40, 0.43, 0.37, 0.46)
@@ -784,7 +789,8 @@ c) ¿Rechazaría que el dado es justo con $\alpha = 0.05$?
 #| lst-label: lst-semana08-7
 #| lst-cap: "Código R"
 #| warning: false
-#| message: false#| echo: false
+#| message: false
+#| echo: false
 
 
 binom.test(x = 6, n = 20, p = 1/6, alternative = "two.sided")
