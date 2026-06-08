@@ -752,113 +752,21 @@ window.Quarto = {
 </div>
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div id="lst-semana06-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.1: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simular niveles de glucosa basal en ayunas (mg/dL) de 100 pacientes</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo: Normal con μ = 95 mg/dL (rango normoglucemia) y σ = 12 mg/dL</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>glucosa <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">95</span>, <span class="at">sd =</span> <span class="dv">12</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Momentos muestrales</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(glucosa)           <span class="co"># Primer momento muestral</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(glucosa<span class="sc">^</span><span class="dv">2</span>)         <span class="co"># Segundo momento muestral</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimadores por método de momentos</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>mu_mom <span class="ot">&lt;-</span> m1</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sigma2_mom <span class="ot">&lt;-</span> m2 <span class="sc">-</span> m1<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Estimadores por Método de Momentos (Glucosa basal, mg/dL):</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Estimadores por Método de Momentos (Glucosa basal, mg/dL):</code></pre>
-</div>
-<div id="lst-semana06-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.2: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"μ (MoM)  ="</span>, <span class="fu">round</span>(mu_mom, <span class="dv">2</span>), <span class="st">"mg/dL</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>μ (MoM)  = 96.1 mg/dL</code></pre>
 </div>
-<div id="lst-semana06-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.3: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"σ² (MoM) ="</span>, <span class="fu">round</span>(sigma2_mom, <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>σ² (MoM) = 119 </code></pre>
-</div>
-<div id="lst-semana06-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.4: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparar con los parámetros verdaderos</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Parámetros verdaderos:</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Parámetros verdaderos:</code></pre>
 </div>
-<div id="lst-semana06-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.5: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"μ        ="</span>, <span class="dv">95</span>, <span class="st">"mg/dL</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>μ        = 95 mg/dL</code></pre>
-</div>
-<div id="lst-semana06-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.6: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"σ²       ="</span>, <span class="dv">144</span>, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>σ²       = 144 </code></pre>
@@ -1028,128 +936,21 @@ Cuadro&nbsp;6.6: Código R
 <div class="callout-body-container callout-body">
 <p>Modelamos el <strong>tiempo (en días) hasta la primera hipoglucemia</strong> en 100 pacientes con diabetes tipo 1 mediante una distribución Gamma. Los parámetros <code>shape</code> y <code>rate</code> no tienen forma analítica cerrada en su EMV conjunto, por lo que recurrimos a optimización numérica.</p>
 <div class="cell">
-<div id="lst-semana06-2" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.7: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tiempo (días) hasta primera hipoglucemia — 100 pacientes DM1</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo poblacional: Gamma(shape = 2, rate = 0.5)</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># E[T] = α/β = 4 días, Var[T] = α/β² = 8</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>tiempo_hipo <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(<span class="dv">100</span>, <span class="at">shape =</span> <span class="dv">2</span>, <span class="at">rate =</span> <span class="fl">0.5</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Función de log-verosimilitud negativa</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># (minimizamos lo negativo para usar funciones de minimización)</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>neg_log_lik <span class="ot">&lt;-</span> <span class="cf">function</span>(params, datos) {</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  shape <span class="ot">&lt;-</span> params[<span class="dv">1</span>]</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  rate <span class="ot">&lt;-</span> params[<span class="dv">2</span>]</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Evitar parámetros no válidos</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (shape <span class="sc">&lt;=</span> <span class="dv">0</span> <span class="sc">||</span> rate <span class="sc">&lt;=</span> <span class="dv">0</span>) <span class="fu">return</span>(<span class="cn">Inf</span>)</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Log-verosimilitud para Gamma</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># f(t; α, β) = (β^α / Γ(α)) * t^(α-1) * exp(-βt)</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span><span class="fu">sum</span>(<span class="fu">dgamma</span>(datos, <span class="at">shape =</span> shape, <span class="at">rate =</span> rate, <span class="at">log =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores iniciales</span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>inicial <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">shape =</span> <span class="dv">1</span>, <span class="at">rate =</span> <span class="dv">1</span>)</span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimización numérica de Nelder-Mead</span></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">optim</span>(inicial, neg_log_lik, <span class="at">datos =</span> tiempo_hipo,</span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>                   <span class="at">method =</span> <span class="st">"Nelder-Mead"</span>)</span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Estimadores MLE numéricos — Tiempo hasta hipoglucemia (días):</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Estimadores MLE numéricos — Tiempo hasta hipoglucemia (días):</code></pre>
-</div>
-<div id="lst-semana06-2" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.8: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Shape (α) ="</span>, <span class="fu">round</span>(resultado<span class="sc">$</span>par[<span class="dv">1</span>], <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Shape (α) = 2.1 </code></pre>
 </div>
-<div id="lst-semana06-2" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.9: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Rate (β)  ="</span>, <span class="fu">round</span>(resultado<span class="sc">$</span>par[<span class="dv">2</span>], <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rate (β)  = 0.55 </code></pre>
-</div>
-<div id="lst-semana06-2" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.10: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Tiempo medio estimado E[T] = α/β ="</span>,</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(resultado<span class="sc">$</span>par[<span class="dv">1</span>]<span class="sc">/</span>resultado<span class="sc">$</span>par[<span class="dv">2</span>], <span class="dv">2</span>), <span class="st">"días</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Tiempo medio estimado E[T] = α/β = 3.81 días</code></pre>
 </div>
-<div id="lst-semana06-2" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.11: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores verdaderos del modelo</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Parámetros poblacionales verdaderos:</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Parámetros poblacionales verdaderos:</code></pre>
-</div>
-<div id="lst-semana06-2" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.12: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Shape (α) = 2 ; Rate (β) = 0.5 ; E[T] = 4 días</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Shape (α) = 2 ; Rate (β) = 0.5 ; E[T] = 4 días</code></pre>
@@ -1236,104 +1037,18 @@ Cuadro&nbsp;6.12: Código R
 </div>
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div id="lst-semana06-3" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.13: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Presión arterial sistólica (mmHg) en 25 pacientes adultos</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo poblacional: Normal con μ ≈ 130 mmHg y σ = 15 mmHg</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>pas <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">25</span>, <span class="at">mean =</span> <span class="dv">130</span>, <span class="at">sd =</span> <span class="dv">15</span>)</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># IC con t-Student (varianza desconocida) — caso habitual en clínica</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">t.test</span>(pas, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Intervalo de Confianza 95% para la PAS media (mmHg):</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Intervalo de Confianza 95% para la PAS media (mmHg):</code></pre>
-</div>
-<div id="lst-semana06-3" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.14: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Media muestral:"</span>, <span class="fu">round</span>(resultado<span class="sc">$</span>estimate, <span class="dv">2</span>), <span class="st">"mmHg</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Media muestral: 132 mmHg</code></pre>
 </div>
-<div id="lst-semana06-3" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.15: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"IC: ["</span>, <span class="fu">round</span>(resultado<span class="sc">$</span>conf.int[<span class="dv">1</span>], <span class="dv">2</span>), <span class="st">","</span>,</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(resultado<span class="sc">$</span>conf.int[<span class="dv">2</span>], <span class="dv">2</span>), <span class="st">"] mmHg</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>IC: [ 127 , 136 ] mmHg</code></pre>
-</div>
-<div id="lst-semana06-3" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.16: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># IC con z (varianza poblacional σ = 15 mmHg supuesta conocida)</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Útil cuando se dispone de datos históricos/literatura</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(pas)</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>media_muestral <span class="ot">&lt;-</span> <span class="fu">mean</span>(pas)</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">15</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>error_estandar <span class="ot">&lt;-</span> sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>z_critico <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)  <span class="co"># α = 0.05, bilateral</span></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>IC_conocida <span class="ot">&lt;-</span> <span class="fu">c</span>(media_muestral <span class="sc">-</span> z_critico <span class="sc">*</span> error_estandar,</span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>                 media_muestral <span class="sc">+</span> z_critico <span class="sc">*</span> error_estandar)</span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">IC con varianza conocida (σ = 15 mmHg):</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 IC con varianza conocida (σ = 15 mmHg):</code></pre>
-</div>
-<div id="lst-semana06-3" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.17: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"IC: ["</span>, <span class="fu">round</span>(IC_conocida[<span class="dv">1</span>], <span class="dv">2</span>), <span class="st">","</span>,</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(IC_conocida[<span class="dv">2</span>], <span class="dv">2</span>), <span class="st">"] mmHg</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>IC: [ 126 , 138 ] mmHg</code></pre>
@@ -1359,101 +1074,17 @@ Cuadro&nbsp;6.17: Código R
 </div>
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div id="lst-semana06-4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.18: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estudio en 200 pacientes hipertensos en seguimiento clínico:</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 132 alcanzan control adecuado de PAS (&lt; 140/90 mmHg)</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">132</span></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>p_hat <span class="ot">&lt;-</span> x <span class="sc">/</span> n</span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Intervalo de confianza 95% para la proporción</span></span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>conf_level <span class="ot">&lt;-</span> <span class="fl">0.95</span></span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> conf_level</span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>z_critico <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha<span class="sc">/</span><span class="dv">2</span>)</span>
-<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>error_estandar <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(p_hat <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_hat) <span class="sc">/</span> n)</span>
-<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>IC <span class="ot">&lt;-</span> <span class="fu">c</span>(p_hat <span class="sc">-</span> z_critico <span class="sc">*</span> error_estandar,</span>
-<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>        p_hat <span class="sc">+</span> z_critico <span class="sc">*</span> error_estandar)</span>
-<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"IC 95% para la proporción de hipertensos controlados:</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>IC 95% para la proporción de hipertensos controlados:</code></pre>
-</div>
-<div id="lst-semana06-4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.19: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Proporción muestral:"</span>, <span class="fu">round</span>(p_hat, <span class="dv">4</span>),</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"("</span>, <span class="fu">round</span>(p_hat<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%)</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Proporción muestral: 0.66 ( 66 %)</code></pre>
 </div>
-<div id="lst-semana06-4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.20: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"IC: ["</span>, <span class="fu">round</span>(IC[<span class="dv">1</span>], <span class="dv">4</span>), <span class="st">","</span>, <span class="fu">round</span>(IC[<span class="dv">2</span>], <span class="dv">4</span>), <span class="st">"]</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>IC: [ 0.594 , 0.726 ]</code></pre>
 </div>
-<div id="lst-semana06-4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.21: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Interpretación: con 95% de confianza, entre el"</span>,</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(IC[<span class="dv">1</span>]<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"% y el"</span>,</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(IC[<span class="dv">2</span>]<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Interpretación: con 95% de confianza, entre el 59.4 % y el 72.6 %</code></pre>
-</div>
-<div id="lst-semana06-4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.22: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"de los pacientes hipertensos poblacionales alcanzan control adecuado.</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>de los pacientes hipertensos poblacionales alcanzan control adecuado.</code></pre>
@@ -1509,251 +1140,44 @@ Cuadro&nbsp;6.22: Código R
 </div>
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div id="lst-semana06-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.23: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datos de HbA1c (%) de 20 pacientes con diabetes tipo 2</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># atendidos en la Facultad de Medicina, Universidad de Granada</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>hba1c <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">7.2</span>, <span class="fl">8.1</span>, <span class="fl">6.8</span>, <span class="fl">9.3</span>, <span class="fl">7.5</span>, <span class="fl">8.8</span>, <span class="fl">6.5</span>, <span class="fl">10.2</span>,</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>           <span class="fl">7.9</span>, <span class="fl">8.4</span>, <span class="fl">7.1</span>, <span class="fl">9.7</span>, <span class="fl">7.3</span>, <span class="fl">8.6</span>, <span class="fl">6.9</span>, <span class="fl">11.4</span>,</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>           <span class="fl">8.2</span>, <span class="fl">7.0</span>, <span class="fl">9.1</span>, <span class="fl">7.6</span>)</span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. ESTADÍSTICA DESCRIPTIVA</span></span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>media_muestral <span class="ot">&lt;-</span> <span class="fu">mean</span>(hba1c)</span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>desv_est <span class="ot">&lt;-</span> <span class="fu">sd</span>(hba1c)  <span class="co"># Usa divisor n-1 (insesgado)</span></span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(hba1c)</span>
-<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"=== ESTADÍSTICA DESCRIPTIVA ===</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== ESTADÍSTICA DESCRIPTIVA ===</code></pre>
-</div>
-<div id="lst-semana06-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.24: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"n ="</span>, n, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>n = 20 </code></pre>
 </div>
-<div id="lst-semana06-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.25: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Media muestral = "</span>, <span class="fu">round</span>(media_muestral, <span class="dv">2</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Media muestral =  8.18 %</code></pre>
-</div>
-<div id="lst-semana06-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.26: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Desviación estándar = "</span>, <span class="fu">round</span>(desv_est, <span class="dv">2</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Desviación estándar =  1.28 %</code></pre>
 </div>
-<div id="lst-semana06-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.27: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Varianza muestral = "</span>, <span class="fu">round</span>(desv_est<span class="sc">^</span><span class="dv">2</span>, <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Varianza muestral =  1.63 </code></pre>
-</div>
-<div id="lst-semana06-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.28: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. ESTIMACIÓN PUNTUAL (MLE/MoM para Normal)</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"=== ESTIMACIÓN PUNTUAL ===</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== ESTIMACIÓN PUNTUAL ===</code></pre>
 </div>
-<div id="lst-semana06-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.29: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"μ (estimado) = "</span>, <span class="fu">round</span>(media_muestral, <span class="dv">2</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>μ (estimado) =  8.18 %</code></pre>
-</div>
-<div id="lst-semana06-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.30: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"σ² (estimado) = "</span>, <span class="fu">round</span>(desv_est<span class="sc">^</span><span class="dv">2</span>, <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>σ² (estimado) =  1.63 </code></pre>
 </div>
-<div id="lst-semana06-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.31: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. INTERVALO DE CONFIANZA 95% (varianza desconocida)</span></span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"=== INTERVALO DE CONFIANZA (95%) ===</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== INTERVALO DE CONFIANZA (95%) ===</code></pre>
-</div>
-<div id="lst-semana06-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.32: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>t_critico <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>error_estandar <span class="ot">&lt;-</span> desv_est <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
-<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>margen_error <span class="ot">&lt;-</span> t_critico <span class="sc">*</span> error_estandar</span>
-<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>IC_inferior <span class="ot">&lt;-</span> media_muestral <span class="sc">-</span> margen_error</span>
-<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>IC_superior <span class="ot">&lt;-</span> media_muestral <span class="sc">+</span> margen_error</span>
-<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Error estándar = "</span>, <span class="fu">round</span>(error_estandar, <span class="dv">2</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Error estándar =  0.29 %</code></pre>
 </div>
-<div id="lst-semana06-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.33: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Margen de error = "</span>, <span class="fu">round</span>(margen_error, <span class="dv">2</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Margen de error =  0.6 %</code></pre>
-</div>
-<div id="lst-semana06-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.34: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"IC 95% = ["</span>, <span class="fu">round</span>(IC_inferior, <span class="dv">2</span>), <span class="st">"%, "</span>,</span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(IC_superior, <span class="dv">2</span>), <span class="st">"%]</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>IC 95% = [ 7.58 %,  8.78 %]</code></pre>
 </div>
-<div id="lst-semana06-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.35: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternativamente, usar t.test()</span></span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>test_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(hba1c, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
-<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Verificación con t.test():</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Verificación con t.test():</code></pre>
-</div>
-<div id="lst-semana06-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.36: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"IC 95% = ["</span>, <span class="fu">round</span>(test_result<span class="sc">$</span>conf.int[<span class="dv">1</span>], <span class="dv">2</span>), <span class="st">"%, "</span>,</span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(test_result<span class="sc">$</span>conf.int[<span class="dv">2</span>], <span class="dv">2</span>), <span class="st">"%]</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>IC 95% = [ 7.58 %,  8.78 %]</code></pre>
@@ -1774,125 +1198,22 @@ Cuadro&nbsp;6.36: Código R
 <div class="callout-body-container callout-body">
 <p>Modelamos el <strong>tiempo (en años) entre eventos cardiovasculares mayores</strong> en una cohorte de 50 pacientes con cardiopatía isquémica como una distribución Exponencial con tasa λ. La media poblacional es <span class="math inline">\(1/\lambda\)</span> años entre eventos.</p>
 <div class="cell">
-<div id="lst-semana06-6" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.37: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tiempo (años) entre eventos cardiovasculares — 50 pacientes</span></span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo poblacional: Exponencial con tasa λ = 0.5 eventos/año</span></span>
-<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="co"># (i.e., un evento cada 2 años en promedio)</span></span>
-<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
-<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>tiempo_eventos <span class="ot">&lt;-</span> <span class="fu">rexp</span>(<span class="dv">50</span>, <span class="at">rate =</span> <span class="fl">0.5</span>)</span>
-<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Función de log-verosimilitud para Exponencial</span></span>
-<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a>log_verosimilitud <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda, datos) {</span>
-<span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (lambda <span class="sc">&lt;=</span> <span class="dv">0</span>) <span class="fu">return</span>(<span class="sc">-</span><span class="cn">Inf</span>)</span>
-<span id="cb73-10"><a href="#cb73-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(<span class="fu">dexp</span>(datos, <span class="at">rate =</span> lambda, <span class="at">log =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb73-11"><a href="#cb73-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb73-12"><a href="#cb73-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-13"><a href="#cb73-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Maximizar log-verosimilitud numéricamente</span></span>
-<span id="cb73-14"><a href="#cb73-14" aria-hidden="true" tabindex="-1"></a>resultado_optim <span class="ot">&lt;-</span> <span class="fu">optimize</span>(</span>
-<span id="cb73-15"><a href="#cb73-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(lambda) <span class="fu">log_verosimilitud</span>(lambda, tiempo_eventos),</span>
-<span id="cb73-16"><a href="#cb73-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">interval =</span> <span class="fu">c</span>(<span class="fl">0.01</span>, <span class="dv">5</span>),</span>
-<span id="cb73-17"><a href="#cb73-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">maximum =</span> <span class="cn">TRUE</span></span>
-<span id="cb73-18"><a href="#cb73-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb73-19"><a href="#cb73-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-20"><a href="#cb73-20" aria-hidden="true" tabindex="-1"></a>lambda_mle <span class="ot">&lt;-</span> resultado_optim<span class="sc">$</span>maximum</span>
-<span id="cb73-21"><a href="#cb73-21" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Estimador MLE de λ:"</span>, <span class="fu">round</span>(lambda_mle, <span class="dv">4</span>), <span class="st">"eventos/año</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Estimador MLE de λ: 0.511 eventos/año</code></pre>
-</div>
-<div id="lst-semana06-6" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.38: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Log-verosimilitud máxima:"</span>,</span>
-<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(resultado_optim<span class="sc">$</span>objective, <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Log-verosimilitud máxima: -83.5 </code></pre>
 </div>
-<div id="lst-semana06-6" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.39: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Tiempo medio estimado entre eventos: 1/λ ="</span>,</span>
-<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">1</span><span class="sc">/</span>lambda_mle, <span class="dv">2</span>), <span class="st">"años</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Tiempo medio estimado entre eventos: 1/λ = 1.96 años</code></pre>
-</div>
-<div id="lst-semana06-6" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.40: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MoM también da λ = 1/media para Exponencial</span></span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>lambda_mom <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">mean</span>(tiempo_eventos)</span>
-<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Estimador MoM de λ:"</span>, <span class="fu">round</span>(lambda_mom, <span class="dv">4</span>), <span class="st">"eventos/año</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Estimador MoM de λ: 0.511 eventos/año</code></pre>
 </div>
-<div id="lst-semana06-6" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.41: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Para Exponencial, MLE = MoM (propiedad teórica)</span></span>
-<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Nota: Para la distribución Exponencial,</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Nota: Para la distribución Exponencial,</code></pre>
-</div>
-<div id="lst-semana06-6" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.42: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"MLE y MoM coinciden algebraicamente (λ̂ = 1/X̄).</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>MLE y MoM coinciden algebraicamente (λ̂ = 1/X̄).</code></pre>
@@ -1976,24 +1297,8 @@ Cuadro&nbsp;6.42: Código R
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Documentación completa de ambas funciones en <a href="#sec-bio-ic" class="quarto-xref"><span class="quarto-unresolved-ref">sec-bio-ic</span></a>.</p>
+<p>Documentación completa de ambas funciones en <a href="apendiceB.html#sec-bio-ic" class="quarto-xref"><span>Sección B.3</span></a>.</p>
 <div class="cell">
-<div id="lst-semana06-7" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.43: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
-<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="co"># IC para la media de HbA1c — 94 pacientes diabéticos, Fac. Medicina UGR</span></span>
-<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a><span class="fu">icm</span>(<span class="at">m =</span> <span class="fu">mean</span>(osteo<span class="sc">$</span>hba1c), <span class="at">s =</span> <span class="fu">sd</span>(osteo<span class="sc">$</span>hba1c), <span class="at">n =</span> <span class="fu">nrow</span>(osteo))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Intervalo de confianza bilateral para la media de una VA normal 
@@ -2007,20 +1312,6 @@ Información muestral:
 Estimación: 
  95%-IC(µ):  (8.2, 8.93)
   Precisión obtenida: 0.368 </code></pre>
-</div>
-<div id="lst-semana06-7" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.44: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># IC para la proporción de fumadores (41 de 94 pacientes)</span></span>
-<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">icp</span>(<span class="at">x =</span> <span class="fu">sum</span>(osteo<span class="sc">$</span>tabaco <span class="sc">==</span> <span class="st">"Sí"</span>), <span class="at">n =</span> <span class="fu">nrow</span>(osteo))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -2060,7 +1351,7 @@ Información muestral:
 </section>
 <section id="sec-semana06-tamano" class="level2" data-number="6.12">
 <h2 data-number="6.12" class="anchored" data-anchor-id="sec-semana06-tamano"><span class="header-section-number">6.12</span> Cálculo del Tamaño Muestral: <code>nm()</code> y <code>np()</code></h2>
-<p>Antes de iniciar un estudio clínico es esencial determinar el <strong>tamaño muestral</strong> necesario para alcanzar una precisión deseada en los intervalos de confianza. Las funciones <code>nm()</code> y <code>np()</code> del paquete <code>BioEstatR</code> (ver <a href="#sec-bio-n" class="quarto-xref"><span class="quarto-unresolved-ref">sec-bio-n</span></a>) calculan el tamaño muestral requerido para una <strong>media</strong> o una <strong>proporción</strong>, respectivamente, dada una semiamplitud objetivo <span class="math inline">\(d\)</span> del IC.</p>
+<p>Antes de iniciar un estudio clínico es esencial determinar el <strong>tamaño muestral</strong> necesario para alcanzar una precisión deseada en los intervalos de confianza. Las funciones <code>nm()</code> y <code>np()</code> del paquete <code>BioEstatR</code> (ver <a href="apendiceB.html#sec-bio-n" class="quarto-xref"><span>Sección B.4</span></a>) calculan el tamaño muestral requerido para una <strong>media</strong> o una <strong>proporción</strong>, respectivamente, dada una semiamplitud objetivo <span class="math inline">\(d\)</span> del IC.</p>
 <section id="fórmulas-del-tamaño-muestral" class="level3" data-number="6.12.1">
 <h3 data-number="6.12.1" class="anchored" data-anchor-id="fórmulas-del-tamaño-muestral"><span class="header-section-number">6.12.1</span> Fórmulas del Tamaño Muestral</h3>
 <p><strong>Para la media</strong> (con estimación piloto <span class="math inline">\(s\)</span> de la desviación típica): <span class="math display">\[n = \left(\frac{z_{1-\alpha/2}\, s}{d}\right)^2\]</span></p>
@@ -2082,24 +1373,6 @@ Información muestral:
 <li><strong>Tabaquismo</strong>: 41/94 fumadores (<span class="math inline">\(\hat{p} \approx 0.436\)</span>). ¿Cuántos pacientes para alcanzar precisión <span class="math inline">\(d = 0.05\)</span> al 95% de confianza?</li>
 </ul>
 <div class="cell">
-<div id="lst-semana06-9" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.45: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
-<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="co"># nm(): tamaño muestral para la media de HbA1c</span></span>
-<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a><span class="co"># d = 0.3% (semiamplitud deseada), datos piloto del estudio osteo</span></span>
-<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a><span class="fu">nm</span>(<span class="at">d =</span> <span class="fl">0.3</span>, <span class="at">n =</span> <span class="fu">nrow</span>(osteo),</span>
-<span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a>   <span class="at">m =</span> <span class="fu">mean</span>(osteo<span class="sc">$</span>hba1c), <span class="at">s =</span> <span class="fu">sd</span>(osteo<span class="sc">$</span>hba1c), <span class="at">alfa =</span> <span class="fl">0.05</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 
@@ -2116,22 +1389,6 @@ Cuadro&nbsp;6.45: Código R
 # Estimación del tamaño muestral:
   Precisión deseada: δ = 0.3000 
   Tamaño muestral necesario: n ≥ 142 </code></pre>
-</div>
-<div id="lst-semana06-9" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana06-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;6.46: Código R
-</figcaption>
-<div aria-describedby="lst-semana06-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># np(): tamaño muestral para la proporción de fumadores</span></span>
-<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="co"># d = 0.05 (semiamplitud deseada), conf = 0.95</span></span>
-<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a><span class="fu">np</span>(<span class="at">x =</span> <span class="fu">sum</span>(osteo<span class="sc">$</span>tabaco <span class="sc">==</span> <span class="st">"Sí"</span>), <span class="at">n =</span> <span class="fu">nrow</span>(osteo),</span>
-<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">d =</span> <span class="fl">0.05</span>, <span class="at">conf =</span> <span class="fl">0.95</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -2205,13 +1462,13 @@ Tamaño muestral requerido para δ = 0.05 (5.00%), conf.= 95%
 <p><strong>Ejercicio 6:</strong> n=36, X̄=50, s=12, t₀.₀₂₅,₃₅ ≈ 2.03 IC95% = [50 ± 2.03×(12/6)] = [50 ± 4.06] = [45.94, 54.06] IC99%: más amplio ≈ [44.55, 55.45] (usa t₀.₉₉₅,₃₅ ≈ 2.72; margen 2.72×2 = 5.45)</p>
 <p><strong>Ejercicio 7:</strong> p̂ = 325/500 = 0.65, SE = √(0.65×0.35/500) ≈ 0.0214 IC95% = [0.65 ± 1.96×0.0214] ≈ [0.608, 0.692]</p>
 <p><strong>Ejercicio 8:</strong> Código R básico:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>muestra <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">50</span>, <span class="at">mean=</span><span class="dv">100</span>, <span class="at">sd=</span><span class="dv">15</span>)</span>
-<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="fu">mean</span>(muestra)</span>
-<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a>var_est <span class="ot">&lt;-</span> <span class="fu">var</span>(muestra)</span>
-<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">sd</span>(muestra)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">50</span>)</span>
-<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a>ic <span class="ot">&lt;-</span> <span class="fu">c</span>(media <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span>se, media <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span>se)</span>
-<span id="cb93-7"><a href="#cb93-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar: 100 ∈ ic?</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>muestra <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">50</span>, <span class="at">mean=</span><span class="dv">100</span>, <span class="at">sd=</span><span class="dv">15</span>)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="fu">mean</span>(muestra)</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>var_est <span class="ot">&lt;-</span> <span class="fu">var</span>(muestra)</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">sd</span>(muestra)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">50</span>)</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>ic <span class="ot">&lt;-</span> <span class="fu">c</span>(media <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span>se, media <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span>se)</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar: 100 ∈ ic?</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>

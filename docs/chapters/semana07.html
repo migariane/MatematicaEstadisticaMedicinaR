@@ -24,41 +24,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -994,28 +959,6 @@ window.Quarto = {
 </div>
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div id="lst-semana08-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;7.1: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datos de pesos de paquetes de harina (en gramos)</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1002</span>, <span class="dv">998</span>, <span class="dv">1001</span>, <span class="dv">1003</span>, <span class="dv">1000</span>, <span class="dv">1004</span>, <span class="dv">999</span>, <span class="dv">1005</span>, <span class="dv">1002</span>, <span class="dv">997</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>           <span class="dv">1001</span>, <span class="dv">1003</span>, <span class="dv">1000</span>, <span class="dv">1002</span>, <span class="dv">998</span>, <span class="dv">1004</span>, <span class="dv">1001</span>, <span class="dv">999</span>, <span class="dv">1003</span>, <span class="dv">1000</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>           <span class="dv">1002</span>, <span class="dv">1001</span>, <span class="dv">1000</span>, <span class="dv">1002</span>, <span class="dv">998</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Contraste: H0: mu = 1000 vs H1: mu != 1000</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">t.test</span>(datos, <span class="at">mu =</span> <span class="dv">1000</span>, <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Ver resultados</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(resultado)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -1029,84 +972,17 @@ sample estimates:
 mean of x 
      1001 </code></pre>
 </div>
-<div id="lst-semana08-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;7.2: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraer componentes</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Estadístico t ="</span>, <span class="fu">round</span>(resultado<span class="sc">$</span>statistic, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Estadístico t = 2.38 </code></pre>
-</div>
-<div id="lst-semana08-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;7.3: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Grados de libertad ="</span>, resultado<span class="sc">$</span>parameter, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Grados de libertad = 24 </code></pre>
 </div>
-<div id="lst-semana08-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;7.4: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"p-valor ="</span>, <span class="fu">round</span>(resultado<span class="sc">$</span>p.value, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>p-valor = 0.0257 </code></pre>
 </div>
-<div id="lst-semana08-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;7.5: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"IC 95% para mu:"</span>, <span class="fu">round</span>(resultado<span class="sc">$</span>conf.int, <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>IC 95% para mu: 1000 1002 </code></pre>
-</div>
-<div id="lst-semana08-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;7.6: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Unilateral derecha: H1: mu &gt; 1000</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(datos, <span class="at">mu =</span> <span class="dv">1000</span>, <span class="at">alternative =</span> <span class="st">"greater"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1120,20 +996,6 @@ alternative hypothesis: true mean is greater than 1000
 sample estimates:
 mean of x 
      1001 </code></pre>
-</div>
-<div id="lst-semana08-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;7.7: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Unilateral izquierda: H1: mu &lt; 1000</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(datos, <span class="at">mu =</span> <span class="dv">1000</span>, <span class="at">alternative =</span> <span class="st">"less"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1161,25 +1023,8 @@ mean of x
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Documentación completa de ambas funciones en <a href="#sec-bio-contrastes" class="quarto-xref"><span class="quarto-unresolved-ref">sec-bio-contrastes</span></a>.</p>
+<p>Documentación completa de ambas funciones en <a href="apendiceB.html#sec-bio-contrastes" class="quarto-xref"><span>Sección B.5</span></a>.</p>
 <div class="cell">
-<div id="lst-semana08-2" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;7.8: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BioEstatR)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># H₀: µ_HbA1c = 7.5%  (umbral clínico de control glucémico)</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Dataset osteo: 94 pacientes diabéticos, Fac. Medicina UGR</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">testt</span>(<span class="at">m =</span> osteo<span class="sc">$</span>hba1c, <span class="at">m0 =</span> <span class="fl">7.5</span>, <span class="at">grf =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 # t-Test con una muestra
@@ -1204,20 +1049,6 @@ Cuadro&nbsp;7.8: Código R
 
   Estimación del efecto bruto 
   95%-IC(μ-μ₀) = (0.696, 1.433) </code></pre>
-</div>
-<div id="lst-semana08-2" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;7.9: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># H₀: π_tabaco = 0.35  (prevalencia de referencia)</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">testp</span>(<span class="at">x =</span> <span class="fu">sum</span>(osteo<span class="sc">$</span>tabaco <span class="sc">==</span> <span class="st">"Sí"</span>), <span class="at">n =</span> <span class="fu">nrow</span>(osteo), <span class="at">p0 =</span> <span class="fl">0.35</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1362,21 +1193,6 @@ Cuadro&nbsp;7.9: Código R
 </div>
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div id="lst-semana08-4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;7.10: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Contraste binomial exacto</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Lanzamos una moneda 10 veces, observamos 9 caras</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="at">x =</span> <span class="dv">9</span>, <span class="at">n =</span> <span class="dv">10</span>, <span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Exact binomial test
@@ -1389,21 +1205,6 @@ alternative hypothesis: true probability of success is not equal to 0.5
 sample estimates:
 probability of success 
                    0.9 </code></pre>
-</div>
-<div id="lst-semana08-4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;7.11: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aproximación normal para muestra más grande</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Lanzamos 100 veces, observamos 65 caras</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="at">x =</span> <span class="dv">65</span>, <span class="at">n =</span> <span class="dv">100</span>, <span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1418,36 +1219,8 @@ sample estimates:
    p 
 0.65 </code></pre>
 </div>
-<div id="lst-semana08-4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;7.12: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Para proporción: H0: pi = 0.5 vs H1: pi != 0.5</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">binom.test</span>(<span class="dv">9</span>, <span class="dv">10</span>, <span class="fl">0.5</span>)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"p-valor ="</span>, resultado<span class="sc">$</span>p.value, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>p-valor = 0.0215 </code></pre>
-</div>
-<div id="lst-semana08-4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;7.13: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Intervalo de confianza:"</span>, resultado<span class="sc">$</span>conf.int, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Intervalo de confianza: 0.555 0.997 </code></pre>
@@ -1629,94 +1402,17 @@ Cuadro&nbsp;7.13: Código R
 </div>
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div id="lst-semana08-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;7.14: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo 1: Contraste Z (conocida varianza)</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># z.test no existe en base R, usamos estadística manual</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>x_bar <span class="ot">&lt;-</span> <span class="fl">498.5</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>mu_0 <span class="ot">&lt;-</span> <span class="dv">500</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">36</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>z_obs <span class="ot">&lt;-</span> (x_bar <span class="sc">-</span> mu_0) <span class="sc">/</span> (sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>p_valor <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(z_obs)))</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Ejemplo 1:</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Ejemplo 1:</code></pre>
-</div>
-<div id="lst-semana08-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;7.15: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"z observado ="</span>, <span class="fu">round</span>(z_obs, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>z observado = -0.9 </code></pre>
 </div>
-<div id="lst-semana08-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;7.16: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"p-valor ="</span>, <span class="fu">round</span>(p_valor, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>p-valor = 0.368 </code></pre>
 </div>
-<div id="lst-semana08-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;7.17: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo 2: Contraste t unilateral</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>datos2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">115</span>, <span class="dv">108</span>, <span class="dv">102</span>, <span class="dv">110</span>, <span class="dv">98</span>, <span class="dv">104</span>, <span class="dv">112</span>, <span class="dv">96</span>,</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>            <span class="dv">106</span>, <span class="dv">109</span>, <span class="dv">101</span>, <span class="dv">107</span>, <span class="dv">103</span>, <span class="dv">111</span>, <span class="dv">95</span>, <span class="dv">113</span>)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>resultado2 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(datos2, <span class="at">mu =</span> <span class="dv">100</span>, <span class="at">alternative =</span> <span class="st">"greater"</span>)</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Ejemplo 2:</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Ejemplo 2:</code></pre>
-</div>
-<div id="lst-semana08-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;7.18: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(resultado2)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1731,38 +1427,9 @@ sample estimates:
 mean of x 
       106 </code></pre>
 </div>
-<div id="lst-semana08-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;7.19: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo 3: Contraste Binomial</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>resultado3 <span class="ot">&lt;-</span> <span class="fu">binom.test</span>(<span class="at">x =</span> <span class="dv">15</span>, <span class="at">n =</span> <span class="dv">100</span>, <span class="at">p =</span> <span class="fl">0.05</span>,</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Ejemplo 3:</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Ejemplo 3:</code></pre>
-</div>
-<div id="lst-semana08-5" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;7.20: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(resultado3)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1904,21 +1571,6 @@ probability of success
 </ol>
 <p><strong>Código R sugerido:</strong></p>
 <div class="cell">
-<div id="lst-semana08-6" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;7.21: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.42</span>, <span class="fl">0.45</span>, <span class="fl">0.38</span>, <span class="fl">0.41</span>, <span class="fl">0.39</span>, <span class="fl">0.44</span>, <span class="fl">0.40</span>, <span class="fl">0.43</span>, <span class="fl">0.37</span>, <span class="fl">0.46</span>)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">t.test</span>(datos, <span class="at">mu =</span> <span class="fl">0.40</span>)</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(resultado)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -1944,19 +1596,6 @@ mean of x
 </ol>
 <p><strong>Código R sugerido:</strong></p>
 <div class="cell">
-<div id="lst-semana08-7" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Cuadro&nbsp;7.22: Código R
-</figcaption>
-<div aria-describedby="lst-semana08-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
-<summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="at">x =</span> <span class="dv">6</span>, <span class="at">n =</span> <span class="dv">20</span>, <span class="at">p =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</figure>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Exact binomial test

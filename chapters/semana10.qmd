@@ -513,7 +513,8 @@ Cuando tenemos muchas variables predictoras potenciales, necesitamos seleccionar
 #| lst-cap: "Base R — Regresión múltiple PAS ~ Edad + IMC (n = 120 pacientes)"
 #| eval: true
 #| warning: false
-#| message: false#| echo: false
+#| message: false
+#| echo: false
 
 
 # Datos simulados: PAS ~ Edad + IMC — 120 pacientes adultos
@@ -554,7 +555,8 @@ cat("\nR² =", round(glance_mult$r.squared, 3),
 #| lst-cap: "Base R — Componentes del modelo múltiple: matriz var-cov, IC y VIF"
 #| eval: true
 #| warning: false
-#| message: false#| echo: false
+#| message: false
+#| echo: false
 
 
 # Varianzas de los coeficientes (diagonal de la matriz var-cov)
@@ -583,7 +585,8 @@ if (requireNamespace("car", quietly = TRUE)) {
 #| lst-cap: "Base R — Prueba F: comparación de modelos PAS ~ Edad vs PAS ~ Edad + IMC"
 #| eval: true
 #| warning: false
-#| message: false#| echo: false
+#| message: false
+#| echo: false
 
 
 # Modelo reducido (solo edad)
@@ -633,7 +636,8 @@ par(mfrow = c(1, 1))
 #| lst-cap: "Base R (MASS) — Selección stepwise por AIC en modelo PAS ~ Edad + IMC + Sexo"
 #| eval: true
 #| warning: false
-#| message: false#| echo: false
+#| message: false
+#| echo: false
 
 
 library(MASS)
@@ -663,7 +667,8 @@ cat("\nR² =", round(glance_step$r.squared, 3),
 #| lst-cap: "Base R — Predicción de PAS para perfiles clínicos con IC e IP al 95%"
 #| eval: true
 #| warning: false
-#| message: false#| echo: false
+#| message: false
+#| echo: false
 
 
 # Cinco perfiles de pacientes típicos en la consulta
@@ -705,7 +710,8 @@ print(resultados, row.names = FALSE)
 #| warning: false
 #| message: false
 #| fig-cap: "Reducción de PAS (mmHg) por grupo de tratamiento en el ensayo clínico simulado. Línea roja: media de cada grupo. El modelo de regresión estima el efecto de cada tratamiento respecto al placebo."
-#| fig-alt: "Boxplot de reducción de PAS por grupo de tratamiento"#| echo: false
+#| fig-alt: "Boxplot de reducción de PAS por grupo de tratamiento"
+#| echo: false
 
 
 set.seed(42)
@@ -763,7 +769,8 @@ Aplicamos `rlm()` al conjunto de datos `osteo` para evaluar cómo el tiempo de e
 #| label: lst-s10-bio-rlm
 #| lst-cap: "BioEstatR — rlm(): regresión lineal múltiple sobre el dataset osteo"
 #| warning: false
-#| message: false#| echo: false
+#| message: false
+#| echo: false
 
 library(BioEstatR)
 data(osteo)
@@ -787,7 +794,8 @@ Llamando a `rlm()` con `grf = TRUE` se obtienen los cuatro gráficos clásicos d
 #| warning: false
 #| message: false
 #| fig-width: 7
-#| fig-height: 5#| echo: false
+#| fig-height: 5
+#| echo: false
 
 rlm(hba1c ~ tevol + edad + imc, data = osteo, grf = TRUE)
 ```
