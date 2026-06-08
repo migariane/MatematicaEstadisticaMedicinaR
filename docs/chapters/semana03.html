@@ -346,7 +346,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/semana11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span></a>
   </div>
 </li>
       </ul>
@@ -783,7 +783,16 @@ window.Quarto = {
   <text x="150" y="145" font-size="10" text-anchor="middle" font-weight="bold">A∩B∩C</text>
 </svg>
 </div>
-<p><strong>Problema:</strong> En una muestra de 100 pacientes: - 40 tienen Hipertensión (A) - 30 tienen Diabetes (B) - 20 tienen Obesidad (C) - 10 tienen A y B - 8 tienen A y C - 5 tienen B y C - 3 tienen las tres condiciones</p>
+<p><strong>Problema:</strong> En una muestra de 100 pacientes:</p>
+<ul>
+<li>40 tienen Hipertensión (A)</li>
+<li>30 tienen Diabetes (B)</li>
+<li>20 tienen Obesidad (C)</li>
+<li>10 tienen A y B</li>
+<li>8 tienen A y C</li>
+<li>5 tienen B y C</li>
+<li>3 tienen las tres condiciones</li>
+</ul>
 <p>¿Cuántos pacientes tienen <strong>al menos una</strong> condición? Usando el principio de Inclusión-Exclusión: <span class="math inline">\(|A \cup B \cup C| = 40 + 30 + 20 - (10 + 8 + 5) + 3 = 90 - 23 + 3 = 70 \text{ pacientes}.\)</span></p>
 </div>
 </div>
@@ -844,7 +853,12 @@ window.Quarto = {
 <p><span class="math display">\[\text{Frecuencia relativa} = \frac{f_n(A)}{n}\]</span></p>
 <p>La <strong>probabilidad frecuentista</strong> de <span class="math inline">\(A\)</span> se define como el límite de la frecuencia relativa cuando <span class="math inline">\(n \to \infty\)</span>:</p>
 <p><span class="math display">\[\mathbb{P}(A) = \lim_{n \to \infty} \frac{f_n(A)}{n}\]</span></p>
-<p>Esta definición requiere: - Una secuencia de muestras independientes - Bajo condiciones idénticas - Repetibles arbitrariamente</p>
+<p>Esta definición requiere:</p>
+<ul>
+<li>Una secuencia de muestras independientes</li>
+<li>Bajo condiciones idénticas</li>
+<li>Repetibles arbitrariamente</li>
+</ul>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -1202,7 +1216,12 @@ Cuadro&nbsp;3.3: Código R
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Escenario:</strong> Una enfermedad se distribuye en una población según tres grupos de riesgo: - Grupo 1 (Bajo riesgo): 60% de la población, tasa de enfermedad = 2% - Grupo 2 (Riesgo moderado): 30% de la población, tasa de enfermedad = 10% - Grupo 3 (Alto riesgo): 10% de la población, tasa de enfermedad = 25%</p>
+<p><strong>Escenario:</strong> Una enfermedad se distribuye en una población según tres grupos de riesgo:</p>
+<ul>
+<li>Grupo 1 (Bajo riesgo): 60% de la población, tasa de enfermedad = 2%</li>
+<li>Grupo 2 (Riesgo moderado): 30% de la población, tasa de enfermedad = 10%</li>
+<li>Grupo 3 (Alto riesgo): 10% de la población, tasa de enfermedad = 25%</li>
+</ul>
 <p><strong>Probabilidades a priori:</strong> - <span class="math inline">\(\mathbb{P}(A_1) = 0.60\)</span> - <span class="math inline">\(\mathbb{P}(A_2) = 0.30\)</span> - <span class="math inline">\(\mathbb{P}(A_3) = 0.10\)</span></p>
 <p><strong>Probabilidades condicionales de enfermedad (<span class="math inline">\(B\)</span>):</strong> - <span class="math inline">\(\mathbb{P}(B|A_1) = 0.02\)</span> - <span class="math inline">\(\mathbb{P}(B|A_2) = 0.10\)</span> - <span class="math inline">\(\mathbb{P}(B|A_3) = 0.25\)</span></p>
 <p><strong>Aplicación de la Ley de la Probabilidad Total:</strong> <span class="math display">\[\mathbb{P}(B) = \mathbb{P}(B|A_1) \cdot \mathbb{P}(A_1) + \mathbb{P}(B|A_2) \cdot \mathbb{P}(A_2) + \mathbb{P}(B|A_3) \cdot \mathbb{P}(A_3)\]</span> <span class="math display">\[= 0.02 \times 0.60 + 0.10 \times 0.30 + 0.25 \times 0.10\]</span> <span class="math display">\[= 0.012 + 0.03 + 0.025 = 0.067\]</span></p>
@@ -1285,7 +1304,12 @@ Cuadro&nbsp;3.3: Código R
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Escenario:</strong> Un test de diagnóstico para una enfermedad con: - Prevalencia de la enfermedad: <span class="math inline">\(\mathbb{P}(E) = 0.05\)</span> (5% de la población) - Sensibilidad: <span class="math inline">\(\mathbb{P}(+|E) = 0.95\)</span> (95% de enfermos dan positivo) - Especificidad: <span class="math inline">\(\mathbb{P}(-|\overline{E}) = 0.90\)</span> (90% de sanos dan negativo)</p>
+<p><strong>Escenario:</strong> Un test de diagnóstico para una enfermedad con:</p>
+<ul>
+<li>Prevalencia de la enfermedad: <span class="math inline">\(\mathbb{P}(E) = 0.05\)</span> (5% de la población)</li>
+<li>Sensibilidad: <span class="math inline">\(\mathbb{P}(+|E) = 0.95\)</span> (95% de enfermos dan positivo)</li>
+<li>Especificidad: <span class="math inline">\(\mathbb{P}(-|\overline{E}) = 0.90\)</span> (90% de sanos dan negativo)</li>
+</ul>
 <p><strong>Pregunta:</strong> Si una persona da positivo, ¿cuál es la probabilidad de que realmente este enferma?</p>
 <p><strong>Solución:</strong></p>
 <p>Primero, calculamos <span class="math inline">\(\mathbb{P}(+) = \mathbb{P}(+|E) \cdot \mathbb{P}(E) + \mathbb{P}(+|\overline{E}) \cdot \mathbb{P}(\overline{E})\)</span></p>
@@ -1504,18 +1528,33 @@ Cuadro&nbsp;3.8: Código R
 <li>¿Cuál es la probabilidad de que no ingrese ningún paciente?</li>
 <li>¿Cuál es la probabilidad de que exactamente ingrese uno?</li>
 </ol>
-<p><strong>Ejercicio 3.4:</strong> Se sabe que: - El 60% de los pacientes de una consulta son mujeres - El 40% de las mujeres tinen menos de 30 años - El 30% de los hombres tienen menos de 30 años</p>
+<p><strong>Ejercicio 3.4:</strong> Se sabe que:</p>
+<ul>
+<li>El 60% de los pacientes de una consulta son mujeres</li>
+<li>El 40% de las mujeres tinen menos de 30 años</li>
+<li>El 30% de los hombres tienen menos de 30 años</li>
+</ul>
 <p>Si seleccionamos un cliente al azar:</p>
 <ol type="a">
 <li>¿Cuál es la probabilidad de que un paciente tenga menos de 30 años?</li>
 <li>Si un paciente tiene 30 años, ¿cuál es la probabilidad de que sea mujer?</li>
 </ol>
-<p><strong>Ejercicio 3.5:</strong> Un test para detectar una enfermedad rara tiene: - 98% de sensibilidad (detecta la enfermedad cuando está presente) - 95% de especificidad (identifica correctamente a personas sanas) - La enfermedad afecta al 0.5% de la población</p>
+<p><strong>Ejercicio 3.5:</strong> Un test para detectar una enfermedad rara tiene:</p>
+<ul>
+<li>98% de sensibilidad (detecta la enfermedad cuando está presente)</li>
+<li>95% de especificidad (identifica correctamente a personas sanas)</li>
+<li>La enfermedad afecta al 0.5% de la población</li>
+</ul>
 <ol type="a">
 <li>Si una persona da positivo en el test, ¿cuál es la probabilidad de que realmente esté enferma?</li>
 <li>Interprete el resultado. ¿Por qué la probabilidad no es más alta?</li>
 </ol>
-<p><strong>Ejercicio 3.6:</strong> Una empresa privada vende ecografos a tres hospitales en tres ciudades distintas: Madrid (40% de ventas), Barcelona (35%) y Valencia (25%). La probabilidad de cumplir la cuota de ventas es: - Madrid: 0.8 - Barcelona: 0.85 - Valencia: 0.7</p>
+<p><strong>Ejercicio 3.6:</strong> Una empresa privada vende ecografos a tres hospitales en tres ciudades distintas: Madrid (40% de ventas), Barcelona (35%) y Valencia (25%). La probabilidad de cumplir la cuota de ventas es:</p>
+<ul>
+<li>Madrid: 0.8</li>
+<li>Barcelona: 0.85</li>
+<li>Valencia: 0.7</li>
+</ul>
 <p>Si se selecciona un mes al azar:</p>
 <ol type="a">
 <li>¿Cuál es la probabilidad de que se cumpla la cuota?</li>

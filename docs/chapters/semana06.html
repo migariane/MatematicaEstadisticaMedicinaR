@@ -346,7 +346,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/semana11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span></a>
   </div>
 </li>
       </ul>
@@ -496,7 +496,12 @@ window.Quarto = {
 <div class="callout-body-container callout-body">
 <p>Un <strong>modelo estadístico paramétrico</strong> es una colección de distribuciones de probabilidad:</p>
 <p><span class="math display">\[\{f(x; \boldsymbol{\theta}) : \boldsymbol{\theta} \in \Theta\}\]</span></p>
-<p>donde: - <span class="math inline">\(f(x; \boldsymbol{\theta})\)</span> es la función de densidad o de probabilidad - <span class="math inline">\(\boldsymbol{\theta} = (\theta_1, \ldots, \theta_p)\)</span> es el vector de parámetros desconocidos - <span class="math inline">\(\Theta\)</span> es el <strong>espacio de parámetros</strong>, el conjunto de todos los valores posibles que <span class="math inline">\(\boldsymbol{\theta}\)</span> puede tomar</p>
+<p>donde:</p>
+<ul>
+<li><span class="math inline">\(f(x; \boldsymbol{\theta})\)</span> es la función de densidad o de probabilidad</li>
+<li><span class="math inline">\(\boldsymbol{\theta} = (\theta_1, \ldots, \theta_p)\)</span> es el vector de parámetros desconocidos</li>
+<li><span class="math inline">\(\Theta\)</span> es el <strong>espacio de parámetros</strong>, el conjunto de todos los valores posibles que <span class="math inline">\(\boldsymbol{\theta}\)</span> puede tomar</li>
+</ul>
 </div>
 </div>
 <p><strong>Ejemplo:</strong> Si modelamos una variable aleatoria como Normal, el modelo paramétrico es <span class="math inline">\(\{N(\mu, \sigma) : \mu \in \mathbb{R}, \sigma &gt; 0\}\)</span>, donde los parámetros desconocidos son la media <span class="math inline">\(\mu\)</span> y la desviación estándar <span class="math inline">\(\sigma\)</span>.</p>
@@ -520,7 +525,11 @@ window.Quarto = {
 <p><span class="math display">\[\hat{\theta} = g(x_1, x_2, \ldots, x_n)\]</span></p>
 </div>
 </div>
-<p><strong>Observación clave:</strong> Es importante distinguir entre: - El <strong>estimador</strong> (antes de ver los datos): variable aleatoria - El <strong>valor estimado</strong> (después de ver los datos): número concreto</p>
+<p><strong>Observación clave:</strong> Es importante distinguir entre:</p>
+<ul>
+<li>El <strong>estimador</strong> (antes de ver los datos): variable aleatoria</li>
+<li>El <strong>valor estimado</strong> (después de ver los datos): número concreto</li>
+</ul>
 </section>
 <section id="sec-semana06-propiedades" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="sec-semana06-propiedades"><span class="header-section-number">6.3</span> Propiedades de los Estimadores</h2>
@@ -720,8 +729,16 @@ window.Quarto = {
 <section id="ejemplo-6.5.1-distribución-normal" class="level3" data-number="6.5.2">
 <h3 data-number="6.5.2" class="anchored" data-anchor-id="ejemplo-6.5.1-distribución-normal"><span class="header-section-number">6.5.2</span> Ejemplo 6.5.1: Distribución Normal</h3>
 <p>Supongamos que tenemos una muestra de una distribución Normal <span class="math inline">\(N(\mu, \sigma^2)\)</span> con ambos parámetros desconocidos.</p>
-<p><strong>Paso 1:</strong> Momentos poblacionales: - Primer momento: <span class="math inline">\(E(X) = \mu\)</span> - Segundo momento: <span class="math inline">\(E(X^2) = \mu^2 + \sigma^2\)</span></p>
-<p><strong>Paso 2:</strong> Inversión: - <span class="math inline">\(\mu = E(X)\)</span> - <span class="math inline">\(\sigma^2 = E(X^2) - [E(X)]^2\)</span></p>
+<p><strong>Paso 1:</strong> Momentos poblacionales:</p>
+<ul>
+<li>Primer momento: <span class="math inline">\(E(X) = \mu\)</span></li>
+<li>Segundo momento: <span class="math inline">\(E(X^2) = \mu^2 + \sigma^2\)</span></li>
+</ul>
+<p><strong>Paso 2:</strong> Inversión:</p>
+<ul>
+<li><span class="math inline">\(\mu = E(X)\)</span></li>
+<li><span class="math inline">\(\sigma^2 = E(X^2) - [E(X)]^2\)</span></li>
+</ul>
 <p><strong>Paso 3:</strong> Estimadores MoM: <span class="math display">\[\hat{\mu}_{\text{MoM}} = \bar{X} = \frac{1}{n}\sum_{i=1}^n X_i\]</span></p>
 <p><span class="math display">\[\hat{\sigma}^2_{\text{MoM}} = \frac{1}{n}\sum_{i=1}^n X_i^2 - \bar{X}^2 = \frac{1}{n}\sum_{i=1}^n (X_i - \bar{X})^2 = S'^2\]</span></p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -942,7 +959,12 @@ Cuadro&nbsp;6.6: Código R
 <p><span class="math display">\[\max_\theta L(\theta) \Leftrightarrow \max_\theta \ell(\theta)\]</span></p>
 <p>Por lo tanto:</p>
 <p><span class="math display">\[\frac{\partial \ell(\theta)}{\partial \theta}\bigg|_{\theta=\hat{\theta}} = 0 \quad \Leftrightarrow \quad \frac{\partial L(\theta)}{\partial \theta}\bigg|_{\theta=\hat{\theta}} = 0\]</span></p>
-<p>Usar log-verosimilitud es computacionalmente más conveniente porque: - Convierte productos en sumas - Es numéricamente más estable - Es más fácil de derivar</p>
+<p>Usar log-verosimilitud es computacionalmente más conveniente porque:</p>
+<ul>
+<li>Convierte productos en sumas</li>
+<li>Es numéricamente más estable</li>
+<li>Es más fácil de derivar</li>
+</ul>
 </div>
 </div>
 </section>
@@ -1954,7 +1976,7 @@ Cuadro&nbsp;6.42: Código R
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Documentación completa de ambas funciones en <a href="apendiceB.html#sec-bio-ic" class="quarto-xref"><span>Sección B.3</span></a>.</p>
+<p>Documentación completa de ambas funciones en <a href="#sec-bio-ic" class="quarto-xref"><span class="quarto-unresolved-ref">sec-bio-ic</span></a>.</p>
 <div class="cell">
 <div id="lst-semana06-7" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
@@ -2038,7 +2060,7 @@ Información muestral:
 </section>
 <section id="sec-semana06-tamano" class="level2" data-number="6.12">
 <h2 data-number="6.12" class="anchored" data-anchor-id="sec-semana06-tamano"><span class="header-section-number">6.12</span> Cálculo del Tamaño Muestral: <code>nm()</code> y <code>np()</code></h2>
-<p>Antes de iniciar un estudio clínico es esencial determinar el <strong>tamaño muestral</strong> necesario para alcanzar una precisión deseada en los intervalos de confianza. Las funciones <code>nm()</code> y <code>np()</code> del paquete <code>BioEstatR</code> (ver <a href="apendiceB.html#sec-bio-n" class="quarto-xref"><span>Sección B.4</span></a>) calculan el tamaño muestral requerido para una <strong>media</strong> o una <strong>proporción</strong>, respectivamente, dada una semiamplitud objetivo <span class="math inline">\(d\)</span> del IC.</p>
+<p>Antes de iniciar un estudio clínico es esencial determinar el <strong>tamaño muestral</strong> necesario para alcanzar una precisión deseada en los intervalos de confianza. Las funciones <code>nm()</code> y <code>np()</code> del paquete <code>BioEstatR</code> (ver <a href="#sec-bio-n" class="quarto-xref"><span class="quarto-unresolved-ref">sec-bio-n</span></a>) calculan el tamaño muestral requerido para una <strong>media</strong> o una <strong>proporción</strong>, respectivamente, dada una semiamplitud objetivo <span class="math inline">\(d\)</span> del IC.</p>
 <section id="fórmulas-del-tamaño-muestral" class="level3" data-number="6.12.1">
 <h3 data-number="6.12.1" class="anchored" data-anchor-id="fórmulas-del-tamaño-muestral"><span class="header-section-number">6.12.1</span> Fórmulas del Tamaño Muestral</h3>
 <p><strong>Para la media</strong> (con estimación piloto <span class="math inline">\(s\)</span> de la desviación típica): <span class="math display">\[n = \left(\frac{z_{1-\alpha/2}\, s}{d}\right)^2\]</span></p>
