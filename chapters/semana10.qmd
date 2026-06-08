@@ -514,7 +514,6 @@ Cuando tenemos muchas variables predictoras potenciales, necesitamos seleccionar
 #| eval: true
 #| warning: false
 #| message: false
-#| echo: false
 
 
 # Datos simulados: PAS ~ Edad + IMC — 120 pacientes adultos
@@ -556,7 +555,6 @@ cat("\nR² =", round(glance_mult$r.squared, 3),
 #| eval: true
 #| warning: false
 #| message: false
-#| echo: false
 
 
 # Varianzas de los coeficientes (diagonal de la matriz var-cov)
@@ -586,7 +584,6 @@ if (requireNamespace("car", quietly = TRUE)) {
 #| eval: true
 #| warning: false
 #| message: false
-#| echo: false
 
 
 # Modelo reducido (solo edad)
@@ -619,7 +616,6 @@ print(tab_crit, row.names = FALSE)
 #| label: lst-s11-cod04
 #| lst-cap: "Base R — Diagnóstico de residuos: modelo múltiple PAS ~ Edad + IMC"
 #| eval: true
-#| echo: false
 #| fig-cap: "Gráficos de diagnóstico del modelo de regresión múltiple PAS ~ Edad + IMC. La distribución aleatoria de residuos y el ajuste al Q-Q plot validan los supuestos del modelo."
 #| fig-alt: "Cuatro gráficos de diagnóstico del modelo de regresión múltiple"
 
@@ -637,7 +633,6 @@ par(mfrow = c(1, 1))
 #| eval: true
 #| warning: false
 #| message: false
-#| echo: false
 
 
 library(MASS)
@@ -668,7 +663,6 @@ cat("\nR² =", round(glance_step$r.squared, 3),
 #| eval: true
 #| warning: false
 #| message: false
-#| echo: false
 
 
 # Cinco perfiles de pacientes típicos en la consulta
@@ -711,7 +705,6 @@ print(resultados, row.names = FALSE)
 #| message: false
 #| fig-cap: "Reducción de PAS (mmHg) por grupo de tratamiento en el ensayo clínico simulado. Línea roja: media de cada grupo. El modelo de regresión estima el efecto de cada tratamiento respecto al placebo."
 #| fig-alt: "Boxplot de reducción de PAS por grupo de tratamiento"
-#| echo: false
 
 
 set.seed(42)
@@ -770,7 +763,6 @@ Aplicamos `rlm()` al conjunto de datos `osteo` para evaluar cómo el tiempo de e
 #| lst-cap: "BioEstatR — rlm(): regresión lineal múltiple sobre el dataset osteo"
 #| warning: false
 #| message: false
-#| echo: false
 
 library(BioEstatR)
 data(osteo)
@@ -795,7 +787,6 @@ Llamando a `rlm()` con `grf = TRUE` se obtienen los cuatro gráficos clásicos d
 #| message: false
 #| fig-width: 7
 #| fig-height: 5
-#| echo: false
 
 rlm(hba1c ~ tevol + edad + imc, data = osteo, grf = TRUE)
 ```
