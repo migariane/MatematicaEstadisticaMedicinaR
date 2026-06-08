@@ -491,6 +491,7 @@ Según la Organización Mundial de la Salud, los mosquitos Aedes pueden transm
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
+#| echo: false
 
 # Lectura de datos
 # Crear datos directamente en R (Tipo de mosquito y vida en días)
@@ -535,6 +536,7 @@ Primero suponemos varianzas iguales:
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
+#| echo: false
 options(scipen = 999) # Evitar notación científica)
 # Test t con varianzas iguales
 tt_equal <- t.test(wildtype, transgenic,
@@ -558,6 +560,7 @@ Si observamos varianzas muy diferentes, usamos la prueba de Welch:
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
+#| echo: false
 
 # Test t con varianzas desiguales (Welch)
 tt_welch <- t.test(wildtype, transgenic,
@@ -577,6 +580,7 @@ Podemos probar formalmente si las varianzas son iguales:
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
+#| echo: false
 
 # Test F para igualdad de varianzas
 f_test <- var.test(wildtype, transgenic, alternative = "two.sided")
@@ -763,6 +767,7 @@ Bajo $H_0$: $\chi^2_B \sim \chi^2_{k-1}$ (asintóticamente). Sensible a no norm
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
+#| echo: false
 
 library(BioEstatR)
 
@@ -836,6 +841,7 @@ El IMC de los pacientes masculinos del dataset `osteo` **no sigue una distribuci
 #| lst-cap: "Codigo R"
 #| warning: false
 #| message: false
+#| echo: false
 
 library(BioEstatR)
 library(boot)
@@ -894,6 +900,7 @@ Shapiro-Wilk rechaza normalidad tanto en hombres ($p = 0.006$) como en mujeres (
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
+#| echo: false
 
 library(BioEstatR)
 set.seed(2024)
@@ -972,6 +979,7 @@ Contrastamos si el Índice de Masa Corporal (IMC) difiere entre hombres y mujer
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
+#| echo: false
 
 library(BioEstatR)
 
@@ -1008,6 +1016,7 @@ Supongamos que evaluamos el calcio sérico (`ca`) antes y después de un trata
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
+#| echo: false
 
 # Calcio inicial y final (simulados)
 ca_pre  <- c(9.2, 8.4, 8.8, 9.1, 9.5, 9.0, 8.9, 9.3, 8.5, 8.7)
@@ -1043,6 +1052,7 @@ donde $n = \sum n_j$. Bajo $H_0$, $H \sim \chi^2_{k-1}$ asintóticamente.
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
+#| echo: false
 
 # Contrastar si el IMC difiere entre los 3 grupos de edad
 kruskal.test(imc ~ grupo_edad, data = osteo)

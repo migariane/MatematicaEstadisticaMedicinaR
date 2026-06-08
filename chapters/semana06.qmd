@@ -1,6 +1,7 @@
 ```{r}
 #| label: setup
 #| include: false
+
 options(digits = 3)
 library(broom)
 ```
@@ -193,7 +194,8 @@ $$\hat{\sigma}^2_{\text{MoM}} = \frac{1}{n}\sum_{i=1}^n X_i^2 - \bar{X}^2 = \fra
 #| lst-label: lst-semana06-1
 #| lst-cap: "Código R"
 #| warning: false
-#| message: false
+#| message: false#| echo: false
+
 
 # Simular niveles de glucosa basal en ayunas (mg/dL) de 100 pacientes
 # Modelo: Normal con μ = 95 mg/dL (rango normoglucemia) y σ = 12 mg/dL
@@ -374,7 +376,8 @@ Modelamos el **tiempo (en días) hasta la primera hipoglucemia** en 100 paciente
 #| lst-label: lst-semana06-2
 #| lst-cap: "Código R"
 #| warning: false
-#| message: false
+#| message: false#| echo: false
+
 
 # Tiempo (días) hasta primera hipoglucemia — 100 pacientes DM1
 # Modelo poblacional: Gamma(shape = 2, rate = 0.5)
@@ -490,7 +493,8 @@ donde $t_{1-\alpha/2, n-1}$ es el cuantil $(1-\alpha/2)$ de la distribución $t$
 #| lst-label: lst-semana06-3
 #| lst-cap: "Código R"
 #| warning: false
-#| message: false
+#| message: false#| echo: false
+
 
 # Presión arterial sistólica (mmHg) en 25 pacientes adultos
 # Modelo poblacional: Normal con μ ≈ 130 mmHg y σ = 15 mmHg
@@ -544,7 +548,8 @@ $$\text{IC}_{1-\alpha}(\pi) = \left[\hat{\pi} - z_{1-\alpha/2}\sqrt{\frac{\hat{\
 #| lst-label: lst-semana06-4
 #| lst-cap: "Código R"
 #| warning: false
-#| message: false
+#| message: false#| echo: false
+
 
 # Estudio en 200 pacientes hipertensos en seguimiento clínico:
 # 132 alcanzan control adecuado de PAS (< 140/90 mmHg)
@@ -604,7 +609,8 @@ Esto es incorrecto porque después de observar los datos, el intervalo es fijo y
 #| lst-label: lst-semana06-5
 #| lst-cap: "Código R"
 #| warning: false
-#| message: false
+#| message: false#| echo: false
+
 
 # Datos de HbA1c (%) de 20 pacientes con diabetes tipo 2
 # atendidos en la Facultad de Medicina, Universidad de Granada
@@ -662,7 +668,8 @@ Modelamos el **tiempo (en años) entre eventos cardiovasculares mayores** en una
 #| lst-label: lst-semana06-6
 #| lst-cap: "Código R"
 #| warning: false
-#| message: false
+#| message: false#| echo: false
+
 
 # Tiempo (años) entre eventos cardiovasculares — 50 pacientes
 # Modelo poblacional: Exponencial con tasa λ = 0.5 eventos/año
@@ -736,7 +743,8 @@ Documentación completa de ambas funciones en @sec-bio-ic.
 #| lst-label: lst-semana06-7
 #| lst-cap: "Código R"
 #| warning: false
-#| message: false
+#| message: false#| echo: false
+
 
 library(BioEstatR)
 
@@ -777,7 +785,8 @@ Partiendo del estudio piloto `osteo` (94 pacientes diabéticos, Fac. Medicina UG
 #| lst-label: lst-semana06-9
 #| lst-cap: "Código R"
 #| warning: false
-#| message: false
+#| message: false#| echo: false
+
 
 library(BioEstatR)
 
