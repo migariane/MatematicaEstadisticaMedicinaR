@@ -216,7 +216,7 @@ window.Quarto = {
       <a href="../">Matemáticas para la Estadística Médica con R</a> 
         <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="../Matemáticas-para-la-Estadística-Médica-con-R.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="../Matematicas-Estadistica-Medica-con-R.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
     <div class="dropdown">
       <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
@@ -796,7 +796,7 @@ Advertencia
 <section id="condicion-de-frecuencias-esperadas" class="level3" data-number="11.4.1">
 <h3 data-number="11.4.1" class="anchored" data-anchor-id="condicion-de-frecuencias-esperadas"><span class="header-section-number">11.4.1</span> Condición de Frecuencias Esperadas</h3>
 <p>La regla clásica de Cochran (1954) exige, para que la aproximación <span class="math inline">\(\chi^2 \sim \chi^2_{(r-1)(c-1)}\)</span> sea válida, que <strong>todas</strong> las frecuencias esperadas <span class="math inline">\(E_{ij}\)</span> sean <span class="math inline">\(\geq 5\)</span> en una tabla 2×2 y que, en tablas <span class="math inline">\(r\times c\)</span>, al menos el 80% de las <span class="math inline">\(E_{ij}\)</span> sean <span class="math inline">\(\geq 5\)</span> y ninguna <span class="math inline">\(&lt; 1\)</span>.</p>
-<p>Sin embargo, este umbral único es excesivamente conservador. La escuela granadina de bioestadística (<span class="citation" data-cites="MartinAndresLuna2004">Martı́n Andrés &amp; Luna del Castillo (<a href="#ref-MartinAndresLuna2004" role="doc-biblioref">2004</a>)</span>; <span class="citation" data-cites="MartinAndres1994">Martı́n Andrés &amp; Silva Mato (<a href="#ref-MartinAndres1994" role="doc-biblioref">1994</a>)</span>) ha demostrado, mediante estudios de simulación extensivos, que el valor mínimo de <span class="math inline">\(E_{ij}\)</span> que mantiene un error de tipo I cercano al nominal <strong>depende del tamaño muestral y del diseño del estudio</strong>:</p>
+<p>Sin embargo, este umbral único es excesivamente conservador. La escuela granadina de bioestadística (<span class="citation" data-cites="MartinAndresLuna2004">Martı́n Andrés &amp; Luna del Castillo (<a href="../references.html#ref-MartinAndresLuna2004" role="doc-biblioref">2004</a>)</span>; <span class="citation" data-cites="MartinAndres1994">Martı́n Andrés &amp; Silva Mato (<a href="../references.html#ref-MartinAndres1994" role="doc-biblioref">1994</a>)</span>) ha demostrado, mediante estudios de simulación extensivos, que el valor mínimo de <span class="math inline">\(E_{ij}\)</span> que mantiene un error de tipo I cercano al nominal <strong>depende del tamaño muestral y del diseño del estudio</strong>:</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -808,7 +808,7 @@ Advertencia
 </div>
 <div class="callout-body-container callout-body">
 <table class="caption-top table">
-<caption>Umbrales para la validez del <span class="math inline">\(\chi^2\)</span> en tablas 2×2 según diseño y tamaño muestral. Adaptado de <span class="citation" data-cites="MartinAndresLuna2004">Martı́n Andrés &amp; Luna del Castillo (<a href="#ref-MartinAndresLuna2004" role="doc-biblioref">2004</a>)</span> y <span class="citation" data-cites="MartinAndres1994">Martı́n Andrés &amp; Silva Mato (<a href="#ref-MartinAndres1994" role="doc-biblioref">1994</a>)</span>.</caption>
+<caption>Umbrales para la validez del <span class="math inline">\(\chi^2\)</span> en tablas 2×2 según diseño y tamaño muestral. Adaptado de <span class="citation" data-cites="MartinAndresLuna2004">Martı́n Andrés &amp; Luna del Castillo (<a href="../references.html#ref-MartinAndresLuna2004" role="doc-biblioref">2004</a>)</span> y <span class="citation" data-cites="MartinAndres1994">Martı́n Andrés &amp; Silva Mato (<a href="../references.html#ref-MartinAndres1994" role="doc-biblioref">1994</a>)</span>.</caption>
 <colgroup>
 <col style="width: 25%">
 <col style="width: 25%">
@@ -883,7 +883,7 @@ Advertencia
 <li><strong>Ambos márgenes libres</strong>: el muestreo es transversal/de prevalencia y solo se fija <span class="math inline">\(n\)</span> total; los dos márgenes (exposición y enfermedad) son aleatorios.</li>
 <li><strong>Ambos márgenes fijos</strong>: situación poco frecuente en investigación clínica (p.ej., experimento controlad como es el caso del té de Fisher). Es la única en la que la <strong>prueba exacta de Fisher</strong> es el test condicional óptimo desde un punto de vista frecuentista.</li>
 </ul>
-<p>Para tablas <span class="math inline">\(r\times c\)</span> con <span class="math inline">\(r\)</span> o <span class="math inline">\(c &gt; 2\)</span>, la regla práctica recomendada por estos autores es: <span class="math inline">\(\geq 80\%\)</span> de las <span class="math inline">\(E_{ij}\)</span> por encima del umbral correspondiente al <span class="math inline">\(n\)</span> total (columna apropiada), y ninguna <span class="math inline">\(E_{ij} &lt; 1\)</span>. Para detalles teóricos y simulaciones que sustentan estos umbrales, véase <span class="citation" data-cites="MartinAndresLuna2004">Martı́n Andrés &amp; Luna del Castillo (<a href="#ref-MartinAndresLuna2004" role="doc-biblioref">2004</a>)</span>.</p>
+<p>Para tablas <span class="math inline">\(r\times c\)</span> con <span class="math inline">\(r\)</span> o <span class="math inline">\(c &gt; 2\)</span>, la regla práctica recomendada por estos autores es: <span class="math inline">\(\geq 80\%\)</span> de las <span class="math inline">\(E_{ij}\)</span> por encima del umbral correspondiente al <span class="math inline">\(n\)</span> total (columna apropiada), y ninguna <span class="math inline">\(E_{ij} &lt; 1\)</span>. Para detalles teóricos y simulaciones que sustentan estos umbrales, véase <span class="citation" data-cites="MartinAndresLuna2004">Martı́n Andrés &amp; Luna del Castillo (<a href="../references.html#ref-MartinAndresLuna2004" role="doc-biblioref">2004</a>)</span>.</p>
 </div>
 </div>
 </section>
@@ -2009,7 +2009,7 @@ Tabla estrato 2 (Grave):</code></pre>
 <li><strong>Sólo permite controlar por una variable de confusión categórica</strong> (la que define los estratos). Si necesitamos ajustar simultáneamente por edad, IMC, tabaquismo y tiempo de evolución, la estratificación produce demasiados estratos con frecuencias muy pequeñas en cada uno.</li>
 <li><strong>Asume homogeneidad del OR a través de los estratos</strong>. Cuando esa hipótesis se rompe (interacción, como en el ejemplo previo), el OR de M–H promedia efectos heterogéneos y oculta la modificación del efecto.</li>
 </ol>
-<p>La <strong>regresión logística múltiple</strong> generaliza el ajuste por confusión: permite incluir un número arbitrario de covariables (continuas o categoricas) simultáneamente, estima un OR ajustado para cada predictor manteniendo constantes las demás, y proporciona una medida global de capacidad discriminante mediante el <strong>área bajo la curva ROC</strong> (AUC). El paquete <code>BioEstatR</code> integra todo este flujo en la función <code>rlogitm()</code> (ver <a href="#sec-apendiceB" class="quarto-xref"><span class="quarto-unresolved-ref">sec-apendiceB</span></a>), que devuelve:</p>
+<p>La <strong>regresión logística múltiple</strong> generaliza el ajuste por confusión: permite incluir un número arbitrario de covariables (continuas o categoricas) simultáneamente, estima un OR ajustado para cada predictor manteniendo constantes las demás, y proporciona una medida global de capacidad discriminante mediante el <strong>área bajo la curva ROC</strong> (AUC). El paquete <code>BioEstatR</code> integra todo este flujo en la función <code>rlogitm()</code> (ver <a href="apendiceB.html" class="quarto-xref"><span>Apéndice B</span></a>), que devuelve:</p>
 <ul>
 <li>Estimación de los coeficientes con sus odds ratios e intervalos de confianza.</li>
 <li>Bondad de ajuste mediante el <strong>test de Hosmer–Lemeshow</strong>.</li>
@@ -2312,54 +2312,54 @@ Tip
 <tbody>
 <tr class="odd">
 <td>Datos categóricos</td>
-<td><span class="citation" data-cites="Agresti2013">Agresti (<a href="#ref-Agresti2013" role="doc-biblioref">2013</a>)</span></td>
+<td><span class="citation" data-cites="Agresti2013">Agresti (<a href="../references.html#ref-Agresti2013" role="doc-biblioref">2013</a>)</span></td>
 <td>Tablas de contingencia, χ², modelos log-lineales</td>
 </tr>
 <tr class="even">
 <td>Datos apareados</td>
-<td><span class="citation" data-cites="McNemar1947">McNemar (<a href="#ref-McNemar1947" role="doc-biblioref">1947</a>)</span></td>
+<td><span class="citation" data-cites="McNemar1947">McNemar (<a href="../references.html#ref-McNemar1947" role="doc-biblioref">1947</a>)</span></td>
 <td>Artículo original de la prueba de McNemar</td>
 </tr>
 <tr class="odd">
 <td>Tasas y proporciones</td>
-<td><span class="citation" data-cites="Fleiss2003">Fleiss et&nbsp;al. (<a href="#ref-Fleiss2003" role="doc-biblioref">2003</a>)</span></td>
+<td><span class="citation" data-cites="Fleiss2003">Fleiss et&nbsp;al. (<a href="../references.html#ref-Fleiss2003" role="doc-biblioref">2003</a>)</span></td>
 <td>IC exactos, OR, RR y prueba de McNemar</td>
 </tr>
 <tr class="even">
 <td>Estadística médica</td>
-<td><span class="citation" data-cites="Altman1991">Altman (<a href="#ref-Altman1991" role="doc-biblioref">1991</a>)</span></td>
+<td><span class="citation" data-cites="Altman1991">Altman (<a href="../references.html#ref-Altman1991" role="doc-biblioref">1991</a>)</span></td>
 <td>Tablas 2×2 y medidas de asociación</td>
 </tr>
 <tr class="odd">
 <td>Epidemiología</td>
-<td><span class="citation" data-cites="Rothman2008">Rothman et&nbsp;al. (<a href="#ref-Rothman2008" role="doc-biblioref">2008</a>)</span></td>
+<td><span class="citation" data-cites="Rothman2008">Rothman et&nbsp;al. (<a href="../references.html#ref-Rothman2008" role="doc-biblioref">2008</a>)</span></td>
 <td>RR, OR, diseños cohorte/caso-control</td>
 </tr>
 <tr class="even">
 <td>Inferencia Causal</td>
-<td><span class="citation" data-cites="Robins1987">Robins (<a href="#ref-Robins1987" role="doc-biblioref">1987</a>)</span></td>
+<td><span class="citation" data-cites="Robins1987">Robins (<a href="../references.html#ref-Robins1987" role="doc-biblioref">1987</a>)</span></td>
 <td>G-formula para estandarización</td>
 </tr>
 <tr class="odd">
 <td>Inferencia Causal</td>
-<td><span class="citation" data-cites="Smith2020"><span class="nocase">Smith &amp; al.</span> (<a href="#ref-Smith2020" role="doc-biblioref">2020</a>)</span></td>
+<td><span class="citation" data-cites="Smith2020"><span class="nocase">Smith &amp; al.</span> (<a href="../references.html#ref-Smith2020" role="doc-biblioref">2020</a>)</span></td>
 <td>Tutorial de inferencia causal computacional (R, Python, Stata)</td>
 </tr>
 <tr class="even">
 <td>Epidemiología analítica</td>
-<td><span class="citation" data-cites="Szklo2007">Szklo &amp; Nieto (<a href="#ref-Szklo2007" role="doc-biblioref">2007</a>)</span></td>
+<td><span class="citation" data-cites="Szklo2007">Szklo &amp; Nieto (<a href="../references.html#ref-Szklo2007" role="doc-biblioref">2007</a>)</span></td>
 <td>Medidas de efecto y diseños epidemiológicos</td>
 </tr>
 <tr class="odd">
 <td>Introducción estadística</td>
-<td><span class="citation" data-cites="OpenIntro2019">Diez et&nbsp;al. (<a href="#ref-OpenIntro2019" role="doc-biblioref">2019</a>)</span></td>
+<td><span class="citation" data-cites="OpenIntro2019">Diez et&nbsp;al. (<a href="../references.html#ref-OpenIntro2019" role="doc-biblioref">2019</a>)</span></td>
 <td>Inferencia sobre proporciones</td>
 </tr>
 </tbody>
 </table>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-Agresti2013" class="csl-entry" role="listitem">
 Agresti, A. (2013). <em>Categorical Data Analysis</em> (3rd ed.). Wiley.
 </div>

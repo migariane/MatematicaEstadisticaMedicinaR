@@ -130,6 +130,7 @@ format:
         </script>
 
   pdf:
+    output-file: "Matematicas-Estadistica-Medica-con-R.pdf"
     lang: es
     documentclass: book
     classoption:
