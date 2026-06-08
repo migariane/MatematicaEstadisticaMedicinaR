@@ -366,7 +366,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/semana11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span></a>
   </div>
 </li>
       </ul>
@@ -532,7 +532,11 @@ window.Quarto = {
 <h2 data-number="8.1" class="anchored" data-anchor-id="sec-semana08-z-test"><span class="header-section-number">8.1</span> Prueba Z para Diferencia de Medias (Varianzas Conocidas)</h2>
 <section id="preparacion-distribucion-de-la-diferencia-de-medias" class="level3" data-number="8.1.1">
 <h3 data-number="8.1.1" class="anchored" data-anchor-id="preparacion-distribucion-de-la-diferencia-de-medias"><span class="header-section-number">8.1.1</span> Preparación: Distribución de la Diferencia de Medias</h3>
-<p>Supongamos que tenemos dos poblaciones independientes: - Población 1: <span class="math inline">\(X_1 \sim N(\mu_1, \sigma_1^2)\)</span> con <span class="math inline">\(\sigma_1^2\)</span> <strong>conocida</strong> - Población 2: <span class="math inline">\(X_2 \sim N(\mu_2, \sigma_2^2)\)</span> con <span class="math inline">\(\sigma_2^2\)</span> <strong>conocida</strong></p>
+<p>Supongamos que tenemos dos poblaciones independientes:</p>
+<ul>
+<li>Población 1: <span class="math inline">\(X_1 \sim N(\mu_1, \sigma_1^2)\)</span> con <span class="math inline">\(\sigma_1^2\)</span> <strong>conocida</strong></li>
+<li>Población 2: <span class="math inline">\(X_2 \sim N(\mu_2, \sigma_2^2)\)</span> con <span class="math inline">\(\sigma_2^2\)</span> <strong>conocida</strong></li>
+</ul>
 <p>Tomamos muestras de tamaños <span class="math inline">\(n_1\)</span> y <span class="math inline">\(n_2\)</span> respectivamente. Los estimadores de las medias son:</p>
 <p><span class="math display">\[\bar{X}_1 \sim N\left(\mu_1, \frac{\sigma_1^2}{n_1}\right), \quad \bar{X}_2 \sim N\left(\mu_2, \frac{\sigma_2^2}{n_2}\right)\]</span></p>
 <p>La diferencia entre las medias muestrales sigue una distribución normal:</p>
@@ -551,7 +555,12 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Consideramos las hipótesis: - <strong>Bilateral:</strong> <span class="math inline">\(H_0: \mu_1 - \mu_2 = \omega_0\)</span> vs.&nbsp;<span class="math inline">\(H_1: \mu_1 - \mu_2 \neq \omega_0\)</span> - <strong>Unilateral derecha:</strong> <span class="math inline">\(H_0: \mu_1 - \mu_2 \leq \omega_0\)</span> vs.&nbsp;<span class="math inline">\(H_1: \mu_1 - \mu_2 &gt; \omega_0\)</span> - <strong>Unilateral izquierda:</strong> <span class="math inline">\(H_0: \mu_1 - \mu_2 \geq \omega_0\)</span> vs.&nbsp;<span class="math inline">\(H_1: \mu_1 - \mu_2 &lt; \omega_0\)</span></p>
+<p>Consideramos las hipótesis:</p>
+<ul>
+<li><strong>Bilateral:</strong> <span class="math inline">\(H_0: \mu_1 - \mu_2 = \omega_0\)</span> vs.&nbsp;<span class="math inline">\(H_1: \mu_1 - \mu_2 \neq \omega_0\)</span></li>
+<li><strong>Unilateral derecha:</strong> <span class="math inline">\(H_0: \mu_1 - \mu_2 \leq \omega_0\)</span> vs.&nbsp;<span class="math inline">\(H_1: \mu_1 - \mu_2 &gt; \omega_0\)</span></li>
+<li><strong>Unilateral izquierda:</strong> <span class="math inline">\(H_0: \mu_1 - \mu_2 \geq \omega_0\)</span> vs.&nbsp;<span class="math inline">\(H_1: \mu_1 - \mu_2 &lt; \omega_0\)</span></li>
+</ul>
 <p>(Habitualmente, <span class="math inline">\(\omega_0 = 0\)</span>)</p>
 </div>
 </div>
@@ -641,7 +650,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Documentacion completa de las tres funciones en <a href="apendiceB.html#sec-bio-contrastes" class="quarto-xref"><span>Sección B.5</span></a>.</p>
+<p>Documentacion completa de las tres funciones en <a href="#sec-bio-contrastes" class="quarto-xref"><span class="quarto-unresolved-ref">sec-bio-contrastes</span></a>.</p>
 <div class="cell">
 <div id="lst-semana08-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
@@ -764,11 +773,11 @@ Test de Wilcoxon/Mann-Whithney para dos muestras independientes
 
 # Test ---
 
-  U = 279.000; Z = 2.831; W = 279.000; p = 0.005
+  U = 279.000; Z = 2.831; W = 279.000; p = 0.004
 
 # Tamaño del efecto ---
 
-  Diferencia de localización: -2.667    95%-IC = (-4.518, -0.778) 
+  Diferencia de localización: -2.668    95%-IC = (-4.518, -0.778) 
   r = 0.360  (criterio: 0.1 pequeño; 0.3 mediano; &gt;0.5 grande)
   Probabilidad de superioridad PS = 0.709
   (probabilidad de que un valor al azar de M1 sea &lt; a un valor al azar de M2) </code></pre>
@@ -783,7 +792,12 @@ Test de Wilcoxon/Mann-Whithney para dos muestras independientes
 <h2 data-number="8.3" class="anchored" data-anchor-id="sec-semana08-paired-test"><span class="header-section-number">8.3</span> Prueba t Pareada</h2>
 <section id="motivacion-y-formulacion" class="level3" data-number="8.3.1">
 <h3 data-number="8.3.1" class="anchored" data-anchor-id="motivacion-y-formulacion"><span class="header-section-number">8.3.1</span> Motivación y Formulación</h3>
-<p>En muchos estudios, las observaciones de dos muestras están <strong>apareadas</strong> (matched): - Medidas antes y después en los mismos sujetos - Observaciones de hermanos gemelos - Medidas en ambos ojos del mismo paciente</p>
+<p>En muchos estudios, las observaciones de dos muestras están <strong>apareadas</strong> (matched):</p>
+<ul>
+<li>Medidas antes y después en los mismos sujetos</li>
+<li>Observaciones de hermanos gemelos</li>
+<li>Medidas en ambos ojos del mismo paciente</li>
+</ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -835,7 +849,12 @@ Test de Wilcoxon/Mann-Whithney para dos muestras independientes
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Consideramos: - <strong>Bilateral:</strong> <span class="math inline">\(H_0: \sigma_1^2 = \sigma_2^2\)</span> vs.&nbsp;<span class="math inline">\(H_1: \sigma_1^2 \neq \sigma_2^2\)</span> - <strong>Unilateral derecha:</strong> <span class="math inline">\(H_0: \sigma_1^2 \leq \sigma_2^2\)</span> vs.&nbsp;<span class="math inline">\(H_1: \sigma_1^2 &gt; \sigma_2^2\)</span> - <strong>Unilateral izquierda:</strong> <span class="math inline">\(H_0: \sigma_1^2 \geq \sigma_2^2\)</span> vs.&nbsp;<span class="math inline">\(H_1: \sigma_1^2 &lt; \sigma_2^2\)</span></p>
+<p>Consideramos:</p>
+<ul>
+<li><strong>Bilateral:</strong> <span class="math inline">\(H_0: \sigma_1^2 = \sigma_2^2\)</span> vs.&nbsp;<span class="math inline">\(H_1: \sigma_1^2 \neq \sigma_2^2\)</span></li>
+<li><strong>Unilateral derecha:</strong> <span class="math inline">\(H_0: \sigma_1^2 \leq \sigma_2^2\)</span> vs.&nbsp;<span class="math inline">\(H_1: \sigma_1^2 &gt; \sigma_2^2\)</span></li>
+<li><strong>Unilateral izquierda:</strong> <span class="math inline">\(H_0: \sigma_1^2 \geq \sigma_2^2\)</span> vs.&nbsp;<span class="math inline">\(H_1: \sigma_1^2 &lt; \sigma_2^2\)</span></li>
+</ul>
 </div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -1114,7 +1133,12 @@ Test de Wilcoxon/Mann-Whithney para dos muestras independientes
 <div class="callout-body-container callout-body">
 <p>Para detectar una diferencia <span class="math inline">\(\delta = \mu_1 - \mu_2\)</span> entre dos muestras de igual tamaño:</p>
 <p><span class="math display">\[n = \frac{2\sigma^2 (z_{1-\alpha/2} + z_{1-\beta})^2}{\delta^2}\]</span></p>
-<p>donde: - <span class="math inline">\(z_{1-\alpha/2}\)</span> es el quantil normal para nivel de significancia <span class="math inline">\(\alpha\)</span> - <span class="math inline">\(z_{1-\beta}\)</span> es el quantil normal para potencia <span class="math inline">\(1-\beta\)</span> - <span class="math inline">\(\sigma^2\)</span> es la varianza (asumida igual en ambas muestras)</p>
+<p>donde:</p>
+<ul>
+<li><span class="math inline">\(z_{1-\alpha/2}\)</span> es el quantil normal para nivel de significancia <span class="math inline">\(\alpha\)</span></li>
+<li><span class="math inline">\(z_{1-\beta}\)</span> es el quantil normal para potencia <span class="math inline">\(1-\beta\)</span></li>
+<li><span class="math inline">\(\sigma^2\)</span> es la varianza (asumida igual en ambas muestras)</li>
+</ul>
 <p><strong>Ejemplo:</strong> Si <span class="math inline">\(\delta = 10\)</span>, <span class="math inline">\(\sigma = 15\)</span>, <span class="math inline">\(\alpha = 0.05\)</span>, <span class="math inline">\(1-\beta = 0.80\)</span>:</p>
 <p><span class="math display">\[z_{1-0.025} = 1.96, \quad z_{0.80} = 0.84\]</span></p>
 <p><span class="math display">\[n = \frac{2 \times 225 \times (1.96 + 0.84)^2}{100} = \frac{450 \times 6.4}{100} \approx 28.8 \approx 29 \text{ por grupo}\]</span></p>
@@ -1123,7 +1147,7 @@ Test de Wilcoxon/Mann-Whithney para dos muestras independientes
 </section>
 <section id="sec-semana08-bio-power" class="level3" data-number="8.7.3">
 <h3 data-number="8.7.3" class="anchored" data-anchor-id="sec-semana08-bio-power"><span class="header-section-number">8.7.3</span> Cálculo con BioEstatR: <code>testt()</code> y <code>testp()</code></h3>
-<p>Las funciones <code>testt()</code> y <code>testp()</code> del paquete <code>BioEstatR</code> (ver <a href="apendiceB.html#sec-bio-contrastes" class="quarto-xref"><span>Sección B.5</span></a>) calculan <strong>simultáneamente</strong> el contraste de hipótesis, la <strong>potencia</strong> y el <strong>tamaño muestral</strong> necesario para detectar una diferencia mínima relevante <span class="math inline">\(\delta\)</span> (effect size en unidades de la variable).</p>
+<p>Las funciones <code>testt()</code> y <code>testp()</code> del paquete <code>BioEstatR</code> (ver <a href="#sec-bio-contrastes" class="quarto-xref"><span class="quarto-unresolved-ref">sec-bio-contrastes</span></a>) calculan <strong>simultáneamente</strong> el contraste de hipótesis, la <strong>potencia</strong> y el <strong>tamaño muestral</strong> necesario para detectar una diferencia mínima relevante <span class="math inline">\(\delta\)</span> (effect size en unidades de la variable).</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1762,7 +1786,7 @@ Cuadro&nbsp;8.15: Código R
 <p>Los contrastes asintóticos basados en el Teorema Central del Límite —como el t-test y el F-test— requieren verificar dos condiciones: (1) normalidad de los datos o residuos, y (2) igualdad de varianzas entre grupos. Con <span class="math inline">\(n \geq 60\)</span> el TCL garantiza normalidad asintótica de la media, pero para muestras menores conviene comprobarlo formalmente.</p>
 <section id="test-de-shapiro-wilk-normalidad" class="level3" data-number="8.12.1">
 <h3 data-number="8.12.1" class="anchored" data-anchor-id="test-de-shapiro-wilk-normalidad"><span class="header-section-number">8.12.1</span> Test de Shapiro-Wilk: Normalidad</h3>
-<p>El test de Shapiro-Wilk <span class="citation" data-cites="Shapiro1965">(<a href="../references.html#ref-Shapiro1965" role="doc-biblioref">Shapiro &amp; Wilk, 1965</a>)</span> es la prueba de normalidad más potente para muestras pequeñas y moderadas (<span class="math inline">\(n \leq 5000\)</span>).</p>
+<p>El test de Shapiro-Wilk <span class="citation" data-cites="Shapiro1965">(<a href="#ref-Shapiro1965" role="doc-biblioref">Shapiro &amp; Wilk, 1965</a>)</span> es la prueba de normalidad más potente para muestras pequeñas y moderadas (<span class="math inline">\(n \leq 5000\)</span>).</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1847,7 +1871,7 @@ data:  osteo$edad
 W = 0.9, p-value = 0.000005</code></pre>
 </div>
 </div>
-<p><strong>Interpretación:</strong> Con <span class="math inline">\(W = 0.907\)</span> y <span class="math inline">\(p &lt; 0.001\)</span>, rechazamos normalidad (<span class="math inline">\(\alpha = 0.05\)</span>). Para alternativas cuando no hay normalidad y <span class="math inline">\(n &lt; 60\)</span>, ver <span class="quarto-unresolved-ref">?sec-semana12-bootstrap</span>.</p>
+<p><strong>Interpretación:</strong> Con <span class="math inline">\(W = 0.907\)</span> y <span class="math inline">\(p &lt; 0.001\)</span>, rechazamos normalidad (<span class="math inline">\(\alpha = 0.05\)</span>). Para alternativas cuando no hay normalidad y <span class="math inline">\(n &lt; 60\)</span>, ver <a href="#sec-semana12-bootstrap" class="quarto-xref"><span class="quarto-unresolved-ref">sec-semana12-bootstrap</span></a>.</p>
 </div>
 </div>
 </section>
@@ -1950,7 +1974,7 @@ Bartlett's K-squared = 11, df = 2, p-value = 0.004</code></pre>
 </tr>
 </tbody>
 </table>
-<p><strong>TCL:</strong> Con <span class="math inline">\(n \geq 60\)</span>, el t-test es robusto a la no normalidad <span class="citation" data-cites="Casella2002">(<a href="../references.html#ref-Casella2002" role="doc-biblioref">Casella &amp; Berger, 2002</a>)</span>. Para <span class="math inline">\(n &lt; 60\)</span> y datos no normales, ver métodos bootstrap en <span class="quarto-unresolved-ref">?sec-semana12-bootstrap</span>.</p>
+<p><strong>TCL:</strong> Con <span class="math inline">\(n \geq 60\)</span>, el t-test es robusto a la no normalidad <span class="citation" data-cites="Casella2002">(<a href="#ref-Casella2002" role="doc-biblioref">Casella &amp; Berger, 2002</a>)</span>. Para <span class="math inline">\(n &lt; 60\)</span> y datos no normales, ver métodos bootstrap en <a href="#sec-semana12-bootstrap" class="quarto-xref"><span class="quarto-unresolved-ref">sec-semana12-bootstrap</span></a>.</p>
 </div>
 </div>
 <hr>
@@ -1958,7 +1982,7 @@ Bartlett's K-squared = 11, df = 2, p-value = 0.004</code></pre>
 </section>
 <section id="sec-semana9-bootstrap" class="level2" data-number="8.13">
 <h2 data-number="8.13" class="anchored" data-anchor-id="sec-semana9-bootstrap"><span class="header-section-number">8.13</span> Bootstrap y Métodos Robustos como Alternativas</h2>
-<p>Cuando el test de Shapiro-Wilk rechaza normalidad <strong>y</strong> el tamaño muestral es insuficiente para garantizar el TCL (<span class="math inline">\(n &lt; 60\)</span>), los métodos clásicos basados en la distribución <span class="math inline">\(t\)</span> o <span class="math inline">\(F\)</span> pueden producir inferencias incorrectas. El <strong>bootstrap</strong> y los <strong>tests de permutación</strong> son alternativas válidas que no requieren supuestos distribucionales <span class="citation" data-cites="Chihara2019">(<a href="../references.html#ref-Chihara2019" role="doc-biblioref">Chihara &amp; Hesterberg, 2019</a>)</span>.</p>
+<p>Cuando el test de Shapiro-Wilk rechaza normalidad <strong>y</strong> el tamaño muestral es insuficiente para garantizar el TCL (<span class="math inline">\(n &lt; 60\)</span>), los métodos clásicos basados en la distribución <span class="math inline">\(t\)</span> o <span class="math inline">\(F\)</span> pueden producir inferencias incorrectas. El <strong>bootstrap</strong> y los <strong>tests de permutación</strong> son alternativas válidas que no requieren supuestos distribucionales <span class="citation" data-cites="Chihara2019">(<a href="#ref-Chihara2019" role="doc-biblioref">Chihara &amp; Hesterberg, 2019</a>)</span>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1972,13 +1996,13 @@ Bartlett's K-squared = 11, df = 2, p-value = 0.004</code></pre>
 <p>El bootstrap simula la distribución muestral de un estadístico <span class="math inline">\(\hat{\theta}\)</span> remuestreando <strong>con reemplazo</strong> de la muestra original.</p>
 <p><strong>Algoritmo del IC bootstrap por percentiles:</strong></p>
 <ol type="1">
-<li>Sea <span class="math inline">\(\mathbf{x} = (x_1, \ldots, x_n)\)</span> la muestra original.</li>
-<li>Para <span class="math inline">\(b = 1, \ldots, B\)</span> (con <span class="math inline">\(B = 10000\)</span> recomendado):
+<li><p>Sea <span class="math inline">\(\mathbf{x} = (x_1, \ldots, x_n)\)</span> la muestra original.</p></li>
+<li><p>Para <span class="math inline">\(b = 1, \ldots, B\)</span> (con <span class="math inline">\(B = 10000\)</span> recomendado):</p>
 <ul>
 <li>Generar muestra bootstrap <span class="math inline">\(\mathbf{x}^{(b)}\)</span>: extraer <span class="math inline">\(n\)</span> valores con reemplazo de <span class="math inline">\(\mathbf{x}\)</span></li>
 <li>Calcular <span class="math inline">\(\hat{\theta}^{(b)} = T(\mathbf{x}^{(b)})\)</span></li>
 </ul></li>
-<li>El IC al <span class="math inline">\((1-\alpha)\)</span>% por percentiles es: <span class="math display">\[\left[\hat{\theta}^{*}_{(\alpha/2)}, \; \hat{\theta}^{*}_{(1-\alpha/2)}\right]\]</span> donde los superíndices son cuantiles de la distribución bootstrap <span class="math inline">\(\{\hat{\theta}^{(b)}\}_{b=1}^{B}\)</span>.</li>
+<li><p>El IC al <span class="math inline">\((1-\alpha)\)</span>% por percentiles es: <span class="math display">\[\left[\hat{\theta}^{*}_{(\alpha/2)}, \; \hat{\theta}^{*}_{(1-\alpha/2)}\right]\]</span> donde los superíndices son cuantiles de la distribución bootstrap <span class="math inline">\(\{\hat{\theta}^{(b)}\}_{b=1}^{B}\)</span>.</p></li>
 </ol>
 <p>El <strong>método BCa</strong> (Bias-Corrected and Accelerated) ajusta por sesgo y asimetría — es más preciso y se recomienda para muestras pequeñas.</p>
 </div>
@@ -2013,7 +2037,7 @@ Bartlett's K-squared = 11, df = 2, p-value = 0.004</code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>El IMC de los pacientes masculinos del dataset <code>osteo</code> <strong>no sigue una distribución normal</strong> (Shapiro-Wilk: <span class="math inline">\(W = 0.924\)</span>, <span class="math inline">\(p = 0.006\)</span>). Implementamos el bootstrap <strong>manualmente con un bucle <code>for</code></strong> (estilo <span class="citation" data-cites="Chihara2019">Chihara &amp; Hesterberg (<a href="../references.html#ref-Chihara2019" role="doc-biblioref">2019</a>)</span>), siguiendo paso a paso el algoritmo de Efron. Después comparamos con el método BCa (paquete <code>boot</code>) y con el IC clásico <span class="math inline">\(t\)</span>.</p>
+<p>El IMC de los pacientes masculinos del dataset <code>osteo</code> <strong>no sigue una distribución normal</strong> (Shapiro-Wilk: <span class="math inline">\(W = 0.924\)</span>, <span class="math inline">\(p = 0.006\)</span>). Implementamos el bootstrap <strong>manualmente con un bucle <code>for</code></strong> (estilo <span class="citation" data-cites="Chihara2019">Chihara &amp; Hesterberg (<a href="#ref-Chihara2019" role="doc-biblioref">2019</a>)</span>), siguiendo paso a paso el algoritmo de Efron. Después comparamos con el método BCa (paquete <code>boot</code>) y con el IC clásico <span class="math inline">\(t\)</span>.</p>
 <div class="cell">
 <div id="lst-semana08-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
@@ -2343,7 +2367,7 @@ Cuadro&nbsp;8.29: Código R
 </tr>
 </tbody>
 </table>
-<p><strong>Referencia:</strong> <span class="citation" data-cites="Chihara2019">Chihara &amp; Hesterberg (<a href="../references.html#ref-Chihara2019" role="doc-biblioref">2019</a>)</span> proporciona una tratamiento riguroso de bootstrap y permutaciones con implementación completa en R, incluyendo la justificación teórica de cada método.</p>
+<p><strong>Referencia:</strong> <span class="citation" data-cites="Chihara2019">Chihara &amp; Hesterberg (<a href="#ref-Chihara2019" role="doc-biblioref">2019</a>)</span> proporciona una tratamiento riguroso de bootstrap y permutaciones con implementación completa en R, incluyendo la justificación teórica de cada método.</p>
 </div>
 </div>
 <hr>
@@ -2364,7 +2388,12 @@ Cuadro&nbsp;8.29: Código R
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Dadas dos muestras independientes de tamaños <span class="math inline">\(n_1\)</span> y <span class="math inline">\(n_2\)</span>: 1. Se combinan ambas muestras y se asignan rangos (de 1 a <span class="math inline">\(n_1+n_2\)</span>). 2. Se calcula la suma de rangos para cada grupo (<span class="math inline">\(R_1\)</span> y <span class="math inline">\(R_2\)</span>). 3. El estadístico <span class="math inline">\(U\)</span> es el mínimo de: <span class="math display">\[U_1 = n_1n_2 + \frac{n_1(n_1+1)}{2} - R_1, \quad U_2 = n_1n_2 + \frac{n_2(n_2+1)}{2} - R_2\]</span></p>
+<p>Dadas dos muestras independientes de tamaños <span class="math inline">\(n_1\)</span> y <span class="math inline">\(n_2\)</span>:</p>
+<ol type="1">
+<li>Se combinan ambas muestras y se asignan rangos (de 1 a <span class="math inline">\(n_1+n_2\)</span>).</li>
+<li>Se calcula la suma de rangos para cada grupo (<span class="math inline">\(R_1\)</span> y <span class="math inline">\(R_2\)</span>).</li>
+<li>El estadístico <span class="math inline">\(U\)</span> es el mínimo de: <span class="math display">\[U_1 = n_1n_2 + \frac{n_1(n_1+1)}{2} - R_1, \quad U_2 = n_1n_2 + \frac{n_2(n_2+1)}{2} - R_2\]</span></li>
+</ol>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -2415,7 +2444,7 @@ Test de Wilcoxon/Mann-Whithney para dos muestras independientes
 
 # Test ---
 
-  U = 1060.000; Z = 0.322; W = 1060.000; p = 0.751
+  U = 1060.000; Z = 0.322; W = 1060.000; p = 0.750
 
 # Tamaño del efecto ---
 
@@ -2501,7 +2530,7 @@ Test de Wilcoxon  para dos muestras apareadas
 
 # Test ---
 
-  V = 0.000; p = 0.006
+  V = 0.000; p = 0.002
   z = 2.803; p = 0.005
 
 # Correlación de Spearman ---
@@ -2511,7 +2540,7 @@ Test de Wilcoxon  para dos muestras apareadas
 # Tamaño del efecto ---
 
   Diferencia de localización:  (pseudo)mediana = -0.200    95%-IC = (-0.300, -0.100) 
-  r = 0.627; p = 0.006</code></pre>
+  r = 0.627; p = 0.002</code></pre>
 </div>
 </div>
 <p><strong>Interpretacion:</strong> Existe un aumento significativo en los niveles de calcio tras el tratamiento (<span class="math inline">\(p = 0.005\)</span>). El tamaño del efecto es grande (<span class="math inline">\(r = 0.627\)</span>, criterio convencional: <span class="math inline">\(r &gt; 0.5\)</span> grande).</p>
@@ -2610,7 +2639,7 @@ Kruskal-Wallis chi-squared = 17, df = 2, p-value = 0.0002</code></pre>
 </ul>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-Casella2002" class="csl-entry" role="listitem">
 Casella, G., &amp; Berger, R. L. (2002). <em>Statistical Inference</em> (2nd ed.). Duxbury Press.
 </div>

@@ -346,7 +346,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/semana11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span></a>
   </div>
 </li>
       </ul>
@@ -485,7 +485,11 @@ window.Quarto = {
 <section id="por-qué-necesitamos-medidas-de-dispersión" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="por-qué-necesitamos-medidas-de-dispersión"><span class="header-section-number">2.1.1</span> ¿Por qué necesitamos medidas de dispersión?</h3>
 <p>Es fundamental comprender que la media por sí sola no describe una distribución. Dos conjuntos de datos pueden compartir la misma media pero tener estructuras de dispersión radicalmente diferentes.</p>
-<p>Consideremos un ejemplo clínico: dos grupos de pacientes con niveles de glucosa en sangre (mg/dL) con la misma media (170 mg/dL): 1. <strong>Grupo A</strong>: Niveles muy homogéneos (todos cercanos a la media). 2. <strong>Grupo B</strong>: Niveles muy diversos (gran dispersión).</p>
+<p>Consideremos un ejemplo clínico: dos grupos de pacientes con niveles de glucosa en sangre (mg/dL) con la misma media (170 mg/dL):</p>
+<ol type="1">
+<li><strong>Grupo A</strong>: Niveles muy homogéneos (todos cercanos a la media).</li>
+<li><strong>Grupo B</strong>: Niveles muy diversos (gran dispersión).</li>
+</ol>
 <div class="cell">
 <div id="lst-semana02-media-var" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-summary="Igual media, distinta varianza">
 <figure class="quarto-float quarto-float-lst figure">
@@ -583,7 +587,12 @@ Cuadro&nbsp;2.1: Distribuciones con igual media pero distinta varianza
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>El rango es fácil de calcular, pero tiene importantes limitaciones: - Es muy sensible a valores atípicos (outliers) - Su valor aumenta con el tamaño de la muestra - No proporciona información sobre cómo se distribuyen los datos entre los extremos</p>
+<p>El rango es fácil de calcular, pero tiene importantes limitaciones:</p>
+<ul>
+<li>Es muy sensible a valores atípicos (outliers)</li>
+<li>Su valor aumenta con el tamaño de la muestra</li>
+<li>No proporciona información sobre cómo se distribuyen los datos entre los extremos</li>
+</ul>
 </div>
 </div>
 </section>
@@ -649,7 +658,7 @@ Cuadro&nbsp;2.1: Distribuciones con igual media pero distinta varianza
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>La función <code>grps()</code> calcula estadísticos descriptivos comparativos por grupos en una sola llamada (documentación completa en <a href="apendiceB.html#sec-bio-descriptivo" class="quarto-xref"><span>Sección B.2</span></a>):</p>
+<p>La función <code>grps()</code> calcula estadísticos descriptivos comparativos por grupos en una sola llamada (documentación completa en <a href="#sec-bio-descriptivo" class="quarto-xref"><span class="quarto-unresolved-ref">sec-bio-descriptivo</span></a>):</p>
 <div class="cell">
 <div id="lst-semana02-1" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
@@ -770,7 +779,11 @@ Cuadro&nbsp;2.6: Cálculos con Base R
 <div class="callout-body-container callout-body">
 <p>El <strong>Coeficiente de Variación (CV)</strong> es una medida de dispersión <strong>adimensional</strong> que permite comparar la variabilidad de variables con diferentes unidades o magnitudes. Se define como:</p>
 <p><span class="math display">\[CV = \left( \frac{s}{\bar{x}} \right) \times 100\]</span></p>
-<p>En medicina, es crucial: - <strong>Interpretación</strong>: Un CV bajo indica alta precisión o consistencia en la medición. - <strong>Comparación</strong>: Por ejemplo, si comparamos la variabilidad de la glucosa en sangre (mg/dL) con la variabilidad de la frecuencia cardíaca (latidos/min), el CV nos permite saber cuál medida es más “relativamente” dispersa, ignorando las unidades de medida.</p>
+<p>En medicina, es crucial:</p>
+<ul>
+<li><strong>Interpretación</strong>: Un CV bajo indica alta precisión o consistencia en la medición.</li>
+<li><strong>Comparación</strong>: Por ejemplo, si comparamos la variabilidad de la glucosa en sangre (mg/dL) con la variabilidad de la frecuencia cardíaca (latidos/min), el CV nos permite saber cuál medida es más “relativamente” dispersa, ignorando las unidades de medida.</li>
+</ul>
 </div>
 </div>
 </section>
@@ -824,7 +837,11 @@ Cuadro&nbsp;2.6: Cálculos con Base R
 </div>
 <div class="callout-body-container callout-body">
 <p>Supongamos que tenemos temperaturas en grados Celsius con media <span class="math inline">\(\bar{x} = 25\)</span> y desviación estándar <span class="math inline">\(s_x = 3\)</span>. Queremos convertirlas a Fahrenheit usando <span class="math inline">\(y = 32 + 1.8x\)</span>.</p>
-<p>Entonces: - <span class="math inline">\(\bar{y} = 32 + 1.8 \times 25 = 77°\text{F}\)</span> - <span class="math inline">\(s_y = |1.8| \times 3 = 5.4°\text{F}\)</span></p>
+<p>Entonces:</p>
+<ul>
+<li><span class="math inline">\(\bar{y} = 32 + 1.8 \times 25 = 77°\text{F}\)</span></li>
+<li><span class="math inline">\(s_y = |1.8| \times 3 = 5.4°\text{F}\)</span></li>
+</ul>
 <p>La media se desplaza y escala, pero la dispersión relativa (en términos de desviaciones estándar) permanece igual.</p>
 </div>
 </div>
@@ -1190,7 +1207,13 @@ x_m &amp; h_{m1} &amp; \cdots &amp; h_{mj} &amp; \cdots &amp; h_{mr} &amp; h_{m\
 \text{Total}_Y &amp; h_{\bullet 1} &amp; \cdots &amp; h_{\bullet j} &amp; \cdots &amp; h_{\bullet r} &amp; n
 \end{array}
 \]</span></p>
-<p>donde: - <span class="math inline">\(h_{ij}\)</span> es la <strong>frecuencia absoluta</strong> (número de casos con características <span class="math inline">\(x_i\)</span> e <span class="math inline">\(y_j\)</span>) - <span class="math inline">\(h_{i\bullet} = \sum_j h_{ij}\)</span> es la distribución marginal de <span class="math inline">\(X\)</span> - <span class="math inline">\(h_{\bullet j} = \sum_i h_{ij}\)</span> es la distribución marginal de <span class="math inline">\(Y\)</span> - <span class="math inline">\(f_{ij} = h_{ij}/n\)</span> es la <strong>frecuencia relativa</strong></p>
+<p>donde:</p>
+<ul>
+<li><span class="math inline">\(h_{ij}\)</span> es la <strong>frecuencia absoluta</strong> (número de casos con características <span class="math inline">\(x_i\)</span> e <span class="math inline">\(y_j\)</span>)</li>
+<li><span class="math inline">\(h_{i\bullet} = \sum_j h_{ij}\)</span> es la distribución marginal de <span class="math inline">\(X\)</span></li>
+<li><span class="math inline">\(h_{\bullet j} = \sum_i h_{ij}\)</span> es la distribución marginal de <span class="math inline">\(Y\)</span></li>
+<li><span class="math inline">\(f_{ij} = h_{ij}/n\)</span> es la <strong>frecuencia relativa</strong></li>
+</ul>
 </div>
 </div>
 </section>
@@ -2174,7 +2197,11 @@ Cuadro&nbsp;2.30: Código R para ECDF
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>En un estudio de cribado, se utilizan dos escalas distintas para medir el deterioro cognitivo. Un paciente obtiene las siguientes puntuaciones: - Escala A: 85 puntos (media = 75, desviación estándar = 10) - Escala B: 90 puntos (media = 80, desviación estándar = 15)</p>
+<p>En un estudio de cribado, se utilizan dos escalas distintas para medir el deterioro cognitivo. Un paciente obtiene las siguientes puntuaciones:</p>
+<ul>
+<li>Escala A: 85 puntos (media = 75, desviación estándar = 10)</li>
+<li>Escala B: 90 puntos (media = 80, desviación estándar = 15)</li>
+</ul>
 <ol type="a">
 <li>Calcula los z-scores para ambas escalas.</li>
 <li>¿En qué escala el deterioro del paciente es relativamente más severo?</li>

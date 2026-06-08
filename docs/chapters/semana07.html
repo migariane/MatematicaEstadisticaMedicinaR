@@ -346,7 +346,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/semana11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span></a>
   </div>
 </li>
       </ul>
@@ -701,7 +701,11 @@ window.Quarto = {
 <p><span class="math display">\[\beta(\theta) = P_\theta(T_n \in R)\]</span></p>
 <p>donde <span class="math inline">\(R\)</span> es la región de rechazo y <span class="math inline">\(P_\theta\)</span> significa “probabilidad cuando el verdadero valor del parámetro es <span class="math inline">\(\theta\)</span>”.</p>
 <p><strong>Interpretación:</strong> - Cuando <span class="math inline">\(\theta \in \Theta_0\)</span> (bajo <span class="math inline">\(H_0\)</span> verdadera): <span class="math inline">\(\beta(\theta)\)</span> es la probabilidad de Error Tipo I - Cuando <span class="math inline">\(\theta \in \Theta_1\)</span> (bajo <span class="math inline">\(H_1\)</span> verdadera): <span class="math inline">\(\beta(\theta) = 1 - P(\text{Error Tipo II})\)</span> es la <strong>potencia</strong></p>
-<p>Un buen contraste tiene: - Potencia cercana a 0 para <span class="math inline">\(\theta \in \Theta_0\)</span> (pocos falsos positivos) - Potencia cercana a 1 para <span class="math inline">\(\theta \in \Theta_1\)</span> (muchos verdaderos positivos)</p>
+<p>Un buen contraste tiene:</p>
+<ul>
+<li>Potencia cercana a 0 para <span class="math inline">\(\theta \in \Theta_0\)</span> (pocos falsos positivos)</li>
+<li>Potencia cercana a 1 para <span class="math inline">\(\theta \in \Theta_1\)</span> (muchos verdaderos positivos)</li>
+</ul>
 </div>
 </div>
 <hr>
@@ -882,7 +886,11 @@ window.Quarto = {
 <section id="derivación-de-la-distribución" class="level3" data-number="7.8.4">
 <h3 data-number="7.8.4" class="anchored" data-anchor-id="derivación-de-la-distribución"><span class="header-section-number">7.8.4</span> Derivación de la Distribución</h3>
 <p>Empezamos con: <span class="math display">\[T = \frac{\bar{X} - \mu_0}{S/\sqrt{n}} = \frac{\frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}}}{\frac{S}{\sigma}} = \frac{Z}{\sqrt{\frac{C}{n-1}}}\]</span></p>
-<p>donde: - <span class="math inline">\(Z = \frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}} \sim N(0,1)\)</span> (normal estándar) - <span class="math inline">\(C = \frac{(n-1)S^2}{\sigma^2} \sim \chi^2_{n-1}\)</span> (chi-cuadrado con <span class="math inline">\(n-1\)</span> gl)</p>
+<p>donde:</p>
+<ul>
+<li><span class="math inline">\(Z = \frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}} \sim N(0,1)\)</span> (normal estándar)</li>
+<li><span class="math inline">\(C = \frac{(n-1)S^2}{\sigma^2} \sim \chi^2_{n-1}\)</span> (chi-cuadrado con <span class="math inline">\(n-1\)</span> gl)</li>
+</ul>
 <p>Por definición de la distribución t: Si <span class="math inline">\(Z \sim N(0,1)\)</span> y <span class="math inline">\(C \sim \chi^2_k\)</span> son independientes, entonces <span class="math inline">\(\frac{Z}{\sqrt{C/k}} \sim t_k\)</span>.</p>
 <p>Por lo tanto: <span class="math inline">\(T \sim t_{n-1}\)</span></p>
 </section>
@@ -1153,7 +1161,7 @@ mean of x
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Documentación completa de ambas funciones en <a href="apendiceB.html#sec-bio-contrastes" class="quarto-xref"><span>Sección B.5</span></a>.</p>
+<p>Documentación completa de ambas funciones en <a href="#sec-bio-contrastes" class="quarto-xref"><span class="quarto-unresolved-ref">sec-bio-contrastes</span></a>.</p>
 <div class="cell">
 <div id="lst-semana08-2" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
@@ -1336,7 +1344,12 @@ Cuadro&nbsp;7.9: Código R
 </tr>
 </tbody>
 </table>
-<p>Con <span class="math inline">\(\alpha = 0.05\)</span>: - Región de rechazo bilateral: <span class="math inline">\(\{0, 1\} \cup \{9, 10\}\)</span> - Como <span class="math inline">\(x = 9\)</span> está en la región de rechazo, rechazamos <span class="math inline">\(H_0\)</span> - p-valor: <span class="math inline">\(P(X \leq 1) + P(X \geq 9) = 0.0107 + (1 - 0.9893) = 0.0214\)</span></p>
+<p>Con <span class="math inline">\(\alpha = 0.05\)</span>:</p>
+<ul>
+<li>Región de rechazo bilateral: <span class="math inline">\(\{0, 1\} \cup \{9, 10\}\)</span></li>
+<li>Como <span class="math inline">\(x = 9\)</span> está en la región de rechazo, rechazamos <span class="math inline">\(H_0\)</span></li>
+<li>p-valor: <span class="math inline">\(P(X \leq 1) + P(X \geq 9) = 0.0107 + (1 - 0.9893) = 0.0214\)</span></li>
+</ul>
 <p><strong>Conclusión:</strong> La evidencia sugiere que la moneda no es justa (es significativamente sesgada hacia caras).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1460,13 +1473,27 @@ Cuadro&nbsp;7.13: Código R
 <div class="callout-body-container callout-body">
 <p>El <strong>valor-p</strong> (o <strong>p-value</strong>) es la probabilidad, calculada asumiendo que <span class="math inline">\(H_0\)</span> es verdadera, de obtener un valor del estadístico de prueba tan o más extremo que el valor observado.</p>
 <p><strong>Fórmula general:</strong> <span class="math display">\[\text{valor-p} = P(T \text{ sea tan o más extremo que } t_{obs} | H_0)\]</span></p>
-<p>donde “más extremo” depende del tipo de contraste: - <strong>Bilateral:</strong> <span class="math inline">\(P(|T| \geq |t_{obs}|)\)</span> - <strong>Unilateral derecha:</strong> <span class="math inline">\(P(T \geq t_{obs})\)</span> - <strong>Unilateral izquierda:</strong> <span class="math inline">\(P(T \leq t_{obs})\)</span></p>
+<p>donde “más extremo” depende del tipo de contraste:</p>
+<ul>
+<li><strong>Bilateral:</strong> <span class="math inline">\(P(|T| \geq |t_{obs}|)\)</span></li>
+<li><strong>Unilateral derecha:</strong> <span class="math inline">\(P(T \geq t_{obs})\)</span></li>
+<li><strong>Unilateral izquierda:</strong> <span class="math inline">\(P(T \leq t_{obs})\)</span></li>
+</ul>
 </div>
 </div>
 <section id="interpretación" class="level3" data-number="7.10.1">
 <h3 data-number="7.10.1" class="anchored" data-anchor-id="interpretación"><span class="header-section-number">7.10.1</span> Interpretación</h3>
-<p>El valor-p <strong>no es</strong>: - La probabilidad de que <span class="math inline">\(H_0\)</span> sea verdadera - La probabilidad de que <span class="math inline">\(H_1\)</span> sea verdadera - La probabilidad de haber cometido un error</p>
-<p>El valor-p <strong>es</strong>: - Una medida de compatibilidad entre los datos y <span class="math inline">\(H_0\)</span> - Un p-valor pequeño indica que los datos observados serían muy improbables si <span class="math inline">\(H_0\)</span> fuera verdadera</p>
+<p>El valor-p <strong>no es</strong>:</p>
+<ul>
+<li>La probabilidad de que <span class="math inline">\(H_0\)</span> sea verdadera</li>
+<li>La probabilidad de que <span class="math inline">\(H_1\)</span> sea verdadera</li>
+<li>La probabilidad de haber cometido un error</li>
+</ul>
+<p>El valor-p <strong>es</strong>:</p>
+<ul>
+<li>Una medida de compatibilidad entre los datos y <span class="math inline">\(H_0\)</span></li>
+<li>Un p-valor pequeño indica que los datos observados serían muy improbables si <span class="math inline">\(H_0\)</span> fuera verdadera</li>
+</ul>
 </section>
 <section id="regla-de-decisión" class="level3" data-number="7.10.2">
 <h3 data-number="7.10.2" class="anchored" data-anchor-id="regla-de-decisión"><span class="header-section-number">7.10.2</span> Regla de Decisión</h3>
@@ -1768,8 +1795,18 @@ probability of success
 <section id="implicaciones-para-errores" class="level3" data-number="7.13.2">
 <h3 data-number="7.13.2" class="anchored" data-anchor-id="implicaciones-para-errores"><span class="header-section-number">7.13.2</span> Implicaciones para Errores</h3>
 <p>La elección afecta a <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(\beta\)</span>:</p>
-<p>En contraste <strong>bilateral</strong> con <span class="math inline">\(\alpha = 0.05\)</span>: - Dividimos <span class="math inline">\(\alpha\)</span> en ambas colas: <span class="math inline">\(\alpha/2 = 0.025\)</span> en cada cola - Valor crítico es más grande (<span class="math inline">\(z_{0.975} = 1.96\)</span>) - Mayor <span class="math inline">\(\beta\)</span> (menos poder)</p>
-<p>En contraste <strong>unilateral</strong> con <span class="math inline">\(\alpha = 0.05\)</span>: - Toda <span class="math inline">\(\alpha = 0.05\)</span> va en una cola - Valor crítico es más pequeño (<span class="math inline">\(z_{0.95} = 1.645\)</span>) - Menor <span class="math inline">\(\beta\)</span> (más poder)</p>
+<p>En contraste <strong>bilateral</strong> con <span class="math inline">\(\alpha = 0.05\)</span>:</p>
+<ul>
+<li>Dividimos <span class="math inline">\(\alpha\)</span> en ambas colas: <span class="math inline">\(\alpha/2 = 0.025\)</span> en cada cola</li>
+<li>Valor crítico es más grande (<span class="math inline">\(z_{0.975} = 1.96\)</span>)</li>
+<li>Mayor <span class="math inline">\(\beta\)</span> (menos poder)</li>
+</ul>
+<p>En contraste <strong>unilateral</strong> con <span class="math inline">\(\alpha = 0.05\)</span>:</p>
+<ul>
+<li>Toda <span class="math inline">\(\alpha = 0.05\)</span> va en una cola</li>
+<li>Valor crítico es más pequeño (<span class="math inline">\(z_{0.95} = 1.645\)</span>)</li>
+<li>Menor <span class="math inline">\(\beta\)</span> (más poder)</li>
+</ul>
 <p><strong>Por eso es importante elegir antes:</strong> Si eliges unilateral después de ver los datos, estás “p-hacking” y aumentas falsamente el poder.</p>
 <hr>
 </section>
@@ -1966,7 +2003,13 @@ probability of success
 <p><strong>Ejercicio 6:</strong> - a) p-valor = 0.078 &gt; 0.05: No rechaza H₀ - b) p-valor = 0.078 &lt; 0.10: Rechaza H₀ con α=0.10 - c) Evidencia marginal contra H₀; resultados borderline - d) Porque no rechazar H₀ no significa que sea verdadera, solo que no hay evidencia suficiente en los datos</p>
 <hr>
 <p><strong>Fin de Semana 8: Contrastes de Hipótesis (Parte I)</strong></p>
-<p>En las próximas semanas estudiaremos: - Contrastes para diferencia de medias (dos muestras) - Contrastes para varianzas - ANOVA (análisis de varianza) - Contrastes para independencia</p>
+<p>En las próximas semanas estudiaremos:</p>
+<ul>
+<li>Contrastes para diferencia de medias (dos muestras)</li>
+<li>Contrastes para varianzas</li>
+<li>ANOVA (análisis de varianza)</li>
+<li>Contrastes para independencia</li>
+</ul>
 <hr>
 
 

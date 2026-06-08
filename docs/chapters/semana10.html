@@ -346,7 +346,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/semana11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span></a>
   </div>
 </li>
       </ul>
@@ -861,7 +861,12 @@ window.Quarto = {
 <li>Grupo B: <strong>ARA-II</strong> (antagonistas del receptor de angiotensina II, ej. losartán)</li>
 </ul>
 <p>La variable respuesta es la <strong>reducción de PAS</strong> (mmHg) al final del ensayo.</p>
-<p>Define variables indicadoras: - <span class="math inline">\(X_1 = 1\)</span> si se aplica IECA, 0 en caso contrario - <span class="math inline">\(X_2 = 1\)</span> si se aplica ARA-II, 0 en caso contrario - El placebo es la categoría de referencia (cuando <span class="math inline">\(X_1 = X_2 = 0\)</span>)</p>
+<p>Define variables indicadoras:</p>
+<ul>
+<li><span class="math inline">\(X_1 = 1\)</span> si se aplica IECA, 0 en caso contrario</li>
+<li><span class="math inline">\(X_2 = 1\)</span> si se aplica ARA-II, 0 en caso contrario</li>
+<li>El placebo es la categoría de referencia (cuando <span class="math inline">\(X_1 = X_2 = 0\)</span>)</li>
+</ul>
 <p>El modelo es: <span class="math display">\[Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + U_i\]</span></p>
 <p>donde:</p>
 <ul>
@@ -1224,10 +1229,7 @@ imc          1.670  2.427</code></pre>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-=== Factor de Inflación de Varianza (VIF) ===
-edad  imc 
-   1    1 
-VIF &lt; 5: sin multicolinealidad problemática</code></pre>
+[Instala el paquete 'car' para calcular el VIF: install.packages('car')]</code></pre>
 </div>
 </div>
 </section>
@@ -1567,7 +1569,7 @@ Tip
 </section>
 <section id="ejemplo-con-bioestatr-regresión-lineal-múltiple" class="level3" data-number="10.17.7">
 <h3 data-number="10.17.7" class="anchored" data-anchor-id="ejemplo-con-bioestatr-regresión-lineal-múltiple"><span class="header-section-number">10.17.7</span> Ejemplo con <code>BioEstatR</code>: regresión lineal múltiple</h3>
-<p>La función <code>rlm()</code> del paquete <code>BioEstatR</code> (ver <a href="apendiceB.html" class="quarto-xref"><span>Apéndice B</span></a>) extiende <code>rls()</code> al caso multivariante. Integra en una sola llamada la estimación de los coeficientes con intervalos de confianza, el coeficiente de determinación <span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2\)</span> ajustado, el test de normalidad de los residuos (Shapiro–Wilk) y los gráficos de diagnóstico (residuos <em>vs.</em> ajustados, Q–Q plot e histograma de residuos estandarizados).</p>
+<p>La función <code>rlm()</code> del paquete <code>BioEstatR</code> (ver <a href="#sec-apendiceB" class="quarto-xref"><span class="quarto-unresolved-ref">sec-apendiceB</span></a>) extiende <code>rls()</code> al caso multivariante. Integra en una sola llamada la estimación de los coeficientes con intervalos de confianza, el coeficiente de determinación <span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2\)</span> ajustado, el test de normalidad de los residuos (Shapiro–Wilk) y los gráficos de diagnóstico (residuos <em>vs.</em> ajustados, Q–Q plot e histograma de residuos estandarizados).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2248,8 +2250,8 @@ max    4.938   2.923
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/semana11.html" class="pagination-link" aria-label="Semana 11 — Análisis de Datos Categóricos">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/semana11.html" class="pagination-link" aria-label="Semana 11 — Análisis de Datos Categóricos">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

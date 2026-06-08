@@ -310,7 +310,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/semana11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span></a>
   </div>
 </li>
       </ul>
@@ -710,7 +710,13 @@ Mostrar respuesta 4.1 (solo instructor)
 </button>
 <div class="instructor-answer" style="display:none;">
 <p><strong>a) Estimación del modelo:</strong></p>
-<p>Primero calculamos estadísticos: - <span class="math inline">\(\bar{x} = 102.5\)</span>, <span class="math inline">\(\bar{y} = 186.25\)</span> - <span class="math inline">\(S_{xx} = \sum(x_i - \bar{x})^2 = 1512.5\)</span> - <span class="math inline">\(S_{xy} = \sum(x_i - \bar{x})(y_i - \bar{y}) = 3057.5\)</span> - <span class="math inline">\(S_{yy} = \sum(y_i - \bar{y})^2 = 6337.5\)</span></p>
+<p>Primero calculamos estadísticos:</p>
+<ul>
+<li><span class="math inline">\(\bar{x} = 102.5\)</span>, <span class="math inline">\(\bar{y} = 186.25\)</span></li>
+<li><span class="math inline">\(S_{xx} = \sum(x_i - \bar{x})^2 = 1512.5\)</span></li>
+<li><span class="math inline">\(S_{xy} = \sum(x_i - \bar{x})(y_i - \bar{y}) = 3057.5\)</span></li>
+<li><span class="math inline">\(S_{yy} = \sum(y_i - \bar{y})^2 = 6337.5\)</span></li>
+</ul>
 <p>Coeficiente de regresión: <span class="math display">\[\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{3057.5}{1512.5} \approx 2.021\]</span></p>
 <p>Ordenada en el origen: <span class="math display">\[\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} = 186.25 - 2.021 \times 102.5 \approx -22.41\]</span></p>
 <p><strong>Modelo estimado:</strong> <span class="math display">\[\hat{Y} = -22.41 + 2.021 X\]</span></p>

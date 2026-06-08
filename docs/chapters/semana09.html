@@ -346,7 +346,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/semana11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span></a>
   </div>
 </li>
       </ul>
@@ -608,7 +608,12 @@ window.Quarto = {
 </div>
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[Y_i = \beta_0 + \beta_1 X_i + U_i, \quad i = 1, \ldots, n\]</span></p>
-<p>donde: - <span class="math inline">\(\beta_0\)</span> es la <strong>ordenada en el origen</strong> (intercept): el valor esperado de <span class="math inline">\(Y\)</span> cuando <span class="math inline">\(X = 0\)</span> - <span class="math inline">\(\beta_1\)</span> es la <strong>pendiente</strong>: el cambio en el valor esperado de <span class="math inline">\(Y\)</span> cuando <span class="math inline">\(X\)</span> aumenta en una unidad - <span class="math inline">\(U_i\)</span> es el <strong>término de error</strong>: captura factores no observados y variación aleatoria</p>
+<p>donde:</p>
+<ul>
+<li><span class="math inline">\(\beta_0\)</span> es la <strong>ordenada en el origen</strong> (intercept): el valor esperado de <span class="math inline">\(Y\)</span> cuando <span class="math inline">\(X = 0\)</span></li>
+<li><span class="math inline">\(\beta_1\)</span> es la <strong>pendiente</strong>: el cambio en el valor esperado de <span class="math inline">\(Y\)</span> cuando <span class="math inline">\(X\)</span> aumenta en una unidad</li>
+<li><span class="math inline">\(U_i\)</span> es el <strong>término de error</strong>: captura factores no observados y variación aleatoria</li>
+</ul>
 <p>La <strong>función de regresión poblacional</strong> es: <span class="math display">\[E(Y|X = x) = \beta_0 + \beta_1 x\]</span></p>
 </div>
 </div>
@@ -640,7 +645,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Documentación completa en <a href="apendiceB.html#sec-bio-rls" class="quarto-xref"><span>Sección B.6.1</span></a>.</p>
+<p>Documentación completa en <a href="#sec-bio-rls" class="quarto-xref"><span class="quarto-unresolved-ref">sec-bio-rls</span></a>.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Mostrar el código</summary>
@@ -691,7 +696,12 @@ window.Quarto = {
 <div class="callout-body-container callout-body">
 <p>Los estimadores MCO minimizan:</p>
 <p><span class="math display">\[Q(b_0, b_1) = \sum_{i=1}^n (y_i - b_0 - b_1 x_i)^2\]</span></p>
-<p>Donde: - <span class="math inline">\(y_i\)</span> son los valores observados (PAS del paciente <span class="math inline">\(i\)</span>) - <span class="math inline">\(\hat{y}_i = b_0 + b_1 x_i\)</span> son los valores predichos por el modelo - El residuo estimado es <span class="math inline">\(\hat{u}_i = y_i - \hat{y}_i\)</span></p>
+<p>Donde:</p>
+<ul>
+<li><span class="math inline">\(y_i\)</span> son los valores observados (PAS del paciente <span class="math inline">\(i\)</span>)</li>
+<li><span class="math inline">\(\hat{y}_i = b_0 + b_1 x_i\)</span> son los valores predichos por el modelo</li>
+<li>El residuo estimado es <span class="math inline">\(\hat{u}_i = y_i - \hat{y}_i\)</span></li>
+</ul>
 <p>Así buscamos la línea que <strong>mejor ajusta</strong> los datos, minimizando las distancias verticales.</p>
 </div>
 </div>
@@ -720,7 +730,12 @@ window.Quarto = {
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[b_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2} = \frac{s_{xy}}{s_x^2}\]</span></p>
 <p><span class="math display">\[b_0 = \bar{y} - b_1 \bar{x}\]</span></p>
-<p>donde: - <span class="math inline">\(\bar{x} = \frac{1}{n}\sum x_i\)</span> y <span class="math inline">\(\bar{y} = \frac{1}{n}\sum y_i\)</span> son los promedios - <span class="math inline">\(s_{xy}\)</span> es la covarianza muestral de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> - <span class="math inline">\(s_x^2\)</span> es la varianza muestral de <span class="math inline">\(X\)</span></p>
+<p>donde:</p>
+<ul>
+<li><span class="math inline">\(\bar{x} = \frac{1}{n}\sum x_i\)</span> y <span class="math inline">\(\bar{y} = \frac{1}{n}\sum y_i\)</span> son los promedios</li>
+<li><span class="math inline">\(s_{xy}\)</span> es la covarianza muestral de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span></li>
+<li><span class="math inline">\(s_x^2\)</span> es la varianza muestral de <span class="math inline">\(X\)</span></li>
+</ul>
 </div>
 </div>
 </section>
@@ -744,7 +759,12 @@ window.Quarto = {
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[b_1 = r_{xy} \frac{s_y}{s_x}\]</span></p>
 <p>donde <span class="math inline">\(r_{xy} = \frac{s_{xy}}{s_x s_y}\)</span> es el coeficiente de correlación de Pearson.</p>
-<p><strong>Interpretación</strong>: - El coeficiente de regresión escala la correlación por el ratio de desviaciones estándar - Si <span class="math inline">\(s_x = s_y\)</span>, entonces <span class="math inline">\(b_1 = r_{xy}\)</span> - Regresión de <span class="math inline">\(X\)</span> sobre <span class="math inline">\(Y\)</span> es <strong>diferente</strong> de regresión de <span class="math inline">\(Y\)</span> sobre <span class="math inline">\(X\)</span></p>
+<p><strong>Interpretación</strong>:</p>
+<ul>
+<li>El coeficiente de regresión escala la correlación por el ratio de desviaciones estándar</li>
+<li>Si <span class="math inline">\(s_x = s_y\)</span>, entonces <span class="math inline">\(b_1 = r_{xy}\)</span></li>
+<li>Regresión de <span class="math inline">\(X\)</span> sobre <span class="math inline">\(Y\)</span> es <strong>diferente</strong> de regresión de <span class="math inline">\(Y\)</span> sobre <span class="math inline">\(X\)</span></li>
+</ul>
 <p><strong>Ejemplo médico</strong>: Si en un estudio de hipertensión la correlación entre edad y PAS es <span class="math inline">\(r = 0.71\)</span>, con <span class="math inline">\(s_{\text{PAS}} = 14.5\)</span> mmHg y <span class="math inline">\(s_{\text{edad}} = 15.9\)</span> años, la pendiente de regresión es: <span class="math inline">\(b_1 = 0.71 \times (14.5/15.9) = 0.65\)</span> mmHg/año.</p>
 </div>
 </div>
@@ -801,7 +821,13 @@ window.Quarto = {
 <p>Para regresión lineal simple:</p>
 <p><span class="math display">\[R^2 = r_{xy}^2\]</span></p>
 <p>donde <span class="math inline">\(r_{xy}\)</span> es el coeficiente de correlación de Pearson.</p>
-<p><strong>Propiedades</strong>: - <span class="math inline">\(0 \leq R^2 \leq 1\)</span> - <span class="math inline">\(R^2 = 1\)</span>: ajuste perfecto (todos los puntos en la línea) - <span class="math inline">\(R^2 = 0\)</span>: no hay relación lineal - <span class="math inline">\(R^2 = 0.50\)</span>: el 50% de la variabilidad en <span class="math inline">\(Y\)</span> es explicada por <span class="math inline">\(X\)</span></p>
+<p><strong>Propiedades</strong>:</p>
+<ul>
+<li><span class="math inline">\(0 \leq R^2 \leq 1\)</span></li>
+<li><span class="math inline">\(R^2 = 1\)</span>: ajuste perfecto (todos los puntos en la línea)</li>
+<li><span class="math inline">\(R^2 = 0\)</span>: no hay relación lineal</li>
+<li><span class="math inline">\(R^2 = 0.50\)</span>: el 50% de la variabilidad en <span class="math inline">\(Y\)</span> es explicada por <span class="math inline">\(X\)</span></li>
+</ul>
 </div>
 </div>
 <section id="ejemplo-presión-arterial-sistólica" class="level3" data-number="9.7.1">
@@ -870,7 +896,11 @@ window.Quarto = {
 </section>
 <section id="regla-de-decisión" class="level3" data-number="9.9.3">
 <h3 data-number="9.9.3" class="anchored" data-anchor-id="regla-de-decisión"><span class="header-section-number">9.9.3</span> Regla de decisión</h3>
-<p>A nivel de significancia <span class="math inline">\(\alpha\)</span>: - <strong>Rechazamos</strong> <span class="math inline">\(H_0\)</span> si <span class="math inline">\(|t| &gt; t_{1-\alpha/2, n-2}\)</span> (test bilateral) - <strong>Valor p</strong> = probabilidad de observar un valor tan extremo (o más) bajo <span class="math inline">\(H_0\)</span></p>
+<p>A nivel de significancia <span class="math inline">\(\alpha\)</span>:</p>
+<ul>
+<li><strong>Rechazamos</strong> <span class="math inline">\(H_0\)</span> si <span class="math inline">\(|t| &gt; t_{1-\alpha/2, n-2}\)</span> (test bilateral)</li>
+<li><strong>Valor p</strong> = probabilidad de observar un valor tan extremo (o más) bajo <span class="math inline">\(H_0\)</span></li>
+</ul>
 <p>Si <span class="math inline">\(n &gt; 30\)</span>, usamos la aproximación normal: <span class="math inline">\(t_{1-\alpha/2, n-2} \approx z_{1-\alpha/2}\)</span></p>
 </section>
 <section id="ejemplo-ilustrativo-pas-vs.-edad" class="level3" data-number="9.9.4">
@@ -936,7 +966,11 @@ window.Quarto = {
 </div>
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[\left[\hat{y}_{x_0} \pm t_{1-\alpha/2, n-2} \cdot s_u \sqrt{\frac{1}{n} + \frac{(x_0 - \bar{x})^2}{\sum_{i=1}^n (x_i - \bar{x})^2}}\right]\]</span></p>
-<p>donde: - <span class="math inline">\(\hat{y}_{x_0} = b_0 + b_1 x_0\)</span> es la PAS media predicha para edad <span class="math inline">\(x_0\)</span> - Este intervalo es más estrecho cerca de <span class="math inline">\(\bar{x}\)</span> (mayor precisión) y más ancho en edades extremas</p>
+<p>donde:</p>
+<ul>
+<li><span class="math inline">\(\hat{y}_{x_0} = b_0 + b_1 x_0\)</span> es la PAS media predicha para edad <span class="math inline">\(x_0\)</span></li>
+<li>Este intervalo es más estrecho cerca de <span class="math inline">\(\bar{x}\)</span> (mayor precisión) y más ancho en edades extremas</li>
+</ul>
 </div>
 </div>
 </section>
@@ -963,7 +997,11 @@ window.Quarto = {
 <div class="callout-body-container callout-body">
 <p>Los residuos estimados son: <span class="math display">\[\hat{u}_i = y_i - \hat{y}_i = y_i - b_0 - b_1 x_i\]</span></p>
 <p><strong>En contexto clínico</strong>: <span class="math inline">\(\hat{u}_i\)</span> es la diferencia entre la PAS observada del paciente <span class="math inline">\(i\)</span> y la que el modelo predice dado su edad. Un residuo grande positivo indica que el paciente tiene una PAS más elevada de lo esperado para su edad (posiblemente por otros factores de riesgo no incluidos).</p>
-<p>Propiedades: - Siempre tienen media cero: <span class="math inline">\(\bar{\hat{u}} = 0\)</span> - Representan la parte de <span class="math inline">\(Y\)</span> NO explicada por <span class="math inline">\(X\)</span></p>
+<p>Propiedades:</p>
+<ul>
+<li>Siempre tienen media cero: <span class="math inline">\(\bar{\hat{u}} = 0\)</span></li>
+<li>Representan la parte de <span class="math inline">\(Y\)</span> NO explicada por <span class="math inline">\(X\)</span></li>
+</ul>
 </div>
 </div>
 <section id="gráfico-de-residuos-vs.-valores-predichos" class="level3" data-number="9.11.1">
@@ -980,21 +1018,21 @@ window.Quarto = {
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><strong>Patrón ideal</strong>: nube de puntos aleatoria alrededor del cero, sin forma clara
+<li><p><strong>Patrón ideal</strong>: nube de puntos aleatoria alrededor del cero, sin forma clara</p>
 <ul>
 <li>Indica homocedasticidad y linealidad</li>
 </ul></li>
-<li><strong>Patrón “embudo” (varianza aumenta con la PAS predicha)</strong>:
+<li><p><strong>Patrón “embudo” (varianza aumenta con la PAS predicha)</strong>:</p>
 <ul>
 <li>Indica heteroscedasticidad (varianza no constante)</li>
 <li>Frecuente en estudios con datos de presión arterial en rangos muy amplios</li>
 </ul></li>
-<li><strong>Patrón curvo o no lineal</strong>:
+<li><p><strong>Patrón curvo o no lineal</strong>:</p>
 <ul>
 <li>Sugiere que la relación edad-PAS no es estrictamente lineal</li>
 <li>Podría requerir una transformación o la inclusión de <span class="math inline">\(X^2\)</span></li>
 </ul></li>
-<li><strong>Puntos muy alejados (outliers)</strong>:
+<li><p><strong>Puntos muy alejados (outliers)</strong>:</p>
 <ul>
 <li>Pacientes con PAS muy inusual para su edad (investigar: error de medida, enfermedad secundaria, fármaco no declarado)</li>
 </ul></li>
@@ -1016,16 +1054,16 @@ window.Quarto = {
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><strong>Puntos en línea recta diagonal</strong>:
+<li><p><strong>Puntos en línea recta diagonal</strong>:</p>
 <ul>
 <li>Los residuos son aproximadamente normales</li>
 </ul></li>
-<li><strong>Puntos en las colas no siguen la línea</strong>:
+<li><p><strong>Puntos en las colas no siguen la línea</strong>:</p>
 <ul>
 <li>Hay colas más pesadas o más ligeras que lo esperado</li>
 <li>Sugiere violación de normalidad</li>
 </ul></li>
-<li><strong>Forma de S o zigzag</strong>:
+<li><p><strong>Forma de S o zigzag</strong>:</p>
 <ul>
 <li>Distribución muy diferente de la normal</li>
 </ul></li>
@@ -1098,7 +1136,11 @@ window.Quarto = {
 <section id="ecuación-estimada" class="level3" data-number="9.12.4">
 <h3 data-number="9.12.4" class="anchored" data-anchor-id="ecuación-estimada"><span class="header-section-number">9.12.4</span> Ecuación estimada</h3>
 <p><span class="math display">\[\widehat{\text{Colesterol}}_i = 78.0 + 5.00 \times \text{IMC}_i\]</span></p>
-<p><strong>Interpretación clínica</strong>: - Por cada unidad adicional de IMC (1 kg/m²), el colesterol total aumenta en promedio <strong>5 mg/dL</strong> - Para un IMC de 30 kg/m² (obesidad tipo I): <span class="math inline">\(\widehat{\text{Colesterol}} = 78.0 + 5.00 \times 30 = 228\)</span> mg/dL</p>
+<p><strong>Interpretación clínica</strong>:</p>
+<ul>
+<li>Por cada unidad adicional de IMC (1 kg/m²), el colesterol total aumenta en promedio <strong>5 mg/dL</strong></li>
+<li>Para un IMC de 30 kg/m² (obesidad tipo I): <span class="math inline">\(\widehat{\text{Colesterol}} = 78.0 + 5.00 \times 30 = 228\)</span> mg/dL</li>
+</ul>
 </section>
 <section id="bondad-del-ajuste" class="level3" data-number="9.12.5">
 <h3 data-number="9.12.5" class="anchored" data-anchor-id="bondad-del-ajuste"><span class="header-section-number">9.12.5</span> Bondad del ajuste</h3>

@@ -366,7 +366,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/semana11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Semana 11 — Análisis de Datos Categóricos</span></span></a>
   </div>
 </li>
       </ul>
@@ -547,10 +547,19 @@ window.Quarto = {
 <section id="funcion-de-probabilidad-y-funcion-de-distribucion" class="level3" data-number="4.2.2">
 <h3 data-number="4.2.2" class="anchored" data-anchor-id="funcion-de-probabilidad-y-funcion-de-distribucion"><span class="header-section-number">4.2.2</span> Función de Probabilidad y Función de Distribución</h3>
 <p>Para variables <strong>discretas</strong>, la <strong>Función de Masa de Probabilidad (PMF)</strong> es: <span class="math display">\[P(X = x_i) = f(x_i)\]</span></p>
-<p>con propiedades: - <span class="math inline">\(f(x_i) \geq 0\)</span> para todo <span class="math inline">\(i\)</span> - <span class="math inline">\(\sum_i f(x_i) = 1\)</span></p>
+<p>con propiedades:</p>
+<ul>
+<li><span class="math inline">\(f(x_i) \geq 0\)</span> para todo <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(\sum_i f(x_i) = 1\)</span></li>
+</ul>
 <p>Para variables <strong>continuas</strong>, la <strong>Función de Densidad de Probabilidad (PDF)</strong> es: <span class="math display">\[f(x) \geq 0 \text{ para todo } x\]</span> <span class="math display">\[\int_{-\infty}^{+\infty} f(x) \, dx = 1\]</span></p>
 <p>La <strong>Función de Distribución Acumulada (CDF)</strong> es: <span class="math display">\[F(x) = P(X \leq x)\]</span></p>
-<p>con propiedades: - <span class="math inline">\(0 \leq F(x) \leq 1\)</span> - <span class="math inline">\(F\)</span> es no decreciente - <span class="math inline">\(\lim_{x \to -\infty} F(x) = 0\)</span> y <span class="math inline">\(\lim_{x \to +\infty} F(x) = 1\)</span></p>
+<p>con propiedades:</p>
+<ul>
+<li><span class="math inline">\(0 \leq F(x) \leq 1\)</span></li>
+<li><span class="math inline">\(F\)</span> es no decreciente</li>
+<li><span class="math inline">\(\lim_{x \to -\infty} F(x) = 0\)</span> y <span class="math inline">\(\lim_{x \to +\infty} F(x) = 1\)</span></li>
+</ul>
 <p>Para variables continuas: <span class="math display">\[f(x) = \frac{dF(x)}{dx}\]</span></p>
 </section>
 </section>
@@ -811,10 +820,15 @@ Cuadro&nbsp;4.7: Cálculo comparativo discreto vs continuo
 <div class="callout-body-container callout-body">
 <p>La <strong>estandarización</strong> o <strong>normalización</strong> transforma una variable aleatoria para que tenga media 0 y varianza 1:</p>
 <p><span class="math display">\[Z = \frac{X - E(X)}{\sqrt{\text{Var}(X)}} = \frac{X - \mu_X}{\sigma_X}\]</span></p>
-<p>Propiedades de <span class="math inline">\(Z\)</span>:<br>
-- <span class="math inline">\(E(Z) = 0\)</span><br>
-- <span class="math inline">\(\text{Var}(Z) = 1\)</span><br>
-- <span class="math inline">\(Z\)</span> es adimensional (sin unidades)</p>
+<p>Propiedades de <span class="math inline">\(Z\)</span>:</p>
+<ul>
+<li><span class="math inline">\(E(Z) = 0\)</span><br>
+</li>
+<li><span class="math inline">\(\text{Var}(Z) = 1\)</span><br>
+</li>
+<li><span class="math inline">\(Z\)</span> es adimensional (sin unidades)<br>
+</li>
+</ul>
 </div>
 </div>
 </section>
@@ -833,7 +847,11 @@ Cuadro&nbsp;4.7: Cálculo comparativo discreto vs continuo
 </div>
 <div class="callout-body-container callout-body">
 <p>La <strong>función de probabilidad conjunta</strong> es: <span class="math display">\[P(X = x_i, Y = y_j) = f(x_i, y_j)\]</span></p>
-<p>con propiedades: - <span class="math inline">\(f(x_i, y_j) \geq 0\)</span> - <span class="math inline">\(\sum_i \sum_j f(x_i, y_j) = 1\)</span></p>
+<p>con propiedades:</p>
+<ul>
+<li><span class="math inline">\(f(x_i, y_j) \geq 0\)</span></li>
+<li><span class="math inline">\(\sum_i \sum_j f(x_i, y_j) = 1\)</span></li>
+</ul>
 <p>Las <strong>distribuciones marginales</strong> se obtienen sumando: <span class="math display">\[f(x_i) = P(X = x_i) = \sum_j f(x_i, y_j)\]</span> <span class="math display">\[f(y_j) = P(Y = y_j) = \sum_i f(x_i, y_j)\]</span></p>
 <p>La <strong>distribución condicional</strong> es: <span class="math display">\[P(X = x_i | Y = y_j) = \frac{f(x_i, y_j)}{f(y_j)}\]</span></p>
 </div>
@@ -887,7 +905,12 @@ Cuadro&nbsp;4.7: Cálculo comparativo discreto vs continuo
 <div class="callout-body-container callout-body">
 <p>La <strong>covarianza</strong> mide la variabilidad conjunta de dos variables aleatorias: <span class="math display">\[\text{Cov}(X, Y) = E[(X - E(X))(Y - E(Y))]\]</span></p>
 <p>Fórmula computacional: <span class="math display">\[\text{Cov}(X, Y) = E(XY) - E(X) \cdot E(Y)\]</span></p>
-<p>Propiedades: - <span class="math inline">\(\text{Cov}(X, X) = \text{Var}(X)\)</span> - Si <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> son independientes: <span class="math inline">\(\text{Cov}(X, Y) = 0\)</span> - <strong>Nota importante:</strong> <span class="math inline">\(\text{Cov}(X, Y) = 0\)</span> NO implica independencia</p>
+<p>Propiedades:</p>
+<ul>
+<li><span class="math inline">\(\text{Cov}(X, X) = \text{Var}(X)\)</span></li>
+<li>Si <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> son independientes: <span class="math inline">\(\text{Cov}(X, Y) = 0\)</span></li>
+<li><strong>Nota importante:</strong> <span class="math inline">\(\text{Cov}(X, Y) = 0\)</span> NO implica independencia</li>
+</ul>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -901,7 +924,13 @@ Cuadro&nbsp;4.7: Cálculo comparativo discreto vs continuo
 </div>
 <div class="callout-body-container callout-body">
 <p>El <strong>coeficiente de correlación</strong> (o coeficiente de correlación de Pearson) en una población es: <span class="math display">\[\rho(X, Y) = \text{Corr}(X, Y) = \frac{\text{Cov}(X, Y)}{\sigma_X \cdot \sigma_Y}\]</span></p>
-<p>Propiedades: - <span class="math inline">\(-1 \leq \rho(X, Y) \leq 1\)</span> - <span class="math inline">\(\rho = 1\)</span>: correlación positiva perfecta - <span class="math inline">\(\rho = 0\)</span>: no hay correlación lineal - <span class="math inline">\(\rho = -1\)</span>: correlación negativa perfecta</p>
+<p>Propiedades:</p>
+<ul>
+<li><span class="math inline">\(-1 \leq \rho(X, Y) \leq 1\)</span></li>
+<li><span class="math inline">\(\rho = 1\)</span>: correlación positiva perfecta</li>
+<li><span class="math inline">\(\rho = 0\)</span>: no hay correlación lineal</li>
+<li><span class="math inline">\(\rho = -1\)</span>: correlación negativa perfecta</li>
+</ul>
 </div>
 </div>
 </section>
@@ -1472,7 +1501,11 @@ Cuadro&nbsp;4.22: Código R
 <p><strong>Transformación Z (Estandarización):</strong></p>
 <p><span class="math display">\[Z = \frac{X - \mu}{\sigma}\]</span></p>
 <p>Si <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span>, entonces <span class="math inline">\(Z \sim N(0, 1)\)</span></p>
-<p>Esta transformación es fundamental porque: - Permite usar tablas únicas de probabilidades - Valores de <span class="math inline">\(Z\)</span> son directamente comparables entre variables diferentes</p>
+<p>Esta transformación es fundamental porque:</p>
+<ul>
+<li>Permite usar tablas únicas de probabilidades</li>
+<li>Valores de <span class="math inline">\(Z\)</span> son directamente comparables entre variables diferentes</li>
+</ul>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -1576,7 +1609,7 @@ Cuadro&nbsp;4.25: Código R
 </section>
 <section id="sec-semana04-normal-binom" class="level3" data-number="4.9.4">
 <h3 data-number="4.9.4" class="anchored" data-anchor-id="sec-semana04-normal-binom"><span class="header-section-number">4.9.4</span> Aproximación Normal a la Binomial y Corrección de Continuidad</h3>
-<p>Históricamente, cuando el cálculo manual o las tablas estadísticas eran las principales herramientas, la aproximación de distribuciones discretas (como la binomial) mediante distribuciones continuas (como la normal) era una técnica invaluable para estimar probabilidades. Esta aproximación, una aplicación directa del Teorema Central del Límite, permitía simplificar cálculos complejos. Sin embargo, con el advenimiento del software estadístico moderno, que utiliza algoritmos exactos (como la Función Beta Incompleta Regularizada para la binomial) con alta precisión computacional, el uso de estas aproximaciones para el cálculo de probabilidades exactas se ha vuelto menos recomendable. Aunque la aproximación sigue siendo fundamental para la comprensión teórica y para la derivación de métodos como los intervalos de confianza o tests Z para proporciones, para la obtención de valores de probabilidad específicos, se prefiere el cálculo directo para evitar posibles inexactitudes (véase <span class="citation" data-cites="Saad2020">Saad et&nbsp;al. (<a href="../references.html#ref-Saad2020" role="doc-biblioref">2020</a>)</span>).</p>
+<p>Históricamente, cuando el cálculo manual o las tablas estadísticas eran las principales herramientas, la aproximación de distribuciones discretas (como la binomial) mediante distribuciones continuas (como la normal) era una técnica invaluable para estimar probabilidades. Esta aproximación, una aplicación directa del Teorema Central del Límite, permitía simplificar cálculos complejos. Sin embargo, con el advenimiento del software estadístico moderno, que utiliza algoritmos exactos (como la Función Beta Incompleta Regularizada para la binomial) con alta precisión computacional, el uso de estas aproximaciones para el cálculo de probabilidades exactas se ha vuelto menos recomendable. Aunque la aproximación sigue siendo fundamental para la comprensión teórica y para la derivación de métodos como los intervalos de confianza o tests Z para proporciones, para la obtención de valores de probabilidad específicos, se prefiere el cálculo directo para evitar posibles inexactitudes (véase <span class="citation" data-cites="Saad2020">Saad et&nbsp;al. (<a href="#ref-Saad2020" role="doc-biblioref">2020</a>)</span>).</p>
 <p>La <strong>corrección de continuidad</strong> es un ajuste que mejora la aproximación al compensar el paso de una variable discreta a una continua. Cada barra del histograma binomial en <span class="math inline">\(k\)</span> ocupa el intervalo <span class="math inline">\([k - 0.5,\, k + 0.5]\)</span>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2147,9 +2180,12 @@ Cuadro&nbsp;4.34: Código R
 <h3 data-number="4.12.1" class="anchored" data-anchor-id="binomial-normal"><span class="header-section-number">4.12.1</span> Binomial → Normal</h3>
 <p>Ya la vimos anteriormente. Sin embargo, ahora la podemos ver como una de las aplicaciones más conocidas del Teorema Central del Límite. Cuando el número de ensayos (<span class="math inline">\(n\)</span>) es suficientemente grande, y la probabilidad de éxito (<span class="math inline">\(p\)</span>) no es extremadamente cercana a 0 o 1, la forma de la distribución Binomial se asemeja a la de una campana, característica de la distribución Normal.</p>
 <p><strong>Condiciones para la aproximación:</strong><br>
-La aproximación es generalmente considerada adecuada si se cumplen las siguientes condiciones:<br>
-- <span class="math inline">\(np \geq 5\)</span> (o <span class="math inline">\(np \geq 10\)</span> para una mejor aproximación)<br>
-- <span class="math inline">\(n(1-p) \geq 5\)</span> (o <span class="math inline">\(n(1-p) \geq 10\)</span> para una mejor aproximación)</p>
+La aproximación es generalmente considerada adecuada si se cumplen las siguientes condiciones:</p>
+<ul>
+<li><span class="math inline">\(np \geq 5\)</span> (o <span class="math inline">\(np \geq 10\)</span> para una mejor aproximación)<br>
+</li>
+<li><span class="math inline">\(n(1-p) \geq 5\)</span> (o <span class="math inline">\(n(1-p) \geq 10\)</span> para una mejor aproximación)</li>
+</ul>
 <p>Bajo estas condiciones, si <span class="math inline">\(X \sim B(n, p)\)</span>, entonces <span class="math inline">\(X\)</span> puede ser aproximada por <span class="math inline">\(Y \sim N(\mu = np, \sigma^2 = np(1-p))\)</span>.</p>
 <p><strong>Visualización:</strong></p>
 <p>Vamos a visualizar cómo la distribución Binomial se aproxima a la Normal a medida que <span class="math inline">\(n\)</span> aumenta. Consideremos una probabilidad de éxito <span class="math inline">\(p=0.5\)</span> (simétrica) y variemos <span class="math inline">\(n\)</span>.</p>
@@ -2247,7 +2283,10 @@ Cuadro&nbsp;4.36: Código R
 <section id="poisson-normal" class="level3" data-number="4.12.2">
 <h3 data-number="4.12.2" class="anchored" data-anchor-id="poisson-normal"><span class="header-section-number">4.12.2</span> Poisson → Normal</h3>
 <p>Similar a la Binomial, la distribución de Poisson también puede ser aproximada por la distribución Normal cuando su parámetro de tasa (<span class="math inline">\(\lambda\)</span>) es suficientemente grande. Esto se debe a que la distribución de Poisson puede verse como el límite de una Binomial cuando <span class="math inline">\(n \to \infty\)</span> y <span class="math inline">\(p \to 0\)</span> tal que <span class="math inline">\(np = \lambda\)</span>. Por lo tanto, el Teorema Central del Límite también juega un papel aquí.</p>
-<p><strong>Condiciones para la aproximación:</strong> La aproximación es generalmente aceptable si: * <span class="math inline">\(\lambda \geq 10\)</span> (o <span class="math inline">\(\lambda \geq 5\)</span> en algunos contextos, pero <span class="math inline">\(\lambda \geq 10\)</span> es más seguro para una buena aproximación).</p>
+<p><strong>Condiciones para la aproximación:</strong> La aproximación es generalmente aceptable si:</p>
+<ul>
+<li><span class="math inline">\(\lambda \geq 10\)</span> (o <span class="math inline">\(\lambda \geq 5\)</span> en algunos contextos, pero <span class="math inline">\(\lambda \geq 10\)</span> es más seguro para una buena aproximación).</li>
+</ul>
 <p>Bajo esta condición, si <span class="math inline">\(X \sim \text{Po}(\lambda)\)</span>, entonces <span class="math inline">\(X\)</span> puede ser aproximada por <span class="math inline">\(Y \sim N(\mu = \lambda, \sigma^2 = \lambda)\)</span>.</p>
 <p><strong>Ejemplo y Visualización:</strong></p>
 <p>Vamos a observar cómo la distribución de Poisson se asemeja a la Normal a medida que <span class="math inline">\(\lambda\)</span> aumenta.</p>
@@ -2352,8 +2391,10 @@ Cuadro&nbsp;4.38: Código R
 <section id="exponencial-poisson-dualidad-tiempo-conteo" class="level3" data-number="4.12.3">
 <h3 data-number="4.12.3" class="anchored" data-anchor-id="exponencial-poisson-dualidad-tiempo-conteo"><span class="header-section-number">4.12.3</span> Exponencial ↔︎ Poisson (dualidad tiempo-conteo)</h3>
 <p>La relación entre las distribuciones Exponencial y de Poisson es una de las dualidades más fundamentales en la teoría de procesos estocásticos, particularmente en los Procesos de Poisson. Un Proceso de Poisson describe el número de eventos que ocurren en un intervalo de tiempo fijo (con distribución de Poisson), mientras que la distribución Exponencial describe el tiempo entre eventos consecutivos (conocido como “tiempo de inter-llegada”) en un proceso de Poisson.</p>
-<p><strong>Conceptualización de la dualidad:</strong> - Si el número de eventos en un intervalo de tiempo <span class="math inline">\(t\)</span> sigue una distribución de Poisson con tasa <span class="math inline">\(\lambda\)</span>, es decir, <span class="math inline">\(N(t) \sim \text{Po}(\lambda t)\)</span>, entonces:<br>
-- El tiempo hasta que ocurre el primer evento (o el tiempo entre dos eventos consecutivos) sigue una distribución Exponencial con parámetro de tasa <span class="math inline">\(\lambda\)</span>.</p>
+<p><strong>Conceptualización de la dualidad:</strong> - Si el número de eventos en un intervalo de tiempo <span class="math inline">\(t\)</span> sigue una distribución de Poisson con tasa <span class="math inline">\(\lambda\)</span>, es decir, <span class="math inline">\(N(t) \sim \text{Po}(\lambda t)\)</span>, entonces:</p>
+<ul>
+<li>El tiempo hasta que ocurre el primer evento (o el tiempo entre dos eventos consecutivos) sigue una distribución Exponencial con parámetro de tasa <span class="math inline">\(\lambda\)</span>.</li>
+</ul>
 <p>Esta dualidad es crucial para modelar fenómenos como el tiempo de espera hasta el próximo cliente en una cola, el tiempo de vida de componentes electrónicos, o el tiempo entre mutaciones genéticas.</p>
 <p><strong>Ejemplo y Visualización:</strong></p>
 <p>Vamos a simular eventos de un Proceso de Poisson y luego examinar la distribución de los tiempos entre estos eventos para ver cómo se ajusta a una distribución Exponencial.</p>
@@ -2701,7 +2742,7 @@ Cuadro&nbsp;4.41: Código R
 </div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-Saad2020" class="csl-entry" role="listitem">
 Saad, F. A., Freer, C. E., Rinard, M. C., &amp; Mansinghka, V. K. (2020). Optimal Approximate Sampling from Discrete Probability Distributions. <em>Proceedings of the ACM on Programming Languages</em>, <em>4</em>(POPL). <a href="https://doi.org/10.1145/3371104">https://doi.org/10.1145/3371104</a>
 </div>
