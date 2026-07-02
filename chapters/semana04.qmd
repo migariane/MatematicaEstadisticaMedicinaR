@@ -1021,6 +1021,12 @@ legend("topright", legend=c("Simulación", "Normal teórica"),
 Aunque los datos originales son uniformes, las medias muestrales siguen una distribución aproximadamente normal.
 :::
 
+::: {.callout-tip}
+## Aplicación interactiva
+
+Explora el TCL de forma interactiva con la aplicación Shiny: [watzile.shinyapps.io/TeoreCLT](https://watzile.shinyapps.io/TeoreCLT/). Simula muestras desde distribuciones Normal, Uniforme, Exponencial y Bimodal, y observa cómo el histograma de promedios converge a la campana de Gauss paso a paso.
+:::
+
 
 ## Aproximaciones entre distribuciones vistas como aplicaciones del Teorema Central del Límite {#sec-semana04-aprox-tcl}
 
