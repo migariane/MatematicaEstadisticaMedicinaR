@@ -428,6 +428,12 @@ La optimización numérica recupera estimadores MLE de los parámetros de forma 
 
 Un intervalo de confianza proporciona un rango de valores plausibles para el parámetro desconocido, cuantificando la incertidumbre en nuestra estimación.
 
+::: {.callout-tip}
+## Aplicación interactiva — Intervalos de Confianza
+
+Practica la construcción de intervalos de confianza para medias y proporciones con la aplicación Shiny: [watzile.shinyapps.io/IntervalosConfianza](https://watzile.shinyapps.io/IntervalosConfianza/). Incluye calculadora de tamaño muestral, simulación de cobertura y visualización paso a paso.
+:::
+
 ### Definición de Intervalo de Confianza
 
 ::: {.callout-note}
