@@ -496,7 +496,7 @@ $$\text{Var}(\bar{X}) = \frac{\sigma^2}{n} \cdot \frac{N-n}{N-1}$$
 
 ::: {.callout-tip}
 ## Ejercicio 5.1: Varianza de la Media Muestral
-Un hospital desea estimar el peso medio al nacer de los neonatos en una región. De una población de 5000 nacimientos anuales, toma una muestra de 100. Se sabe que la desviación típica poblacional es $\sigma = 200$ gramos.
+Un hospital desea estimar el peso medio al nacer de los neonatos en una región. De una población de 5000 nacimientos anuales, selecciona mediante muestreo aleatorio simple sin reemplazo una muestra de 100 neonatos. Se sabe que la desviación típica poblacional es $\sigma = 200$ gramos.
 
 (a) Calcule la varianza de la media muestral $\bar{X}$.
 (b) Calcule el error estándar $\sigma(\bar{X})$.
@@ -506,12 +506,12 @@ Un hospital desea estimar el peso medio al nacer de los neonatos en una región
 
 ::: {.callout-tip}
 ## Ejercicio 5.2: Corrección por Población Finita
-Un centro de salud tiene 8,000 pensionistas a su cargo. Se desea estimar el gasto mensual medio por paciente en tratamientos anticoagulantes y protectores cardiovasculares avanzados. Se planea tomar una muestra de 320 pacientes. Sabiendo que el gasto medio estimado ronda los 65 euros y la desviación típica poblacional es de $\sigma = 45$ euros: 
+Un centro de salud tiene 8,000 pensionistas a su cargo. Se desea estimar el gasto mensual medio por paciente en tratamientos anticoagulantes y protectores cardiovasculares avanzados. Se planea seleccionar mediante muestreo aleatorio simple sin reemplazo una muestra de 320 pacientes. Sabiendo que el gasto medio estimado ronda los 65 euros y la desviación típica poblacional es de $\sigma = 45$ euros:
 
 (a) Calcule la fracción muestral $f$.
 (b) ¿Debería aplicarse la corrección por población finita?
 (c) Calcule $\text{Var}(\bar{X})$ con y sin corrección.
-(d) ¿Cuál es la diferencia porcentual?
+(d) ¿En qué porcentaje se reduce la varianza al aplicar la CPF, tomando como referencia la varianza sin corrección?
 :::
 
 ::: {.callout-tip}
@@ -520,8 +520,8 @@ Un candidato jefe de servicio quiere conocer el porcentaje de facultativos que l
 
 (a) Estime la proporción muestral $\hat{\pi}$.
 (b) Calcule $\sigma(\hat{\pi})$ asumiendo que la proporción poblacional verdadera es $\pi = 0.5$ (máxima incertidumbre).
-(c) Construya un intervalo del 95% alrededor de $\hat{\pi}$ usando la normalidad asintótica.
-(d) ¿Es compatible el verdadero apoyo de 50% con el sondeo observado?
+(c) Usando el error estándar obtenido en el apartado (b), construya un intervalo normal aproximado del 95% centrado en $\hat{\pi}$.
+(d) Según el intervalo obtenido en el apartado (c), ¿es compatible un apoyo poblacional del 50% con el sondeo observado?
 :::
 
 ::: {.callout-tip}
@@ -546,12 +546,12 @@ Una clínica desea estimar el peso medio de recién nacidos. Una muestra de 16
 
 ::: {.callout-tip}
 ## Ejercicio 5.6: Distribución Chi-Cuadrado y Varianza
-Se mide el contenido de grasa en leche de 25 muestras. La varianza muestral es $s^2 = 1.44$ (porcentaje al cuadrado). Asuma que el contenido sigue una distribución normal con varianza poblacional $\sigma^2 = 1.0$.
+Se mide el contenido de grasa en leche de 25 muestras. La varianza muestral es $s^2 = 1.44$ (porcentaje al cuadrado). Asuma que el contenido sigue una distribución normal y tome $\sigma^2 = 1.0$ como valor de referencia.
 
 (a) Calcule el estadístico $\chi^2 = \frac{(n-1)s^2}{\sigma^2}$.
 (b) ¿Cuál es la distribución de este estadístico?
 (c) ¿Cuál es la probabilidad de observar una varianza muestral mayor o igual a 1.44?
-(d) ¿Es la varianza observada compatible con $\sigma^2 = 1.0$?
+(d) Al nivel de significación del 5%, ¿hay evidencia de que la varianza poblacional sea mayor que $1.0$? Justifique su respuesta utilizando el resultado del apartado (c).
 :::
 
 ---
@@ -559,37 +559,61 @@ Se mide el contenido de grasa en leche de 25 muestras. La varianza muestral es $
 ## Respuestas a los Ejercicios {#sec-semana05-respuestas}
 
 **Ejercicio 5.1:**
-- (a) $\text{Var}(\bar{X}) = \frac{200^2}{100} \cdot \frac{5000-100}{5000-1} \approx 392.08$ g² (con CPF)
-- (b) $\sigma(\bar{X}) = \sqrt{392.08} \approx 19.80$ gramos
-- (c) Con $n=400$: $\text{Var}(\bar{X}) \approx 92.02$ g² y $\sigma(\bar{X}) \approx 9.59$ gramos
-- (d) Aumentar $n$ reduce el error estándar aproximadamente proporcional a $1/\sqrt{n}$
 
-**Ejercicio 5.2:**  
-- (a) $f = 320/8000 = 0.04$ (justo al borde)  
-- (b) Como $f = 0.04 < 0.05$, la corrección es pequeña pero aplicable  
-- (c) Sin CPF: $\text{Var} = 45^2/320 \approx 6.33$; Con CPF: $\text{Var} = 6.33 \times \dfrac{8000-320}{8000-1} \approx 6.08$ (diferencia ≈ 4%)
+- **(a)** $\text{Var}(\bar{X}) = \frac{200^2}{100} \cdot \frac{5000-100}{5000-1} \approx 392.08$ g² (con CPF).
+- **(b)** $\sigma(\bar{X}) = \sqrt{392.08} \approx 19.80$ gramos.
+- **(c)** Con $n=400$: $\text{Var}(\bar{X}) \approx 92.02$ g² y $\sigma(\bar{X}) \approx 9.59$ gramos.
+- **(d)** Aumentar $n$ reduce el error estándar aproximadamente proporcional a $1/\sqrt{n}$.
 
-**Ejercicio 5.3:**  
-- (a) $\hat{\pi} = 324/600 = 0.54$  
-- (b) $\sigma(\hat{\pi}) = \sqrt{0.5 \times 0.5 / 600} \approx 0.0204$  
-- (c) IC: $0.54 \pm 1.96 \times 0.0204 \approx [0.500, 0.580]$
-- (d) Sí, 0.50 está dentro del intervalo  
+**Ejercicio 5.2:**
 
-**Ejercicio 5.4:**  
-- (a) La distribución exponencial es sesgada a la derecha  
-- (b) $\bar{X} \approx N(2000, 40000)$ con $\sigma(\bar{X}) = 200$  
-- (c) $P(1900 < \bar{X} < 2100) = P(-0.5 < Z < 0.5) \approx 0.383$  
-- (d) $n \approx 1537$ para precisión de ±100 euros al 95%  
+- **(a)** $f = 320/8000 = 0.04 = 4\%$.
+- **(b)** Como $f = 0.04 < 0.05$, según la regla práctica no es imprescindible aplicar la CPF. No obstante, puede utilizarse para obtener el valor exacto bajo muestreo sin reemplazo.
+- **(c)** Sin CPF:
 
-**Ejercicio 5.5:**  
-- (a) $s(\bar{X}) = 400/\sqrt{16} = 100$ gramos  
-- (b) $t_{0.975, 15} \approx 2.131$  
-- (c) IC: $3500 \pm 2.131 \times 100 \approx [3287, 3713]$ gramos  
-- (d) Porque $\sigma$ es desconocida; la distribución t tiene colas más pesadas, reflejando incertidumbre adicional  
+  $$
+  \text{Var}(\bar{X}) = \frac{45^2}{320} \approx 6.33\ \text{€}^2.
+  $$
 
-**Ejercicio 5.6:**  
-- (a) $\chi^2 = (24 \times 1.44) / 1.0 = 34.56$  
-- (b) $\chi^2_{24}$  
-- (c) $P(\chi^2_{24} \geq 34.56) \approx 0.075$ (`1 - pchisq(34.56, 24)`)
-- (d) El valor es algo alto pero no rechazable al nivel 5% (el valor crítico es $\chi^2_{24,\,0.95} \approx 36.42$, mayor que 34.56)
+  Con CPF:
 
+  $$
+  \text{Var}(\bar{X}) = \frac{45^2}{320} \times \frac{8000-320}{8000-1} \approx 6.08\ \text{€}^2.
+  $$
+
+- **(d)** La CPF reduce la varianza aproximadamente un $3.99\%$ respecto de la varianza sin corrección.
+
+**Ejercicio 5.3:**
+
+- **(a)** $\hat{\pi} = 324/600 = 0.54$.
+- **(b)** $\sigma(\hat{\pi}) = \sqrt{0.5 \times 0.5 / 600} \approx 0.0204$.
+- **(c)** Usando el error estándar de (b):
+
+  $$
+  0.54 \pm 1.96 \sqrt{\frac{0.5 \times 0.5}{600}} \approx [0.49999, 0.58001].
+  $$
+
+  Redondeado a tres decimales, el intervalo es $[0.500, 0.580]$.
+
+- **(d)** Sí. Bajo esta aproximación, $0.50$ queda dentro del intervalo, aunque prácticamente sobre su límite inferior.
+
+**Ejercicio 5.4:**
+
+- **(a)** La distribución exponencial es sesgada a la derecha.
+- **(b)** $\bar{X} \approx N(2000, 40000)$ con $\sigma(\bar{X}) = 200$.
+- **(c)** $P(1900 < \bar{X} < 2100) = P(-0.5 < Z < 0.5) \approx 0.383$.
+- **(d)** Bajo la aproximación normal, se necesitan al menos $1537$ trabajadores; es decir, $n \geq 1537$.
+
+**Ejercicio 5.5:**
+
+- **(a)** $s(\bar{X}) = 400/\sqrt{16} = 100$ gramos.
+- **(b)** $t_{0.975, 15} \approx 2.131$.
+- **(c)** IC: $3500 \pm 2.131 \times 100 \approx [3287, 3713]$ gramos.
+- **(d)** Porque $\sigma$ es desconocida; la distribución t tiene colas más pesadas, reflejando incertidumbre adicional.
+
+**Ejercicio 5.6:**
+
+- **(a)** $\chi^2 = (24 \times 1.44) / 1.0 = 34.56$.
+- **(b)** $\chi^2_{24}$.
+- **(c)** $P(\chi^2_{24} \geq 34.56) \approx 0.075$ (`1 - pchisq(34.56, 24)`).
+- **(d)** Como $p = 0.0752 > 0.05$, no hay evidencia suficiente para concluir que la varianza poblacional sea mayor que $1.0$.
