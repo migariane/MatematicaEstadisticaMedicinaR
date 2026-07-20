@@ -1311,7 +1311,7 @@ c) Calcula la esperanza y varianza del número de curaciones.
 
 ### Ejercicio 2: Distribución Normal
 
-El colesterol LDL en una población sigue $N(130, 40)$ mg/dL.
+Sea $X$ el colesterol LDL, medido en mg/dL. Suponga que $X \sim N(\mu = 130, \sigma^2 = 40)$, donde $\sigma^2$ es la varianza expresada en $(\text{mg/dL})^2$.
 
 a) ¿Qué proporción de personas tienen LDL > 160 mg/dL (riesgo alto)?
 b) ¿Cuál es el percentil 90 del LDL?
@@ -1335,7 +1335,7 @@ c) ¿Qué tamaño de muestra se necesita para que el error estándar sea meno
 
 ### Ejercicio 5: Transformación Z
 
-Las medidas de glucosa en sangre siguen $N(100, 100)$ mg/dL.
+Sea $X$ la glucosa en sangre, medida en mg/dL. Suponga que $X \sim N(\mu = 100, \sigma^2 = 100)$, donde $\sigma^2$ es la varianza expresada en $(\text{mg/dL})^2$.
 
 a) Estandariza los valores 90, 100 y 120 mg/dL.
 b) ¿Qué valor original corresponde a z = -1.96?
@@ -1344,12 +1344,12 @@ c) Interpreta: "un paciente tiene z-score = 2.5".
 ## Respuestas a los Ejercicios {#sec-semana04-respuestas}
 
 **Ejercicio 1: Distribución Binomial**  
-- a) P(X=35) = C(50,35)(0.65)³⁵(0.35)¹⁵ ≈ 0.0622  
-- b) P(X≥40) = Σ P(X=k) para k=40..50 ≈ 0.0339  
+- a) P(X=35) = C(50,35)(0.65)³⁵(0.35)¹⁵ ≈ 0.0923\
+- b) P(X≥40) = Σ P(X=k) para k=40..50 ≈ 0.0160\
 - c) E[X] = np = 50×0.65 = 32.5; Var[X] = np(1-p) = 50×0.65×0.35 = 11.375  
 
-**Ejercicio 2: Distribución Normal N(130,40)**  
-- a) Z = (160-130)/√40 = 4.74; P(LDL>160) ≈ 0.0001 (muy raro)  
+**Ejercicio 2: Distribución Normal $N(\mu=130,\sigma^2=40)$**\
+- a) $Z = (160-130)/\sqrt{40} \approx 4.74$; $P(\text{LDL}>160) \approx 1.05\times10^{-6}$, equivalente aproximadamente a $0.000105\%$ (muy raro)\
 - b) P₉₀: z=1.28, LDL = 130 + 1.28√40 ≈ 130 + 8.1 = 138.1 mg/dL  
 - c) LDL = 130 + 1.5√40 ≈ 130 + 9.49 = 139.49 mg/dL  
 

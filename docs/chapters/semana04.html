@@ -2674,7 +2674,7 @@ Cuadro&nbsp;4.41: Código R
 </section>
 <section id="ejercicio-2-distribucion-normal" class="level3" data-number="4.15.2">
 <h3 data-number="4.15.2" class="anchored" data-anchor-id="ejercicio-2-distribucion-normal"><span class="header-section-number">4.15.2</span> Ejercicio 2: Distribución Normal</h3>
-<p>El colesterol LDL en una población sigue <span class="math inline">\(N(130, 40)\)</span> mg/dL.</p>
+<p>Sea <span class="math inline">\(X\)</span> el colesterol LDL, medido en mg/dL. Suponga que <span class="math inline">\(X \sim N(\mu = 130, \sigma^2 = 40)\)</span>, donde <span class="math inline">\(\sigma^2\)</span> es la varianza expresada en <span class="math inline">\((\text{mg/dL})^2\)</span>.</p>
 <ol type="a">
 <li>¿Qué proporción de personas tienen LDL &gt; 160 mg/dL (riesgo alto)?</li>
 <li>¿Cuál es el percentil 90 del LDL?</li>
@@ -2701,7 +2701,7 @@ Cuadro&nbsp;4.41: Código R
 </section>
 <section id="ejercicio-5-transformacion-z" class="level3" data-number="4.15.5">
 <h3 data-number="4.15.5" class="anchored" data-anchor-id="ejercicio-5-transformacion-z"><span class="header-section-number">4.15.5</span> Ejercicio 5: Transformación Z</h3>
-<p>Las medidas de glucosa en sangre siguen <span class="math inline">\(N(100, 100)\)</span> mg/dL.</p>
+<p>Sea <span class="math inline">\(X\)</span> la glucosa en sangre, medida en mg/dL. Suponga que <span class="math inline">\(X \sim N(\mu = 100, \sigma^2 = 100)\)</span>, donde <span class="math inline">\(\sigma^2\)</span> es la varianza expresada en <span class="math inline">\((\text{mg/dL})^2\)</span>.</p>
 <ol type="a">
 <li>Estandariza los valores 90, 100 y 120 mg/dL.</li>
 <li>¿Qué valor original corresponde a z = -1.96?</li>
@@ -2712,11 +2712,11 @@ Cuadro&nbsp;4.41: Código R
 <section id="sec-semana04-respuestas" class="level2" data-number="4.16">
 <h2 data-number="4.16" class="anchored" data-anchor-id="sec-semana04-respuestas"><span class="header-section-number">4.16</span> Respuestas a los Ejercicios</h2>
 <p><strong>Ejercicio 1: Distribución Binomial</strong><br>
-- a) P(X=35) = C(50,35)(0.65)³⁵(0.35)¹⁵ ≈ 0.0622<br>
-- b) P(X≥40) = Σ P(X=k) para k=40..50 ≈ 0.0339<br>
+- a) P(X=35) = C(50,35)(0.65)³⁵(0.35)¹⁵ ≈ 0.0923<br>
+- b) P(X≥40) = Σ P(X=k) para k=40..50 ≈ 0.0160<br>
 - c) E[X] = np = 50×0.65 = 32.5; Var[X] = np(1-p) = 50×0.65×0.35 = 11.375</p>
-<p><strong>Ejercicio 2: Distribución Normal N(130,40)</strong><br>
-- a) Z = (160-130)/√40 = 4.74; P(LDL&gt;160) ≈ 0.0001 (muy raro)<br>
+<p><strong>Ejercicio 2: Distribución Normal <span class="math inline">\(N(\mu=130,\sigma^2=40)\)</span></strong><br>
+- a) <span class="math inline">\(Z = (160-130)/\sqrt{40} \approx 4.74\)</span>; <span class="math inline">\(P(\text{LDL}&gt;160) \approx 1.05\times10^{-6}\)</span>, equivalente aproximadamente a <span class="math inline">\(0.000105\%\)</span> (muy raro)<br>
 - b) P₉₀: z=1.28, LDL = 130 + 1.28√40 ≈ 130 + 8.1 = 138.1 mg/dL<br>
 - c) LDL = 130 + 1.5√40 ≈ 130 + 9.49 = 139.49 mg/dL</p>
 <p><strong>Ejercicio 3: Distribución Poisson (λ=2.5)</strong><br>
