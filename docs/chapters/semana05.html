@@ -1152,7 +1152,7 @@ Advertencia
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Un hospital desea estimar el peso medio al nacer de los neonatos en una región.&nbsp;De una población de 5000 nacimientos anuales, toma una muestra de 100. Se sabe que la desviación típica poblacional es <span class="math inline">\(\sigma = 200\)</span> gramos.</p>
+<p>Un hospital desea estimar el peso medio al nacer de los neonatos en una región.&nbsp;De una población de 5000 nacimientos anuales, selecciona mediante muestreo aleatorio simple sin reemplazo una muestra de 100 neonatos. Se sabe que la desviación típica poblacional es <span class="math inline">\(\sigma = 200\)</span> gramos.</p>
 <ol type="a">
 <li>Calcule la varianza de la media muestral <span class="math inline">\(\bar{X}\)</span>.</li>
 <li>Calcule el error estándar <span class="math inline">\(\sigma(\bar{X})\)</span>.</li>
@@ -1171,12 +1171,12 @@ Advertencia
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Un centro de salud tiene 8,000 pensionistas a su cargo. Se desea estimar el gasto mensual medio por paciente en tratamientos anticoagulantes y protectores cardiovasculares avanzados. Se planea tomar una muestra de 320 pacientes. Sabiendo que el gasto medio estimado ronda los 65 euros y la desviación típica poblacional es de <span class="math inline">\(\sigma = 45\)</span> euros:</p>
+<p>Un centro de salud tiene 8,000 pensionistas a su cargo. Se desea estimar el gasto mensual medio por paciente en tratamientos anticoagulantes y protectores cardiovasculares avanzados. Se planea seleccionar mediante muestreo aleatorio simple sin reemplazo una muestra de 320 pacientes. Sabiendo que el gasto medio estimado ronda los 65 euros y la desviación típica poblacional es de <span class="math inline">\(\sigma = 45\)</span> euros:</p>
 <ol type="a">
 <li>Calcule la fracción muestral <span class="math inline">\(f\)</span>.</li>
 <li>¿Debería aplicarse la corrección por población finita?</li>
 <li>Calcule <span class="math inline">\(\text{Var}(\bar{X})\)</span> con y sin corrección.</li>
-<li>¿Cuál es la diferencia porcentual?</li>
+<li>¿En qué porcentaje se reduce la varianza al aplicar la CPF, tomando como referencia la varianza sin corrección?</li>
 </ol>
 </div>
 </div>
@@ -1194,8 +1194,8 @@ Advertencia
 <ol type="a">
 <li>Estime la proporción muestral <span class="math inline">\(\hat{\pi}\)</span>.</li>
 <li>Calcule <span class="math inline">\(\sigma(\hat{\pi})\)</span> asumiendo que la proporción poblacional verdadera es <span class="math inline">\(\pi = 0.5\)</span> (máxima incertidumbre).</li>
-<li>Construya un intervalo del 95% alrededor de <span class="math inline">\(\hat{\pi}\)</span> usando la normalidad asintótica.</li>
-<li>¿Es compatible el verdadero apoyo de 50% con el sondeo observado?</li>
+<li>Usando el error estándar obtenido en el apartado (b), construya un intervalo normal aproximado del 95% centrado en <span class="math inline">\(\hat{\pi}\)</span>.</li>
+<li>Según el intervalo obtenido en el apartado (c), ¿es compatible un apoyo poblacional del 50% con el sondeo observado?</li>
 </ol>
 </div>
 </div>
@@ -1247,12 +1247,12 @@ Advertencia
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Se mide el contenido de grasa en leche de 25 muestras. La varianza muestral es <span class="math inline">\(s^2 = 1.44\)</span> (porcentaje al cuadrado). Asuma que el contenido sigue una distribución normal con varianza poblacional <span class="math inline">\(\sigma^2 = 1.0\)</span>.</p>
+<p>Se mide el contenido de grasa en leche de 25 muestras. La varianza muestral es <span class="math inline">\(s^2 = 1.44\)</span> (porcentaje al cuadrado). Asuma que el contenido sigue una distribución normal y tome <span class="math inline">\(\sigma^2 = 1.0\)</span> como valor de referencia.</p>
 <ol type="a">
 <li>Calcule el estadístico <span class="math inline">\(\chi^2 = \frac{(n-1)s^2}{\sigma^2}\)</span>.</li>
 <li>¿Cuál es la distribución de este estadístico?</li>
 <li>¿Cuál es la probabilidad de observar una varianza muestral mayor o igual a 1.44?</li>
-<li>¿Es la varianza observada compatible con <span class="math inline">\(\sigma^2 = 1.0\)</span>?</li>
+<li>Al nivel de significación del 5%, ¿hay evidencia de que la varianza poblacional sea mayor que <span class="math inline">\(1.0\)</span>? Justifique su respuesta utilizando el resultado del apartado (c).</li>
 </ol>
 </div>
 </div>
@@ -1260,29 +1260,59 @@ Advertencia
 </section>
 <section id="sec-semana05-respuestas" class="level2" data-number="5.13">
 <h2 data-number="5.13" class="anchored" data-anchor-id="sec-semana05-respuestas"><span class="header-section-number">5.13</span> Respuestas a los Ejercicios</h2>
-<p><strong>Ejercicio 5.1:</strong> - (a) <span class="math inline">\(\text{Var}(\bar{X}) = \frac{200^2}{100} \cdot \frac{5000-100}{5000-1} \approx 392.08\)</span> g² (con CPF) - (b) <span class="math inline">\(\sigma(\bar{X}) = \sqrt{392.08} \approx 19.80\)</span> gramos - (c) Con <span class="math inline">\(n=400\)</span>: <span class="math inline">\(\text{Var}(\bar{X}) \approx 92.02\)</span> g² y <span class="math inline">\(\sigma(\bar{X}) \approx 9.59\)</span> gramos - (d) Aumentar <span class="math inline">\(n\)</span> reduce el error estándar aproximadamente proporcional a <span class="math inline">\(1/\sqrt{n}\)</span></p>
-<p><strong>Ejercicio 5.2:</strong><br>
-- (a) <span class="math inline">\(f = 320/8000 = 0.04\)</span> (justo al borde)<br>
-- (b) Como <span class="math inline">\(f = 0.04 &lt; 0.05\)</span>, la corrección es pequeña pero aplicable<br>
-- (c) Sin CPF: <span class="math inline">\(\text{Var} = 45^2/320 \approx 6.33\)</span>; Con CPF: <span class="math inline">\(\text{Var} = 6.33 \times \dfrac{8000-320}{8000-1} \approx 6.08\)</span> (diferencia ≈ 4%)</p>
-<p><strong>Ejercicio 5.3:</strong><br>
-- (a) <span class="math inline">\(\hat{\pi} = 324/600 = 0.54\)</span><br>
-- (b) <span class="math inline">\(\sigma(\hat{\pi}) = \sqrt{0.5 \times 0.5 / 600} \approx 0.0204\)</span><br>
-- (c) IC: <span class="math inline">\(0.54 \pm 1.96 \times 0.0204 \approx [0.500, 0.580]\)</span> - (d) Sí, 0.50 está dentro del intervalo</p>
-<p><strong>Ejercicio 5.4:</strong><br>
-- (a) La distribución exponencial es sesgada a la derecha<br>
-- (b) <span class="math inline">\(\bar{X} \approx N(2000, 40000)\)</span> con <span class="math inline">\(\sigma(\bar{X}) = 200\)</span><br>
-- (c) <span class="math inline">\(P(1900 &lt; \bar{X} &lt; 2100) = P(-0.5 &lt; Z &lt; 0.5) \approx 0.383\)</span><br>
-- (d) <span class="math inline">\(n \approx 1537\)</span> para precisión de ±100 euros al 95%</p>
-<p><strong>Ejercicio 5.5:</strong><br>
-- (a) <span class="math inline">\(s(\bar{X}) = 400/\sqrt{16} = 100\)</span> gramos<br>
-- (b) <span class="math inline">\(t_{0.975, 15} \approx 2.131\)</span><br>
-- (c) IC: <span class="math inline">\(3500 \pm 2.131 \times 100 \approx [3287, 3713]\)</span> gramos<br>
-- (d) Porque <span class="math inline">\(\sigma\)</span> es desconocida; la distribución t tiene colas más pesadas, reflejando incertidumbre adicional</p>
-<p><strong>Ejercicio 5.6:</strong><br>
-- (a) <span class="math inline">\(\chi^2 = (24 \times 1.44) / 1.0 = 34.56\)</span><br>
-- (b) <span class="math inline">\(\chi^2_{24}\)</span><br>
-- (c) <span class="math inline">\(P(\chi^2_{24} \geq 34.56) \approx 0.075\)</span> (<code>1 - pchisq(34.56, 24)</code>) - (d) El valor es algo alto pero no rechazable al nivel 5% (el valor crítico es <span class="math inline">\(\chi^2_{24,\,0.95} \approx 36.42\)</span>, mayor que 34.56)</p>
+<p><strong>Ejercicio 5.1:</strong></p>
+<ul>
+<li><strong>(a)</strong> <span class="math inline">\(\text{Var}(\bar{X}) = \frac{200^2}{100} \cdot \frac{5000-100}{5000-1} \approx 392.08\)</span> g² (con CPF).</li>
+<li><strong>(b)</strong> <span class="math inline">\(\sigma(\bar{X}) = \sqrt{392.08} \approx 19.80\)</span> gramos.</li>
+<li><strong>(c)</strong> Con <span class="math inline">\(n=400\)</span>: <span class="math inline">\(\text{Var}(\bar{X}) \approx 92.02\)</span> g² y <span class="math inline">\(\sigma(\bar{X}) \approx 9.59\)</span> gramos.</li>
+<li><strong>(d)</strong> Aumentar <span class="math inline">\(n\)</span> reduce el error estándar aproximadamente proporcional a <span class="math inline">\(1/\sqrt{n}\)</span>.</li>
+</ul>
+<p><strong>Ejercicio 5.2:</strong></p>
+<ul>
+<li><p><strong>(a)</strong> <span class="math inline">\(f = 320/8000 = 0.04 = 4\%\)</span>.</p></li>
+<li><p><strong>(b)</strong> Como <span class="math inline">\(f = 0.04 &lt; 0.05\)</span>, según la regla práctica no es imprescindible aplicar la CPF. No obstante, puede utilizarse para obtener el valor exacto bajo muestreo sin reemplazo.</p></li>
+<li><p><strong>(c)</strong> Sin CPF:</p>
+<p><span class="math display">\[
+\text{Var}(\bar{X}) = \frac{45^2}{320} \approx 6.33\ \text{€}^2.
+\]</span></p>
+<p>Con CPF:</p>
+<p><span class="math display">\[
+\text{Var}(\bar{X}) = \frac{45^2}{320} \times \frac{8000-320}{8000-1} \approx 6.08\ \text{€}^2.
+\]</span></p></li>
+<li><p><strong>(d)</strong> La CPF reduce la varianza aproximadamente un <span class="math inline">\(3.99\%\)</span> respecto de la varianza sin corrección.</p></li>
+</ul>
+<p><strong>Ejercicio 5.3:</strong></p>
+<ul>
+<li><p><strong>(a)</strong> <span class="math inline">\(\hat{\pi} = 324/600 = 0.54\)</span>.</p></li>
+<li><p><strong>(b)</strong> <span class="math inline">\(\sigma(\hat{\pi}) = \sqrt{0.5 \times 0.5 / 600} \approx 0.0204\)</span>.</p></li>
+<li><p><strong>(c)</strong> Usando el error estándar de (b):</p>
+<p><span class="math display">\[
+0.54 \pm 1.96 \sqrt{\frac{0.5 \times 0.5}{600}} \approx [0.49999, 0.58001].
+\]</span></p>
+<p>Redondeado a tres decimales, el intervalo es <span class="math inline">\([0.500, 0.580]\)</span>.</p></li>
+<li><p><strong>(d)</strong> Sí. Bajo esta aproximación, <span class="math inline">\(0.50\)</span> queda dentro del intervalo, aunque prácticamente sobre su límite inferior.</p></li>
+</ul>
+<p><strong>Ejercicio 5.4:</strong></p>
+<ul>
+<li><strong>(a)</strong> La distribución exponencial es sesgada a la derecha.</li>
+<li><strong>(b)</strong> <span class="math inline">\(\bar{X} \approx N(2000, 40000)\)</span> con <span class="math inline">\(\sigma(\bar{X}) = 200\)</span>.</li>
+<li><strong>(c)</strong> <span class="math inline">\(P(1900 &lt; \bar{X} &lt; 2100) = P(-0.5 &lt; Z &lt; 0.5) \approx 0.383\)</span>.</li>
+<li><strong>(d)</strong> Bajo la aproximación normal, se necesitan al menos <span class="math inline">\(1537\)</span> trabajadores; es decir, <span class="math inline">\(n \geq 1537\)</span>.</li>
+</ul>
+<p><strong>Ejercicio 5.5:</strong></p>
+<ul>
+<li><strong>(a)</strong> <span class="math inline">\(s(\bar{X}) = 400/\sqrt{16} = 100\)</span> gramos.</li>
+<li><strong>(b)</strong> <span class="math inline">\(t_{0.975, 15} \approx 2.131\)</span>.</li>
+<li><strong>(c)</strong> IC: <span class="math inline">\(3500 \pm 2.131 \times 100 \approx [3287, 3713]\)</span> gramos.</li>
+<li><strong>(d)</strong> Porque <span class="math inline">\(\sigma\)</span> es desconocida; la distribución t tiene colas más pesadas, reflejando incertidumbre adicional.</li>
+</ul>
+<p><strong>Ejercicio 5.6:</strong></p>
+<ul>
+<li><strong>(a)</strong> <span class="math inline">\(\chi^2 = (24 \times 1.44) / 1.0 = 34.56\)</span>.</li>
+<li><strong>(b)</strong> <span class="math inline">\(\chi^2_{24}\)</span>.</li>
+<li><strong>(c)</strong> <span class="math inline">\(P(\chi^2_{24} \geq 34.56) \approx 0.075\)</span> (<code>1 - pchisq(34.56, 24)</code>).</li>
+<li><strong>(d)</strong> Como <span class="math inline">\(p = 0.0752 &gt; 0.05\)</span>, no hay evidencia suficiente para concluir que la varianza poblacional sea mayor que <span class="math inline">\(1.0\)</span>.</li>
+</ul>
 
 
 </section>
