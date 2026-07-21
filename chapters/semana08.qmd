@@ -1056,47 +1056,135 @@ kruskal.test(imc ~ grupo_edad, data = osteo)
 
 ## Ejercicios {#sec-semana08-ejercicios}
 
-**Ejercicio 8.1:** Se comparan dos métodos de enseñanza en estadística. El Método A (n₁ = 30) tiene media 75 y desviación estándar 8. El Método B (n₂ = 35) tiene media 78 y desviación estándar 7. ¿Hay diferencia significativa entre los métodos a nivel α = 0.05? (Suponga varianzas iguales)
+::: {.callout-tip}
+## Ejercicio 8.1: Comparación de dos Medias
 
-**Ejercicio 8.2:** Un investigador mide presión arterial en 10 pacientes antes y después de tomar un medicamento. Las diferencias promedio son -5 mmHg con desviación estándar 8 mmHg. ¿Es el medicamento efectivo en reducir presión (prueba unilateral, α = 0.05)?
+Se comparan dos métodos de enseñanza en estadística mediante muestras independientes. Para el método A, $n_A=30$, $\bar{x}_A=75$ y $s_A=8$; para el método B, $n_B=35$, $\bar{x}_B=78$ y $s_B=7$. Suponga varianzas poblacionales iguales.
 
-**Ejercicio 8.3:** Se comparan dos proveedores de materia prima. Proveedor 1: S₁² = 15, n = 20. Proveedor 2: S₂² = 8, n₂ = 18. ¿Hay diferencia significativa en variabilidad (α = 0.05, bilateral)?
+(a) Formule las hipótesis para comparar las medias.
+(b) Calcule el estadístico t y el p-valor bilateral.
+(c) Determine si existe una diferencia significativa con $\alpha=0.05$.
+:::
 
-**Ejercicio 8.4:** Se diseña un estudio para detectar una diferencia de 12 puntos en una escala (σ = 10) con potencia 0.90 y α = 0.05. ¿Cuántos sujetos se necesitan por grupo?
+::: {.callout-tip}
+## Ejercicio 8.2: Comparación de Medidas Pareadas
 
-**Ejercicio 8.5:** Un investigador realiza 15 pruebas independientes con α = 0.05 sin corrección. ¿Cuál es la probabilidad aproximada de cometer al menos un Error Tipo I?
+Se mide la presión arterial de 10 pacientes antes y después de tomar un medicamento. Defina cada diferencia como $d=\text{presión después}-\text{presión antes}$. La media de las diferencias es $-5$ mmHg y su desviación estándar es 8 mmHg. Suponga que las diferencias siguen aproximadamente una distribución normal.
 
-**Ejercicio 8.6:** Interprete este resultado de R: `t.test(x, y, var.equal=FALSE)` da t = 2.34, df = 45.2, p-value = 0.024. ¿Qué conclusión saca?
+(a) Formule las hipótesis para evaluar una reducción media.
+(b) Calcule el estadístico t y el p-valor para un contraste unilateral.
+(c) Determine si hay evidencia de una reducción media de la presión con $\alpha=0.05$.
+:::
 
-**Ejercicio 8.7:** Un estudio observa media₁ = 100, media₂ = 105, pero el intervalo de confianza al 95% para la diferencia incluye cero. ¿Qué significa esto respecto a la significancia estadística y práctica?
+::: {.callout-tip}
+## Ejercicio 8.3: Comparación de Varianzas
 
-**Ejercicio 8.8:** Si el test de Shapiro-Wilk rechaza la normalidad en una muestra pequeña ($n=15$), ¿qué prueba utilizaría para comparar dos grupos independientes?
+Se comparan dos proveedores de materia prima mediante muestras independientes procedentes de poblaciones normales. Para el proveedor 1, $S_1^2=15$ y $n_1=20$; para el proveedor 2, $S_2^2=8$ y $n_2=18$.
 
-**Ejercicio 8.9:** ¿Cuál es la principal ventaja de la prueba de Kruskal-Wallis sobre el ANOVA de un factor?
+(a) Calcule el estadístico F y sus grados de libertad.
+(b) Realice un contraste bilateral con $\alpha=0.05$ para determinar si las varianzas poblacionales difieren.
+:::
 
-**Ejercicio 8.10:** En una muestra de 35 valores de presión arterial sistólica, el test de Shapiro-Wilk produce $W = 0.94$ con $p = 0.089$. ¿Es válido aplicar un test t de una muestra con $\alpha = 0.05$? ¿Cambiaría su decisión si $n = 75$?
+::: {.callout-tip}
+## Ejercicio 8.4: Tamaño Muestral y Potencia
+
+Se diseña un estudio con dos grupos independientes del mismo tamaño para detectar una diferencia de 12 puntos en una escala. Suponga una desviación estándar común de $\sigma=10$, potencia de 0.90 y un contraste bilateral con $\alpha=0.05$.
+
+¿Cuántos sujetos se necesitan por grupo según la aproximación normal?
+:::
+
+::: {.callout-tip}
+## Ejercicio 8.5: Multiplicidad
+
+Se realizan 15 pruebas independientes con $\alpha=0.05$ sin corrección. Suponiendo verdaderas las 15 hipótesis nulas, ¿cuál es la probabilidad aproximada de cometer al menos un error de tipo I?
+:::
+
+::: {.callout-tip}
+## Ejercicio 8.6: Interpretación de la Prueba de Welch
+
+La función `t.test(x, y, var.equal = FALSE)` produce $t=2.34$, 45.2 grados de libertad y un p-valor bilateral de 0.024. Interprete el resultado con $\alpha=0.05$.
+:::
+
+::: {.callout-tip}
+## Ejercicio 8.7: Significación Estadística y Práctica
+
+Un estudio obtiene $\bar{x}_1=100$ y $\bar{x}_2=105$, pero el intervalo de confianza del 95% para la diferencia de medias incluye cero.
+
+(a) ¿Qué implica este resultado respecto de la significación estadística?
+(b) ¿Puede determinarse con esta información si la diferencia es importante en la práctica?
+:::
+
+::: {.callout-tip}
+## Ejercicio 8.8: Alternativa no Paramétrica
+
+Al comparar dos grupos independientes, cada uno con $n=15$, las pruebas de Shapiro-Wilk rechazan la normalidad. ¿Qué prueba podría utilizarse como alternativa?
+:::
+
+::: {.callout-tip}
+## Ejercicio 8.9: Prueba de Kruskal-Wallis
+
+¿Cuál es la principal ventaja de la prueba de Kruskal-Wallis sobre el ANOVA de un factor?
+:::
+
+::: {.callout-tip}
+## Ejercicio 8.10: Normalidad y Prueba t
+
+En una muestra de 35 valores de presión arterial sistólica, el test de Shapiro-Wilk produce $W=0.94$ y $p=0.089$.
+
+(a) ¿Qué puede concluirse acerca de la normalidad?
+(b) ¿Es razonable aplicar una prueba t de una muestra con $\alpha=0.05$?
+(c) ¿Cómo cambiaría la valoración si $n=75$?
+:::
 
 ## Respuestas a los Ejercicios {#sec-semana08-respuestas}
 
-**Ejercicio 8.1:** t = (75-78)/√((29×64 + 34×49)/(63) × (1/30 + 1/35)) ≈ -1.81; df ≈ 63; p > 0.05. No hay diferencia significativa.
+**Ejercicio 8.1:**
 
-**Ejercicio 8.2:** t = -5/(8/√10) ≈ -1.98; df = 9; p ≈ 0.038 < 0.05. El medicamento es efectivo en reducir presión.
+(a) $H_0:\mu_A=\mu_B$ frente a $H_1:\mu_A\neq\mu_B$.
+(b) $s_p^2=[29(8^2)+34(7^2)]/63\approx55.9048$; por tanto, $t=(75-78)/\sqrt{55.9048(1/30+1/35)}\approx-1.6126$, con 63 grados de libertad y $p\approx0.1118$.
+(c) Como $p>0.05$, no se rechaza $H_0$; no hay evidencia suficiente de una diferencia entre las medias.
 
-**Ejercicio 8.3:** F = 15/8 = 1.875; df₁ = 19, df₂ = 17. F crítico ≈ 2.74. No rechaza H₀; no hay diferencia significativa en variabilidad.
+**Ejercicio 8.2:**
 
-**Ejercicio 8.4:** Usando fórmula de potencia: n ≈ 2×(10)²×(1.96 + 1.28)²/(12)² ≈ 29-30 sujetos por grupo.
+(a) $H_0:\mu_d\geq0$ frente a $H_1:\mu_d<0$.
+(b) $t=-5/(8/\sqrt{10})\approx-1.9764$, con 9 grados de libertad y $p\approx0.0398$ para la cola izquierda.
+(c) Como $p<0.05$, se rechaza $H_0$; hay evidencia de una reducción media de la presión arterial.
 
-**Ejercicio 8.5:** P(al menos 1 error) = 1 - (1-0.05)¹⁵ ≈ 1 - 0.463 = 0.537 (53.7%). El problema de multiplicidad es importante.
+**Ejercicio 8.3:**
 
-**Ejercicio 8.6:** t = 2.34, df = 45.2, p = 0.024 < 0.05. Se rechaza H₀. Hay diferencia significativa entre x e y (usando Welch's t-test por varianzas desiguales).
+(a) $F=15/8=1.875$, con 19 y 17 grados de libertad.
+(b) Para $H_0:\sigma_1^2=\sigma_2^2$, los límites críticos bilaterales son aproximadamente 0.3896 y 2.6331; de forma equivalente, $p\approx0.1983$. No se rechaza $H_0$; no hay evidencia suficiente de que las varianzas difieran.
 
-**Ejercicio 8.7:** Si el IC 95% incluye cero, la diferencia no es estadísticamente significativa (p > 0.05), aunque hay diferencia práctica de 5 unidades. Sin significancia estadística, no podemos afirmar que la diferencia poblacional es real.
+**Ejercicio 8.4:**
 
-**Ejercicio 8.8:** Utilizaría la prueba de Wilcoxon-Mann-Whitney (o un test de permutación).
+$n\approx2(10^2)(1.96+1.2816)^2/12^2\approx14.59$. Al redondear hacia arriba, se necesitan **15 sujetos por grupo**, es decir, 30 en total.
 
-**Ejercicio 8.9:** No requiere el supuesto de normalidad en los datos, siendo más robusta cuando hay outliers o distribuciones muy asimétricas.
+**Ejercicio 8.5:**
 
-**Ejercicio 8.10:** Con $p = 0.089 > 0.05$, **no rechazamos** $H_0$ de normalidad → el test t es válido. Con $n = 75$, el TCL garantiza normalidad asintótica de la media, por lo que el test t es válido independientemente del resultado de Shapiro-Wilk.
+$P(\text{al menos un error})=1-(1-0.05)^{15}\approx0.5367$, equivalente al 53.7%.
+
+**Ejercicio 8.6:**
+
+Como $0.024<0.05$, se rechaza $H_0:\mu_x=\mu_y$; hay evidencia de una diferencia entre las medias. La prueba de Welch no presupone varianzas iguales, pero su uso no demuestra que las varianzas sean diferentes.
+
+**Ejercicio 8.7:**
+
+(a) Al incluir cero, el intervalo no permite rechazar la igualdad de medias en un contraste bilateral con $\alpha=0.05$.
+(b) La diferencia observada es de 5 unidades, pero su importancia práctica no puede determinarse sin un criterio sustantivo y sin conocer los límites completos del intervalo.
+
+**Ejercicio 8.8:**
+
+Puede utilizarse la prueba de Wilcoxon-Mann-Whitney, que compara las distribuciones mediante rangos. Otra opción es una prueba de permutación adecuada al objetivo del análisis.
+
+**Ejercicio 8.9:**
+
+No requiere el supuesto de normalidad y, al trabajar con rangos, suele ser menos sensible a valores extremos y distribuciones asimétricas que el ANOVA de un factor.
+
+**Ejercicio 8.10:**
+
+(a) Como $p=0.089>0.05$, no hay evidencia suficiente para rechazar la normalidad; esto no demuestra que la población sea normal.
+(b) La prueba t puede ser razonable si las observaciones son independientes y no se observan asimetrías extremas ni valores atípicos graves. La decisión no debe basarse únicamente en Shapiro-Wilk.
+(c) Con $n=75$, la inferencia sobre la media suele ser más robusta por el teorema central del límite, siempre que se mantengan condiciones como independencia y varianza finita.
 
 ## Recursos Adicionales {#sec-semana08-resources}
 

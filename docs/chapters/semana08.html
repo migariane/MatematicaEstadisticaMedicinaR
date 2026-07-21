@@ -2606,29 +2606,201 @@ Kruskal-Wallis chi-squared = 17, df = 2, p-value = 0.0002</code></pre>
 </section>
 <section id="sec-semana08-ejercicios" class="level2" data-number="8.15">
 <h2 data-number="8.15" class="anchored" data-anchor-id="sec-semana08-ejercicios"><span class="header-section-number">8.15</span> Ejercicios</h2>
-<p><strong>Ejercicio 8.1:</strong> Se comparan dos métodos de enseñanza en estadística. El Método A (n₁ = 30) tiene media 75 y desviación estándar 8. El Método B (n₂ = 35) tiene media 78 y desviación estándar 7. ¿Hay diferencia significativa entre los métodos a nivel α = 0.05? (Suponga varianzas iguales)</p>
-<p><strong>Ejercicio 8.2:</strong> Un investigador mide presión arterial en 10 pacientes antes y después de tomar un medicamento. Las diferencias promedio son -5 mmHg con desviación estándar 8 mmHg. ¿Es el medicamento efectivo en reducir presión (prueba unilateral, α = 0.05)?</p>
-<p><strong>Ejercicio 8.3:</strong> Se comparan dos proveedores de materia prima. Proveedor 1: S₁² = 15, n = 20. Proveedor 2: S₂² = 8, n₂ = 18. ¿Hay diferencia significativa en variabilidad (α = 0.05, bilateral)?</p>
-<p><strong>Ejercicio 8.4:</strong> Se diseña un estudio para detectar una diferencia de 12 puntos en una escala (σ = 10) con potencia 0.90 y α = 0.05. ¿Cuántos sujetos se necesitan por grupo?</p>
-<p><strong>Ejercicio 8.5:</strong> Un investigador realiza 15 pruebas independientes con α = 0.05 sin corrección.&nbsp;¿Cuál es la probabilidad aproximada de cometer al menos un Error Tipo I?</p>
-<p><strong>Ejercicio 8.6:</strong> Interprete este resultado de R: <code>t.test(x, y, var.equal=FALSE)</code> da t = 2.34, df = 45.2, p-value = 0.024. ¿Qué conclusión saca?</p>
-<p><strong>Ejercicio 8.7:</strong> Un estudio observa media₁ = 100, media₂ = 105, pero el intervalo de confianza al 95% para la diferencia incluye cero. ¿Qué significa esto respecto a la significancia estadística y práctica?</p>
-<p><strong>Ejercicio 8.8:</strong> Si el test de Shapiro-Wilk rechaza la normalidad en una muestra pequeña (<span class="math inline">\(n=15\)</span>), ¿qué prueba utilizaría para comparar dos grupos independientes?</p>
-<p><strong>Ejercicio 8.9:</strong> ¿Cuál es la principal ventaja de la prueba de Kruskal-Wallis sobre el ANOVA de un factor?</p>
-<p><strong>Ejercicio 8.10:</strong> En una muestra de 35 valores de presión arterial sistólica, el test de Shapiro-Wilk produce <span class="math inline">\(W = 0.94\)</span> con <span class="math inline">\(p = 0.089\)</span>. ¿Es válido aplicar un test t de una muestra con <span class="math inline">\(\alpha = 0.05\)</span>? ¿Cambiaría su decisión si <span class="math inline">\(n = 75\)</span>?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 8.1: Comparación de dos Medias
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se comparan dos métodos de enseñanza en estadística mediante muestras independientes. Para el método A, <span class="math inline">\(n_A=30\)</span>, <span class="math inline">\(\bar{x}_A=75\)</span> y <span class="math inline">\(s_A=8\)</span>; para el método B, <span class="math inline">\(n_B=35\)</span>, <span class="math inline">\(\bar{x}_B=78\)</span> y <span class="math inline">\(s_B=7\)</span>. Suponga varianzas poblacionales iguales.</p>
+<ol type="a">
+<li>Formule las hipótesis para comparar las medias.</li>
+<li>Calcule el estadístico t y el p-valor bilateral.</li>
+<li>Determine si existe una diferencia significativa con <span class="math inline">\(\alpha=0.05\)</span>.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 8.2: Comparación de Medidas Pareadas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se mide la presión arterial de 10 pacientes antes y después de tomar un medicamento. Defina cada diferencia como <span class="math inline">\(d=\text{presión después}-\text{presión antes}\)</span>. La media de las diferencias es <span class="math inline">\(-5\)</span> mmHg y su desviación estándar es 8 mmHg. Suponga que las diferencias siguen aproximadamente una distribución normal.</p>
+<ol type="a">
+<li>Formule las hipótesis para evaluar una reducción media.</li>
+<li>Calcule el estadístico t y el p-valor para un contraste unilateral.</li>
+<li>Determine si hay evidencia de una reducción media de la presión con <span class="math inline">\(\alpha=0.05\)</span>.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 8.3: Comparación de Varianzas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se comparan dos proveedores de materia prima mediante muestras independientes procedentes de poblaciones normales. Para el proveedor 1, <span class="math inline">\(S_1^2=15\)</span> y <span class="math inline">\(n_1=20\)</span>; para el proveedor 2, <span class="math inline">\(S_2^2=8\)</span> y <span class="math inline">\(n_2=18\)</span>.</p>
+<ol type="a">
+<li>Calcule el estadístico F y sus grados de libertad.</li>
+<li>Realice un contraste bilateral con <span class="math inline">\(\alpha=0.05\)</span> para determinar si las varianzas poblacionales difieren.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 8.4: Tamaño Muestral y Potencia
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se diseña un estudio con dos grupos independientes del mismo tamaño para detectar una diferencia de 12 puntos en una escala. Suponga una desviación estándar común de <span class="math inline">\(\sigma=10\)</span>, potencia de 0.90 y un contraste bilateral con <span class="math inline">\(\alpha=0.05\)</span>.</p>
+<p>¿Cuántos sujetos se necesitan por grupo según la aproximación normal?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 8.5: Multiplicidad
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se realizan 15 pruebas independientes con <span class="math inline">\(\alpha=0.05\)</span> sin corrección. Suponiendo verdaderas las 15 hipótesis nulas, ¿cuál es la probabilidad aproximada de cometer al menos un error de tipo I?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 8.6: Interpretación de la Prueba de Welch
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La función <code>t.test(x, y, var.equal = FALSE)</code> produce <span class="math inline">\(t=2.34\)</span>, 45.2 grados de libertad y un p-valor bilateral de 0.024. Interprete el resultado con <span class="math inline">\(\alpha=0.05\)</span>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 8.7: Significación Estadística y Práctica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un estudio obtiene <span class="math inline">\(\bar{x}_1=100\)</span> y <span class="math inline">\(\bar{x}_2=105\)</span>, pero el intervalo de confianza del 95% para la diferencia de medias incluye cero.</p>
+<ol type="a">
+<li>¿Qué implica este resultado respecto de la significación estadística?</li>
+<li>¿Puede determinarse con esta información si la diferencia es importante en la práctica?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 8.8: Alternativa no Paramétrica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Al comparar dos grupos independientes, cada uno con <span class="math inline">\(n=15\)</span>, las pruebas de Shapiro-Wilk rechazan la normalidad. ¿Qué prueba podría utilizarse como alternativa?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 8.9: Prueba de Kruskal-Wallis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>¿Cuál es la principal ventaja de la prueba de Kruskal-Wallis sobre el ANOVA de un factor?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 8.10: Normalidad y Prueba t
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En una muestra de 35 valores de presión arterial sistólica, el test de Shapiro-Wilk produce <span class="math inline">\(W=0.94\)</span> y <span class="math inline">\(p=0.089\)</span>.</p>
+<ol type="a">
+<li>¿Qué puede concluirse acerca de la normalidad?</li>
+<li>¿Es razonable aplicar una prueba t de una muestra con <span class="math inline">\(\alpha=0.05\)</span>?</li>
+<li>¿Cómo cambiaría la valoración si <span class="math inline">\(n=75\)</span>?</li>
+</ol>
+</div>
+</div>
 </section>
 <section id="sec-semana08-respuestas" class="level2" data-number="8.16">
 <h2 data-number="8.16" class="anchored" data-anchor-id="sec-semana08-respuestas"><span class="header-section-number">8.16</span> Respuestas a los Ejercicios</h2>
-<p><strong>Ejercicio 8.1:</strong> t = (75-78)/√((29×64 + 34×49)/(63) × (1/30 + 1/35)) ≈ -1.81; df ≈ 63; p &gt; 0.05. No hay diferencia significativa.</p>
-<p><strong>Ejercicio 8.2:</strong> t = -5/(8/√10) ≈ -1.98; df = 9; p ≈ 0.038 &lt; 0.05. El medicamento es efectivo en reducir presión.</p>
-<p><strong>Ejercicio 8.3:</strong> F = 15/8 = 1.875; df₁ = 19, df₂ = 17. F crítico ≈ 2.74. No rechaza H₀; no hay diferencia significativa en variabilidad.</p>
-<p><strong>Ejercicio 8.4:</strong> Usando fórmula de potencia: n ≈ 2×(10)²×(1.96 + 1.28)²/(12)² ≈ 29-30 sujetos por grupo.</p>
-<p><strong>Ejercicio 8.5:</strong> P(al menos 1 error) = 1 - (1-0.05)¹⁵ ≈ 1 - 0.463 = 0.537 (53.7%). El problema de multiplicidad es importante.</p>
-<p><strong>Ejercicio 8.6:</strong> t = 2.34, df = 45.2, p = 0.024 &lt; 0.05. Se rechaza H₀. Hay diferencia significativa entre x e y (usando Welch’s t-test por varianzas desiguales).</p>
-<p><strong>Ejercicio 8.7:</strong> Si el IC 95% incluye cero, la diferencia no es estadísticamente significativa (p &gt; 0.05), aunque hay diferencia práctica de 5 unidades. Sin significancia estadística, no podemos afirmar que la diferencia poblacional es real.</p>
-<p><strong>Ejercicio 8.8:</strong> Utilizaría la prueba de Wilcoxon-Mann-Whitney (o un test de permutación).</p>
-<p><strong>Ejercicio 8.9:</strong> No requiere el supuesto de normalidad en los datos, siendo más robusta cuando hay outliers o distribuciones muy asimétricas.</p>
-<p><strong>Ejercicio 8.10:</strong> Con <span class="math inline">\(p = 0.089 &gt; 0.05\)</span>, <strong>no rechazamos</strong> <span class="math inline">\(H_0\)</span> de normalidad → el test t es válido. Con <span class="math inline">\(n = 75\)</span>, el TCL garantiza normalidad asintótica de la media, por lo que el test t es válido independientemente del resultado de Shapiro-Wilk.</p>
+<p><strong>Ejercicio 8.1:</strong></p>
+<ol type="a">
+<li><span class="math inline">\(H_0:\mu_A=\mu_B\)</span> frente a <span class="math inline">\(H_1:\mu_A\neq\mu_B\)</span>.</li>
+<li><span class="math inline">\(s_p^2=[29(8^2)+34(7^2)]/63\approx55.9048\)</span>; por tanto, <span class="math inline">\(t=(75-78)/\sqrt{55.9048(1/30+1/35)}\approx-1.6126\)</span>, con 63 grados de libertad y <span class="math inline">\(p\approx0.1118\)</span>.</li>
+<li>Como <span class="math inline">\(p&gt;0.05\)</span>, no se rechaza <span class="math inline">\(H_0\)</span>; no hay evidencia suficiente de una diferencia entre las medias.</li>
+</ol>
+<p><strong>Ejercicio 8.2:</strong></p>
+<ol type="a">
+<li><span class="math inline">\(H_0:\mu_d\geq0\)</span> frente a <span class="math inline">\(H_1:\mu_d&lt;0\)</span>.</li>
+<li><span class="math inline">\(t=-5/(8/\sqrt{10})\approx-1.9764\)</span>, con 9 grados de libertad y <span class="math inline">\(p\approx0.0398\)</span> para la cola izquierda.</li>
+<li>Como <span class="math inline">\(p&lt;0.05\)</span>, se rechaza <span class="math inline">\(H_0\)</span>; hay evidencia de una reducción media de la presión arterial.</li>
+</ol>
+<p><strong>Ejercicio 8.3:</strong></p>
+<ol type="a">
+<li><span class="math inline">\(F=15/8=1.875\)</span>, con 19 y 17 grados de libertad.</li>
+<li>Para <span class="math inline">\(H_0:\sigma_1^2=\sigma_2^2\)</span>, los límites críticos bilaterales son aproximadamente 0.3896 y 2.6331; de forma equivalente, <span class="math inline">\(p\approx0.1983\)</span>. No se rechaza <span class="math inline">\(H_0\)</span>; no hay evidencia suficiente de que las varianzas difieran.</li>
+</ol>
+<p><strong>Ejercicio 8.4:</strong></p>
+<p><span class="math inline">\(n\approx2(10^2)(1.96+1.2816)^2/12^2\approx14.59\)</span>. Al redondear hacia arriba, se necesitan <strong>15 sujetos por grupo</strong>, es decir, 30 en total.</p>
+<p><strong>Ejercicio 8.5:</strong></p>
+<p><span class="math inline">\(P(\text{al menos un error})=1-(1-0.05)^{15}\approx0.5367\)</span>, equivalente al 53.7%.</p>
+<p><strong>Ejercicio 8.6:</strong></p>
+<p>Como <span class="math inline">\(0.024&lt;0.05\)</span>, se rechaza <span class="math inline">\(H_0:\mu_x=\mu_y\)</span>; hay evidencia de una diferencia entre las medias. La prueba de Welch no presupone varianzas iguales, pero su uso no demuestra que las varianzas sean diferentes.</p>
+<p><strong>Ejercicio 8.7:</strong></p>
+<ol type="a">
+<li>Al incluir cero, el intervalo no permite rechazar la igualdad de medias en un contraste bilateral con <span class="math inline">\(\alpha=0.05\)</span>.</li>
+<li>La diferencia observada es de 5 unidades, pero su importancia práctica no puede determinarse sin un criterio sustantivo y sin conocer los límites completos del intervalo.</li>
+</ol>
+<p><strong>Ejercicio 8.8:</strong></p>
+<p>Puede utilizarse la prueba de Wilcoxon-Mann-Whitney, que compara las distribuciones mediante rangos. Otra opción es una prueba de permutación adecuada al objetivo del análisis.</p>
+<p><strong>Ejercicio 8.9:</strong></p>
+<p>No requiere el supuesto de normalidad y, al trabajar con rangos, suele ser menos sensible a valores extremos y distribuciones asimétricas que el ANOVA de un factor.</p>
+<p><strong>Ejercicio 8.10:</strong></p>
+<ol type="a">
+<li>Como <span class="math inline">\(p=0.089&gt;0.05\)</span>, no hay evidencia suficiente para rechazar la normalidad; esto no demuestra que la población sea normal.</li>
+<li>La prueba t puede ser razonable si las observaciones son independientes y no se observan asimetrías extremas ni valores atípicos graves. La decisión no debe basarse únicamente en Shapiro-Wilk.</li>
+<li>Con <span class="math inline">\(n=75\)</span>, la inferencia sobre la media suele ser más robusta por el teorema central del límite, siempre que se mantengan condiciones como independencia y varianza finita.</li>
+</ol>
 </section>
 <section id="sec-semana08-resources" class="level2" data-number="8.17">
 <h2 data-number="8.17" class="anchored" data-anchor-id="sec-semana08-resources"><span class="header-section-number">8.17</span> Recursos Adicionales</h2>
