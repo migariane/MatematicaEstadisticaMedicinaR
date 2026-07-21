@@ -733,116 +733,141 @@ En contraste **unilateral** con $\alpha = 0.05$:
 
 ## Ejercicios {#sec-semana07-ejercicios}
 
-### Ejercicio 1: Conceptos Básicos
+::: {.callout-tip}
+## Ejercicio 7.1: Conceptos Básicos
 
-Un médico sospecha que el nivel medio de colesterol en una población es mayor a 200 mg/dL. Formule las hipótesis apropiadas e identifique los tipos de error que podrían ocurrir.
+Un médico sospecha que el nivel medio de colesterol en una población es mayor que 200 mg/dL.
 
-### Ejercicio 2: Contraste Z
+(a) Formule las hipótesis apropiadas.
+(b) Identifique los errores de tipo I y de tipo II que podrían ocurrir.
+:::
 
-Una máquina que produce tornillos tiene un ajuste tal que $\sigma = 0.5$ mm. Se toman 25 tornillos y se mide su diámetro promedio: $\bar{x} = 10.2$ mm. El diámetro especificado es 10 mm.
+::: {.callout-tip}
+## Ejercicio 7.2: Contraste Z
 
-a) Formule $H_0$ y $H_1$
-b) Calcule el estadístico Z
-c) ¿Rechaza $H_0$ con $\alpha = 0.05$? (bilateral)
-d) Calcule el p-valor
+El diámetro de los tornillos producidos por una máquina tiene una desviación típica poblacional conocida de $\sigma=0.5$ mm. Se toma una muestra de 25 tornillos y se obtiene un diámetro medio de $\bar{x}=10.2$ mm. El diámetro especificado es 10 mm.
 
-### Ejercicio 3: Contraste t
+(a) Formule $H_0$ y $H_1$.
+(b) Calcule el estadístico Z.
+(c) Determine si se rechaza $H_0$ con $\alpha=0.05$ en un contraste bilateral.
+(d) Calcule el p-valor.
+:::
 
-Se obtuvieron las siguientes mediciones de tiempo de reacción (en segundos) para 10 sujetos:
+::: {.callout-tip}
+## Ejercicio 7.3: Contraste t
+
+Se obtuvieron las siguientes mediciones de tiempo de reacción, en segundos, para 10 sujetos:
+
 ```
 0.42, 0.45, 0.38, 0.41, 0.39, 0.44, 0.40, 0.43, 0.37, 0.46
 ```
 
-a) ¿Es diferente de 0.40 segundos con $\alpha = 0.05$? (bilateral)
-b) Calcule $\bar{x}$ y $s$
-c) Calcule el estadístico t
-d) Determine el p-valor
+(a) Calcule $\bar{x}$ y $s$.
+(b) Calcule el estadístico t para contrastar $\mu=0.40$.
+(c) Determine el p-valor bilateral.
+(d) Determine si el tiempo medio difiere de 0.40 segundos con $\alpha=0.05$.
 
 **Código R sugerido:**
+
 ```{r}
-#| lst-label: lst-semana08-6
+#| lst-label: lst-semana07-ejercicio3
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
-
+#| output: false
+#| code-fold: true
 
 datos <- c(0.42, 0.45, 0.38, 0.41, 0.39, 0.44, 0.40, 0.43, 0.37, 0.46)
 resultado <- t.test(datos, mu = 0.40)
 print(resultado)
 ```
+:::
 
-### Ejercicio 4: Contraste Binomial
+::: {.callout-tip}
+## Ejercicio 7.4: Contraste Binomial
 
-Un casino afirma que su dado es justo. Lanzamos 20 veces y obtenemos "6" en 6 ocasiones.
+Un casino afirma que la probabilidad de obtener un 6 con uno de sus dados es $1/6$. Se lanza el dado 20 veces y se obtiene un 6 en 6 ocasiones.
 
-a) Formule $H_0$ y $H_1$
-b) ¿Es inusual este resultado? Calcule el p-valor
-c) ¿Rechazaría que el dado es justo con $\alpha = 0.05$?
+(a) Formule $H_0$ y $H_1$.
+(b) Calcule el p-valor bilateral exacto.
+(c) Determine si se rechaza $H_0$ con $\alpha=0.05$.
 
 **Código R sugerido:**
+
 ```{r}
-#| lst-label: lst-semana08-7
+#| lst-label: lst-semana07-ejercicio4
 #| lst-cap: "Código R"
 #| warning: false
 #| message: false
-
+#| output: false
+#| code-fold: true
 
 binom.test(x = 6, n = 20, p = 1/6, alternative = "two.sided")
 ```
+:::
 
-### Ejercicio 5: Decisión con p-valor
+::: {.callout-tip}
+## Ejercicio 7.5: Decisión con p-valor
 
-Para cada uno de los siguientes p-valores, indique si rechaza $H_0$ con $\alpha = 0.05$:
+Para cada uno de los siguientes p-valores, indique si se rechaza $H_0$ con $\alpha=0.05$:
 
-a) p-valor = 0.031
-b) p-valor = 0.052
-c) p-valor = 0.0001
-d) p-valor = 0.450
+(a) p-valor = 0.031.
+(b) p-valor = 0.052.
+(c) p-valor = 0.0001.
+(d) p-valor = 0.450.
+:::
 
-### Ejercicio 6: Interpretación de Resultados
+::: {.callout-tip}
+## Ejercicio 7.6: Interpretación de Resultados
 
-Un estudio investiga si el peso medio de una población difiere de 70 kg. Se obtiene t = 1.85 con 24 grados de libertad y p-valor = 0.078.
+Un estudio investiga si el peso medio de una población difiere de 70 kg. Se obtiene $t=1.85$ con 24 grados de libertad y un p-valor de 0.077.
 
-a) ¿Rechaza $H_0$ con $\alpha = 0.05$?
-b) ¿Rechazaría con $\alpha = 0.10$?
-c) ¿Qué puede concluir de estos resultados?
-d) ¿Por qué no es correcto decir "se acepta $H_0$"?
+(a) ¿Se rechaza $H_0$ con $\alpha=0.05$?
+(b) ¿Se rechazaría $H_0$ con $\alpha=0.10$?
+(c) ¿Qué puede concluirse de estos resultados?
+(d) ¿Por qué no es correcto decir «se acepta $H_0$»?
+:::
 
 ## Respuestas a los Ejercicios {#sec-semana07-respuestas}
 
-**Ejercicio 1:**
-- H₀: μ = 200 mg/dL
-- H₁: μ > 200 mg/dL (unilateral derecha)
-- Error Tipo I: rechazar H₀ siendo verdadera (afirmar que colesterol > 200 cuando realmente = 200)
-- Error Tipo II: no rechazar H₀ siendo falsa (concluir que colesterol = 200 cuando realmente > 200)
+**Ejercicio 7.1:**
 
-**Ejercicio 2:**
-- a) H₀: μ = 10 mm, H₁: μ ≠ 10 mm
-- b) Z = (10.2 - 10)/(0.5/√25) = 0.2/0.1 = 2.0
-- c) Z₀.₀₂₅ = 1.96; |2.0| > 1.96, rechaza H₀
-- d) p-valor ≈ 2×P(Z > 2) ≈ 2×0.0228 = 0.0456
+(a) $H_0:\mu\leq200$ mg/dL frente a $H_1:\mu>200$ mg/dL.
+(b) Error de tipo I: concluir que $\mu>200$ cuando $\mu\leq200$. Error de tipo II: no detectar que $\mu>200$ cuando realmente $\mu>200$.
 
-**Ejercicio 3:**
-- b) X̄ ≈ 0.415, s ≈ 0.0318
-- c) t = (0.415 - 0.40)/(0.0318/√10) = 0.015/0.0101 ≈ 1.49
-- d) p-valor ≈ 0.17 (df=9); no rechaza H₀ con α=0.05
+**Ejercicio 7.2:**
 
-**Ejercicio 4:**
-- a) H₀: p = 1/6, H₁: p ≠ 1/6
-- b) Bajo H₀, X ~ Binomial(20, 1/6); P(X=6) ≈ 0.20 aproximadamente
-- c) p-valor > 0.05; no rechaza que el dado sea justo
+(a) $H_0:\mu=10$ mm frente a $H_1:\mu\neq10$ mm.
+(b) $Z=(10.2-10)/(0.5/\sqrt{25})=2.0$.
+(c) Los valores críticos son $\pm z_{0.975}=\pm1.96$; como $|Z|=2.0>1.96$, se rechaza $H_0$.
+(d) $p=2P(Z>2.0)\approx0.0455$.
 
-**Ejercicio 5:**
-- a) p = 0.031 < 0.05: Rechaza H₀
-- b) p = 0.052 > 0.05: No rechaza
-- c) p = 0.0001 < 0.05: Rechaza H₀
-- d) p = 0.450 > 0.05: No rechaza
+**Ejercicio 7.3:**
 
-**Ejercicio 6:**
-- a) p-valor = 0.078 > 0.05: No rechaza H₀
-- b) p-valor = 0.078 < 0.10: Rechaza H₀ con α=0.10
-- c) Evidencia marginal contra H₀; resultados borderline
-- d) Porque no rechazar H₀ no significa que sea verdadera, solo que no hay evidencia suficiente en los datos
+(a) $\bar{x}=0.415$ s y $s\approx0.0303$ s.
+(b) $t=(0.415-0.40)/(0.0302765/\sqrt{10})\approx1.5667$, con 9 grados de libertad.
+(c) El p-valor bilateral es aproximadamente 0.1516.
+(d) Como el p-valor es $0.1516>0.05$, no se rechaza $H_0$; no hay evidencia suficiente para concluir que el tiempo medio difiera de 0.40 segundos.
+
+**Ejercicio 7.4:**
+
+(a) $H_0:p=1/6$ frente a $H_1:p\neq1/6$.
+(b) Con $X\sim\operatorname{Binomial}(20,1/6)$, el p-valor bilateral exacto es aproximadamente 0.1279.
+(c) Como el p-valor es $0.1279>0.05$, no se rechaza $H_0$; no hay evidencia suficiente para concluir que la probabilidad de obtener un 6 difiera de $1/6$.
+
+**Ejercicio 7.5:**
+
+(a) Como $0.031<0.05$, se rechaza $H_0$.
+(b) Como $0.052>0.05$, no se rechaza $H_0$.
+(c) Como $0.0001<0.05$, se rechaza $H_0$.
+(d) Como $0.450>0.05$, no se rechaza $H_0$.
+
+**Ejercicio 7.6:**
+
+(a) Como $0.077>0.05$, no se rechaza $H_0$.
+(b) Como $0.077<0.10$, se rechazaría $H_0$ con $\alpha=0.10$.
+(c) La conclusión depende del nivel fijado previamente: no se rechaza $H_0$ al 5% y se rechazaría al 10%.
+(d) No rechazar $H_0$ solo indica que no hay evidencia suficiente en su contra; no demuestra que sea verdadera.
 
 ---
 
