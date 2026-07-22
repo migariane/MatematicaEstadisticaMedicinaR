@@ -822,43 +822,104 @@ Seleccionar el modelo con **menor** AIC o BIC.
 
 ## Ejercicios {#sec-semana10-ejercicios}
 
-1. **Interpretación de Coeficientes Parciales:** En un modelo que predice la **hemoglobina glicosilada** (HbA1c, %) usando años de evolución de la diabetes, edad del paciente e IMC, el coeficiente de los años de evolución es 0.05. ¿Qué significa este número? ¿Cómo interpretaría el coeficiente del IMC?
+::: {.callout-tip}
+## Ejercicio 10.1: Interpretación de Coeficientes Parciales
 
-2. **Matriz de Diseño:** Un estudio epidemiológico analiza la **presión arterial diastólica** con 3 variables predictoras (edad, IMC y tabaquismo en paquetes-año) y 80 observaciones. ¿Cuál es la dimensión de la matriz $\mathbf{X}$? ¿Qué contiene la primera columna? ¿Cuántos grados de libertad tienen los residuos?
+En un modelo para la **hemoglobina glicosilada** (HbA1c, %) se incluyen los años de evolución de la diabetes, la edad y el IMC. El coeficiente estimado de los años de evolución es 0.05 y el coeficiente del IMC se denota por $b_{\text{IMC}}$.
 
-3. **Problema de Multicolinealidad:** En un modelo de riesgo cardiovascular se incluyen simultáneamente el colesterol LDL (mg/dL) y el colesterol no-HDL (mg/dL). ¿Qué problema clínico y estadístico espera encontrar? ¿Cómo lo detectaría con el VIF y cómo lo resolvería?
+(a) Interprete el coeficiente de los años de evolución.
+(b) Interprete de forma general el coeficiente $b_{\text{IMC}}$.
+:::
 
-4. **$R^2$ vs. $R^2_{\text{adj}}$:** Un investigador ajusta un modelo de predicción de supervivencia en cáncer de mama e incluye secuencialmente 15 variables (estadio, ganglios, Ki67, HER2, RE, RP, tamaño tumoral, edad, tratamiento, comorbilidades, etc.). ¿Por qué $R^2$ siempre aumenta al añadir cada variable? ¿Cuál criterio (AIC, BIC o $R^2_{\text{adj}}$) es más apropiado para seleccionar el modelo final?
+::: {.callout-tip}
+## Ejercicio 10.2: Matriz de Diseño y Grados de Libertad
 
-5. **Prueba F para Modelos Anidados:** En un estudio de HbA1c se ajustan dos modelos:
+Un estudio epidemiológico analiza la **presión arterial diastólica** mediante tres variables predictoras: edad, IMC y tabaquismo en paquetes-año. Se dispone de 80 observaciones y el modelo incluye intercepto.
 
-   - Modelo A: $\text{HbA1c} = \beta_0 + \beta_1 \cdot \text{tevol} + U$
-   - Modelo B: $\text{HbA1c} = \beta_0 + \beta_1 \cdot \text{tevol} + \beta_2 \cdot \text{Edad} + \beta_3 \cdot \text{IMC} + U$
+(a) ¿Cuál es la dimensión de la matriz $\mathbf{X}$?
+(b) ¿Qué contiene su primera columna?
+(c) ¿Cuántos grados de libertad tienen los residuos si la matriz tiene rango completo?
+:::
 
-   Se obtiene $\text{RSS}_A = 188.4$, $\text{RSS}_B = 172.6$, $n = 94$.
+::: {.callout-tip}
+## Ejercicio 10.3: Multicolinealidad
 
-   a) ¿Qué hipótesis nula se está probando con la prueba F?
-   b) Calcula el estadístico F
-   c) Con $F_{0.05, 2, 90} \approx 3.10$, ¿es el modelo B significativamente mejor? Interpreta clínicamente
+En un modelo de riesgo cardiovascular se incluyen simultáneamente el colesterol LDL y el colesterol no-HDL, ambos medidos en mg/dL.
 
-6. **Variables Indicadoras en Ensayos Clínicos:** En un ensayo clínico de 4 brazos se comparan tres tratamientos antidiabéticos (metformina, sitagliptina, empagliflozina) frente a placebo. ¿Cuántas variables indicadoras necesitas? Si el coeficiente estimado de empagliflozina es $-0.72\%$ de HbA1c con $p = 0.003$, interpreta este resultado en el contexto del ensayo. ¿Cuál es la categoría de referencia?
+(a) Explique por qué podría aparecer multicolinealidad y qué consecuencias tendría.
+(b) ¿Cómo se evaluaría mediante el VIF?
+(c) ¿Qué alternativas podrían considerarse si la multicolinealidad fuese elevada?
+:::
+
+::: {.callout-tip}
+## Ejercicio 10.4: Selección y Comparación de Modelos
+
+En un modelo lineal para una respuesta clínica continua en cáncer de mama se incorporan secuencialmente 15 variables predictoras.
+
+(a) ¿Por qué $R^2$ no puede disminuir al añadir predictores al modelo?
+(b) Compare AIC, BIC y $R^2_{\text{adj}}$ según el objetivo del análisis. ¿Qué comprobación adicional requiere un modelo destinado a predicción?
+:::
+
+::: {.callout-tip}
+## Ejercicio 10.5: Prueba F para Modelos Anidados
+
+En un estudio de HbA1c se ajustan, sobre los mismos 94 pacientes, los siguientes modelos:
+
+- Modelo A: $\text{HbA1c} = \beta_0 + \beta_1 \cdot \text{tevol} + U$
+- Modelo B: $\text{HbA1c} = \beta_0 + \beta_1 \cdot \text{tevol} + \beta_2 \cdot \text{Edad} + \beta_3 \cdot \text{IMC} + U$
+
+Se obtiene $\text{RSS}_A=188.4$ y $\text{RSS}_B=172.6$. Suponga satisfechos los supuestos necesarios para la prueba F.
+
+(a) Formule la hipótesis nula del contraste.
+(b) Calcule el estadístico F.
+(c) Con $F_{0.95;2,90}\approx3.10$, tome una decisión con $\alpha=0.05$ e interprete el resultado.
+:::
+
+::: {.callout-tip}
+## Ejercicio 10.6: Variables Indicadoras
+
+En un ensayo clínico de cuatro brazos se comparan metformina, sitagliptina y empagliflozina frente a placebo. Se utiliza codificación de tratamiento con placebo como referencia. El coeficiente estimado de empagliflozina es $-0.72$ puntos porcentuales de HbA1c, con $p=0.003$.
+
+(a) ¿Cuántas variables indicadoras se necesitan y cuál es la categoría de referencia?
+(b) Interprete el coeficiente de empagliflozina y su p-valor.
+(c) ¿Permite esta información concluir que la diferencia es clínicamente relevante? Justifique brevemente.
+:::
 
 ## Respuestas a los Ejercicios {#sec-semana10-respuestas}
 
-**Ejercicio 1:** El coeficiente de años de evolución (0.05) significa que, manteniendo la edad del paciente y el IMC constantes, cada año adicional de evolución de la diabetes se asocia con un aumento promedio de 0.05 puntos porcentuales en la HbA1c. El coeficiente del IMC representaría el cambio esperado en HbA1c por cada kg/m² adicional de IMC, ajustando por los años de evolución y la edad: si es positivo, mayor obesidad se asocia con peor control glucémico.
+**Ejercicio 10.1:**
 
-**Ejercicio 2:** Dimensión de $\mathbf{X}$: $80 \times 4$ (80 observaciones, 1 columna de unos para el intercepto + 3 columnas de predictores). La primera columna contiene todos los 1s (para estimar $\beta_0$). Los grados de libertad de los residuos son $n - p - 1 = 80 - 3 - 1 = 76$.
+(a) Manteniendo constantes la edad y el IMC, cada año adicional de evolución se asocia con un aumento promedio de 0.05 puntos porcentuales en la HbA1c.
+(b) Cada kg/m² adicional de IMC se asocia con un cambio promedio de $b_{\text{IMC}}$ puntos porcentuales en la HbA1c, ajustando por edad y años de evolución; el signo determina la dirección de la asociación.
 
-**Ejercicio 3:** El colesterol no-HDL = Colesterol Total − HDL, por lo que está determinísticamente relacionado con el LDL más el VLDL. Si ambos entran en el modelo, hay multicolinealidad severa (potencialmente casi perfecta). Consecuencias: errores estándar muy grandes, coeficientes inestables, posibles signos contraintuitivos. Detección: VIF tendería a infinito o sería muy alto (>10). Solución: utilizar solo uno de los dos indicadores lipídicos, preferiblemente el LDL por su mayor validación clínica, o usar el colesterol no-HDL como alternativa cuando el LDL no es medible.
+**Ejercicio 10.2:**
 
-**Ejercicio 4:** $R^2$ siempre aumenta porque es el ratio SCE/SCT, y añadir variables (aunque sean ruido puro) solo puede disminuir o mantener el RSS, nunca aumentarlo. El modelo siempre "aprovecha" cualquier correlación espuria con los datos de muestra. Para 15 variables y $n$ no muy grande, el $R^2$ puede estar muy inflado. El BIC es el criterio más apropiado en investigación confirmatoria: penaliza más fuertemente la complejidad ($\log n$ vs. 2 en AIC), favoreciendo modelos parsimoniosos. El $R^2_{\text{adj}}$ también es útil como referencia, pero no tiene la misma base probabilística.
+(a) La matriz $\mathbf{X}$ tiene dimensión $80\times4$.
+(b) La primera columna contiene unos y corresponde al intercepto.
+(c) Los residuos tienen 76 grados de libertad.
 
-**Ejercicio 5:**
-- a) $H_0: \beta_2 = \beta_3 = 0$ (la edad y el IMC no aportan información sobre la HbA1c más allá del tiempo de evolución)
-- b) $F = \frac{(\text{RSS}_A - \text{RSS}_B)/(p_2 - p_1)}{\text{RSS}_B/(n - p_2 - 1)} = \frac{(188.4 - 172.6)/2}{172.6/90} = \frac{15.8/2}{1.918} = \frac{7.9}{1.918} = 4.12$
-- c) $F = 4.12 > F_{0.05, 2, 90} = 3.10$, por lo que rechazamos $H_0$ ($p < 0.05$). El modelo B es significativamente mejor. Clínicamente: la edad y el IMC aportan información independiente sobre el control glucémico, más allá de los años de evolución de la diabetes. Esto sugiere que el tratamiento de la hiperglucemia debe considerar también la edad del paciente y su estado ponderal.
+**Ejercicio 10.3:**
 
-**Ejercicio 6:** Se necesitan **3 variables indicadoras** ($m - 1 = 4 - 1 = 3$): una para metformina, otra para sitagliptina y otra para empagliflozina. El placebo es la categoría de referencia. El coeficiente de empagliflozina ($-0.72\%$, $p = 0.003$) significa que, en promedio, los pacientes tratados con empagliflozina tienen una HbA1c 0.72 puntos porcentuales menor que los pacientes con placebo, y esta diferencia es estadísticamente significativa. En términos clínicos, una reducción de ~0.7% en HbA1c es clínicamente relevante (el umbral suele ser ≥0.5%).
+(a) LDL y no-HDL comparten información, por lo que una correlación alta puede inflar los errores estándar y volver inestables los coeficientes; no constituyen necesariamente una dependencia lineal exacta.
+(b) Deben calcularse los VIF en los datos; valores elevados indicarían un problema de multicolinealidad.
+(c) Puede preespecificarse uno de los indicadores según el objetivo, comparar modelos alternativos o considerar regularización si el propósito es predictivo.
+
+**Ejercicio 10.4:**
+
+(a) Al añadir predictores, el RSS no puede aumentar; por tanto, $R^2$ aumenta o permanece igual.
+(b) AIC se orienta más a predicción relativa, BIC favorece modelos parsimoniosos y confirmatorios, y $R^2_{\text{adj}}$ resume el ajuste penalizado. Un modelo predictivo debe evaluarse fuera de la muestra de ajuste.
+
+**Ejercicio 10.5:**
+
+(a) $H_0:\beta_2=\beta_3=0$ frente a que al menos uno de estos coeficientes sea distinto de cero.
+(b) $F\approx4.12$, con 2 y 90 grados de libertad.
+(c) Como $4.12>3.10$ ($p\approx0.019$), se rechaza $H_0$; al menos uno de los predictores añadidos aporta información adicional sobre la HbA1c más allá del tiempo de evolución.
+
+**Ejercicio 10.6:**
+
+(a) Se necesitan tres variables indicadoras y placebo es la categoría de referencia.
+(b) La HbA1c media estimada con empagliflozina es 0.72 puntos porcentuales menor que con placebo; la diferencia es estadísticamente significativa ($p=0.003$).
+(c) No. La relevancia clínica requiere un umbral preespecificado, un intervalo de confianza y una valoración conjunta de beneficios y seguridad.
 
 ---
 
