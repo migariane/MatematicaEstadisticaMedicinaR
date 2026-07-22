@@ -936,16 +936,25 @@ En la práctica epidemiológica moderna ambas técnicas se utilizan de forma 
 
 ## Ejercicios del tema
 
-**Ejercicio 11.1:** En un estudio sobre el consumo de alcohol y diabetes tipo 2 se obtiene la siguiente tabla 2×2:
+::: {.callout-tip}
+## Ejercicio 11.1: Chi-cuadrado de Independencia
+
+En un estudio sobre el consumo habitual de alcohol y la diabetes tipo 2 se obtiene la siguiente tabla 2×2. Suponga observaciones independientes.
 
 | | Diabetes | Sin diabetes | Total |
 |--|:-------:|:------------:|:-----:|
 | Bebedor habitual | 45 | 105 | 150 |
 | No bebedor | 20 | 130 | 150 |
 
-a) Calcule las frecuencias esperadas bajo $H_0$. b) Calcule el estadístico $\chi^2$ manualmente. c) ¿Existe asociación con $\alpha = 0.05$?
+(a) Calcule las frecuencias esperadas bajo la hipótesis de independencia.
+(b) Calcule manualmente el estadístico de Pearson $\chi^2$.
+(c) Con $\alpha=0.05$, tome una decisión e interprete el resultado.
+:::
 
-**Ejercicio 11.2:** Un ensayo clínico compara tres tratamientos para la hipertensión: A (control), B (dosis baja), C (dosis alta). Los resultados son:
+::: {.callout-tip}
+## Ejercicio 11.2: Chi-cuadrado de Homogeneidad
+
+Un ensayo clínico compara tres tratamientos para la hipertensión: A (control), B (dosis baja) y C (dosis alta). Suponga grupos independientes.
 
 | Tratamiento | Controlada | No controlada |
 |-------------|:----------:|:-------------:|
@@ -953,11 +962,29 @@ a) Calcule las frecuencias esperadas bajo $H_0$. b) Calcule el estadístico $\c
 | B | 40 | 20 |
 | C | 45 | 15 |
 
-Usando la prueba $\chi^2$ de homogeneidad con $\alpha = 0.05$, ¿difieren los tratamientos en su eficacia? ($gl = 2$, $\chi^2_{0.05} = 5.99$).
+Mediante la prueba $\chi^2$ de homogeneidad, determine si las proporciones de presión arterial controlada son iguales en los tres tratamientos, con $\alpha=0.05$. Utilice el valor crítico $\chi^2_{0.95;2}=5.99$.
+:::
 
-**Ejercicio 11.3:** Una tabla 2×2 tiene celdas $(3, 12, 8, 7)$. a) Compruebe si se cumple la condición de aplicación del $\chi^2$. b) ¿Qué alternativa utilizaría? c) Aplique la alternativa e interprete.
+::: {.callout-tip}
+## Ejercicio 11.3: Frecuencias Esperadas y Elección de la Prueba
 
-**Ejercicio 11.4 (McNemar):** En un estudio de concordancia diagnóstica, 80 pacientes con sospecha de infección por _Helicobacter pylori_ son evaluados con dos pruebas: test de aliento con urea (TAU) y serología (SERO). Los resultados son:
+Considere la siguiente tabla 2×2 de observaciones independientes:
+
+| | Resultado positivo | Resultado negativo | Total |
+|--|:------------------:|:------------------:|:-----:|
+| Grupo 1 | 3 | 12 | 15 |
+| Grupo 2 | 8 | 7 | 15 |
+| Total | 11 | 19 | 30 |
+
+(a) Calcule las frecuencias esperadas y compruebe la condición clásica para aplicar la aproximación $\chi^2$.
+(b) Según la recomendación del capítulo para este tamaño muestral, indique qué versión de la prueba conviene utilizar.
+(c) Aplique la prueba seleccionada e interprete el resultado con $\alpha=0.05$.
+:::
+
+::: {.callout-tip}
+## Ejercicio 11.4: Prueba de McNemar
+
+En una comparación pareada de tasas de positividad, 80 pacientes con sospecha de infección por *Helicobacter pylori* son evaluados con el test de aliento con urea (TAU) y con serología (SERO).
 
 |  | **SERO: +** | **SERO: −** | **Total** |
 |--|:-----------:|:-----------:|:---------:|
@@ -965,59 +992,90 @@ Usando la prueba $\chi^2$ de homogeneidad con $\alpha = 0.05$, ¿difieren los tr
 | **TAU: −** | 5 | 25 | 30 |
 | **Total** | 43 | 37 | 80 |
 
-a) ¿Por qué es incorrecto aplicar el test $\chi^2$ de independencia aquí?
-b) Identifique los pares discordantes ($b$ y $c$) e indique cuántos son.
-c) Calcule el estadístico de McNemar (con y sin corrección de Yates).
-d) Difieren significativamente las dos pruebas diagnósticas en su tasa de positividad? ¿Cuál detecta más casos?
+(a) ¿Por qué no corresponde aplicar la prueba $\chi^2$ de independencia?
+(b) Identifique los pares discordantes $b$ y $c$, e indique su total.
+(c) Calcule el estadístico de McNemar con y sin corrección de continuidad.
+(d) Con $\alpha=0.05$, determine si las tasas de positividad difieren e indique cuál prueba produjo más resultados positivos.
+:::
 
-**Ejercicio 11.5:** Un estudio de cohortes sigue a 1000 trabajadores expuestos a un contaminante y 1000 no expuestos durante 5 años. Se observan 60 casos de enfermedad pulmonar en expuestos y 20 en no expuestos. a) Calcule el RR e interprete. b) Calcule el IC 95%. c) Calcule el RD y el NNH.
+::: {.callout-tip}
+## Ejercicio 11.5: Riesgo Relativo y Diferencia de Riesgos
 
-**Ejercicio 11.6:** En un estudio caso-control sobre infarto de miocardio, se estudia la asociación con hipertensión. Se reclutan 200 casos (infartos) y 200 controles. De los casos, 120 son hipertensos; de los controles, 80. a) Construya la tabla 2×2. b) Calcule el OR. c) Calcule el IC 95% del OR. d) ¿Por qué no es adecuado calcular el RR en este diseño?
+Un estudio de cohortes sigue durante cinco años a 1000 trabajadores expuestos a un contaminante y a 1000 no expuestos. Se observan 60 casos de enfermedad pulmonar entre los expuestos y 20 entre los no expuestos.
 
-**Ejercicio 11.7:** En un estudio transversal sobre la prevalencia de diabetes y obesidad en 800 adultos, 200 son obesos (IMC $\geq 30$) y 600 no obesos. Entre los obesos, 60 tienen diabetes; entre los no obesos, 40 tienen diabetes. a) Calcule la RP. b) Calcule el OR. c) ¿Cuál es la medida más apropiada? d) ¿Son similares los resultados? Explique por qué.
+(a) Calcule el riesgo relativo e interprételo.
+(b) Calcule su intervalo de confianza al 95%.
+(c) Calcule la diferencia de riesgos y su inversa. ¿Bajo qué condición podría interpretarse esta última como número necesario para perjudicar?
+:::
+
+::: {.callout-tip}
+## Ejercicio 11.6: Odds Ratio en un Estudio Caso-Control
+
+En un estudio caso-control sobre infarto de miocardio se analiza la asociación con hipertensión. Se reclutan 200 casos y 200 controles. Entre los casos, 120 presentan hipertensión; entre los controles, 80.
+
+(a) Construya la tabla 2×2.
+(b) Calcule el odds ratio.
+(c) Calcule el intervalo de confianza al 95% del odds ratio.
+(d) Explique por qué no es adecuado calcular directamente el riesgo relativo en este diseño.
+:::
+
+::: {.callout-tip}
+## Ejercicio 11.7: Razón de Prevalencias y Odds Ratio
+
+En un estudio transversal sobre diabetes y obesidad se incluyen 800 adultos: 200 presentan obesidad (IMC $\geq30$) y 600 no. Entre las personas con obesidad, 60 tienen diabetes; entre las personas sin obesidad, 40 tienen diabetes.
+
+(a) Calcule la razón de prevalencias.
+(b) Calcule el odds ratio.
+(c) Indique cuál de las dos medidas compara más directamente las prevalencias observadas.
+(d) Compare los resultados y explique por qué no coinciden.
+:::
 
 ---
 
 ## Respuestas a los Ejercicios {#sec-semana11-respuestas}
 
 **Ejercicio 11.1:**
-a) $E_{11} = 150 \times 65/300 = 32.5$; $E_{12} = 150 \times 235/300 = 117.5$; $E_{21} = 32.5$; $E_{22} = 117.5$.
-b) $\chi^2 = (45-32.5)^2/32.5 + (105-117.5)^2/117.5 + (20-32.5)^2/32.5 + (130-117.5)^2/117.5 \approx 4.81 + 1.33 + 4.81 + 1.33 = 12.28$.
-c) $\chi^2_{0.05, 1} = 3.84$. Como $12.28 > 3.84$ ($p < 0.001$), rechazamos $H_0$: existe asociación significativa entre consumo de alcohol y diabetes tipo 2.
+
+(a) Las frecuencias esperadas son $32.5$, $117.5$, $32.5$ y $117.5$.
+(b) $\chi^2\approx12.27$, con 1 grado de libertad y $p\approx0.00046$.
+(c) Se rechaza la hipótesis de independencia; hay evidencia de asociación entre el consumo habitual de alcohol y la diabetes tipo 2.
 
 **Ejercicio 11.2:**
-Frecuencias esperadas: $n = 180$, marginales columna: 110 controladas, 70 no controladas. $E_{A,ctrl} = 60 \times 110/180 = 36.67$; calculando todos: $\chi^2 \approx 15.2 > 5.99$, $gl = 2$, $p < 0.001$. Los tres tratamientos tienen eficacias significativamente diferentes. La dosis alta (75% controlados) es la más eficaz.
+
+$\chi^2\approx15.19>5.99$, con 2 grados de libertad y $p\approx0.00050$. Se rechaza la igualdad de las tres proporciones; al menos una difiere. El tratamiento C presenta la mayor proporción observada de control (75%), pero identificar diferencias entre pares requiere comparaciones adicionales.
 
 **Ejercicio 11.3:**
-a) $E_{11} = 11 \times 11/30 = 4.03 < 5$; condición NO cumplida.
-b) Usar **prueba exacta de Fisher**.
-c) Con $n = 30$ y celdas $(3, 12, 8, 7)$: $OR = 3 \times 7/(12 \times 8) = 0.22$. La prueba exacta de Fisher daría $p \approx 0.07$, no significativo al 5%.
 
-**Ejercicio 11.4 (McNemar):**
-a) Las dos pruebas se aplican al mismo paciente, por lo que las observaciones son dependientes entre sí. El test $\chi^2$ de independencia requiere que todas las observaciones sean independientes; violarlo inflaría artificialmente el tamaño de muestra efectivo.
-b) Pares discordantes: $b = 12$ (TAU+/SERO−) y $c = 5$ (TAU−/SERO+). Total: $b + c = 17$.
-c) Como $b + c = 17 < 25$, se recomienda la corrección de Yates:
+(a) Las frecuencias esperadas son $5.5$, $9.5$, $5.5$ y $9.5$; todas cumplen la condición clásica $E_{ij}\geq5$.
+(b) Para $n=30$, la recomendación del capítulo conduce a la prueba $\chi^2$ con corrección de Yates. Fisher bilateral también es posible, pero no resulta exigido por las frecuencias esperadas.
+(c) $\chi^2_{\text{Yates}}\approx2.30$ y $p\approx0.130$; no se rechaza la hipótesis de independencia.
 
-   - Sin corrección: $\chi^2 = (12-5)^2/17 = 49/17 = 2.88$
-   - Con corrección (Yates): $\chi^2 = (|12-5|-1)^2/17 = 36/17 = 2.12$
-d) Sin corrección: $\chi^2 = 2.88$, $p \approx 0.090$. Con corrección de Yates: $\chi^2 = 2.12$, $p \approx 0.145$. Con $\alpha = 0.05$, **no rechazamos** $H_0$ en ningún caso: no hay evidencia suficiente de que las dos pruebas difieran significativamente en su tasa de positividad. No obstante, el TAU detecta más positivos que la serología ($b = 12 > c = 5$), lo que sugiere una tendencia a mayor sensibilidad del TAU, aunque no alcanza significancia estadistica con esta muestra.
+**Ejercicio 11.4:**
+
+(a) Las dos mediciones proceden de los mismos pacientes y, por tanto, están apareadas.
+(b) $b=12$, $c=5$ y $b+c=17$.
+(c) Sin corrección, $\chi^2\approx2.88$ y $p\approx0.090$; con corrección, $\chi^2\approx2.12$ y $p\approx0.146$.
+(d) No se rechaza la igualdad de las tasas de positividad. TAU produjo 50 resultados positivos y SERO 43; esta comparación no permite establecer cuál prueba tiene mayor sensibilidad.
 
 **Ejercicio 11.5:**
-a) $RR = (60/1000)/(20/1000) = 3.0$. Los expuestos tienen **3 veces más riesgo** de enfermedad pulmonar.
-b) $SE_{\ln RR} = \sqrt{940/(60 \times 1000) + 980/(20 \times 1000)} = \sqrt{0.01567 + 0.049} = 0.256$; $IC_{95\%} = \exp(\ln3 \pm 0.501) = [1.50, 5.99]$.
-c) $RD = 0.060 - 0.020 = 0.040$; $NNH = 1/0.040 = 25$ (por cada 25 trabajadores expuestos durante 5 años, 1 caso adicional de enfermedad pulmonar).
+
+(a) $RR=3.0$; el grupo expuesto presenta tres veces el riesgo de enfermedad pulmonar durante los cinco años de seguimiento.
+(b) $SE_{\ln(RR)}\approx0.2543$ e $IC_{95\%}(RR)\approx[1.82,4.94]$.
+(c) $RD=0.040$ y $1/RD=25$. Este último valor puede interpretarse como NNH únicamente si la diferencia de riesgos es atribuible causalmente a la exposición.
 
 **Ejercicio 11.6:**
-a) Tabla: hipertensos $(120, 80, 200)$; normotensos $(80, 120, 200)$; totales $(200, 200, 400)$.
-b) $OR = (120 \times 120)/(80 \times 80) = 14400/6400 = 2.25$.
-c) $IC_{95\%}: \exp(\ln 2.25 \pm 1.96\sqrt{1/120 + 1/80 + 1/80 + 1/120}) = \exp(0.811 \pm 0.369) = [1.44, 3.51]$.
-d) En un estudio caso-control, el muestreo es por resultado (se seleccionan casos y controles), por lo que los totales de fila son fijados por el investigador y no reflejan la incidencia real → no se puede estimar el riesgo ni el RR directamente.
+
+(a) Casos: 120 con hipertensión y 80 sin hipertensión; controles: 80 con hipertensión y 120 sin hipertensión.
+(b) $OR=2.25$.
+(c) $SE_{\ln(OR)}\approx0.2041$ e $IC_{95\%}(OR)\approx[1.51,3.36]$.
+(d) El muestreo fija el número de casos y controles, por lo que no permite estimar directamente los riesgos de enfermedad ni su cociente.
 
 **Ejercicio 11.7:**
-a) $RP = (60/200)/(40/600) = 0.30/0.067 = 4.50$. Los obesos tienen 4.5 veces la prevalencia de diabetes.
-b) $OR = (60 \times 560)/(140 \times 40) = 33600/5600 = 6.0$.
-c) La medida apropiada en un estudio transversal es la **RP**, no el OR.
-d) Los resultados difieren notablemente ($RP = 4.5$ vs $OR = 6.0$) porque la prevalencia de diabetes no es rara (50% en obesos): el OR sobreestima la RP cuando la prevalencia es alta (> 10%). Usar siempre RP en estudios transversales.
+
+(a) Las prevalencias son 30% y 6.67%; por tanto, $RP=4.5$.
+(b) $OR=6.0$.
+(c) La RP compara directamente las prevalencias; el OR compara las odds de prevalencia y no es intercambiable con la RP.
+(d) No coinciden porque comparan magnitudes distintas. Con una prevalencia del 30% en el grupo con obesidad, el OR queda numéricamente más alejado de 1 que la RP.
 
 ---
 

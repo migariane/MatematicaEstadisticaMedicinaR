@@ -2158,7 +2158,17 @@ Regresión logística  multiple
 </section>
 <section id="ejercicios-del-tema" class="level2" data-number="11.9">
 <h2 data-number="11.9" class="anchored" data-anchor-id="ejercicios-del-tema"><span class="header-section-number">11.9</span> Ejercicios del tema</h2>
-<p><strong>Ejercicio 11.1:</strong> En un estudio sobre el consumo de alcohol y diabetes tipo 2 se obtiene la siguiente tabla 2×2:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 11.1: Chi-cuadrado de Independencia
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En un estudio sobre el consumo habitual de alcohol y la diabetes tipo 2 se obtiene la siguiente tabla 2×2. Suponga observaciones independientes.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -2184,9 +2194,23 @@ Regresión logística  multiple
 </tbody>
 </table>
 <ol type="a">
-<li>Calcule las frecuencias esperadas bajo <span class="math inline">\(H_0\)</span>. b) Calcule el estadístico <span class="math inline">\(\chi^2\)</span> manualmente. c) ¿Existe asociación con <span class="math inline">\(\alpha = 0.05\)</span>?</li>
+<li>Calcule las frecuencias esperadas bajo la hipótesis de independencia.</li>
+<li>Calcule manualmente el estadístico de Pearson <span class="math inline">\(\chi^2\)</span>.</li>
+<li>Con <span class="math inline">\(\alpha=0.05\)</span>, tome una decisión e interprete el resultado.</li>
 </ol>
-<p><strong>Ejercicio 11.2:</strong> Un ensayo clínico compara tres tratamientos para la hipertensión: A (control), B (dosis baja), C (dosis alta). Los resultados son:</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 11.2: Chi-cuadrado de Homogeneidad
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un ensayo clínico compara tres tratamientos para la hipertensión: A (control), B (dosis baja) y C (dosis alta). Suponga grupos independientes.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -2213,9 +2237,68 @@ Regresión logística  multiple
 </tr>
 </tbody>
 </table>
-<p>Usando la prueba <span class="math inline">\(\chi^2\)</span> de homogeneidad con <span class="math inline">\(\alpha = 0.05\)</span>, ¿difieren los tratamientos en su eficacia? (<span class="math inline">\(gl = 2\)</span>, <span class="math inline">\(\chi^2_{0.05} = 5.99\)</span>).</p>
-<p><strong>Ejercicio 11.3:</strong> Una tabla 2×2 tiene celdas <span class="math inline">\((3, 12, 8, 7)\)</span>. a) Compruebe si se cumple la condición de aplicación del <span class="math inline">\(\chi^2\)</span>. b) ¿Qué alternativa utilizaría? c) Aplique la alternativa e interprete.</p>
-<p><strong>Ejercicio 11.4 (McNemar):</strong> En un estudio de concordancia diagnóstica, 80 pacientes con sospecha de infección por <em>Helicobacter pylori</em> son evaluados con dos pruebas: test de aliento con urea (TAU) y serología (SERO). Los resultados son:</p>
+<p>Mediante la prueba <span class="math inline">\(\chi^2\)</span> de homogeneidad, determine si las proporciones de presión arterial controlada son iguales en los tres tratamientos, con <span class="math inline">\(\alpha=0.05\)</span>. Utilice el valor crítico <span class="math inline">\(\chi^2_{0.95;2}=5.99\)</span>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 11.3: Frecuencias Esperadas y Elección de la Prueba
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Considere la siguiente tabla 2×2 de observaciones independientes:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;">Resultado positivo</th>
+<th style="text-align: center;">Resultado negativo</th>
+<th style="text-align: center;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Grupo 1</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">15</td>
+</tr>
+<tr class="even">
+<td>Grupo 2</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">15</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">19</td>
+<td style="text-align: center;">30</td>
+</tr>
+</tbody>
+</table>
+<ol type="a">
+<li>Calcule las frecuencias esperadas y compruebe la condición clásica para aplicar la aproximación <span class="math inline">\(\chi^2\)</span>.</li>
+<li>Según la recomendación del capítulo para este tamaño muestral, indique qué versión de la prueba conviene utilizar.</li>
+<li>Aplique la prueba seleccionada e interprete el resultado con <span class="math inline">\(\alpha=0.05\)</span>.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 11.4: Prueba de McNemar
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En una comparación pareada de tasas de positividad, 80 pacientes con sospecha de infección por <em>Helicobacter pylori</em> son evaluados con el test de aliento con urea (TAU) y con serología (SERO).</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -2247,32 +2330,114 @@ Regresión logística  multiple
 </tbody>
 </table>
 <ol type="a">
-<li>¿Por qué es incorrecto aplicar el test <span class="math inline">\(\chi^2\)</span> de independencia aquí?</li>
-<li>Identifique los pares discordantes (<span class="math inline">\(b\)</span> y <span class="math inline">\(c\)</span>) e indique cuántos son.</li>
-<li>Calcule el estadístico de McNemar (con y sin corrección de Yates).</li>
-<li>Difieren significativamente las dos pruebas diagnósticas en su tasa de positividad? ¿Cuál detecta más casos?</li>
+<li>¿Por qué no corresponde aplicar la prueba <span class="math inline">\(\chi^2\)</span> de independencia?</li>
+<li>Identifique los pares discordantes <span class="math inline">\(b\)</span> y <span class="math inline">\(c\)</span>, e indique su total.</li>
+<li>Calcule el estadístico de McNemar con y sin corrección de continuidad.</li>
+<li>Con <span class="math inline">\(\alpha=0.05\)</span>, determine si las tasas de positividad difieren e indique cuál prueba produjo más resultados positivos.</li>
 </ol>
-<p><strong>Ejercicio 11.5:</strong> Un estudio de cohortes sigue a 1000 trabajadores expuestos a un contaminante y 1000 no expuestos durante 5 años. Se observan 60 casos de enfermedad pulmonar en expuestos y 20 en no expuestos. a) Calcule el RR e interprete. b) Calcule el IC 95%. c) Calcule el RD y el NNH.</p>
-<p><strong>Ejercicio 11.6:</strong> En un estudio caso-control sobre infarto de miocardio, se estudia la asociación con hipertensión.&nbsp;Se reclutan 200 casos (infartos) y 200 controles. De los casos, 120 son hipertensos; de los controles, 80. a) Construya la tabla 2×2. b) Calcule el OR. c) Calcule el IC 95% del OR. d) ¿Por qué no es adecuado calcular el RR en este diseño?</p>
-<p><strong>Ejercicio 11.7:</strong> En un estudio transversal sobre la prevalencia de diabetes y obesidad en 800 adultos, 200 son obesos (IMC <span class="math inline">\(\geq 30\)</span>) y 600 no obesos. Entre los obesos, 60 tienen diabetes; entre los no obesos, 40 tienen diabetes. a) Calcule la RP. b) Calcule el OR. c) ¿Cuál es la medida más apropiada? d) ¿Son similares los resultados? Explique por qué.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 11.5: Riesgo Relativo y Diferencia de Riesgos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un estudio de cohortes sigue durante cinco años a 1000 trabajadores expuestos a un contaminante y a 1000 no expuestos. Se observan 60 casos de enfermedad pulmonar entre los expuestos y 20 entre los no expuestos.</p>
+<ol type="a">
+<li>Calcule el riesgo relativo e interprételo.</li>
+<li>Calcule su intervalo de confianza al 95%.</li>
+<li>Calcule la diferencia de riesgos y su inversa. ¿Bajo qué condición podría interpretarse esta última como número necesario para perjudicar?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 11.6: Odds Ratio en un Estudio Caso-Control
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En un estudio caso-control sobre infarto de miocardio se analiza la asociación con hipertensión. Se reclutan 200 casos y 200 controles. Entre los casos, 120 presentan hipertensión; entre los controles, 80.</p>
+<ol type="a">
+<li>Construya la tabla 2×2.</li>
+<li>Calcule el odds ratio.</li>
+<li>Calcule el intervalo de confianza al 95% del odds ratio.</li>
+<li>Explique por qué no es adecuado calcular directamente el riesgo relativo en este diseño.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 11.7: Razón de Prevalencias y Odds Ratio
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En un estudio transversal sobre diabetes y obesidad se incluyen 800 adultos: 200 presentan obesidad (IMC <span class="math inline">\(\geq30\)</span>) y 600 no. Entre las personas con obesidad, 60 tienen diabetes; entre las personas sin obesidad, 40 tienen diabetes.</p>
+<ol type="a">
+<li>Calcule la razón de prevalencias.</li>
+<li>Calcule el odds ratio.</li>
+<li>Indique cuál de las dos medidas compara más directamente las prevalencias observadas.</li>
+<li>Compare los resultados y explique por qué no coinciden.</li>
+</ol>
+</div>
+</div>
 <hr>
 </section>
 <section id="sec-semana11-respuestas" class="level2" data-number="11.10">
 <h2 data-number="11.10" class="anchored" data-anchor-id="sec-semana11-respuestas"><span class="header-section-number">11.10</span> Respuestas a los Ejercicios</h2>
-<p><strong>Ejercicio 11.1:</strong> a) <span class="math inline">\(E_{11} = 150 \times 65/300 = 32.5\)</span>; <span class="math inline">\(E_{12} = 150 \times 235/300 = 117.5\)</span>; <span class="math inline">\(E_{21} = 32.5\)</span>; <span class="math inline">\(E_{22} = 117.5\)</span>. b) <span class="math inline">\(\chi^2 = (45-32.5)^2/32.5 + (105-117.5)^2/117.5 + (20-32.5)^2/32.5 + (130-117.5)^2/117.5 \approx 4.81 + 1.33 + 4.81 + 1.33 = 12.28\)</span>. c) <span class="math inline">\(\chi^2_{0.05, 1} = 3.84\)</span>. Como <span class="math inline">\(12.28 &gt; 3.84\)</span> (<span class="math inline">\(p &lt; 0.001\)</span>), rechazamos <span class="math inline">\(H_0\)</span>: existe asociación significativa entre consumo de alcohol y diabetes tipo 2.</p>
-<p><strong>Ejercicio 11.2:</strong> Frecuencias esperadas: <span class="math inline">\(n = 180\)</span>, marginales columna: 110 controladas, 70 no controladas. <span class="math inline">\(E_{A,ctrl} = 60 \times 110/180 = 36.67\)</span>; calculando todos: <span class="math inline">\(\chi^2 \approx 15.2 &gt; 5.99\)</span>, <span class="math inline">\(gl = 2\)</span>, <span class="math inline">\(p &lt; 0.001\)</span>. Los tres tratamientos tienen eficacias significativamente diferentes. La dosis alta (75% controlados) es la más eficaz.</p>
-<p><strong>Ejercicio 11.3:</strong> a) <span class="math inline">\(E_{11} = 11 \times 11/30 = 4.03 &lt; 5\)</span>; condición NO cumplida. b) Usar <strong>prueba exacta de Fisher</strong>. c) Con <span class="math inline">\(n = 30\)</span> y celdas <span class="math inline">\((3, 12, 8, 7)\)</span>: <span class="math inline">\(OR = 3 \times 7/(12 \times 8) = 0.22\)</span>. La prueba exacta de Fisher daría <span class="math inline">\(p \approx 0.07\)</span>, no significativo al 5%.</p>
-<p><strong>Ejercicio 11.4 (McNemar):</strong> a) Las dos pruebas se aplican al mismo paciente, por lo que las observaciones son dependientes entre sí. El test <span class="math inline">\(\chi^2\)</span> de independencia requiere que todas las observaciones sean independientes; violarlo inflaría artificialmente el tamaño de muestra efectivo. b) Pares discordantes: <span class="math inline">\(b = 12\)</span> (TAU+/SERO−) y <span class="math inline">\(c = 5\)</span> (TAU−/SERO+). Total: <span class="math inline">\(b + c = 17\)</span>. c) Como <span class="math inline">\(b + c = 17 &lt; 25\)</span>, se recomienda la corrección de Yates:</p>
-<ul>
-<li>Sin corrección: <span class="math inline">\(\chi^2 = (12-5)^2/17 = 49/17 = 2.88\)</span></li>
-<li>Con corrección (Yates): <span class="math inline">\(\chi^2 = (|12-5|-1)^2/17 = 36/17 = 2.12\)</span></li>
-</ul>
-<ol start="4" type="a">
-<li>Sin corrección: <span class="math inline">\(\chi^2 = 2.88\)</span>, <span class="math inline">\(p \approx 0.090\)</span>. Con corrección de Yates: <span class="math inline">\(\chi^2 = 2.12\)</span>, <span class="math inline">\(p \approx 0.145\)</span>. Con <span class="math inline">\(\alpha = 0.05\)</span>, <strong>no rechazamos</strong> <span class="math inline">\(H_0\)</span> en ningún caso: no hay evidencia suficiente de que las dos pruebas difieran significativamente en su tasa de positividad. No obstante, el TAU detecta más positivos que la serología (<span class="math inline">\(b = 12 &gt; c = 5\)</span>), lo que sugiere una tendencia a mayor sensibilidad del TAU, aunque no alcanza significancia estadistica con esta muestra.</li>
+<p><strong>Ejercicio 11.1:</strong></p>
+<ol type="a">
+<li>Las frecuencias esperadas son <span class="math inline">\(32.5\)</span>, <span class="math inline">\(117.5\)</span>, <span class="math inline">\(32.5\)</span> y <span class="math inline">\(117.5\)</span>.</li>
+<li><span class="math inline">\(\chi^2\approx12.27\)</span>, con 1 grado de libertad y <span class="math inline">\(p\approx0.00046\)</span>.</li>
+<li>Se rechaza la hipótesis de independencia; hay evidencia de asociación entre el consumo habitual de alcohol y la diabetes tipo 2.</li>
 </ol>
-<p><strong>Ejercicio 11.5:</strong> a) <span class="math inline">\(RR = (60/1000)/(20/1000) = 3.0\)</span>. Los expuestos tienen <strong>3 veces más riesgo</strong> de enfermedad pulmonar. b) <span class="math inline">\(SE_{\ln RR} = \sqrt{940/(60 \times 1000) + 980/(20 \times 1000)} = \sqrt{0.01567 + 0.049} = 0.256\)</span>; <span class="math inline">\(IC_{95\%} = \exp(\ln3 \pm 0.501) = [1.50, 5.99]\)</span>. c) <span class="math inline">\(RD = 0.060 - 0.020 = 0.040\)</span>; <span class="math inline">\(NNH = 1/0.040 = 25\)</span> (por cada 25 trabajadores expuestos durante 5 años, 1 caso adicional de enfermedad pulmonar).</p>
-<p><strong>Ejercicio 11.6:</strong> a) Tabla: hipertensos <span class="math inline">\((120, 80, 200)\)</span>; normotensos <span class="math inline">\((80, 120, 200)\)</span>; totales <span class="math inline">\((200, 200, 400)\)</span>. b) <span class="math inline">\(OR = (120 \times 120)/(80 \times 80) = 14400/6400 = 2.25\)</span>. c) <span class="math inline">\(IC_{95\%}: \exp(\ln 2.25 \pm 1.96\sqrt{1/120 + 1/80 + 1/80 + 1/120}) = \exp(0.811 \pm 0.369) = [1.44, 3.51]\)</span>. d) En un estudio caso-control, el muestreo es por resultado (se seleccionan casos y controles), por lo que los totales de fila son fijados por el investigador y no reflejan la incidencia real → no se puede estimar el riesgo ni el RR directamente.</p>
-<p><strong>Ejercicio 11.7:</strong> a) <span class="math inline">\(RP = (60/200)/(40/600) = 0.30/0.067 = 4.50\)</span>. Los obesos tienen 4.5 veces la prevalencia de diabetes. b) <span class="math inline">\(OR = (60 \times 560)/(140 \times 40) = 33600/5600 = 6.0\)</span>. c) La medida apropiada en un estudio transversal es la <strong>RP</strong>, no el OR. d) Los resultados difieren notablemente (<span class="math inline">\(RP = 4.5\)</span> vs <span class="math inline">\(OR = 6.0\)</span>) porque la prevalencia de diabetes no es rara (50% en obesos): el OR sobreestima la RP cuando la prevalencia es alta (&gt; 10%). Usar siempre RP en estudios transversales.</p>
+<p><strong>Ejercicio 11.2:</strong></p>
+<p><span class="math inline">\(\chi^2\approx15.19&gt;5.99\)</span>, con 2 grados de libertad y <span class="math inline">\(p\approx0.00050\)</span>. Se rechaza la igualdad de las tres proporciones; al menos una difiere. El tratamiento C presenta la mayor proporción observada de control (75%), pero identificar diferencias entre pares requiere comparaciones adicionales.</p>
+<p><strong>Ejercicio 11.3:</strong></p>
+<ol type="a">
+<li>Las frecuencias esperadas son <span class="math inline">\(5.5\)</span>, <span class="math inline">\(9.5\)</span>, <span class="math inline">\(5.5\)</span> y <span class="math inline">\(9.5\)</span>; todas cumplen la condición clásica <span class="math inline">\(E_{ij}\geq5\)</span>.</li>
+<li>Para <span class="math inline">\(n=30\)</span>, la recomendación del capítulo conduce a la prueba <span class="math inline">\(\chi^2\)</span> con corrección de Yates. Fisher bilateral también es posible, pero no resulta exigido por las frecuencias esperadas.</li>
+<li><span class="math inline">\(\chi^2_{\text{Yates}}\approx2.30\)</span> y <span class="math inline">\(p\approx0.130\)</span>; no se rechaza la hipótesis de independencia.</li>
+</ol>
+<p><strong>Ejercicio 11.4:</strong></p>
+<ol type="a">
+<li>Las dos mediciones proceden de los mismos pacientes y, por tanto, están apareadas.</li>
+<li><span class="math inline">\(b=12\)</span>, <span class="math inline">\(c=5\)</span> y <span class="math inline">\(b+c=17\)</span>.</li>
+<li>Sin corrección, <span class="math inline">\(\chi^2\approx2.88\)</span> y <span class="math inline">\(p\approx0.090\)</span>; con corrección, <span class="math inline">\(\chi^2\approx2.12\)</span> y <span class="math inline">\(p\approx0.146\)</span>.</li>
+<li>No se rechaza la igualdad de las tasas de positividad. TAU produjo 50 resultados positivos y SERO 43; esta comparación no permite establecer cuál prueba tiene mayor sensibilidad.</li>
+</ol>
+<p><strong>Ejercicio 11.5:</strong></p>
+<ol type="a">
+<li><span class="math inline">\(RR=3.0\)</span>; el grupo expuesto presenta tres veces el riesgo de enfermedad pulmonar durante los cinco años de seguimiento.</li>
+<li><span class="math inline">\(SE_{\ln(RR)}\approx0.2543\)</span> e <span class="math inline">\(IC_{95\%}(RR)\approx[1.82,4.94]\)</span>.</li>
+<li><span class="math inline">\(RD=0.040\)</span> y <span class="math inline">\(1/RD=25\)</span>. Este último valor puede interpretarse como NNH únicamente si la diferencia de riesgos es atribuible causalmente a la exposición.</li>
+</ol>
+<p><strong>Ejercicio 11.6:</strong></p>
+<ol type="a">
+<li>Casos: 120 con hipertensión y 80 sin hipertensión; controles: 80 con hipertensión y 120 sin hipertensión.</li>
+<li><span class="math inline">\(OR=2.25\)</span>.</li>
+<li><span class="math inline">\(SE_{\ln(OR)}\approx0.2041\)</span> e <span class="math inline">\(IC_{95\%}(OR)\approx[1.51,3.36]\)</span>.</li>
+<li>El muestreo fija el número de casos y controles, por lo que no permite estimar directamente los riesgos de enfermedad ni su cociente.</li>
+</ol>
+<p><strong>Ejercicio 11.7:</strong></p>
+<ol type="a">
+<li>Las prevalencias son 30% y 6.67%; por tanto, <span class="math inline">\(RP=4.5\)</span>.</li>
+<li><span class="math inline">\(OR=6.0\)</span>.</li>
+<li>La RP compara directamente las prevalencias; el OR compara las odds de prevalencia y no es intercambiable con la RP.</li>
+<li>No coinciden porque comparan magnitudes distintas. Con una prevalencia del 30% en el grupo con obesidad, el OR queda numéricamente más alejado de 1 que la RP.</li>
+</ol>
 <hr>
 </section>
 <section id="sec-semana11-avanzados" class="level2" data-number="11.11">
