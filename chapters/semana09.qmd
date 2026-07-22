@@ -759,103 +759,123 @@ $$[b_j \pm t_{1-\alpha/2, n-2} \cdot \widehat{\text{ee}}(b_j)]$$
 
 ## Ejercicios {#sec-semana09-ejercicios}
 
-**Ejercicio 1**: En un estudio sobre prediabetes en 40 pacientes del centro de salud, se investiga la relación entre el **índice de masa corporal** ($X$, kg/m²) y la **glucosa en ayunas** ($Y$, mg/dL). Se obtienen las siguientes estadísticas:
+::: {.callout-tip}
+## Ejercicio 9.1: Estimación e Interpretación del Modelo Lineal
+
+En un estudio con 40 pacientes de un centro de salud se analiza la asociación entre el **índice de masa corporal** ($X$, kg/m²) y la **glucosa en ayunas** ($Y$, mg/dL). Se obtienen las siguientes estadísticas:
 
 - $\bar{x} = 28.5$ kg/m², $\bar{y} = 105.5$ mg/dL
 - $s_x^2 = 9.0$, $s_y^2 = 144.0$
 - $s_{xy} = 27.0$
 
-a) Calcula los estimadores MCO $b_0$ y $b_1$
-b) Interpreta clínicamente el coeficiente $b_1$
-c) Calcula $R^2$ e interpreta qué proporción de la variabilidad glucémica explica el IMC
-d) Un paciente nuevo tiene un IMC de 32 kg/m². ¿Cuál es su glucosa en ayunas predicha? ¿Podría considerarse en rango de prediabetes (glucosa ≥ 100 mg/dL)?
+(a) Calcule los estimadores MCO $b_0$ y $b_1$.
+(b) Interprete el coeficiente $b_1$.
+(c) Calcule $R^2$ e interprete la proporción de variabilidad observada en la glucosa que explica el IMC.
+(d) Para un paciente con IMC de 32 kg/m², calcule la glucosa en ayunas predicha e indique si se encuentra en el intervalo de prediabetes de 100 a 125 mg/dL.
+:::
 
----
+::: {.callout-tip}
+## Ejercicio 9.2: Inferencia sobre la Pendiente
 
-**Ejercicio 2**: Un estudio de función pulmonar en una consulta de neumología evalúa el efecto del tabaquismo sobre el FEV1 (volumen espiratorio forzado en el primer segundo, expresado como % del predicho). Con 60 pacientes fumadores se obtiene:
+Un estudio con 60 pacientes fumadores analiza la asociación entre la exposición acumulada al tabaquismo ($X$, paquetes-año) y el FEV1 ($Y$, porcentaje del valor predicho). Se obtiene:
 
-- $\hat{\beta}_0 = 98.0\%$, $\hat{\beta}_1 = -0.80\%$ por paquete-año
-- $\widehat{\text{ee}}(b_1) = 0.12$
-- $s_u = 7.5\%$, $\sum (x_i - \bar{x})^2 = 3906.25$
+- $\hat{\beta}_0 = 98.0\%$, $\hat{\beta}_1 = -0.80$ puntos porcentuales por paquete-año
+- $\widehat{\text{ee}}(b_1) = 0.12$ puntos porcentuales por paquete-año
+- $s_u = 7.5$ puntos porcentuales, $\sum (x_i - \bar{x})^2 = 3906.25$
 
-a) Realiza el test de hipótesis $H_0: \beta_1 = 0$ con $\alpha = 0.05$. Interpreta el resultado
-b) Construye un intervalo de confianza al 95% para $\beta_1$
-c) ¿Qué significa clínicamente que rechacemos $H_0$?
-d) ¿Es razonable el signo negativo de $\hat{\beta}_1$?
+(a) Suponiendo satisfechos los supuestos del modelo, contraste $H_0:\beta_1=0$ frente a $H_1:\beta_1\neq0$ con $\alpha=0.05$.
+(b) Construya un intervalo de confianza al 95% para $\beta_1$.
+(c) Interprete clínicamente la asociación estimada.
+(d) Indique si el signo negativo de $\hat{\beta}_1$ es clínicamente coherente.
+:::
 
----
+::: {.callout-tip}
+## Ejercicio 9.3: Intervalo para la Media y Análisis de Residuos
 
-**Ejercicio 3**: Para los datos del estudio de colesterol e IMC (sección 9.12, $n = 250$):
+Utilice el modelo resumido del estudio de colesterol e IMC de la sección 9.12, con $n=250$, $\widehat{Y}=78+5\,\text{IMC}$, $\bar{x}=27.2$, $s_x=4.5$, $s_u\approx28.7$ mg/dL y $\widehat{\text{ee}}(b_1)=0.41$.
 
-a) Calcula el intervalo de confianza al 95% para el colesterol medio en pacientes con IMC = 30 kg/m² (obesidad tipo I)
-b) ¿Es estadísticamente significativo el efecto del IMC sobre el colesterol? Justifica usando el estadístico $t$
-c) Un paciente tiene IMC = 32 kg/m² y colesterol = 260 mg/dL. Calcula su residuo. ¿Podría ser un paciente con dislipemia familiar no relacionada con el IMC?
+(a) Calcule el intervalo de confianza al 95% para el colesterol medio cuando IMC = 30 kg/m².
+(b) Determine si la pendiente es estadísticamente significativa mediante el estadístico $t$.
+(c) Para un paciente con IMC = 32 kg/m² y colesterol = 260 mg/dL, calcule el residuo e indique si este resultado permite inferir por sí solo una dislipemia familiar.
+:::
 
----
+::: {.callout-tip}
+## Ejercicio 9.4: Interpretación del Modelo y de R²
 
-**Ejercicio 4**: En un ensayo clínico con 30 pacientes febriles, se estudia la relación entre la **dosis de paracetamol** ($X$, mg/kg) y la **reducción de temperatura corporal a las 2 horas** ($Y$, °C). El modelo estimado es:
+En un ensayo clínico con 30 pacientes febriles se estudia la relación entre la **dosis de paracetamol** ($X$, mg/kg) y la **reducción de temperatura corporal a las 2 horas** ($Y$, °C). El modelo estimado es:
 
 $$\hat{y}_i = 0.50 + 0.30 x_i, \quad R^2 = 0.64$$
 
-a) ¿Qué proporción de la reducción de temperatura es explicada por la dosis?
-b) Si la dosis media fue $\bar{x} = 10$ mg/kg, ¿cuál fue la reducción media de temperatura?
-c) Por cada mg/kg adicional de paracetamol, ¿cuánto desciende la temperatura en promedio?
-d) ¿Qué factor explicaría el 36% de variabilidad no captada por la dosis?
+(a) ¿Qué proporción de la variabilidad observada en la reducción de temperatura explica la dosis?
+(b) Si $\bar{x}=10$ mg/kg, ¿cuál es la reducción media estimada de temperatura?
+(c) ¿Cómo cambia la reducción media predicha por cada mg/kg adicional de paracetamol?
+(d) ¿Qué representa el 36% de variabilidad no explicada por el modelo y qué factores podrían contribuir a ella?
+:::
 
----
+::: {.callout-tip}
+## Ejercicio 9.5: Diagnóstico del Modelo de Regresión
 
-**Ejercicio 5**: Un clínico interpreta los gráficos de diagnóstico de un modelo que relaciona la **supervivencia** (meses) con el **tamaño tumoral** (mm). Describe qué patrón en cada gráfico indicaría:
+Se interpretan los gráficos de diagnóstico de un modelo que relaciona la **supervivencia** (meses) con el **tamaño tumoral** (mm). Describa qué patrón indicaría:
 
-a) Que la relación no es lineal (posiblemente necesita log-transformación)
-b) Heteroscedasticidad (varianza de los residuos crece con el tamaño tumoral)
-c) Violación de la normalidad de los residuos
-d) Presencia de un paciente con diagnóstico tardío que actúa como punto influyente
+(a) Falta de linealidad.
+(b) Heteroscedasticidad.
+(c) Falta de normalidad de los residuos.
+(d) Una observación potencialmente influyente.
+:::
 
----
+::: {.callout-tip}
+## Ejercicio 9.6: Correlación, R² y Pendiente
 
-**Ejercicio 6**: En un programa de cribado de cáncer de próstata, se estudia la asociación entre el **PSA sérico** (ng/mL) y la **edad** (años). En una primera muestra: $r = 0.58$. En una segunda muestra: $r = 0.45$:
+En un programa de cribado de cáncer de próstata se estudia la asociación entre el **PSA sérico** (ng/mL) y la **edad** (años). En una primera muestra se obtiene $r=0.58$ y en una segunda muestra, $r=0.45$.
 
-a) Calcula y compara los $R^2$ de ambas muestras. ¿Qué muestra muestra mayor capacidad predictiva?
-b) ¿La relación PSA-edad es más fuerte o más débil en la segunda muestra?
-c) Si las desviaciones estándar permanecen iguales, ¿cómo cambia el coeficiente de regresión $b_1$ entre muestras?
-d) ¿Qué factores clínicos podrían explicar una asociación más débil (menor $r$) en la segunda muestra?
+(a) Calcule y compare los $R^2$. ¿En cuál muestra se explica una mayor proporción de variabilidad?
+(b) Compare descriptivamente la intensidad de la asociación observada.
+(c) Si $s_X$ y $s_Y$ conservan los mismos valores en ambas muestras, ¿cómo cambia el coeficiente de regresión $b_1$?
+(d) ¿Qué factores podrían contribuir a una asociación observada más débil en la segunda muestra?
+:::
 
 ## Respuestas a los Ejercicios {#sec-semana09-respuestas}
 
-**Ejercicio 1:**
-- a) $b_1 = s_{xy}/s_x^2 = 27.0/9.0 = 3.0$ mg/dL por kg/m²; $b_0 = 105.5 - 3.0 \times 28.5 = 20.0$ mg/dL
-- b) Por cada kg/m² adicional de IMC, la glucosa en ayunas aumenta en promedio 3 mg/dL, manteniendo el resto constante. Con un IMC de 30 vs 25, se esperan 15 mg/dL más de glucosa.
-- c) $r = s_{xy}/(s_x \cdot s_y) = 27.0/(3.0 \times 12.0) = 0.75$; $R^2 = 0.5625$. El IMC explica el 56.25% de la variabilidad en la glucosa en ayunas.
-- d) $\hat{Y}(32) = 20.0 + 3.0 \times 32 = 116$ mg/dL. Sí, está en rango de prediabetes (≥100 mg/dL); de hecho, supera el umbral de diabetes (≥126 mg/dL), lo que indica riesgo elevado.
+**Ejercicio 9.1:**
 
-**Ejercicio 2:**
-- a) $t = -0.80/0.12 = -6.67$; $gl = 58$; $t_{0.975, 58} \approx 2.00$. Como $|{-6.67}| > 2.00$ ($p < 0.001$), rechazamos $H_0$. El tabaquismo tiene un efecto estadísticamente significativo sobre el FEV1.
-- b) IC 95%: $[-0.80 \pm 2.00 \times 0.12] = [-1.04, -0.56]$ % por paquete-año.
-- c) Existe evidencia de que el tabaquismo reduce el FEV1. Cada paquete-año adicional se asocia con una reducción media de 0.80% del FEV1 predicho.
-- d) Sí, es razonable. El tabaquismo provoca inflamación crónica y destrucción del parénquima pulmonar, reduciendo la función respiratoria. El signo negativo es clínicamente correcto.
+(a) $b_1=3.0$ mg/dL por kg/m² y $b_0=20.0$ mg/dL.
+(b) Cada kg/m² adicional de IMC se asocia con un aumento promedio de 3 mg/dL en la glucosa predicha.
+(c) $r=0.75$ y $R^2=0.5625$; el IMC explica el 56.25% de la variabilidad observada en la glucosa.
+(d) $\widehat{Y}(32)=116$ mg/dL, valor comprendido en el intervalo de prediabetes de 100 a 125 mg/dL. Esta predicción no sustituye una medición clínica para establecer el diagnóstico.
 
-**Ejercicio 3:**
-- a) Usando $\hat{Y}(30) = 78.0 + 5.0 \times 30 = 228$ mg/dL. Con $s_u \approx 28.7$ mg/dL, el IC al 95% requiere calcular $s_u\sqrt{1/n + (30 - 27.2)^2/\text{SCT}_x}$ — los datos dan un intervalo aproximado de $[221, 235]$ mg/dL.
-- b) Sí, $t = 12.2 \gg t_{0.975, 248} \approx 1.970$ ($p < 0.001$). El efecto del IMC sobre el colesterol es altamente significativo.
-- c) Residuo: $\hat{u} = 260 - (78.0 + 5.0 \times 32) = 260 - 238 = 22$ mg/dL. Un residuo de +22 mg/dL es moderado (< 2 desviaciones estándar). Es compatible con dislipemia familiar leve, aunque no constituye un outlier extremo.
+**Ejercicio 9.2:**
 
-**Ejercicio 4:**
-- a) $R^2 = 0.64$; el 64% de la variabilidad en la reducción de temperatura es explicado por la dosis de paracetamol.
-- b) $\hat{Y}(\bar{x}) = 0.50 + 0.30 \times 10 = 3.5$ °C de reducción media.
-- c) Por cada mg/kg adicional de paracetamol, la temperatura desciende en promedio 0.30 °C.
-- d) El 36% restante: estado inmune del paciente, edad, causa de la fiebre (viral vs. bacteriana), hidratación, medicación concomitante, hora de administración.
+(a) $t=-6.67$, con 58 grados de libertad y $p<0.001$; se rechaza $H_0$ y se concluye que la pendiente es distinta de cero.
+(b) IC 95%: $[-1.04,-0.56]$ puntos porcentuales por paquete-año.
+(c) Cada paquete-año adicional se asocia con una disminución media de 0.80 puntos porcentuales en el FEV1 predicho.
+(d) Sí. El signo negativo es coherente con una asociación inversa entre la exposición acumulada al tabaquismo y la función pulmonar.
 
-**Ejercicio 5:**
-- a) Patrón curvado (en forma de U o de arco) en el gráfico de residuos vs. valores ajustados.
-- b) Patrón "embudo" (varianza de residuos aumenta con los valores predichos). Sugiere log-transformación de la variable respuesta.
-- c) Desviaciones sistemáticas de la línea 45° en el Q-Q plot (especialmente en las colas).
-- d) Punto con leverage elevado y residuo grande en el gráfico de Residuos vs. Leverage (esquina superior o inferior derecha). Requiere investigación clínica del caso.
+**Ejercicio 9.3:**
 
-**Ejercicio 6:**
-- a) $R^2_1 = 0.58^2 = 0.336$ (33.6%); $R^2_2 = 0.45^2 = 0.2025$ (20.25%). La primera muestra tiene mayor capacidad predictiva del PSA a partir de la edad.
-- b) La relación PSA-edad es más débil en la segunda muestra ($r$ disminuye de 0.58 a 0.45).
-- c) $b_1 = r \cdot s_y/s_x$. Si las desviaciones estándar no cambian, $b_1$ disminuye proporcionalmente: $b_{1,2}/b_{1,1} = 0.45/0.58 = 0.776$ (un 22.4% menor).
-- d) Posibles razones: rango de edades más estrecho en la segunda muestra, mayor proporción de pacientes con prostatitis o hipertrofia benigna de próstata (que elevan el PSA independientemente de la edad), diferencias en la técnica de laboratorio.
+(a) $\widehat{Y}(30)=228$ mg/dL; IC 95% para la media: $[223.79,232.21]$ mg/dL.
+(b) $t=12.20$, con 248 grados de libertad y $p<0.001$; la pendiente es estadísticamente significativa.
+(c) El residuo es $+22$ mg/dL. No es extremo y, por sí solo, no permite inferir una dislipemia familiar.
+
+**Ejercicio 9.4:**
+
+(a) La dosis explica el 64% de la variabilidad observada en la reducción de temperatura.
+(b) La reducción media estimada es $3.5\ ^\circ\text{C}$.
+(c) Cada mg/kg adicional aumenta en $0.30\ ^\circ\text{C}$ la reducción media predicha.
+(d) El 36% corresponde a variabilidad residual y puede incluir diferencias individuales, variables omitidas, error de medición y variación aleatoria; no puede atribuirse a un único factor.
+
+**Ejercicio 9.5:**
+
+(a) Un patrón curvado en el gráfico de residuos frente a valores ajustados.
+(b) Un patrón de embudo, con dispersión creciente o decreciente de los residuos.
+(c) Desviaciones sistemáticas respecto de la recta de referencia en el gráfico Q-Q.
+(d) Una observación con leverage elevado, residuo considerable y distancia de Cook alta; el caso debe revisarse antes de decidir su tratamiento.
+
+**Ejercicio 9.6:**
+
+(a) $R_1^2=0.3364$ (33.64%) y $R_2^2=0.2025$ (20.25%); la primera muestra presenta una mayor proporción de variabilidad explicada.
+(b) La asociación observada es más débil en la segunda muestra; sin los tamaños muestrales no puede evaluarse si la diferencia entre correlaciones es estadísticamente significativa.
+(c) $b_{1,2}/b_{1,1}=0.45/0.58\approx0.776$; la segunda pendiente es aproximadamente un 22.4% menor.
+(d) Podrían contribuir un rango de edades más estrecho, otras condiciones que alteren el PSA, diferencias de medición y variabilidad muestral.
 
 ---
 
