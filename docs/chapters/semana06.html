@@ -2182,49 +2182,217 @@ Tamaño muestral requerido para δ = 0.05 (5.00%), conf.= 95%
 </section>
 <section id="sec-semana06-ejercicios" class="level2" data-number="6.13">
 <h2 data-number="6.13" class="anchored" data-anchor-id="sec-semana06-ejercicios"><span class="header-section-number">6.13</span> Ejercicios</h2>
-<ol type="1">
-<li><p><strong>Concepto de Estimador:</strong> Define con tus palabras la diferencia entre un parámetro poblacional, un estimador y un valor estimado. ¿Por qué es importante considerar un estimador como una variable aleatoria?</p></li>
-<li><p><strong>Insesgadez vs.&nbsp;Eficiencia:</strong> Considera dos estimadores insesgados del mismo parámetro. ¿Cuál prefieres si uno tiene varianza dos veces mayor que el otro? Razona tu respuesta.</p></li>
-<li><p><strong>Error Cuadrático Medio:</strong> Explica por qué a veces puede ser preferible un estimador sesgado con baja varianza sobre uno insesgado con alta varianza. Proporciona un ejemplo numérico simple.</p></li>
-<li><p><strong>Método de Momentos:</strong> Para una muestra de una distribución Uniform<span class="math inline">\([0, \theta]\)</span>:</p>
-<ul>
-<li>Encuentra el estimador por método de momentos de <span class="math inline">\(\theta\)</span></li>
-<li>¿Es insesgado?</li>
-</ul></li>
-<li><p><strong>Máxima Verosimilitud:</strong> Para una muestra de <span class="math inline">\(n\)</span> observaciones de una distribución Poisson<span class="math inline">\((\lambda)\)</span>:</p>
-<ul>
-<li>Escribe la función de verosimilitud</li>
-<li>Encuentra el EMV de <span class="math inline">\(\lambda\)</span></li>
-<li>¿Coincide con el estimador MoM?</li>
-</ul></li>
-<li><p><strong>Intervalo de Confianza:</strong> Se observa una muestra de 36 datos con <span class="math inline">\(\bar{x} = 50\)</span> y <span class="math inline">\(s = 12\)</span>. Construye un IC 95% para la media poblacional. ¿Cómo cambiaría el intervalo si usáramos un nivel de confianza del 99%?</p></li>
-<li><p><strong>Intervalo de Confianza para Proporción:</strong> En una encuesta de 500 personas, 325 responden afirmativamente a una pregunta. Construye un IC 95% para la proporción poblacional e interpreta el resultado.</p></li>
-<li><p><strong>Programación en R:</strong> Escribe un script en R que:</p>
-<ul>
-<li>Genere una muestra de una distribución Normal<span class="math inline">\((\mu=100, \sigma=15)\)</span> de tamaño <span class="math inline">\(n=50\)</span></li>
-<li>Calcule estimadores puntuales para <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span></li>
-<li>Construya un IC 95% para <span class="math inline">\(\mu\)</span></li>
-<li>Verifique si el verdadero valor de <span class="math inline">\(\mu\)</span> cae dentro del intervalo</li>
-</ul></li>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 6.1: Concepto de Estimador
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>Explique, con palabras propias, la diferencia entre un parámetro poblacional, un estimador y un valor estimado.</li>
+<li>¿Por qué es importante considerar un estimador como una variable aleatoria?</li>
 </ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 6.2: Insesgadez vs.&nbsp;Eficiencia
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Considere dos estimadores insesgados del mismo parámetro, uno con el doble de varianza que el otro.</p>
+<ol type="a">
+<li>Indique cuál resulta preferible.</li>
+<li>Justifique la respuesta.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 6.3: Error Cuadrático Medio
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li>Explique por qué un estimador sesgado con baja varianza puede ser preferible a uno insesgado con alta varianza.</li>
+<li>Incluya un ejemplo numérico simple.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 6.4: Método de Momentos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para una muestra de una distribución <span class="math inline">\(\operatorname{Uniforme}(0,\theta)\)</span>:</p>
+<ol type="a">
+<li>Obtenga el estimador de <span class="math inline">\(\theta\)</span> por el método de momentos.</li>
+<li>Determine si el estimador es insesgado.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 6.5: Máxima Verosimilitud
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para una muestra de <span class="math inline">\(n\)</span> observaciones de una distribución <span class="math inline">\(\operatorname{Poisson}(\lambda)\)</span>:</p>
+<ol type="a">
+<li>Escriba la función de verosimilitud.</li>
+<li>Obtenga el EMV de <span class="math inline">\(\lambda\)</span>.</li>
+<li>Indique si coincide con el estimador por el método de momentos.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 6.6: Intervalo de Confianza
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se observa una muestra de 36 datos con <span class="math inline">\(\bar{x} = 50\)</span> y <span class="math inline">\(s = 12\)</span>.</p>
+<ol type="a">
+<li>Construya un IC del 95% para la media poblacional.</li>
+<li>¿Cómo cambiaría el intervalo con un nivel de confianza del 99%?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 6.7: Intervalo de Confianza para Proporción
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En una encuesta de 500 personas, 325 responden afirmativamente a una pregunta.</p>
+<ol type="a">
+<li>Construya un IC del 95% para la proporción poblacional.</li>
+<li>Interprete el resultado.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 6.8: Programación en R
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Escriba un script en R que:</p>
+<ol type="a">
+<li>Genere una muestra de una distribución normal con <span class="math inline">\(\mu=100\)</span> y <span class="math inline">\(\sigma=15\)</span>, de tamaño <span class="math inline">\(n=50\)</span>.</li>
+<li>Calcule estimadores puntuales para <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span>.</li>
+<li>Construya un IC del 95% para <span class="math inline">\(\mu\)</span>.</li>
+<li>Verifique si el verdadero valor de <span class="math inline">\(\mu\)</span> queda dentro del intervalo.</li>
+</ol>
+</div>
+</div>
 </section>
 <section id="sec-semana06-respuestas" class="level2" data-number="6.14">
 <h2 data-number="6.14" class="anchored" data-anchor-id="sec-semana06-respuestas"><span class="header-section-number">6.14</span> Respuestas a los Ejercicios</h2>
-<p><strong>Ejercicio 1:</strong> Un parámetro es el valor verdadero desconocido de la población (θ). Un estimador es una función de los datos muestrales (T(X₁,…,Xₙ)) que genera diferentes valores según la muestra. Es una variable aleatoria porque depende de la muestra. Es importante reconocer esto para entender su distribución y propiedades.</p>
-<p><strong>Ejercicio 2:</strong> Prefieres el estimador con menor varianza porque tendrá una distribución más concentrada alrededor del parámetro. Si ambos son insesgados, el de menor varianza es más eficiente.</p>
-<p><strong>Ejercicio 3:</strong> Ejemplo: θ=0, Estimador A: insesgado, Var=100; Estimador B: sesgo=2, Var=10. ECM_A = 100; ECM_B = 4 + 10 = 14. B es mejor a pesar del sesgo.</p>
-<p><strong>Ejercicio 4:</strong> Para Uniform[0,θ], el método de momentos da θ̂ = 2X̄. No es insesgado (subestima).</p>
-<p><strong>Ejercicio 5:</strong> L(λ) = λⁿe^(-nλ)∏xᵢ!/∏xᵢ!. EMV: λ̂ = X̄. Sí coincide con MoM.</p>
-<p><strong>Ejercicio 6:</strong> n=36, X̄=50, s=12, t₀.₀₂₅,₃₅ ≈ 2.03 IC95% = [50 ± 2.03×(12/6)] = [50 ± 4.06] = [45.94, 54.06] IC99%: más amplio ≈ [44.55, 55.45] (usa t₀.₉₉₅,₃₅ ≈ 2.72; margen 2.72×2 = 5.45)</p>
-<p><strong>Ejercicio 7:</strong> p̂ = 325/500 = 0.65, SE = √(0.65×0.35/500) ≈ 0.0214 IC95% = [0.65 ± 1.96×0.0214] ≈ [0.608, 0.692]</p>
-<p><strong>Ejercicio 8:</strong> Código R básico:</p>
+<p><strong>Ejercicio 6.1:</strong></p>
+<ol type="a">
+<li>Un parámetro poblacional es un valor fijo, generalmente desconocido, que describe una característica de la población; un estimador es una función de las variables muestrales, <span class="math inline">\(T(X_1,\ldots,X_n)\)</span>; y un valor estimado es el resultado numérico concreto, <span class="math inline">\(T(x_1,\ldots,x_n)\)</span>, obtenido después de observar una muestra.</li>
+<li>El estimador depende de la muestra seleccionada y, por tanto, es una variable aleatoria. Esto permite estudiar su distribución, sesgo y varianza.</li>
+</ol>
+<p><strong>Ejercicio 6.2:</strong></p>
+<ol type="a">
+<li>Se prefiere el estimador con menor varianza.</li>
+<li>Al ser ambos insesgados, el estimador con menor varianza también tiene menor error cuadrático medio y mayor eficiencia.</li>
+</ol>
+<p><strong>Ejercicio 6.3:</strong></p>
+<ol type="a">
+<li><span class="math inline">\(\operatorname{ECM}(\hat{\theta})=\operatorname{Var}(\hat{\theta})+\operatorname{Sesgo}(\hat{\theta})^2\)</span>; una reducción suficiente de la varianza puede compensar un sesgo pequeño.</li>
+<li>Para <span class="math inline">\(\theta=0\)</span>, A tiene sesgo 0 y varianza 100, mientras que B tiene sesgo 2 y varianza 10: <span class="math inline">\(\operatorname{ECM}(A)=100\)</span> y <span class="math inline">\(\operatorname{ECM}(B)=14\)</span>. Por tanto, B presenta menor ECM a pesar de ser sesgado.</li>
+</ol>
+<p><strong>Ejercicio 6.4:</strong></p>
+<ol type="a">
+<li><span class="math inline">\(\hat{\theta}_{\mathrm{MoM}}=2\bar{X}\)</span>.</li>
+<li><span class="math inline">\(E(\hat{\theta}_{\mathrm{MoM}})=2E(\bar{X})=\theta\)</span>; por tanto, es insesgado.</li>
+</ol>
+<p><strong>Ejercicio 6.5:</strong></p>
+<ol type="a">
+<li><p>La función de verosimilitud es</p>
+<p><span class="math display">\[
+L(\lambda;\mathbf{x})
+=\prod_{i=1}^{n}\frac{e^{-\lambda}\lambda^{x_i}}{x_i!}
+=\frac{e^{-n\lambda}\lambda^{\sum_{i=1}^{n}x_i}}
+{\prod_{i=1}^{n}x_i!}.
+\]</span></p></li>
+<li><p><span class="math inline">\(\hat{\lambda}_{\mathrm{EMV}}=\frac{1}{n}\sum_{i=1}^{n}x_i=\bar{X}\)</span>.</p></li>
+<li><p><span class="math inline">\(\hat{\lambda}_{\mathrm{MoM}}=\bar{X}\)</span>; ambos estimadores coinciden.</p></li>
+</ol>
+<p><strong>Ejercicio 6.6:</strong></p>
+<ol type="a">
+<li><span class="math inline">\(SE=s/\sqrt{n}=12/\sqrt{36}=2\)</span>; por tanto, <span class="math inline">\(IC_{95\%}=50\pm t_{0.975,35}(2)\approx50\pm4.060=[45.94,54.06]\)</span>.</li>
+<li><span class="math inline">\(IC_{99\%}=50\pm t_{0.995,35}(2)\approx50\pm5.448=[44.55,55.45]\)</span>; es más amplio por el mayor nivel de confianza.</li>
+</ol>
+<p><strong>Ejercicio 6.7:</strong></p>
+<ol type="a">
+<li><span class="math inline">\(\hat{p}=325/500=0.65\)</span>, <span class="math inline">\(SE(\hat{p})\approx0.0213\)</span> e <span class="math inline">\(IC_{95\%}=0.65\pm1.96(0.0213)\approx[0.608,0.692]\)</span>.</li>
+<li>La proporción poblacional de respuestas afirmativas se estima entre aproximadamente el 60.8% y el 69.2% mediante un procedimiento con un nivel de confianza del 95%.</li>
+</ol>
+<p><strong>Ejercicio 6.8:</strong></p>
+<p>Al estimarse la varianza con la muestra, el intervalo para <span class="math inline">\(\mu\)</span> utiliza la distribución t de Student:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>muestra <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">50</span>, <span class="at">mean=</span><span class="dv">100</span>, <span class="at">sd=</span><span class="dv">15</span>)</span>
-<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="fu">mean</span>(muestra)</span>
-<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a>var_est <span class="ot">&lt;-</span> <span class="fu">var</span>(muestra)</span>
-<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">sd</span>(muestra)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">50</span>)</span>
-<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a>ic <span class="ot">&lt;-</span> <span class="fu">c</span>(media <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span>se, media <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span>se)</span>
-<span id="cb93-7"><a href="#cb93-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar: 100 ∈ ic?</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>mu_real <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a><span class="co"># (a)</span></span>
+<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a>muestra <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> mu_real, <span class="at">sd =</span> <span class="dv">15</span>)</span>
+<span id="cb93-7"><a href="#cb93-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-8"><a href="#cb93-8" aria-hidden="true" tabindex="-1"></a><span class="co"># (b)</span></span>
+<span id="cb93-9"><a href="#cb93-9" aria-hidden="true" tabindex="-1"></a>media_est <span class="ot">&lt;-</span> <span class="fu">mean</span>(muestra)</span>
+<span id="cb93-10"><a href="#cb93-10" aria-hidden="true" tabindex="-1"></a>var_est <span class="ot">&lt;-</span> <span class="fu">var</span>(muestra)</span>
+<span id="cb93-11"><a href="#cb93-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-12"><a href="#cb93-12" aria-hidden="true" tabindex="-1"></a><span class="co"># (c)</span></span>
+<span id="cb93-13"><a href="#cb93-13" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">sd</span>(muestra) <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb93-14"><a href="#cb93-14" aria-hidden="true" tabindex="-1"></a>ic <span class="ot">&lt;-</span> media_est <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> se</span>
+<span id="cb93-15"><a href="#cb93-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-16"><a href="#cb93-16" aria-hidden="true" tabindex="-1"></a><span class="co"># (d)</span></span>
+<span id="cb93-17"><a href="#cb93-17" aria-hidden="true" tabindex="-1"></a>contiene_mu <span class="ot">&lt;-</span> ic[<span class="dv">1</span>] <span class="sc">&lt;=</span> mu_real <span class="sc">&amp;&amp;</span> mu_real <span class="sc">&lt;=</span> ic[<span class="dv">2</span>]</span>
+<span id="cb93-18"><a href="#cb93-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-19"><a href="#cb93-19" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">media_est =</span> media_est, <span class="at">var_est =</span> var_est)</span>
+<span id="cb93-20"><a href="#cb93-20" aria-hidden="true" tabindex="-1"></a>ic</span>
+<span id="cb93-21"><a href="#cb93-21" aria-hidden="true" tabindex="-1"></a>contiene_mu</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<ol type="a">
+<li>Se genera la muestra normal de tamaño 50 en <code>muestra</code>.</li>
+<li><span class="math inline">\(\hat{\mu}\approx100.516\)</span> y <span class="math inline">\(\hat{\sigma}^2\approx192.878\)</span>.</li>
+<li><span class="math inline">\(IC_{95\%}(\mu)\approx[96.569,104.463]\)</span>.</li>
+<li><code>contiene_mu = TRUE</code>; el intervalo contiene el valor <span class="math inline">\(\mu=100\)</span>.</li>
+</ol>
 
 
 </section>

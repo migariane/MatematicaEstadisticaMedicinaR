@@ -815,61 +815,151 @@ El cálculo del tamaño muestral cuantifica el coste estadístico de incrementar
 
 ## Ejercicios {#sec-semana06-ejercicios}
 
-1. **Concepto de Estimador:** Define con tus palabras la diferencia entre un parámetro poblacional, un estimador y un valor estimado. ¿Por qué es importante considerar un estimador como una variable aleatoria?
+::: {.callout-tip}
+## Ejercicio 6.1: Concepto de Estimador
 
-2. **Insesgadez vs. Eficiencia:** Considera dos estimadores insesgados del mismo parámetro. ¿Cuál prefieres si uno tiene varianza dos veces mayor que el otro? Razona tu respuesta.
+(a) Explique, con palabras propias, la diferencia entre un parámetro poblacional, un estimador y un valor estimado.
+(b) ¿Por qué es importante considerar un estimador como una variable aleatoria?
+:::
 
-3. **Error Cuadrático Medio:** Explica por qué a veces puede ser preferible un estimador sesgado con baja varianza sobre uno insesgado con alta varianza. Proporciona un ejemplo numérico simple.
+::: {.callout-tip}
+## Ejercicio 6.2: Insesgadez vs. Eficiencia
 
-4. **Método de Momentos:** Para una muestra de una distribución Uniform$[0, \theta]$:
+Considere dos estimadores insesgados del mismo parámetro, uno con el doble de varianza que el otro.
 
-   - Encuentra el estimador por método de momentos de $\theta$
-   - ¿Es insesgado?
+(a) Indique cuál resulta preferible.
+(b) Justifique la respuesta.
+:::
 
-5. **Máxima Verosimilitud:** Para una muestra de $n$ observaciones de una distribución Poisson$(\lambda)$:
+::: {.callout-tip}
+## Ejercicio 6.3: Error Cuadrático Medio
 
-   - Escribe la función de verosimilitud
-   - Encuentra el EMV de $\lambda$
-   - ¿Coincide con el estimador MoM?
+(a) Explique por qué un estimador sesgado con baja varianza puede ser preferible a uno insesgado con alta varianza.
+(b) Incluya un ejemplo numérico simple.
+:::
 
-6. **Intervalo de Confianza:** Se observa una muestra de 36 datos con $\bar{x} = 50$ y $s = 12$. Construye un IC 95% para la media poblacional. ¿Cómo cambiaría el intervalo si usáramos un nivel de confianza del 99%?
+::: {.callout-tip}
+## Ejercicio 6.4: Método de Momentos
 
-7. **Intervalo de Confianza para Proporción:** En una encuesta de 500 personas, 325 responden afirmativamente a una pregunta. Construye un IC 95% para la proporción poblacional e interpreta el resultado.
+Para una muestra de una distribución $\operatorname{Uniforme}(0,\theta)$:
 
-8. **Programación en R:** Escribe un script en R que:
+(a) Obtenga el estimador de $\theta$ por el método de momentos.
+(b) Determine si el estimador es insesgado.
+:::
 
-   - Genere una muestra de una distribución Normal$(\mu=100, \sigma=15)$ de tamaño $n=50$
-   - Calcule estimadores puntuales para $\mu$ y $\sigma^2$
-   - Construya un IC 95% para $\mu$
-   - Verifique si el verdadero valor de $\mu$ cae dentro del intervalo
+::: {.callout-tip}
+## Ejercicio 6.5: Máxima Verosimilitud
+
+Para una muestra de $n$ observaciones de una distribución $\operatorname{Poisson}(\lambda)$:
+
+(a) Escriba la función de verosimilitud.
+(b) Obtenga el EMV de $\lambda$.
+(c) Indique si coincide con el estimador por el método de momentos.
+:::
+
+::: {.callout-tip}
+## Ejercicio 6.6: Intervalo de Confianza
+
+Se observa una muestra de 36 datos con $\bar{x} = 50$ y $s = 12$.
+
+(a) Construya un IC del 95% para la media poblacional.
+(b) ¿Cómo cambiaría el intervalo con un nivel de confianza del 99%?
+:::
+
+::: {.callout-tip}
+## Ejercicio 6.7: Intervalo de Confianza para Proporción
+
+En una encuesta de 500 personas, 325 responden afirmativamente a una pregunta.
+
+(a) Construya un IC del 95% para la proporción poblacional.
+(b) Interprete el resultado.
+:::
+
+::: {.callout-tip}
+## Ejercicio 6.8: Programación en R
+
+Escriba un script en R que:
+
+(a) Genere una muestra de una distribución normal con $\mu=100$ y $\sigma=15$, de tamaño $n=50$.
+(b) Calcule estimadores puntuales para $\mu$ y $\sigma^2$.
+(c) Construya un IC del 95% para $\mu$.
+(d) Verifique si el verdadero valor de $\mu$ queda dentro del intervalo.
+:::
 
 ## Respuestas a los Ejercicios {#sec-semana06-respuestas}
 
-**Ejercicio 1:** Un parámetro es el valor verdadero desconocido de la población (θ). Un estimador es una función de los datos muestrales (T(X₁,...,Xₙ)) que genera diferentes valores según la muestra. Es una variable aleatoria porque depende de la muestra. Es importante reconocer esto para entender su distribución y propiedades.
+**Ejercicio 6.1:**
 
-**Ejercicio 2:** Prefieres el estimador con menor varianza porque tendrá una distribución más concentrada alrededor del parámetro. Si ambos son insesgados, el de menor varianza es más eficiente.
+(a) Un parámetro poblacional es un valor fijo, generalmente desconocido, que describe una característica de la población; un estimador es una función de las variables muestrales, $T(X_1,\ldots,X_n)$; y un valor estimado es el resultado numérico concreto, $T(x_1,\ldots,x_n)$, obtenido después de observar una muestra.
+(b) El estimador depende de la muestra seleccionada y, por tanto, es una variable aleatoria. Esto permite estudiar su distribución, sesgo y varianza.
 
-**Ejercicio 3:** Ejemplo: θ=0, Estimador A: insesgado, Var=100; Estimador B: sesgo=2, Var=10. ECM_A = 100; ECM_B = 4 + 10 = 14. B es mejor a pesar del sesgo.
+**Ejercicio 6.2:**
 
-**Ejercicio 4:** Para Uniform[0,θ], el método de momentos da θ̂ = 2X̄. No es insesgado (subestima).
+(a) Se prefiere el estimador con menor varianza.
+(b) Al ser ambos insesgados, el estimador con menor varianza también tiene menor error cuadrático medio y mayor eficiencia.
 
-**Ejercicio 5:** L(λ) = λⁿe^(-nλ)∏xᵢ!/∏xᵢ!. EMV: λ̂ = X̄. Sí coincide con MoM.
+**Ejercicio 6.3:**
 
-**Ejercicio 6:** n=36, X̄=50, s=12, t₀.₀₂₅,₃₅ ≈ 2.03
-IC95% = [50 ± 2.03×(12/6)] = [50 ± 4.06] = [45.94, 54.06]
-IC99%: más amplio ≈ [44.55, 55.45] (usa t₀.₉₉₅,₃₅ ≈ 2.72; margen 2.72×2 = 5.45)
+(a) $\operatorname{ECM}(\hat{\theta})=\operatorname{Var}(\hat{\theta})+\operatorname{Sesgo}(\hat{\theta})^2$; una reducción suficiente de la varianza puede compensar un sesgo pequeño.
+(b) Para $\theta=0$, A tiene sesgo 0 y varianza 100, mientras que B tiene sesgo 2 y varianza 10: $\operatorname{ECM}(A)=100$ y $\operatorname{ECM}(B)=14$. Por tanto, B presenta menor ECM a pesar de ser sesgado.
 
-**Ejercicio 7:** p̂ = 325/500 = 0.65, SE = √(0.65×0.35/500) ≈ 0.0214
-IC95% = [0.65 ± 1.96×0.0214] ≈ [0.608, 0.692]
+**Ejercicio 6.4:**
 
-**Ejercicio 8:** Código R básico:
+(a) $\hat{\theta}_{\mathrm{MoM}}=2\bar{X}$.
+(b) $E(\hat{\theta}_{\mathrm{MoM}})=2E(\bar{X})=\theta$; por tanto, es insesgado.
+
+**Ejercicio 6.5:**
+
+(a) La función de verosimilitud es
+
+    $$
+    L(\lambda;\mathbf{x})
+    =\prod_{i=1}^{n}\frac{e^{-\lambda}\lambda^{x_i}}{x_i!}
+    =\frac{e^{-n\lambda}\lambda^{\sum_{i=1}^{n}x_i}}
+    {\prod_{i=1}^{n}x_i!}.
+    $$
+(b) $\hat{\lambda}_{\mathrm{EMV}}=\frac{1}{n}\sum_{i=1}^{n}x_i=\bar{X}$.
+(c) $\hat{\lambda}_{\mathrm{MoM}}=\bar{X}$; ambos estimadores coinciden.
+
+**Ejercicio 6.6:**
+
+(a) $SE=s/\sqrt{n}=12/\sqrt{36}=2$; por tanto, $IC_{95\%}=50\pm t_{0.975,35}(2)\approx50\pm4.060=[45.94,54.06]$.
+(b) $IC_{99\%}=50\pm t_{0.995,35}(2)\approx50\pm5.448=[44.55,55.45]$; es más amplio por el mayor nivel de confianza.
+
+**Ejercicio 6.7:**
+
+(a) $\hat{p}=325/500=0.65$, $SE(\hat{p})\approx0.0213$ e $IC_{95\%}=0.65\pm1.96(0.0213)\approx[0.608,0.692]$.
+(b) La proporción poblacional de respuestas afirmativas se estima entre aproximadamente el 60.8% y el 69.2% mediante un procedimiento con un nivel de confianza del 95%.
+
+**Ejercicio 6.8:**
+
+Al estimarse la varianza con la muestra, el intervalo para $\mu$ utiliza la distribución t de Student:
+
 ```r
 set.seed(123)
-muestra <- rnorm(50, mean=100, sd=15)
-media <- mean(muestra)
+n <- 50
+mu_real <- 100
+
+# (a)
+muestra <- rnorm(n, mean = mu_real, sd = 15)
+
+# (b)
+media_est <- mean(muestra)
 var_est <- var(muestra)
-se <- sd(muestra)/sqrt(50)
-ic <- c(media - 1.96*se, media + 1.96*se)
-# Verificar: 100 ∈ ic?
+
+# (c)
+se <- sd(muestra) / sqrt(n)
+ic <- media_est + c(-1, 1) * qt(0.975, n - 1) * se
+
+# (d)
+contiene_mu <- ic[1] <= mu_real && mu_real <= ic[2]
+
+c(media_est = media_est, var_est = var_est)
+ic
+contiene_mu
 ```
 
+(a) Se genera la muestra normal de tamaño 50 en `muestra`.
+(b) $\hat{\mu}\approx100.516$ y $\hat{\sigma}^2\approx192.878$.
+(c) $IC_{95\%}(\mu)\approx[96.569,104.463]$.
+(d) `contiene_mu = TRUE`; el intervalo contiene el valor $\mu=100$.

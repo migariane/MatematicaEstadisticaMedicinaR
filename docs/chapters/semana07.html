@@ -476,15 +476,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#tabla-de-decisión-rápida" id="toc-tabla-de-decisión-rápida" class="nav-link" data-scroll-target="#tabla-de-decisión-rápida"><span class="header-section-number">7.14.1</span> Tabla de Decisión Rápida</a></li>
   </ul></li>
-  <li><a href="#sec-semana07-ejercicios" id="toc-sec-semana07-ejercicios" class="nav-link" data-scroll-target="#sec-semana07-ejercicios"><span class="header-section-number">7.15</span> Ejercicios</a>
-  <ul class="collapse">
-  <li><a href="#ejercicio-1-conceptos-básicos" id="toc-ejercicio-1-conceptos-básicos" class="nav-link" data-scroll-target="#ejercicio-1-conceptos-básicos"><span class="header-section-number">7.15.1</span> Ejercicio 1: Conceptos Básicos</a></li>
-  <li><a href="#ejercicio-2-contraste-z" id="toc-ejercicio-2-contraste-z" class="nav-link" data-scroll-target="#ejercicio-2-contraste-z"><span class="header-section-number">7.15.2</span> Ejercicio 2: Contraste Z</a></li>
-  <li><a href="#ejercicio-3-contraste-t" id="toc-ejercicio-3-contraste-t" class="nav-link" data-scroll-target="#ejercicio-3-contraste-t"><span class="header-section-number">7.15.3</span> Ejercicio 3: Contraste t</a></li>
-  <li><a href="#ejercicio-4-contraste-binomial" id="toc-ejercicio-4-contraste-binomial" class="nav-link" data-scroll-target="#ejercicio-4-contraste-binomial"><span class="header-section-number">7.15.4</span> Ejercicio 4: Contraste Binomial</a></li>
-  <li><a href="#ejercicio-5-decisión-con-p-valor" id="toc-ejercicio-5-decisión-con-p-valor" class="nav-link" data-scroll-target="#ejercicio-5-decisión-con-p-valor"><span class="header-section-number">7.15.5</span> Ejercicio 5: Decisión con p-valor</a></li>
-  <li><a href="#ejercicio-6-interpretación-de-resultados" id="toc-ejercicio-6-interpretación-de-resultados" class="nav-link" data-scroll-target="#ejercicio-6-interpretación-de-resultados"><span class="header-section-number">7.15.6</span> Ejercicio 6: Interpretación de Resultados</a></li>
-  </ul></li>
+  <li><a href="#sec-semana07-ejercicios" id="toc-sec-semana07-ejercicios" class="nav-link" data-scroll-target="#sec-semana07-ejercicios"><span class="header-section-number">7.15</span> Ejercicios</a></li>
   <li><a href="#sec-semana07-respuestas" id="toc-sec-semana07-respuestas" class="nav-link" data-scroll-target="#sec-semana07-respuestas"><span class="header-section-number">7.16</span> Respuestas a los Ejercicios</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/edit/main/chapters/semana07.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/issues/new" class="toc-action"><i class="bi empty"></i>Informar sobre problema</a></li><li><a href="https://github.com/migariane/MatematicaEstadisticaMedicinaR/blob/main/chapters/semana07.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li></ul></div></nav>
@@ -1878,39 +1870,69 @@ probability of success
 </section>
 <section id="sec-semana07-ejercicios" class="level2" data-number="7.15">
 <h2 data-number="7.15" class="anchored" data-anchor-id="sec-semana07-ejercicios"><span class="header-section-number">7.15</span> Ejercicios</h2>
-<section id="ejercicio-1-conceptos-básicos" class="level3" data-number="7.15.1">
-<h3 data-number="7.15.1" class="anchored" data-anchor-id="ejercicio-1-conceptos-básicos"><span class="header-section-number">7.15.1</span> Ejercicio 1: Conceptos Básicos</h3>
-<p>Un médico sospecha que el nivel medio de colesterol en una población es mayor a 200 mg/dL. Formule las hipótesis apropiadas e identifique los tipos de error que podrían ocurrir.</p>
-</section>
-<section id="ejercicio-2-contraste-z" class="level3" data-number="7.15.2">
-<h3 data-number="7.15.2" class="anchored" data-anchor-id="ejercicio-2-contraste-z"><span class="header-section-number">7.15.2</span> Ejercicio 2: Contraste Z</h3>
-<p>Una máquina que produce tornillos tiene un ajuste tal que <span class="math inline">\(\sigma = 0.5\)</span> mm. Se toman 25 tornillos y se mide su diámetro promedio: <span class="math inline">\(\bar{x} = 10.2\)</span> mm. El diámetro especificado es 10 mm.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 7.1: Conceptos Básicos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un médico sospecha que el nivel medio de colesterol en una población es mayor que 200 mg/dL.</p>
 <ol type="a">
-<li>Formule <span class="math inline">\(H_0\)</span> y <span class="math inline">\(H_1\)</span></li>
-<li>Calcule el estadístico Z</li>
-<li>¿Rechaza <span class="math inline">\(H_0\)</span> con <span class="math inline">\(\alpha = 0.05\)</span>? (bilateral)</li>
-<li>Calcule el p-valor</li>
+<li>Formule las hipótesis apropiadas.</li>
+<li>Identifique los errores de tipo I y de tipo II que podrían ocurrir.</li>
 </ol>
-</section>
-<section id="ejercicio-3-contraste-t" class="level3" data-number="7.15.3">
-<h3 data-number="7.15.3" class="anchored" data-anchor-id="ejercicio-3-contraste-t"><span class="header-section-number">7.15.3</span> Ejercicio 3: Contraste t</h3>
-<p>Se obtuvieron las siguientes mediciones de tiempo de reacción (en segundos) para 10 sujetos:</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 7.2: Contraste Z
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El diámetro de los tornillos producidos por una máquina tiene una desviación típica poblacional conocida de <span class="math inline">\(\sigma=0.5\)</span> mm. Se toma una muestra de 25 tornillos y se obtiene un diámetro medio de <span class="math inline">\(\bar{x}=10.2\)</span> mm. El diámetro especificado es 10 mm.</p>
+<ol type="a">
+<li>Formule <span class="math inline">\(H_0\)</span> y <span class="math inline">\(H_1\)</span>.</li>
+<li>Calcule el estadístico Z.</li>
+<li>Determine si se rechaza <span class="math inline">\(H_0\)</span> con <span class="math inline">\(\alpha=0.05\)</span> en un contraste bilateral.</li>
+<li>Calcule el p-valor.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 7.3: Contraste t
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se obtuvieron las siguientes mediciones de tiempo de reacción, en segundos, para 10 sujetos:</p>
 <pre><code>0.42, 0.45, 0.38, 0.41, 0.39, 0.44, 0.40, 0.43, 0.37, 0.46</code></pre>
 <ol type="a">
-<li>¿Es diferente de 0.40 segundos con <span class="math inline">\(\alpha = 0.05\)</span>? (bilateral)</li>
-<li>Calcule <span class="math inline">\(\bar{x}\)</span> y <span class="math inline">\(s\)</span></li>
-<li>Calcule el estadístico t</li>
-<li>Determine el p-valor</li>
+<li>Calcule <span class="math inline">\(\bar{x}\)</span> y <span class="math inline">\(s\)</span>.</li>
+<li>Calcule el estadístico t para contrastar <span class="math inline">\(\mu=0.40\)</span>.</li>
+<li>Determine el p-valor bilateral.</li>
+<li>Determine si el tiempo medio difiere de 0.40 segundos con <span class="math inline">\(\alpha=0.05\)</span>.</li>
 </ol>
 <p><strong>Código R sugerido:</strong></p>
 <div class="cell">
-<div id="lst-semana08-6" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana07-ejercicio3" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="true">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana07-ejercicio3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;7.21: Código R
 </figcaption>
-<div aria-describedby="lst-semana08-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
+<div aria-describedby="lst-semana07-ejercicio3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
 <summary>Mostrar el código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.42</span>, <span class="fl">0.45</span>, <span class="fl">0.38</span>, <span class="fl">0.41</span>, <span class="fl">0.39</span>, <span class="fl">0.44</span>, <span class="fl">0.40</span>, <span class="fl">0.43</span>, <span class="fl">0.37</span>, <span class="fl">0.46</span>)</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">t.test</span>(datos, <span class="at">mu =</span> <span class="fl">0.40</span>)</span>
@@ -1919,88 +1941,123 @@ Cuadro&nbsp;7.21: Código R
 </div>
 </figure>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    One Sample t-test
-
-data:  datos
-t = 2, df = 9, p-value = 0.2
-alternative hypothesis: true mean is not equal to 0.4
-95 percent confidence interval:
- 0.393 0.437
-sample estimates:
-mean of x 
-    0.415 </code></pre>
 </div>
 </div>
-</section>
-<section id="ejercicio-4-contraste-binomial" class="level3" data-number="7.15.4">
-<h3 data-number="7.15.4" class="anchored" data-anchor-id="ejercicio-4-contraste-binomial"><span class="header-section-number">7.15.4</span> Ejercicio 4: Contraste Binomial</h3>
-<p>Un casino afirma que su dado es justo. Lanzamos 20 veces y obtenemos “6” en 6 ocasiones.</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 7.4: Contraste Binomial
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un casino afirma que la probabilidad de obtener un 6 con uno de sus dados es <span class="math inline">\(1/6\)</span>. Se lanza el dado 20 veces y se obtiene un 6 en 6 ocasiones.</p>
 <ol type="a">
-<li>Formule <span class="math inline">\(H_0\)</span> y <span class="math inline">\(H_1\)</span></li>
-<li>¿Es inusual este resultado? Calcule el p-valor</li>
-<li>¿Rechazaría que el dado es justo con <span class="math inline">\(\alpha = 0.05\)</span>?</li>
+<li>Formule <span class="math inline">\(H_0\)</span> y <span class="math inline">\(H_1\)</span>.</li>
+<li>Calcule el p-valor bilateral exacto.</li>
+<li>Determine si se rechaza <span class="math inline">\(H_0\)</span> con <span class="math inline">\(\alpha=0.05\)</span>.</li>
 </ol>
 <p><strong>Código R sugerido:</strong></p>
 <div class="cell">
-<div id="lst-semana08-7" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-semana07-ejercicio4" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="true">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana08-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-semana07-ejercicio4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Cuadro&nbsp;7.22: Código R
 </figcaption>
-<div aria-describedby="lst-semana08-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold">
+<div aria-describedby="lst-semana07-ejercicio4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
 <summary>Mostrar el código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="at">x =</span> <span class="dv">6</span>, <span class="at">n =</span> <span class="dv">20</span>, <span class="at">p =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="at">x =</span> <span class="dv">6</span>, <span class="at">n =</span> <span class="dv">20</span>, <span class="at">p =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </figure>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Exact binomial test
-
-data:  6 and 20
-number of successes = 6, number of trials = 20, p-value = 0.1
-alternative hypothesis: true probability of success is not equal to 0.167
-95 percent confidence interval:
- 0.119 0.543
-sample estimates:
-probability of success 
-                   0.3 </code></pre>
 </div>
 </div>
-</section>
-<section id="ejercicio-5-decisión-con-p-valor" class="level3" data-number="7.15.5">
-<h3 data-number="7.15.5" class="anchored" data-anchor-id="ejercicio-5-decisión-con-p-valor"><span class="header-section-number">7.15.5</span> Ejercicio 5: Decisión con p-valor</h3>
-<p>Para cada uno de los siguientes p-valores, indique si rechaza <span class="math inline">\(H_0\)</span> con <span class="math inline">\(\alpha = 0.05\)</span>:</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 7.5: Decisión con p-valor
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para cada uno de los siguientes p-valores, indique si se rechaza <span class="math inline">\(H_0\)</span> con <span class="math inline">\(\alpha=0.05\)</span>:</p>
 <ol type="a">
-<li>p-valor = 0.031</li>
-<li>p-valor = 0.052</li>
-<li>p-valor = 0.0001</li>
-<li>p-valor = 0.450</li>
+<li>p-valor = 0.031.</li>
+<li>p-valor = 0.052.</li>
+<li>p-valor = 0.0001.</li>
+<li>p-valor = 0.450.</li>
 </ol>
-</section>
-<section id="ejercicio-6-interpretación-de-resultados" class="level3" data-number="7.15.6">
-<h3 data-number="7.15.6" class="anchored" data-anchor-id="ejercicio-6-interpretación-de-resultados"><span class="header-section-number">7.15.6</span> Ejercicio 6: Interpretación de Resultados</h3>
-<p>Un estudio investiga si el peso medio de una población difiere de 70 kg. Se obtiene t = 1.85 con 24 grados de libertad y p-valor = 0.078.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejercicio 7.6: Interpretación de Resultados
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un estudio investiga si el peso medio de una población difiere de 70 kg. Se obtiene <span class="math inline">\(t=1.85\)</span> con 24 grados de libertad y un p-valor de 0.077.</p>
 <ol type="a">
-<li>¿Rechaza <span class="math inline">\(H_0\)</span> con <span class="math inline">\(\alpha = 0.05\)</span>?</li>
-<li>¿Rechazaría con <span class="math inline">\(\alpha = 0.10\)</span>?</li>
-<li>¿Qué puede concluir de estos resultados?</li>
-<li>¿Por qué no es correcto decir “se acepta <span class="math inline">\(H_0\)</span>”?</li>
+<li>¿Se rechaza <span class="math inline">\(H_0\)</span> con <span class="math inline">\(\alpha=0.05\)</span>?</li>
+<li>¿Se rechazaría <span class="math inline">\(H_0\)</span> con <span class="math inline">\(\alpha=0.10\)</span>?</li>
+<li>¿Qué puede concluirse de estos resultados?</li>
+<li>¿Por qué no es correcto decir «se acepta <span class="math inline">\(H_0\)</span>»?</li>
 </ol>
-</section>
+</div>
+</div>
 </section>
 <section id="sec-semana07-respuestas" class="level2" data-number="7.16">
 <h2 data-number="7.16" class="anchored" data-anchor-id="sec-semana07-respuestas"><span class="header-section-number">7.16</span> Respuestas a los Ejercicios</h2>
-<p><strong>Ejercicio 1:</strong> - H₀: μ = 200 mg/dL - H₁: μ &gt; 200 mg/dL (unilateral derecha) - Error Tipo I: rechazar H₀ siendo verdadera (afirmar que colesterol &gt; 200 cuando realmente = 200) - Error Tipo II: no rechazar H₀ siendo falsa (concluir que colesterol = 200 cuando realmente &gt; 200)</p>
-<p><strong>Ejercicio 2:</strong> - a) H₀: μ = 10 mm, H₁: μ ≠ 10 mm - b) Z = (10.2 - 10)/(0.5/√25) = 0.2/0.1 = 2.0 - c) Z₀.₀₂₅ = 1.96; |2.0| &gt; 1.96, rechaza H₀ - d) p-valor ≈ 2×P(Z &gt; 2) ≈ 2×0.0228 = 0.0456</p>
-<p><strong>Ejercicio 3:</strong> - b) X̄ ≈ 0.415, s ≈ 0.0318 - c) t = (0.415 - 0.40)/(0.0318/√10) = 0.015/0.0101 ≈ 1.49 - d) p-valor ≈ 0.17 (df=9); no rechaza H₀ con α=0.05</p>
-<p><strong>Ejercicio 4:</strong> - a) H₀: p = 1/6, H₁: p ≠ 1/6 - b) Bajo H₀, X ~ Binomial(20, 1/6); P(X=6) ≈ 0.20 aproximadamente - c) p-valor &gt; 0.05; no rechaza que el dado sea justo</p>
-<p><strong>Ejercicio 5:</strong> - a) p = 0.031 &lt; 0.05: Rechaza H₀ - b) p = 0.052 &gt; 0.05: No rechaza - c) p = 0.0001 &lt; 0.05: Rechaza H₀ - d) p = 0.450 &gt; 0.05: No rechaza</p>
-<p><strong>Ejercicio 6:</strong> - a) p-valor = 0.078 &gt; 0.05: No rechaza H₀ - b) p-valor = 0.078 &lt; 0.10: Rechaza H₀ con α=0.10 - c) Evidencia marginal contra H₀; resultados borderline - d) Porque no rechazar H₀ no significa que sea verdadera, solo que no hay evidencia suficiente en los datos</p>
+<p><strong>Ejercicio 7.1:</strong></p>
+<ol type="a">
+<li><span class="math inline">\(H_0:\mu\leq200\)</span> mg/dL frente a <span class="math inline">\(H_1:\mu&gt;200\)</span> mg/dL.</li>
+<li>Error de tipo I: concluir que <span class="math inline">\(\mu&gt;200\)</span> cuando <span class="math inline">\(\mu\leq200\)</span>. Error de tipo II: no detectar que <span class="math inline">\(\mu&gt;200\)</span> cuando realmente <span class="math inline">\(\mu&gt;200\)</span>.</li>
+</ol>
+<p><strong>Ejercicio 7.2:</strong></p>
+<ol type="a">
+<li><span class="math inline">\(H_0:\mu=10\)</span> mm frente a <span class="math inline">\(H_1:\mu\neq10\)</span> mm.</li>
+<li><span class="math inline">\(Z=(10.2-10)/(0.5/\sqrt{25})=2.0\)</span>.</li>
+<li>Los valores críticos son <span class="math inline">\(\pm z_{0.975}=\pm1.96\)</span>; como <span class="math inline">\(|Z|=2.0&gt;1.96\)</span>, se rechaza <span class="math inline">\(H_0\)</span>.</li>
+<li><span class="math inline">\(p=2P(Z&gt;2.0)\approx0.0455\)</span>.</li>
+</ol>
+<p><strong>Ejercicio 7.3:</strong></p>
+<ol type="a">
+<li><span class="math inline">\(\bar{x}=0.415\)</span> s y <span class="math inline">\(s\approx0.0303\)</span> s.</li>
+<li><span class="math inline">\(t=(0.415-0.40)/(0.0302765/\sqrt{10})\approx1.5667\)</span>, con 9 grados de libertad.</li>
+<li>El p-valor bilateral es aproximadamente 0.1516.</li>
+<li>Como el p-valor es <span class="math inline">\(0.1516&gt;0.05\)</span>, no se rechaza <span class="math inline">\(H_0\)</span>; no hay evidencia suficiente para concluir que el tiempo medio difiera de 0.40 segundos.</li>
+</ol>
+<p><strong>Ejercicio 7.4:</strong></p>
+<ol type="a">
+<li><span class="math inline">\(H_0:p=1/6\)</span> frente a <span class="math inline">\(H_1:p\neq1/6\)</span>.</li>
+<li>Con <span class="math inline">\(X\sim\operatorname{Binomial}(20,1/6)\)</span>, el p-valor bilateral exacto es aproximadamente 0.1279.</li>
+<li>Como el p-valor es <span class="math inline">\(0.1279&gt;0.05\)</span>, no se rechaza <span class="math inline">\(H_0\)</span>; no hay evidencia suficiente para concluir que la probabilidad de obtener un 6 difiera de <span class="math inline">\(1/6\)</span>.</li>
+</ol>
+<p><strong>Ejercicio 7.5:</strong></p>
+<ol type="a">
+<li>Como <span class="math inline">\(0.031&lt;0.05\)</span>, se rechaza <span class="math inline">\(H_0\)</span>.</li>
+<li>Como <span class="math inline">\(0.052&gt;0.05\)</span>, no se rechaza <span class="math inline">\(H_0\)</span>.</li>
+<li>Como <span class="math inline">\(0.0001&lt;0.05\)</span>, se rechaza <span class="math inline">\(H_0\)</span>.</li>
+<li>Como <span class="math inline">\(0.450&gt;0.05\)</span>, no se rechaza <span class="math inline">\(H_0\)</span>.</li>
+</ol>
+<p><strong>Ejercicio 7.6:</strong></p>
+<ol type="a">
+<li>Como <span class="math inline">\(0.077&gt;0.05\)</span>, no se rechaza <span class="math inline">\(H_0\)</span>.</li>
+<li>Como <span class="math inline">\(0.077&lt;0.10\)</span>, se rechazaría <span class="math inline">\(H_0\)</span> con <span class="math inline">\(\alpha=0.10\)</span>.</li>
+<li>La conclusión depende del nivel fijado previamente: no se rechaza <span class="math inline">\(H_0\)</span> al 5% y se rechazaría al 10%.</li>
+<li>No rechazar <span class="math inline">\(H_0\)</span> solo indica que no hay evidencia suficiente en su contra; no demuestra que sea verdadera.</li>
+</ol>
 <hr>
 <p><strong>Fin de Semana 8: Contrastes de Hipótesis (Parte I)</strong></p>
 <p>En las próximas semanas estudiaremos:</p>
