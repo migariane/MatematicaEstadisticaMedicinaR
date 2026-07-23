@@ -811,82 +811,113 @@ $$\mathbb{P}(A_j|B) = \frac{\mathbb{P}(B|A_j) \cdot \mathbb{P}(A_j)}{\sum_{i=1}^
 
 ## Ejercicios {#sec-semana03-ejercicios}
 
-**Ejercicio 3.1:** En una clase hay 30 estudiantes de doctorado asistiendo a un seminario de Bioestadística avanzada en Medicina. De ellos, 18 se graduaron en Medicina, 15 tienen un grado en Estadistica y 10 estudiantes estudiaron ambos grados. Si seleccionamos un estudiante al azar:
+::: {.callout-tip}
+## Ejercicio 3.1: Diagramas de Venn
 
-a) ¿Cuál es la probabilidad de que se graduado en Medicina o estadística?
-b) ¿Cuál es la probabilidad de que haya estudiado solo Medicina?
-c) ¿Cuál es la probabilidad de que no hay estudiado ninguna de las dos?
+En una clase hay 30 estudiantes de doctorado que asisten a un seminario de Bioestadística avanzada en Medicina. De ellos, 18 se graduaron en Medicina, 15 tienen un grado en Estadística y 10 estudiaron ambos grados. Si se selecciona un estudiante al azar:
 
-**Ejercicio 3.2:** Un médico tiene dos opciones terapeúticas de antibióticos de primera línea (A o B) y tres de segunda línea de administración conjunta al tratamiento principal (1, 2, o 3) para el tratamiento de una enfermedad infecciosa y todas las opciones terapeúticas son igualmente eficaces. Si todas las opciones se eligen al azar:
+(a) ¿Cuál es la probabilidad de que se haya graduado en Medicina o tenga un grado en Estadística?
+(b) ¿Cuál es la probabilidad de que haya estudiado solo Medicina?
+(c) ¿Cuál es la probabilidad de que no haya estudiado ninguna de las dos?
+:::
 
-a) ¿Cuál es el espacio muestral?
-b) ¿Cuál es la probabilidad de elegir el antibiotico de primera línea A?
-c) ¿Cuál es la probabilidad de elegir el antibiotico de primera línea B y el de segunda línea 2?
+::: {.callout-tip}
+## Ejercicio 3.2: Espacio Muestral y Probabilidad
 
-**Ejercicio 3.3:** En un hospital, la probabilidad de que un paciente ingrese por fractura de cadera en un día es 0.1. Si evaluamos tres días independientemente:
+Un médico tiene dos opciones terapéuticas de antibióticos de primera línea (A o B) y tres de segunda línea (1, 2 o 3), administradas junto con el tratamiento principal, para tratar una enfermedad infecciosa. Todas las opciones terapéuticas son igualmente eficaces y se eligen al azar:
 
-a) ¿Cuál es la probabilidad de que no ingrese ningún paciente?
-b) ¿Cuál es la probabilidad de que exactamente ingrese uno?
+(a) ¿Cuál es el espacio muestral?
+(b) ¿Cuál es la probabilidad de elegir el antibiótico de primera línea A?
+(c) ¿Cuál es la probabilidad de elegir el antibiótico de primera línea B y el de segunda línea 2?
+:::
 
-**Ejercicio 3.4:** Se sabe que:
+::: {.callout-tip}
+## Ejercicio 3.3: Independencia
 
-- El 60% de los pacientes de una consulta son mujeres
-- El 40% de las mujeres tinen menos de 30 años
-- El 30% de los hombres tienen menos de 30 años
+En un hospital, la probabilidad de que se produzca un ingreso por fractura de cadera en un día es 0.1. Si se evalúan tres días independientemente:
 
-Si seleccionamos un cliente al azar:
+(a) ¿Cuál es la probabilidad de que no se produzca ningún ingreso?
+(b) ¿Cuál es la probabilidad de que se produzca exactamente un ingreso?
+:::
 
-a) ¿Cuál es la probabilidad de que un paciente tenga menos de 30 años?
-b) Si un paciente tiene 30 años, ¿cuál es la probabilidad de que sea mujer?
+::: {.callout-tip}
+## Ejercicio 3.4: Probabilidad Total y Teorema de Bayes
 
-**Ejercicio 3.5:** Un test para detectar una enfermedad rara tiene:
+Se sabe que:
 
-- 98% de sensibilidad (detecta la enfermedad cuando está presente)
-- 95% de especificidad (identifica correctamente a personas sanas)
-- La enfermedad afecta al 0.5% de la población
+- El 60% de los pacientes de una consulta son mujeres.
+- El 40% de las mujeres tienen menos de 30 años.
+- El 30% de los hombres tienen menos de 30 años.
 
-a) Si una persona da positivo en el test, ¿cuál es la probabilidad de que realmente esté enferma?
-b) Interprete el resultado. ¿Por qué la probabilidad no es más alta?
+Si se selecciona un paciente al azar:
 
-**Ejercicio 3.6:** Una empresa privada vende ecografos a tres hospitales en tres ciudades distintas: Madrid (40% de ventas), Barcelona (35%) y Valencia (25%). La probabilidad de cumplir la cuota de ventas es:
+(a) ¿Cuál es la probabilidad de que tenga menos de 30 años?
+(b) Si tiene menos de 30 años, ¿cuál es la probabilidad de que sea mujer?
+:::
 
-- Madrid: 0.8
-- Barcelona: 0.85
-- Valencia: 0.7
+::: {.callout-tip}
+## Ejercicio 3.5: Test Diagnóstico y Teorema de Bayes
 
-Si se selecciona un mes al azar:
+Un test para detectar una enfermedad rara tiene:
 
-a) ¿Cuál es la probabilidad de que se cumpla la cuota?
-b) Si se cumplió la cuota, ¿cuál es la probabilidad de que haya sido en Barcelona?
+- 98% de sensibilidad (detecta la enfermedad cuando está presente).
+- 95% de especificidad (identifica correctamente a personas sanas).
+- La enfermedad afecta al 0.5% de la población.
+
+(a) Si una persona da positivo en el test, ¿cuál es la probabilidad de que realmente esté enferma?
+(b) Interprete el resultado. ¿Por qué la probabilidad no es más alta?
+:::
+
+::: {.callout-tip}
+## Ejercicio 3.6: Probabilidad Total y Teorema de Bayes
+
+Una empresa privada vende ecógrafos a hospitales de tres ciudades. La distribución de las ventas es Madrid, 40%; Barcelona, 35%; y Valencia, 25%. La probabilidad de cumplir la cuota de ventas en un mes, condicionada a la ciudad, es:
+
+- Madrid: 0.8.
+- Barcelona: 0.85.
+- Valencia: 0.7.
+
+Si se selecciona una ciudad según las proporciones de ventas indicadas y un mes al azar:
+
+(a) ¿Cuál es la probabilidad de que la ciudad seleccionada cumpla su cuota?
+(b) Si cumplió su cuota, ¿cuál es la probabilidad de que la ciudad seleccionada sea Barcelona?
+:::
 
 ## Respuestas a los Ejercicios {#sec-semana03-respuestas}
 
-**Ejercicio 3.1:** Diagramas de Venn  
-- a) P(M ∪ E) = P(M) + P(E) - P(M ∩ E) = (18+15-10)/30 = 23/30 ≈ 0.767  
-- b) P(Solo M) = (18-10)/30 = 8/30 ≈ 0.267  
-- c) P(Ninguna) = 1 - 23/30 = 7/30 ≈ 0.233  
+**Ejercicio 3.1: Diagramas de Venn**
 
-**Ejercicio 3.2:** Espacio Muestral y Probabilidad  
-- a) Ω = {A1, A2, A3, B1, B2, B3}, |Ω| = 6  
-- b) P(A) = 3/6 = 0.5  
-- c) P(B y 2) = 1/6 ≈ 0.167  
+- **(a)** $P(M\cup E)=(18+15-10)/30=23/30\approx0.767$.
+- **(b)** $P(\text{solo }M)=(18-10)/30=8/30\approx0.267$.
+- **(c)** $P(\text{ninguna})=1-23/30=7/30\approx0.233$.
 
-**Ejercicio 3.3:** Independencia  
-- a) P(Ningún ingreso) = (0.9)³ = 0.729  
-- b) P(exactamente 1 ingreso) = C(3,1)×(0.1)¹×(0.9)² = 3×0.1×0.81 = 0.243  
-- Nota: Más adelante veremos como caalcular esta probabilidad usando la fórmula de la distribución Binomial (n, p).  
+**Ejercicio 3.2: Espacio Muestral y Probabilidad**
 
-**Ejercicio 3.4:** Probabilidad Total y Teorema de Bayes  
-- a) P(Menos de 30 años) = 0.6×0.4 + 0.4×0.3 = 0.24 + 0.12 = 0.36  
-- b) P(Mujer|Menos de 30 años) = (0.6x0.4)/0.36 = 0.24/0.36 = 2/3 ≈ 0.667  
+- **(a)** $\Omega=\{A1,A2,A3,B1,B2,B3\}$ y $|\Omega|=6$.
+- **(b)** $P(A)=3/6=0.5$.
+- **(c)** $P(B2)=1/6\approx0.167$.
 
-**Ejercicio 3.5:** Test Diagnóstico (Bayes)  
-- a) P(Enfermedad|Positivo) = (0.98×0.005)/(0.98×0.005 + 0.05×0.995) = 0.0049/(0.0049+0.04975) ≈ 0.090  
-- b) Aunque el test es muy preciso (98% sensibilidad), como la enfermedad es rara (0.5%), la mayoría de positivos son falsos positivos.  
+**Ejercicio 3.3: Independencia**
 
-**Ejercicio 3.6:** Probabilidad Total y Bayes (Hospitales)  
-- a) P(Cuota) = 0.4×0.8 + 0.35×0.85 + 0.25×0.7 = 0.32 + 0.2975 + 0.175 = 0.7925  
-- b) P(Barcelona|Cuota) = (0.35×0.85)/0.7925 = 0.2975/0.7925 ≈ 0.375  
+- **(a)** $P(\text{ningún ingreso})=(0.9)^3=0.729$.
+- **(b)** $P(\text{exactamente un ingreso})=\binom{3}{1}(0.1)(0.9)^2=0.243$.
+
+*Nota:* Más adelante se calculará esta probabilidad mediante la distribución binomial.
+
+**Ejercicio 3.4: Probabilidad Total y Teorema de Bayes**
+
+- **(a)** $P(\text{menos de 30})=0.6(0.4)+0.4(0.3)=0.36$.
+- **(b)** $P(\text{mujer}\mid\text{menos de 30})=0.6(0.4)/0.36=2/3\approx0.667$.
+
+**Ejercicio 3.5: Test Diagnóstico y Teorema de Bayes**
+
+- **(a)** $P(\text{enfermedad}\mid+)=0.98(0.005)/[0.98(0.005)+0.05(0.995)]\approx0.0897$ (8.97%).
+- **(b)** La baja prevalencia hace que los falsos positivos entre las personas sanas sean numerosos en comparación con los verdaderos positivos.
+
+**Ejercicio 3.6: Probabilidad Total y Teorema de Bayes**
+
+- **(a)** $P(\text{cuota})=0.4(0.8)+0.35(0.85)+0.25(0.7)=0.7925$.
+- **(b)** $P(\text{Barcelona}\mid\text{cuota})=0.35(0.85)/0.7925\approx0.3754$.
 
 ---
 
