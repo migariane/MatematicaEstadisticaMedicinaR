@@ -973,35 +973,36 @@ La **moda** es útil para datos categóricos pero limitado para continuos.
 
 ## Ejercicios {#sec-semana01-ejercicios}
 ::: {.callout-tip}
-### Ejercicio 1.1: Conceptos Fundamentales
+## Ejercicio 1.1: Conceptos Fundamentales
 
 Define con tus propias palabras (desde una perspectiva clínica):
-a) La diferencia entre una variable y un valor (ej. Glucemia)
-b) Por qué necesitamos distinguir entre población y muestra en un ensayo clínico
-c) Qué es un outlier y cómo podría afectar a la media de una serie de mediciones de tensión arterial
+
+(a) La diferencia entre una variable y un valor (ej. Glucemia)
+(b) Por qué necesitamos distinguir entre población y muestra en un ensayo clínico
+(c) Qué es un outlier y cómo podría afectar a la media de una serie de mediciones de tensión arterial
 :::
 
 ::: {.callout-tip}
-### Ejercicio 1.2: Identificación de Escalas
+## Ejercicio 1.2: Identificación de Escalas
 
 Para cada una de las siguientes variables clínicas, identifica la escala de medición (nominal, ordinal, discreta, continua) y justifica tu respuesta:
 
-a) Número de episodios asmáticos al año
-b) Gravedad de una quemadura (Primer, Segundo, Tercer grado)
-c) Concentración de hemoglobina en sangre (g/dL)
-d) Factor Rh (Positivo, Negativo)
-e) Escala de coma de Glasgow (puntuación de 3 a 15)
+(a) Número de episodios asmáticos al año
+(b) Gravedad de una quemadura (Primer, Segundo, Tercer grado)
+(c) Concentración de hemoglobina en sangre (g/dL)
+(d) Factor Rh (Positivo, Negativo)
+(e) Escala de coma de Glasgow (puntuación de 3 a 15)
 :::
 
 ::: {.callout-tip}
-### Ejercicio 1.3: Cálculo de la Media
+## Ejercicio 1.3: Cálculo de la Media
 
 Se registraron los tiempos de espera (en minutos) en urgencias de 8 pacientes:
 12, 8, 15, 10, 7, 14, 9, 11
 
-a) Calcula la media aritmética
-b) Ordena los datos y encuentra la mediana
-c) ¿Cuál es más representativa en este caso? ¿Por qué?
+(a) Calcula la media aritmética
+(b) Ordena los datos y encuentra la mediana
+(c) ¿Cuál es más representativa en este caso? ¿Por qué?
 
 ```{r}
 #| lst-label: lst-semana01-10
@@ -1017,18 +1018,18 @@ cat("Mediana:", mediana, "\n")
 :::
 
 ::: {.callout-tip}
-### Ejercicio 1.4: Tabla de Frecuencias
+## Ejercicio 1.4: Tabla de Frecuencias
 
 Los siguientes datos representan el número de admisiones hospitalarias previas para 20 pacientes crónicos:
 3, 2, 5, 2, 4, 3, 6, 2, 3, 4, 5, 2, 3, 4, 2, 5, 3, 6, 4, 2
 
-a) Construye una tabla de frecuencias (absoluta, relativa, acumulada)
-b) ¿Cuál es la moda (número más frecuente de admisiones)?
-c) ¿Qué proporción de pacientes tuvieron 3 o menos admisiones?
+(a) Construye una tabla de frecuencias (absoluta, relativa, acumulada)
+(b) ¿Cuál es la moda (número más frecuente de admisiones)?
+(c) ¿Qué proporción de pacientes tuvieron 3 o menos admisiones?
 :::
 
 ::: {.callout-tip}
-### Ejercicio 1.5: Datos Agrupados
+## Ejercicio 1.5: Datos Agrupados
 
 Se agrupan los niveles de glucosa en ayunas (mg/dL) de 100 pacientes en riesgo de diabetes:
 
@@ -1040,12 +1041,10 @@ Se agrupan los niveles de glucosa en ayunas (mg/dL) de 100 pacientes en riesgo d
 | 110 -- 126 | 15 |
 | 126 -- 150 | 3 |
 
-a) Calcula la media aproximada de la glucemia
-b) Identifica la clase modal
-c) Estima el percentil 50 (mediana) usando interpolación
-:::
+(a) Calcula la media aproximada de la glucemia
+(b) Identifica la clase modal
+(c) Estima el percentil 50 (mediana) usando interpolación
 
-::: {.callout-tip}
 ```{r}
 #| lst-label: lst-semana01-11
 #| lst-cap: "Solución en R"
@@ -1072,50 +1071,66 @@ print(data.frame(Clase = c("70-90", "90-100", "100-110", "110-126", "126-150"),
 :::
 
 ::: {.callout-tip}
-### Ejercicio 1.6: Interpretación de Histograma
+## Ejercicio 1.6: Interpretación de Histograma
 
 Considera el histograma de IMC del Ejemplo 1.7:
 
-a) ¿Qué clase tiene la mayor densidad de pacientes?
-b) ¿Qué porcentaje de pacientes tienen un IMC inferior a 25 (Normal o bajo peso)?
-c) ¿En qué rango se encuentra el 25% de pacientes con menor IMC?
+(a) ¿Qué clase tiene la mayor densidad de pacientes?
+(b) ¿Qué porcentaje de pacientes tienen un IMC inferior a 25 (Normal o bajo peso)?
+(c) ¿En qué rango se encuentra el 25% de pacientes con menor IMC?
 :::
 
 ## Respuestas a los Ejercicios {#sec-semana01-respuestas}
 
 **Ejercicio 1.1: Conceptos**
-a) Variable: Característica (Glucemia). Valor: Resultado medido (105 mg/dL).
-b) Población: Todos los pacientes con la patología. Muestra: Los que participan en el estudio.
-c) Un outlier (ej. una medición de 220/120 por error de manguito) elevaría artificialmente la media, haciendo que la tensión promedio parezca más alta de lo que realmente es.
+
+- **(a)** Variable: característica que se mide (glucemia). Valor: resultado concreto de esa medición (105 mg/dL).
+- **(b)** Población: todos los pacientes con la patología. Muestra: quienes participan en el estudio. Los resultados se obtienen en la muestra, pero se pretende inferir sobre la población; distinguirlas permite reconocer la incertidumbre muestral y determinar a quiénes pueden generalizarse los resultados.
+- **(c)** Un outlier es una observación inusualmente alejada del resto. Puede deberse a un error de medición o representar un valor clínico real. Si es muy alto, desplaza la media hacia arriba; por ello, debe comprobarse su origen antes de excluirlo.
 
 **Ejercicio 1.2: Escalas**
-a) Discreta (conteo de eventos). b) Ordinal (hay un orden de gravedad). c) Continua (puede tomar cualquier valor decimal). d) Nominal (categorías sin orden). e) Ordinal (puntuación con orden intrínseco).
+
+- **(a)** Discreta (conteo de eventos).
+- **(b)** Ordinal (hay un orden de gravedad).
+- **(c)** Continua (puede tomar cualquier valor decimal).
+- **(d)** Nominal (categorías sin orden).
+- **(e)** Ordinal (puntuación con orden intrínseco).
 
 **Ejercicio 1.3: Tiempos de espera**
-a) Media = 86 / 8 = 10.75 min. b) Ordenados: 7, 8, 9, 10, 11, 12, 14, 15. Mediana = (10+11)/2 = 10.5 min. c) Ambas son similares porque no hay outliers extremos.
+
+- **(a)** Media = $86/8=10.75$ min.
+- **(b)** Ordenados: 7, 8, 9, 10, 11, 12, 14, 15. Mediana = $(10+11)/2=10.5$ min.
+- **(c)** Ambas son similares porque no hay outliers extremos.
 
 **Ejercicio 1.4: Admisiones**
-a) 
 
-| Admisiones | $h_j$ | $f_j$ | $H_j$ | $F_j$ |
-|:---|---:|---:|---:|---:|
-| 2 | 6 | 0.30 | 6 | 0.30 |
-| 3 | 5 | 0.25 | 11 | 0.55 |
-| 4 | 4 | 0.20 | 15 | 0.75 |
-| 5 | 3 | 0.15 | 18 | 0.90 |
-| 6 | 2 | 0.10 | 20 | 1.00 |
-| **Total** | **20** | **1.00** | | |
+- **(a)**
 
-b) Moda = 2 admisiones ($h_j=6$). c) Proporción = $F_3 = 0.55$ (55%).
+  | Admisiones | $h_j$ | $f_j$ | $H_j$ | $F_j$ |
+  |:---|---:|---:|---:|---:|
+  | 2 | 6 | 0.30 | 6 | 0.30 |
+  | 3 | 5 | 0.25 | 11 | 0.55 |
+  | 4 | 4 | 0.20 | 15 | 0.75 |
+  | 5 | 3 | 0.15 | 18 | 0.90 |
+  | 6 | 2 | 0.10 | 20 | 1.00 |
+  | **Total** | **20** | **1.00** | | |
+
+- **(b)** Moda = 2 admisiones ($h_j=6$).
+- **(c)** Proporción = $F_3=0.55$ (55%).
 
 **Ejercicio 1.5: Glucemia**
-a) Media ≈ 100.99 mg/dL (cálculo: $(80{\cdot}15 + 95{\cdot}32 + 105{\cdot}35 + 118{\cdot}15 + 138{\cdot}3)/100$). b) Clase modal: 100-110 mg/dL ($h_j = 35$). c) P₅₀ ≈ 100 + (0.50 - 0.47)/0.35 · 10 ≈ 100.86 mg/dL (la mediana cae en la clase 100-110, donde $F$ pasa de 0.47 a 0.82).
+
+- **(a)** Media $\approx100.99$ mg/dL: $(80{\cdot}15+95{\cdot}32+105{\cdot}35+118{\cdot}15+138{\cdot}3)/100$.
+- **(b)** Clase modal: 100-110 mg/dL ($h_j=35$).
+- **(c)** $P_{50}\approx100+(0.50-0.47)/0.35\cdot10\approx100.86$ mg/dL. La mediana cae en la clase 100-110, donde $F$ pasa de 0.47 a 0.82.
 
 **Ejercicio 1.6: IMC (Ejemplo 1.7)**
-a) Sobrepeso (25-30) con densidad 0.0672. b) $F(25) = 0.055 + 0.339 = 0.394$ (39.4%). c) En el rango de 0 a 25 (específicamente, el P₂₅ está en la clase "Normal").
+
+- **(a)** Sobrepeso (25-30) con densidad 0.0672.
+- **(b)** $F(25)=0.055+0.339=0.394$ (39.4%).
+- **(c)** En el rango de 0 a 25 (específicamente, el $P_{25}$ está en la clase "Normal").
 
 **Fin de Semana 1**
 
 Para referencias avanzadas sobre análisis exploratorio de datos y estimación robusta, consulta:
 [Robust Estimation of Location](https://rpubs.com/FJRubio/MM)
-
