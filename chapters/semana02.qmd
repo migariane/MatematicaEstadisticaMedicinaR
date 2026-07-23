@@ -881,38 +881,44 @@ Este capítulo ha cubierto los conceptos esenciales para el análisis explorator
 
 ::: {.callout-tip}
 ## Ejercicio 2.1: Estadísticos de Dispersión
+
 Se registraron los tiempos de respuesta (en milisegundos) de 12 participantes en una tarea de tiempo de reacción:
 250, 240, 300, 280, 270, 265, 290, 255, 310, 275, 260, 320
 
-a) Calcula el rango y el rango intercuartílico (IQR).
-b) Calcula la media y la desviación estándar.
-c) ¿Qué observación es un valor atípico potencial según la regla de 1.5×IQR?
-d) Dibuja un diagrama de caja.
+(a) Calcula el rango y el rango intercuartílico (IQR).
+(b) Calcula la media y la desviación estándar.
+(c) ¿Qué observación es un valor atípico potencial según la regla de 1.5×IQR?
+(d) Dibuja un diagrama de caja.
 :::
 
 ::: {.callout-tip}
 ## Ejercicio 2.2: Transformaciones Lineales (Conversión de Unidades)
+
 En un estudio de investigación, se registra la presión intraocular (PIO) de 50 pacientes en milímetros de mercurio (mmHg). La media registrada es $\bar{x} = 15$ mmHg con una desviación estándar de $s_x = 3$ mmHg. Para una publicación internacional, es necesario convertir estos valores a centímetros de agua (cmH₂O) utilizando la fórmula: $y = 1.36x$.
 
-a) ¿Cuál será la media de la PIO en cmH₂O?
-b) ¿Cuál será la desviación estándar en cmH₂O?
-c) Si el IQR original es de 4 mmHg, ¿cuál será el IQR en cmH₂O?
+(a) ¿Cuál será la media de la PIO en cmH₂O?
+(b) ¿Cuál será la desviación estándar en cmH₂O?
+(c) Si el IQR original es de 4 mmHg, ¿cuál será el IQR en cmH₂O?
 :::
 
 ::: {.callout-tip}
 ## Ejercicio 2.3: Z-Scores y Estandarización Clínica
+
 En un estudio de cribado, se utilizan dos escalas distintas para medir el deterioro cognitivo. Un paciente obtiene las siguientes puntuaciones:
 
 - Escala A: 85 puntos (media = 75, desviación estándar = 10)
 - Escala B: 90 puntos (media = 80, desviación estándar = 15)
 
-a) Calcula los z-scores para ambas escalas.
-b) ¿En qué escala el deterioro del paciente es relativamente más severo?
-c) Si se considera un z > 0.5 como "indicativo de riesgo", ¿en cuál(es) escala(s) el paciente supera este umbral?
+En ambas escalas, una puntuación más alta indica mayor deterioro.
+
+(a) Calcula los z-scores para ambas escalas.
+(b) ¿En qué escala el deterioro del paciente es relativamente más severo?
+(c) Si se considera un $z>0.5$ como "indicativo de riesgo", ¿en cuál(es) escala(s) el paciente supera este umbral?
 :::
 
 ::: {.callout-tip}
 ## Ejercicio 2.4: Tablas de Contingencia
+
 Se encuestó a 300 personas sobre si fuman y si tienen problemas respiratorios. Los resultados fueron:
 
 |  | Problemas | Sin problemas | Total |
@@ -921,14 +927,15 @@ Se encuestó a 300 personas sobre si fuman y si tienen problemas respiratorios. 
 | No fuman | 30 | 160 | 190 |
 | Total | 100 | 200 | 300 |
 
-a) Calcula la distribución marginal de fumadores.
-b) Calcula la distribución condicional de problemas respiratorios **dado** que fuma.
-c) Calcula la distribución condicional de problemas respiratorios **dado** que no fuma.
-d) Interpreta las diferencias entre las distribuciones condicionales.
+(a) Calcula la distribución marginal de fumadores.
+(b) Calcula la distribución condicional de problemas respiratorios **dado** que fuma.
+(c) Calcula la distribución condicional de problemas respiratorios **dado** que no fuma.
+(d) Interpreta las diferencias entre las distribuciones condicionales.
 :::
 
 ::: {.callout-tip}
 ## Ejercicio 2.5: Análisis de Datos Clínicos Simulados
+
 Genera un dataset que represente la relación entre dos variables biomédicas:
 
 ```{r}
@@ -941,84 +948,64 @@ presion_sistolica <- 100 + 0.6 * edad + rnorm(100, sd = 10)
 ```
 
 Realiza las siguientes tareas:
-a) Calcula la media, desviación estándar y covarianza de la edad y la presión sistólica.
-b) Calcula el coeficiente de correlación de Pearson.
-c) Crea un gráfico de dispersión con línea de regresión.
-d) Crea boxplots para ambas variables.
-e) Estandariza ambas variables usando z-scores.
-f) Verifica que las variables estandarizadas tienen media 0 y desviación estándar 1.
+
+(a) Calcula la media, desviación estándar y covarianza de la edad y la presión sistólica.
+(b) Calcula el coeficiente de correlación de Pearson.
+(c) Crea un gráfico de dispersión con línea de regresión.
+(d) Crea boxplots para ambas variables.
+(e) Estandariza ambas variables usando z-scores.
+(f) Verifica que las variables estandarizadas tienen media 0 y desviación estándar 1.
 :::
 
 ::: {.callout-tip}
 ## Ejercicio 2.6: Distribuciones Conjuntas
-Se miden presión sistólica (X) y diastólica (Y) en una muestra clínica. Se encuentra que $\text{Cov}(x,y) = 180$ (mmHg)², $s_x = 15$ mmHg, $s_y = 10$ mmHg.
 
-a) Calcula la correlación entre X e Y.
-b) Interpreta el valor obtenido.
-c) ¿Son X e Y independientes?
+Se miden presión sistólica ($X$) y diastólica ($Y$) en una muestra clínica. Se encuentra que $\operatorname{Cov}(X,Y)=180$ $(\text{mmHg})^2$, $s_X=15$ mmHg y $s_Y=10$ mmHg.
+
+(a) Calcula la correlación entre $X$ e $Y$.
+(b) Interpreta el valor obtenido.
+(c) ¿Son $X$ e $Y$ independientes?
 :::
 
 ## Respuestas a los Ejercicios {#sec-semana02-respuestas}
 
 **Ejercicio 2.1: Estadísticos de Dispersión**
 
-a) Rango: 320 - 240 = 80 ms
-   IQR: Q₃ - Q₁ = 292.5 - 258.75 = 33.75 ms (`quantile()` por defecto, type 7)
-
-b) Media: 276.25 ms
-   Desviación estándar: ≈ 24.69 ms
-   Mediana: 272.5 ms
-
-c) Outliers (> Q₃ + 1.5×IQR = 292.5 + 50.625 = 343.125): Ninguno detectado
-   Outliers (< Q₁ - 1.5×IQR = 258.75 - 50.625 = 208.125): Ninguno
-
-d) El boxplot muestra distribución simétrica alrededor de 275-280 ms sin outliers.
+- **(a)** Rango: $320-240=80$ ms. IQR: $Q_3-Q_1=292.5-258.75=33.75$ ms (`quantile()` por defecto, `type = 7`).
+- **(b)** Media: 276.25 ms. Desviación estándar: $\approx24.69$ ms. Mediana: 272.5 ms.
+- **(c)** Límites: $208.125$ y $343.125$ ms. No se detectan valores atípicos.
+- **(d)** El diagrama de caja muestra una distribución aproximadamente simétrica alrededor de 275-280 ms, sin valores atípicos.
 
 **Ejercicio 2.2: Transformaciones Lineales (Conversión)**
 
-a) $\bar{y} = 1.36 \times 15 = 20.4$ cmH₂O
-
-b) $s_y = 1.36 \times 3 = 4.08$ cmH₂O
-
-c) $\text{IQR}_{y} = 1.36 \times 4 = 5.44$ cmH₂O
+- **(a)** $\bar{y}=1.36(15)=20.4$ cmH₂O.
+- **(b)** $s_y=1.36(3)=4.08$ cmH₂O.
+- **(c)** $\operatorname{IQR}_y=1.36(4)=5.44$ cmH₂O.
 
 **Ejercicio 2.3: Z-Scores y Estandarización Clínica**
 
-a) Escala A: $z = \frac{85 - 75}{10} = 1.0$
-   Escala B: $z = \frac{90 - 80}{15} = 0.67$
-
-b) El deterioro es más severo en la Escala A, ya que el paciente se aleja más de la media poblacional (z=1.0 vs z=0.67).
-
-c) El paciente supera el umbral en ambas escalas (1.0 > 0.5 y 0.67 > 0.5).
+- **(a)** Escala A: $z_A=(85-75)/10=1.00$. Escala B: $z_B=(90-80)/15\approx0.67$.
+- **(b)** El deterioro relativo es mayor en la escala A, porque $z_A>z_B$.
+- **(c)** El umbral $z>0.5$ se supera en ambas escalas.
 
 **Ejercicio 2.4: Tablas de Contingencia**
 
-a) Distribución marginal de fumadores:
-   P(Fumar) = 110/300 = 0.367
-   P(No fumar) = 190/300 = 0.633
-
-b) P(Problemas | Fuman) = 70/110 = 0.636
-
-c) P(Problemas | No fuman) = 30/190 = 0.158
-
-d) Los fumadores tienen 4 veces más probabilidad de problemas respiratorios (63.6% vs 15.8%)
+- **(a)** Fuman: $110/300=0.367$ (36.7%); no fuman: $190/300=0.633$ (63.3%).
+- **(b)** Entre quienes fuman: problemas, $70/110=0.636$ (63.6%); sin problemas, $40/110=0.364$ (36.4%).
+- **(c)** Entre quienes no fuman: problemas, $30/190=0.158$ (15.8%); sin problemas, $160/190=0.842$ (84.2%).
+- **(d)** La proporción observada de problemas respiratorios es 47.8 puntos porcentuales mayor entre quienes fuman y equivale aproximadamente a 4.03 veces la observada entre quienes no fuman. Esto describe una asociación, no una relación causal.
 
 **Ejercicio 2.5: Análisis de Datos Clínicos Simulados**
 
-Para resolver este ejercicio en R:
-a) Usa `mean(edad)`, `sd(edad)`, `mean(presion_sistolica)`, `sd(presion_sistolica)` y `cov(edad, presion_sistolica)`.
-b) Usa `cor(edad, presion_sistolica)`.
-c) `plot(edad, presion_sistolica); abline(lm(presion_sistolica ~ edad))`.
-d) `boxplot(edad); boxplot(presion_sistolica)`.
-e) `z_edad <- scale(edad); z_presion <- scale(presion_sistolica)`.
-f) `mean(z_edad); sd(z_edad)` (el resultado será prácticamente 0 y 1).
+- **(a)** Edad: media 48.3921 años y desviación estándar 14.1486 años. Presión sistólica: media 128.3536 mmHg y desviación estándar 10.5171 mmHg. Covarianza: 85.4006 años·mmHg.
+- **(b)** $r=0.5739$, lo que indica una asociación lineal positiva moderada.
+- **(c)** `plot(edad, presion_sistolica); abline(lm(presion_sistolica ~ edad))`.
+- **(d)** `boxplot(edad); boxplot(presion_sistolica)`.
+- **(e)** `z_edad <- scale(edad); z_presion <- scale(presion_sistolica)`.
+- **(f)** Las medias de ambas variables estandarizadas son aproximadamente 0 y sus desviaciones estándar son 1.
 
 **Ejercicio 2.6: Distribuciones Conjuntas**
 
-a) Correlación ($r$) = $\frac{\text{Cov}(X,Y)}{s_x \cdot s_y} = \frac{180}{15 \times 10} = \frac{180}{150} = 1.2$.
-   *Nota:* Este valor es **imposible** porque $|r| \le 1$ siempre. La inconsistencia revela que los valores propuestos para $\text{Cov}$, $s_x$ y $s_y$ violan la **desigualdad de Cauchy–Schwarz** $|s_{xy}| \le s_x \cdot s_y$ (aquí $|180| > 15 \times 10 = 150$). En la práctica, ante un resultado así habría que revisar los datos de partida.
-
-b) Si los datos fuesen coherentes —por ejemplo, $\text{Cov}(X,Y) = 120$ con los mismos $s_x = 15$ y $s_y = 10$— se obtendría $r = 120/150 = 0.8$, lo cual indicaría una correlación lineal positiva fuerte entre la presión sistólica y diastólica en esta muestra.
-
-c) No son independientes ($\text{Cov} \neq 0$), pero la relación lineal es despreciable. Independencia estadística requiere $\text{Cov} = 0$ y más condiciones.
-
+- **(a)** El cálculo formal produce $r=180/[15(10)]=1.2$, un valor imposible. Los datos son incompatibles porque $180>15(10)=150$.
+- **(b)** El valor obtenido no admite una interpretación estadística válida; debe revisarse al menos uno de los datos proporcionados.
+- **(c)** No puede determinarse la independencia con datos mutuamente incompatibles.

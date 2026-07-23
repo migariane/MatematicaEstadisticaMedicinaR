@@ -2202,10 +2202,11 @@ Cuadro&nbsp;2.30: Código R para ECDF
 <li>Escala A: 85 puntos (media = 75, desviación estándar = 10)</li>
 <li>Escala B: 90 puntos (media = 80, desviación estándar = 15)</li>
 </ul>
+<p>En ambas escalas, una puntuación más alta indica mayor deterioro.</p>
 <ol type="a">
 <li>Calcula los z-scores para ambas escalas.</li>
 <li>¿En qué escala el deterioro del paciente es relativamente más severo?</li>
-<li>Si se considera un z &gt; 0.5 como “indicativo de riesgo”, ¿en cuál(es) escala(s) el paciente supera este umbral?</li>
+<li>Si se considera un <span class="math inline">\(z&gt;0.5\)</span> como “indicativo de riesgo”, ¿en cuál(es) escala(s) el paciente supera este umbral?</li>
 </ol>
 </div>
 </div>
@@ -2286,7 +2287,15 @@ Cuadro&nbsp;2.31: Código R: Simulación Clínica
 </figure>
 </div>
 </div>
-<p>Realiza las siguientes tareas: a) Calcula la media, desviación estándar y covarianza de la edad y la presión sistólica. b) Calcula el coeficiente de correlación de Pearson. c) Crea un gráfico de dispersión con línea de regresión. d) Crea boxplots para ambas variables. e) Estandariza ambas variables usando z-scores. f) Verifica que las variables estandarizadas tienen media 0 y desviación estándar 1.</p>
+<p>Realiza las siguientes tareas:</p>
+<ol type="a">
+<li>Calcula la media, desviación estándar y covarianza de la edad y la presión sistólica.</li>
+<li>Calcula el coeficiente de correlación de Pearson.</li>
+<li>Crea un gráfico de dispersión con línea de regresión.</li>
+<li>Crea boxplots para ambas variables.</li>
+<li>Estandariza ambas variables usando z-scores.</li>
+<li>Verifica que las variables estandarizadas tienen media 0 y desviación estándar 1.</li>
+</ol>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -2299,11 +2308,11 @@ Cuadro&nbsp;2.31: Código R: Simulación Clínica
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Se miden presión sistólica (X) y diastólica (Y) en una muestra clínica. Se encuentra que <span class="math inline">\(\text{Cov}(x,y) = 180\)</span> (mmHg)², <span class="math inline">\(s_x = 15\)</span> mmHg, <span class="math inline">\(s_y = 10\)</span> mmHg.</p>
+<p>Se miden presión sistólica (<span class="math inline">\(X\)</span>) y diastólica (<span class="math inline">\(Y\)</span>) en una muestra clínica. Se encuentra que <span class="math inline">\(\operatorname{Cov}(X,Y)=180\)</span> <span class="math inline">\((\text{mmHg})^2\)</span>, <span class="math inline">\(s_X=15\)</span> mmHg y <span class="math inline">\(s_Y=10\)</span> mmHg.</p>
 <ol type="a">
-<li>Calcula la correlación entre X e Y.</li>
+<li>Calcula la correlación entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>.</li>
 <li>Interpreta el valor obtenido.</li>
-<li>¿Son X e Y independientes?</li>
+<li>¿Son <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> independientes?</li>
 </ol>
 </div>
 </div>
@@ -2311,39 +2320,46 @@ Cuadro&nbsp;2.31: Código R: Simulación Clínica
 <section id="sec-semana02-respuestas" class="level2" data-number="2.10">
 <h2 data-number="2.10" class="anchored" data-anchor-id="sec-semana02-respuestas"><span class="header-section-number">2.10</span> Respuestas a los Ejercicios</h2>
 <p><strong>Ejercicio 2.1: Estadísticos de Dispersión</strong></p>
-<ol type="a">
-<li><p>Rango: 320 - 240 = 80 ms IQR: Q₃ - Q₁ = 292.5 - 258.75 = 33.75 ms (<code>quantile()</code> por defecto, type 7)</p></li>
-<li><p>Media: 276.25 ms Desviación estándar: ≈ 24.69 ms Mediana: 272.5 ms</p></li>
-<li><p>Outliers (&gt; Q₃ + 1.5×IQR = 292.5 + 50.625 = 343.125): Ninguno detectado Outliers (&lt; Q₁ - 1.5×IQR = 258.75 - 50.625 = 208.125): Ninguno</p></li>
-<li><p>El boxplot muestra distribución simétrica alrededor de 275-280 ms sin outliers.</p></li>
-</ol>
+<ul>
+<li><strong>(a)</strong> Rango: <span class="math inline">\(320-240=80\)</span> ms. IQR: <span class="math inline">\(Q_3-Q_1=292.5-258.75=33.75\)</span> ms (<code>quantile()</code> por defecto, <code>type = 7</code>).</li>
+<li><strong>(b)</strong> Media: 276.25 ms. Desviación estándar: <span class="math inline">\(\approx24.69\)</span> ms. Mediana: 272.5 ms.</li>
+<li><strong>(c)</strong> Límites: <span class="math inline">\(208.125\)</span> y <span class="math inline">\(343.125\)</span> ms. No se detectan valores atípicos.</li>
+<li><strong>(d)</strong> El diagrama de caja muestra una distribución aproximadamente simétrica alrededor de 275-280 ms, sin valores atípicos.</li>
+</ul>
 <p><strong>Ejercicio 2.2: Transformaciones Lineales (Conversión)</strong></p>
-<ol type="a">
-<li><p><span class="math inline">\(\bar{y} = 1.36 \times 15 = 20.4\)</span> cmH₂O</p></li>
-<li><p><span class="math inline">\(s_y = 1.36 \times 3 = 4.08\)</span> cmH₂O</p></li>
-<li><p><span class="math inline">\(\text{IQR}_{y} = 1.36 \times 4 = 5.44\)</span> cmH₂O</p></li>
-</ol>
+<ul>
+<li><strong>(a)</strong> <span class="math inline">\(\bar{y}=1.36(15)=20.4\)</span> cmH₂O.</li>
+<li><strong>(b)</strong> <span class="math inline">\(s_y=1.36(3)=4.08\)</span> cmH₂O.</li>
+<li><strong>(c)</strong> <span class="math inline">\(\operatorname{IQR}_y=1.36(4)=5.44\)</span> cmH₂O.</li>
+</ul>
 <p><strong>Ejercicio 2.3: Z-Scores y Estandarización Clínica</strong></p>
-<ol type="a">
-<li><p>Escala A: <span class="math inline">\(z = \frac{85 - 75}{10} = 1.0\)</span> Escala B: <span class="math inline">\(z = \frac{90 - 80}{15} = 0.67\)</span></p></li>
-<li><p>El deterioro es más severo en la Escala A, ya que el paciente se aleja más de la media poblacional (z=1.0 vs z=0.67).</p></li>
-<li><p>El paciente supera el umbral en ambas escalas (1.0 &gt; 0.5 y 0.67 &gt; 0.5).</p></li>
-</ol>
+<ul>
+<li><strong>(a)</strong> Escala A: <span class="math inline">\(z_A=(85-75)/10=1.00\)</span>. Escala B: <span class="math inline">\(z_B=(90-80)/15\approx0.67\)</span>.</li>
+<li><strong>(b)</strong> El deterioro relativo es mayor en la escala A, porque <span class="math inline">\(z_A&gt;z_B\)</span>.</li>
+<li><strong>(c)</strong> El umbral <span class="math inline">\(z&gt;0.5\)</span> se supera en ambas escalas.</li>
+</ul>
 <p><strong>Ejercicio 2.4: Tablas de Contingencia</strong></p>
-<ol type="a">
-<li><p>Distribución marginal de fumadores: P(Fumar) = 110/300 = 0.367 P(No fumar) = 190/300 = 0.633</p></li>
-<li><p>P(Problemas | Fuman) = 70/110 = 0.636</p></li>
-<li><p>P(Problemas | No fuman) = 30/190 = 0.158</p></li>
-<li><p>Los fumadores tienen 4 veces más probabilidad de problemas respiratorios (63.6% vs 15.8%)</p></li>
-</ol>
+<ul>
+<li><strong>(a)</strong> Fuman: <span class="math inline">\(110/300=0.367\)</span> (36.7%); no fuman: <span class="math inline">\(190/300=0.633\)</span> (63.3%).</li>
+<li><strong>(b)</strong> Entre quienes fuman: problemas, <span class="math inline">\(70/110=0.636\)</span> (63.6%); sin problemas, <span class="math inline">\(40/110=0.364\)</span> (36.4%).</li>
+<li><strong>(c)</strong> Entre quienes no fuman: problemas, <span class="math inline">\(30/190=0.158\)</span> (15.8%); sin problemas, <span class="math inline">\(160/190=0.842\)</span> (84.2%).</li>
+<li><strong>(d)</strong> La proporción observada de problemas respiratorios es 47.8 puntos porcentuales mayor entre quienes fuman y equivale aproximadamente a 4.03 veces la observada entre quienes no fuman. Esto describe una asociación, no una relación causal.</li>
+</ul>
 <p><strong>Ejercicio 2.5: Análisis de Datos Clínicos Simulados</strong></p>
-<p>Para resolver este ejercicio en R: a) Usa <code>mean(edad)</code>, <code>sd(edad)</code>, <code>mean(presion_sistolica)</code>, <code>sd(presion_sistolica)</code> y <code>cov(edad, presion_sistolica)</code>. b) Usa <code>cor(edad, presion_sistolica)</code>. c) <code>plot(edad, presion_sistolica); abline(lm(presion_sistolica ~ edad))</code>. d) <code>boxplot(edad); boxplot(presion_sistolica)</code>. e) <code>z_edad &lt;- scale(edad); z_presion &lt;- scale(presion_sistolica)</code>. f) <code>mean(z_edad); sd(z_edad)</code> (el resultado será prácticamente 0 y 1).</p>
+<ul>
+<li><strong>(a)</strong> Edad: media 48.3921 años y desviación estándar 14.1486 años. Presión sistólica: media 128.3536 mmHg y desviación estándar 10.5171 mmHg. Covarianza: 85.4006 años·mmHg.</li>
+<li><strong>(b)</strong> <span class="math inline">\(r=0.5739\)</span>, lo que indica una asociación lineal positiva moderada.</li>
+<li><strong>(c)</strong> <code>plot(edad, presion_sistolica); abline(lm(presion_sistolica ~ edad))</code>.</li>
+<li><strong>(d)</strong> <code>boxplot(edad); boxplot(presion_sistolica)</code>.</li>
+<li><strong>(e)</strong> <code>z_edad &lt;- scale(edad); z_presion &lt;- scale(presion_sistolica)</code>.</li>
+<li><strong>(f)</strong> Las medias de ambas variables estandarizadas son aproximadamente 0 y sus desviaciones estándar son 1.</li>
+</ul>
 <p><strong>Ejercicio 2.6: Distribuciones Conjuntas</strong></p>
-<ol type="a">
-<li><p>Correlación (<span class="math inline">\(r\)</span>) = <span class="math inline">\(\frac{\text{Cov}(X,Y)}{s_x \cdot s_y} = \frac{180}{15 \times 10} = \frac{180}{150} = 1.2\)</span>. <em>Nota:</em> Este valor es <strong>imposible</strong> porque <span class="math inline">\(|r| \le 1\)</span> siempre. La inconsistencia revela que los valores propuestos para <span class="math inline">\(\text{Cov}\)</span>, <span class="math inline">\(s_x\)</span> y <span class="math inline">\(s_y\)</span> violan la <strong>desigualdad de Cauchy–Schwarz</strong> <span class="math inline">\(|s_{xy}| \le s_x \cdot s_y\)</span> (aquí <span class="math inline">\(|180| &gt; 15 \times 10 = 150\)</span>). En la práctica, ante un resultado así habría que revisar los datos de partida.</p></li>
-<li><p>Si los datos fuesen coherentes —por ejemplo, <span class="math inline">\(\text{Cov}(X,Y) = 120\)</span> con los mismos <span class="math inline">\(s_x = 15\)</span> y <span class="math inline">\(s_y = 10\)</span>— se obtendría <span class="math inline">\(r = 120/150 = 0.8\)</span>, lo cual indicaría una correlación lineal positiva fuerte entre la presión sistólica y diastólica en esta muestra.</p></li>
-<li><p>No son independientes (<span class="math inline">\(\text{Cov} \neq 0\)</span>), pero la relación lineal es despreciable. Independencia estadística requiere <span class="math inline">\(\text{Cov} = 0\)</span> y más condiciones.</p></li>
-</ol>
+<ul>
+<li><strong>(a)</strong> El cálculo formal produce <span class="math inline">\(r=180/[15(10)]=1.2\)</span>, un valor imposible. Los datos son incompatibles porque <span class="math inline">\(180&gt;15(10)=150\)</span>.</li>
+<li><strong>(b)</strong> El valor obtenido no admite una interpretación estadística válida; debe revisarse al menos uno de los datos proporcionados.</li>
+<li><strong>(c)</strong> No puede determinarse la independencia con datos mutuamente incompatibles.</li>
+</ul>
 
 
 </section>

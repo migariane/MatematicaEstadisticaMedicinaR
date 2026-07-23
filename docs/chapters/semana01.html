@@ -2132,7 +2132,12 @@ Cuadro&nbsp;1.12: Boxplot mejorado con ggplot2
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Define con tus propias palabras (desde una perspectiva clínica): a) La diferencia entre una variable y un valor (ej. Glucemia) b) Por qué necesitamos distinguir entre población y muestra en un ensayo clínico c) Qué es un outlier y cómo podría afectar a la media de una serie de mediciones de tensión arterial</p>
+<p>Define con tus propias palabras (desde una perspectiva clínica):</p>
+<ol type="a">
+<li>La diferencia entre una variable y un valor (ej. Glucemia)</li>
+<li>Por qué necesitamos distinguir entre población y muestra en un ensayo clínico</li>
+<li>Qué es un outlier y cómo podría afectar a la media de una serie de mediciones de tensión arterial</li>
+</ol>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -2274,18 +2279,6 @@ Cuadro&nbsp;1.14: Solución en R
 <li>Identifica la clase modal</li>
 <li>Estima el percentil 50 (mediana) usando interpolación</li>
 </ol>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <div class="cell">
 <div id="lst-semana01-11" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-summary="Solución en R">
 <figure class="quarto-float quarto-float-lst figure">
@@ -2362,10 +2355,29 @@ Cuadro&nbsp;1.16: Solución en R
 </section>
 <section id="sec-semana01-respuestas" class="level2" data-number="1.13">
 <h2 data-number="1.13" class="anchored" data-anchor-id="sec-semana01-respuestas"><span class="header-section-number">1.13</span> Respuestas a los Ejercicios</h2>
-<p><strong>Ejercicio 1.1: Conceptos</strong> a) Variable: Característica (Glucemia). Valor: Resultado medido (105 mg/dL). b) Población: Todos los pacientes con la patología. Muestra: Los que participan en el estudio. c) Un outlier (ej. una medición de 220/120 por error de manguito) elevaría artificialmente la media, haciendo que la tensión promedio parezca más alta de lo que realmente es.</p>
-<p><strong>Ejercicio 1.2: Escalas</strong> a) Discreta (conteo de eventos). b) Ordinal (hay un orden de gravedad). c) Continua (puede tomar cualquier valor decimal). d) Nominal (categorías sin orden). e) Ordinal (puntuación con orden intrínseco).</p>
-<p><strong>Ejercicio 1.3: Tiempos de espera</strong> a) Media = 86 / 8 = 10.75 min. b) Ordenados: 7, 8, 9, 10, 11, 12, 14, 15. Mediana = (10+11)/2 = 10.5 min. c) Ambas son similares porque no hay outliers extremos.</p>
-<p><strong>Ejercicio 1.4: Admisiones</strong> a)</p>
+<p><strong>Ejercicio 1.1: Conceptos</strong></p>
+<ul>
+<li><strong>(a)</strong> Variable: característica que se mide (glucemia). Valor: resultado concreto de esa medición (105 mg/dL).</li>
+<li><strong>(b)</strong> Población: todos los pacientes con la patología. Muestra: quienes participan en el estudio. Los resultados se obtienen en la muestra, pero se pretende inferir sobre la población; distinguirlas permite reconocer la incertidumbre muestral y determinar a quiénes pueden generalizarse los resultados.</li>
+<li><strong>(c)</strong> Un outlier es una observación inusualmente alejada del resto. Puede deberse a un error de medición o representar un valor clínico real. Si es muy alto, desplaza la media hacia arriba; por ello, debe comprobarse su origen antes de excluirlo.</li>
+</ul>
+<p><strong>Ejercicio 1.2: Escalas</strong></p>
+<ul>
+<li><strong>(a)</strong> Discreta (conteo de eventos).</li>
+<li><strong>(b)</strong> Ordinal (hay un orden de gravedad).</li>
+<li><strong>(c)</strong> Continua (puede tomar cualquier valor decimal).</li>
+<li><strong>(d)</strong> Nominal (categorías sin orden).</li>
+<li><strong>(e)</strong> Ordinal (puntuación con orden intrínseco).</li>
+</ul>
+<p><strong>Ejercicio 1.3: Tiempos de espera</strong></p>
+<ul>
+<li><strong>(a)</strong> Media = <span class="math inline">\(86/8=10.75\)</span> min.</li>
+<li><strong>(b)</strong> Ordenados: 7, 8, 9, 10, 11, 12, 14, 15. Mediana = <span class="math inline">\((10+11)/2=10.5\)</span> min.</li>
+<li><strong>(c)</strong> Ambas son similares porque no hay outliers extremos.</li>
+</ul>
+<p><strong>Ejercicio 1.4: Admisiones</strong></p>
+<ul>
+<li><p><strong>(a)</strong></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -2420,12 +2432,22 @@ Cuadro&nbsp;1.16: Solución en R
 <td style="text-align: right;"></td>
 </tr>
 </tbody>
-</table>
-<ol start="2" type="a">
-<li>Moda = 2 admisiones (<span class="math inline">\(h_j=6\)</span>). c) Proporción = <span class="math inline">\(F_3 = 0.55\)</span> (55%).</li>
-</ol>
-<p><strong>Ejercicio 1.5: Glucemia</strong> a) Media ≈ 100.99 mg/dL (cálculo: <span class="math inline">\((80{\cdot}15 + 95{\cdot}32 + 105{\cdot}35 + 118{\cdot}15 + 138{\cdot}3)/100\)</span>). b) Clase modal: 100-110 mg/dL (<span class="math inline">\(h_j = 35\)</span>). c) P₅₀ ≈ 100 + (0.50 - 0.47)/0.35 · 10 ≈ 100.86 mg/dL (la mediana cae en la clase 100-110, donde <span class="math inline">\(F\)</span> pasa de 0.47 a 0.82).</p>
-<p><strong>Ejercicio 1.6: IMC (Ejemplo 1.7)</strong> a) Sobrepeso (25-30) con densidad 0.0672. b) <span class="math inline">\(F(25) = 0.055 + 0.339 = 0.394\)</span> (39.4%). c) En el rango de 0 a 25 (específicamente, el P₂₅ está en la clase “Normal”).</p>
+</table></li>
+<li><p><strong>(b)</strong> Moda = 2 admisiones (<span class="math inline">\(h_j=6\)</span>).</p></li>
+<li><p><strong>(c)</strong> Proporción = <span class="math inline">\(F_3=0.55\)</span> (55%).</p></li>
+</ul>
+<p><strong>Ejercicio 1.5: Glucemia</strong></p>
+<ul>
+<li><strong>(a)</strong> Media <span class="math inline">\(\approx100.99\)</span> mg/dL: <span class="math inline">\((80{\cdot}15+95{\cdot}32+105{\cdot}35+118{\cdot}15+138{\cdot}3)/100\)</span>.</li>
+<li><strong>(b)</strong> Clase modal: 100-110 mg/dL (<span class="math inline">\(h_j=35\)</span>).</li>
+<li><strong>(c)</strong> <span class="math inline">\(P_{50}\approx100+(0.50-0.47)/0.35\cdot10\approx100.86\)</span> mg/dL. La mediana cae en la clase 100-110, donde <span class="math inline">\(F\)</span> pasa de 0.47 a 0.82.</li>
+</ul>
+<p><strong>Ejercicio 1.6: IMC (Ejemplo 1.7)</strong></p>
+<ul>
+<li><strong>(a)</strong> Sobrepeso (25-30) con densidad 0.0672.</li>
+<li><strong>(b)</strong> <span class="math inline">\(F(25)=0.055+0.339=0.394\)</span> (39.4%).</li>
+<li><strong>(c)</strong> En el rango de 0 a 25 (específicamente, el <span class="math inline">\(P_{25}\)</span> está en la clase “Normal”).</li>
+</ul>
 <p><strong>Fin de Semana 1</strong></p>
 <p>Para referencias avanzadas sobre análisis exploratorio de datos y estimación robusta, consulta: <a href="https://rpubs.com/FJRubio/MM">Robust Estimation of Location</a></p>
 
