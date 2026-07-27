@@ -82,17 +82,17 @@ c) ¿Pueden haber valores atípicos?
 
 **a) Coeficiente de Pearson:**
 
-$$\text{Primero: } \bar{x} = 3.1, \quad \bar{y} = 5.0$$
+$$\text{Primero: } \bar{x} = 3.1, \quad \bar{y} \approx 5.05$$
 
-$$s_x = 1.23, \quad s_y = 1.27$$
+$$s_x \approx 1.150, \quad s_y \approx 1.235$$
 
-$$\text{Covarianza: } \text{Cov}(X,Y) = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{n-1} \approx 1.40$$
+$$\text{Covarianza: } \text{Cov}(X,Y) = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{n-1} \approx 1.411$$
 
-$$r = \frac{\text{Cov}(X,Y)}{s_x s_y} = \frac{1.40}{1.23 \times 1.27} \approx 0.90$$
+$$r = \frac{\text{Cov}(X,Y)}{s_x s_y} = \frac{1.411}{1.150 \times 1.235} \approx 0.994$$
 
-**b) Interpretación:** Existe una correlación positiva muy fuerte (r ≈ 0.90) entre horas de estudio y nota del examen. A mayor número de horas, mayor calificación. Aproximadamente 81% (r²) de la variación en notas se explica por las horas de estudio.
+**b) Interpretación:** Existe una correlación positiva casi perfecta (r ≈ 0.994) entre horas de estudio y nota del examen. A mayor número de horas, mayor calificación. Aproximadamente 98.8% (r²) de la variación en notas se explica por las horas de estudio.
 
-**c) Valores atípicos:** La relación es lineal sin desvíos aparentes. No hay evidencia de outliers en los datos.
+**c) Valores atípicos:** La relación es fuertemente lineal con un único punto (1.5 h, nota 3) que se desvía ligeramente de la tendencia y = x + 2 del resto de pares; la correlación casi perfecta sugiere que este desvío es pequeño y no hay evidencia de outliers importantes.
 </div>
 
 ---
@@ -254,37 +254,36 @@ d) Prediga el precio para una vivienda de 105 m²
 
 Primero calculamos estadísticos:
 
-- $\bar{x} = 102.5$, $\bar{y} = 186.25$
-- $S_{xx} = \sum(x_i - \bar{x})^2 = 1512.5$
-- $S_{xy} = \sum(x_i - \bar{x})(y_i - \bar{y}) = 3057.5$
-- $S_{yy} = \sum(y_i - \bar{y})^2 = 6337.5$
+- $\bar{x} = 101.25$, $\bar{y} = 186.25$
+- $S_{xx} = \sum(x_i - \bar{x})^2 = 2137.5$
+- $S_{xy} = \sum(x_i - \bar{x})(y_i - \bar{y}) = 3162.5$
 
 Coeficiente de regresión:
-$$\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{3057.5}{1512.5} \approx 2.021$$
+$$\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{3162.5}{2137.5} \approx 1.480$$
 
 Ordenada en el origen:
-$$\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} = 186.25 - 2.021 \times 102.5 \approx -22.41$$
+$$\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} = 186.25 - 1.480 \times 101.25 \approx 36.45$$
 
 **Modelo estimado:**
-$$\hat{Y} = -22.41 + 2.021 X$$
+$$\hat{Y} = 36.45 + 1.480 X$$
 
 **b) Interpretación de coeficientes:**
-- $\hat{\beta}_0 = -22.41$: Es el precio teórico para X = 0 (sin interpretación práctica, pues no hay viviendas de 0 m²)
-- $\hat{\beta}_1 = 2.021$: Por cada m² adicional, el precio aumenta aproximadamente 2.021 mil euros, o sea, 2021 € por m²
+- $\hat{\beta}_0 = 36.45$: Es el precio base teórico (no tiene interpretación práctica directa para $X=0$)
+- $\hat{\beta}_1 = 1.480$: Por cada m² adicional, el precio aumenta aproximadamente 1.480 mil euros (1480 €/m²)
 
 **c) Coeficiente de determinación R²:**
 
-$$r = \frac{S_{xy}}{\sqrt{S_{xx} \times S_{yy}}} = \frac{3057.5}{\sqrt{1512.5 \times 6337.5}} \approx 0.9815$$
+$$S_{yy} = \sum(y_i - \bar{y})^2 = 4737.5$$
 
-$$R^2 = r^2 \approx 0.963$$
+$$R^2 = \frac{(S_{xy})^2}{S_{xx} \times S_{yy}} = \frac{(3162.5)^2}{2137.5 \times 4737.5} \approx \frac{10.00 \times 10^6}{10.13 \times 10^6} \approx 0.9876$$
 
-Interpretación: El 96.3% de la variabilidad en los precios se explica por el tamaño de la vivienda. El ajuste es excelente.
+Interpretación: El 98.8% de la variabilidad en los precios se explica por el tamaño de la vivienda. El ajuste es excelente.
 
 **d) Predicción para X = 105 m²:**
 
-$$\hat{Y}(105) = -22.41 + 2.021 \times 105 = -22.41 + 212.205 \approx 189.80 \text{ k€}$$
+$$\hat{Y}(105) = 36.45 + 1.480 \times 105 = 36.45 + 155.40 \approx 191.85 \text{ k€}$$
 
-Precio predicho: aproximadamente **189,800 €** para una vivienda de 105 m².
+Precio predicho: aproximadamente **191,850 €** para una vivienda de 105 m².
 </div>
 
 ---
