@@ -10,6 +10,8 @@ book:
       affiliation: "Dpto. de Estadística e Investigación Operativa, Universidad de Granada"
       email: "mluquefe@ugr.es"
       url: "https://migariane.github.io"
+    - name: "Eliezer Pita Zambrano"
+      affiliation: "Dpto. de Estadística e Investigación Operativa, Universidad de Granada"
   date: "2026-05-21"
   date-format: "YYYY"
   description: |
@@ -24,7 +26,7 @@ book:
   search: true
   page-footer:
     left: |
-      Matemáticas para la Estadística Médica con R, por Miguel Ángel Luque Fernández
+      Matemáticas para la Estadística Médica con R, por Miguel Ángel Luque Fernández y Eliezer Pita Zambrano
     right: |
       © 2026 Universidad de Granada · <a href="https://www.ugr.es">ugr.es</a>
 
@@ -100,7 +102,7 @@ format:
     fig-align: center
     fig-width: 7
     fig-height: 5
-    base-url: /CursoMatematicaEstadistica/
+    base-url: /MatematicaEstadisticaMedicinaR/
     include-in-header:
       text: |
         <script>

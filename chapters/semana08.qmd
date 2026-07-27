@@ -730,7 +730,7 @@ shapiro.test(osteo$edad)
 ```
 
 
-**Interpretación:** Con $W = 0.907$ y $p < 0.001$, rechazamos normalidad ($\alpha = 0.05$). Para alternativas cuando no hay normalidad y $n < 60$, ver @sec-semana12-bootstrap.
+**Interpretación:** Con $W = 0.907$ y $p < 0.001$, rechazamos normalidad ($\alpha = 0.05$). Para alternativas cuando no hay normalidad y $n < 60$, considerar pruebas no paramétricas o métodos bootstrap.
 :::
 
 ### Test de Bartlett: Homogeneidad de Varianzas
@@ -783,7 +783,7 @@ bartlett.test(imc ~ grupo_edad, data = osteo)
 | Homogeneidad | Bartlett | `bartlett.test()` | Datos normales |
 | Homogeneidad | Levene | `car::leveneTest()` | Datos no normales |
 
-**TCL:** Con $n \geq 60$, el t-test es robusto a la no normalidad [@Casella2002]. Para $n < 60$ y datos no normales, ver métodos bootstrap en @sec-semana12-bootstrap.
+**TCL:** Con $n \geq 60$, el t-test es robusto a la no normalidad [@Casella2002]. Para $n < 60$ y datos no normales, considerar pruebas no paramétricas o métodos bootstrap.
 :::
 
 ---
